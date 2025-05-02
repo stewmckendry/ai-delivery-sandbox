@@ -21,3 +21,16 @@
   - style
   last_updated: '2025-05-02'
   pod_owner: ResearchPod
+- path: project/docs/ways_of_working.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/ways_of_working.md
+  file_type: md
+  description: Guidelines and principles for effective collaboration between human
+    leads and AI pods, focusing on teamwork, iteration, documentation, and continuous
+    improvement within an AI-native delivery framework.
+  tags:
+  - collaboration
+  - workflow
+  - documentation
+  - iteration
+  last_updated: '2025-05-02'
+  pod_owner: DeliveryPod
