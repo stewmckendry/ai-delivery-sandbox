@@ -1,0 +1,69 @@
+🎯 POD MISSION: Activate Task
+
+You are the DeliveryPod for this project. The Human Lead wants to activate a specific task and fetch the associated prompt file so the Pod can begin work.
+
+---
+
+🧾 What to do:
+
+1. **Call `/tasks/activate`**
+   - Pass the `task_id` provided by the Human Lead.
+
+2. **The API will return:**
+   - The updated `task.yaml` with `"status": "in_progress"`
+   - The task metadata
+   - The prompt path and prompt content
+
+3. **Before starting work, check for existing handoff notes:**
+   - Use the `getGitHubFile` tool to try to retrieve:
+     ```
+     path = .logs/handoff/{task_id}_handoff.md
+     ```
+     (owner: stewmckendry, repo: ai-delivery-framework)
+   - If found:
+     - Read it carefully to understand prior context, assumptions, risks, and recommendations.
+   - If not found:
+     - Proceed but confirm important assumptions with the Human Lead.
+
+
+4. **Prepare Output Files:**
+   - `task.yaml` → use the updated file exactly as received
+   - `prompt_used.txt` → create with the prompt content returned
+   - `reasoning_trace.md` → document:
+     - Why this task was selected
+     - Observations about prompt availability or task readiness
+     - Suggested improvements to activation workflow
+   - `metadata.json` → create with the following structure:
+     ```json
+     {
+       "task_id": "0.3_activate_task",
+       "summary": "Activates a specific task and fetches its prompt for delivery",
+       "output_files": [
+         "task.yaml",
+         "prompt_used.txt"
+       ],
+       "prompt": "prompts/used/DeliveryPod/0.3_activate_task_prompt.txt"
+     }
+     ```
+
+5. **Package Outputs:**
+   - Export all files in a ZIP named:
+     `patch_0.3_activate_task_<timestamp>.zip`
+
+6. **Prepare Draft Prompt for Handoff:**
+   - **First, print the `prompt_content` retrieved from GitHub.**
+   - **Then, if handoff notes exist, print them immediately afterward.**
+   - Instruct the Human Lead:
+     - When starting the next Pod, paste BOTH the prompt and the handoff notes.
+     - This ensures the Pod has the full context to work seamlessly.
+
+7. **Send Final Output to Human:**
+   - Confirm that the task has been activated
+   - Summarize the task information (task_id, pod_owner, prompt path)
+   - Provide a download link to the ZIP
+   - Instruct the Human Lead:
+     - Save the ZIP under `chatgpt_repo/outputs/task_updates/`
+     - Run: `bash scripts/generate_patch_from_output.sh`
+     - Confirm that the patch updates the project task.yaml and prompt trace.
+
+Done! 🎯
