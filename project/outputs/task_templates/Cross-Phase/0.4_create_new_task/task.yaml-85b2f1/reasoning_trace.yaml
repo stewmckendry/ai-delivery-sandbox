@@ -1,0 +1,25 @@
+alternatives:
+- Structure values as a checklist or add visual representation (diagram or table).
+improvement_opportunities:
+- Could add example workflows for clarity (future iteration).
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 9
+summary: This task established our foundational ways of working across Human and AI
+  pods, codifying collaboration, speed, source control discipline, documentation,
+  and continuous learning.
+task_id: task_templates/Cross-Phase/0.4_create_new_task/task.yaml-85b2f1
+thoughts:
+- tags:
+  - values
+  - collaboration
+  - task-completion
+  thought: The Human Lead provided a rich and well-structured list of working values.
+    My role was to refine, format, and enhance with AI perspectives while preserving
+    the original spirit.
+- tags:
+  - best-practices
+  - gpt-collab
+  thought: I added two values (context cleanliness and loop closing) based on common
+    best practices in AI collaboration. These help avoid errors and improve reuse.
