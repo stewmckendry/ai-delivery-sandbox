@@ -139,8 +139,9 @@ tasks:
     - docs/journeys/app_walkthrough.md
     - docs/workflows/delivery_flow.md
     feedback_file: .logs/feedback/1.2_define_user_and_delivery_flows.md
-    depends_on: ["1.1_capture_project_goals"]
-    handoff_from: "1.1_capture_project_goals"
+    depends_on:
+    - 1.1_capture_project_goals
+    handoff_from: 1.1_capture_project_goals
     ready: true
     done: false
     created_by: human
@@ -163,8 +164,9 @@ tasks:
     outputs:
     - docs/features/feature_*.md
     feedback_file: .logs/feedback/1.3_break_into_features.md
-    depends_on: ["1.2_define_user_and_delivery_flows"]
-    handoff_from: "1.2_define_user_and_delivery_flows"
+    depends_on:
+    - 1.2_define_user_and_delivery_flows
+    handoff_from: 1.2_define_user_and_delivery_flows
     ready: true
     done: false
     created_by: human
@@ -186,8 +188,9 @@ tasks:
     - docs/qa/acceptance_matrix.md
     - docs/features/feature_*.md
     feedback_file: .logs/feedback/1.4_write_acceptance_criteria.md
-    depends_on: ["1.3_break_into_features"]
-    handoff_from: "1.3_break_into_features"
+    depends_on:
+    - 1.3_break_into_features
+    handoff_from: 1.3_break_into_features
     ready: true
     done: false
     created_by: human
@@ -231,8 +234,10 @@ tasks:
     - docs/architecture/solution_overview.md
     - docs/architecture/standards.md
     feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
-    depends_on: ["1.2_define_user_and_delivery_flows", "1.3_break_into_features"]
-    handoff_from: "1.3_break_into_features"
+    depends_on:
+    - 1.2_define_user_and_delivery_flows
+    - 1.3_break_into_features
+    handoff_from: 1.3_break_into_features
     ready: true
     done: false
     created_by: human
@@ -271,8 +276,10 @@ tasks:
     outputs:
     - docs/specs/spec_<feature_id>.md
     feedback_file: .logs/feedback/2.1_design_feature_and_tech_spec.md
-    depends_on: ["1.3_break_into_features", "1.6_define_architecture_and_standards"]
-    handoff_from: "1.6_define_architecture_and_standards"
+    depends_on:
+    - 1.3_break_into_features
+    - 1.6_define_architecture_and_standards
+    handoff_from: 1.6_define_architecture_and_standards
     ready: true
     done: false
     created_by: human
@@ -299,8 +306,9 @@ tasks:
     - docs/specs/spec_<feature_id>.md
     - .patches/patch_<timestamp>.diff
     feedback_file: .logs/feedback/2.2_build_and_patch.md
-    depends_on: ["2.1_design_feature_and_tech_spec"]
-    handoff_from: "2.1_design_feature_and_tech_spec"
+    depends_on:
+    - 2.1_design_feature_and_tech_spec
+    handoff_from: 2.1_design_feature_and_tech_spec
     ready: true
     done: false
     created_by: human
@@ -327,8 +335,10 @@ tasks:
     - test/feature_<feature_id>/qa_test_results.md
     - docs/qa/acceptance_matrix.md
     feedback_file: .logs/feedback/2.3_qa_review_feature.md
-    depends_on: ["2.2_build_and_patch", "1.4_write_acceptance_criteria"]
-    handoff_from: "2.2_build_and_patch"
+    depends_on:
+    - 2.2_build_and_patch
+    - 1.4_write_acceptance_criteria
+    handoff_from: 2.2_build_and_patch
     ready: true
     done: false
     created_by: human
@@ -353,8 +363,9 @@ tasks:
     - docs/specs/spec_<feature_id>.md
     - .patches/patch_<timestamp>.diff
     feedback_file: .logs/feedback/2.4a_fix_bugs_from_qa.md
-    depends_on: ["2.3_QA_feature"]
-    handoff_from: "2.3_QA_feature"
+    depends_on:
+    - 2.3_QA_feature
+    handoff_from: 2.3_QA_feature
     ready: true
     done: false
     created_by: human
@@ -379,8 +390,9 @@ tasks:
     - test/feature_<feature_id>/qa_test_results.md
     - docs/qa/acceptance_matrix.md
     feedback_file: .logs/feedback/2.4b_retest_after_fixes.md
-    depends_on: ["2.4a_fix_bugs_from_qa"]
-    handoff_from: "2.4a_fix_bugs_from_qa"
+    depends_on:
+    - 2.4a_fix_bugs_from_qa
+    handoff_from: 2.4a_fix_bugs_from_qa
     ready: true
     done: false
     created_by: human
@@ -471,8 +483,9 @@ tasks:
     outputs:
     - test/e2e/e2e_test_plan.md
     feedback_file: .logs/feedback/3.1_define_e2e_test_plan.md
-    depends_on: ["1.4_write_acceptance_criteria"]
-    handoff_from: "1.4_write_acceptance_criteria"
+    depends_on:
+    - 1.4_write_acceptance_criteria
+    handoff_from: 1.4_write_acceptance_criteria
     ready: true
     done: false
     created_by: human
@@ -493,8 +506,9 @@ tasks:
     outputs:
     - test/e2e/e2e_test_results.md
     feedback_file: .logs/feedback/3.2_execute_e2e_scenarios.md
-    depends_on: ["3.1_define_e2e_test_plan"]
-    handoff_from: "3.1_define_e2e_test_plan"
+    depends_on:
+    - 3.1_define_e2e_test_plan
+    handoff_from: 3.1_define_e2e_test_plan
     ready: true
     done: false
     created_by: human
@@ -518,8 +532,9 @@ tasks:
     - docs/specs/spec_*.md
     - .patches/patch_<timestamp>.diff
     feedback_file: .logs/feedback/3.3_fix_bugs_e2e.md
-    depends_on: ["3.2_e2e_test_execution"]
-    handoff_from: "3.2_e2e_test_execution"
+    depends_on:
+    - 3.2_e2e_test_execution
+    handoff_from: 3.2_e2e_test_execution
     ready: true
     done: false
     created_by: human
@@ -668,3 +683,12 @@ tasks:
     updated_at: '2025-04-26T23:06:52.827499'
     assigned_to: unassigned
     instance_of: task_templates/Phase4_go-live/4.5_retro_stabilize/task.yaml
+  task_templates/Cross-Phase/0.4_create_new_task/task.yaml-85b2f1:
+    assigned_pod: PromptPod
+    pod_owner: PromptPod
+    created_at: '2025-05-02T23:10:53.215936'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/Phase 0 - Cross-Phase/task_templates/Cross-Phase/0.4_create_new_task/task.yaml/task.yaml
+    prompt: framework/task_templates/Phase 0 - Cross-Phase/task_templates/Cross-Phase/0.4_create_new_task/task.yaml/prompt_template.md
