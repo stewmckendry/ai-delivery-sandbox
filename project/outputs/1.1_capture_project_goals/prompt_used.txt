@@ -1,0 +1,1 @@
+Kick off Discovery by capturing the project’s purpose, goals, and intended impact. Define what success looks like, who benefits, and what questions we aim to answer. Outputs go to `/project/docs/project_goals.md`.
