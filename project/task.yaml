@@ -122,8 +122,9 @@ tasks:
     pod_owner: DevPod
     prompt: prompts/dev/capture_project_goals.txt
     ready: true
-    status: backlog
-    updated_at: '2025-04-26T23:06:52.825514'
+    status: in_progress
+    updated_at: '2025-05-02T23:35:31.755807'
+    prompt_used: project/outputs/1.1_capture_project_goals/prompt_used.txt
   1.2_define_user_and_delivery_flows:
     assigned_to: unassigned
     category: discovery
