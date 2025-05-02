@@ -1,0 +1,12 @@
+- path: project/task.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/task.yaml
+  file_type: yaml
+  description: YAML configuration for managing and updating tasks, including metadata
+    editing, task activation, cloning, creation, and indexing project files.
+  tags:
+  - task_management
+  - delivery
+  - config
+  - cross_phase
+  last_updated: '2025-05-02'
+  pod_owner: DeliveryPod
