@@ -1,0 +1,15 @@
+- message: "User seeded some creative angles: it's NHL playoff season, coaching time,\
+    \ and a GPT building other GPTs. I\u2019m now thinking of combining sports context\
+    \ + AI coaching + real-time insights. Possible idea: an AI hockey assistant GPT\
+    \ that helps coaches run tryouts, track players, and simulate lineup strategies\
+    \ \u2014 like 'Moneyball for youth hockey'. It could integrate with stats, notes,\
+    \ or even video. GPT's backend could be Airtable or Notion instead of Git."
+  timestamp: '2025-05-02T23:54:22.847837'
+  tags:
+  - ideation
+  - sports
+  - coaching
+  - custom-GPT
+  lessons:
+  - Human context cues (like seasonality) are gold for app brainstorming.
+  - Framing the GPT as a coach or assistant makes the AI-human metaphor tangible.
