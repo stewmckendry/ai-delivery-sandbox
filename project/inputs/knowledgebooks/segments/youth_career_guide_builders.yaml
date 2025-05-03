@@ -1,0 +1,35 @@
+careers:
+  - title: "Mechanic"
+    metaphor: "The Engine Healer"
+    category: "Fixers & Builders"
+    skills: ["Problem-solving", "Mechanical skills", "Attention to detail"]
+    traits: ["Hands-on", "Analytical", "Patient"]
+    path: "Take apart and reassemble a bicycle or toy car"
+
+  - title: "Electrician"
+    metaphor: "The Power Wrangler"
+    category: "Fixers & Builders"
+    skills: ["Electrical systems knowledge", "Problem-solving", "Safety awareness"]
+    traits: ["Precise", "Logical", "Enjoys hands-on work"]
+    path: "Build simple circuits or explore how household electronics work"
+
+  - title: "Carpenter"
+    metaphor: "The Wood Wizard"
+    category: "Fixers & Builders"
+    skills: ["Measurement", "Tool use", "Design"]
+    traits: ["Creative", "Handy", "Focused"]
+    path: "Build a birdhouse or help with small woodworking projects"
+
+  - title: "Plumber"
+    metaphor: "The Water Wizard"
+    category: "Fixers & Builders"
+    skills: ["Plumbing systems", "Diagnostics", "Problem-solving"]
+    traits: ["Thorough", "Independent", "Resourceful"]
+    path: "Learn how faucets, drains, and pipes work"
+
+  - title: "Solar Panel Installer"
+    metaphor: "The Sun Catcher"
+    category: "Fixers & Builders"
+    skills: ["Electrical systems", "Construction", "Sustainability"]
+    traits: ["Eco-conscious", "Careful", "Reliable"]
+    path: "Build a model solar-powered gadget"
