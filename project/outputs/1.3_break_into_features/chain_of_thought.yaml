@@ -1,0 +1,14 @@
+- message: "Kicking off feature decomposition for the AI Career Coach MVP. I reviewed\
+    \ the user goals, flows, and purpose. My goal is to identify atomic, testable\
+    \ components that ladder up to a full user experience. Some are core to the journey\
+    \ (like guided prompts), others are experiments (e.g. backend memory). I\u2019\
+    ll organize features by user-facing value and technical scaffolding, so we can\
+    \ build iteratively and test fast."
+  timestamp: '2025-05-03T00:15:01.924502'
+  tags:
+  - feature-design
+  - modularity
+  - experiments
+  - UX-first
+  lessons:
+  - Designing features with modularity in mind supports early testing and faster iteration.
