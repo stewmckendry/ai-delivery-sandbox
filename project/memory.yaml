@@ -103,3 +103,15 @@
   - youth
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: .logs/issues/framework.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/.logs/issues/framework.yaml
+  file_type: yaml
+  description: Log of a bug related to incorrect or missing content in a YAML grounding
+    file, affecting downstream processes.
+  tags:
+  - bug
+  - yaml
+  - data-integrity
+  - commit-check
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
