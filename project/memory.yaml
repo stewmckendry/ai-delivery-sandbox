@@ -94,3 +94,14 @@
   - improvement
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.2_define_user_and_delivery_flows/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.2_define_user_and_delivery_flows/prompt_used.txt
+  file_type: txt
+  description: Document detailing the user journey and delivery flow for the AI Career
+    Coach for Youth project.
+  tags:
+  - prompt
+  - flow
+  - delivery
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
