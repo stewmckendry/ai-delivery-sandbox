@@ -257,3 +257,13 @@
   - feature-structure
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/docs/architecture/system_architecture_diagram.png
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/system_architecture_diagram.png
+  file_type: png
+  description: Diagram depicting the system architecture of the AI system
+  tags:
+  - architecture
+  - system
+  - diagram
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
