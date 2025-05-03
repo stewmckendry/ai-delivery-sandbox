@@ -21,3 +21,14 @@
   - UX
   last_updated: '2025-05-03'
   pod_owner: QAPod
+- path: project/outputs/1.4_write_acceptance_criteria/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.4_write_acceptance_criteria/handoff_notes.yaml
+  file_type: yaml
+  description: Notes on the handoff process for writing or refining acceptance criteria,
+    including references and next steps.
+  tags:
+  - handoff
+  - acceptance_criteria
+  - process
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
