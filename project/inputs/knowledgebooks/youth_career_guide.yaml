@@ -1,72 +1,70 @@
 careers:
   # ... previous entries ...
 
-  - title: "Architect"
-    metaphor: "The Dream House Designer"
-    category: "Creative Creators"
-    skills: ["Spatial awareness", "Design", "Math"]
-    traits: ["Detail-oriented", "Creative", "Planner"]
-    path: "Design your dream building with blocks or paper"
-
-  - title: "Graphic Designer"
-    metaphor: "The Visual Communicator"
-    category: "Creative Creators"
-    skills: ["Creativity", "Design software proficiency", "Typography"]
-    traits: ["Artistic", "Imaginative", "Keen eye for aesthetics"]
-    path: "Create posters or digital art using design tools"
-
-  - title: "UX Designer"
-    metaphor: "The Experience Architect"
-    category: "Creative Creators"
-    skills: ["Design thinking", "User research", "Prototyping"]
-    traits: ["Empathetic", "Creative", "Detail-focused"]
-    path: "Redesign a favorite app or website for improved usability"
-
-  - title: "Veterinarian"
-    metaphor: "The Animal Doctor"
-    category: "Animal Allies"
-    skills: ["Science", "Observation", "Empathy"]
-    traits: ["Cares for animals", "Calm under pressure"]
-    path: "Volunteer at a shelter or read pet health books"
-
-  - title: "Marine Biologist"
-    metaphor: "The Ocean Detective"
-    category: "Animal Allies"
-    skills: ["Biology", "Diving", "Data collection"]
-    traits: ["Curious", "Nature-loving", "Adventurous"]
-    path: "Explore tide pools or visit an aquarium"
-
-  - title: "Zookeeper"
-    metaphor: "The Wildlife Caretaker"
-    category: "Animal Allies"
-    skills: ["Animal care", "Observation", "Routine management"]
-    traits: ["Dedicated", "Observant", "Animal lover"]
-    path: "Volunteer at a shelter or zoo youth program"
-
-  - title: "Dog Trainer"
-    metaphor: "The Pet Whisperer"
-    category: "Animal Allies"
-    skills: ["Patience", "Communication", "Positive reinforcement"]
-    traits: ["Gentle", "Consistent", "Loves dogs"]
-    path: "Teach your dog a new trick each week"
-
-  - title: "Park Ranger"
-    metaphor: "The Guardian of Green Spaces"
+  - title: "Conservation Scientist"
+    metaphor: "The Nature Protector"
     category: "Earth Heroes"
-    skills: ["Nature knowledge", "Safety", "Public speaking"]
-    traits: ["Loves the outdoors", "Helpful", "Responsible"]
-    path: "Explore local parks or help plant trees"
+    skills: ["Research", "Environmental science", "Data analysis"]
+    traits: ["Passionate about nature", "Analytical", "Proactive"]
+    path: "Participate in local clean-up events or nature clubs"
 
-  - title: "Environmental Scientist"
-    metaphor: "The Planet Protector"
+  - title: "Climate Change Analyst"
+    metaphor: "The Earth Advocate"
     category: "Earth Heroes"
-    skills: ["Research", "Data", "Teamwork"]
-    traits: ["Cares about Earth", "Likes solving real problems"]
-    path: "Create a backyard ecosystem journal"
+    skills: ["Data analysis", "Environmental science", "Policy understanding"]
+    traits: ["Passionate", "Informed", "Proactive"]
+    path: "Monitor local environmental changes and propose solutions"
 
-  - title: "Urban Farmer"
-    metaphor: "The Garden City Grower"
-    category: "Earth Heroes"
-    skills: ["Gardening", "Sustainability", "Nutrition"]
-    traits: ["Green thumb", "Innovative", "Likes food"]
-    path: "Grow herbs or veggies in containers or windowsills"
+  - title: "Teacher"
+    metaphor: "The Spark of Curiosity"
+    category: "People Helpers"
+    skills: ["Communication", "Patience", "Planning"]
+    traits: ["Loves helping others learn"]
+    path: "Pretend-teach your stuffed animals or siblings!"
+
+  - title: "Therapist"
+    metaphor: "The Listener of Feelings"
+    category: "People Helpers"
+    skills: ["Listening", "Empathy", "Problem-solving"]
+    traits: ["Kind", "Trustworthy", "Cares about how people feel"]
+
+  - title: "Paramedic"
+    metaphor: "The Calm in the Chaos"
+    category: "People Helpers"
+    skills: ["Emergency response", "Medical knowledge", "Calm under pressure"]
+    traits: ["Brave", "Quick thinker", "Caring"]
+    path: "Take a basic first-aid course or role-play emergencies"
+
+  - title: "Firefighter"
+    metaphor: "The Brave Responder"
+    category: "People Helpers"
+    skills: ["Physical fitness", "Teamwork", "Problem-solving"]
+    traits: ["Courageous", "Helpful", "Resilient"]
+    path: "Visit your local fire station or learn fire safety tips"
+
+  - title: "Social Worker"
+    metaphor: "The Family Helper"
+    category: "People Helpers"
+    skills: ["Advocacy", "Listening", "Conflict resolution"]
+    traits: ["Compassionate", "Supportive", "Empathetic"]
+
+  - title: "Physical Therapist"
+    metaphor: "The Movement Mentor"
+    category: "People Helpers"
+    skills: ["Anatomy knowledge", "Empathy", "Communication"]
+    traits: ["Supportive", "Patient", "Interested in helping others heal"]
+    path: "Study human movement and assist in sports activities"
+
+  - title: "Nutritionist"
+    metaphor: "The Food Guide"
+    category: "People Helpers"
+    skills: ["Nutritional science", "Counseling", "Research"]
+    traits: ["Health-conscious", "Analytical", "Enjoys educating others"]
+    path: "Create balanced meal plans or explore healthy recipes"
+
+  - title: "Mechanic"
+    metaphor: "The Engine Healer"
+    category: "Fixers & Builders"
+    skills: ["Problem-solving", "Mechanical skills", "Attention to detail"]
+    traits: ["Hands-on", "Analytical", "Patient"]
+    path: "Take apart and reassemble a bicycle or toy car"
