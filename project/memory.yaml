@@ -140,3 +140,14 @@
   - delivery
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/outputs/1.3_break_into_features/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.3_break_into_features/prompt_used.txt
+  file_type: txt
+  description: Document detailing the prompt used to decompose the AI Career Coach
+    MVP into distinct features or experiments.
+  tags:
+  - prompt
+  - features
+  - prototype
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
