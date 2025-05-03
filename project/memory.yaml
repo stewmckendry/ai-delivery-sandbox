@@ -24,3 +24,16 @@
   - privacy
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/docs/architecture/stack_and_component_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/stack_and_component_design.md
+  file_type: md
+  description: Detailed design document outlining the stack and components for a GPT-first
+    architecture, including custom GPT setup, OpenAPI schema, FastAPI backend, and
+    mapped user flows.
+  tags:
+  - architecture
+  - design
+  - API
+  - GPT
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
