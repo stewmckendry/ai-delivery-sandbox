@@ -608,3 +608,8 @@
   task_id: 1.5_research_spikes
   committed_by: GPTPod
   message: Append output file to 1.5_research_spikes
+- timestamp: '2025-05-03T01:33:25.061490'
+  path: .logs/issues/framework.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in framework scope
