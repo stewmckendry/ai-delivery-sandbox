@@ -120,3 +120,14 @@
   - airtable
   - notion
   - mvp-flexibility
+- message: "Scaffolding a unified MemoryManager interface with dual backends: Airtable\
+    \ for structured logging and Notion for reflective journaling. Each backend will\
+    \ have its own client and adapter class. MemoryManager will expose a single entry\
+    \ point with toggles for which backends to use. We'll document this clearly and\
+    \ commit it to Git \u2014 because if it's not in Git, it didn't happen."
+  timestamp: '2025-05-03T02:15:42.916841'
+  tags:
+  - memory-architecture
+  - code-scaffold
+  - duality
+  - git-source-of-truth
