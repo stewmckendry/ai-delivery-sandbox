@@ -139,3 +139,14 @@
   - youth
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/inputs/knowledgebooks/segments/youth_career_guide_animal.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/inputs/knowledgebooks/segments/youth_career_guide_animal.yaml
+  file_type: yaml
+  description: A guide detailing various animal-related careers for youth, including
+    necessary skills, traits, and suggested paths for each role.
+  tags:
+  - guide
+  - career
+  - animal
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
