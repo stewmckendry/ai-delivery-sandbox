@@ -1,0 +1,42 @@
+careers:
+  - title: "Software Developer"
+    metaphor: "The Architect of Ideas"
+    category: "STEM Superstars"
+    skills: ["Logic", "Creativity", "Focus", "Collaboration"]
+    traits: ["Loves puzzles", "Patient", "Enjoys making things work"]
+    path: "Try building a game in Scratch or Roblox Studio!"
+
+  - title: "Astronaut"
+    metaphor: "The Explorer of the Beyond"
+    category: "STEM Superstars"
+    skills: ["Problem-solving", "Fitness", "Curiosity", "Courage"]
+    traits: ["Adventurous", "Likes science and space"]
+    quote: "To go places no one has gone before."
+
+  - title: "Robotics Engineer"
+    metaphor: "The Builder of Smart Machines"
+    category: "STEM Superstars"
+    skills: ["Engineering", "Programming", "Problem-solving"]
+    traits: ["Inventive", "Curious", "Loves machines"]
+    path: "Build a simple robot or LEGO Mindstorms project"
+
+  - title: "Mathematician"
+    metaphor: "The Puzzle Master"
+    category: "STEM Superstars"
+    skills: ["Problem-solving", "Logical thinking", "Analysis"]
+    traits: ["Loves numbers", "Detail-oriented", "Patient"]
+    path: "Try brain teasers, puzzles, or math games"
+
+  - title: "Data Scientist"
+    metaphor: "The Pattern Detective"
+    category: "STEM Superstars"
+    skills: ["Analytical thinking", "Programming", "Statistics"]
+    traits: ["Curious", "Detail-oriented", "Loves solving puzzles"]
+    path: "Explore data sets and try creating simple charts or graphs"
+
+  - title: "Cybersecurity Analyst"
+    metaphor: "The Digital Guardian"
+    category: "STEM Superstars"
+    skills: ["Problem-solving", "IT knowledge", "Vigilance"]
+    traits: ["Protective", "Analytical", "Tech-savvy"]
+    path: "Learn about online safety and try basic coding exercises"
