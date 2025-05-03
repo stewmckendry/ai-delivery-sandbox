@@ -85,3 +85,15 @@
   - API
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/docs/architecture/session_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/session_design.md
+  file_type: md
+  description: Document detailing the design and use of session IDs for managing user
+    sessions in the CareerCoach MVP, including format options and design principles.
+  tags:
+  - session
+  - design
+  - flow
+  - architecture
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
