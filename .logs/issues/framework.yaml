@@ -16,3 +16,21 @@
   - grounding
   status: open
   timestamp: '2025-05-03T01:23:32.108511'
+- type: bug
+  scope: framework
+  issue_id: ccd0a708-97f0-4ea5-8270-51e78cbfbc4e
+  task_id: null
+  title: Monolithic YAML commit fails silently due to content size or overwrite behavior
+  detail: During task 1.5_research_spikes, a full YAML file with 50+ structured career
+    entries failed to commit properly. The system either truncated or overwrote the
+    YAML on each commit attempt without appending, leading to data loss.
+  suggested_fix: Introduce content size checks or enforce segmentation when committing
+    structured data. Consider appending-only logic or YAML merge helpers for large
+    grounding files.
+  tags:
+  - yaml
+  - tool-limit
+  - commit-behavior
+  - data-loss
+  status: open
+  timestamp: '2025-05-03T01:33:25.059353'
