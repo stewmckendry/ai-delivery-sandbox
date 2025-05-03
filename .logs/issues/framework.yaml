@@ -1,0 +1,18 @@
+- type: bug
+  scope: framework
+  issue_id: 3a4309d6-ce0f-4d75-a903-e0cbee4cc913
+  task_id: null
+  title: YAML grounding file committed with incorrect or missing content
+  detail: During task 1.5_research_spikes, the YAML grounding file at project/inputs/knowledgebooks/youth_career_guide.yaml
+    was committed without actual YAML content. This caused downstream issues when
+    ProductPod attempted to use the data.
+  suggested_fix: Enhance commit verification to validate content structure before
+    committing YAML. Add a pre-commit YAML schema lint or basic presence check for
+    key root elements like 'careers:'.
+  tags:
+  - yaml
+  - commit-check
+  - data-integrity
+  - grounding
+  status: open
+  timestamp: '2025-05-03T01:23:32.108511'
