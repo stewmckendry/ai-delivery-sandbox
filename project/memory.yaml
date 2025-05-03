@@ -32,3 +32,14 @@
   - process
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/outputs/1.5_research_spikes/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.5_research_spikes/handoff_notes.yaml
+  file_type: yaml
+  description: Notes and instructions for handing off tasks between pods, focusing
+    on generating structured outputs for youth career coaching research.
+  tags:
+  - handoff
+  - research
+  - workflow
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
