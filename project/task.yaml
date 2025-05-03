@@ -238,6 +238,7 @@ tasks:
     - project/inputs/knowledgebooks/segments/youth_career_guide_builders.yaml
     - project/inputs/knowledgebooks/segments/youth_career_guide_remaining.yaml
     - project/docs/process/root_cause_analysis/yaml_commit_limit_rca.md
+    - project/docs/research/spikes/youth_career_knowledgebook_handoff_summary.md
     phase: Phase 1 - Discovery
     pod_owner: ResearchPod
     prompt: 'Please create a rich knowledge base to support the GPT Youth Career Coach.
