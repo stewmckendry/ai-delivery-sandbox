@@ -28,3 +28,19 @@
   - dataflow
   - modularity
   - privacy
+- message: "The diagram depicts the core system architecture:\n- Frontend has Prompt\
+    \ Selector UI, Guided Q&A Flow, and Career Cards\n- These trigger structured GPT\
+    \ calls\n- GPT is grounded with YAML-based RAG segments (loaded per category)\n\
+    - Optionally, GPT outputs (reflections) can be persisted to Airtable or Notion\
+    \ via a simple backend\n\nData flow is modular:\n1. User selects a prompt \u2192\
+    \ triggers Q&A flow\n2. GPT uses matching YAML (e.g., STEM, Creatives) to suggest\
+    \ careers\n3. User sees career card, reflects (locally or optionally to backend)\n\
+    \nThis layout supports privacy, thematic grounding, and extensibility.\n\nNext:\
+    \ I'll describe this flow in prose and flag architectural risks."
+  timestamp: '2025-05-03T01:54:20.317600'
+  tags:
+  - diagram
+  - dataflow
+  - privacy
+  - grounding
+  - memory
