@@ -31,3 +31,13 @@
   - milestone
   - approved
   - scaling
+- message: 'Sourcing additional youth-appropriate career paths from structured industry
+    sources including NAICS, NOC (Canada), SOC (US), ISCO-08 (ILO), LinkedIn industry
+    codes, and job boards. Strategy: map relevant roles, spot gaps in current categories,
+    and enrich YAML entries with friendly metaphors, skills, and traits. Plan approved
+    by Human Lead.'
+  timestamp: '2025-05-03T01:10:53.488356'
+  tags:
+  - research
+  - classification
+  - expansion
