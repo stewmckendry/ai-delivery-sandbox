@@ -49,3 +49,15 @@
   - backend
   last_updated: '2025-05-03'
   pod_owner: DevPod
+- path: project/docs/architecture/loader_module_scaffolds.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/loader_module_scaffolds.md
+  file_type: md
+  description: Documentation for YAML and prompt loader modules used for modular loading
+    of prompt templates and career knowledge segments.
+  tags:
+  - loader
+  - prompt
+  - yaml
+  - module
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
