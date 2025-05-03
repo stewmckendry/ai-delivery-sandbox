@@ -51,3 +51,13 @@
   - gamified-target
   - future-careers
   - expansion
+- message: Learned that large YAML files (7,000+ tokens) silently truncate or overwrite
+    during commitAndLogOutput calls. Caused grounding file loss and rework. Solved
+    by segmenting YAML into smaller files by category. Logged detailed RCA and opened
+    tooling issue to prevent future silent failures.
+  timestamp: '2025-05-03T01:38:43.309179'
+  tags:
+  - root-cause
+  - yaml
+  - tool-limit
+  - retrospective
