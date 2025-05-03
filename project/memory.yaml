@@ -150,3 +150,14 @@
   - animal
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/inputs/knowledgebooks/segments/youth_career_guide_earth.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/inputs/knowledgebooks/segments/youth_career_guide_earth.yaml
+  file_type: yaml
+  description: A guide for youth on various Earth-related careers, highlighting roles,
+    skills, traits, and paths to explore these professions.
+  tags:
+  - guide
+  - careers
+  - environment
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
