@@ -1,0 +1,18 @@
+handoffs:
+- timestamp: '2025-05-03T00:39:00.411830'
+  from_pod: PromptPod
+  to_pod: ResearchPod
+  reason: Need to fuel the GPT Youth Career Coach with a grounded, age-appropriate
+    knowledge base.
+  token_count: 0
+  next_prompt: Generate a structured knowledgebook and summary file based on research
+    into youth-oriented career coaching and inspiration.
+  reference_files:
+  - project/docs/project_goals.md
+  - project/docs/users_and_journeys.md
+  - project/docs/features/feature_list.md
+  - project/docs/features/acceptance_criteria.md
+  notes: Please structure outputs into a YAML file suitable for RAG use and a markdown
+    writeup with key themes.
+  ways_of_working: Commit outputs to Git, log reasoning trace, document sources if
+    used.
