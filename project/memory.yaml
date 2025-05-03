@@ -221,3 +221,16 @@
   - delivery-readiness
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/docs/features/acceptance_criteria.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/features/acceptance_criteria.md
+  file_type: md
+  description: Document outlining the acceptance criteria for the AI Career Coach
+    project, detailing features like prompt selection, guided Q&A flow, career card
+    generation, journaling, and data persistence.
+  tags:
+  - acceptance_criteria
+  - flow
+  - prompt
+  - data_persistence
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
