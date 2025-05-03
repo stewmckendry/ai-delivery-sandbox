@@ -1,0 +1,49 @@
+careers:
+  - title: "Animator"
+    metaphor: "The Wizard of Movement"
+    category: "Creative Creators"
+    skills: ["Drawing", "Storytelling", "Tech Tools"]
+    traits: ["Imaginative", "Visual thinker", "Detail-oriented"]
+    path: "Try stop-motion with toys or draw frame-by-frame videos!"
+
+  - title: "Game Designer"
+    metaphor: "The World Builder"
+    category: "Creative Creators"
+    skills: ["Design thinking", "Logic", "Empathy", "Coding"]
+    traits: ["Loves games", "Curious about what makes them fun"]
+    quote: "Every level is a story."
+
+  - title: "Musician"
+    metaphor: "The Vibe Maker"
+    category: "Creative Creators"
+    skills: ["Rhythm", "Creativity", "Practice"]
+    traits: ["Expressive", "Passionate", "Enjoys performing"]
+    path: "Make music using apps like GarageBand or Soundtrap"
+
+  - title: "Fashion Designer"
+    metaphor: "The Style Inventor"
+    category: "Creative Creators"
+    skills: ["Sketching", "Fabric knowledge", "Trends"]
+    traits: ["Trendy", "Imaginative", "Bold"]
+    path: "Create fashion mood boards or upcycle old clothes"
+
+  - title: "Architect"
+    metaphor: "The Dream House Designer"
+    category: "Creative Creators"
+    skills: ["Spatial awareness", "Design", "Math"]
+    traits: ["Detail-oriented", "Creative", "Planner"]
+    path: "Design your dream building with blocks or paper"
+
+  - title: "Graphic Designer"
+    metaphor: "The Visual Communicator"
+    category: "Creative Creators"
+    skills: ["Creativity", "Design software proficiency", "Typography"]
+    traits: ["Artistic", "Imaginative", "Keen eye for aesthetics"]
+    path: "Create posters or digital art using design tools"
+
+  - title: "UX Designer"
+    metaphor: "The Experience Architect"
+    category: "Creative Creators"
+    skills: ["Design thinking", "User research", "Prototyping"]
+    traits: ["Empathetic", "Creative", "Detail-focused"]
+    path: "Redesign a favorite app or website for improved usability"
