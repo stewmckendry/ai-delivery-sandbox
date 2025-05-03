@@ -1,0 +1,31 @@
+handoffs:
+- timestamp: '2025-05-03T01:44:42.615821'
+  from_pod: PromptPod
+  to_pod: ProductPod
+  reason: The discovery phase (goals, flows, features, research) is complete. Time
+    to define the system architecture that will bring the GPT Career Coach to life.
+  token_count: 0
+  next_prompt: Design the system architecture for the AI Career Coach app. Define
+    how the GPT, frontend, backend (for memory), and RAG YAML grounding will integrate.
+  reference_files:
+  - project/docs/project_goals.md
+  - project/docs/users_and_journeys.md
+  - project/docs/features/feature_list.md
+  - project/docs/features/acceptance_criteria.md
+  - project/docs/research/spikes/youth_career_knowledgebook.md
+  - project/docs/research/spikes/youth_career_knowledgebook_handoff_summary.md
+  notes: 'Architecture should support:
+
+    - Prompt selector UI and Q&A flow
+
+    - GPT integration with structured prompts
+
+    - RAG-based grounding from YAML segments
+
+    - Option to persist user reflections (via Notion, Airtable, or similar)
+
+    - Option to segment career content by category for exploration
+
+    Output should include an architecture diagram and system description.'
+  ways_of_working: Commit all outputs to Git. Log chain of thought. Complete task
+    with reasoning trace. Visuals encouraged.
