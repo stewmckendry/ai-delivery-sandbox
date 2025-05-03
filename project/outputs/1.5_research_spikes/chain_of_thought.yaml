@@ -1,0 +1,15 @@
+- message: 'Teed up ResearchPod with a well-scoped RAG spike: compile a structured,
+    youth-focused career guide for grounding GPT. Updated task metadata and logged
+    a full handoff with goals, outputs, and reference files. Emphasized YAML format
+    and inspirational, age-appropriate content. This research is key to making our
+    Career Coach safer, smarter, and more fun.'
+  timestamp: '2025-05-03T00:39:09.730032'
+  tags:
+  - handoff
+  - RAG
+  - research
+  - youth
+  - GPT-grounding
+  lessons:
+  - Structure handoff to include file paths, deliverables, and format expectations.
+  - Framing research as a product-building step helps clarify its value.
