@@ -1,0 +1,15 @@
+handoffs:
+- timestamp: '2025-05-03T00:13:56.565930'
+  from_pod: DevPod
+  to_pod: <replace with who the next pod is, or ask the human to confirm>
+  reason: Auto-generated handoff on task completion.
+  token_count: 0
+  next_prompt: 'Follow up based on task: Define and capture user flows (personas,
+    journeys) and delivery flows (SDLC, pods)'
+  reference_files:
+  - docs/personas/user_roles.md
+  - docs/journeys/app_walkthrough.md
+  - docs/workflows/delivery_flow.md
+  - project/outputs/1.2_define_user_and_delivery_flows/
+  notes: ''
+  ways_of_working: Continue using async updates and reasoning logs.
