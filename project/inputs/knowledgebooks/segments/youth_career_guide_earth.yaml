@@ -1,0 +1,35 @@
+careers:
+  - title: "Park Ranger"
+    metaphor: "The Guardian of Green Spaces"
+    category: "Earth Heroes"
+    skills: ["Nature knowledge", "Safety", "Public speaking"]
+    traits: ["Loves the outdoors", "Helpful", "Responsible"]
+    path: "Explore local parks or help plant trees"
+
+  - title: "Environmental Scientist"
+    metaphor: "The Planet Protector"
+    category: "Earth Heroes"
+    skills: ["Research", "Data", "Teamwork"]
+    traits: ["Cares about Earth", "Likes solving real problems"]
+    path: "Create a backyard ecosystem journal"
+
+  - title: "Urban Farmer"
+    metaphor: "The Garden City Grower"
+    category: "Earth Heroes"
+    skills: ["Gardening", "Sustainability", "Nutrition"]
+    traits: ["Green thumb", "Innovative", "Likes food"]
+    path: "Grow herbs or veggies in containers or windowsills"
+
+  - title: "Conservation Scientist"
+    metaphor: "The Nature Protector"
+    category: "Earth Heroes"
+    skills: ["Research", "Environmental science", "Data analysis"]
+    traits: ["Passionate about nature", "Analytical", "Proactive"]
+    path: "Participate in local clean-up events or nature clubs"
+
+  - title: "Climate Change Analyst"
+    metaphor: "The Earth Advocate"
+    category: "Earth Heroes"
+    skills: ["Data analysis", "Environmental science", "Policy understanding"]
+    traits: ["Passionate", "Informed", "Proactive"]
+    path: "Monitor local environmental changes and propose solutions"
