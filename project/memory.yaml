@@ -161,3 +161,15 @@
   - environment
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/inputs/knowledgebooks/segments/youth_career_guide_people.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/inputs/knowledgebooks/segments/youth_career_guide_people.yaml
+  file_type: yaml
+  description: A guide detailing various people-oriented careers, including their
+    metaphors, skills, traits, and suggested paths for youth exploration.
+  tags:
+  - career
+  - guide
+  - people
+  - education
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
