@@ -456,3 +456,9 @@
   task_id: 1.5_research_spikes
   committed_by: GPTPod
   message: Append output file to 1.5_research_spikes
+- timestamp: '2025-05-03T01:23:22.968595'
+  path: project/inputs/knowledgebooks/youth_career_guide.yaml
+  task_id: 1.5_research_spikes
+  committed_by: ResearchPod
+  message: Recommitting full YAML content for 10 representative careers from the expanded
+    set of 50+ entries.
