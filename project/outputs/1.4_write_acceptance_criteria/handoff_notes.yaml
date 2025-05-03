@@ -1,0 +1,14 @@
+handoffs:
+- timestamp: '2025-05-03T00:31:18.862772'
+  from_pod: QAPod
+  to_pod: <replace with who the next pod is, or ask the human to confirm>
+  reason: Auto-generated handoff on task completion.
+  token_count: 0
+  next_prompt: 'Follow up based on task: Write or refine acceptance criteria based
+    on feature specs and QA matrix'
+  reference_files:
+  - docs/qa/acceptance_matrix.md
+  - docs/features/feature_*.md
+  - project/outputs/1.4_write_acceptance_criteria/
+  notes: ''
+  ways_of_working: Continue using async updates and reasoning logs.
