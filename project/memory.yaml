@@ -196,3 +196,15 @@
   - guide
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/docs/process/root_cause_analysis/yaml_commit_limit_rca.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/process/root_cause_analysis/yaml_commit_limit_rca.md
+  file_type: md
+  description: Documentation of root cause analysis for YAML commit truncation issue
+    during career knowledgebook expansion, including impact, resolution, and recommendations.
+  tags:
+  - root cause analysis
+  - yaml
+  - commit
+  - process
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
