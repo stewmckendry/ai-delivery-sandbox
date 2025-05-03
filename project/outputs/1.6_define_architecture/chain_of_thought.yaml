@@ -161,3 +161,17 @@
   - memory-integration
   - gpt-discoverability
   - scale-readiness
+- message: 'We''re treating `session_id` as the core state token for the user in a
+    stateless GPT system. It functions similarly to `branch` in ai-delivery-framework:
+    it''s a scoped identifier that encapsulates user context over time without linking
+    to identity. Each user flow (exploration, journaling) is tagged with a session_id.
+    Memory backends (Airtable/Notion) index on it, enabling resume, summary, and export.
+    It may be generated as UUIDv4 or short code, and optionally exposed in UI/QR for
+    portability.'
+  timestamp: '2025-05-03T02:30:42.409178'
+  tags:
+  - session_id
+  - state-management
+  - identity-less
+  - memory-key
+  - resume-context
