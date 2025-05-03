@@ -1,70 +1,72 @@
 careers:
-  - title: "Software Developer"
-    metaphor: "The Architect of Ideas"
-    category: "STEM Superstars"
-    skills: ["Logic", "Creativity", "Focus", "Collaboration"]
-    traits: ["Loves puzzles", "Patient", "Enjoys making things work"]
-    path: "Try building a game in Scratch or Roblox Studio!"
+  # ... previous entries ...
 
-  - title: "Astronaut"
-    metaphor: "The Explorer of the Beyond"
-    category: "STEM Superstars"
-    skills: ["Problem-solving", "Fitness", "Curiosity", "Courage"]
-    traits: ["Adventurous", "Likes science and space"]
-    quote: "To go places no one has gone before."
-
-  - title: "Robotics Engineer"
-    metaphor: "The Builder of Smart Machines"
-    category: "STEM Superstars"
-    skills: ["Engineering", "Programming", "Problem-solving"]
-    traits: ["Inventive", "Curious", "Loves machines"]
-    path: "Build a simple robot or LEGO Mindstorms project"
-
-  - title: "Mathematician"
-    metaphor: "The Puzzle Master"
-    category: "STEM Superstars"
-    skills: ["Problem-solving", "Logical thinking", "Analysis"]
-    traits: ["Loves numbers", "Detail-oriented", "Patient"]
-    path: "Try brain teasers, puzzles, or math games"
-
-  - title: "Data Scientist"
-    metaphor: "The Pattern Detective"
-    category: "STEM Superstars"
-    skills: ["Analytical thinking", "Programming", "Statistics"]
-    traits: ["Curious", "Detail-oriented", "Loves solving puzzles"]
-    path: "Explore data sets and try creating simple charts or graphs"
-
-  - title: "Cybersecurity Analyst"
-    metaphor: "The Digital Guardian"
-    category: "STEM Superstars"
-    skills: ["Problem-solving", "IT knowledge", "Vigilance"]
-    traits: ["Protective", "Analytical", "Tech-savvy"]
-    path: "Learn about online safety and try basic coding exercises"
-
-  - title: "Animator"
-    metaphor: "The Wizard of Movement"
+  - title: "Architect"
+    metaphor: "The Dream House Designer"
     category: "Creative Creators"
-    skills: ["Drawing", "Storytelling", "Tech Tools"]
-    traits: ["Imaginative", "Visual thinker", "Detail-oriented"]
-    path: "Try stop-motion with toys or draw frame-by-frame videos!"
+    skills: ["Spatial awareness", "Design", "Math"]
+    traits: ["Detail-oriented", "Creative", "Planner"]
+    path: "Design your dream building with blocks or paper"
 
-  - title: "Game Designer"
-    metaphor: "The World Builder"
+  - title: "Graphic Designer"
+    metaphor: "The Visual Communicator"
     category: "Creative Creators"
-    skills: ["Design thinking", "Logic", "Empathy", "Coding"]
-    traits: ["Loves games", "Curious about what makes them fun"]
-    quote: "Every level is a story."
+    skills: ["Creativity", "Design software proficiency", "Typography"]
+    traits: ["Artistic", "Imaginative", "Keen eye for aesthetics"]
+    path: "Create posters or digital art using design tools"
 
-  - title: "Musician"
-    metaphor: "The Vibe Maker"
+  - title: "UX Designer"
+    metaphor: "The Experience Architect"
     category: "Creative Creators"
-    skills: ["Rhythm", "Creativity", "Practice"]
-    traits: ["Expressive", "Passionate", "Enjoys performing"]
-    path: "Make music using apps like GarageBand or Soundtrap"
+    skills: ["Design thinking", "User research", "Prototyping"]
+    traits: ["Empathetic", "Creative", "Detail-focused"]
+    path: "Redesign a favorite app or website for improved usability"
 
-  - title: "Fashion Designer"
-    metaphor: "The Style Inventor"
-    category: "Creative Creators"
-    skills: ["Sketching", "Fabric knowledge", "Trends"]
-    traits: ["Trendy", "Imaginative", "Bold"]
-    path: "Create fashion mood boards or upcycle old clothes"
+  - title: "Veterinarian"
+    metaphor: "The Animal Doctor"
+    category: "Animal Allies"
+    skills: ["Science", "Observation", "Empathy"]
+    traits: ["Cares for animals", "Calm under pressure"]
+    path: "Volunteer at a shelter or read pet health books"
+
+  - title: "Marine Biologist"
+    metaphor: "The Ocean Detective"
+    category: "Animal Allies"
+    skills: ["Biology", "Diving", "Data collection"]
+    traits: ["Curious", "Nature-loving", "Adventurous"]
+    path: "Explore tide pools or visit an aquarium"
+
+  - title: "Zookeeper"
+    metaphor: "The Wildlife Caretaker"
+    category: "Animal Allies"
+    skills: ["Animal care", "Observation", "Routine management"]
+    traits: ["Dedicated", "Observant", "Animal lover"]
+    path: "Volunteer at a shelter or zoo youth program"
+
+  - title: "Dog Trainer"
+    metaphor: "The Pet Whisperer"
+    category: "Animal Allies"
+    skills: ["Patience", "Communication", "Positive reinforcement"]
+    traits: ["Gentle", "Consistent", "Loves dogs"]
+    path: "Teach your dog a new trick each week"
+
+  - title: "Park Ranger"
+    metaphor: "The Guardian of Green Spaces"
+    category: "Earth Heroes"
+    skills: ["Nature knowledge", "Safety", "Public speaking"]
+    traits: ["Loves the outdoors", "Helpful", "Responsible"]
+    path: "Explore local parks or help plant trees"
+
+  - title: "Environmental Scientist"
+    metaphor: "The Planet Protector"
+    category: "Earth Heroes"
+    skills: ["Research", "Data", "Teamwork"]
+    traits: ["Cares about Earth", "Likes solving real problems"]
+    path: "Create a backyard ecosystem journal"
+
+  - title: "Urban Farmer"
+    metaphor: "The Garden City Grower"
+    category: "Earth Heroes"
+    skills: ["Gardening", "Sustainability", "Nutrition"]
+    traits: ["Green thumb", "Innovative", "Likes food"]
+    path: "Grow herbs or veggies in containers or windowsills"
