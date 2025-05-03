@@ -1,0 +1,13 @@
+handoffs:
+- timestamp: '2025-05-03T00:03:10.588081'
+  from_pod: DevPod
+  to_pod: <replace with who the next pod is, or ask the human to confirm>
+  reason: Auto-generated handoff on task completion.
+  token_count: 0
+  next_prompt: 'Follow up based on task: Help capture and summarize the goals, purpose,
+    and intended impact of the project'
+  reference_files:
+  - docs/project_goals.md
+  - project/outputs/1.1_capture_project_goals/
+  notes: ''
+  ways_of_working: Continue using async updates and reasoning logs.
