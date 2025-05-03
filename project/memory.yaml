@@ -73,3 +73,15 @@
   - prompt
   last_updated: '2025-05-03'
   pod_owner: DevPod
+- path: project/docs/architecture/deployment_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/deployment_plan.md
+  file_type: md
+  description: Deployment plan for the CareerCoach MVP, detailing API hosting, static
+    file management, integrations, custom GPT setup, and CI/CD processes.
+  tags:
+  - deployment
+  - integration
+  - CI/CD
+  - API
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
