@@ -244,3 +244,16 @@
   - integration
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/outputs/1.6_define_architecture/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.6_define_architecture/chain_of_thought.yaml
+  file_type: yaml
+  description: YAML file describing the architecture and features of an AI Career
+    Coach app for youth, focusing on structured coaching, playful prompts, and career
+    exploration.
+  tags:
+  - architecture
+  - app-design
+  - user-needs
+  - feature-structure
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
