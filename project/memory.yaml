@@ -116,3 +116,16 @@
   - flow
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/docs/users_and_journeys.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/users_and_journeys.md
+  file_type: md
+  description: Document outlining user personas and their interaction journeys with
+    the AI Career Coach application, focusing on different user types such as kids,
+    parents, and teachers.
+  tags:
+  - user personas
+  - journeys
+  - flow
+  - design
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
