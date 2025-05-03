@@ -55,3 +55,21 @@
   - stack
   - blog-ready
   - values-alignment
+- message: "Exploring a shift from a traditional frontend to a Custom GPT as the primary\
+    \ UI layer. This flips the model: instead of a browser-based frontend calling\
+    \ GPT, GPT itself becomes the interface \u2014 and the backend (e.g. FastAPI)\
+    \ becomes an orchestrator for tools like prompt loading, RAG grounding, and memory\
+    \ I/O.\n\nAdvantages:\n- Frictionless UX \u2014 kids go straight into a fun, structured\
+    \ GPT experience\n- Easier deployment and iteration (no frontend build pipeline)\n\
+    - Tools = well-scoped backend endpoints \u2014 we control context and can monitor\
+    \ usage\n\nRisks:\n- UX may be less flexible than a visual app (limited control\
+    \ over layout/cards)\n- Must ensure Custom GPT memory settings are aligned with\
+    \ privacy goals\n- Tool calls must be lightweight and monitored for latency\n\n\
+    Conclusion: This is a strong architecture for launch or experimentation, and we\
+    \ can later add a web layer on top if desired."
+  timestamp: '2025-05-03T02:02:00.736685'
+  tags:
+  - custom-gpt
+  - backend-orchestration
+  - architecture-alt
+  - mvp-path
