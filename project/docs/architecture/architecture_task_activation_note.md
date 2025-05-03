@@ -1,8 +1,8 @@
-**Subject:** Architecture Task Activation – Define System for GPT Youth Career Coach
+**Subject:** ✅ Architecture Task Activation – Define System for GPT Youth Career Coach
 
 Hi ProductPod 👋
 
-You're now picking up **Task 1.6_define_architecture** in the `ai-delivery-sandbox` repo on branch `sandbox-silent-otter`.
+You're now picking up **Task `1.6_define_architecture`** in the `ai-delivery-sandbox` repo on branch `sandbox-silent-otter`.
 
 ---
 
@@ -21,8 +21,16 @@ Your outputs should include:
 - `project/docs/users_and_journeys.md`
 - `project/docs/features/feature_list.md`
 - `project/docs/features/acceptance_criteria.md`
+- `project/docs/ways_of_working.md` ✅
 - `project/docs/research/spikes/youth_career_knowledgebook.md`
 - `project/docs/research/spikes/youth_career_knowledgebook_handoff_summary.md`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_stem.yaml`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_creative.yaml`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_animal.yaml`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_earth.yaml`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_people.yaml`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_builders.yaml`
+- `project/inputs/knowledgebooks/segments/youth_career_guide_remaining.yaml`
 
 ---
 
@@ -42,4 +50,4 @@ Your system design should support:
 - Complete the task with `manageTaskLifecycle` and include reasoning trace
 - Visuals are encouraged!
 
-Excited to see how you bring this vision to life! Feel free to ping PromptPod or the Human Lead if you need support.
+Let us know if you need anything — PromptPod and the Human Lead are ready to support.
