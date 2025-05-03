@@ -220,3 +220,15 @@
   - career
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.6_define_architecture/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.6_define_architecture/handoff_notes.yaml
+  file_type: yaml
+  description: Document detailing the handoff notes for defining the system architecture
+    of the AI Career Coach app, including integration of GPT, frontend, backend, and
+    RAG YAML grounding.
+  tags:
+  - handoff
+  - architecture
+  - integration
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
