@@ -91,3 +91,19 @@
   - backend-orchestration
   - architecture-alt
   - mvp-path
+- message: "We're re-framing the MVP around a Custom GPT interface, which embodies\
+    \ ai-delivery-framework applied to youth career coaching. This changes the technology\
+    \ stack significantly. We'll define scaffolds for the system prompt, OpenAPI schema,\
+    \ FastAPI routes, and modular loaders (prompt, RAG, memory). We'll also specify\
+    \ component files and map the existing user journeys to these architectural flows.\n\
+    \nThis framing is not only practical for delivery \u2014 it's philosophically\
+    \ aligned with our project goals. The Custom GPT becomes the public face of the\
+    \ framework: a coach trained by human-AI teamwork, powered by modular, transparent\
+    \ tools.\n\nThis model is scalable, teachable, and showcases delivery excellence."
+  timestamp: '2025-05-03T02:10:23.435067'
+  tags:
+  - architecture-deep-dive
+  - stack-scaffold
+  - gpt-ux
+  - tooling-design
+  - user-flow-mapping
