@@ -131,3 +131,15 @@
   - code-scaffold
   - duality
   - git-source-of-truth
+- message: 'The current loaders assume local file access via os.path, but for deployment
+    we''ll need a cloud-based reference store. We''ll evaluate options like GitHub
+    raw URLs, S3 buckets, or a minimal file CDN. The key requirements are: read-only
+    access, version control compatibility, low latency, and GPT-call safety. Deployment
+    implications: loaders must be refactored to use HTTP or SDK-based fetchers. We''ll
+    also want a caching layer or TTL model in production.'
+  timestamp: '2025-05-03T02:19:56.153799'
+  tags:
+  - storage
+  - cloud-reference
+  - loader-design
+  - deployment-readiness
