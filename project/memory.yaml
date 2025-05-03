@@ -68,3 +68,14 @@
   - storytelling
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/inputs/knowledgebooks/youth_career_guide.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/inputs/knowledgebooks/youth_career_guide.yaml
+  file_type: yaml
+  description: A guide detailing various career paths for youth, highlighting skills,
+    traits, and suggested activities for each role.
+  tags:
+  - guide
+  - career
+  - youth
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
