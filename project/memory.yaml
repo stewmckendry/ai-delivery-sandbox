@@ -79,3 +79,15 @@
   - youth
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/docs/research/spikes/youth_career_handoff_to_product.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/research/spikes/youth_career_handoff_to_product.md
+  file_type: md
+  description: Summary and handoff of the Youth Career Knowledgebook for the Product
+    Team, including structured career entries for GPT Coach.
+  tags:
+  - handoff
+  - knowledgebook
+  - yaml
+  - gpt
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
