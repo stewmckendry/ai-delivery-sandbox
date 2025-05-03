@@ -213,8 +213,9 @@ tasks:
     category: discovery
     created_at: '2025-04-26T23:06:52.822898'
     created_by: human
-    description: Investigate and document unresolved questions, unknowns, or tool
-      comparisons
+    description: ResearchPod will compile a rich, structured knowledge base (YAML
+      + notes) with youth-focused career exploration content. This will fuel our RAG-powered
+      GPT Career Coach with inspiring, diverse, age-appropriate ideas.
     done: false
     feedback_file: .logs/feedback/1.5_research_spikes.md
     inputs:
@@ -225,10 +226,46 @@ tasks:
     - docs/research/spikes/spike_*.md
     phase: Phase 1 - Discovery
     pod_owner: ResearchPod
-    prompt: prompts/research/research_spikes.txt
+    prompt: 'Please create a rich knowledge base to support the GPT Youth Career Coach.
+
+
+      ### Your mission:
+
+      - **Research** youth-friendly, diverse, and inspirational career advice, stories,
+      and insights.
+
+      - **Compile** it into structured content for grounding GPT responses (YAML format
+      preferred).
+
+      - **Document** high-level themes and findings in a short writeup.
+
+
+      ### Deliverables:
+
+      - `/project/docs/research/spikes/youth_career_knowledgebook.md` (summary + key
+      findings)
+
+      - `/project/inputs/knowledgebooks/youth_career_guide.yaml` (structured YAML
+      for grounding)
+
+
+      ### Helpful context:
+
+      To get up to speed on our project so far, review:
+
+      - `/project/docs/project_goals.md`
+
+      - `/project/docs/users_and_journeys.md`
+
+      - `/project/docs/features/feature_list.md`
+
+      - `/project/docs/features/acceptance_criteria.md`
+
+
+      Thank you for coaching the machine!'
     ready: true
     status: backlog
-    updated_at: '2025-04-26T23:06:52.822901'
+    updated_at: '2025-05-03T00:38:53.666993'
   1.6_define_architecture_and_standards:
     assigned_to: unassigned
     category: discovery
