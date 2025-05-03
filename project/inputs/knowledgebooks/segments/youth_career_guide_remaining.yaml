@@ -1,0 +1,126 @@
+careers:
+  - title: "Journalist"
+    metaphor: "The Truth Seeker"
+    category: "Storytellers & Communicators"
+    skills: ["Writing", "Research", "Interviewing"]
+    traits: ["Curious", "Observant", "Articulate"]
+    path: "Start a school newspaper or blog"
+
+  - title: "Author"
+    metaphor: "The Word Weaver"
+    category: "Storytellers & Communicators"
+    skills: ["Storytelling", "Imagination", "Grammar"]
+    traits: ["Creative", "Expressive", "Persistent"]
+    path: "Write short stories or fan fiction"
+
+  - title: "Podcaster"
+    metaphor: "The Voice Behind the Mic"
+    category: "Storytellers & Communicators"
+    skills: ["Speaking", "Story structure", "Audio editing"]
+    traits: ["Confident", "Curious", "Thoughtful"]
+    path: "Record interviews with friends or family"
+
+  - title: "Filmmaker"
+    metaphor: "The Vision Director"
+    category: "Storytellers & Communicators"
+    skills: ["Camera work", "Editing", "Narrative"]
+    traits: ["Visual", "Planner", "Innovative"]
+    path: "Make short films using a phone and edit them"
+
+  - title: "Digital Content Creator"
+    metaphor: "The Online Storyteller"
+    category: "Storytellers & Communicators"
+    skills: ["Video editing", "Storytelling", "Social media savvy"]
+    traits: ["Expressive", "Innovative", "Audience-aware"]
+    path: "Start a blog or YouTube channel on a favorite topic"
+
+  - title: "Entrepreneur"
+    metaphor: "The Idea Launcher"
+    category: "Money Minds"
+    skills: ["Creativity", "Leadership", "Financial literacy"]
+    traits: ["Innovative", "Risk-taker", "Motivated"]
+    path: "Create and sell handmade crafts or services"
+
+  - title: "Financial Advisor"
+    metaphor: "The Money Guide"
+    category: "Money Minds"
+    skills: ["Budgeting", "Math", "Advising"]
+    traits: ["Trustworthy", "Clear communicator", "Helpful"]
+    path: "Play budgeting games or simulate managing a store"
+
+  - title: "Economist"
+    metaphor: "The Big Picture Thinker"
+    category: "Money Minds"
+    skills: ["Analysis", "Statistics", "Forecasting"]
+    traits: ["Strategic", "Inquisitive", "Pragmatic"]
+    path: "Track prices or trends and make predictions"
+
+  - title: "Archaeologist"
+    metaphor: "The Time Detective"
+    category: "Adventurers & Explorers"
+    skills: ["Research", "Excavation", "Analysis"]
+    traits: ["Detail-oriented", "Patient", "Curious"]
+    path: "Visit a museum and learn about ancient artifacts"
+
+  - title: "Pilot"
+    metaphor: "The Sky Navigator"
+    category: "Adventurers & Explorers"
+    skills: ["Navigation", "Communication", "Mechanical knowledge"]
+    traits: ["Focused", "Adventurous", "Responsible"]
+    path: "Try flight simulators or build model airplanes"
+
+  - title: "Geographer"
+    metaphor: "The Map Maker"
+    category: "Adventurers & Explorers"
+    skills: ["Cartography", "Spatial analysis", "Earth science"]
+    traits: ["Analytical", "Inquisitive", "Organized"]
+    path: "Draw your neighborhood or world maps by hand"
+
+  - title: "Diver"
+    metaphor: "The Underwater Explorer"
+    category: "Adventurers & Explorers"
+    skills: ["Swimming", "Marine biology", "Safety"]
+    traits: ["Brave", "Calm", "Curious"]
+    path: "Snorkel or learn about marine ecosystems"
+
+  - title: "Cartographer"
+    metaphor: "The Map Maker"
+    category: "Adventurers & Explorers"
+    skills: ["Geography", "Spatial analysis", "Design"]
+    traits: ["Observant", "Detail-focused", "Enjoys exploration"]
+    path: "Draw maps of local areas or study different world maps"
+
+  - title: "AI Ethicist"
+    metaphor: "The Digital Moralist"
+    category: "Future Thinkers"
+    skills: ["Critical thinking", "Ethics", "Technology comprehension"]
+    traits: ["Thoughtful", "Analytical", "Socially responsible"]
+    path: "Engage in debates about technology's role in society"
+
+  - title: "Biomedical Engineer"
+    metaphor: "The Health Innovator"
+    category: "Future Thinkers"
+    skills: ["Engineering", "Biology", "Medical technology"]
+    traits: ["Inventive", "Helpful", "Precise"]
+    path: "Design prototypes of medical devices using household items"
+
+  - title: "Genetic Counselor"
+    metaphor: "The DNA Decoder"
+    category: "Future Thinkers"
+    skills: ["Biology knowledge", "Communication", "Empathy"]
+    traits: ["Supportive", "Analytical", "Patient"]
+    path: "Explore genetics through family trees and DNA kits"
+
+  - title: "Urban Planner"
+    metaphor: "The City Designer"
+    category: "Future Thinkers"
+    skills: ["Geography", "Design", "Civic planning"]
+    traits: ["Organized", "Creative", "Community-minded"]
+    path: "Create models of sustainable neighborhoods or cities"
+
+  - title: "Wind Turbine Technician"
+    metaphor: "The Wind Whisperer"
+    category: "Future Thinkers"
+    skills: ["Mechanical aptitude", "Climbing proficiency", "Troubleshooting"]
+    traits: ["Adventurous", "Eco-conscious", "Hands-on"]
+    path: "Explore renewable energy kits and wind turbine models"
