@@ -1,5 +1,7 @@
 outputs:
 - project/docs/features/feature_list.md
+- project/docs/research/spikes/youth_career_knowledgebook.md
+- project/inputs/knowledgebooks/youth_career_guide.yaml
 - project/docs/ways_of_working.md
 - project/docs/project_goals.md
 - project/docs/users_and_journeys.md
@@ -216,7 +218,7 @@ tasks:
     description: ResearchPod will compile a rich, structured knowledge base (YAML
       + notes) with youth-focused career exploration content. This will fuel our RAG-powered
       GPT Career Coach with inspiring, diverse, age-appropriate ideas.
-    done: false
+    done: true
     feedback_file: .logs/feedback/1.5_research_spikes.md
     inputs:
     - docs/project_goals.md
@@ -266,8 +268,8 @@ tasks:
 
       Thank you for coaching the machine!'
     ready: true
-    status: backlog
-    updated_at: '2025-05-03T00:38:53.666993'
+    status: completed
+    updated_at: '2025-05-03T01:16:47.068018'
   1.6_define_architecture_and_standards:
     assigned_to: unassigned
     category: discovery
