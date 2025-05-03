@@ -129,3 +129,14 @@
   - design
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.2_define_user_and_delivery_flows/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.2_define_user_and_delivery_flows/handoff_notes.yaml
+  file_type: yaml
+  description: Document detailing handoff notes for defining user and delivery flows,
+    including references to related files and processes.
+  tags:
+  - handoff
+  - flow
+  - delivery
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
