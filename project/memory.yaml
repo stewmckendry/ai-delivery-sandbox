@@ -43,3 +43,15 @@
   - workflow
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.5_research_spikes/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.5_research_spikes/chain_of_thought.yaml
+  file_type: yaml
+  description: Details a research spike focused on creating a youth-oriented career
+    guide for GPT grounding, including task metadata and handoff documentation.
+  tags:
+  - research
+  - handoff
+  - RAG
+  - GPT-grounding
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
