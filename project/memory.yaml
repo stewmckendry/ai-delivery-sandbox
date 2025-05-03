@@ -162,3 +162,16 @@
   - UX-first
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/docs/features/feature_list.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/features/feature_list.md
+  file_type: md
+  description: Document detailing the features of the AI Career Coach MVP, including
+    core experience features, loop and replay options, memory and personalization
+    experiments, and bonus experiments.
+  tags:
+  - features
+  - prompt
+  - flow
+  - personalization
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
