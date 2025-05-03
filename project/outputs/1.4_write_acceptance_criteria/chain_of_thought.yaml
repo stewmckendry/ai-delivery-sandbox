@@ -1,0 +1,15 @@
+- message: "Human Lead and I collaborated closely to define testable, clear acceptance\
+    \ criteria for each core feature. We added a hybrid design for prompt selection\
+    \ \u2014 allowing both structured entry points and open-ended user prompts. This\
+    \ balances beginner friendliness with creative freedom. My goal was to define\
+    \ 'what done looks like' in a way that sets up delivery pods for success and validates\
+    \ our user journeys."
+  timestamp: '2025-05-03T00:30:49.397619'
+  tags:
+  - acceptance-criteria
+  - UX-design
+  - prompting
+  - delivery-readiness
+  lessons:
+  - Hybrid prompting supports a wider range of user types.
+  - Well-scoped criteria build alignment across build-test-review cycles.
