@@ -405,3 +405,8 @@
   task_id: 1.5_research_spikes
   committed_by: unknown
   message: Save output for 1.5_research_spikes
+- timestamp: '2025-05-03T01:16:49.959280'
+  path: project/inputs/knowledgebooks/youth_career_guide.yaml
+  task_id: 1.5_research_spikes
+  committed_by: unknown
+  message: Save output for 1.5_research_spikes
