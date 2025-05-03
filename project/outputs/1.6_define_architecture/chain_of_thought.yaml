@@ -1,0 +1,16 @@
+- message: "Based on the files reviewed, the AI Career Coach is a GPT-powered app\
+    \ for youth aged 9\u201314 that uses a friendly, structured coaching model to\
+    \ explore careers. The core experience revolves around playful prompts, guided\
+    \ Q&A, and career suggestions grounded in a YAML-based knowledgebase (RAG). The\
+    \ app supports temporary in-session memory (favorites, reflection) and optional\
+    \ persistent backend (Airtable/Notion). It emphasizes privacy, simplicity, and\
+    \ high delight. Career content is categorized into themes like STEM, Creatives,\
+    \ Builders, etc. The system must support dynamic YAML grounding, structured GPT\
+    \ prompting, and optionally journaling persistence. UX must be fun, visual, and\
+    \ mobile-friendly. Users include kids (explorers), mentors, and teachers (sparks)."
+  timestamp: '2025-05-03T01:52:32.165319'
+  tags:
+  - overview
+  - user-needs
+  - feature-structure
+  - architecture-inputs
