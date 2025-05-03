@@ -48,3 +48,19 @@
   lessons:
   - When both alignment and emotional resonance are high, lock in the idea and shape
     the scope.
+- message: "As we finalized the project goals, the Human Lead emphasized the importance\
+    \ of differentiating this app from generic ChatGPT usage. I crystallized our advantages\
+    \ into three pillars: (1) a structured, research-backed knowledgebase (RAG); (2)\
+    \ guided UX flows; and (3) backend persistence. The Human Lead added an important\
+    \ layer \u2014 respecting user privacy, especially for youth. This will guide\
+    \ both our architecture and prompt design."
+  timestamp: '2025-05-03T00:02:37.853306'
+  tags:
+  - project-goals
+  - privacy
+  - MVP
+  - research
+  - differentiation
+  lessons:
+  - Youth-focused apps require extra care around privacy and data handling.
+  - Documenting how we go beyond ChatGPT helps scope MVP features clearly.
