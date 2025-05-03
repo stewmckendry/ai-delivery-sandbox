@@ -61,3 +61,15 @@
   - module
   last_updated: '2025-05-03'
   pod_owner: DevPod
+- path: project/docs/architecture/fastapi_and_gpt_scaffolds.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/fastapi_and_gpt_scaffolds.md
+  file_type: md
+  description: Documentation and code scaffolding for integrating FastAPI routes with
+    GPT tools, including system prompts for the CareerCoach application.
+  tags:
+  - api
+  - fastapi
+  - gpt
+  - prompt
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
