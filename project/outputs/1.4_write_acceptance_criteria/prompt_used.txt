@@ -1,0 +1,1 @@
+Write clear and testable acceptance criteria for our MVP AI Career Coach, based on the feature list and user flows.
