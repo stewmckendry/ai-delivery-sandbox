@@ -1,0 +1,20 @@
+alternatives:
+- Segment by use context (individual vs. group setting) instead of role.
+improvement_opportunities:
+- Could evolve these into clickable prototypes or screens.
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 9
+summary: We defined three key user types and their ideal flow through the MVP experience.
+  This foundation guides both UX design and feature prioritization.
+task_id: 1.2_define_user_and_delivery_flows
+thoughts:
+- tags:
+  - personas
+  - user-journey
+  - MVP
+  thought: 'We focused this task entirely on user personas and app journeys, since
+    the Human-AI delivery process was defined earlier. We identified three key user
+    types: the Explorer (kid), the Supporter (parent/mentor), and the Spark (coach/teacher).
+    For each, we mapped high-value features and the actor-by-actor journey.'
