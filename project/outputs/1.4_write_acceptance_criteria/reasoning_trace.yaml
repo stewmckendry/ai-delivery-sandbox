@@ -1,0 +1,19 @@
+alternatives:
+- Test criteria as checklists or BDD-style 'Given-When-Then' format.
+improvement_opportunities:
+- Could group criteria by user type or by core vs. stretch goals.
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 9
+summary: Acceptance criteria for the MVP were written clearly and completely. We defined
+  what 'done' looks like across structured and optional features. Hybrid prompting
+  adds flexibility and value.
+task_id: 1.4_write_acceptance_criteria
+thoughts:
+- tags:
+  - testability
+  - MVP
+  - UX
+  thought: Each core feature from the MVP was broken into testable, user-facing criteria.
+    We added an optional open-ended prompt path to balance guidance with creativity.
