@@ -204,8 +204,9 @@ tasks:
     pod_owner: QAPod
     prompt: prompts/qa/write_acceptance_criteria.txt
     ready: true
-    status: backlog
-    updated_at: '2025-04-26T23:06:52.822205'
+    status: in_progress
+    updated_at: '2025-05-03T00:26:28.848599'
+    prompt_used: project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
   1.5_research_spikes:
     assigned_to: unassigned
     category: discovery
