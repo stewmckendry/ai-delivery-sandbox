@@ -197,3 +197,14 @@
   - workflow
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+  file_type: txt
+  description: Document detailing the prompt used to write acceptance criteria for
+    the MVP AI Career Coach.
+  tags:
+  - prompt
+  - acceptance_criteria
+  - ai_coach
+  last_updated: '2025-05-03'
+  pod_owner: QAPod
