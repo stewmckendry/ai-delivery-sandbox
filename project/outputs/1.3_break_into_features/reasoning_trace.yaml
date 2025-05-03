@@ -1,0 +1,20 @@
+alternatives:
+- 'Frame as tiers: core vs. enhanced vs. research-backed modules.'
+improvement_opportunities:
+- 'Future: link each feature to a prototype idea or experiment plan.'
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 9
+summary: "We broke the AI Career Coach into testable, modular features. Key differentiators\
+  \ include guided flows, saved progress, and research-grounded content \u2014 positioning\
+  \ this as a coaching app, not a chat window."
+task_id: 1.3_break_into_features
+thoughts:
+- tags:
+  - feature-list
+  - differentiation
+  - UX
+  thought: "We decomposed the MVP into 10 modular features, prioritized by user experience\
+    \ and value over baseline GPT. I highlighted features that elevate the app above\
+    \ plain ChatGPT use \u2014 structure, memory, reflection, visuals, and research-grounding."
