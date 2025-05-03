@@ -151,3 +151,14 @@
   - prototype
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.3_break_into_features/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.3_break_into_features/chain_of_thought.yaml
+  file_type: yaml
+  description: Documentation of the feature decomposition process for the AI Career
+    Coach MVP, focusing on identifying atomic, testable components for iterative development.
+  tags:
+  - feature-design
+  - modularity
+  - UX-first
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
