@@ -1,0 +1,29 @@
+alternatives:
+- Frame app as an AI buddy or mentor with user personas for different ages.
+improvement_opportunities:
+- Add visual prototype or user flow diagram in future iteration.
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 9
+summary: We defined the project purpose, audience, success criteria, and why this
+  app is distinct from generic GPT chat. The focus on structured guidance, research
+  grounding, and child-safe design aligns tightly with our values and Coaching the
+  Machine mission.
+task_id: 1.1_capture_project_goals
+thoughts:
+- tags:
+  - project-goals
+  - youth
+  - coaching
+  - GPT
+  - MVP
+  thought: "The Human Lead and I co-developed the app concept in a jam session, converging\
+    \ on an AI Career Coach for youth that combines guided GPT flows, RAG data, and\
+    \ backend persistence \u2014 with privacy top of mind."
+- tags:
+  - differentiation
+  - vision
+  - value
+  thought: Documenting why this app goes beyond ChatGPT helped clarify our MVP scope,
+    positioning, and required architecture.
