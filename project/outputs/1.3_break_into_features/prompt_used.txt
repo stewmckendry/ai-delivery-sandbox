@@ -1,0 +1,1 @@
+Analyze the AI Career Coach MVP scope and break it into specific features or experiments we can build, test, or prototype.
