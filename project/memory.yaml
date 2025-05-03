@@ -105,3 +105,14 @@
   - delivery
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/outputs/1.2_define_user_and_delivery_flows/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.2_define_user_and_delivery_flows/chain_of_thought.yaml
+  file_type: yaml
+  description: Documentation of user and app flows focusing on key personas and their
+    journeys.
+  tags:
+  - user-journeys
+  - personas
+  - flow
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
