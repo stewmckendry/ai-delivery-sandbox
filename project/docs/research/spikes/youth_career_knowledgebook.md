@@ -13,70 +13,63 @@ This knowledgebook is designed to support the GPT Youth Career Coach with struct
 
 ---
 
-### 🧠 Sample Career Entries by Category
+### 🧠 Career Categories & Sample Entries
 
 #### 🚀 STEM Superstars
-
-**Software Developer – The Architect of Ideas**  
-- Skills: Logic, creativity, focus, collaboration  
-- Traits: Loves puzzles, patient, enjoys making things work  
-- Path: Try building a game in Scratch or Roblox Studio!  
-
-**Astronaut – The Explorer of the Beyond**  
-- Skills: Problem-solving, fitness, curiosity, courage  
-- Traits: Adventurous, likes science and space  
-- Quote: "To go places no one has gone before."
+- **Software Developer – The Architect of Ideas**
+- **Astronaut – The Explorer of the Beyond**
+- **Robotics Engineer – The Builder of Smart Machines**
+- **Mathematician – The Puzzle Master**
 
 #### 🎨 Creative Creators
-
-**Animator – The Wizard of Movement**  
-- Skills: Drawing, storytelling, tech tools  
-- Traits: Imaginative, visual thinker, detail-oriented  
-- Path: Try stop-motion with toys or draw frame-by-frame videos!
-
-**Game Designer – The World Builder**  
-- Skills: Design thinking, logic, empathy, coding  
-- Traits: Loves games, curious about what makes them fun  
-- Quote: "Every level is a story."
+- **Animator – The Wizard of Movement**
+- **Game Designer – The World Builder**
+- **Musician – The Vibe Maker**
+- **Fashion Designer – The Style Inventor**
+- **Architect – The Dream House Designer**
 
 #### 🐾 Animal Allies
-
-**Veterinarian – The Animal Doctor**  
-- Skills: Science, observation, empathy  
-- Traits: Cares for animals, calm under pressure  
-- Path: Volunteer at a shelter or read pet health books
-
-**Marine Biologist – The Ocean Detective**  
-- Skills: Science, diving, data collection  
-- Traits: Loves the sea, patient, curious  
-- Quote: "The ocean is full of secrets."
+- **Veterinarian – The Animal Doctor**
+- **Marine Biologist – The Ocean Detective**
+- **Zookeeper – The Wildlife Caretaker**
+- **Dog Trainer – The Pet Whisperer**
 
 #### 🌱 Earth Heroes
-
-**Park Ranger – The Guardian of Green Spaces**  
-- Skills: Nature knowledge, safety, public speaking  
-- Traits: Loves the outdoors, helpful, responsible  
-- Path: Explore local parks or help plant trees
-
-**Environmental Scientist – The Planet Protector**  
-- Skills: Research, data, teamwork  
-- Traits: Cares about Earth, likes solving real problems
+- **Park Ranger – The Guardian of Green Spaces**
+- **Environmental Scientist – The Planet Protector**
+- **Urban Farmer – The Garden City Grower**
 
 #### 🤝 People Helpers
+- **Teacher – The Spark of Curiosity**
+- **Therapist – The Listener of Feelings**
+- **Paramedic – The Calm in the Chaos**
+- **Firefighter – The Brave Responder**
+- **Social Worker – The Family Helper**
 
-**Teacher – The Spark of Curiosity**  
-- Skills: Communication, patience, planning  
-- Traits: Loves helping others learn  
-- Path: Pretend-teach your stuffed animals or siblings!
+#### 🛠️ Fixers & Builders
+- **Mechanic – The Engine Healer**
+- **Electrician – The Power Wrangler**
+- **Carpenter – The Wood Wizard**
 
-**Therapist – The Listener of Feelings**  
-- Skills: Listening, empathy, problem-solving  
-- Traits: Kind, trustworthy, cares about how people feel
+#### 🎤 Storytellers & Communicators
+- **Journalist – The Truth Seeker**
+- **Author – The Word Weaver**
+- **Podcaster – The Voice Behind the Mic**
+- **Filmmaker – The Vision Director**
+
+#### 💼 Money Minds
+- **Entrepreneur – The Idea Launcher**
+- **Financial Advisor – The Money Guide**
+- **Economist – The Big Picture Thinker**
+
+#### 🧭 Adventurers & Explorers
+- **Archaeologist – The Time Detective**
+- **Pilot – The Sky Navigator**
+- **Geographer – The Map Maker**
+- **Diver – The Underwater Explorer**
 
 ---
 
-These entries aim to spark joy and discovery — not pressure — while offering meaningful seeds for exploration.
+These 35+ entries are crafted to spark curiosity and reflection, not pressure. The YAML includes all structured data for grounding. Each role includes a metaphor, skills, traits, and optional quotes or discovery paths.
 
-➡️ The corresponding YAML file includes 25+ entries with structured tags for grounding.
-
-Let’s keep coaching the machine, and the kids.
+Let’s keep coaching the machine — and the kids.
