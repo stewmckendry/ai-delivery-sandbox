@@ -173,3 +173,15 @@
   - education
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/inputs/knowledgebooks/segments/youth_career_guide_builders.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/inputs/knowledgebooks/segments/youth_career_guide_builders.yaml
+  file_type: yaml
+  description: A guide for youth exploring careers in the "Fixers & Builders" category,
+    detailing roles, skills, traits, and learning paths.
+  tags:
+  - career
+  - guide
+  - youth
+  - knowledgebook
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
