@@ -37,3 +37,15 @@
   - GPT
   last_updated: '2025-05-03'
   pod_owner: DevPod
+- path: project/docs/architecture/memory_interface_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/memory_interface_design.md
+  file_type: md
+  description: Documentation of the MemoryManager architecture with dual backend support
+    for Airtable and Notion, detailing the unified interface and client implementations.
+  tags:
+  - architecture
+  - memory
+  - interface
+  - backend
+  last_updated: '2025-05-03'
+  pod_owner: DevPod
