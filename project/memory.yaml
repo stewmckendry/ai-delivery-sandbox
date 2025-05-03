@@ -186,3 +186,14 @@
   - UX
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.3_break_into_features/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.3_break_into_features/handoff_notes.yaml
+  file_type: yaml
+  description: Document detailing the handoff process between pods, including timestamps,
+    reasons, and next steps for breaking project scope into features.
+  tags:
+  - handoff
+  - process
+  - workflow
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
