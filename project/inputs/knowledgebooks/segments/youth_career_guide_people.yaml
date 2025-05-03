@@ -1,0 +1,47 @@
+careers:
+  - title: "Teacher"
+    metaphor: "The Spark of Curiosity"
+    category: "People Helpers"
+    skills: ["Communication", "Patience", "Planning"]
+    traits: ["Loves helping others learn"]
+    path: "Pretend-teach your stuffed animals or siblings!"
+
+  - title: "Therapist"
+    metaphor: "The Listener of Feelings"
+    category: "People Helpers"
+    skills: ["Listening", "Empathy", "Problem-solving"]
+    traits: ["Kind", "Trustworthy", "Cares about how people feel"]
+
+  - title: "Paramedic"
+    metaphor: "The Calm in the Chaos"
+    category: "People Helpers"
+    skills: ["Emergency response", "Medical knowledge", "Calm under pressure"]
+    traits: ["Brave", "Quick thinker", "Caring"]
+    path: "Take a basic first-aid course or role-play emergencies"
+
+  - title: "Firefighter"
+    metaphor: "The Brave Responder"
+    category: "People Helpers"
+    skills: ["Physical fitness", "Teamwork", "Problem-solving"]
+    traits: ["Courageous", "Helpful", "Resilient"]
+    path: "Visit your local fire station or learn fire safety tips"
+
+  - title: "Social Worker"
+    metaphor: "The Family Helper"
+    category: "People Helpers"
+    skills: ["Advocacy", "Listening", "Conflict resolution"]
+    traits: ["Compassionate", "Supportive", "Empathetic"]
+
+  - title: "Physical Therapist"
+    metaphor: "The Movement Mentor"
+    category: "People Helpers"
+    skills: ["Anatomy knowledge", "Empathy", "Communication"]
+    traits: ["Supportive", "Patient", "Interested in helping others heal"]
+    path: "Study human movement and assist in sports activities"
+
+  - title: "Nutritionist"
+    metaphor: "The Food Guide"
+    category: "People Helpers"
+    skills: ["Nutritional science", "Counseling", "Research"]
+    traits: ["Health-conscious", "Analytical", "Enjoys educating others"]
+    path: "Create balanced meal plans or explore healthy recipes"
