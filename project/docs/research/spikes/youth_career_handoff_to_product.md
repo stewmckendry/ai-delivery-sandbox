@@ -2,20 +2,28 @@
 
 Hey Product Team! 👋
 
-ResearchPod here, delivering the results of Task 1.5_research_spikes — the Youth Career Knowledgebook to power the GPT Coach experience for kids and teens.
+ResearchPod here, delivering the results of Task `1.5_research_spikes` — the **Youth Career Knowledgebook** to power the GPT Coach experience for kids and teens.
 
 ---
 
 ### 🎯 What’s Delivered
 
-- **Markdown summary**: High-level overview and themes
-  - Path: `project/docs/research/spikes/youth_career_knowledgebook.md`
+- **Markdown summary**: High-level overview and themes  
+  → `project/docs/research/spikes/youth_career_knowledgebook.md`
 
-- **YAML grounding file**: 50+ structured career entries, each with:
+- **YAML grounding files**: Now split by category to avoid commit limits. Each file contains structured entries with:
   - Title + playful metaphor (e.g., “Data Scientist – The Pattern Detective”)
   - Skills, traits, values
   - Optional quotes, inspiration, and learning path
-  - Path: `project/inputs/knowledgebooks/youth_career_guide.yaml`
+
+  **Segmented YAMLs:**
+  - `segments/youth_career_guide_stem.yaml`
+  - `segments/youth_career_guide_creative.yaml`
+  - `segments/youth_career_guide_animal.yaml`
+  - `segments/youth_career_guide_earth.yaml`
+  - `segments/youth_career_guide_people.yaml`
+  - `segments/youth_career_guide_builders.yaml`
+  - `segments/youth_career_guide_remaining.yaml` (includes Storytellers, Money Minds, Adventurers, Future Thinkers)
 
 ---
 
@@ -27,20 +35,20 @@ ResearchPod here, delivering the results of Task 1.5_research_spikes — the You
 ---
 
 ### 🛠 How to Use It
-- Load the YAML into GPT RAG logic using: `load_grounding_yaml()`
-- Each YAML career includes category and friendly fallback structure
-- GPT should be prompted to:
-  - Reference category group
-  - Pull from grounded career metadata
-  - Offer metaphors, skills, and activity suggestions in kid-friendly tone
+- Load one or more YAML files dynamically (e.g. `load_yaml_segment("stem")`)
+- Combine files if desired using a YAML merge utility
+- GPT prompting can use:
+  - Category selector
+  - Random career explorer
+  - Metaphor-inspired encouragement
 
 ---
 
-### 💬 Need to Add More Careers?
-Just match the schema — it’s fully extensible!
-
----
+### 📁 Notes
+- All segments use a shared schema for easy aggregation
+- RCA for YAML commit failure documented at:  
+  `project/docs/process/root_cause_analysis/yaml_commit_limit_rca.md`
 
 Thanks for the great brief. Excited to see what the coach becomes!
 
-— ResearchPod 🤖
+— **ResearchPod 🤖**
