@@ -1,0 +1,28 @@
+careers:
+  - title: "Veterinarian"
+    metaphor: "The Animal Doctor"
+    category: "Animal Allies"
+    skills: ["Science", "Observation", "Empathy"]
+    traits: ["Cares for animals", "Calm under pressure"]
+    path: "Volunteer at a shelter or read pet health books"
+
+  - title: "Marine Biologist"
+    metaphor: "The Ocean Detective"
+    category: "Animal Allies"
+    skills: ["Biology", "Diving", "Data collection"]
+    traits: ["Curious", "Nature-loving", "Adventurous"]
+    path: "Explore tide pools or visit an aquarium"
+
+  - title: "Zookeeper"
+    metaphor: "The Wildlife Caretaker"
+    category: "Animal Allies"
+    skills: ["Animal care", "Observation", "Routine management"]
+    traits: ["Dedicated", "Observant", "Animal lover"]
+    path: "Volunteer at a shelter or zoo youth program"
+
+  - title: "Dog Trainer"
+    metaphor: "The Pet Whisperer"
+    category: "Animal Allies"
+    skills: ["Patience", "Communication", "Positive reinforcement"]
+    traits: ["Gentle", "Consistent", "Loves dogs"]
+    path: "Teach your dog a new trick each week"
