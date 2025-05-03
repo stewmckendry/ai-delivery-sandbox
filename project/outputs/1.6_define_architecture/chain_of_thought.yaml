@@ -107,3 +107,16 @@
   - gpt-ux
   - tooling-design
   - user-flow-mapping
+- message: "We're going to support both Airtable and Notion as memory backends in\
+    \ the MVP. Airtable will handle structured session and career tracking, while\
+    \ Notion will support rich, human-readable journaling. Each backend serves a different\
+    \ function \u2014 Airtable for internal insight, Notion for reflection and shareability.\
+    \ We'll implement a memory interface that routes to both and allows opt-in usage\
+    \ per tool call."
+  timestamp: '2025-05-03T02:14:59.615944'
+  tags:
+  - memory
+  - dual-backend
+  - airtable
+  - notion
+  - mvp-flexibility
