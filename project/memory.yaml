@@ -175,3 +175,14 @@
   - personalization
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/outputs/1.3_break_into_features/reasoning_trace.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.3_break_into_features/reasoning_trace.yaml
+  file_type: yaml
+  description: Document detailing the decomposition of the AI Career Coach into modular
+    features, highlighting key differentiators and improvement opportunities.
+  tags:
+  - feature-list
+  - differentiation
+  - UX
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
