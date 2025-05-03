@@ -232,3 +232,15 @@
   - integration
   last_updated: '2025-05-03'
   pod_owner: DeliveryPod
+- path: project/docs/architecture/architecture_task_activation_note.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/architecture_task_activation_note.md
+  file_type: md
+  description: Document detailing the task of designing the system architecture for
+    an AI Career Coach app, including system diagram requirements and data flow descriptions.
+  tags:
+  - architecture
+  - system design
+  - flow
+  - integration
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
