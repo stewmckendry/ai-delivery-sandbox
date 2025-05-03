@@ -208,3 +208,16 @@
   - ai_coach
   last_updated: '2025-05-03'
   pod_owner: QAPod
+- path: project/outputs/1.4_write_acceptance_criteria/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.4_write_acceptance_criteria/chain_of_thought.yaml
+  file_type: yaml
+  description: Document outlining the collaboration process for defining acceptance
+    criteria with a focus on hybrid prompt design to enhance user experience and delivery
+    readiness.
+  tags:
+  - acceptance-criteria
+  - UX-design
+  - prompting
+  - delivery-readiness
+  last_updated: '2025-05-03'
+  pod_owner: DeliveryPod
