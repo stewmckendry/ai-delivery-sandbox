@@ -14,3 +14,17 @@
   - user-needs
   - feature-structure
   - architecture-inputs
+- message: "To design the architecture, I\u2019m centering the flow around a structured\
+    \ Prompt UI frontend, a GPT API layer that loads grounding context from YAML segments\
+    \ (RAG), and optional journaling persistence via Airtable or Notion. Given the\
+    \ YAMLs are thematically organized, we can dynamically load categories based on\
+    \ user input. Data flow must preserve context during Q&A while keeping the session\
+    \ lightweight and private. This separation also allows us to modularize memory\
+    \ (local/session vs. cloud-persisted). I will diagram both the in-session loop\
+    \ and the optional persistence extension."
+  timestamp: '2025-05-03T01:53:33.406908'
+  tags:
+  - architecture-plan
+  - dataflow
+  - modularity
+  - privacy
