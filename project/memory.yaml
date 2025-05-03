@@ -91,3 +91,15 @@
   - gpt
   last_updated: '2025-05-03'
   pod_owner: ResearchPod
+- path: project/docs/research/spikes/youth_career_knowledgebook_activation_note.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/research/spikes/youth_career_knowledgebook_activation_note.md
+  file_type: md
+  description: Activation note for a research spike to develop a youth career knowledgebase
+    for a GPT Youth Career Coach using RAG.
+  tags:
+  - research
+  - RAG
+  - knowledgebase
+  - youth
+  last_updated: '2025-05-03'
+  pod_owner: ResearchPod
