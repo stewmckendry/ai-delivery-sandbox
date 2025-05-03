@@ -143,3 +143,21 @@
   - cloud-reference
   - loader-design
   - deployment-readiness
+- message: 'Deployment architecture will use Railway for hosting our FastAPI backend
+    (confirmed as active). We''ll also add two critical sections:
+
+    1. Airtable/Notion integration setup (tokens, permissions, privacy)
+
+    2. Public discoverability and scalability of Custom GPT (link sharing, user sessions)
+
+
+    These additions close key gaps in launch-readiness. Custom GPT''s memory OFF setting
+    ensures statelessness; backend handles all session memory. This model scales naturally
+    across users without conflict. We''ll commit the complete plan.'
+  timestamp: '2025-05-03T02:28:17.682532'
+  tags:
+  - deployment
+  - railway
+  - memory-integration
+  - gpt-discoverability
+  - scale-readiness
