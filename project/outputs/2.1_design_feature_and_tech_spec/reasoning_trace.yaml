@@ -1,0 +1,18 @@
+alternatives:
+- Could have modularized the spec as one per route for clarity in dev handoff.
+improvement_opportunities:
+- Add schema validation scaffolds for YAML career segments.
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 9
+summary: Produced a detailed spec for each MVP feature, linked them to architecture
+  scaffolds, and identified deferred experimental items.
+task_id: 2.1_design_feature_and_tech_spec
+thoughts:
+- thought: Mapped each MVP feature to its expected backend endpoint, input/output
+    shape, and GPT interaction.
+- thought: Cross-referenced spec against implementation scaffolds in the architecture
+    folder.
+- thought: Deferred experimental features (Group Mode, Profile Summary) to post-MVP,
+    per user direction.
