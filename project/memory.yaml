@@ -246,3 +246,14 @@
   - deployment
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/outputs/2.2_build_and_patch/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/2.2_build_and_patch/chain_of_thought.yaml
+  file_type: yaml
+  description: Structured MVP build backlog for sequencing FastAPI routes, utilities,
+    schema validation, and deployment setup.
+  tags:
+  - backlog
+  - planning
+  - architecture
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
