@@ -1,0 +1,15 @@
+- message: "After completing the task, we discovered that including the 'content'\
+    \ field in the outputs array of manageTaskLifecycle.complete causes file contents\
+    \ to be overwritten \u2014 even for files that were already committed through\
+    \ previous steps. The output 'content' values were summaries, not full content,\
+    \ which wiped all architecture work.\n\nWe manually recovered by resetting to\
+    \ the last good commit (e256c9c2...), but this highlights a serious issue in blending\
+    \ file commits with task metadata. Going forward, we should separate 'file commits'\
+    \ and 'task completions' clearly to preserve fidelity.\n\nIssue logged and RCA\
+    \ committed."
+  timestamp: '2025-05-04T01:06:50.811635'
+  tags:
+  - postmortem
+  - file-integrity
+  - task-completion-risk
+  - process-separation
