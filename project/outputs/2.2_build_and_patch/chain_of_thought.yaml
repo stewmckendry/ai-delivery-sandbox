@@ -17,3 +17,13 @@
   - prompts
   - tool-endpoint
   - github-fetch
+- message: Completed Batch 2 by implementing `yaml_loader.py` and `/get_yaml_segment`
+    route. Loader fetches YAML files from GitHub per category, parses career lists,
+    and handles errors gracefully. Verified by fetching STEM segment from stewmckendry
+    repo. Code committed successfully.
+  timestamp: '2025-05-04T02:10:51.401183'
+  tags:
+  - batch2
+  - segments
+  - yaml
+  - tool-endpoint
