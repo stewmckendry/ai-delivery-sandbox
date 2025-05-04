@@ -54,3 +54,19 @@
   - workflow
   status: open
   timestamp: '2025-05-04T01:06:40.461899'
+- type: enhancement
+  scope: framework
+  issue_id: edb5b608-c16c-4c6c-a159-7e2202352f7b
+  task_id: null
+  title: Support wildcards in file references for task inputs and handoffs
+  detail: Task inputs and kickoff messages often require long lists of reference files
+    (e.g., all YAML segments, all architecture docs). Supporting wildcard patterns
+    like './docs/architecture/*.md' would simplify references and reduce errors.
+  suggested_fix: Enable wildcard/glob matching in file path references for task metadata
+    and prompts.
+  tags:
+  - file-reference
+  - task-metadata
+  - enhancement
+  status: open
+  timestamp: '2025-05-04T01:24:37.509385'
