@@ -34,3 +34,23 @@
   - data-loss
   status: open
   timestamp: '2025-05-03T01:33:25.059353'
+- type: bug
+  scope: framework
+  issue_id: 10d4cb12-c944-47af-8d89-ddcda6b65f13
+  task_id: null
+  title: Task completion tool overwrites committed files when 'outputs' includes simplified
+    content
+  detail: When calling manageTaskLifecycle.complete with 'outputs', any 'content'
+    field will overwrite the actual file contents in Git, even if those files were
+    previously committed through iteration. This led to a full loss of work, later
+    restored via manual git reset.
+  suggested_fix: Either (1) prevent overwrites unless explicitly allowed, or (2) remove
+    'content' from outputs and rely only on file references. Separate file commits
+    and completions by design.
+  tags:
+  - file-safety
+  - task-completion
+  - critical
+  - workflow
+  status: open
+  timestamp: '2025-05-04T01:06:40.461899'
