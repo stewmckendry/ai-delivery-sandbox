@@ -17,5 +17,6 @@
 **Notes:**
 - Handles 404s and fetch errors with graceful GPT messages
 - First tool endpoint for GPT contract
+- Updated to use GitHub raw URL fetch per deployment plan
 
 ---
