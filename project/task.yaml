@@ -407,6 +407,7 @@ tasks:
     - project/app/routes/memory.py
     - project/app/schemas/reflection.py
     - project/app/utils/memory_manager.py
+    - project/app/clients/airtable_client.py
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
