@@ -287,19 +287,19 @@ tasks:
     category: discovery
     created_at: '2025-04-26T23:06:52.821455'
     created_by: human
-    depends_on:
+    depends_on: &id001
     - 1.2_define_user_and_delivery_flows
     - 1.3_break_into_features
     description: Draft initial solution architecture and coding or design standards
     done: false
     feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
     handoff_from: 1.3_break_into_features
-    inputs:
+    inputs: &id002
     - docs/project_goals.md
     - docs/features/feature_*.md
     - docs/research/spikes/spike_*.md
     instance_of: task_templates/Phase1_discovery/1.6_define_architecture/task.yaml
-    outputs:
+    outputs: &id003
     - docs/architecture/solution_overview.md
     - docs/architecture/standards.md
     - project/docs/process/root_cause_analysis/file_overwrite_on_task_complete.md
@@ -757,3 +757,25 @@ tasks:
     prompt: framework/task_templates/Phase 0 - Cross-Phase/task_templates/Cross-Phase/0.4_create_new_task/task.yaml/prompt_template.md
     status: completed
     updated_at: '2025-05-02T23:35:13.280706'
+  1.6_define_architecture_and_standards_clone_1:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-05-04T01:18:26.790513'
+    created_by: human
+    depends_on: *id001
+    description: Scale-out clone of 1.6_define_architecture_and_standards
+    done: false
+    feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
+    handoff_from: 1.6_define_architecture_and_standards
+    inputs: *id002
+    instance_of: task_templates/Phase1_discovery/1.6_define_architecture/task.yaml
+    outputs: *id003
+    phase: Phase 1 - Discovery
+    pod_owner: DevPod
+    prompt: prompts/dev/define_architecture.txt
+    ready: true
+    status: planned
+    updated_at: null
+    notes: Discovery phase is complete. We're ready to transition to development (Phase
+      2), which includes designing technical specs, implementing features, and QA.
+      We'll hand off to a new ProductPod or DevPod for this phase.
