@@ -302,6 +302,7 @@ tasks:
     - docs/architecture/solution_overview.md
     - docs/architecture/standards.md
     - project/docs/process/root_cause_analysis/file_overwrite_on_task_complete.md
+    - project/docs/process/discovery_phase_retrospective.md
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/define_architecture.txt
