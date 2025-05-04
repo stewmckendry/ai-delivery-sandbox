@@ -97,3 +97,16 @@
   - architecture
   last_updated: '2025-05-03'
   pod_owner: DevPod
+- path: project/docs/process/root_cause_analysis/file_overwrite_on_task_complete.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/process/root_cause_analysis/file_overwrite_on_task_complete.md
+  file_type: md
+  description: Documentation of a root cause analysis for file overwrites during task
+    completion, detailing the incident, recovery steps, root cause, and suggested
+    fixes.
+  tags:
+  - root_cause_analysis
+  - file_management
+  - process
+  - recovery
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
