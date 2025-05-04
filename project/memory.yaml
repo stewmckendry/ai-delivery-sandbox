@@ -278,3 +278,14 @@
   - routing
   last_updated: '2025-05-04'
   pod_owner: DeliveryPod
+- path: project/app/utils/prompt_loader.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/utils/prompt_loader.py
+  file_type: py
+  description: Utility to load and fetch prompt data from a remote repository using
+    HTTP requests.
+  tags:
+  - prompt
+  - utils
+  - http
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
