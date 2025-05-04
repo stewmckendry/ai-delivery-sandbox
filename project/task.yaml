@@ -400,6 +400,7 @@ tasks:
     - .patches/patch_<timestamp>.diff
     - project/specs/mvp_build_backlog.md
     - project/specs/build_batches.md
+    - project/app/routes/prompts.py
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
