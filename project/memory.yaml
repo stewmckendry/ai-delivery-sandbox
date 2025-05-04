@@ -257,3 +257,14 @@
   - architecture
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/specs/build_batches.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/specs/build_batches.md
+  file_type: md
+  description: Documentation for implementing prompt loading in the AI CareerCoach
+    project, detailing scope, files, and spec alignment.
+  tags:
+  - prompt
+  - implementation
+  - spec
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
