@@ -779,3 +779,12 @@ tasks:
     notes: Discovery phase is complete. We're ready to transition to development (Phase
       2), which includes designing technical specs, implementing features, and QA.
       We'll hand off to a new ProductPod or DevPod for this phase.
+  task_templates/Phase2_development/2.1_design_feature_and_tech_spec/task.yaml-87d8bf:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-04T01:19:44.304729'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/Phase 2 - Development/task_templates/Phase2_development/2.1_design_feature_and_tech_spec/task.yaml/task.yaml
+    prompt: framework/task_templates/Phase 2 - Development/task_templates/Phase2_development/2.1_design_feature_and_tech_spec/task.yaml/prompt_template.md
