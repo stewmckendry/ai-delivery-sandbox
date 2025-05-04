@@ -405,6 +405,7 @@ tasks:
     - project/app/utils/yaml_loader.py
     - project/app/routes/segments.py
     - project/app/routes/memory.py
+    - project/app/schemas/reflection.py
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
