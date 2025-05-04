@@ -402,6 +402,7 @@ tasks:
     - project/specs/build_batches.md
     - project/app/routes/prompts.py
     - project/app/utils/prompt_loader.py
+    - project/app/utils/yaml_loader.py
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
