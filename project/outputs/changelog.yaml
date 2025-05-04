@@ -272,3 +272,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Mark /fetch_summary and related components complete in build backlog
+- timestamp: '2025-05-04T02:39:07.968121'
+  path: project/specs/build_batches.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Log Batch 4 (summary view) implementation details and files in build_batches.md
