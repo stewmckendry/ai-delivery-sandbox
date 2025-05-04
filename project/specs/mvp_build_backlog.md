@@ -4,7 +4,7 @@
 - [x] `/load_prompt` – Load a coaching prompt by ID
 - [x] `/get_yaml_segment` – Fetch career segment by category
 - [x] `/save_reflection` – Store a journaling reflection (Airtable/Notion)
-- [ ] `/fetch_summary` – Retrieve all reflections for a session
+- [x] `/fetch_summary` – Retrieve all reflections for a session
 
 ### 🔹 B. Utilities
 - [x] `prompt_loader.py` – Load JSON coaching prompts
