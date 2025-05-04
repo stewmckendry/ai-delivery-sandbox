@@ -206,3 +206,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Mark Batch 3 components as complete in build backlog
+- timestamp: '2025-05-04T02:25:21.336151'
+  path: project/specs/build_batches.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Log Batch 3 (journaling + memory manager + schema) in build_batches.md
