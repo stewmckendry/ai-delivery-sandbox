@@ -1,0 +1,9 @@
+- message: Cross-referenced each MVP feature spec with its corresponding implementation
+    scaffold in the architecture files. Ensured all MVP routes, GPT tool contracts,
+    and backend utility modules are represented and aligned. Deferred experimental
+    features (Group Mode and Profile Summary) for post-MVP delivery.
+  timestamp: '2025-05-04T01:38:02.855637'
+  tags:
+  - spec
+  - validation
+  - alignment
