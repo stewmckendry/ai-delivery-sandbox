@@ -114,3 +114,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Log Batch 2 (career card generator + YAML route) in build_batches.md
+- timestamp: '2025-05-04T02:11:45.033802'
+  path: project/specs/mvp_build_backlog.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Mark /get_yaml_segment and yaml_loader.py as complete in backlog after
+    Batch 2
