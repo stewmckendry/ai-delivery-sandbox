@@ -173,3 +173,15 @@
   - collaboration
   last_updated: '2025-05-04'
   pod_owner: DeliveryPod
+- path: project/outputs/1.6_define_architecture_and_standards/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.6_define_architecture_and_standards/handoff_notes.yaml
+  file_type: yaml
+  description: Document detailing the handoff process between pods during the transition
+    from discovery to development phase, including references to relevant architecture
+    and process documents.
+  tags:
+  - handoff
+  - architecture
+  - process
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
