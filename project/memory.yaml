@@ -110,3 +110,15 @@
   - recovery
   last_updated: '2025-05-04'
   pod_owner: DeliveryPod
+- path: .logs/issues/framework.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/.logs/issues/framework.yaml
+  file_type: yaml
+  description: Log of framework-related bugs detailing issues with YAML file handling,
+    commit behavior, and task completion tool overwrites.
+  tags:
+  - bug
+  - yaml
+  - commit
+  - framework
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
