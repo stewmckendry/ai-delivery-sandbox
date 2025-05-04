@@ -360,3 +360,13 @@
   - integration
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/app/schemas/summary.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/schemas/summary.py
+  file_type: py
+  description: Defines a Pydantic model for summary output schema
+  tags:
+  - schema
+  - model
+  - pydantic
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
