@@ -20,3 +20,22 @@
 - Updated to use GitHub raw URL fetch per deployment plan
 
 ---
+
+### Batch 2: Career Card Generator + /get_yaml_segment
+
+**Scope:** Fetch career segment YAMLs by category (e.g., STEM, Creative)
+
+**Files:**
+- `utils/yaml_loader.py`
+- `routes/segments.py`
+
+**Spec Alignment:**
+- Matches tech spec section: Career Card Generator
+- Follows architecture for RAG using GitHub-hosted YAML
+
+**Notes:**
+- Uses category slug to build raw URL
+- Validated STEM file fetch via live GitHub read
+- Supports GPT tool contract for segment loading
+
+---
