@@ -221,3 +221,15 @@
   - architecture
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/outputs/2.2_build_and_patch/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/2.2_build_and_patch/prompt_used.txt
+  file_type: txt
+  description: Instructions for building FastAPI endpoints and related components
+    according to MVP specifications.
+  tags:
+  - FastAPI
+  - endpoints
+  - architecture
+  - OpenAPI
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
