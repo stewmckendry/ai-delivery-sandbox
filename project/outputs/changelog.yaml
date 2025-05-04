@@ -109,3 +109,8 @@
   task_id: 2.2_build_and_patch
   committed_by: unknown
   message: Append chain of thought to task 2.2_build_and_patch
+- timestamp: '2025-05-04T02:11:36.169192'
+  path: project/specs/build_batches.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Log Batch 2 (career card generator + YAML route) in build_batches.md
