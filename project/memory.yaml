@@ -289,3 +289,13 @@
   - http
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/app/utils/yaml_loader.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/utils/yaml_loader.py
+  file_type: py
+  description: Utility to load YAML segments from a remote repository using HTTP requests
+  tags:
+  - yaml
+  - http
+  - config
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
