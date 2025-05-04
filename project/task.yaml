@@ -1,11 +1,12 @@
 outputs:
-- project/docs/features/feature_list.md
 - project/docs/research/spikes/youth_career_knowledgebook.md
+- project/docs/features/feature_list.md
 - project/inputs/knowledgebooks/youth_career_guide.yaml
 - project/docs/ways_of_working.md
 - project/docs/project_goals.md
 - project/docs/users_and_journeys.md
 - project/docs/features/acceptance_criteria.md
+- project/specs/feature_tech_spec.md
 tasks:
   0.1_update_task_metadata:
     assigned_to: unassigned
@@ -310,6 +311,28 @@ tasks:
     ready: true
     status: backlog
     updated_at: '2025-04-26T23:06:52.821461'
+  1.6_define_architecture_and_standards_clone_1:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-05-04T01:18:26.790513'
+    created_by: human
+    depends_on: *id001
+    description: Scale-out clone of 1.6_define_architecture_and_standards
+    done: false
+    feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
+    handoff_from: 1.6_define_architecture_and_standards
+    inputs: *id002
+    instance_of: task_templates/Phase1_discovery/1.6_define_architecture/task.yaml
+    notes: Discovery phase is complete. We're ready to transition to development (Phase
+      2), which includes designing technical specs, implementing features, and QA.
+      We'll hand off to a new ProductPod or DevPod for this phase.
+    outputs: *id003
+    phase: Phase 1 - Discovery
+    pod_owner: DevPod
+    prompt: prompts/dev/define_architecture.txt
+    ready: true
+    status: planned
+    updated_at: null
   1.7_feedback_summary:
     assigned_to: unassigned
     category: discovery
@@ -338,7 +361,7 @@ tasks:
     - 1.3_break_into_features
     - 1.6_define_architecture_and_standards
     description: For each assigned feature, draft a detailed technical specification
-    done: false
+    done: true
     feedback_file: .logs/feedback/2.1_design_feature_and_tech_spec.md
     handoff_from: 1.6_define_architecture_and_standards
     inputs:
@@ -350,8 +373,8 @@ tasks:
     pod_owner: DevPod
     prompt: prompts/dev/2.1_design_feature_and_tech_spec.txt
     ready: true
-    status: backlog
-    updated_at: '2025-04-26T23:06:52.863198'
+    status: completed
+    updated_at: '2025-05-04T01:38:41.839869'
   2.2_build_and_patch:
     assigned_to: unassigned
     category: dev
@@ -757,34 +780,12 @@ tasks:
     prompt: framework/task_templates/Phase 0 - Cross-Phase/task_templates/Cross-Phase/0.4_create_new_task/task.yaml/prompt_template.md
     status: completed
     updated_at: '2025-05-02T23:35:13.280706'
-  1.6_define_architecture_and_standards_clone_1:
-    assigned_to: unassigned
-    category: discovery
-    created_at: '2025-05-04T01:18:26.790513'
-    created_by: human
-    depends_on: *id001
-    description: Scale-out clone of 1.6_define_architecture_and_standards
-    done: false
-    feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
-    handoff_from: 1.6_define_architecture_and_standards
-    inputs: *id002
-    instance_of: task_templates/Phase1_discovery/1.6_define_architecture/task.yaml
-    outputs: *id003
-    phase: Phase 1 - Discovery
-    pod_owner: DevPod
-    prompt: prompts/dev/define_architecture.txt
-    ready: true
-    status: planned
-    updated_at: null
-    notes: Discovery phase is complete. We're ready to transition to development (Phase
-      2), which includes designing technical specs, implementing features, and QA.
-      We'll hand off to a new ProductPod or DevPod for this phase.
   task_templates/Phase2_development/2.1_design_feature_and_tech_spec/task.yaml-87d8bf:
     assigned_pod: ProductPod
-    pod_owner: ProductPod
     created_at: '2025-05-04T01:19:44.304729'
-    updated_at: null
     done: false
-    status: backlog
     instance_of: framework/task_templates/Phase 2 - Development/task_templates/Phase2_development/2.1_design_feature_and_tech_spec/task.yaml/task.yaml
+    pod_owner: ProductPod
     prompt: framework/task_templates/Phase 2 - Development/task_templates/Phase2_development/2.1_design_feature_and_tech_spec/task.yaml/prompt_template.md
+    status: backlog
+    updated_at: null
