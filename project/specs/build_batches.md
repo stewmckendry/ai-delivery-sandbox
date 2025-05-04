@@ -39,3 +39,25 @@
 - Supports GPT tool contract for segment loading
 
 ---
+
+### Batch 3: Journaling & Reflection + /save_reflection
+
+**Scope:** Accept reflection input from GPT and save to Airtable + Notion
+
+**Files:**
+- `schemas/reflection.py`
+- `routes/memory.py`
+- `utils/memory_manager.py`
+- `clients/airtable_client.py`
+- `clients/notion_client.py`
+
+**Spec Alignment:**
+- Matches tech spec: Journaling / Reflection
+- Implements memory interface in `memory_interface_design.md`
+
+**Notes:**
+- Pydantic model includes reflection length validator
+- Clients are stubbed and tested with valid + invalid inputs
+- Dual-write confirmed stub-safe for future API integration
+
+---
