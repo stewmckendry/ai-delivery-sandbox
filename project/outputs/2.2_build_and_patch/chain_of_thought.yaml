@@ -1,0 +1,9 @@
+- message: Defined a structured MVP build backlog to sequence FastAPI routes, utilities,
+    schema validation, GPT tool contracts, testing, and deployment setup. This ensures
+    alignment with the architecture and helps pace implementation cleanly across system
+    layers.
+  timestamp: '2025-05-04T01:41:36.922650'
+  tags:
+  - backlog
+  - planning
+  - alignment
