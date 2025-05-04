@@ -268,3 +268,13 @@
   - spec
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/app/routes/prompts.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/routes/prompts.py
+  file_type: py
+  description: API endpoint for loading coaching prompts by ID
+  tags:
+  - prompt
+  - API
+  - routing
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
