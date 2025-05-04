@@ -61,3 +61,24 @@
 - Dual-write confirmed stub-safe for future API integration
 
 ---
+
+### Batch 4: Summary View + /fetch_summary
+
+**Scope:** Retrieve session reflections and provide a combined summary string
+
+**Files:**
+- `schemas/summary.py`
+- `routes/memory.py`
+- `utils/memory_manager.py`
+- `clients/airtable_client.py`
+
+**Spec Alignment:**
+- Matches tech spec: Backend Memory (Optional)
+- Aligns with GPT tool contract in `fastapi_and_gpt_scaffolds.md`
+
+**Notes:**
+- Combines all reflection texts into one output
+- Handles empty session fallback
+- Mocked Airtable read for now
+
+---
