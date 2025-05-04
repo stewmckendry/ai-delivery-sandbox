@@ -197,3 +197,16 @@
   - alignment
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/specs/feature_tech_spec.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/specs/feature_tech_spec.md
+  file_type: md
+  description: Technical design specifications for the CareerCoach MVP, detailing
+    UI components, GPT behavior, endpoints, edge cases, and testing notes for various
+    features.
+  tags:
+  - specs
+  - prompt
+  - flow
+  - model
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
