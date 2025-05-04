@@ -410,6 +410,7 @@ tasks:
     - project/app/clients/airtable_client.py
     - project/app/clients/notion_client.py
     - project/app/schemas/summary.py
+    - project/logs/root_cause_analysis/batch4_commit_bug.md
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
