@@ -1,0 +1,1 @@
+Start building the FastAPI endpoints, YAML loaders, and memory handlers per the finalized MVP feature specs. Use the defined architecture scaffolds and ensure tool contracts match the OpenAPI definitions. Implement in clean, testable code with validation and error handling.
