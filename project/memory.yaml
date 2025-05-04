@@ -340,3 +340,13 @@
   - integration
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/app/clients/airtable_client.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/clients/airtable_client.py
+  file_type: py
+  description: Function to save data to Airtable with a placeholder implementation
+  tags:
+  - client
+  - integration
+  - airtable
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
