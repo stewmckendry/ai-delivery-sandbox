@@ -233,3 +233,16 @@
   - OpenAPI
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/specs/mvp_build_backlog.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/specs/mvp_build_backlog.md
+  file_type: md
+  description: Backlog of tasks for building the MVP of the AI CareerCoach application,
+    including API routes, utilities, schemas, OpenAPI interface, testing, and deployment
+    readiness.
+  tags:
+  - api
+  - utilities
+  - testing
+  - deployment
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
