@@ -299,3 +299,13 @@
   - config
   last_updated: '2025-05-04'
   pod_owner: DeliveryPod
+- path: project/app/routes/segments.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/routes/segments.py
+  file_type: py
+  description: FastAPI route to retrieve YAML segments based on career category
+  tags:
+  - api
+  - route
+  - yaml
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
