@@ -399,6 +399,7 @@ tasks:
     - docs/specs/spec_<feature_id>.md
     - .patches/patch_<timestamp>.diff
     - project/specs/mvp_build_backlog.md
+    - project/specs/build_batches.md
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
