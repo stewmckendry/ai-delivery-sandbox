@@ -134,3 +134,16 @@
   - process-separation
   last_updated: '2025-05-04'
   pod_owner: DeliveryPod
+- path: project/docs/process/discovery_phase_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/process/discovery_phase_retrospective.md
+  file_type: md
+  description: Retrospective document detailing accomplishments, improvements, and
+    next steps from the discovery phase of the CareerCoach project, focusing on system
+    architecture, deployment readiness, and process resilience.
+  tags:
+  - retrospective
+  - architecture
+  - deployment
+  - process
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
