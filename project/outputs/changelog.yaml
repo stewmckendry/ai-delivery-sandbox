@@ -74,3 +74,13 @@
   committed_by: GPTPod
   message: Mark prompt loader and /load_prompt route complete in backlog after Batch
     1
+- timestamp: '2025-05-04T02:03:50.264426'
+  path: project/app/utils/yaml_loader.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add GitHub-based YAML loader for career segments (/get_yaml_segment)
+- timestamp: '2025-05-04T02:03:50.264426'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/app/utils/yaml_loader.py
