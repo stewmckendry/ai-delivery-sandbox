@@ -160,3 +160,16 @@
   - collaboration
   last_updated: '2025-05-04'
   pod_owner: ResearchPod
+- path: project/docs/process/discovery_phase_retrospective_promptpod.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/process/discovery_phase_retrospective_promptpod.md
+  file_type: md
+  description: Retrospective document for the PromptPod's discovery phase of the AI
+    Career Coach project, highlighting successes, areas for improvement, and framework
+    enhancement ideas.
+  tags:
+  - retrospective
+  - discovery
+  - prompt
+  - collaboration
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
