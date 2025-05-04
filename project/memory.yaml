@@ -122,3 +122,15 @@
   - framework
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/outputs/1.6_define_architecture_and_standards/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/1.6_define_architecture_and_standards/chain_of_thought.yaml
+  file_type: yaml
+  description: Documentation of a postmortem analysis highlighting issues with file
+    content overwriting during task completion and recommendations for process separation.
+  tags:
+  - postmortem
+  - file-integrity
+  - task-completion-risk
+  - process-separation
+  last_updated: '2025-05-04'
+  pod_owner: DeliveryPod
