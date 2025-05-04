@@ -350,3 +350,13 @@
   - airtable
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/app/clients/notion_client.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/clients/notion_client.py
+  file_type: py
+  description: Function to save data to Notion, currently a placeholder implementation
+  tags:
+  - client
+  - notion
+  - integration
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
