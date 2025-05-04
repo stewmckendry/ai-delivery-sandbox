@@ -382,3 +382,15 @@
   - batch
   last_updated: '2025-05-04'
   pod_owner: DevPod
+- path: project/logs/root_cause_analysis/batch4_commit_bug.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/logs/root_cause_analysis/batch4_commit_bug.md
+  file_type: md
+  description: Document detailing the root cause analysis of a commit bug during Batch
+    4 implementation, including the incident summary, root cause, fix implemented,
+    lessons learned, and preventative actions.
+  tags:
+  - commit-integrity
+  - context-bug
+  - git-fetch-safety
+  last_updated: '2025-05-04'
+  pod_owner: DevPod
