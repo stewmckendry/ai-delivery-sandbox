@@ -312,3 +312,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Mark logging complete for Airtable/Notion API integration in Batch 5
+- timestamp: '2025-05-05T16:52:23.100017'
+  path: project/specs/build_batches.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Log Batch 5 (Airtable + Notion API integration) in build_batches.md
