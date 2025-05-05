@@ -413,6 +413,7 @@ tasks:
     - project/logs/root_cause_analysis/batch4_commit_bug.md
     - project/app/schemas/prompt.py
     - project/app/schemas/segment.py
+    - project/specs/openapi.yaml
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
