@@ -25,7 +25,7 @@
 ### 🔹 E. Testing & Logging
 - [x] Unit tests for each route (use `pytest`, `httpx`)
 - [x] Mock Airtable and Notion clients
-- [ ] Logging for tool failures and edge cases
+- [x] Logging for tool failures and edge cases
 
 ### 🔹 F. Deployment Readiness
 - [ ] `.env.template` with placeholders for tokens
