@@ -426,3 +426,13 @@
   - prompts
   last_updated: '2025-05-05'
   pod_owner: DeliveryPod
+- path: .env.template
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/.env.template
+  file_type: template
+  description: Configuration template for integrating Airtable and Notion APIs
+  tags:
+  - config
+  - integration
+  - api
+  last_updated: '2025-05-05'
+  pod_owner: DeliveryPod
