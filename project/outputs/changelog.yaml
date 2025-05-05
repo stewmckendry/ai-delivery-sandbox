@@ -24,3 +24,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-05T17:06:26.164007'
+  path: project/specs/mvp_build_backlog.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Mark OpenAPI and GPT tool contract complete in build backlog
