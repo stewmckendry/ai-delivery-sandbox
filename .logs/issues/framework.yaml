@@ -70,3 +70,21 @@
   - enhancement
   status: open
   timestamp: '2025-05-04T01:24:37.509385'
+- type: enhancement
+  scope: framework
+  issue_id: 2166062c-ff5e-4daf-b0e0-25da44b9be4e
+  task_id: null
+  title: Enable reasoning trace creation outside of complete task flow
+  detail: "Currently, reasoning traces are only created during the `complete` task\
+    \ flow. There\u2019s no way to log or patch a trace afterward if it was missed.\
+    \ This limits auditability and team reflection."
+  suggested_fix: Add a `create_trace` or `log_trace` action under the reasoning trace
+    tool. Should support appending reasoning trace metadata and content for a task
+    ID without triggering full task completion.
+  tags:
+  - enhancement
+  - reasoning-trace
+  - auditability
+  - task-metadata
+  status: open
+  timestamp: '2025-05-05T17:18:04.608640'
