@@ -1,0 +1,33 @@
+handoffs:
+- timestamp: '2025-05-05T17:21:32.575529'
+  from_pod: DevPod
+  to_pod: DevPod
+  reason: Scaling out to a new ProductPod to handle deployment documentation and environment
+    setup (Task 2.8)
+  handoff_type: scale
+  reference_files:
+  - src/feature_<feature_id>/**/*
+  - tests/feature_<feature_id>/**/*
+  - docs/specs/spec_<feature_id>.md
+  - .patches/patch_<timestamp>.diff
+  - project/specs/mvp_build_backlog.md
+  - project/specs/build_batches.md
+  - project/app/routes/prompts.py
+  - project/app/utils/prompt_loader.py
+  - project/app/utils/yaml_loader.py
+  - project/app/routes/segments.py
+  - project/app/routes/memory.py
+  - project/app/schemas/reflection.py
+  - project/app/utils/memory_manager.py
+  - project/app/clients/airtable_client.py
+  - project/app/clients/notion_client.py
+  - project/app/schemas/summary.py
+  - project/logs/root_cause_analysis/batch4_commit_bug.md
+  - project/app/schemas/prompt.py
+  - project/app/schemas/segment.py
+  - project/specs/openapi.yaml
+  - .env.template
+  - project/logs/task_reflections/task_2.2_reflection.md
+  notes: GPT reached context/token limit on 2.2_build_and_patch. Work handed off to
+    2.2_build_and_patch_clone_1.
+  ways_of_working: Resume mid-task using prior context
