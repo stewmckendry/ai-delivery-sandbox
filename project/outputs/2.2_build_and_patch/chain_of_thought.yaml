@@ -46,3 +46,14 @@
   - summary
   - memory
   - tool-endpoint
+- message: Completed Batch 5 by integrating Airtable and Notion API clients. Airtable
+    uses filtered GET and structured POST to a base/table, while Notion posts structured
+    properties to a journal database. All credentials are pulled from `.env` and fail
+    gracefully when missing.
+  timestamp: '2025-05-05T16:51:15.092303'
+  tags:
+  - batch5
+  - airtable
+  - notion
+  - memory
+  - integration
