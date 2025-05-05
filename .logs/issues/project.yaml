@@ -17,3 +17,29 @@
   - file-sync
   status: open
   timestamp: '2025-05-04T02:36:37.097707'
+- type: enhancement
+  scope: project
+  issue_id: 9952c4dc-71c7-4dce-b2c4-2ef4ff5963b6
+  task_id: null
+  title: Standardize file organization to prevent document sprawl
+  detail: "As more tasks commit outputs, we\u2019re seeing similar documents (logs,\
+    \ specs, retros, reflections) land in inconsistent folders or custom subpaths.\
+    \ This reduces discoverability and increases cognitive load for incoming pods."
+  suggested_fix: 'Create and publish a file structure guide for the repo. Encourage
+    pods to:
+
+    - Use standardized subfolders: `logs/retrospectives/`, `logs/reflections/`, `specs/`,
+    `architecture/`, `testing/`
+
+    - Include a `file_type` tag in metadata to auto-suggest folders
+
+    - Provide a helper tool or hook that checks proposed file paths against existing
+    structure and suggests alignment'
+  tags:
+  - enhancement
+  - repo-structure
+  - file-paths
+  - standards
+  - organization
+  status: open
+  timestamp: '2025-05-05T18:34:48.364731'
