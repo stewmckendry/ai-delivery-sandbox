@@ -19,8 +19,8 @@
 - [x] `reflection.py` – Define input model for saving reflections
 
 ### 🔹 D. OpenAPI + GPT Interface
-- [ ] Ensure `openapi.yaml` matches endpoints and GPT tools spec
-- [ ] Tool contract: `/load_prompt`, `/get_yaml_segment`, `/save_reflection`, `/fetch_summary`
+- [x] Ensure `openapi.yaml` matches endpoints and GPT tools spec
+- [x] Tool contract: `/load_prompt`, `/get_yaml_segment`, `/save_reflection`, `/fetch_summary`
 
 ### 🔹 E. Testing & Logging
 - [x] Unit tests for each route (use `pytest`, `httpx`)
