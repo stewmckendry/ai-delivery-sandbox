@@ -29,3 +29,13 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Mark OpenAPI and GPT tool contract complete in build backlog
+- timestamp: '2025-05-05T17:07:41.872617'
+  path: .env.template
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add .env.template for deployment with Airtable and Notion variables
+- timestamp: '2025-05-05T17:07:41.872617'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to .env.template
