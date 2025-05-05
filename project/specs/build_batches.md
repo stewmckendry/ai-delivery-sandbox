@@ -82,3 +82,22 @@
 - Mocked Airtable read for now
 
 ---
+
+### Batch 5: Memory Integration (Airtable + Notion APIs)
+
+**Scope:** Hook up `save_to_airtable` and `save_to_notion` to their respective APIs
+
+**Files:**
+- `clients/airtable_client.py`
+- `clients/notion_client.py`
+
+**Spec Alignment:**
+- Aligns with memory interface design and deployment plan
+- Uses credentials from `.env`
+
+**Notes:**
+- Airtable: creates records, filters by session_id
+- Notion: writes structured reflections into journal database
+- Logs errors and fails gracefully on missing keys
+
+---
