@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: AI CareerCoach Tool API
+  version: 1.0.0
+  description: API endpoints that allow GPT to retrieve coaching prompts, career paths, and save or summarize user reflections.
+servers:
+  - url: https://ai-careercoach-production.up.railway.app
+    description: Production deployment on Railway
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /load_prompt:
+    get:
+      operationId: loadPrompt
+      summary: Load a coaching prompt
+      tags: [Prompts]
+      x-gpt-action:
+        name: Load a coaching prompt
+        instructions: Use this to load a specific coaching prompt by ID for the user.
+        summary_keywords: [prompt, load, question, coaching]
+      parameters:
+        - name: prompt_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: ID of the coaching prompt to load
+      responses:
+        '200':
+          description: A coaching prompt with intro and questions
+          content:
+            application/json:
+              examples:
+                example:
+                  summary: Sample prompt
+                  value:
+                    intro: "Let's explore your interests."
+                    questions: ["What do you enjoy doing?", "What are you curious about?"]
+
+  /get_yaml_segment:
+    get:
+      operationId: getYamlSegment
+      summary: Fetch a career segment
+      tags: [Segments]
+      x-gpt-action:
+        name: Get Career Segment
+        instructions: Use this to retrieve career options in a category (e.g., STEM).
+        summary_keywords: [career, segment, yaml, fetch]
+      parameters:
+        - name: category
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Segment category (e.g., stem, creative)
+      responses:
+        '200':
+          description: A list of career cards
+          content:
+            application/json:
+              examples:
+                example:
+                  summary: STEM segment
+                  value:
+                    careers:
+                      - title: "Software Developer"
+                        skills: ["Coding", "Problem solving"]
+
+  /save_reflection:
+    post:
+      operationId: saveReflection
+      summary: Save a journaling reflection
+      tags: [Memory]
+      x-gpt-action:
+        name: Save Reflection
+        instructions: Use this to save a user's journaling reflection tied to a session, prompt, and career.
+        summary_keywords: [journal, reflection, memory, save]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id, career_id, prompt_id, text]
+              properties:
+                session_id:
+                  type: string
+                  description: Session identifier
+                career_id:
+                  type: string
+                  description: Career being reflected on
+                prompt_id:
+                  type: string
+                  description: Prompt that triggered the reflection
+                text:
+                  type: string
+                  description: The user's reflection
+            examples:
+              example:
+                summary: Save reflection
+                value:
+                  session_id: "abc123"
+                  career_id: "stem_software"
+                  prompt_id: "p2"
+                  text: "I enjoy solving problems with technology."
+      responses:
+        '200':
+          description: Reflection save confirmation
+
+  /fetch_summary:
+    get:
+      operationId: fetchSummary
+      summary: Fetch session summary
+      tags: [Memory]
+      x-gpt-action:
+        name: Fetch Reflection Summary
+        instructions: Use this to retrieve a summary of all reflections in a session.
+        summary_keywords: [summary, reflections, session, memory]
+      parameters:
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: ID of the session to summarize
+      responses:
+        '200':
+          description: Combined text summary of all reflections
+          content:
+            application/json:
+              examples:
+                example:
+                  summary: Reflection summary
+                  value:
+                    summary: "I like technology and problem solving. I could see myself as a software developer."
