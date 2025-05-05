@@ -65,3 +65,8 @@
   task_id: 2.2_build_and_patch
   committed_by: unknown
   message: Append chain of thought to task 2.2_build_and_patch
+- timestamp: '2025-05-05T17:18:04.620302'
+  path: .logs/issues/framework.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in framework scope
