@@ -404,3 +404,13 @@
   - model
   last_updated: '2025-05-05'
   pod_owner: DevPod
+- path: project/app/schemas/segment.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/schemas/segment.py
+  file_type: py
+  description: Defines data models for career segments using Pydantic for validation
+  tags:
+  - schemas
+  - model
+  - config
+  last_updated: '2025-05-05'
+  pod_owner: DevPod
