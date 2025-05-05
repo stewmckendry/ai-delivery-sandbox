@@ -317,3 +317,13 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Log Batch 5 (Airtable + Notion API integration) in build_batches.md
+- timestamp: '2025-05-05T16:56:51.482579'
+  path: project/app/schemas/prompt.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add schema for coaching prompts with intro and list of questions
+- timestamp: '2025-05-05T16:56:51.482579'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/app/schemas/prompt.py
