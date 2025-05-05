@@ -3,3 +3,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-05T16:58:23.227824'
+  path: project/specs/mvp_build_backlog.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Mark prompt.py and segment.py schemas as complete in build backlog
