@@ -14,8 +14,8 @@
 - [x] `notion_client.py` – Notion integration
 
 ### 🔹 C. Schemas & Validation
-- [ ] `prompt.py` – Define structure for coaching prompts
-- [ ] `segment.py` – Define schema for career YAML segments
+- [x] `prompt.py` – Define structure for coaching prompts
+- [x] `segment.py` – Define schema for career YAML segments
 - [x] `reflection.py` – Define input model for saving reflections
 
 ### 🔹 D. OpenAPI + GPT Interface
