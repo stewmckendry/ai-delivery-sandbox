@@ -209,3 +209,7 @@
     1'). Patched airtable_client.py to use the correct name, and confirmed API call
     format is valid. Issue logged and closed.
   timestamp: '2025-05-06T17:37:22.854891'
+- message: 'Airtable 422 error was caused by an incorrect field type: ''prompt_id''
+    was set to User instead of single-line text. Fixing the field type resolved the
+    issue and allowed successful reflection saves.'
+  timestamp: '2025-05-06T17:42:32.212210'
