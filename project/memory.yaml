@@ -672,3 +672,15 @@
   - architecture
   last_updated: '2025-05-06'
   pod_owner: DevPod
+- path: project/docs/architecture/custom_gpt_instructions.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/custom_gpt_instructions.md
+  file_type: md
+  description: Documentation for configuring and instructing CareerCoach-GPT, a playful
+    journaling assistant for kids exploring career options.
+  tags:
+  - gpt
+  - prompt
+  - config
+  - flow
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
