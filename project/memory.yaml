@@ -817,3 +817,16 @@
   - flow
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: project/docs/public/case_study_ai_delivery_framework_non_technical.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/public/case_study_ai_delivery_framework_non_technical.md
+  file_type: md
+  description: A non-technical case study detailing the use of the ai-delivery-framework
+    to build an AI career coach app for kids, highlighting the process, tools, and
+    outcomes.
+  tags:
+  - case study
+  - ai-delivery-framework
+  - prompts
+  - sandbox
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
