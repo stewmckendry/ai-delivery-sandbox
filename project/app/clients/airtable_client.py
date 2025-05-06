@@ -40,3 +40,33 @@ def save_to_airtable(data: dict) -> bool:
     except Exception as e:
         print("❌ Airtable save exception:", str(e))
         return False
+
+def get_reflection(session_id: str) -> str:
+    airtable_token = os.getenv("AIRTABLE_API_KEY")
+    airtable_base = os.getenv("AIRTABLE_BASE_ID")
+    table_name = "Table 1"
+
+    if not airtable_token or not airtable_base:
+        print("❌ Missing Airtable config")
+        return ""
+
+    headers = {
+        "Authorization": f"Bearer {airtable_token}"}
+
+    url = f"https://api.airtable.com/v0/{airtable_base}/{table_name}?filterByFormula=SEARCH(%22{session_id}%22%2C+%7Bsession_id%7D)"
+    try:
+        r = httpx.get(url, headers=headers)
+        if r.status_code != 200:
+            print("❌ Airtable fetch error:", r.status_code)
+            print(r.text)
+            return ""
+
+        records = r.json().get("records", [])
+        if not records:
+            return ""
+
+        # Return the text field of the latest record (assumes sorted by createdTime)
+        return records[0]["fields"].get("text", "")
+    except Exception as e:
+        print("❌ Airtable get_reflection exception:", str(e))
+        return ""
