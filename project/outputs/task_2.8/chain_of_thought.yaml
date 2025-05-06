@@ -84,3 +84,11 @@
   - imports
   - routes
   - deployment
+- message: Discovered missing httpx package during deployment failure. Patched requirements.txt
+    with httpx==0.24.1 to support client modules using async HTTP.
+  timestamp: '2025-05-06T09:06:46.813606'
+  tags:
+  - requirements
+  - httpx
+  - deployment
+  - bugfix
