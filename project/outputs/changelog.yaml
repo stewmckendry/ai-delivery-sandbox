@@ -28,3 +28,8 @@
   task_id: unit_test_coverage-39f55d
   committed_by: GPTPod
   message: Add route-level unit tests for key endpoints in CareerCoach backend
+- timestamp: '2025-05-06T14:09:42.709674'
+  path: tests/test_utils.py
+  task_id: unit_test_coverage-39f55d
+  committed_by: GPTPod
+  message: Add tests for prompt_loader and yaml_loader utilities
