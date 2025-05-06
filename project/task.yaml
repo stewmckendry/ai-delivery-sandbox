@@ -844,3 +844,12 @@ tasks:
     outputs:
     - project/inputs/prompts/prompts.json
     - project/docs/process/prompt_creation_retrospective.md
+  unit_test_coverage-39f55d:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-06T13:37:38.101033'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/test/unit_test_coverage/task.yaml
+    prompt: framework/task_templates/test/unit_test_coverage/prompt_template.md
