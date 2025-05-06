@@ -34,8 +34,12 @@
 1. Go to [https://airtable.com](https://airtable.com) → Create a free account.
 2. Start a **new base** → Name it `CareerReflections`
 3. Add columns: `session_id`, `career_id`, `prompt_id`, `text`, `timestamp`
-4. Go to **Account → Developer Hub** to create an API key.
-5. Find your Base ID at [https://airtable.com/api](https://airtable.com/api) by selecting your base.
+4. Go to **Account → Developer Hub** to create a Personal Access Token
+5. Find your Base ID by opening your base in a browser. The URL will look like:
+   ```
+   https://airtable.com/appABC123XYZ/Table1
+   ```
+   Copy the part starting with `app...` — that's your `AIRTABLE_BASE_ID`
 
 #### ✅ Notion Setup (for Beginners)
 1. Go to [https://notion.so](https://notion.so) → Create a free account.
@@ -43,7 +47,12 @@
 3. Add properties: Career (title), Reflection (text), Prompt (text), Created Time (date)
 4. Go to **Settings & Members → Integrations** → Create integration token
 5. Share your database with the integration bot (select database → Share → invite your integration)
-6. Copy your Notion API token and database ID
+6. Copy your Notion API token
+7. To get the `NOTION_DATABASE_ID`, open the database as a full-page view in your browser. The URL will look like:
+   ```
+   https://www.notion.so/yourworkspace/Some-Title-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+   Copy the last 32-character alphanumeric string — that's your `NOTION_DATABASE_ID`
 
 ---
 
