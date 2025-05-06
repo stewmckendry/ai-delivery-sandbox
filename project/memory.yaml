@@ -616,3 +616,14 @@
   - testing
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: tests/test_routes.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/tests/test_routes.py
+  file_type: py
+  description: Test cases for API routes related to loading prompts, retrieving YAML
+    segments, and recording reflections
+  tags:
+  - test
+  - routes
+  - api
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
