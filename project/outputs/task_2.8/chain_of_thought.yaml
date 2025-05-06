@@ -51,3 +51,10 @@
   - railway
   - dependencies
   - docs
+- message: Added Railway start command instructions to the deployment guide to unblock
+    deploy failures due to missing process start configuration.
+  timestamp: '2025-05-06T08:50:28.973392'
+  tags:
+  - railway
+  - deployment
+  - start-command
