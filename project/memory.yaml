@@ -604,3 +604,15 @@
   - coverage
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: tests/conftest.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/tests/conftest.py
+  file_type: py
+  description: Provides a pytest fixture for creating a test client for the FastAPI
+    application
+  tags:
+  - pytest
+  - fixture
+  - fastapi
+  - testing
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
