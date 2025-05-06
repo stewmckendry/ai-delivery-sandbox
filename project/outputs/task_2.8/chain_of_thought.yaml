@@ -118,3 +118,12 @@
   - bugfix
   - missing-module
   - deployment
+- message: Segment route referenced a non-existent segment_client.py module. This
+    was not caught earlier during endpoint integration. Creating a minimal implementation
+    of segment_client.py now to unblock full functionality.
+  timestamp: '2025-05-06T09:20:18.657170'
+  tags:
+  - bug
+  - segment
+  - missing-client
+  - followup
