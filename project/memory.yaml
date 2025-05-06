@@ -507,3 +507,16 @@
   - fastapi
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/logs/root_cause_analysis/railway_deploy_bug.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/logs/root_cause_analysis/railway_deploy_bug.md
+  file_type: md
+  description: Documentation of root cause analysis for deployment failures of the
+    CareerCoach FastAPI app on Railway, detailing symptoms, root causes, resolutions,
+    actions taken, and recommendations.
+  tags:
+  - deployment
+  - bug
+  - analysis
+  - FastAPI
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
