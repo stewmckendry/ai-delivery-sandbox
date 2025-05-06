@@ -580,3 +580,16 @@
   - improvement
   last_updated: '2025-05-06'
   pod_owner: ResearchPod
+- path: project/docs/architecture/deployment_checklist.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/deployment_checklist.md
+  file_type: md
+  description: Checklist for deploying the CareerCoach MVP, covering system setup,
+    testing, prompt system, integrations, CI/CD, GPT integration, frontend use cases,
+    and handoff preparation.
+  tags:
+  - deployment
+  - checklist
+  - integration
+  - testing
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
