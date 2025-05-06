@@ -61,3 +61,8 @@
   task_id: null
   committed_by: GPTPod
   message: Log <class 'type'> in project scope
+- timestamp: '2025-05-06T19:14:29.943177'
+  path: project/app/routes/memory.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Add /fetch_summary route to call get_summary from memory_manager
