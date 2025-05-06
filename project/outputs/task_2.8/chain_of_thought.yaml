@@ -24,3 +24,13 @@
   - integration
   - onboarding
   - deployment
+- message: 'Finalized Notion integration wiring instructions based on user''s successful
+    discovery: using the three-dot menu in the Notion database to access ''Connections''
+    and wire the integration. Verified fetch-edit-commit pattern and included in final
+    deployment guide.'
+  timestamp: '2025-05-06T03:05:42.656900'
+  tags:
+  - notion
+  - integration
+  - deployment
+  - docs
