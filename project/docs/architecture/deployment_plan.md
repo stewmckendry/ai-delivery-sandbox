@@ -46,11 +46,13 @@
 2. Create a new database (table) called `Journals`
 3. Add properties: Career (title), Reflection (text), Prompt (text), Created Time (date)
 4. Go to **Settings & Members → Integrations** → Create integration token for your workspace
-5. Open your `Journals` database
-6. Click **Share** in the top-right corner → Click **Invite** → Add your integration to the database
-   - If the database is not listed, ensure it's a top-level page (not nested inside another page)
-7. Copy your Notion API token
-8. To get the `NOTION_DATABASE_ID`, open your database in a full-page view. The URL will look like:
+5. Move the `Journals` page to the sidebar by dragging it out of any nested page — this makes it a top-level page
+6. Open your `Journals` database
+7. Click **Share** in the top-right corner → Click **Invite**
+   - In the email-style input box, type the name of your integration (e.g., `careercoach-dev`) — it should auto-suggest if your database is top-level
+8. Click the integration name to invite it
+9. Copy your Notion API token
+10. To get the `NOTION_DATABASE_ID`, open your database in a full-page view. The URL will look like:
    ```
    https://www.notion.so/1eb0cdbf497780f8828fd91546ed73c9?v=1eb0cdbf497780d6ae55000cd24e76c7
    ```
