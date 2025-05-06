@@ -111,3 +111,18 @@
   - state-recovery
   status: open
   timestamp: '2025-05-06T14:17:38.577683'
+- type: enhancement
+  scope: framework
+  issue_id: 3dd92085-7086-4dc3-aaa5-c30e6f5ee67e
+  task_id: null
+  title: Default commit target should match working task branch
+  detail: During prompt creation, an accidental commit to 'main' occurred due to missing
+    explicit branch parameter. The commit tools currently default to 'main' if unspecified.
+  suggested_fix: Enhance commit functions to auto-target the task's working branch
+    unless overridden.
+  tags:
+  - commit
+  - branching
+  - tooling
+  status: open
+  timestamp: '2025-05-06T14:18:08.953731'
