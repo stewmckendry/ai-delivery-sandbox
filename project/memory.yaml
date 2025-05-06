@@ -496,3 +496,14 @@
   - development
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/app/main.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/main.py
+  file_type: py
+  description: FastAPI application setup including routers for memory, prompts, and
+    segments.
+  tags:
+  - api
+  - routes
+  - fastapi
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
