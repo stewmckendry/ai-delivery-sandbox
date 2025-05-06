@@ -43,3 +43,8 @@
   task_id: unit_test_coverage-39f55d
   committed_by: GPTPod
   message: Add pytest configuration file
+- timestamp: '2025-05-06T14:17:38.582671'
+  path: .logs/issues/framework.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in framework scope
