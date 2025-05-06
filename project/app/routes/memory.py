@@ -3,6 +3,7 @@ from project.app.schemas.reflection import ReflectionInput
 from project.app.clients.notion_client import save_to_notion
 from project.app.clients.airtable_client import save_to_airtable
 from project.app.utils.prompt_loader import load_prompt
+from project.app.utils.memory_manager import get_summary
 
 router = APIRouter()
 
@@ -29,3 +30,7 @@ def record_reflection(reflection: ReflectionInput):
     )
     airtable_success = save_to_airtable(data)
     return {"notion_saved": notion_success, "airtable_saved": airtable_success}
+
+@router.get("/fetch_summary")
+def fetch_summary(session_id: str):
+    return get_summary(session_id)
