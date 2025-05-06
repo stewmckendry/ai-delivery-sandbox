@@ -843,3 +843,16 @@
   - MVP
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/docs/public/coaching_the_machine_identity.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/public/coaching_the_machine_identity.md
+  file_type: md
+  description: A blog identity document outlining the purpose, audience, tone, and
+    unique identity of "Coaching the Machine," a blog focused on AI upskilling and
+    responsible AI adoption.
+  tags:
+  - blog
+  - identity
+  - AI
+  - coaching
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
