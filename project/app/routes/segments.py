@@ -1,8 +1,10 @@
-from fastapi import APIRouter, Query
-from utils.yaml_loader import load_segment
+from fastapi import APIRouter
+from ..schemas.segment import Segment
+from ..clients.segment_client import SegmentClient
 
 router = APIRouter()
+segment_client = SegmentClient()
 
-@router.get("/get_yaml_segment")
-def get_segment(category: str = Query(..., description="Career segment category (e.g. stem, creative)")):
-    return load_segment(category)
+@router.post("/record_segment")
+def record_segment(segment: Segment):
+    return segment_client.record_segment(segment)
