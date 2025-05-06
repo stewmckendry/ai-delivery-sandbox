@@ -63,3 +63,9 @@
   task_id: task_2.8
   committed_by: GPTPod
   message: Append output file to task_2.8
+- timestamp: '2025-05-06T15:38:06.239791'
+  path: project/docs/architecture/custom_gpt_instructions.md
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Clarify in GPT instructions that prompt_id must be used (not title) when
+    calling /load_prompt. Include mapping behavior.
