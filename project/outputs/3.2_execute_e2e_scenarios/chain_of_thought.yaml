@@ -16,3 +16,13 @@
   - explorer
   - link-format
   - qa-delivery
+- message: Logged successful results for Explorer test using GPT. Identified missing
+    `career_id` in reflection save. User requested next test package and asked for
+    beginner-friendly guidance on how to extract value from Notion and Airtable (Airwatch).
+  timestamp: '2025-05-06T20:25:12.649657'
+  tags:
+  - test-results
+  - explorer
+  - airtable
+  - notion
+  - follow-up
