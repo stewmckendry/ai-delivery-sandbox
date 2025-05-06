@@ -165,3 +165,10 @@
   - gpt
   - unit-test
   - qa-readiness
+- message: Split deployment checklist into its own file deployment_checklist.md for
+    clearer tracking. Used this to structure remaining work before QA handoff.
+  timestamp: '2025-05-06T13:36:44.379544'
+  tags:
+  - checklist
+  - handoff-readiness
+  - task-tracking
