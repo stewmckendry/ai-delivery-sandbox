@@ -53,3 +53,8 @@
   task_id: null
   committed_by: GPTPod
   message: Log <class 'type'> in project scope
+- timestamp: '2025-05-06T15:33:00.292133'
+  path: project/specs/openapi.yaml
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Update OpenAPI servers URL to match deployed app endpoint ai-delivery-sandbox-production.up.railway.app
