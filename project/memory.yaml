@@ -830,3 +830,16 @@
   - sandbox
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/docs/public/case_study_ai_delivery_framework.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/public/case_study_ai_delivery_framework.md
+  file_type: md
+  description: A case study detailing the use of the ai-delivery-framework to build
+    an AI-powered career coach MVP, including project goals, outcomes, and deployment
+    details.
+  tags:
+  - case study
+  - ai-delivery-framework
+  - deployment
+  - MVP
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
