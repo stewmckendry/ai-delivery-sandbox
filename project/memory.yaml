@@ -639,3 +639,13 @@
   - yaml
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: pytest.ini
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/pytest.ini
+  file_type: ini
+  description: Configuration file for pytest specifying test paths and options
+  tags:
+  - config
+  - testing
+  - pytest
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
