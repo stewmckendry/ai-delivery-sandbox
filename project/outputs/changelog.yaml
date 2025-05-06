@@ -74,3 +74,13 @@
   task_id: wrapup_case_study
   committed_by: GPTPod
   message: Append output file to wrapup_case_study
+- timestamp: '2025-05-06T21:26:24.306300'
+  path: project/docs/public/case_study_ai_delivery_framework_non_technical.md
+  task_id: wrapup_case_study
+  committed_by: GPTPod
+  message: Add non-technical version of the ai-delivery-framework case study
+- timestamp: '2025-05-06T21:26:24.306300'
+  path: project/memory.yaml
+  task_id: wrapup_case_study
+  committed_by: GPTPod
+  message: Memory update related to project/docs/public/case_study_ai_delivery_framework_non_technical.md
