@@ -1,0 +1,15 @@
+{
+  "id": "dream_job",
+  "title": "Design Your Dream Job",
+  "description": "Imagine and describe the most amazing job you can dream of.",
+  "content": {
+    "intro": "Let’s dream big! What would your perfect job be if you could do anything?",
+    "questions": [
+      "What would your dream job be called?",
+      "Where would you work — a jungle, a spaceship, a lab?",
+      "What would you do every day at this job?",
+      "What special outfit or tools would you use?",
+      "Why do you think this job would make you happy?"
+    ]
+  }
+}
