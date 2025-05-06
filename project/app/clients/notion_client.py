@@ -18,8 +18,7 @@ def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str) -
     payload = {
         "parent": {"database_id": notion_db},
         "properties": {
-            "Session": {"title": [{"text": {"content": session_id}}]},
-            "Career": {"rich_text": [{"text": {"content": career_id}}]},
+            "Career": {"title": [{"text": {"content": career_id}}]},
             "Prompt": {"rich_text": [{"text": {"content": prompt_id}}]},
             "Reflection": {"rich_text": [{"text": {"content": text}}]}
         }
