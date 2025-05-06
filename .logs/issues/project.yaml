@@ -70,3 +70,20 @@
   - infra
   status: open
   timestamp: '2025-05-06T09:32:08.332042'
+- type: bug
+  scope: project
+  issue_id: c50d1ffc-638c-43c1-a2b8-616b9b6fccfa
+  task_id: null
+  title: Prompt files were mistakenly committed to main instead of sandbox branch
+  detail: During task prompt_creation-9fd099, the initial commits were made to the
+    'main' branch rather than the intended 'sandbox-silent-otter'. This caused confusion
+    during testing as files did not appear where expected.
+  suggested_fix: Ensure prompt commits specify the correct branch from context; consider
+    defaulting to the task's working branch if not explicitly set.
+  tags:
+  - prompt
+  - commit
+  - branch
+  - workflow
+  status: open
+  timestamp: '2025-05-06T10:48:46.310233'
