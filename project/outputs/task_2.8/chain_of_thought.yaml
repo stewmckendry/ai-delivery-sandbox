@@ -218,3 +218,7 @@
     at the root. Now the intro and questions are extracted and formatted properly
     before submitting to Notion.
   timestamp: '2025-05-06T18:01:04.057437'
+- message: Successfully simplified fetch_summary endpoint to directly return saved
+    reflection via get_reflection. Confirmed working in GPT tool with clean retrieval
+    from Airtable.
+  timestamp: '2025-05-06T19:31:42.889106'
