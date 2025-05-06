@@ -856,3 +856,4 @@ tasks:
     outputs:
     - project/docs/architecture/unit_test_summary.md
     - tests/conftest.py
+    - tests/test_routes.py
