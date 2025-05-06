@@ -1,8 +1,11 @@
-from fastapi import APIRouter
-from project.app.schemas.segment import Segment
+from fastapi import APIRouter, HTTPException
+from project.app.utils.yaml_loader import load_segment
 
 router = APIRouter()
 
-@router.post("/record_segment")
-def record_segment(segment: Segment):
-    return {"message": "Segment recorded (stub)"}
+@router.get("/get_yaml_segment")
+def get_yaml_segment(category: str):
+    try:
+        return load_segment(category)
+    except HTTPException as e:
+        return {"error": e.detail}
