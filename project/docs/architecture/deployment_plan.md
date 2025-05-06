@@ -45,13 +45,15 @@
 1. Go to [https://notion.so](https://notion.so) → Create a free account.
 2. Create a new database (table) called `Journals`
 3. Add properties: Career (title), Reflection (text), Prompt (text), Created Time (date)
-4. Go to **Settings & Members → Integrations** → Create integration token for your workspace
-5. Move the `Journals` page to the sidebar by dragging it out of any nested page — this makes it a top-level page
-6. Open your `Journals` database
-7. Click **Share** in the top-right corner → Click **Invite**
-   - In the email-style input box, type the name of your integration (e.g., `careercoach-dev`) — it should auto-suggest if your database is top-level
-8. Click the integration name to invite it
-9. Copy your Notion API token
+4. Go to [https://www.notion.so/my-integrations](https://www.notion.so/my-integrations)
+5. Click **New Integration**
+   - Name it (e.g., `careercoach-dev`)
+   - Important: Make sure you create it while you're logged into the **same workspace** as your Journals database
+   - Enable **Read content** and **Insert content** permissions
+6. Copy the generated Notion API token
+7. Return to your `Journals` database
+8. Click the **••• (three-dot menu)** in the top-right corner
+9. Click **Connections** → Search for your integration by name (e.g., `careercoach-dev`) and connect it
 10. To get the `NOTION_DATABASE_ID`, open your database in a full-page view. The URL will look like:
    ```
    https://www.notion.so/1eb0cdbf497780f8828fd91546ed73c9?v=1eb0cdbf497780d6ae55000cd24e76c7
@@ -137,10 +139,17 @@ Note: You must manually create sample prompts under `project/inputs/prompts` as 
    - `NOTION_API_TOKEN`
    - `NOTION_DATABASE_ID`
 4. Set the deploy branch:
-   - Default: `main`
-   - Optional: switch to `sandbox-silent-otter` under project settings > Deploy > GitHub settings
-5. Push to the selected branch to deploy.
-6. Confirm deployment at:
+   - Go to your Railway project
+   - Click **Settings** in the sidebar (gear icon)
+   - Under **GitHub** settings, find the **Branch** dropdown
+   - Change from `main` to `sandbox-silent-otter`
+   - Click **Save** if prompted
+5. Set the start command in the Railway **Deploy** tab:
+   ```bash
+   uvicorn project.app.main:app --host 0.0.0.0 --port 8000
+   ```
+6. Push to the selected branch to deploy.
+7. Confirm deployment at:
 ```
 https://ai-careercoach-production.up.railway.app/docs
 ```
