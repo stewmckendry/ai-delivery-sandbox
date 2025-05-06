@@ -126,3 +126,19 @@
   - tooling
   status: open
   timestamp: '2025-05-06T14:18:08.953731'
+- type: enhancement
+  scope: framework
+  issue_id: 9aaf95fd-ded3-4cb4-b534-7be910fc3a42
+  task_id: null
+  title: 'Prompt development UX: preview and linting tools'
+  detail: PromptPod created 10 structured prompts manually. While effective, workflow
+    could improve with integrated previewer and schema linting tool during authoring.
+  suggested_fix: Provide a local preview tool (e.g., render intro + sample Q&A), and
+    validate JSON schema compliance pre-commit.
+  tags:
+  - prompt
+  - tooling
+  - preview
+  - validation
+  status: open
+  timestamp: '2025-05-06T14:18:20.596637'
