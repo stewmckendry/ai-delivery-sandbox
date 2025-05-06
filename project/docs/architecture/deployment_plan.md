@@ -6,6 +6,13 @@
 - Secrets managed via Railway UI
 - Logs and metrics available for observability
 
+#### 🛠 Connecting GitHub to Railway
+- You must authorize Railway to access your GitHub account.
+- If `ai-delivery-sandbox` doesn't appear:
+  1. Go to [https://railway.app/dashboard](https://railway.app/dashboard)
+  2. Click your profile icon → **Account Settings** → **GitHub Integration**
+  3. Re-authorize GitHub and enable access to `ai-delivery-sandbox`
+
 ---
 
 ### 2. 📁 Static Reference Files
@@ -21,16 +28,22 @@
 #### 🔐 Secrets
 - Store tokens as Railway environment variables
   - `AIRTABLE_API_KEY`, `NOTION_API_TOKEN`
-- No user auth or PII — all sessions anonymized
+  - `AIRTABLE_BASE_ID`, `NOTION_DATABASE_ID`
 
-#### ✅ Airtable Setup
-- One table: `CareerReflections`
-- Columns: session_id, career_id, prompt_id, text, timestamp
+#### ✅ Airtable Setup (for Beginners)
+1. Go to [https://airtable.com](https://airtable.com) → Create a free account.
+2. Start a **new base** → Name it `CareerReflections`
+3. Add columns: `session_id`, `career_id`, `prompt_id`, `text`, `timestamp`
+4. Go to **Account → Developer Hub** to create an API key.
+5. Find your Base ID at [https://airtable.com/api](https://airtable.com/api) by selecting your base.
 
-#### ✅ Notion Setup
-- One database: `Journals`
-- Properties: Career, Reflection, Prompt, Created Time
-- Used for narrative journaling + teacher summaries
+#### ✅ Notion Setup (for Beginners)
+1. Go to [https://notion.so](https://notion.so) → Create a free account.
+2. Create a new database (table) called `Journals`
+3. Add properties: Career (title), Reflection (text), Prompt (text), Created Time (date)
+4. Go to **Settings & Members → Integrations** → Create integration token
+5. Share your database with the integration bot (select database → Share → invite your integration)
+6. Copy your Notion API token and database ID
 
 ---
 
@@ -53,12 +66,72 @@
 
 #### Triggers:
 - `sandbox-*` push → test + lint
-- `main` merge → deploy to Railway
-- Manual → tool schema upload to Custom GPT
+- `main` merge → deploy to Railway (default)
+- **You can override this by setting Railway's deploy branch to `sandbox-silent-otter` in project settings**
 
 #### Artifacts:
 - `.env.template` for local dev
 - `deployment_plan.md` as runbook
+
+---
+
+### 📦 Local Development Setup
+
+To run the FastAPI backend locally, follow these steps:
+
+#### 1. 📁 Clone the Repo
+```bash
+git clone https://github.com/stewmckendry/ai-delivery-sandbox.git
+cd ai-delivery-sandbox
+```
+
+#### 2. 🛠 Set Up Your Environment Variables
+Copy the template file and fill in secrets:
+```bash
+cp .env.template .env
+```
+Update `.env` with your Airtable and Notion API tokens and IDs.
+
+#### 3. ▶️ Run the App Locally
+You’ll need Python 3.9+ and `pip`:
+```bash
+pip install -r requirements.txt
+uvicorn project.app.main:app --reload
+```
+This will start the FastAPI app at `http://127.0.0.1:8000`
+
+#### 4. 🧪 Test the API Endpoints
+You can test endpoints with `curl`, `httpie`, or `Postman`. Example:
+```bash
+curl "http://127.0.0.1:8000/load_prompt?prompt_id=p1"
+```
+Or use the built-in Swagger docs at:
+```
+http://127.0.0.1:8000/docs
+```
+
+Note: You must manually create sample prompts under `project/inputs/prompts` as JSON files (e.g., `p1.json`) to test prompt loading.
+
+---
+
+### 🚀 Deploy to Railway (Production or Sandbox)
+
+1. Go to [https://railway.app](https://railway.app) and create a new project.
+2. Connect it to the GitHub repo. If `ai-delivery-sandbox` is missing, see Step 1 above.
+3. Add environment variables in Railway UI:
+   - `AIRTABLE_API_KEY`
+   - `AIRTABLE_BASE_ID`
+   - `NOTION_API_TOKEN`
+   - `NOTION_DATABASE_ID`
+4. Set the deploy branch:
+   - Default: `main`
+   - Optional: switch to `sandbox-silent-otter` under project settings > Deploy > GitHub settings
+5. Push to the selected branch to deploy.
+6. Confirm deployment at:
+```
+https://ai-careercoach-production.up.railway.app/docs
+```
+(Or the sandbox subdomain if configured)
 
 ---
 
