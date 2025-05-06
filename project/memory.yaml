@@ -684,3 +684,13 @@
   - flow
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/app/utils/auth.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/app/utils/auth.py
+  file_type: py
+  description: Utility functions for token-based authentication using FastAPI
+  tags:
+  - auth
+  - security
+  - fastapi
+  last_updated: '2025-05-06'
+  pod_owner: DevPod
