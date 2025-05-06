@@ -58,3 +58,12 @@
   - railway
   - deployment
   - start-command
+- message: Created and committed project/app/main.py to define the FastAPI app entry
+    point and register all route modules (memory, prompts, segments). This enables
+    proper uvicorn start and API routing in Railway and local dev.
+  timestamp: '2025-05-06T08:58:08.806966'
+  tags:
+  - main.py
+  - fastapi
+  - deployment
+  - entrypoint
