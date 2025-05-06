@@ -627,3 +627,15 @@
   - api
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: tests/test_utils.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/tests/test_utils.py
+  file_type: py
+  description: Unit tests for utility functions related to loading prompts and YAML
+    segments.
+  tags:
+  - test
+  - utils
+  - prompt
+  - yaml
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
