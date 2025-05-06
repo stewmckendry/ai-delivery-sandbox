@@ -118,3 +118,18 @@
   - deployment
   status: open
   timestamp: '2025-05-06T15:30:51.436789'
+- type: bug
+  scope: project
+  issue_id: 5d9cdbd5-b4f8-43f8-a09c-034b6354170a
+  task_id: null
+  title: load_prompt was broken due to incorrect file access pattern
+  detail: load_prompt attempted to fetch prompts from individual JSON files per ID.
+    But prompts are stored in a single file (prompts.json).
+  suggested_fix: Update prompt_loader to load the full prompts.json and return prompt
+    by matching ID.
+  tags:
+  - load_prompt
+  - bug
+  - prompt_loader
+  status: closed
+  timestamp: '2025-05-06T15:49:51.439077'
