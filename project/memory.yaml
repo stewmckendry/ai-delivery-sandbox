@@ -473,3 +473,14 @@
   - security
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: requirements.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/requirements.txt
+  file_type: txt
+  description: List of dependencies required for a FastAPI application including server
+    and environment management tools
+  tags:
+  - dependencies
+  - config
+  - fastapi
+  last_updated: '2025-05-06'
+  pod_owner: DevPod
