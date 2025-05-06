@@ -172,3 +172,12 @@
   - checklist
   - handoff-readiness
   - task-tracking
+- message: Accidentally overwrote deployment_plan.md during API key update due to
+    misuse of edit-commit workflow. Recovery possible via git history. Will follow
+    strict fetch-edit-commit or use new file pattern going forward.
+  timestamp: '2025-05-06T14:57:33.955717'
+  tags:
+  - mistake
+  - overwrite
+  - process-learning
+  - api-key
