@@ -220,3 +220,20 @@
   - write
   status: closed
   timestamp: '2025-05-06T17:37:05.790002'
+- type: bug
+  scope: project
+  issue_id: 5bbf8842-b9f7-4cb6-bd32-4323c5fece5b
+  task_id: null
+  title: Airtable 422 error caused by invalid field type for prompt_id
+  detail: The Airtable field 'prompt_id' was set to User type instead of single-line
+    text. This caused a 422 Unprocessable Entity error during API submission. Once
+    changed to a text field, reflection submissions succeeded.
+  suggested_fix: Document Airtable schema requirements and validate field types before
+    integration.
+  tags:
+  - airtable
+  - schema
+  - reflection
+  - bug
+  status: closed
+  timestamp: '2025-05-06T17:42:22.358962'
