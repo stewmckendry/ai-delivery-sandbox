@@ -840,3 +840,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/build/prompt_creation/task.yaml
     prompt: framework/task_templates/build/prompt_creation/prompt_template.md
+    outputs:
+    - project/inputs/prompts/prompts.json
