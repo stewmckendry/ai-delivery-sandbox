@@ -520,3 +520,16 @@
   - FastAPI
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/inputs/prompts/prompts.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/inputs/prompts/prompts.json
+  file_type: json
+  description: A collection of creative writing prompts designed to inspire imaginative
+    thinking about dream jobs, superpowers, animal sidekicks, problem-solving, time
+    travel, passion combinations, and storytelling careers.
+  tags:
+  - prompt
+  - creativity
+  - writing
+  - imagination
+  last_updated: '2025-05-06'
+  pod_owner: ResearchPod
