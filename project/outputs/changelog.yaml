@@ -24,3 +24,9 @@
   task_id: task_2.8
   committed_by: unknown
   message: Append chain of thought to task task_2.8
+- timestamp: '2025-05-06T09:27:10.893031'
+  path: project/app/routes/segments.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Replace broken segment route with proper GET /get_yaml_segment calling
+    yaml_loader.load_segment based on category param.
