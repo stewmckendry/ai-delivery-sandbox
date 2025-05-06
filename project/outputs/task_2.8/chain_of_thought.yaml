@@ -195,3 +195,7 @@
     variable in Railway to align with code expectations. Route now passes validation
     and can attempt save.
   timestamp: '2025-05-06T16:27:22.841054'
+- message: Confirmed reflection schema is valid for both Airtable and Notion. Added
+    field alignment summary to data_store_explainer.md to clarify backend expectations.
+    No change to schema or OpenAPI required since both stores accept overlapping fields.
+  timestamp: '2025-05-06T16:54:02.465024'
