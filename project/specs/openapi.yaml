@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API endpoints that allow GPT to retrieve coaching prompts, career paths, and save or summarize user reflections.
 servers:
-  - url: https://ai-careercoach-production.up.railway.app
+  - url: https://ai-delivery-sandbox-production.up.railway.app
     description: Production deployment on Railway
 security:
   - bearerAuth: []
