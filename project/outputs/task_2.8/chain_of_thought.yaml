@@ -67,3 +67,11 @@
   - fastapi
   - deployment
   - entrypoint
+- message: Fixed ModuleNotFoundError in memory.py by changing import from 'from schemas.reflection'
+    to relative path 'from ..schemas.reflection'. Committed fix to unblock deployment.
+  timestamp: '2025-05-06T09:02:36.034678'
+  tags:
+  - bugfix
+  - import
+  - fastapi
+  - deployment
