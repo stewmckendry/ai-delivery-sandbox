@@ -146,3 +146,12 @@
   - fix
   - design-alignment
   - routing
+- message: Added a full deployment checklist to the deployment_plan.md file. Checklist
+    captures system setup, prompt integration, CI gaps, and handoff readiness. Ensures
+    front-to-back validation prior to QAPod handoff.
+  timestamp: '2025-05-06T13:28:25.510015'
+  tags:
+  - deployment
+  - checklist
+  - handoff-readiness
+  - qa-prep
