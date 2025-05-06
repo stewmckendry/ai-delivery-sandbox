@@ -184,3 +184,23 @@
   - reflection
   status: closed
   timestamp: '2025-05-06T16:27:37.003866'
+- type: bug
+  scope: project
+  issue_id: 8126c0f2-d55e-48e4-90b1-15b02457b512
+  task_id: null
+  title: 'Notion save fails: property mismatch with schema'
+  detail: 'Notion API returned 400: ''Session is not a property that exists. Career
+    is expected to be title.''
+
+
+    This indicates that either the Notion database doesn''t have a ''Session'' field,
+    or its type (e.g., title vs. rich_text) doesn''t match the payload.'
+  suggested_fix: Update Notion schema to include expected properties (Session, Career,
+    Prompt, Reflection) with correct types. Or update code to match live schema.
+  tags:
+  - notion
+  - schema
+  - reflection
+  - save
+  status: open
+  timestamp: '2025-05-06T16:32:43.643695'
