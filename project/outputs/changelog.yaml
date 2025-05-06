@@ -187,3 +187,9 @@
   task_id: task_2.8
   committed_by: GPTPod
   message: Append output file to task_2.8
+- timestamp: '2025-05-06T17:02:13.532505'
+  path: project/app/clients/notion_client.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: 'Update save_to_notion to match Notion Journals schema: Career as title,
+    Prompt and Reflection as rich_text'
