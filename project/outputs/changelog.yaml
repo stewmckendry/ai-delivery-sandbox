@@ -24,3 +24,9 @@
   task_id: task_2.8
   committed_by: GPTPod
   message: Append output file to task_2.8
+- timestamp: '2025-05-06T17:51:27.714715'
+  path: project/app/clients/notion_client.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: 'Fix CreatedDate key to match Notion field name: ''Created Date'' (with
+    space)'
