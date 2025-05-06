@@ -166,3 +166,21 @@
   - debug
   status: open
   timestamp: '2025-05-06T16:04:22.748542'
+- type: bug
+  scope: project
+  issue_id: 6714dfa5-c61b-4488-b53a-3b02fe975fc5
+  task_id: null
+  title: 'Reflection save failed due to env var mismatch: NOTION_REFLECTION_DB vs
+    NOTION_DATABASE_ID'
+  detail: FastAPI expects NOTION_REFLECTION_DB for saving reflections, but Railway
+    environment was set to NOTION_DATABASE_ID. This caused a 'Missing Notion config'
+    error on reflection saves.
+  suggested_fix: Standardize on NOTION_REFLECTION_DB and ensure it's set in all deployment
+    environments.
+  tags:
+  - notion
+  - env
+  - config
+  - reflection
+  status: closed
+  timestamp: '2025-05-06T16:27:37.003866'
