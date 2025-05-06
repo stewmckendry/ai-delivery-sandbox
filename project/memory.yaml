@@ -805,3 +805,15 @@
   - flow
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: project/docs/process/retrospective_3.2_execute_e2e_scenarios.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/process/retrospective_3.2_execute_e2e_scenarios.md
+  file_type: md
+  description: Retrospective analysis of executing end-to-end scenarios for CareerCoach-GPT,
+    focusing on prompt usage, memory tools, and reflection capture pipelines.
+  tags:
+  - retrospective
+  - e2e
+  - validation
+  - flow
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
