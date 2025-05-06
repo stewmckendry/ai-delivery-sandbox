@@ -127,3 +127,12 @@
   - segment
   - missing-client
   - followup
+- message: Confirmed segment route should call yaml_loader.load_segment, not a segment_client.
+    Replaced POST route with GET /get_yaml_segment using correct utility function
+    and parameter extraction.
+  timestamp: '2025-05-06T09:27:21.938321'
+  tags:
+  - segment
+  - yaml_loader
+  - bugfix
+  - route-correction
