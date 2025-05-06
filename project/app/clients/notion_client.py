@@ -26,7 +26,7 @@ def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str, t
         properties["PromptContent"] = {"rich_text": [{"text": {"content": prompt_content}}]}
 
     if timestamp:
-        properties["CreatedDate"] = {"date": {"start": timestamp.split("T")[0]}}  # Only pass YYYY-MM-DD
+        properties["Created Date"] = {"date": {"start": timestamp.split("T")[0]}}
 
     payload = {
         "parent": {"database_id": notion_db},
