@@ -858,3 +858,4 @@ tasks:
     - tests/conftest.py
     - tests/test_routes.py
     - tests/test_utils.py
+    - pytest.ini
