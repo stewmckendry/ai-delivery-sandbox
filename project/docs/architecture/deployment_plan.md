@@ -45,14 +45,16 @@
 1. Go to [https://notion.so](https://notion.so) → Create a free account.
 2. Create a new database (table) called `Journals`
 3. Add properties: Career (title), Reflection (text), Prompt (text), Created Time (date)
-4. Go to **Settings & Members → Integrations** → Create integration token
-5. Share your database with the integration bot (select database → Share → invite your integration)
-6. Copy your Notion API token
-7. To get the `NOTION_DATABASE_ID`, open the database as a full-page view in your browser. The URL will look like:
+4. Go to **Settings & Members → Integrations** → Create integration token for your workspace
+5. Open your `Journals` database
+6. Click **Share** in the top-right corner → Click **Invite** → Add your integration to the database
+   - If the database is not listed, ensure it's a top-level page (not nested inside another page)
+7. Copy your Notion API token
+8. To get the `NOTION_DATABASE_ID`, open your database in a full-page view. The URL will look like:
    ```
-   https://www.notion.so/yourworkspace/Some-Title-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   https://www.notion.so/1eb0cdbf497780f8828fd91546ed73c9?v=1eb0cdbf497780d6ae55000cd24e76c7
    ```
-   Copy the last 32-character alphanumeric string — that's your `NOTION_DATABASE_ID`
+   The first 32-character string before `?v=` is your database ID: `1eb0cdbf497780f8828fd91546ed73c9`
 
 ---
 
