@@ -649,3 +649,15 @@
   - pytest
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: tests/unit_test_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/tests/unit_test_summary.md
+  file_type: md
+  description: Summary of unit tests for CareerCoach MVP backend, detailing test coverage,
+    targeted modules, and results.
+  tags:
+  - unit tests
+  - backend
+  - coverage
+  - validation
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
