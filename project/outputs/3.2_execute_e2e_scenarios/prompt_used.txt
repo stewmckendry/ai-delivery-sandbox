@@ -1,0 +1,15 @@
+📩 QA Task Kickoff – Task 3.2_execute_e2e_scenarios
+
+Goal: Simulate full user journeys through the CareerCoach MVP using the CareerCoach-GPT custom GPT interface. Tests should validate the real user experience, not API endpoints directly.
+
+Focus: Explorer and Mentor (Supporter) flows, testing prompt loading, journaling, segment selection, saving reflections, and reviewing summaries — all via GPT calls.
+
+Tools to validate:
+- load_prompt
+- get_yaml_segment
+- record_reflection
+- fetch_summary
+
+Data stores:
+- Notion: rich journaling log
+- Airtable: metadata for session analysis and prompt tracking
