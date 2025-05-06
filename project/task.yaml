@@ -853,3 +853,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/test/unit_test_coverage/task.yaml
     prompt: framework/task_templates/test/unit_test_coverage/prompt_template.md
+    outputs:
+    - project/docs/architecture/unit_test_summary.md
