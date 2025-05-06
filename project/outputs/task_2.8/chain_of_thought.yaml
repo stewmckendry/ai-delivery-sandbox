@@ -101,3 +101,12 @@
   - notion
   - fix
   - deployment
+- message: Resolved ImportError in prompts.py by replacing reference to nonexistent
+    AirtableClient class with a direct call to get_reflections function. This matches
+    the current exports from airtable_client.py, which uses standalone functions.
+  timestamp: '2025-05-06T09:16:03.260808'
+  tags:
+  - import-error
+  - airtable
+  - fix
+  - deployment
