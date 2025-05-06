@@ -11,8 +11,12 @@ def record_reflection(reflection: ReflectionInput):
     data = reflection.dict()
     prompt = load_prompt(data["prompt_id"])
 
-    formatted_prompt = prompt.get("intro", "") + "\n\n" + "\n".join(
-        [f"{i+1}. {q}" for i, q in enumerate(prompt.get("questions", []))]
+    content = prompt.get("content", {})
+    intro = content.get("intro", "")
+    questions = content.get("questions", [])
+
+    formatted_prompt = intro + "\n\n" + "\n".join(
+        [f"{i+1}. {q}" for i, q in enumerate(questions)]
     )
 
     notion_success = save_to_notion(
