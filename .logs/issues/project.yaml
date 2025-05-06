@@ -87,3 +87,17 @@
   - workflow
   status: open
   timestamp: '2025-05-06T10:48:46.310233'
+- type: bug
+  scope: project
+  issue_id: b64b4f1a-d664-4cb1-87c4-b5e395b69ead
+  task_id: null
+  title: OpenAPI schema fails GPT validator without `schemas` key
+  detail: 'GPT builder returned error on schema import: ''In components section, schemas
+    subsection is not an object.'''
+  suggested_fix: 'Add an empty `schemas: {}` block under `components` in openapi.yaml.'
+  tags:
+  - openapi
+  - schema
+  - gpt-builder
+  status: closed
+  timestamp: '2025-05-06T15:30:34.158559'
