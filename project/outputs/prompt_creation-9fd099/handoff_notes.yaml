@@ -1,0 +1,15 @@
+handoffs:
+- timestamp: '2025-05-06T10:50:50.772828'
+  from_pod: PromptPod
+  to_pod: ProductPod
+  reason: 10 youth-friendly journaling prompts have been designed, validated, and
+    committed. They're ready for product integration and testing.
+  token_count: 2250
+  next_prompt: Integrate these prompts into the prompt selector UI and ensure prompt
+    loading flows work as expected.
+  reference_files:
+  - project/inputs/prompts/prompts.json
+  notes: "All prompts follow the defined schema and are designed for 9\u201314-year-olds.\
+    \ Each includes a title, description, intro, and 5 reflective questions."
+  ways_of_working: Focus on UI integration, prompt ID handling, and user flow testing
+    for both journaling and exploration paths.
