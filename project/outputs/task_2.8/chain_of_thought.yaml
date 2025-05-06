@@ -7,3 +7,11 @@
   - deployment
   - docs
   - security
+- message: Clarified Notion database ID retrieval process by explaining how to extract
+    the 32-character ID from the Notion database URL in full-page view.
+  timestamp: '2025-05-06T02:25:36.416257'
+  tags:
+  - notion
+  - env-setup
+  - deployment
+  - docs
