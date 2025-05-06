@@ -34,3 +34,11 @@
   - integration
   - deployment
   - docs
+- message: Added step-by-step instructions for changing the deploy branch in Railway
+    via the Settings > GitHub section, per user request.
+  timestamp: '2025-05-06T08:37:56.918259'
+  tags:
+  - railway
+  - deployment
+  - branch-settings
+  - docs
