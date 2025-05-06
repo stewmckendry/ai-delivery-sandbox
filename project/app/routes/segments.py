@@ -1,10 +1,9 @@
 from fastapi import APIRouter
-from ..schemas.segment import Segment
-from ..clients.segment_client import SegmentClient
+from project.app.schemas.segment import Segment
+from project.app.clients.segment_client import record_segment_data
 
 router = APIRouter()
-segment_client = SegmentClient()
 
 @router.post("/record_segment")
 def record_segment(segment: Segment):
-    return segment_client.record_segment(segment)
+    return record_segment_data(segment.dict())
