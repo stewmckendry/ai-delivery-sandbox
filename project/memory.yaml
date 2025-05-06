@@ -756,3 +756,15 @@
   - flow
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: test/e2e/test_results_01_explorer_gpt_simulation.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/test/e2e/test_results_01_explorer_gpt_simulation.md
+  file_type: md
+  description: Test results for simulating an Explorer journey through CareerCoach-GPT,
+    focusing on prompt interaction, narrative synthesis, and data saving.
+  tags:
+  - test
+  - simulation
+  - prompt
+  - flow
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
