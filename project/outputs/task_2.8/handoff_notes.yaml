@@ -1,0 +1,16 @@
+handoffs:
+- timestamp: '2025-05-06T08:47:06.975957'
+  from_pod: ProductPod
+  to_pod: PromptPod
+  reason: Prompt files are needed to unblock local development and testing of the
+    FastAPI app. They should follow the structure expected by prompt_loader.py.
+  token_count: 100
+  next_prompt: Create structured prompts as JSON files and commit them under project/inputs/prompts.
+  reference_files:
+  - project/app/utils/prompt_loader.py
+  - project/schemas/prompt.py
+  - project/specs/openapi.yaml
+  notes: Each prompt should represent a distinct journaling or career coaching task.
+    Include id, title, description, and content. See prompt schema for structure.
+  ways_of_working: Work incrementally, commit a few examples first, then scale to
+    a complete set after review.
