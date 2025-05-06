@@ -136,3 +136,13 @@
   - yaml_loader
   - bugfix
   - route-correction
+- message: Original POST /record_segment route was broken due to nonexistent segment_client.py.
+    After investigating project/app/utils/yaml_loader.py and project/docs/architecture/stack_and_component_design.md,
+    determined correct route is GET /get_yaml_segment calling load_segment(category).
+    Updated implementation and committed fix.
+  timestamp: '2025-05-06T09:28:02.418427'
+  tags:
+  - segment
+  - fix
+  - design-alignment
+  - routing
