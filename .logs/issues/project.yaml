@@ -43,3 +43,30 @@
   - organization
   status: open
   timestamp: '2025-05-05T18:34:48.364731'
+- type: enhancement
+  scope: project
+  issue_id: 3e3a216e-b3de-4294-a83a-efa177d7659d
+  task_id: null
+  title: Add pre-deployment validation to prevent import and dependency errors
+  detail: During Task 2.8, multiple Railway deployment failures were caused by missing
+    modules, unresolved imports, and unlisted dependencies. These could have been
+    caught earlier by a pre-deploy validation step.
+  suggested_fix: 'Introduce a pre-deploy validation script that checks:
+
+    - All route modules import successfully
+
+    - Required environment variables exist
+
+    - Required dependencies (like httpx, pyyaml) are listed in requirements.txt
+
+    - FastAPI app entrypoint is accessible
+
+
+    This could be implemented as a GitHub Action or local dev script.'
+  tags:
+  - deployment
+  - ci
+  - validation
+  - infra
+  status: open
+  timestamp: '2025-05-06T09:32:08.332042'
