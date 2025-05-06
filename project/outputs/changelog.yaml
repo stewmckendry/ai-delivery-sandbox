@@ -85,3 +85,9 @@
   task_id: task_2.8
   committed_by: GPTPod
   message: Append output file to task_2.8
+- timestamp: '2025-05-06T15:47:15.798497'
+  path: project/app/utils/prompt_loader.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Update prompt_loader to retrieve prompt from prompts.json (single file)
+    instead of per-ID files
