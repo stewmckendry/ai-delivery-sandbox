@@ -2,7 +2,7 @@ import os
 import httpx
 from datetime import datetime
 
-def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str, timestamp: str = None) -> bool:
+def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str, timestamp: str = None, prompt_content: str = None) -> bool:
     notion_token = os.getenv("NOTION_API_KEY")
     notion_db = os.getenv("NOTION_REFLECTION_DB")
 
@@ -22,8 +22,11 @@ def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str, t
         "Reflection": {"rich_text": [{"text": {"content": text}}]}
     }
 
+    if prompt_content:
+        properties["PromptContent"] = {"rich_text": [{"text": {"content": prompt_content}}]}
+
     if timestamp:
-        properties["CreatedDate"] = {"date": {"start": timestamp}}
+        properties["CreatedDate"] = {"date": {"start": timestamp.split("T")[0]}}  # Only pass YYYY-MM-DD
 
     payload = {
         "parent": {"database_id": notion_db},
