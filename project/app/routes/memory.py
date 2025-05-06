@@ -1,9 +1,8 @@
 from fastapi import APIRouter
 from project.app.schemas.reflection import ReflectionInput
 from project.app.clients.notion_client import save_to_notion
-from project.app.clients.airtable_client import save_to_airtable
+from project.app.clients.airtable_client import save_to_airtable, get_reflection
 from project.app.utils.prompt_loader import load_prompt
-from project.app.utils.memory_manager import get_summary
 
 router = APIRouter()
 
@@ -33,4 +32,5 @@ def record_reflection(reflection: ReflectionInput):
 
 @router.get("/fetch_summary")
 def fetch_summary(session_id: str):
-    return get_summary(session_id)
+    text = get_reflection(session_id)
+    return {"summary": text}
