@@ -26,3 +26,16 @@
   - airtable
   - notion
   - follow-up
+- message: "Wrapped up task 3.2 with successful validation of two GPT-led Explorer\
+    \ journeys. Committed test plans, result logs, and a final retrospective. The\
+    \ main issue uncovered was GPT omitting `career_id` in reflection saves \u2014\
+    \ this will be mitigated by updating the OpenAPI schema. User requested full paths\
+    \ for GitHub links and instructions for Notion and Airtable usage, which were\
+    \ incorporated throughout."
+  timestamp: '2025-05-06T20:45:22.937239'
+  tags:
+  - task-complete
+  - retrospective
+  - schema-gap
+  - gpt-testing
+  - data-pipeline
