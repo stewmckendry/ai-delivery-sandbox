@@ -3,3 +3,9 @@
   task_id: task_2.8
   committed_by: GPTPod
   message: Append output file to task_2.8
+- timestamp: '2025-05-06T17:44:56.374849'
+  path: project/app/clients/notion_client.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Add support for PromptContent and format CreatedDate to match Notion date
+    type
