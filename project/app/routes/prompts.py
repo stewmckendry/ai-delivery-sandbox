@@ -1,8 +1,10 @@
-from fastapi import APIRouter, Query
-from utils.prompt_loader import load_prompt
+from fastapi import APIRouter
+from ..schemas.prompt import Prompt
+from ..clients.airtable_client import AirtableClient
 
 router = APIRouter()
+airtable_client = AirtableClient()
 
 @router.get("/load_prompt")
-def get_prompt(prompt_id: str = Query(..., description="ID of the coaching prompt")):
-    return load_prompt(prompt_id)
+def load_prompt(prompt_id: str):
+    return airtable_client.load_prompt(prompt_id)
