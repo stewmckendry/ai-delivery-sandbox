@@ -544,3 +544,15 @@
   - completion
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/outputs/prompt_creation-9fd099/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/prompt_creation-9fd099/handoff_notes.yaml
+  file_type: yaml
+  description: Notes on the handoff of youth-friendly journaling prompts from PromptPod
+    to ProductPod for integration and testing.
+  tags:
+  - handoff
+  - prompt
+  - integration
+  - testing
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
