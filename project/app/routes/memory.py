@@ -6,5 +6,11 @@ router = APIRouter()
 
 @router.post("/record_reflection")
 def record_reflection(reflection: ReflectionInput):
-    success = save_to_notion(reflection.dict())
+    data = reflection.dict()
+    success = save_to_notion(
+        session_id=data["session_id"],
+        career_id=data["career_id"],
+        prompt_id=data["prompt_id"],
+        text=data["text"]
+    )
     return {"success": success}
