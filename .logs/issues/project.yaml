@@ -133,3 +133,19 @@
   - prompt_loader
   status: closed
   timestamp: '2025-05-06T15:49:51.439077'
+- type: bug
+  scope: project
+  issue_id: 6f0a588d-f869-4d8c-80f1-70ed86830f79
+  task_id: null
+  title: GPT Save Reflection action failed due to mismatched route name
+  detail: OpenAPI spec defined a /save_reflection path, but FastAPI actually uses
+    /record_reflection. This caused 404 errors when GPT tried to save journaling reflections.
+  suggested_fix: Patch the OpenAPI spec to rename the path and operationId to /record_reflection
+    and recordReflection.
+  tags:
+  - openapi
+  - tooling
+  - record_reflection
+  - gpt
+  status: closed
+  timestamp: '2025-05-06T15:57:28.534709'
