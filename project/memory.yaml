@@ -707,3 +707,15 @@
   - integration
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/outputs/3.2_execute_e2e_scenarios/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/3.2_execute_e2e_scenarios/prompt_used.txt
+  file_type: txt
+  description: Document detailing the prompts and tools used to simulate and validate
+    end-to-end user scenarios for the CareerCoach MVP.
+  tags:
+  - prompt
+  - flow
+  - testing
+  - validation
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
