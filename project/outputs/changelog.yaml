@@ -153,3 +153,9 @@
   task_id: task_2.8
   committed_by: unknown
   message: Append chain of thought to task task_2.8
+- timestamp: '2025-05-06T02:37:32.835137'
+  path: project/docs/architecture/deployment_plan.md
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Clarified Notion invite instructions by explaining how to type and select
+    the integration name, and defining top-level pages as required for visibility.
