@@ -149,3 +149,20 @@
   - gpt
   status: closed
   timestamp: '2025-05-06T15:57:28.534709'
+- type: bug
+  scope: project
+  issue_id: 0256617c-8177-460f-9d34-6f67601de36d
+  task_id: null
+  title: Notion save fails silently in save_to_notion
+  detail: save_to_notion only returns False on failure and logs error with print().
+    There's no capture of the Notion error response, making it difficult to debug
+    when GPT fails to save reflections.
+  suggested_fix: Add error logging for httpx response content. Optionally return or
+    raise with error context.
+  tags:
+  - notion
+  - reflection
+  - logging
+  - debug
+  status: open
+  timestamp: '2025-05-06T16:04:22.748542'
