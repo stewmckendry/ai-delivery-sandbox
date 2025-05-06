@@ -855,3 +855,4 @@ tasks:
     prompt: framework/task_templates/test/unit_test_coverage/prompt_template.md
     outputs:
     - project/docs/architecture/unit_test_summary.md
+    - tests/conftest.py
