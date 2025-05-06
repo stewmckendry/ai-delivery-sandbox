@@ -88,3 +88,26 @@
   - task-metadata
   status: open
   timestamp: '2025-05-05T17:18:04.608640'
+- type: enhancement
+  scope: framework
+  issue_id: 2fd6d6c3-d329-41bb-91d7-305613f54a75
+  task_id: null
+  title: Improve support for long-running chat-based pods
+  detail: This ProductPod executed a full MVP build within a single chat thread. Over
+    time, file update context was lost, and token limits caused partial state errors.
+  suggested_fix: '- Introduce a persistent context cache for active files
+
+    - Auto-reload canvas state before every commit
+
+    - Introduce an optional ''confirm and patch'' mode for longer sessions
+
+    - Provide guidance when approaching token limit
+
+    '
+  tags:
+  - enhancement
+  - chat-flow
+  - context
+  - state-recovery
+  status: open
+  timestamp: '2025-05-06T14:17:38.577683'
