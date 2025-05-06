@@ -4,7 +4,7 @@ import httpx
 def save_to_airtable(data: dict) -> bool:
     airtable_token = os.getenv("AIRTABLE_API_KEY")
     airtable_base = os.getenv("AIRTABLE_BASE_ID")
-    table_name = "CareerReflections"
+    table_name = "Table 1"
 
     if not airtable_token or not airtable_base:
         print("❌ Missing Airtable config")
