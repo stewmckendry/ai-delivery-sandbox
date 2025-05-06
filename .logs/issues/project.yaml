@@ -237,3 +237,20 @@
   - bug
   status: closed
   timestamp: '2025-05-06T17:42:22.358962'
+- type: bug
+  scope: project
+  issue_id: 8c9753cf-607b-4bc2-98f5-d546a3170cc6
+  task_id: null
+  title: PromptContent not saving due to incorrect prompt content parsing
+  detail: Prompt content in Notion was empty because the prompt loader returned a
+    structure with 'intro' and 'questions' nested inside 'content'. The code attempted
+    to access them at the root level. Fixed by unpacking 'content' before formatting
+    the string.
+  suggested_fix: Update prompt formatting logic in record_reflection to read from
+    prompt['content']['intro'] and ['questions']
+  tags:
+  - notion
+  - prompts
+  - reflection
+  status: closed
+  timestamp: '2025-05-06T18:00:46.645034'
