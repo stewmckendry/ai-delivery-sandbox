@@ -58,3 +58,14 @@
   task_id: null
   committed_by: GPTPod
   message: Log <class 'type'> in framework scope
+- timestamp: '2025-05-06T14:38:45.848033'
+  path: project/docs/architecture/data_store_explainer.md
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Add data store explainer doc covering use of Notion and Airtable in CareerCoach
+    backend
+- timestamp: '2025-05-06T14:38:45.848033'
+  path: project/memory.yaml
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Memory update related to project/docs/architecture/data_store_explainer.md
