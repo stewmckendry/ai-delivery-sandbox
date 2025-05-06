@@ -110,3 +110,11 @@
   - airtable
   - fix
   - deployment
+- message: Confirmed segment_client.py does not exist. Stubbed out the record_segment
+    endpoint in segments.py to prevent crash and unblock deployment.
+  timestamp: '2025-05-06T09:19:00.382585'
+  tags:
+  - segment
+  - bugfix
+  - missing-module
+  - deployment
