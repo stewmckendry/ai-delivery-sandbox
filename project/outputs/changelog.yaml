@@ -218,3 +218,8 @@
   task_id: task_2.8
   committed_by: GPTPod
   message: Append output file to task_2.8
+- timestamp: '2025-05-06T17:07:33.660825'
+  path: project/app/clients/notion_client.py
+  task_id: task_2.8
+  committed_by: GPTPod
+  message: Add CreatedDate field support to save_to_notion using timestamp if present
