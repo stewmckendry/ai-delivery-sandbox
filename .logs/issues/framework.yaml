@@ -142,3 +142,18 @@
   - validation
   status: open
   timestamp: '2025-05-06T14:18:20.596637'
+- type: bug
+  scope: framework
+  issue_id: b3572f07-156d-4273-8207-4f9ecdf73dba
+  task_id: null
+  title: Unable to update issue status via manageIssues endpoint
+  detail: Attempts to update issue status (e.g. close) return 404 error from manageIssues
+    API despite correct repo and branch values.
+  suggested_fix: Validate issue existence and authorization context before update.
+    Ensure update_status handles scoped lookups.
+  tags:
+  - framework
+  - issues-api
+  - status-update
+  status: open
+  timestamp: '2025-05-06T15:50:01.992333'
