@@ -204,3 +204,8 @@
     \ including expanded prompt text.\n\u274C Airtable write failed with 403 \u2014\
     \ likely due to bad API key, missing permission, or table mismatch."
   timestamp: '2025-05-06T17:16:45.432325'
+- message: Airtable write failures were caused by a mismatch between the expected
+    table name in code ('CareerReflections') and the actual Airtable table ('Table
+    1'). Patched airtable_client.py to use the correct name, and confirmed API call
+    format is valid. Issue logged and closed.
+  timestamp: '2025-05-06T17:37:22.854891'
