@@ -155,3 +155,13 @@
   - checklist
   - handoff-readiness
   - qa-prep
+- message: Expanded deployment checklist to cover full end-to-end app deployment,
+    including frontend GPT tool integration, OpenAPI tool wiring, unit testing of
+    utility functions, and frontend usage flows based on user journey documents.
+  timestamp: '2025-05-06T13:32:58.366388'
+  tags:
+  - checklist
+  - frontend
+  - gpt
+  - unit-test
+  - qa-readiness
