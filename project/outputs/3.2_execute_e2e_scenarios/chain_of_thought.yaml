@@ -1,0 +1,10 @@
+- message: Updated the test plan to reflect full simulation through the CareerCoach-GPT
+    interface. Avoided direct API calls per user clarification. Ensured the plan includes
+    concrete prompts, realistic user flows, and guidance on downstream data use in
+    Notion and Airtable.
+  timestamp: '2025-05-06T20:11:08.526880'
+  tags:
+  - test-plan
+  - e2e
+  - gpt-interface
+  - data-usage
