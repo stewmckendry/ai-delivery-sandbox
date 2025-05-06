@@ -22,3 +22,14 @@
   - delivery
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/inputs/prompts/prompts.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/inputs/prompts/prompts.json
+  file_type: json
+  description: Collection of creative prompts designed to inspire users to imagine
+    and describe their dream jobs.
+  tags:
+  - prompt
+  - creative
+  - user-engagement
+  last_updated: '2025-05-06'
+  pod_owner: ResearchPod
