@@ -593,3 +593,14 @@
   - testing
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/docs/architecture/unit_test_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/unit_test_summary.md
+  file_type: md
+  description: Summary of unit tests for validating the CareerCoach MVP backend, including
+    targeted modules, endpoints, and next steps for testing.
+  tags:
+  - unit test
+  - backend
+  - coverage
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
