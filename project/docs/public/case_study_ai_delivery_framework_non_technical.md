@@ -2,7 +2,7 @@
 **Title:** *How We Built an AI Career Coach for Kids Using Pods, Prompts, and a Playground*
 
 ### 🌟 Overview
-We used a new system called `ai-delivery-framework` to build a real working app: a friendly AI that helps kids explore future careers. In just a few weeks, we designed it, built it, tested it, and shipped it. All using a sandbox and a pod-based process.
+We used a new system called `ai-delivery-framework` to build a real working app: a friendly AI that helps kids explore future careers. In just **one day** (spread over small pockets of time), we designed it, built it, tested it, and shipped it. All using a sandbox and a pod-based process.
 
 **Why this matters:** This case study shows how the framework makes it easier for teams to work with AI—by breaking big ideas into clear steps, with helpful handoffs between humans and AI.
 
