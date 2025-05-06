@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from ..schemas.prompt import Prompt
-from ..clients.airtable_client import AirtableClient
+from project.app.schemas.prompt import Prompt
+from project.app.clients.airtable_client import get_reflections
 
 router = APIRouter()
-airtable_client = AirtableClient()
 
 @router.get("/load_prompt")
 def load_prompt(prompt_id: str):
-    return airtable_client.load_prompt(prompt_id)
+    results = get_reflections(prompt_id)
+    return results if results else {"error": "No records found"}
