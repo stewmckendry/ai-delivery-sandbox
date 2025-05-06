@@ -793,3 +793,15 @@
   - prompt
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: test/e2e/e2e_test_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/test/e2e/e2e_test_summary.md
+  file_type: md
+  description: Summary of end-to-end tests for CareerCoach-GPT, validating user journeys,
+    prompt interactions, and data handling with insights and known issues.
+  tags:
+  - e2e
+  - validation
+  - prompt
+  - flow
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
