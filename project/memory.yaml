@@ -744,3 +744,15 @@
   - gpt-interface
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: test/e2e/test_package_01_explorer_gpt_simulation.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/test/e2e/test_package_01_explorer_gpt_simulation.md
+  file_type: md
+  description: End-to-end test script for simulating an Explorer user session using
+    CareerCoach-GPT, focusing on prompt handling, segment matching, and memory interactions.
+  tags:
+  - e2e
+  - simulation
+  - prompt
+  - flow
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
