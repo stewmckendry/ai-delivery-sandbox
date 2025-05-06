@@ -417,6 +417,7 @@ tasks:
     - .env.template
     - project/logs/task_reflections/task_2.2_reflection.md
     - project/logs/retrospectives/phase_2_retro.md
+    - project/docs/process/productpod_chat_retrospective.md
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.2_build_and_patch.txt
