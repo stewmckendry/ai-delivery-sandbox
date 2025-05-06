@@ -719,3 +719,16 @@
   - validation
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: test/e2e/e2e_test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/test/e2e/e2e_test_plan.md
+  file_type: md
+  description: End-to-end test plan for validating user interactions with CareerCoach-GPT,
+    focusing on Explorer and Mentor journeys, and integrating data tools like Notion
+    and Airtable.
+  tags:
+  - e2e
+  - validation
+  - flow
+  - gpt
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
