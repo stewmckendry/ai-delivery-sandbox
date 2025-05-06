@@ -661,3 +661,14 @@
   - validation
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: project/docs/architecture/data_store_explainer.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/architecture/data_store_explainer.md
+  file_type: md
+  description: Document explaining the use of Notion and Airtable as backend stores
+    in the CareerCoach MVP, detailing their roles in journaling and insight generation.
+  tags:
+  - data_store
+  - backend
+  - architecture
+  last_updated: '2025-05-06'
+  pod_owner: DevPod
