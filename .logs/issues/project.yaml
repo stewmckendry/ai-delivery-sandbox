@@ -254,3 +254,19 @@
   - reflection
   status: closed
   timestamp: '2025-05-06T18:00:46.645034'
+- type: bug
+  scope: project
+  issue_id: 6935e8dc-8939-461a-9d9a-9098a82b0395
+  task_id: null
+  title: fetchSummary tool fails due to missing FastAPI route
+  detail: The GPT action fetchSummary does not work because the corresponding route
+    is not implemented in project/app/routes/memory.py. The endpoint should call get_summary
+    from memory_manager.py but is currently undefined.
+  suggested_fix: Define a new /fetch_summary route in memory.py that calls get_summary.
+    Ensure get_reflection is implemented in airtable_client to support this.
+  tags:
+  - summary
+  - fastapi
+  - missing-endpoint
+  status: open
+  timestamp: '2025-05-06T19:14:09.957205'
