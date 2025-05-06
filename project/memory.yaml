@@ -781,3 +781,15 @@
   - CareerCoach-GPT
   last_updated: '2025-05-06'
   pod_owner: QAPod
+- path: test/e2e/test_results_02_explorer_stem_gpt_simulation.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/test/e2e/test_results_02_explorer_stem_gpt_simulation.md
+  file_type: md
+  description: Test results for a simulated STEM-focused Explorer journey using CareerCoach-GPT,
+    highlighting user engagement and schema improvements.
+  tags:
+  - test
+  - simulation
+  - STEM
+  - prompt
+  last_updated: '2025-05-06'
+  pod_owner: QAPod
