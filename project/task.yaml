@@ -843,3 +843,4 @@ tasks:
     prompt: framework/task_templates/build/prompt_creation/prompt_template.md
     outputs:
     - project/inputs/prompts/prompts.json
+    - project/docs/process/prompt_creation_retrospective.md
