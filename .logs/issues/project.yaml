@@ -204,3 +204,19 @@
   - save
   status: open
   timestamp: '2025-05-06T16:32:43.643695'
+- type: bug
+  scope: project
+  issue_id: d81217fb-aaa0-4d3a-a85c-2cadd2655a3f
+  task_id: null
+  title: Airtable write failed due to incorrect table name
+  detail: The code used 'CareerReflections' as the Airtable table name, but the actual
+    table name was 'Table 1'. This caused persistent 403 errors until corrected.
+  suggested_fix: Update airtable_client.py to use 'Table 1' or rename the table in
+    Airtable to match the code.
+  tags:
+  - airtable
+  - reflection
+  - bug
+  - write
+  status: closed
+  timestamp: '2025-05-06T17:37:05.790002'
