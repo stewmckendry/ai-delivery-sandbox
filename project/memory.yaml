@@ -1,0 +1,11 @@
+- path: project/inputs/prompts/dream_job.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/inputs/prompts/dream_job.json
+  file_type: json
+  description: A prompt to help users imagine and describe their dream job by answering
+    a series of creative questions.
+  tags:
+  - prompt
+  - creative
+  - content
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
