@@ -213,3 +213,8 @@
     was set to User instead of single-line text. Fixing the field type resolved the
     issue and allowed successful reflection saves.'
   timestamp: '2025-05-06T17:42:32.212210'
+- message: Fixed a bug where PromptContent in Notion was empty due to incorrect access
+    pattern. Prompt content was nested under 'content' in the JSON file but accessed
+    at the root. Now the intro and questions are extracted and formatted properly
+    before submitting to Notion.
+  timestamp: '2025-05-06T18:01:04.057437'
