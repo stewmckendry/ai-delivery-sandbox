@@ -1,7 +1,8 @@
 import os
 import httpx
+from datetime import datetime
 
-def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str) -> bool:
+def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str, timestamp: str = None) -> bool:
     notion_token = os.getenv("NOTION_API_KEY")
     notion_db = os.getenv("NOTION_REFLECTION_DB")
 
@@ -15,13 +16,18 @@ def save_to_notion(session_id: str, career_id: str, prompt_id: str, text: str) -
         "Content-Type": "application/json"
     }
 
+    properties = {
+        "Career": {"title": [{"text": {"content": career_id}}]},
+        "Prompt": {"rich_text": [{"text": {"content": prompt_id}}]},
+        "Reflection": {"rich_text": [{"text": {"content": text}}]}
+    }
+
+    if timestamp:
+        properties["CreatedDate"] = {"date": {"start": timestamp}}
+
     payload = {
         "parent": {"database_id": notion_db},
-        "properties": {
-            "Career": {"title": [{"text": {"content": career_id}}]},
-            "Prompt": {"rich_text": [{"text": {"content": prompt_id}}]},
-            "Reflection": {"rich_text": [{"text": {"content": text}}]}
-        }
+        "properties": properties
     }
 
     try:
