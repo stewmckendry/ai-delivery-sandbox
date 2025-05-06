@@ -101,3 +101,20 @@
   - gpt-builder
   status: closed
   timestamp: '2025-05-06T15:30:34.158559'
+- type: bug
+  scope: project
+  issue_id: 817aa08b-dea1-4f06-820f-7f02b7a71bd0
+  task_id: null
+  title: loadPrompt action fails with 404 in GPT
+  detail: Calling GET /load_prompt from GPT returns '404 - Application not found'.
+    Likely due to missing or incorrect tool deployment context in GPT or backend routing.
+  suggested_fix: Verify that the FastAPI app is deployed and reachable at the production
+    URL listed in openapi.yaml. Confirm the endpoint '/load_prompt' is registered
+    in main.py and that token authentication is working.
+  tags:
+  - tooling
+  - gpt
+  - load_prompt
+  - deployment
+  status: open
+  timestamp: '2025-05-06T15:30:51.436789'
