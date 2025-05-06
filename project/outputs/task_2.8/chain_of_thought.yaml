@@ -75,3 +75,12 @@
   - import
   - fastapi
   - deployment
+- message: Reviewed prompts.py and segments.py for import errors similar to memory.py.
+    Found absolute imports that would break in deployed environment. Replaced with
+    relative imports and committed updates to both files.
+  timestamp: '2025-05-06T09:05:04.851961'
+  tags:
+  - bugfix
+  - imports
+  - routes
+  - deployment
