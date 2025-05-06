@@ -619,6 +619,7 @@ tasks:
     instance_of: task_templates/Phase3_e2e_test/3.2_e2e_test_execution/task.yaml
     outputs:
     - test/e2e/e2e_test_results.md
+    - test/e2e/e2e_test_plan.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
