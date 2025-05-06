@@ -15,3 +15,12 @@
   - env-setup
   - deployment
   - docs
+- message: Updated Notion integration steps to clarify that users must explicitly
+    invite their integration to the database using the Share menu. Mentioned that
+    databases need to be top-level pages for visibility.
+  timestamp: '2025-05-06T02:28:11.438894'
+  tags:
+  - notion
+  - integration
+  - onboarding
+  - deployment
