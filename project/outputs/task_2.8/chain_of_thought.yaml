@@ -1,0 +1,9 @@
+- message: Clarified method for retrieving Airtable base ID based on user feedback.
+    Ensured fetch-edit-commit pattern followed. User shared real API key, reminded
+    them to rotate for security. Deployment guide updated accordingly.
+  timestamp: '2025-05-06T02:20:51.504395'
+  tags:
+  - airtable
+  - deployment
+  - docs
+  - security
