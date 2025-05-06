@@ -73,9 +73,9 @@ paths:
                       - title: "Software Developer"
                         skills: ["Coding", "Problem solving"]
 
-  /save_reflection:
+  /record_reflection:
     post:
-      operationId: saveReflection
+      operationId: recordReflection
       summary: Save a journaling reflection
       tags: [Memory]
       x-gpt-action:
