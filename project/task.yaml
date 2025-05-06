@@ -623,6 +623,7 @@ tasks:
     - test/e2e/test_package_01_explorer_gpt_simulation.md
     - test/e2e/test_results_01_explorer_gpt_simulation.md
     - test/e2e/test_package_02_explorer_stem_gpt_simulation.md
+    - test/e2e/test_results_02_explorer_stem_gpt_simulation.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
