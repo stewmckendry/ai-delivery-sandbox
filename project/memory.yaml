@@ -484,3 +484,15 @@
   - fastapi
   last_updated: '2025-05-06'
   pod_owner: DevPod
+- path: project/outputs/task_2.8/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/outputs/task_2.8/handoff_notes.yaml
+  file_type: yaml
+  description: Notes detailing the handoff of prompt files from ProductPod to PromptPod
+    for development and testing, including instructions and references for creating
+    structured prompts.
+  tags:
+  - handoff
+  - prompt
+  - development
+  last_updated: '2025-05-06'
+  pod_owner: DeliveryPod
