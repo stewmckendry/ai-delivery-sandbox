@@ -181,3 +181,8 @@
   - overwrite
   - process-learning
   - api-key
+- message: Fixed mismatch between `prompt_loader.load_prompt` logic and prompt data
+    format. Originally expected one file per prompt ID, but `prompts.json` contains
+    all prompts in a list. Updated the function to fetch the full list and return
+    the matching prompt by ID.
+  timestamp: '2025-05-06T15:48:32.951802'
