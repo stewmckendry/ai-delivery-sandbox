@@ -92,3 +92,12 @@
   - httpx
   - deployment
   - bugfix
+- message: Fixed ImportError in memory.py by switching to absolute imports and using
+    save_to_notion function directly instead of a missing NotionClient class. Confirmed
+    function interface matches expected usage.
+  timestamp: '2025-05-06T09:12:01.262090'
+  tags:
+  - import-error
+  - notion
+  - fix
+  - deployment
