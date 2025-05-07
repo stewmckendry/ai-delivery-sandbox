@@ -1,0 +1,54 @@
+backlog:
+  - id: ENH-001
+    title: Add task granularity and validation guides
+    description: Provide structured templates and prompts to support task decomposition and cross-task input/output validation.
+    priority: high
+    batch: 1
+
+  - id: ENH-002
+    title: Introduce prompt templates and QA tools
+    description: Include prompt scaffolds, role-fillers, and diagnostics for clarity, scope, and intent.
+    priority: high
+    batch: 1
+
+  - id: ENH-003
+    title: Improve handoff continuity across pods
+    description: Enforce snapshotting of chain_of_thought and richer handoff metadata, including context history and prompt role.
+    priority: high
+    batch: 1
+
+  - id: ENH-004
+    title: Add protections for file overwrite on task completion
+    description: Implement unique filenames or version locks to prevent overwrite of prior completions.
+    priority: medium
+    batch: 2
+
+  - id: ENH-005
+    title: Build simplified UX for non-technical personas
+    description: Introduce a user-friendly view for non-technical users, highlighting project goals, outcomes, and next actions.
+    priority: high
+    batch: 2
+
+  - id: ENH-006
+    title: Add task dependency visualizer
+    description: Auto-map task chains and surface dependencies or sequencing issues.
+    priority: medium
+    batch: 2
+
+  - id: ENH-007
+    title: Auto-summarize phase insights
+    description: Capture and publish digestible summaries from retrospectives and chain_of_thoughts per phase.
+    priority: medium
+    batch: 3
+
+  - id: BUG-001
+    title: Resolve commit lifecycle bugs
+    description: Address commit overwrite and silent fail issues surfaced in RCA.
+    priority: high
+    batch: 1
+
+  - id: BUG-002
+    title: Improve reliability of Railway deploy hooks
+    description: Patch deploy triggers and commit handoffs as noted in RCA.
+    priority: medium
+    batch: 2
