@@ -879,3 +879,16 @@
   - summary
   last_updated: '2025-05-07'
   pod_owner: DeliveryPod
+- path: .logs/framework_enhancement_backlog-CareerGPT.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/.logs/framework_enhancement_backlog-CareerGPT.yaml
+  file_type: yaml
+  description: A backlog of framework enhancements and bug fixes for CareerGPT, detailing
+    tasks with priorities and descriptions for improving task management, user experience,
+    and deployment reliability.
+  tags:
+  - enhancement
+  - backlog
+  - task management
+  - bug fix
+  last_updated: '2025-05-07'
+  pod_owner: DevPod
