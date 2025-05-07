@@ -5,8 +5,11 @@ backlog:
     background: A blank YAML file was committed, causing data issues downstream.
     impact: Broken task inputs and downstream failure.
     replication: Commit an empty YAML file with task output.
-    affected_elements: [commit tool, grounding file schema]
-    attachments: [".logs/issues/framework.yaml"]
+    affected_elements:
+      - commit tool
+      - grounding file schema
+    attachments:
+      - .logs/issues/framework.yaml
     priority: high
     batch: 1
 
@@ -15,74 +18,93 @@ backlog:
     description: Simplify task inputs and handoffs using glob-style patterns.
     background: Tasks had to list each input file manually, leading to long messages.
     impact: High manual effort, brittle reference handling.
-    replication: Define a task using >5 input files.
-    affected_elements: [task.yaml metadata, prompt setup]
-    attachments: [".logs/issues/framework.yaml"]
+    replication: Define a task using more than five input files.
+    affected_elements:
+      - task.yaml metadata
+      - prompt setup
+    attachments:
+      - .logs/issues/framework.yaml
     priority: medium
     batch: 2
 
   - id: ENH-010
     title: Enable post-task reasoning trace logging
     description: Allow reasoning trace to be written after task completion.
-    background: Missed traces couldn’t be added after task completed.
+    background: Missed traces couldn’t be added after task completion.
     impact: Gaps in auditability and review.
-    replication: Complete task, then try to add trace.
-    affected_elements: [reasoning_trace API]
-    attachments: [".logs/issues/framework.yaml"]
+    replication: Complete task, then attempt to add a trace.
+    affected_elements:
+      - reasoning_trace API
+    attachments:
+      - .logs/issues/framework.yaml
     priority: medium
     batch: 3
 
   - id: ENH-011
     title: Add persistent context support for long chat pods
     description: Maintain file context and delivery state across long-running sessions.
-    background: ProductPod experienced context loss and state confusion.
-    impact: Incomplete commits, broken chains.
+    background: ProductPod experienced context loss and state confusion during extended sessions.
+    impact: Incomplete commits, broken reasoning chains.
     replication: Work across 10+ tasks in one chat thread.
-    affected_elements: [canvas state manager, context recovery]
-    attachments: [".logs/issues/framework.yaml"]
+    affected_elements:
+      - canvas state manager
+      - context recovery logic
+    attachments:
+      - .logs/issues/framework.yaml
     priority: high
     batch: 2
 
   - id: ENH-012
     title: Add prompt linting and preview support
-    description: Validate prompt schema and provide preview UI.
-    background: PromptPod authored manually, increasing chance of invalid structure.
+    description: Validate prompt schema and provide preview UI for structured prompts.
+    background: PromptPod authored prompts manually, increasing risk of invalid formatting.
     impact: Prompt rework, lower GPT quality.
-    replication: Commit malformed prompt content.
-    affected_elements: [prompt UI, prompt templates]
-    attachments: [".logs/issues/framework.yaml"]
+    replication: Commit malformed prompt content without warning.
+    affected_elements:
+      - prompt UI
+      - prompt templates
+    attachments:
+      - .logs/issues/framework.yaml
     priority: high
     batch: 2
 
   - id: ENH-013
     title: Auto-target working branch for commits
-    description: Prevent accidental commits to `main` by defaulting to task branch.
-    background: Prompt files were committed to main, not sandbox.
-    impact: Misplaced files, confusion.
-    replication: Omit branch param during commit.
-    affected_elements: [commit tool default behavior]
-    attachments: [".logs/issues/project.yaml"]
+    description: Prevent accidental commits to `main` by defaulting to the current working sandbox.
+    background: Prompt files were committed to `main` instead of the correct sandbox branch.
+    impact: Misplaced files, version confusion.
+    replication: Commit a file without specifying the target branch.
+    affected_elements:
+      - commit tool default behavior
+    attachments:
+      - .logs/issues/project.yaml
     priority: medium
     batch: 1
 
   - id: ENH-014
-    title: Standardize file org structure
-    description: Adopt standard folder and metadata rules to reduce sprawl.
-    background: Inconsistent folder usage led to confusion.
-    impact: Hard to locate files, increased onboarding time.
+    title: Standardize file organization structure
+    description: Adopt and enforce standard folder layout and metadata rules.
+    background: Inconsistent folder usage led to confusion across pods.
+    impact: Hard to locate files, higher onboarding friction.
     replication: Search for a task retro or output spec.
-    affected_elements: [repo file tree, metadata checker]
-    attachments: [".logs/issues/project.yaml"]
+    affected_elements:
+      - repo file tree
+      - metadata checker
+    attachments:
+      - .logs/issues/project.yaml
     priority: high
     batch: 2
 
   - id: ENH-015
     title: Add FastAPI pre-deploy validation
-    description: Prevent deploy errors via route, env, and dependency checks.
-    background: Missing routes and unlisted packages caused failures.
-    impact: Broken tools, failed GPT actions.
-    replication: Deploy without checking routes or env.
-    affected_elements: [deployment script, GitHub Action]
-    attachments: [".logs/issues/project.yaml"]
+    description: Prevent deploy errors via route, environment, and dependency checks.
+    background: Missing routes and unlisted packages caused deployment failures.
+    impact: Broken endpoints, failed GPT actions.
+    replication: Deploy a FastAPI app without validating routes or environment files.
+    affected_elements:
+      - deployment script
+      - GitHub Action
+    attachments:
+      - .logs/issues/project.yaml
     priority: high
     batch: 3
