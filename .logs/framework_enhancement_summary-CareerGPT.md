@@ -55,12 +55,53 @@ This document synthesizes key lessons learned and identifies improvement opportu
 - **Improvement**: Auto-summarize chain_of_thought + retros and publish phase digests.
 
 ### 8. YAML Commit Verification & Safety
+- **Background**: Issues such as blank grounding files or silently truncated YAMLs were logged in `.logs/issues/framework.yaml`.
+- **Impact**: Broken grounding logic, incomplete history, or invalid GPT executions.
+- **Replication**: Commit a malformed or oversized YAML.
+- **Affected Elements**: commit validation logic, file handlers.
+- **Improvement**: Enforce pre-commit structure checks and preview validation.
+
 ### 9. Prompt Workflow & Linting Support
+- **Background**: Prompt creation had no structure validation or real-time preview.
+- **Impact**: Higher incidence of formatting issues and vague outputs.
+- **Replication**: Manually compose a prompt for a GPT pod.
+- **Affected Elements**: prompt editor, preview renderer, schema validator.
+- **Improvement**: Integrate prompt schema linter and example preview tool.
+
 ### 10. Persistent Context for Chat-Based Pods
+- **Background**: Long-running sessions like ProductPod lost state across large task chains.
+- **Impact**: Incomplete context, repeated setup, broken chains.
+- **Replication**: Run multi-stage pod coordination with >10 steps.
+- **Affected Elements**: session state, commit snapshotting, file cache.
+- **Improvement**: Enable manual reload of previous state and snapshot patching tools.
+
 ### 11. File Organization & Discoverability
+- **Background**: Pods struggled to find retrospectives, outputs, or logs due to non-standardized folders (`project.yaml`).
+- **Impact**: Increased onboarding time and navigation friction.
+- **Replication**: Try to locate all chain_of_thoughts for a phase.
+- **Affected Elements**: file tree conventions, naming schema.
+- **Improvement**: Adopt and validate against a project structure spec.
+
 ### 12. Pre-deploy Validation for FastAPI Apps
+- **Background**: Several MVP deployments failed due to route or environment misconfigurations.
+- **Impact**: Broken tools, delayed testing, incomplete E2E runs.
+- **Replication**: Attempt deploy with a missing or invalid `.env` or route file.
+- **Affected Elements**: FastAPI router, GitHub Actions, deploy script.
+- **Improvement**: Introduce pre-deploy test script with schema and env checks.
+
 ### 13. Task Metadata Enhancements
+- **Background**: Rigid inputs prevented useful post-task additions (like trace logs or file globs).
+- **Impact**: Limited flexibility for recovery or multi-input tasks.
+- **Replication**: Attempt to log trace after task is marked complete.
+- **Affected Elements**: task schema, reasoning_trace API.
+- **Improvement**: Add wildcard and post-completion metadata support.
+
 ### 14. Branch-Safe Commit Defaults
+- **Background**: Some commits defaulted to `main` instead of the working sandbox.
+- **Impact**: File conflicts, versioning confusion.
+- **Replication**: Commit without explicitly setting branch.
+- **Affected Elements**: commit tool CLI and API.
+- **Improvement**: Auto-detect and use the task's active branch context.
 
 ## Appendix: File Review Notes
 <content abbreviated for commit>
