@@ -229,3 +229,8 @@
   task_id: CareerCoach-GPT
   committed_by: ProductPod
   message: Append output file to CareerCoach-GPT
+- timestamp: '2025-05-07T18:35:08.518158'
+  path: .logs/framework_enhancement_backlog-CareerGPT.yaml
+  task_id: CareerCoach-GPT
+  committed_by: ProductPod
+  message: Expanded backlog with additional issues from framework.yaml and project.yaml.
