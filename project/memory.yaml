@@ -856,3 +856,15 @@
   - coaching
   last_updated: '2025-05-06'
   pod_owner: DeliveryPod
+- path: project/docs/public/reimagining_delivery_ai.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/project/docs/public/reimagining_delivery_ai.md
+  file_type: md
+  description: Exploration of an AI Delivery Framework that integrates AI agents with
+    human teams to enhance delivery processes.
+  tags:
+  - AI
+  - delivery
+  - framework
+  - collaboration
+  last_updated: '2025-05-07'
+  pod_owner: DeliveryPod
