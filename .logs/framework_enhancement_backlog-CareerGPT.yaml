@@ -1,54 +1,99 @@
 backlog:
   - id: ENH-001
     title: Add task granularity and validation guides
-    description: Provide structured templates and prompts to support task decomposition and cross-task input/output validation.
+    description: Support better task decomposition with modular templates and validation prompts.
+    background: Vague or high-context tasks such as "define delivery flow" led to inconsistent outputs across pods.
+    impact: Misaligned assumptions, increased rework, reduced reuse.
+    replication: Assign a cross-functional task without input/output scaffolding.
+    affected_elements: [task_templates, chain_of_thought.yaml, prompt editor]
+    attachments: ["project/outputs/1.3_break_into_features/chain_of_thought.yaml"]
     priority: high
     batch: 1
 
   - id: ENH-002
     title: Introduce prompt templates and QA tools
-    description: Include prompt scaffolds, role-fillers, and diagnostics for clarity, scope, and intent.
+    description: Provide pre-built prompt formats and automatic diagnostics.
+    background: Prompt quality varied significantly due to lack of structure.
+    impact: Poor GPT outputs, role confusion, low reusability.
+    replication: Write a new prompt from scratch with no guidance.
+    affected_elements: [prompt creation tool, template library, prompt metadata schema]
+    attachments: ["project/outputs/prompt_creation-9fd099/chain_of_thought.yaml"]
     priority: high
     batch: 1
 
   - id: ENH-003
     title: Improve handoff continuity across pods
-    description: Enforce snapshotting of chain_of_thought and richer handoff metadata, including context history and prompt role.
+    description: Standardize richer handoff note structure and CoT snapshots.
+    background: Pods repeatedly reestablished context, slowing flow.
+    impact: Loss of knowledge, redundant reasoning, misaligned outputs.
+    replication: Transition from research > prompt creation without structured handoff.
+    affected_elements: [handoff.yaml, chain_of_thought.yaml]
+    attachments: ["project/logs/retrospectives/phase_2_retro.md"]
     priority: high
     batch: 1
 
   - id: ENH-004
     title: Add protections for file overwrite on task completion
-    description: Implement unique filenames or version locks to prevent overwrite of prior completions.
+    description: Introduce write-locks or filename suffixes to prevent overwrites.
+    background: Task completions with overlapping outputs caused silent data loss.
+    impact: Broken chain_of_thoughts, unclear ownership of results.
+    replication: Complete 2 tasks with same output file path.
+    affected_elements: [task commit handler, file path logic]
+    attachments: ["project/docs/process/root_cause_analysis/file_overwrite_on_task_complete.md"]
     priority: medium
     batch: 2
 
   - id: ENH-005
     title: Build simplified UX for non-technical personas
-    description: Introduce a user-friendly view for non-technical users, highlighting project goals, outcomes, and next actions.
+    description: Enable goal-first navigation, highlight actions and summaries.
+    background: Non-technical users found prompt crafting and outcome reviews challenging.
+    impact: Low engagement, errors in handoffs.
+    replication: Ask a non-technical user to interpret a CoT or prompt from scratch.
+    affected_elements: [persona views, onboarding, summaries]
+    attachments: ["project/docs/public/case_study_ai_delivery_framework_non_technical.md"]
     priority: high
     batch: 2
 
   - id: ENH-006
     title: Add task dependency visualizer
-    description: Auto-map task chains and surface dependencies or sequencing issues.
+    description: Display task relationships and progress to support coordination.
+    background: Gaps and overlaps in pod tasking reported in retrospectives.
+    impact: Blocked pods, duplicated work.
+    replication: Assign tasks to multiple pods for the same user goal without coordination.
+    affected_elements: [task planner, dependency mapper]
+    attachments: ["project/logs/retrospectives/phase_2_retro.md"]
     priority: medium
     batch: 2
 
   - id: ENH-007
     title: Auto-summarize phase insights
-    description: Capture and publish digestible summaries from retrospectives and chain_of_thoughts per phase.
+    description: Automatically synthesize phase results into accessible digests.
+    background: Key patterns and learnings were trapped in unstructured YAML.
+    impact: Lost learning, missed reuse.
+    replication: Search for prior strategies across multiple YAML files.
+    affected_elements: [summary generator, digest publisher]
+    attachments: ["project/outputs/2.1_design_feature_and_tech_spec/chain_of_thought.yaml"]
     priority: medium
     batch: 3
 
   - id: BUG-001
     title: Resolve commit lifecycle bugs
-    description: Address commit overwrite and silent fail issues surfaced in RCA.
+    description: Fix silent commit failures and improve error handling for YAML size or overwrite cases.
+    background: Large YAMLs silently failed to commit; files overwritten with no warning.
+    impact: Broken task outputs, inaccurate history.
+    replication: Attempt to commit oversized YAML or re-commit to same path.
+    affected_elements: [commit logic, file monitor, RCA tracking]
+    attachments: ["project/docs/process/root_cause_analysis/yaml_commit_limit_rca.md"]
     priority: high
     batch: 1
 
   - id: BUG-002
     title: Improve reliability of Railway deploy hooks
-    description: Patch deploy triggers and commit handoffs as noted in RCA.
+    description: Patch deploy lifecycle hooks to handle failures or race conditions.
+    background: Broken state during batch commits affected live updates.
+    impact: Partial deploys, stale state.
+    replication: Complete multiple tasks with parallel commits.
+    affected_elements: [Railway deploy scripts, webhook logic]
+    attachments: ["project/logs/root_cause_analysis/railway_deploy_bug.md"]
     priority: medium
     batch: 2
