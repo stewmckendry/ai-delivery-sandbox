@@ -868,3 +868,14 @@
   - collaboration
   last_updated: '2025-05-07'
   pod_owner: DeliveryPod
+- path: .logs/framework_enhancement_summary-CareerGPT.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silent-otter/.logs/framework_enhancement_summary-CareerGPT.md
+  file_type: md
+  description: Summary of enhancements made to the CareerGPT framework, detailing
+    improvements and updates.
+  tags:
+  - framework
+  - enhancement
+  - summary
+  last_updated: '2025-05-07'
+  pod_owner: DeliveryPod
