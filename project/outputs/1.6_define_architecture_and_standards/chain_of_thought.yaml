@@ -1,0 +1,11 @@
+- message: We mapped out a full AI-native architecture for the concussion recovery
+    app, taking a systems view across all components and their interactions. This
+    includes Custom GPT tooling, FastAPI backend, medical YAMLs, EHR/Azure integration,
+    data schemas, security and testing standards, and cloud deployment. We clarified
+    YAML access paths and licensing assumptions. This now serves as the foundation
+    for specs and implementation planning.
+  timestamp: '2025-05-08T22:58:46.615854'
+  tags:
+  - architecture
+  - system-design
+  - standards
