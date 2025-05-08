@@ -1,0 +1,14 @@
+- message: Structured the user and app flows to reflect each core persona's journey
+    in a PoC-constrained environment. Focused on clarity between new assessments,
+    ongoing check-ins, clinical summary export, and system-level dashboard insights.
+    Included Epic FHIR and wearable integrations as mocked systems. Added guardrails
+    for trust and safety. Introduced a research note on TeamSnap and updated the journey
+    entry points to reflect system-level access. Document reflects system actors,
+    data flow, conditions, and architecture-enabling assumptions.
+  timestamp: '2025-05-08T16:05:21.942075'
+  tags:
+  - personas
+  - flows
+  - integration
+  - scope
+  - assumptions
