@@ -35,3 +35,14 @@
   - documentation
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/outputs/ways_of_working/define_ways_of_working-f597b5/reasoning_trace.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/ways_of_working/define_ways_of_working-f597b5/reasoning_trace.yaml
+  file_type: yaml
+  description: Document detailing the development and refinement of Ways of Working,
+    incorporating feedback and insights for process improvement.
+  tags:
+  - process
+  - improvement
+  - retrospective
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
