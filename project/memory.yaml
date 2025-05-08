@@ -238,3 +238,15 @@
   - triage
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/outputs/1.5_research_spikes/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.5_research_spikes/prompt_used.txt
+  file_type: txt
+  description: Document outlining a prompt for developing a medical knowledge graph
+    for concussion management.
+  tags:
+  - prompt
+  - research
+  - medical
+  - knowledge graph
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
