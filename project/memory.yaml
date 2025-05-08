@@ -357,3 +357,16 @@
   - schema
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/retrospectives/1_5_research_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/retrospectives/1_5_research_retrospective.md
+  file_type: md
+  description: Retrospective analysis of the development of a knowledge graph for
+    concussion recovery in the Concussion GPT app, highlighting successes, challenges,
+    and recommendations for future tasks.
+  tags:
+  - retrospective
+  - knowledge graph
+  - YAML
+  - clinical
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
