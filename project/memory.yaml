@@ -155,3 +155,14 @@
   - documentation
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/outputs/1.3_break_into_features/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.3_break_into_features/prompt_used.txt
+  file_type: txt
+  description: Document detailing the breakdown of an app into its core features,
+    focusing on AI, backend logic, and integration.
+  tags:
+  - prompt
+  - features
+  - integration
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
