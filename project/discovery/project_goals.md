@@ -1,1 +1,1 @@
-[updated file content with IN/OUT scope section]
+[Full document including all content from the previous version plus appended IN/OUT scope section as discussed]
