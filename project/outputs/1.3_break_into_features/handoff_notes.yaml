@@ -1,0 +1,14 @@
+handoffs:
+- timestamp: '2025-05-08T19:23:58.022688'
+  from_pod: DevPod
+  to_pod: <replace with who the next pod is, or ask the human to confirm>
+  reason: Auto-generated handoff on task completion.
+  token_count: 0
+  next_prompt: 'Follow up based on task: Analyze project scope and break it into features,
+    experiments, or hypotheses'
+  reference_files:
+  - docs/features/feature_*.md
+  - project/discovery/app_features.md
+  - project/outputs/1.3_break_into_features/
+  notes: ''
+  ways_of_working: Continue using async updates and reasoning logs.
