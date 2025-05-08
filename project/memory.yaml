@@ -11,3 +11,14 @@
   - backlog
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/outputs/ways_of_working/define_ways_of_working-f597b5/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/ways_of_working/define_ways_of_working-f597b5/chain_of_thought.yaml
+  file_type: yaml
+  description: Document outlining the process improvements and changes made to the
+    Ways of Working, including logging chain-of-thought and enhancing schema alignment.
+  tags:
+  - process
+  - improvement
+  - ways-of-working
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
