@@ -232,6 +232,7 @@ tasks:
     - reference/symptoms_sleep.yaml
     - reference/symptoms_red_flag.yaml
     - reference/triage_map.yaml
+    - reference/medical_graph_summary.md
     phase: Phase 1 - Discovery
     pod_owner: ResearchPod
     prompt: prompts/research/research_spikes.txt
