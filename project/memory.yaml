@@ -55,3 +55,16 @@
   - goals
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: docs/project_goals.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-mystic-otter/docs/project_goals.md
+  file_type: md
+  description: Document outlining the goals of the Truckster project, focusing on
+    improving logistics, billing, and transparency between construction companies
+    and dump truck providers.
+  tags:
+  - project
+  - goals
+  - logistics
+  - billing
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
