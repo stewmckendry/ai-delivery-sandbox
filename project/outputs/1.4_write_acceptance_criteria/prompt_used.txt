@@ -1,0 +1,1 @@
+Define acceptance criteria for each feature listed in the app_features.md, focusing on user interaction, expected outputs, system behaviors, and edge cases.
