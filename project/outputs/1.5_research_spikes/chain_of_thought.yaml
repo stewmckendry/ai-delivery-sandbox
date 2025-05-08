@@ -9,3 +9,13 @@
     \ even if they are not exported to FHIR directly.\n\nNext up: I\u2019ll proceed\
     \ with clinical research and re-authoring each YAML file."
   timestamp: '2025-05-08T20:16:47.201335'
+- message: "**Logging Step: Commit of `stages.yaml`, Starting `symptoms.yaml`**\n\n\
+    - Committed `stages.yaml` with SCAT6-aligned progression stages, GPT-ready fields\
+    \ like `guidance_phrases`, `activity_keywords`, and structured logic for tools.\n\
+    - Confirmed with ProductPod that reference YAMLs should serve as *guidance* \u2014\
+    \ flexible inputs that GPT uses to structure reasoning and outputs while keeping\
+    \ conversation natural. Will include this clarification in the summary doc.\n\
+    - Now beginning draft of `symptoms.yaml` with structured categories, red flag\
+    \ tagging, and conversational mappings (aliases, user utterances) to support symptom\
+    \ extraction and triage tools."
+  timestamp: '2025-05-08T21:01:02.014112'
