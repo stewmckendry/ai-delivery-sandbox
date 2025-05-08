@@ -320,3 +320,15 @@
   - guidance
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: reference/symptoms_red_flag.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_red_flag.yaml
+  file_type: yaml
+  description: Contains definitions and emergency guidance for high-severity symptoms
+    following head injuries, including neck pain, double vision, limb weakness, and
+    seizures.
+  tags:
+  - config
+  - red_flag
+  - emergency
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
