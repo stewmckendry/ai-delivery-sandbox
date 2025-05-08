@@ -16,3 +16,23 @@
   - bug
   status: open
   timestamp: '2025-05-08T14:32:30.990111'
+- type: bug
+  scope: framework
+  issue_id: b6ab6d49-81fa-44f5-8b90-d852a19b85ca
+  task_id: null
+  title: Commit tool redacts full file content when 'content' includes placeholder
+    strings
+  detail: When committing updated content, if the 'content' field includes a placeholder
+    like '[updated content goes here]' or '[Full document...]', the system treats
+    it as literal and commits redacted or incomplete content. This caused multiple
+    rounds of recommits and could lead to silent data loss.
+  suggested_fix: Add validation to detect placeholder patterns in content fields before
+    commit. Log warnings or errors when placeholders are detected and block commit
+    if unresolved.
+  tags:
+  - commit
+  - content
+  - validation
+  - framework
+  status: open
+  timestamp: '2025-05-08T15:06:47.324258'
