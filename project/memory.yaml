@@ -298,3 +298,14 @@
   - health
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: reference/symptoms_emotional.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_emotional.yaml
+  file_type: yaml
+  description: A YAML file detailing emotional symptoms, including irritability, sadness,
+    and anxiety, with descriptions, severity levels, and guidance for each.
+  tags:
+  - config
+  - symptoms
+  - emotional
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
