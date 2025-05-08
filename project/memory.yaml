@@ -79,3 +79,14 @@
   - delivery
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: docs/personas/user_roles.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-mystic-otter/docs/personas/user_roles.md
+  file_type: md
+  description: Document outlining user roles, goals, pain points, and needs for the
+    Truckster application.
+  tags:
+  - user roles
+  - documentation
+  - personas
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
