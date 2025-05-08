@@ -1,0 +1,12 @@
+- message: We translated each feature and system from app_features.md into clear acceptance
+    criteria covering tool behavior, expected input/output, error handling, and journey
+    integration. Identified a missing tool (`assess_concussion`) and replaced a slower
+    pattern (`get_triage_question`) with a more conversational approach (`get_triage_flow`).
+    Added Apple Health sandbox to the system layer. This sets up automated testing
+    and implementation spec tasks cleanly.
+  timestamp: '2025-05-08T19:48:35.057482'
+  tags:
+  - acceptance-criteria
+  - gpt-tools
+  - system-behavior
+  - journey-logic
