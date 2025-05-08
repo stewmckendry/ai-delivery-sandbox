@@ -1,0 +1,148 @@
+stages:
+  - id: stage_1
+    stage_number: 1
+    name: "Symptom-Limited Activity"
+    description: "Daily activities that do not provoke symptoms. Initial rest phase."
+    allowed_activities:
+      - "Walking around the house"
+      - "Light reading"
+      - "Watching non-stimulating TV"
+    activity_keywords:
+      - "light activity"
+      - "minimal exertion"
+      - "quiet time"
+    contraindicated_examples:
+      - "Running"
+      - "Playing video games"
+      - "Team practice"
+    progression_criteria:
+      - "No new or worsening symptoms for at least 24 hours."
+      - "Can tolerate cognitive and light physical activity without symptom increase."
+    stage_criteria_logic:
+      symptom_severity_max: "mild"
+      duration_min_hours: 24
+    medical_clearance_required: false
+    guidance_phrases:
+      - "You can start gentle daily activities as long as they don't worsen symptoms."
+    tool_tags:
+      - "stage_decision_input"
+
+  - id: stage_2
+    stage_number: 2
+    name: "Light Aerobic Exercise"
+    description: "Activities that increase heart rate slightly without risk of head impact."
+    allowed_activities:
+      - "Walking"
+      - "Stationary cycling"
+      - "Gentle stretching"
+    activity_keywords:
+      - "easy biking"
+      - "low intensity cardio"
+    contraindicated_examples:
+      - "Jogging with friends"
+      - "Gym class drills"
+    progression_criteria:
+      - "At least 24 hours symptom-free at this level."
+      - "No symptom worsening with light exertion."
+    stage_criteria_logic:
+      symptom_severity_max: "mild"
+      duration_min_hours: 24
+    medical_clearance_required: false
+    guidance_phrases:
+      - "Try light movement like walking or stationary biking. Avoid anything that risks contact."
+    tool_tags:
+      - "stage_decision_input"
+
+  - id: stage_3
+    stage_number: 3
+    name: "Sport-Specific Exercise (Non-Contact)"
+    description: "Sport drills without risk of contact. Focus on movement patterns and skill."
+    allowed_activities:
+      - "Individual soccer dribbling"
+      - "Solo skating drills"
+      - "Sport technique drills without teammates"
+    activity_keywords:
+      - "non-contact drills"
+      - "individual skill work"
+    contraindicated_examples:
+      - "Scrimmaging"
+      - "Passing with partner"
+    progression_criteria:
+      - "24 hours symptom-free with increased intensity."
+      - "Able to do sport-specific tasks solo without symptoms."
+    stage_criteria_logic:
+      symptom_severity_max: "none"
+      duration_min_hours: 24
+    medical_clearance_required: true
+    guidance_phrases:
+      - "Now you can try sport-specific drills on your own, but no scrimmaging yet."
+    tool_tags:
+      - "stage_decision_input"
+
+  - id: stage_4
+    stage_number: 4
+    name: "Non-Contact Training Drills"
+    description: "Team-based drills with teammates at normal intensity, but no body contact."
+    allowed_activities:
+      - "Passing drills"
+      - "Conditioning with team"
+      - "Strategic walk-throughs"
+    activity_keywords:
+      - "team training no contact"
+    contraindicated_examples:
+      - "Tackling drills"
+      - "Header practice"
+    progression_criteria:
+      - "Full-intensity non-contact drills completed without symptoms."
+    stage_criteria_logic:
+      symptom_severity_max: "none"
+      duration_min_hours: 24
+    medical_clearance_required: true
+    guidance_phrases:
+      - "Resume team drills, but still avoid all body contact."
+    tool_tags:
+      - "stage_decision_input"
+
+  - id: stage_5
+    stage_number: 5
+    name: "Full Contact Practice"
+    description: "Return to unrestricted practice with contact."
+    allowed_activities:
+      - "Full practice sessions"
+      - "Contact drills"
+    activity_keywords:
+      - "contact training"
+    contraindicated_examples:
+      - "Competitive games"
+    progression_criteria:
+      - "Full practice without symptoms for 24 hours."
+    stage_criteria_logic:
+      symptom_severity_max: "none"
+      duration_min_hours: 24
+    medical_clearance_required: true
+    guidance_phrases:
+      - "You can now participate in contact practices. Make sure symptoms don’t return."
+    tool_tags:
+      - "stage_decision_input"
+
+  - id: stage_6
+    stage_number: 6
+    name: "Return to Play"
+    description: "Full return to games and normal competitive sport."
+    allowed_activities:
+      - "All normal sport activities"
+      - "Games and competitions"
+    activity_keywords:
+      - "return to sport"
+    contraindicated_examples: []
+    progression_criteria:
+      - "All prior stages completed symptom-free."
+      - "Medical clearance confirmed."
+    stage_criteria_logic:
+      symptom_severity_max: "none"
+      duration_min_hours: 24
+    medical_clearance_required: true
+    guidance_phrases:
+      - "You’re cleared to return to full play. Stay aware of how you feel."
+    tool_tags:
+      - "stage_decision_input"
