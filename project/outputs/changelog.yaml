@@ -81,3 +81,8 @@
   task_id: null
   committed_by: GPTPod
   message: Memory update related to .logs/issues/framework.yaml
+- timestamp: '2025-05-08T14:32:44.755190'
+  path: project/outputs/1.1_capture_project_goals/prompt_used.txt
+  task_id: 1.1_capture_project_goals
+  committed_by: DevPod
+  message: Log prompt used for task 1.1_capture_project_goals
