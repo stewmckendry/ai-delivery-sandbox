@@ -227,6 +227,7 @@ tasks:
     - docs/research/spikes/spike_*.md
     - project/discovery/1.5_research_plan.md
     - reference/stages.yaml
+    - reference/symptoms_physical.yaml
     phase: Phase 1 - Discovery
     pod_owner: ResearchPod
     prompt: prompts/research/research_spikes.txt
