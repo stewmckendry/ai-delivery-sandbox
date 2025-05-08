@@ -1,0 +1,124 @@
+symptoms:
+  - id: neck_pain
+    name: "Neck pain"
+    severity: "high"
+    description: "Pain, soreness, or tenderness in the neck following the head injury."
+    onset_timing: "Immediate"
+    typical_duration: "Until stabilized or treated"
+    risk_level: "critical"
+    flags:
+      - type: "spinal_risk"
+        condition: "Neck pain after impact, especially with limited movement or numbness."
+        advice: "Immobilize and seek emergency medical care."
+    aliases:
+      - "stiff neck"
+      - "sore neck"
+    keywords:
+      - "neck pain"
+      - "neck injury"
+    example_user_utterances:
+      - "My neck hurts after the fall."
+      - "I can’t move my neck without pain."
+    guidance: "Neck pain can indicate a serious spinal injury. Keep still and seek emergency medical care."
+    tool_tags:
+      - "triggers_flag"
+      - "red_flag"
+
+  - id: double_vision
+    name: "Double vision"
+    severity: "high"
+    description: "Seeing two images of a single object."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "Until evaluated"
+    risk_level: "critical"
+    flags:
+      - type: "vision_disturbance"
+        condition: "Seeing double or visual misalignment."
+        advice: "Seek emergency medical care."
+    aliases:
+      - "seeing two"
+    keywords:
+      - "double"
+      - "blurred"
+    example_user_utterances:
+      - "I’m seeing double."
+      - "Everything looks like it has a shadow."
+    guidance: "Double vision after a head injury is an emergency warning sign. Seek care immediately."
+    tool_tags:
+      - "triggers_flag"
+      - "red_flag"
+
+  - id: limb_weakness
+    name: "Weakness or numbness in limbs"
+    severity: "high"
+    description: "Loss of strength or tingling in arms or legs."
+    onset_timing: "Immediate"
+    typical_duration: "Until resolved"
+    risk_level: "critical"
+    flags:
+      - type: "neurological"
+        condition: "Any loss of motor function or unusual sensations."
+        advice: "Seek emergency care."
+    aliases:
+      - "tingling limbs"
+      - "weak arms or legs"
+    keywords:
+      - "numb"
+      - "tingling"
+    example_user_utterances:
+      - "I can’t feel my legs."
+      - "My arms are tingling."
+    guidance: "This could indicate nerve damage. Call emergency services."
+    tool_tags:
+      - "triggers_flag"
+      - "red_flag"
+
+  - id: seizure
+    name: "Seizure"
+    severity: "high"
+    description: "Convulsions or uncontrolled body shaking after head trauma."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "Seconds to minutes"
+    risk_level: "critical"
+    flags:
+      - type: "emergency"
+        condition: "Any seizure activity post-injury."
+        advice: "Call 911 immediately."
+    aliases:
+      - "convulsions"
+      - "fit"
+    keywords:
+      - "seizure"
+      - "shaking"
+    example_user_utterances:
+      - "He started shaking."
+      - "She had a seizure."
+    guidance: "A seizure indicates a serious brain injury. Get emergency help."
+    tool_tags:
+      - "triggers_flag"
+      - "red_flag"
+
+  - id: loss_of_consciousness
+    name: "Loss of consciousness"
+    severity: "high"
+    description: "Temporary blackout or non-responsiveness."
+    onset_timing: "Immediate"
+    typical_duration: "Seconds to minutes"
+    risk_level: "critical"
+    flags:
+      - type: "unresponsiveness"
+        condition: "Blackout after impact, even briefly."
+        advice: "Seek emergency medical care."
+    aliases:
+      - "blacked out"
+      - "passed out"
+    keywords:
+      - "unconscious"
+      - "non-responsive"
+    example_user_utterances:
+      - "He blacked out after the hit."
+      - "She wasn’t responsive for a minute."
+    guidance: "Any loss of consciousness after a head injury is serious. Seek immediate care."
+    tool_tags:
+      - "triggers_flag"
+      - "red_flag"
