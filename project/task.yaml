@@ -229,8 +229,9 @@ tasks:
     pod_owner: ResearchPod
     prompt: prompts/research/research_spikes.txt
     ready: true
-    status: backlog
-    updated_at: '2025-04-26T23:06:52.822901'
+    status: in_progress
+    updated_at: '2025-05-08T20:16:31.997133'
+    prompt_used: project/outputs/1.5_research_spikes/prompt_used.txt
   1.6_define_architecture_and_standards:
     assigned_to: unassigned
     category: discovery
