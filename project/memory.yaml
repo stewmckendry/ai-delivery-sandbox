@@ -131,3 +131,16 @@
   - documentation
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/outputs/1.2_define_user_and_delivery_flows/reasoning_trace.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.2_define_user_and_delivery_flows/reasoning_trace.yaml
+  file_type: yaml
+  description: Document detailing the definition and structuring of user and system
+    flows for an AI-powered concussion recovery proof of concept, including roles,
+    actions, and system boundaries.
+  tags:
+  - flow
+  - architecture
+  - ux
+  - PoC
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
