@@ -118,6 +118,7 @@ tasks:
     instance_of: task_templates/Phase1_discovery/1.1_capture_project_goals/task.yaml
     outputs:
     - docs/project_goals.md
+    - project/discovery/project_goals.md
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/capture_project_goals.txt
