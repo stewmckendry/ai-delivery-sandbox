@@ -692,3 +692,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/discovery/ways_of_working/define_ways_of_working/task.yaml
     prompt: framework/task_templates/discovery/ways_of_working/define_ways_of_working/prompt_template.md
+    outputs:
+    - project/discovery/ways_of_working.md
