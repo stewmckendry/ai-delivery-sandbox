@@ -203,3 +203,8 @@
   committed_by: GPTPod
   message: Restore full content of app_features.md after redacted commit error. Includes
     GPT tools, backend integrations, journey flows, schemas, and NFRs.
+- timestamp: '2025-05-08T19:30:58.280860'
+  path: .logs/issues/framework.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in framework scope
