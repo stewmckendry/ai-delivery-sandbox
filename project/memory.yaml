@@ -262,3 +262,15 @@
   - GPT
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/discovery/1.5_research_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/discovery/1.5_research_plan.md
+  file_type: md
+  description: Research plan for developing a concussion recovery knowledge graph,
+    including YAML deliverables and clinical audits.
+  tags:
+  - research
+  - yaml
+  - knowledge graph
+  - clinical
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
