@@ -82,3 +82,14 @@
   committed_by: GPTPod
   message: Recommitted full system architecture and engineering standards after previous
     content redaction. Includes OpenAPI schema, YAML setup, licensing, and spike plan.
+- timestamp: '2025-05-08T23:11:05.142611'
+  path: project/spikes/epic_fhir_write_spike.md
+  task_id: 1.6_define_architecture_and_standards
+  committed_by: GPTPod
+  message: 'Spike 1 output: Validate Epic FHIR write access using Observation resource
+    and OAuth2. Documented steps and curl commands.'
+- timestamp: '2025-05-08T23:11:05.142611'
+  path: project/memory.yaml
+  task_id: 1.6_define_architecture_and_standards
+  committed_by: GPTPod
+  message: Memory update related to project/spikes/epic_fhir_write_spike.md
