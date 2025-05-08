@@ -95,3 +95,15 @@
   - content-review
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/outputs/1.2_define_user_and_delivery_flows/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.2_define_user_and_delivery_flows/prompt_used.txt
+  file_type: txt
+  description: Document detailing user and delivery flows for an AI-powered youth
+    sports health app, including key personas and interaction patterns.
+  tags:
+  - prompt
+  - flow
+  - user
+  - delivery
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
