@@ -392,3 +392,16 @@
   - standards
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/spikes/epic_fhir_write_spike.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/spikes/epic_fhir_write_spike.md
+  file_type: md
+  description: Document detailing a spike to test writing structured medical data
+    to the Epic FHIR sandbox using the Observation resource, including setup steps,
+    success criteria, and results.
+  tags:
+  - fhir
+  - spike
+  - integration
+  - backend
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
