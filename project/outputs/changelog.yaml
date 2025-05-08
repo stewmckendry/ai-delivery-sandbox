@@ -36,3 +36,8 @@
   committed_by: GPTPod
   message: Recommitting full project_goals.md content with PoC scope section properly
     rendered
+- timestamp: '2025-05-08T15:06:47.325677'
+  path: .logs/issues/framework.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in framework scope
