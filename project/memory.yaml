@@ -213,3 +213,15 @@
   - features
   last_updated: '2025-05-08'
   pod_owner: QAPod
+- path: project/outputs/1.4_write_acceptance_criteria/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.4_write_acceptance_criteria/chain_of_thought.yaml
+  file_type: yaml
+  description: Documentation of acceptance criteria derived from app features, including
+    tool behavior and integration, with updates to system components for testing and
+    implementation.
+  tags:
+  - acceptance-criteria
+  - system-behavior
+  - journey-logic
+  last_updated: '2025-05-08'
+  pod_owner: QAPod
