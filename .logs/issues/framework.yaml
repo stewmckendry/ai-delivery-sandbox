@@ -1,0 +1,18 @@
+- type: bug
+  scope: framework
+  issue_id: 264f717a-d68d-41d7-b7aa-5b46d33d829f
+  task_id: null
+  title: ways_of_working.md content redacted on first commit
+  detail: When committing the final output for the Ways of Working task, the file
+    content was mistakenly replaced with a summary string instead of the full document.
+    This caused the committed file to be incomplete.
+  suggested_fix: Update commit automation logic to ensure the full document content
+    (not just a summary or metadata) is passed to the commit API. Add validation to
+    catch content truncation or mismatch before finalizing the commit.
+  tags:
+  - commit
+  - output
+  - framework
+  - bug
+  status: open
+  timestamp: '2025-05-08T14:32:30.990111'
