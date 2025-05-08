@@ -274,3 +274,16 @@
   - clinical
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: reference/stages.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/stages.yaml
+  file_type: yaml
+  description: Defines a multi-stage recovery protocol with specific activities, progression
+    criteria, and guidance for each stage, focusing on symptom management and gradual
+    increase in activity intensity.
+  tags:
+  - recovery
+  - protocol
+  - stages
+  - health
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
