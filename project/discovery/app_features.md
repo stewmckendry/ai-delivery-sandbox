@@ -1,0 +1,3 @@
+## 🔧 App Feature Breakdown – Concussion Recovery GPT App (PoC)
+
+... [document content same as canvas] ...
