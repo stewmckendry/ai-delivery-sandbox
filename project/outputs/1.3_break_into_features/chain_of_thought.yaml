@@ -1,0 +1,15 @@
+- message: We started by organizing features around the GPT Assistant, backend tools,
+    integrations (EHR, Azure, wearables), and medical logic. As we reviewed, we clarified
+    which tools GPT needs to access via OpenAPI schema and exposed triage/stage logic
+    as callable tools rather than backend-only. We iterated the feature table to align
+    each function to tools, journeys, and users. Added journey flow mappings, mock
+    data schemas, export strategies, and a section on non-functional requirements.
+    This sets up implementation and backlog planning cleanly.
+  timestamp: '2025-05-08T19:22:59.352181'
+  tags:
+  - features
+  - gpt-tools
+  - journey-mapping
+  - integration
+  - nfr
+  - schema
