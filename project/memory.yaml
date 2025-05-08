@@ -287,3 +287,14 @@
   - health
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: reference/symptoms_physical.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_physical.yaml
+  file_type: yaml
+  description: A detailed list of physical symptoms, including descriptions, severity,
+    risk levels, and guidance for each symptom.
+  tags:
+  - config
+  - data
+  - health
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
