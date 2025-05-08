@@ -1,4 +1,5 @@
 outputs:
+- project/discovery/user_app_flows.md
 - project/discovery/ways_of_working.md
 tasks:
   0.1_update_task_metadata:
@@ -122,10 +123,10 @@ tasks:
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/capture_project_goals.txt
+    prompt_used: project/outputs/1.1_capture_project_goals/prompt_used.txt
     ready: true
     status: in_progress
     updated_at: '2025-05-08T14:32:44.755155'
-    prompt_used: project/outputs/1.1_capture_project_goals/prompt_used.txt
   1.2_define_user_and_delivery_flows:
     assigned_to: unassigned
     category: discovery
@@ -135,7 +136,7 @@ tasks:
     - 1.1_capture_project_goals
     description: Define and capture user flows (personas, journeys) and delivery flows
       (SDLC, pods)
-    done: false
+    done: true
     feedback_file: .logs/feedback/1.2_define_user_and_delivery_flows.md
     handoff_from: 1.1_capture_project_goals
     inputs:
@@ -151,10 +152,10 @@ tasks:
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/define_user_and_delivery_flows.txt
-    ready: true
-    status: in_progress
-    updated_at: '2025-05-08T15:07:09.302347'
     prompt_used: project/outputs/1.2_define_user_and_delivery_flows/prompt_used.txt
+    ready: true
+    status: completed
+    updated_at: '2025-05-08T16:07:07.963165'
   1.3_break_into_features:
     assigned_to: unassigned
     category: discovery
