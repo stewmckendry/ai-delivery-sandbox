@@ -225,3 +225,16 @@
   - journey-logic
   last_updated: '2025-05-08'
   pod_owner: QAPod
+- path: project/discovery/acceptance_criteria.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/discovery/acceptance_criteria.md
+  file_type: md
+  description: Document outlining the acceptance criteria for the Concussion Recovery
+    GPT App, detailing various GPT tools and system components involved in triage,
+    symptom assessment, and recovery tracking.
+  tags:
+  - acceptance_criteria
+  - GPT
+  - health_app
+  - triage
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
