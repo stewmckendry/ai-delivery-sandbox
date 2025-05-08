@@ -1,0 +1,133 @@
+triage_flow:
+  - id: stage_initial_screening
+    name: "Initial Screening"
+    description: "Capture basic information about the injury and initial symptoms"
+    questions:
+      - id: reporter_role
+        prompt: "Who are you reporting this for (e.g., your child, a player)?"
+        type: text
+        intent: identify_reporter
+        mode: clarify
+        response_parsing: "text"
+        example_user_answers:
+          - "I'm their coach."
+          - "This is for my son."
+        tool_tags:
+          - "triage_stage"
+
+      - id: injury_date
+        prompt: "When did the injury occur?"
+        type: date
+        intent: timestamp_injury
+        mode: clarify
+        response_parsing: "date"
+        example_user_answers:
+          - "Two days ago."
+          - "Last Saturday during practice."
+        tool_tags:
+          - "triage_stage"
+
+      - id: injury_context
+        prompt: "What happened at the time of the injury?"
+        type: text
+        intent: assess_mechanism
+        mode: probe
+        response_parsing: "narrative"
+        example_user_answers:
+          - "He hit his head on the ground after a tackle."
+          - "She was elbowed in the head during basketball."
+        followup_conditions:
+          - condition: "mentions helmet or surface"
+            prompt: "Was the player wearing a helmet? Was it a hard or soft surface?"
+        tool_tags:
+          - "triage_stage"
+
+      - id: symptoms
+        prompt: "What symptoms did the player experience after the incident?"
+        type: list
+        intent: collect_symptoms
+        parse_with: symptom_extractor
+        mode: probe
+        symptom_links:
+          - "headache"
+          - "dizziness"
+          - "confusion"
+        response_parsing: "list of symptoms"
+        example_user_answers:
+          - "He was dizzy and had a headache."
+          - "They were confused and nauseous."
+        tool_tags:
+          - "triggers_flag"
+          - "starts_tracker"
+
+      - id: lost_consciousness
+        prompt: "Did the player lose consciousness?"
+        type: boolean
+        intent: red_flag_check
+        mode: clarify
+        red_flag_check: true
+        response_parsing: "yes/no"
+        example_user_answers:
+          - "Yes, for a few seconds."
+          - "No, they stayed awake."
+        symptom_links:
+          - "loss_of_consciousness"
+        tool_tags:
+          - "triggers_flag"
+
+  - id: stage_medical_evaluation
+    name: "Medical Evaluation"
+    questions:
+      - id: seen_provider
+        prompt: "Has the player been seen by a healthcare provider?"
+        type: boolean
+        intent: check_evaluation
+        mode: clarify
+        response_parsing: "yes/no"
+        example_user_answers:
+          - "Yes, we went to urgent care."
+          - "No, not yet."
+        tool_tags:
+          - "triage_stage"
+
+      - id: diagnosed_concussion
+        prompt: "Have they been officially diagnosed with a concussion?"
+        type: boolean
+        intent: confirm_diagnosis
+        mode: clarify
+        response_parsing: "yes/no"
+        example_user_answers:
+          - "The doctor said it's a concussion."
+          - "They didn’t call it that."
+        tool_tags:
+          - "triage_stage"
+
+  - id: stage_return_readiness
+    name: "Return to Play Readiness"
+    questions:
+      - id: still_symptomatic
+        prompt: "Is the player still experiencing symptoms?"
+        type: boolean
+        intent: monitor_recovery
+        mode: clarify
+        response_parsing: "yes/no"
+        example_user_answers:
+          - "Yes, they still have a headache."
+          - "No, everything cleared up."
+        symptom_links:
+          - "headache"
+          - "fatigue"
+        tool_tags:
+          - "stage_decision_input"
+
+      - id: cleared_to_play
+        prompt: "Has the player been cleared to return to play by a professional?"
+        type: boolean
+        intent: confirm_clearance
+        mode: clarify
+        response_parsing: "yes/no"
+        example_user_answers:
+          - "Yes, the doctor said they're good to go."
+          - "No, we haven’t seen the doctor again."
+        tool_tags:
+          - "stage_decision_input"
