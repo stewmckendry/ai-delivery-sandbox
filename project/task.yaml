@@ -175,6 +175,7 @@ tasks:
     instance_of: task_templates/Phase1_discovery/1.3_decompose_features/task.yaml
     outputs:
     - docs/features/feature_*.md
+    - project/discovery/app_features.md
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/break_into_features.txt
