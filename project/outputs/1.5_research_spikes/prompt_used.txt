@@ -1,0 +1,1 @@
+Develop a medical knowledge graph grounded in clinical standards (e.g., SCAT6, peer-reviewed guidelines) to power structured concussion triage, symptom tracking, and recovery guidance.
