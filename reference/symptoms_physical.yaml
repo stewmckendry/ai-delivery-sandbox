@@ -1,0 +1,121 @@
+symptoms:
+  - id: headache
+    name: "Headache"
+    severity: "moderate"
+    description: "A pain in the head that can range from mild to intense, sometimes described as a pressure sensation in the head."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "1–3 days"
+    risk_level: "medium"
+    flags:
+      - type: "worsening"
+        condition: "Pain intensifies over time or does not improve with rest."
+        advice: "Seek medical evaluation."
+    aliases:
+      - "head pain"
+      - "pounding head"
+      - "my head hurts"
+    keywords:
+      - "ache"
+      - "pressure"
+    example_user_utterances:
+      - "I’ve had a bad headache since the hit."
+      - "It’s like pounding in my temples."
+    guidance: "Rest, hydrate, and avoid screen time. See a doctor if it worsens."
+    tool_tags:
+      - "triggers_flag"
+
+  - id: nausea
+    name: "Nausea"
+    severity: "low"
+    description: "Feeling sick to your stomach, as if you might vomit."
+    onset_timing: "Immediate"
+    typical_duration: "<1 day"
+    risk_level: "low"
+    flags:
+      - type: "duration"
+        condition: "Nausea is severe or lasts a long time."
+        advice: "Seek medical advice."
+    aliases:
+      - "queasy"
+      - "sick to stomach"
+    keywords:
+      - "nauseous"
+      - "vomit"
+    example_user_utterances:
+      - "I feel sick."
+      - "I’m nauseous."
+    guidance: "Nausea often happens soon after the injury and usually passes. If it persists or results in vomiting, seek medical advice."
+    tool_tags:
+      - "triggers_flag"
+
+  - id: vomiting
+    name: "Vomiting"
+    severity: "moderate"
+    description: "The act of throwing up the stomach's contents after the injury."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "<1 day"
+    risk_level: "high"
+    flags:
+      - type: "frequency"
+        condition: "More than one episode of vomiting occurs or vomiting starts again hours after the injury."
+        advice: "Seek immediate medical attention."
+    aliases:
+      - "threw up"
+      - "got sick"
+    keywords:
+      - "vomit"
+      - "throwing up"
+    example_user_utterances:
+      - "She threw up right after the hit."
+      - "He vomited again a few hours later."
+    guidance: "Vomiting once can happen with a concussion, but repeated vomiting is a danger sign."
+    tool_tags:
+      - "triggers_flag"
+
+  - id: dizziness
+    name: "Dizziness"
+    severity: "moderate"
+    description: "Feeling lightheaded, unsteady, or like the surroundings are spinning."
+    onset_timing: "Immediate"
+    typical_duration: "1–2 days"
+    risk_level: "medium"
+    flags:
+      - type: "balance_impairment"
+        condition: "Prevents standing or walking safely."
+        advice: "Seek medical care."
+    aliases:
+      - "lightheaded"
+      - "spinning"
+    keywords:
+      - "dizzy"
+      - "unsteady"
+    example_user_utterances:
+      - "I feel off balance."
+      - "Everything’s spinning."
+    guidance: "Sit or lie down until dizziness passes. If the sensation persists or worsens, seek care."
+    tool_tags:
+      - "triggers_flag"
+
+  - id: balance_problems
+    name: "Balance problems"
+    severity: "moderate"
+    description: "Difficulty maintaining balance or coordination."
+    onset_timing: "Immediate"
+    typical_duration: "1–3 days"
+    risk_level: "medium"
+    flags:
+      - type: "instability"
+        condition: "Unable to walk steadily or condition gets worse."
+        advice: "Seek medical evaluation."
+    aliases:
+      - "unsteady"
+      - "wobbly"
+    keywords:
+      - "balance"
+      - "coordination"
+    example_user_utterances:
+      - "I keep stumbling."
+      - "I can’t walk straight."
+    guidance: "Avoid activities requiring coordination. If deterioration continues, seek care."
+    tool_tags:
+      - "triggers_flag"
