@@ -1,0 +1,1 @@
+Break down the app into its core features, especially the AI GPT Pod, backend logic, and integration features. Map each feature to users, journeys, systems, schema, and delivery sequence.
