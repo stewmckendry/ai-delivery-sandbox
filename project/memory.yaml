@@ -309,3 +309,14 @@
   - emotional
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: reference/symptoms_sleep.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_sleep.yaml
+  file_type: yaml
+  description: Contains detailed descriptions and guidance for various sleep-related
+    symptoms, including drowsiness and insomnia, with associated flags and advice.
+  tags:
+  - symptoms
+  - config
+  - guidance
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
