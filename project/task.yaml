@@ -233,6 +233,7 @@ tasks:
     - reference/symptoms_red_flag.yaml
     - reference/triage_map.yaml
     - reference/medical_graph_summary.md
+    - project/retrospectives/1_5_research_retrospective.md
     phase: Phase 1 - Discovery
     pod_owner: ResearchPod
     prompt: prompts/research/research_spikes.txt
