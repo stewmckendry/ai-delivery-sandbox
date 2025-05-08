@@ -1,0 +1,27 @@
+alternatives:
+- Build a separate SOP playbook instead of inline rules.
+improvement_opportunities:
+- Track adoption of each practice with lightweight task checklists.
+scoring:
+  novel_insight: true
+  recall_used: true
+  thought_quality: 5
+summary: A collaboratively refined Ways of Working built from proven templates and
+  enhanced through retrospective insights and new coordination rules.
+task_id: ways_of_working/define_ways_of_working-f597b5
+thoughts:
+- tags:
+  - reuse
+  - retrospective
+  thought: Reused and evolved the prior Ways of Working doc, aligned with lessons
+    learned from CareerGPT.
+- tags:
+  - improvement
+  - process
+  thought: Mapped framework-level gaps to process-only changes that don't require
+    tool updates.
+- tags:
+  - feedback
+  - completion
+  thought: Reviewed and implemented additional Human Lead suggestions including schema
+    alignment and GitHub file link pattern.
