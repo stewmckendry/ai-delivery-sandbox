@@ -36,3 +36,20 @@
   - framework
   status: open
   timestamp: '2025-05-08T15:06:47.324258'
+- type: bug
+  scope: framework
+  issue_id: 68681480-48e7-4b58-9188-3059bc78977b
+  task_id: null
+  title: Redacted file content on commit for app_features.md in task 1.3
+  detail: When completing task 1.3, the committed file `app_features.md` was redacted
+    and replaced with a one-line summary, losing the full feature breakdown. This
+    disrupted traceability and required a manual re-commit to restore full content.
+  suggested_fix: Ensure file body is previewed and validated before commit. Avoid
+    replacing markdown content with summaries. Enable fallback validation for markdown
+    content files.
+  tags:
+  - file-commit
+  - content-redaction
+  - task-1.3
+  status: open
+  timestamp: '2025-05-08T19:30:58.278725'
