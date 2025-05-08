@@ -332,3 +332,15 @@
   - emergency
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: reference/triage_map.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/triage_map.yaml
+  file_type: yaml
+  description: Configuration file defining the triage flow for assessing injuries,
+    including initial screening and medical evaluation stages with specific questions
+    and response parsing.
+  tags:
+  - triage
+  - flow
+  - config
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
