@@ -1,0 +1,13 @@
+- path: project/task.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/task.yaml
+  file_type: yaml
+  description: This file contains definitions and metadata for various tasks related
+    to task management and infrastructure, primarily owned by the DeliveryPod and
+    DevPod.
+  tags:
+  - task_management
+  - metadata
+  - infrastructure
+  - backlog
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
