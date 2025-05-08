@@ -208,3 +208,9 @@
   task_id: null
   committed_by: GPTPod
   message: Log <class 'type'> in framework scope
+- timestamp: '2025-05-08T19:33:59.319385'
+  path: project/discovery/app_features.md
+  task_id: 1.3_break_into_features
+  committed_by: GPTPod
+  message: Restore full content of app_features.md after previous redacted commit.
+    Full journey, tool, and architecture mapping included.
