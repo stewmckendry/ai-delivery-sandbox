@@ -381,3 +381,14 @@
   - documentation
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/outputs/1.6_define_architecture_and_standards/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.6_define_architecture_and_standards/chain_of_thought.yaml
+  file_type: yaml
+  description: Document outlining the AI-native architecture and standards for a concussion
+    recovery app, including components, interactions, and implementation planning.
+  tags:
+  - architecture
+  - system-design
+  - standards
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
