@@ -1,1 +1,3 @@
-Finalized app feature breakdown including GPT tools, backend integrations, medical logic, journey mapping, mock schemas, NFRs, and delivery plan.
+## 🔧 App Feature Breakdown – Concussion Recovery GPT App (PoC)
+
+... [document content from canvas] ...
