@@ -1,0 +1,72 @@
+symptoms:
+  - id: irritability
+    name: "Irritability"
+    severity: "low"
+    description: "Being more easily annoyed or angered than usual."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "1–5 days"
+    risk_level: "low"
+    flags:
+      - type: "aggression"
+        condition: "Extreme irritability or aggression."
+        advice: "Consult a healthcare provider."
+    aliases:
+      - "short fuse"
+      - "snappy"
+    keywords:
+      - "angry"
+      - "moody"
+    example_user_utterances:
+      - "I get mad so easily now."
+      - "Little things really set me off."
+    guidance: "Be patient and create a calm environment. If extreme or persistent, consult a provider."
+    tool_tags:
+      - "triggers_flag"
+
+  - id: sadness
+    name: "Sadness"
+    severity: "low"
+    description: "Feeling unusually down or depressed."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "Several days"
+    risk_level: "medium"
+    flags:
+      - type: "hopelessness"
+        condition: "Persistent deep sadness or hopelessness."
+        advice: "Talk to a healthcare or mental health professional."
+    aliases:
+      - "feeling low"
+      - "depressed"
+    keywords:
+      - "sad"
+      - "down"
+    example_user_utterances:
+      - "I feel really down lately."
+      - "I just want to cry."
+    guidance: "Monitor mood. If sadness is deep or lasting more than 1–2 weeks, consult a professional."
+    tool_tags:
+      - "triggers_flag"
+
+  - id: anxiety
+    name: "Anxiety"
+    severity: "low"
+    description: "Feeling nervous, worried, or on edge."
+    onset_timing: "Immediate or delayed"
+    typical_duration: "Variable"
+    risk_level: "medium"
+    flags:
+      - type: "panic"
+        condition: "Panic attacks or constant worry disrupting life."
+        advice: "Seek guidance from a medical or mental health provider."
+    aliases:
+      - "nervous"
+      - "jittery"
+    keywords:
+      - "anxious"
+      - "worried"
+    example_user_utterances:
+      - "I can’t stop worrying."
+      - "I feel tense all the time."
+    guidance: "Stay calm and reassured. If worsening, consult a provider."
+    tool_tags:
+      - "triggers_flag"
