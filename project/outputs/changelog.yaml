@@ -380,3 +380,14 @@
   task_id: 1.5_research_spikes
   committed_by: GPTPod
   message: Append output file to 1.5_research_spikes
+- timestamp: '2025-05-08T21:20:36.537581'
+  path: reference/triage_map.yaml
+  task_id: 1.5_research_spikes
+  committed_by: GPTPod
+  message: Commit of triage_map.yaml with normalized triage flow schema, symptom links,
+    response hints, and tool tags.
+- timestamp: '2025-05-08T21:20:36.537581'
+  path: project/memory.yaml
+  task_id: 1.5_research_spikes
+  committed_by: GPTPod
+  message: Memory update related to reference/triage_map.yaml
