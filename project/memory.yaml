@@ -58,3 +58,15 @@
   - logs
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: .logs/issues/framework.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/framework.yaml
+  file_type: yaml
+  description: Log entry detailing a bug related to framework commit automation, where
+    document content was replaced with a summary during the commit process.
+  tags:
+  - bug
+  - commit
+  - framework
+  - output
+  last_updated: '2025-05-08'
+  pod_owner: DevPod
