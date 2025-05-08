@@ -197,3 +197,9 @@
   task_id: 1.3_break_into_features
   committed_by: unknown
   message: Log handoff note for 1.3_break_into_features
+- timestamp: '2025-05-08T19:30:41.571785'
+  path: project/discovery/app_features.md
+  task_id: 1.3_break_into_features
+  committed_by: GPTPod
+  message: Restore full content of app_features.md after redacted commit error. Includes
+    GPT tools, backend integrations, journey flows, schemas, and NFRs.
