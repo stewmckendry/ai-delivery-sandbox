@@ -78,3 +78,13 @@
   task_id: 1.2_define_user_and_delivery_flows
   committed_by: GPTPod
   message: Memory update related to docs/journeys/app_walkthrough.md
+- timestamp: '2025-05-08T11:08:58.066656'
+  path: project/specs/feature_scheduling_dispatch.md
+  task_id: truckster_scheduling_dispatch_spec
+  committed_by: ProductPod
+  message: Add feature spec for Truckster scheduling and dispatch
+- timestamp: '2025-05-08T11:08:58.066656'
+  path: project/memory.yaml
+  task_id: truckster_scheduling_dispatch_spec
+  committed_by: ProductPod
+  message: Memory update related to project/specs/feature_scheduling_dispatch.md
