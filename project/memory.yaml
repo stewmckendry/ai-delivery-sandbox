@@ -83,3 +83,15 @@
   - sports
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/outputs/1.1_capture_project_goals/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.1_capture_project_goals/chain_of_thought.yaml
+  file_type: yaml
+  description: Contains a draft project summary that outlines the problem space, user
+    needs, and value of an AI-powered app, with a focus on clarity and actionable
+    insights.
+  tags:
+  - project-goals
+  - discovery
+  - content-review
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
