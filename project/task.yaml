@@ -261,6 +261,7 @@ tasks:
     outputs:
     - docs/architecture/solution_overview.md
     - docs/architecture/standards.md
+    - project/discovery/system_architecture.md
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/define_architecture.txt
