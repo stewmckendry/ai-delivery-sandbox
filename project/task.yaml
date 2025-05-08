@@ -229,6 +229,7 @@ tasks:
     - reference/stages.yaml
     - reference/symptoms_physical.yaml
     - reference/symptoms_emotional.yaml
+    - reference/symptoms_sleep.yaml
     phase: Phase 1 - Discovery
     pod_owner: ResearchPod
     prompt: prompts/research/research_spikes.txt
