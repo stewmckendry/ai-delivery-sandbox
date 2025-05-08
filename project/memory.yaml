@@ -22,3 +22,16 @@
   - ways-of-working
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/discovery/ways_of_working.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/discovery/ways_of_working.md
+  file_type: md
+  description: Guidelines and principles for collaboration between human leads and
+    GPT Pods, emphasizing teamwork, iteration, Git usage, documentation, framework
+    improvement, and a holistic approach.
+  tags:
+  - collaboration
+  - workflow
+  - iteration
+  - documentation
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
