@@ -344,3 +344,16 @@
   - config
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: reference/medical_graph_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/medical_graph_summary.md
+  file_type: md
+  description: Overview and schema details of the medical knowledge graph used in
+    Concussion GPT for concussion assessment and recovery guidance, including YAML
+    references for stages, symptoms, and triage mapping.
+  tags:
+  - knowledge_graph
+  - medical
+  - YAML
+  - schema
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
