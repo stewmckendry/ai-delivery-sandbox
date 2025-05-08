@@ -144,3 +144,14 @@
   - PoC
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/outputs/1.2_define_user_and_delivery_flows/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.2_define_user_and_delivery_flows/handoff_notes.yaml
+  file_type: yaml
+  description: Document detailing handoff notes for defining user and delivery flows,
+    including references and next steps.
+  tags:
+  - handoff
+  - flow
+  - documentation
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
