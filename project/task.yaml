@@ -151,8 +151,9 @@ tasks:
     pod_owner: DevPod
     prompt: prompts/dev/define_user_and_delivery_flows.txt
     ready: true
-    status: backlog
-    updated_at: '2025-04-26T23:06:52.824304'
+    status: in_progress
+    updated_at: '2025-05-08T15:07:09.302347'
+    prompt_used: project/outputs/1.2_define_user_and_delivery_flows/prompt_used.txt
   1.3_break_into_features:
     assigned_to: unassigned
     category: discovery
