@@ -202,6 +202,7 @@ tasks:
     outputs:
     - docs/qa/acceptance_matrix.md
     - docs/features/feature_*.md
+    - project/discovery/acceptance_criteria.md
     phase: Phase 1 - Discovery
     pod_owner: QAPod
     prompt: prompts/qa/write_acceptance_criteria.txt
