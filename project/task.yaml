@@ -1,696 +1,698 @@
+outputs:
+- project/discovery/ways_of_working.md
 tasks:
   0.1_update_task_metadata:
-    description: Edit metadata fields of an existing task
-    phase: Cross-Phase
+    assigned_to: unassigned
     category: pm
-    pod_owner: DeliveryPod
-    status: backlog
-    prompt: prompts/delivery/update_task_metadata.txt
+    created_at: '2025-04-26T23:06:52.838763'
+    created_by: human
+    description: Edit metadata fields of an existing task
+    done: false
+    instance_of: task_templates/Cross-Phase/0.1_update_task_metadata/task.yaml
     outputs:
     - task.yaml
+    phase: Cross-Phase
+    pod_owner: DeliveryPod
+    prompt: prompts/delivery/update_task_metadata.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.838763'
-    assigned_to: unassigned
-    instance_of: task_templates/Cross-Phase/0.1_update_task_metadata/task.yaml
+    status: backlog
     updated_at: '2025-04-26T23:06:52.838770'
   0.3_activate_task:
+    assigned_to: unassigned
+    category: ops
+    created_at: '2025-04-26T23:06:52.843377'
+    created_by: human
     description: Change the status of a task to `in_progress` and retrieve its prompt
       file for patch generation
-    phase: Cross Phase
-    category: ops
-    pod_owner: DeliveryPod
-    assigned_to: unassigned
-    status: backlog
-    prompt: prompts/cross/activate_task.txt
+    done: false
+    feedback_file: .logs/feedback/0.3_activate_task.md
     inputs:
     - task.yaml
+    instance_of: task_templates/Cross-Phase/0.2_activate_task/task.yaml
     outputs:
     - task.yaml
     - prompts/used/DeliveryPod/0.3_activate_task_prompt.txt
-    feedback_file: .logs/feedback/0.3_activate_task.md
+    phase: Cross Phase
+    pod_owner: DeliveryPod
+    prompt: prompts/cross/activate_task.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.843377'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.843389'
-    instance_of: task_templates/Cross-Phase/0.2_activate_task/task.yaml
   0.3_clone_task:
-    description: Clone an existing task in the backlog with optional metadata updates
-    phase: Phase 0 - Cross-Phase
+    assigned_to: unassigned
     category: delivery_ops
-    pod_owner: DeliveryPod
-    status: backlog
-    prompt: prompts/tools/clone_task.txt
-    inputs: []
-    outputs:
-    - task.yaml
-    feedback_file: .logs/feedback/0.3_clone_task.md
-    ready: true
-    done: false
-    created_by: human
     created_at: '2025-04-26T23:06:52.845976'
-    updated_at: '2025-04-26T23:06:52.845983'
-    assigned_to: unassigned
+    created_by: human
+    description: Clone an existing task in the backlog with optional metadata updates
+    done: false
+    feedback_file: .logs/feedback/0.3_clone_task.md
+    inputs: []
     instance_of: task_templates/Cross-Phase/0.3_clone_task/task.yaml
-  0.5_create_new_task:
-    description: Add a tool to create a brand new task from scratch
-    phase: Cross-Phase
-    category: pm
-    pod_owner: DeliveryPod
-    status: backlog
-    prompt: prompts/delivery/create_new_task_prompt.txt
     outputs:
     - task.yaml
+    phase: Phase 0 - Cross-Phase
+    pod_owner: DeliveryPod
+    prompt: prompts/tools/clone_task.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.852243'
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.845983'
+  0.5_create_new_task:
     assigned_to: unassigned
+    category: pm
+    created_at: '2025-04-26T23:06:52.852243'
+    created_by: human
+    description: Add a tool to create a brand new task from scratch
+    done: false
     instance_of: task_templates/Cross-Phase/0.4_create_new_task/task.yaml
+    outputs:
+    - task.yaml
+    phase: Cross-Phase
+    pod_owner: DeliveryPod
+    prompt: prompts/delivery/create_new_task_prompt.txt
+    ready: true
+    status: backlog
     updated_at: '2025-04-26T23:06:52.852254'
   0.5_index_memory:
-    description: Index project files to generate memory.yaml
-    phase: Cross-Phase
+    assigned_to: unassigned
     category: infra
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/delivery/index_memory_prompt.txt
+    created_at: '2025-04-26T23:06:52.849291'
+    created_by: human
+    description: Index project files to generate memory.yaml
+    done: false
+    instance_of: task_templates/Cross-Phase/0.5_index_memory/task.yaml
     outputs:
     - memory.yaml
+    phase: Cross-Phase
+    pod_owner: DevPod
+    prompt: prompts/delivery/index_memory_prompt.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.849291'
-    assigned_to: unassigned
-    instance_of: task_templates/Cross-Phase/0.5_index_memory/task.yaml
+    status: backlog
     updated_at: '2025-04-26T23:06:52.849296'
   0.7_add_to_memory:
-    description: Add new files into memory.yaml
-    phase: Cross-Phase
+    assigned_to: unassigned
     category: infra
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/delivery/add_to_memory_prompt.txt
+    created_at: '2025-04-26T23:06:52.848033'
+    created_by: human
+    description: Add new files into memory.yaml
+    done: false
+    instance_of: task_templates/Cross-Phase/0.7_add_to_memory/task.yaml
     outputs:
     - memory.yaml
+    phase: Cross-Phase
+    pod_owner: DevPod
+    prompt: prompts/delivery/add_to_memory_prompt.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.848033'
-    assigned_to: unassigned
-    instance_of: task_templates/Cross-Phase/0.7_add_to_memory/task.yaml
+    status: backlog
     updated_at: '2025-04-26T23:06:52.848036'
   1.1_capture_project_goals:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.825512'
+    created_by: human
     description: Help capture and summarize the goals, purpose, and intended impact
       of the project
-    phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/capture_project_goals.txt
-    inputs:
-    - docs/project_goals.md
-    outputs:
-    - docs/project_goals.md
-    feedback_file: .logs/feedback/1.1_capture_project_goals.md
-    ready: true
     done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.825512'
-    updated_at: '2025-04-26T23:06:52.825514'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase1_discovery/1.1_capture_project_goals/task.yaml
-  1.2_define_user_and_delivery_flows:
-    description: Define and capture user flows (personas, journeys) and delivery flows
-      (SDLC, pods)
-    phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/define_user_and_delivery_flows.txt
+    feedback_file: .logs/feedback/1.1_capture_project_goals.md
     inputs:
-    - docs/personas/user_roles.md
-    - docs/journeys/app_walkthrough.md
-    - docs/workflows/delivery_flow.md
+    - docs/project_goals.md
+    instance_of: task_templates/Phase1_discovery/1.1_capture_project_goals/task.yaml
     outputs:
-    - docs/personas/user_roles.md
-    - docs/journeys/app_walkthrough.md
-    - docs/workflows/delivery_flow.md
-    feedback_file: .logs/feedback/1.2_define_user_and_delivery_flows.md
+    - docs/project_goals.md
+    phase: Phase 1 - Discovery
+    pod_owner: DevPod
+    prompt: prompts/dev/capture_project_goals.txt
+    ready: true
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.825514'
+  1.2_define_user_and_delivery_flows:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.824303'
+    created_by: human
     depends_on:
     - 1.1_capture_project_goals
-    handoff_from: 1.1_capture_project_goals
-    ready: true
+    description: Define and capture user flows (personas, journeys) and delivery flows
+      (SDLC, pods)
     done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.824303'
-    updated_at: '2025-04-26T23:06:52.824304'
-    assigned_to: unassigned
+    feedback_file: .logs/feedback/1.2_define_user_and_delivery_flows.md
+    handoff_from: 1.1_capture_project_goals
+    inputs:
+    - docs/personas/user_roles.md
+    - docs/journeys/app_walkthrough.md
+    - docs/workflows/delivery_flow.md
     instance_of: task_templates/Phase1_discovery/1.2_define_user_flows/task.yaml
+    outputs:
+    - docs/personas/user_roles.md
+    - docs/journeys/app_walkthrough.md
+    - docs/workflows/delivery_flow.md
+    phase: Phase 1 - Discovery
+    pod_owner: DevPod
+    prompt: prompts/dev/define_user_and_delivery_flows.txt
+    ready: true
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.824304'
   1.3_break_into_features:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.823605'
+    created_by: human
+    depends_on:
+    - 1.2_define_user_and_delivery_flows
     description: Analyze project scope and break it into features, experiments, or
       hypotheses
-    phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/break_into_features.txt
+    done: false
+    feedback_file: .logs/feedback/1.3_break_into_features.md
+    handoff_from: 1.2_define_user_and_delivery_flows
     inputs:
     - docs/project_goals.md
     - docs/personas/user_roles.md
     - docs/journeys/app_walkthrough.md
+    instance_of: task_templates/Phase1_discovery/1.3_decompose_features/task.yaml
     outputs:
     - docs/features/feature_*.md
-    feedback_file: .logs/feedback/1.3_break_into_features.md
-    depends_on:
-    - 1.2_define_user_and_delivery_flows
-    handoff_from: 1.2_define_user_and_delivery_flows
+    phase: Phase 1 - Discovery
+    pod_owner: DevPod
+    prompt: prompts/dev/break_into_features.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.823605'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.823607'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase1_discovery/1.3_decompose_features/task.yaml
   1.4_write_acceptance_criteria:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.822201'
+    created_by: human
+    depends_on:
+    - 1.3_break_into_features
     description: Write or refine acceptance criteria based on feature specs and QA
       matrix
-    phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: QAPod
-    status: backlog
-    prompt: prompts/qa/write_acceptance_criteria.txt
+    done: false
+    feedback_file: .logs/feedback/1.4_write_acceptance_criteria.md
+    handoff_from: 1.3_break_into_features
     inputs:
     - docs/features/feature_*.md
+    instance_of: task_templates/Phase1_discovery/1.4_write_acceptance_criteria/task.yaml
     outputs:
     - docs/qa/acceptance_matrix.md
     - docs/features/feature_*.md
-    feedback_file: .logs/feedback/1.4_write_acceptance_criteria.md
-    depends_on:
-    - 1.3_break_into_features
-    handoff_from: 1.3_break_into_features
+    phase: Phase 1 - Discovery
+    pod_owner: QAPod
+    prompt: prompts/qa/write_acceptance_criteria.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.822201'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.822205'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase1_discovery/1.4_write_acceptance_criteria/task.yaml
   1.5_research_spikes:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.822898'
+    created_by: human
     description: Investigate and document unresolved questions, unknowns, or tool
       comparisons
-    phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: ResearchPod
-    status: backlog
-    prompt: prompts/research/research_spikes.txt
-    inputs:
-    - docs/project_goals.md
-    - docs/features/feature_*.md
-    outputs:
-    - docs/research/spikes/spike_*.md
-    feedback_file: .logs/feedback/1.5_research_spikes.md
-    ready: true
     done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.822898'
-    updated_at: '2025-04-26T23:06:52.822901'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase1_discovery/1.5_research_spikes/task.yaml
-  1.6_define_architecture_and_standards:
-    description: Draft initial solution architecture and coding or design standards
-    phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/define_architecture.txt
+    feedback_file: .logs/feedback/1.5_research_spikes.md
     inputs:
     - docs/project_goals.md
     - docs/features/feature_*.md
-    - docs/research/spikes/spike_*.md
+    instance_of: task_templates/Phase1_discovery/1.5_research_spikes/task.yaml
     outputs:
-    - docs/architecture/solution_overview.md
-    - docs/architecture/standards.md
-    feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
+    - docs/research/spikes/spike_*.md
+    phase: Phase 1 - Discovery
+    pod_owner: ResearchPod
+    prompt: prompts/research/research_spikes.txt
+    ready: true
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.822901'
+  1.6_define_architecture_and_standards:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.821455'
+    created_by: human
     depends_on:
     - 1.2_define_user_and_delivery_flows
     - 1.3_break_into_features
-    handoff_from: 1.3_break_into_features
-    ready: true
+    description: Draft initial solution architecture and coding or design standards
     done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.821455'
-    updated_at: '2025-04-26T23:06:52.821461'
-    assigned_to: unassigned
+    feedback_file: .logs/feedback/1.6_define_architecture_and_standards.md
+    handoff_from: 1.3_break_into_features
+    inputs:
+    - docs/project_goals.md
+    - docs/features/feature_*.md
+    - docs/research/spikes/spike_*.md
     instance_of: task_templates/Phase1_discovery/1.6_define_architecture/task.yaml
-  1.7_feedback_summary:
-    description: Summarize chat feedback, discussion notes, and key decisions
+    outputs:
+    - docs/architecture/solution_overview.md
+    - docs/architecture/standards.md
     phase: Phase 1 - Discovery
-    category: discovery
-    pod_owner: Human
+    pod_owner: DevPod
+    prompt: prompts/dev/define_architecture.txt
+    ready: true
     status: backlog
-    prompt: prompts/human/summarize_feedback.txt
+    updated_at: '2025-04-26T23:06:52.821461'
+  1.7_feedback_summary:
+    assigned_to: unassigned
+    category: discovery
+    created_at: '2025-04-26T23:06:52.824899'
+    created_by: human
+    description: Summarize chat feedback, discussion notes, and key decisions
+    done: false
+    feedback_file: .logs/feedback/1.7_feedback_summary.md
     inputs:
     - .logs/feedback/*.md
+    instance_of: task_templates/Phase1_discovery/1.7_summarize_feedback/task.yaml
     outputs:
     - .logs/feedback/1.7_feedback_summary.md
-    feedback_file: .logs/feedback/1.7_feedback_summary.md
+    phase: Phase 1 - Discovery
+    pod_owner: Human
+    prompt: prompts/human/summarize_feedback.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.824899'
-    updated_at: '2025-04-26T23:06:52.824902'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase1_discovery/1.7_summarize_feedback/task.yaml
-  2.1_design_feature_and_tech_spec:
-    description: For each assigned feature, draft a detailed technical specification
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: DevPod
     status: backlog
-    prompt: prompts/dev/2.1_design_feature_and_tech_spec.txt
-    inputs:
-    - docs/features/feature_list.md
-    outputs:
-    - docs/specs/spec_<feature_id>.md
-    feedback_file: .logs/feedback/2.1_design_feature_and_tech_spec.md
+    updated_at: '2025-04-26T23:06:52.824902'
+  2.1_design_feature_and_tech_spec:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.863192'
+    created_by: human
     depends_on:
     - 1.3_break_into_features
     - 1.6_define_architecture_and_standards
-    handoff_from: 1.6_define_architecture_and_standards
-    ready: true
+    description: For each assigned feature, draft a detailed technical specification
     done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.863192'
-    updated_at: '2025-04-26T23:06:52.863198'
-    assigned_to: unassigned
+    feedback_file: .logs/feedback/2.1_design_feature_and_tech_spec.md
+    handoff_from: 1.6_define_architecture_and_standards
+    inputs:
+    - docs/features/feature_list.md
     instance_of: task_templates/Phase2_development/2.1_design_feature/task.yaml
+    outputs:
+    - docs/specs/spec_<feature_id>.md
+    phase: Phase 2 - Development
+    pod_owner: DevPod
+    prompt: prompts/dev/2.1_design_feature_and_tech_spec.txt
+    ready: true
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.863198'
   2.2_build_and_patch:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.858960'
+    created_by: human
+    depends_on:
+    - 2.1_design_feature_and_tech_spec
     description: Build the feature based on the approved spec, implement or update
       source and test files, run unit tests, update the spec if needed, and generate
       a patch
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/2.2_build_and_patch.txt
+    done: false
+    feedback_file: .logs/feedback/2.2_build_and_patch.md
+    handoff_from: 2.1_design_feature_and_tech_spec
     inputs:
     - docs/specs/spec_<feature_id>.md
     - standards.md
     - solution_overview.md
+    instance_of: task_templates/Phase2_development/2.2_build_feature/task.yaml
     outputs:
     - src/feature_<feature_id>/**/*
     - tests/feature_<feature_id>/**/*
     - docs/specs/spec_<feature_id>.md
     - .patches/patch_<timestamp>.diff
-    feedback_file: .logs/feedback/2.2_build_and_patch.md
-    depends_on:
-    - 2.1_design_feature_and_tech_spec
-    handoff_from: 2.1_design_feature_and_tech_spec
+    phase: Phase 2 - Development
+    pod_owner: DevPod
+    prompt: prompts/dev/2.2_build_and_patch.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.858960'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.858974'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.2_build_feature/task.yaml
   2.3_qa_review_feature:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.864912'
+    created_by: human
+    depends_on:
+    - 2.2_build_and_patch
+    - 1.4_write_acceptance_criteria
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: QAPod
-    status: backlog
-    prompt: prompts/qa/2.3_qa_review_feature.txt
+    done: false
+    feedback_file: .logs/feedback/2.3_qa_review_feature.md
+    handoff_from: 2.2_build_and_patch
     inputs:
     - docs/specs/spec_<feature_id>.md
     - src/feature_<feature_id>/**/*
     - tests/feature_<feature_id>/**/*
     - docs/qa/acceptance_matrix.md
+    instance_of: task_templates/Phase2_development/2.3_QA_feature/task.yaml
     outputs:
     - test/feature_<feature_id>/qa_test_plan.md
     - test/feature_<feature_id>/qa_test_cases.md
     - test/feature_<feature_id>/qa_test_results.md
     - docs/qa/acceptance_matrix.md
-    feedback_file: .logs/feedback/2.3_qa_review_feature.md
-    depends_on:
-    - 2.2_build_and_patch
-    - 1.4_write_acceptance_criteria
-    handoff_from: 2.2_build_and_patch
+    phase: Phase 2 - Development
+    pod_owner: QAPod
+    prompt: prompts/qa/2.3_qa_review_feature.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.864912'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.864917'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.3_QA_feature/task.yaml
   2.4a_fix_bugs_from_qa:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.865740'
+    created_by: human
+    depends_on:
+    - 2.3_QA_feature
     description: Address bugs identified by QAPod during QA review, apply code and
       test fixes, validate with local test runs, and update spec and patch
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/2.4a_fix_bugs_from_qa.txt
+    done: false
+    feedback_file: .logs/feedback/2.4a_fix_bugs_from_qa.md
+    handoff_from: 2.3_QA_feature
     inputs:
     - test/feature_<feature_id>/qa_test_results.md
     - docs/specs/spec_<feature_id>.md
+    instance_of: task_templates/Phase2_development/2.4a_fix_bugs/task.yaml
     outputs:
     - src/feature_<feature_id>/**/*
     - tests/feature_<feature_id>/**/*
     - docs/specs/spec_<feature_id>.md
     - .patches/patch_<timestamp>.diff
-    feedback_file: .logs/feedback/2.4a_fix_bugs_from_qa.md
-    depends_on:
-    - 2.3_QA_feature
-    handoff_from: 2.3_QA_feature
+    phase: Phase 2 - Development
+    pod_owner: DevPod
+    prompt: prompts/dev/2.4a_fix_bugs_from_qa.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.865740'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.865742'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.4a_fix_bugs/task.yaml
   2.4b_retest_after_fixes:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.855111'
+    created_by: human
+    depends_on:
+    - 2.4a_fix_bugs_from_qa
     description: Re-run previously failed or blocked test cases after DevPod fixes,
       confirm bug resolution, and update QA results and acceptance matrix
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: QAPod
-    status: backlog
-    prompt: prompts/qa/2.4b_retest_after_fixes.txt
+    done: false
+    feedback_file: .logs/feedback/2.4b_retest_after_fixes.md
+    handoff_from: 2.4a_fix_bugs_from_qa
     inputs:
     - test/feature_<feature_id>/qa_test_results.md
     - src/feature_<feature_id>/**/*
     - tests/feature_<feature_id>/**/*
     - docs/qa/acceptance_matrix.md
+    instance_of: task_templates/Phase2_development/2.4b_retest_fixes/task.yaml
     outputs:
     - test/feature_<feature_id>/qa_test_results.md
     - docs/qa/acceptance_matrix.md
-    feedback_file: .logs/feedback/2.4b_retest_after_fixes.md
-    depends_on:
-    - 2.4a_fix_bugs_from_qa
-    handoff_from: 2.4a_fix_bugs_from_qa
+    phase: Phase 2 - Development
+    pod_owner: QAPod
+    prompt: prompts/qa/2.4b_retest_after_fixes.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.855111'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.855120'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.4b_retest_fixes/task.yaml
   2.5_research_assist:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.862255'
+    created_by: human
     description: Investigate and summarize findings for unresolved technical, architectural,
       or domain-specific questions raised during the feature cycle
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: ResearchPod
-    status: backlog
-    prompt: prompts/research/2.5_research_assist.txt
+    done: false
+    feedback_file: .logs/feedback/2.5_research_assist.md
     inputs:
     - .logs/feedback/2.x_*.md
     - docs/specs/spec_<feature_id>.md
     - docs/qa/acceptance_matrix.md
+    instance_of: task_templates/Phase2_development/2.5_research_support/task.yaml
     outputs:
     - docs/research/spikes/<topic>.md
-    feedback_file: .logs/feedback/2.5_research_assist.md
+    phase: Phase 2 - Development
+    pod_owner: ResearchPod
+    prompt: prompts/research/2.5_research_assist.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.862255'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.862273'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.5_research_support/task.yaml
   2.7_agile_metrics:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.868537'
+    created_by: human
     description: Facilitate agile rituals (e.g., retrospective), analyze velocity
       and task completion data, update delivery metrics, and log team process insights
       and gaps
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: WoWPod
-    status: backlog
-    prompt: prompts/wow/2.7_agile_metrics.txt
+    done: false
+    feedback_file: .logs/feedback/2.7_agile_metrics.md
     inputs:
     - .logs/feedback/2.*.md
     - metrics/metrics.yaml
+    instance_of: task_templates/Phase2_development/2.6_run_agile/task.yaml
     outputs:
     - docs/rituals/retrospective.md
     - metrics/velocity.md
     - metrics/burndown.md
     - .logs/feedback/2.7_agile_metrics.md
-    feedback_file: .logs/feedback/2.7_agile_metrics.md
+    phase: Phase 2 - Development
+    pod_owner: WoWPod
+    prompt: prompts/wow/2.7_agile_metrics.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.868537'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.868549'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.6_run_agile/task.yaml
   2.8_prepare_deployment_guide:
+    assigned_to: unassigned
+    category: dev
+    created_at: '2025-04-26T23:06:52.864045'
+    created_by: human
     description: Create a clear, reproducible deployment guide covering environments,
       configuration, tooling, and steps for deploying the current feature set
-    phase: Phase 2 - Development
-    category: dev
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/2.8_prepare_deployment_guide.txt
+    done: false
+    feedback_file: .logs/feedback/2.8_prepare_deployment_guide.md
     inputs:
     - docs/specs/spec_<feature_id>.md
     - .patches/patch_<timestamp>.diff
+    instance_of: task_templates/Phase2_development/2.7_prep_deploy_guide/task.yaml
     outputs:
     - docs/deployment/deployment_guide.md
-    feedback_file: .logs/feedback/2.8_prepare_deployment_guide.md
+    phase: Phase 2 - Development
+    pod_owner: DevPod
+    prompt: prompts/dev/2.8_prepare_deployment_guide.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.864045'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.864047'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase2_development/2.7_prep_deploy_guide/task.yaml
   3.1_define_e2e_test_plan:
+    assigned_to: unassigned
+    category: e2e
+    created_at: '2025-04-26T23:06:52.870300'
+    created_by: human
+    depends_on:
+    - 1.4_write_acceptance_criteria
     description: Define a comprehensive end-to-end (E2E) test plan covering full user
       flows, edge cases, and systems integration
-    phase: Phase 3 - E2E Testing
-    category: e2e
-    pod_owner: QAPod
-    status: backlog
-    prompt: prompts/qa/3.1_define_e2e_test_plan.txt
+    done: false
+    feedback_file: .logs/feedback/3.1_define_e2e_test_plan.md
+    handoff_from: 1.4_write_acceptance_criteria
     inputs:
     - docs/features/feature_list.md
     - docs/qa/acceptance_matrix.md
     - docs/specs/spec_*.md
-    outputs:
-    - test/e2e/e2e_test_plan.md
-    feedback_file: .logs/feedback/3.1_define_e2e_test_plan.md
-    depends_on:
-    - 1.4_write_acceptance_criteria
-    handoff_from: 1.4_write_acceptance_criteria
-    ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.870300'
-    updated_at: '2025-04-26T23:06:52.870308'
-    assigned_to: unassigned
     instance_of: task_templates/Phase3_e2e_test/3.1_e2e_test_plan/task.yaml
-  3.2_execute_e2e_scenarios:
-    description: Run defined E2E test scenarios and log outcomes for each test case,
-      noting any failures or inconsistencies
-    phase: Phase 3 - E2E Testing
-    category: e2e
-    pod_owner: QAPod
-    status: backlog
-    prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
-    inputs:
-    - test/e2e/e2e_test_plan.md
     outputs:
-    - test/e2e/e2e_test_results.md
-    feedback_file: .logs/feedback/3.2_execute_e2e_scenarios.md
+    - test/e2e/e2e_test_plan.md
+    phase: Phase 3 - E2E Testing
+    pod_owner: QAPod
+    prompt: prompts/qa/3.1_define_e2e_test_plan.txt
+    ready: true
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.870308'
+  3.2_execute_e2e_scenarios:
+    assigned_to: unassigned
+    category: e2e
+    created_at: '2025-04-26T23:06:52.875897'
+    created_by: human
     depends_on:
     - 3.1_define_e2e_test_plan
-    handoff_from: 3.1_define_e2e_test_plan
-    ready: true
+    description: Run defined E2E test scenarios and log outcomes for each test case,
+      noting any failures or inconsistencies
     done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.875897'
-    updated_at: '2025-04-26T23:06:52.875900'
-    assigned_to: unassigned
+    feedback_file: .logs/feedback/3.2_execute_e2e_scenarios.md
+    handoff_from: 3.1_define_e2e_test_plan
+    inputs:
+    - test/e2e/e2e_test_plan.md
     instance_of: task_templates/Phase3_e2e_test/3.2_e2e_test_execution/task.yaml
+    outputs:
+    - test/e2e/e2e_test_results.md
+    phase: Phase 3 - E2E Testing
+    pod_owner: QAPod
+    prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
+    ready: true
+    status: backlog
+    updated_at: '2025-04-26T23:06:52.875900'
   3.3_fix_bugs_e2e:
+    assigned_to: unassigned
+    category: e2e
+    created_at: '2025-04-26T23:06:52.873383'
+    created_by: human
+    depends_on:
+    - 3.2_e2e_test_execution
     description: Address issues uncovered in E2E testing and update source code, tests,
       and documentation as needed
-    phase: Phase 3 - E2E Testing
-    category: e2e
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/3.3_fix_bugs_e2e.txt
+    done: false
+    feedback_file: .logs/feedback/3.3_fix_bugs_e2e.md
+    handoff_from: 3.2_e2e_test_execution
     inputs:
     - test/e2e/e2e_test_results.md
+    instance_of: task_templates/Phase3_e2e_test/3.3_e2e_fix_bugs/task.yaml
     outputs:
     - src/**/*
     - tests/**/*
     - docs/specs/spec_*.md
     - .patches/patch_<timestamp>.diff
-    feedback_file: .logs/feedback/3.3_fix_bugs_e2e.md
-    depends_on:
-    - 3.2_e2e_test_execution
-    handoff_from: 3.2_e2e_test_execution
+    phase: Phase 3 - E2E Testing
+    pod_owner: DevPod
+    prompt: prompts/dev/3.3_fix_bugs_e2e.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.873383'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.873388'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase3_e2e_test/3.3_e2e_fix_bugs/task.yaml
   3.4_coordinate_e2e_demo:
+    assigned_to: unassigned
+    category: e2e
+    created_at: '2025-04-26T23:06:52.872470'
+    created_by: human
     description: Organize and document an end-to-end walkthrough, review, or demo
       of key app workflows
-    phase: Phase 3 - E2E Testing
-    category: e2e
-    pod_owner: WoWPod
-    status: backlog
-    prompt: prompts/wow/3.4_coordinate_e2e_demo.txt
+    done: false
+    feedback_file: .logs/feedback/3.4_coordinate_e2e_demo.md
     inputs:
     - test/e2e/e2e_test_results.md
+    instance_of: task_templates/Phase3_e2e_test/3.4_e2e_demo/task.yaml
     outputs:
     - docs/reviews/e2e_review_notes.md
-    feedback_file: .logs/feedback/3.4_coordinate_e2e_demo.md
+    phase: Phase 3 - E2E Testing
+    pod_owner: WoWPod
+    prompt: prompts/wow/3.4_coordinate_e2e_demo.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.872470'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.872478'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase3_e2e_test/3.4_e2e_demo/task.yaml
   3.5_finalize_quality_metrics:
+    assigned_to: unassigned
+    category: e2e
+    created_at: '2025-04-26T23:06:52.874998'
+    created_by: human
     description: Track unresolved issues and summarize final quality metrics, including
       test coverage, pass rates, and defects
-    phase: Phase 3 - E2E Testing
-    category: e2e
-    pod_owner: DeliveryPod
-    status: backlog
-    prompt: prompts/delivery/3.5_finalize_quality_metrics.txt
+    done: false
+    feedback_file: .logs/feedback/3.5_finalize_quality_metrics.md
     inputs:
     - test/e2e/e2e_test_results.md
     - metrics/metrics.yaml
+    instance_of: task_templates/Phase3_e2e_test/3.5_e2e_report/task.yaml
     outputs:
     - metrics/final_quality_summary.md
-    feedback_file: .logs/feedback/3.5_finalize_quality_metrics.md
+    phase: Phase 3 - E2E Testing
+    pod_owner: DeliveryPod
+    prompt: prompts/delivery/3.5_finalize_quality_metrics.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.874998'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.875002'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase3_e2e_test/3.5_e2e_report/task.yaml
   4.1_create_cutover_plan:
+    assigned_to: unassigned
+    category: cutover
+    created_at: '2025-04-26T23:06:52.830634'
+    created_by: human
     description: Define a clear and time-bound cutover checklist and go-live plan,
       covering key responsibilities and risks
-    phase: Phase 4 - Go Live
-    category: cutover
-    pod_owner: DeliveryPod
-    status: backlog
-    prompt: prompts/delivery/4.1_create_cutover_plan.txt
+    done: false
+    feedback_file: .logs/feedback/4.1_create_cutover_plan.md
     inputs:
     - docs/deployment/deployment_guide.md
+    instance_of: task_templates/Phase4_go-live/4.1_cutover_plan/task.yaml
     outputs:
     - docs/release/cutover_checklist.md
-    feedback_file: .logs/feedback/4.1_create_cutover_plan.md
+    phase: Phase 4 - Go Live
+    pod_owner: DeliveryPod
+    prompt: prompts/delivery/4.1_create_cutover_plan.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.830634'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.830640'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase4_go-live/4.1_cutover_plan/task.yaml
   4.2_final_smoke_tests:
+    assigned_to: unassigned
+    category: cutover
+    created_at: '2025-04-26T23:06:52.837161'
+    created_by: human
     description: Execute critical smoke tests in the production environment to confirm
       readiness
-    phase: Phase 4 - Go Live
-    category: cutover
-    pod_owner: QAPod
-    status: backlog
-    prompt: prompts/qa/4.2_final_smoke_tests.txt
+    done: false
+    feedback_file: .logs/feedback/4.2_final_smoke_tests.md
     inputs:
     - test/e2e/e2e_test_plan.md
+    instance_of: task_templates/Phase4_go-live/4.2_smoke_test/task.yaml
     outputs:
     - test/smoke/smoke_test_results.md
-    feedback_file: .logs/feedback/4.2_final_smoke_tests.md
+    phase: Phase 4 - Go Live
+    pod_owner: QAPod
+    prompt: prompts/qa/4.2_final_smoke_tests.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.837161'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.837173'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase4_go-live/4.2_smoke_test/task.yaml
   4.3_go_live_deployment:
+    assigned_to: unassigned
+    category: cutover
+    created_at: '2025-04-26T23:06:52.826593'
+    created_by: human
     description: Deploy the application into production following the final approved
       checklist
-    phase: Phase 4 - Go Live
-    category: cutover
-    pod_owner: DevPod
-    status: backlog
-    prompt: prompts/dev/4.3_go_live_deployment.txt
+    done: false
+    feedback_file: .logs/feedback/4.3_go_live_deployment.md
     inputs:
     - docs/release/cutover_checklist.md
+    instance_of: task_templates/Phase4_go-live/4.3_deploy_prod/task.yaml
     outputs:
     - .logs/deployments/go_live_log.md
-    feedback_file: .logs/feedback/4.3_go_live_deployment.md
+    phase: Phase 4 - Go Live
+    pod_owner: DevPod
+    prompt: prompts/dev/4.3_go_live_deployment.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.826593'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.826598'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase4_go-live/4.3_deploy_prod/task.yaml
   4.4_announce_go_live:
+    assigned_to: unassigned
+    category: cutover
+    created_at: '2025-04-26T23:06:52.828280'
+    created_by: human
     description: Notify stakeholders of the successful release, outline changes, next
       steps, and support transition
-    phase: Phase 4 - Go Live
-    category: cutover
-    pod_owner: Human
-    status: backlog
-    prompt: prompts/human/4.4_announce_go_live.txt
+    done: false
+    feedback_file: .logs/feedback/4.4_announce_go_live.md
     inputs:
     - .logs/deployments/go_live_log.md
+    instance_of: task_templates/Phase4_go-live/4.4_communicate_transition/task.yaml
     outputs:
     - docs/release/release_announcement.md
-    feedback_file: .logs/feedback/4.4_announce_go_live.md
+    phase: Phase 4 - Go Live
+    pod_owner: Human
+    prompt: prompts/human/4.4_announce_go_live.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.828280'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.828282'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase4_go-live/4.4_communicate_transition/task.yaml
   4.5_go_live_retro:
+    assigned_to: unassigned
+    category: cutover
+    created_at: '2025-04-26T23:06:52.827494'
+    created_by: human
     description: Facilitate a short retrospective and capture initial stabilization
       issues or learnings
-    phase: Phase 4 - Go Live
-    category: cutover
-    pod_owner: WoWPod
-    status: backlog
-    prompt: prompts/wow/4.5_go_live_retro.txt
+    done: false
+    feedback_file: .logs/feedback/4.5_go_live_retro.md
     inputs:
     - .logs/deployments/go_live_log.md
+    instance_of: task_templates/Phase4_go-live/4.5_retro_stabilize/task.yaml
     outputs:
     - docs/rituals/go_live_retro.md
-    feedback_file: .logs/feedback/4.5_go_live_retro.md
+    phase: Phase 4 - Go Live
+    pod_owner: WoWPod
+    prompt: prompts/wow/4.5_go_live_retro.txt
     ready: true
-    done: false
-    created_by: human
-    created_at: '2025-04-26T23:06:52.827494'
+    status: backlog
     updated_at: '2025-04-26T23:06:52.827499'
-    assigned_to: unassigned
-    instance_of: task_templates/Phase4_go-live/4.5_retro_stabilize/task.yaml
   ways_of_working/define_ways_of_working-f597b5:
     assigned_pod: ProductPod
-    pod_owner: ProductPod
     created_at: '2025-05-08T14:01:49.393147'
-    updated_at: null
-    done: false
-    status: backlog
+    done: true
     instance_of: framework/task_templates/discovery/ways_of_working/define_ways_of_working/task.yaml
-    prompt: framework/task_templates/discovery/ways_of_working/define_ways_of_working/prompt_template.md
     outputs:
     - project/discovery/ways_of_working.md
+    pod_owner: ProductPod
+    prompt: framework/task_templates/discovery/ways_of_working/define_ways_of_working/prompt_template.md
+    status: completed
+    updated_at: '2025-05-08T14:26:12.871963'
