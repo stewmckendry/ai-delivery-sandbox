@@ -70,3 +70,16 @@
   - output
   last_updated: '2025-05-08'
   pod_owner: DevPod
+- path: project/discovery/project_goals.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/discovery/project_goals.md
+  file_type: md
+  description: Overview of the goals and features of an AI-powered app designed to
+    assist in managing youth sports injuries, particularly concussions, by providing
+    personalized guidance and structured reporting.
+  tags:
+  - AI
+  - health
+  - app
+  - sports
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
