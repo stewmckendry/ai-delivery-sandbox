@@ -103,3 +103,16 @@
   - guide
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/specs/feature_scheduling_dispatch.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-mystic-otter/project/specs/feature_scheduling_dispatch.md
+  file_type: md
+  description: Specification document outlining the scheduling and dispatch feature
+    for truck logistics, detailing user stories, core functionality, edge cases, dependencies,
+    and acceptance criteria.
+  tags:
+  - specification
+  - scheduling
+  - dispatch
+  - logistics
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
