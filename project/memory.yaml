@@ -90,3 +90,16 @@
   - personas
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: docs/journeys/app_walkthrough.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-mystic-otter/docs/journeys/app_walkthrough.md
+  file_type: md
+  description: A comprehensive guide detailing the user journey and processes within
+    the Truckster app, including booking, job fulfillment, invoicing, and payment
+    workflows.
+  tags:
+  - app
+  - workflow
+  - process
+  - guide
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
