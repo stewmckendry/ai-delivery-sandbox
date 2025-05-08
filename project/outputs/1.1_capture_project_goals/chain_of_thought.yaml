@@ -11,3 +11,15 @@
   - project-goals
   - discovery
   - content-review
+- message: To align with the Human Lead's vision for an end-to-end demonstration of
+    GPT + backend integration, I updated the project goals doc to include a clear
+    PoC scope. This keeps broad coverage across all major components (EHR, wearables,
+    dashboards), but limits depth to simplified, demonstrable examples. The change
+    also addresses potential confusion on MVP vs. production scope. Recommitted with
+    full preservation of original content plus additions.
+  timestamp: '2025-05-08T15:01:30.314322'
+  tags:
+  - scope
+  - poc
+  - integration
+  - discovery
