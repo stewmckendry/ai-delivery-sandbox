@@ -202,3 +202,14 @@
   - reasoning
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+  file_type: txt
+  description: Document outlining the prompt used to define acceptance criteria for
+    app features.
+  tags:
+  - prompt
+  - acceptance_criteria
+  - features
+  last_updated: '2025-05-08'
+  pod_owner: QAPod
