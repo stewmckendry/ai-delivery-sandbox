@@ -147,6 +147,7 @@ tasks:
     - docs/personas/user_roles.md
     - docs/journeys/app_walkthrough.md
     - docs/workflows/delivery_flow.md
+    - project/discovery/user_app_flows.md
     phase: Phase 1 - Discovery
     pod_owner: DevPod
     prompt: prompts/dev/define_user_and_delivery_flows.txt
