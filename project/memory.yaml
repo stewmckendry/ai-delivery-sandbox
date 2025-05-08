@@ -46,3 +46,15 @@
   - retrospective
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/outputs/ways_of_working/define_ways_of_working-f597b5/handoff_notes.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/ways_of_working/define_ways_of_working-f597b5/handoff_notes.yaml
+  file_type: yaml
+  description: Notes on handoff process including timestamp, involved pods, and reference
+    files for ways of working.
+  tags:
+  - handoff
+  - process
+  - async
+  - logs
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
