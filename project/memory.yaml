@@ -250,3 +250,15 @@
   - knowledge graph
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/outputs/1.5_research_spikes/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/1.5_research_spikes/chain_of_thought.yaml
+  file_type: yaml
+  description: Initial thoughts and plans for integrating structured decision-making
+    using YAML-backed GPT tools, focusing on clinical protocols and usability.
+  tags:
+  - research
+  - planning
+  - YAML
+  - GPT
+  last_updated: '2025-05-08'
+  pod_owner: ResearchPod
