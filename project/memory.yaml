@@ -178,3 +178,14 @@
   - schema
   last_updated: '2025-05-08'
   pod_owner: DeliveryPod
+- path: project/discovery/app_features.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/discovery/app_features.md
+  file_type: md
+  description: Documentation detailing the features and functionalities of the Concussion
+    Recovery GPT App, including its purpose, user interactions, and technical specifications.
+  tags:
+  - documentation
+  - app
+  - features
+  last_updated: '2025-05-08'
+  pod_owner: DeliveryPod
