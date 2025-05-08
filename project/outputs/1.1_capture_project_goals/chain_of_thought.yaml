@@ -1,0 +1,13 @@
+- message: "This draft project summary is strong \u2014 it clearly communicates the\
+    \ problem space, user needs, and the differentiated value of the AI-powered app.\
+    \ The narrative is anchored in real-world observations and uses natural language\
+    \ that matches the tone of the target audience. It avoids jargon while still signaling\
+    \ the depth of the underlying system architecture. I committed the draft as-is\
+    \ because it is complete, compelling, and actionable for downstream pods. If anything,\
+    \ we could optionally highlight what\u2019s out-of-scope (e.g., general injury\
+    \ triage beyond concussions) and clarify target launch phase (MVP vs. full system)."
+  timestamp: '2025-05-08T14:46:58.933122'
+  tags:
+  - project-goals
+  - discovery
+  - content-review
