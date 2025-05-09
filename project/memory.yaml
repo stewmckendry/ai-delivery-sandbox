@@ -835,3 +835,15 @@
   - azure
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/user_journey_flows.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/user_journey_flows.md
+  file_type: md
+  description: Documentation of user journey flows for symptom logging and stage inference,
+    detailing entry points, tools, and outcomes for different user scenarios.
+  tags:
+  - user journey
+  - flow
+  - symptom logging
+  - inference
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
