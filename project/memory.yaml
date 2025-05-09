@@ -468,3 +468,16 @@
   - FastAPI
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/retrospectives/phase1_discovery_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/retrospectives/phase1_discovery_retrospective.md
+  file_type: md
+  description: Retrospective document summarizing the achievements, lessons learned,
+    and deliverables from Phase 1 Discovery of an AI-native concussion recovery app
+    project.
+  tags:
+  - retrospective
+  - discovery
+  - product
+  - YAML
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
