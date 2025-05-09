@@ -47,3 +47,12 @@
   - triage_engine
   - schema_notes
   - task_tracking
+- message: Defined triage schema models in app/models/triage.py with full attribute-level
+    comments. This provides the type safety and validation backbone for triage_engine
+    and future tools that read triage_map.yaml. Confirmed these align 1:1 with the
+    YAML structure, and updated task list to reflect this milestone.
+  timestamp: '2025-05-09T17:11:26.829398'
+  tags:
+  - triage_schema
+  - engine_alignment
+  - task_tracking
