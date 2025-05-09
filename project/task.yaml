@@ -776,3 +776,4 @@ tasks:
     - project/delivery/features/feature_6_yaml_engines/stage_logic_notes.md
     - app/models/stage.py
     - app/engines/schema_validator.py
+    - project/delivery/build_delivery_flow_addendum.md
