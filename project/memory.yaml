@@ -455,3 +455,16 @@
   - implementation
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: project/delivery/build_phase_backlog.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/build_phase_backlog.md
+  file_type: md
+  description: Backlog of tasks for building the Concussion Recovery GPT App, covering
+    GPT assistant features, FastAPI backend, Azure integration, dashboard reporting,
+    EHR integration, UX enhancements, and non-functional requirements.
+  tags:
+  - backlog
+  - build
+  - integration
+  - FastAPI
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
