@@ -795,3 +795,4 @@ tasks:
     - app/tools/symptom_logger.py
     - app/tools/get_stage_guidance.py
     - project/delivery/features/feature_2_symptom_logging_stage_inference/tool_contracts_notes.md
+    - app/models/tracker.py
