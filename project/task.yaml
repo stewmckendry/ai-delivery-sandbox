@@ -752,3 +752,4 @@ tasks:
     outputs:
     - project/spikes/session_memory_spike.md
     - project/delivery/build_phase_backlog.md
+    - project/retrospectives/phase1_discovery_retrospective.md
