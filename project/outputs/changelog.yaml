@@ -102,3 +102,14 @@
   committed_by: GPTPod
   message: Add entry point support and `log_incident_detail` tool to FA7; clarify
     how TrackerMetadata maps to user flows
+- timestamp: '2025-05-09T20:39:03.375362'
+  path: project/delivery/features/feature_2_symptom_logging_stage_inference/user_journey_flows.md
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Add user journey note summarizing 3 entry points and their tool + metadata
+    linkages
+- timestamp: '2025-05-09T20:39:03.375362'
+  path: project/memory.yaml
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/features/feature_2_symptom_logging_stage_inference/user_journey_flows.md
