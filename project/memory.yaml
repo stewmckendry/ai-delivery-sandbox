@@ -623,3 +623,15 @@
   - flow
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: project/delivery/features/feature_6_yaml_engines/stage_logic_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_6_yaml_engines/stage_logic_notes.md
+  file_type: md
+  description: Documentation of the schema and logic used in stages.yaml for determining
+    recovery stages, including example usage and code interpretation.
+  tags:
+  - schema
+  - yaml
+  - logic
+  - model
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
