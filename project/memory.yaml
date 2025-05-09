@@ -517,3 +517,15 @@
   - validation
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: project/delivery/features/feature_6_yaml_engines/plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_6_yaml_engines/plan.md
+  file_type: md
+  description: Delivery plan for YAML engines focusing on parsing, validation, and
+    schema alignment for triage and stage inference.
+  tags:
+  - delivery
+  - yaml
+  - validation
+  - schema
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
