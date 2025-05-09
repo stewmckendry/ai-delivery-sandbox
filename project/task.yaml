@@ -797,3 +797,4 @@ tasks:
     - project/delivery/features/feature_2_symptom_logging_stage_inference/tool_contracts_notes.md
     - app/models/tracker.py
     - project/delivery/features/feature_2_symptom_logging_stage_inference/db_schema_notes.md
+    - project/delivery/feature_scope_tracker.md
