@@ -695,3 +695,11 @@
   - stage_inference
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/task_list.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/task_list.md
+  file_type: md
+  description: Fallback summary for project/delivery/features/feature_2_symptom_logging_stage_inference/task_list.md
+  tags:
+  - auto
+  last_updated: '2025-05-09'
+  pod_owner: ''
