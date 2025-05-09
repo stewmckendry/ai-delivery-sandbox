@@ -13,3 +13,14 @@
   task_id: feature_6_yaml_engines-9f4ff1
   committed_by: GPTPod
   message: Mark triage_engine unit tests as complete in Feature 6 task list
+- timestamp: '2025-05-09T17:33:56.139380'
+  path: app/engines/stage_engine.py
+  task_id: feature_6_yaml_engines-9f4ff1
+  committed_by: GPTPod
+  message: Update StageEngine to match current stages.yaml schema using duration_min_hours
+    and symptom_severity_max
+- timestamp: '2025-05-09T17:33:56.139380'
+  path: project/memory.yaml
+  task_id: feature_6_yaml_engines-9f4ff1
+  committed_by: GPTPod
+  message: Memory update related to app/engines/stage_engine.py
