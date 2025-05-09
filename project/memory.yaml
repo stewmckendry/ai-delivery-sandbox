@@ -529,3 +529,15 @@
   - schema
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_6_yaml_engines/design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_6_yaml_engines/design.md
+  file_type: md
+  description: Design specification for YAML parsing and validation logic in triage
+    and stage engines, including schema validation and error handling.
+  tags:
+  - design
+  - YAML
+  - validation
+  - schema
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
