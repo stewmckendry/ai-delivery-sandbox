@@ -777,3 +777,15 @@
   - azure
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: project/delivery/feature_scope_tracker.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/feature_scope_tracker.md
+  file_type: md
+  description: Document tracking feature scope definitions, updates, and changes across
+    various feature areas during the build phase.
+  tags:
+  - scope
+  - feature
+  - build
+  - tracker
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
