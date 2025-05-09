@@ -741,3 +741,15 @@
   - fastapi
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: app/tools/get_stage_guidance.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_stage_guidance.py
+  file_type: py
+  description: API endpoint to infer and provide guidance on recovery stage based
+    on symptoms and injury date.
+  tags:
+  - api
+  - inference
+  - stage
+  - guidance
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
