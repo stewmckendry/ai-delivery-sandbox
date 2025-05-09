@@ -96,3 +96,9 @@
   task_id: feature_2_symptom_logging_stage_inference-8b8caa
   committed_by: GPTPod
   message: Mark DB integration with Azure SQL as complete in Feature 2 task list
+- timestamp: '2025-05-09T20:38:35.063491'
+  path: project/delivery/feature_scope_tracker.md
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Add entry point support and `log_incident_detail` tool to FA7; clarify
+    how TrackerMetadata maps to user flows
