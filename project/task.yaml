@@ -740,3 +740,12 @@ tasks:
     prompt: framework/task_templates/discovery/spike_yaml_inference_gpt/prompt_template.md
     outputs:
     - project/spikes/yaml_inference_gpt_spike.md
+  spike_session_memory_linking-7d7c03:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-09T02:08:46.871524'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/discovery/spike_session_memory_linking/task.yaml
+    prompt: framework/task_templates/discovery/spike_session_memory_linking/prompt_template.md
