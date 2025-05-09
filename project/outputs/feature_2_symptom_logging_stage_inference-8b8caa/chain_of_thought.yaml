@@ -7,3 +7,13 @@
   - design
   - symptom_logging
   - stage_inference
+- message: Defined and committed `models/symptoms.py` with schemas for check-ins and
+    stage inference tools. Added a design addendum explaining how symptoms.yaml metadata
+    is used to validate and enrich symptom check-ins (e.g. guidance, risk flags).
+    This supports extensible tooling and structured user feedback.
+  timestamp: '2025-05-09T18:15:59.117038'
+  tags:
+  - schemas
+  - metadata
+  - validation
+  - symptom_yaml
