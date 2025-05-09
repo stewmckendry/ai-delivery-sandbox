@@ -792,3 +792,4 @@ tasks:
     - project/delivery/features/feature_2_symptom_logging_stage_inference/design.md
     - app/models/symptoms.py
     - project/delivery/features/feature_2_symptom_logging_stage_inference/schema_notes.md
+    - app/tools/symptom_logger.py
