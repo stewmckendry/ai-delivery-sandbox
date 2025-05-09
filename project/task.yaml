@@ -765,3 +765,4 @@ tasks:
     prompt_used: project/outputs/feature_6_yaml_engines-9f4ff1/prompt_used.txt
     outputs:
     - project/delivery/features/feature_6_yaml_engines/plan.md
+    - project/delivery/features/feature_6_yaml_engines/design.md
