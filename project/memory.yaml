@@ -590,3 +590,14 @@
   - config
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: app/models/tracker.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/models/tracker.py
+  file_type: py
+  description: Defines a model for tracking user progress through triage or recovery
+    check-ins using a dictionary of answers.
+  tags:
+  - model
+  - triage
+  - recovery
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
