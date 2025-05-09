@@ -39,3 +39,9 @@
   task_id: feature_2_symptom_logging_stage_inference-8b8caa
   committed_by: GPTPod
   message: Append output file to feature_2_symptom_logging_stage_inference-8b8caa
+- timestamp: '2025-05-09T20:11:01.402052'
+  path: project/delivery/features/feature_2_symptom_logging_stage_inference/db_schema_notes.md
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Update db_schema_notes to reflect change from SQLite to Azure SQL with
+    SQLAlchemy for cloud-hosted persistence
