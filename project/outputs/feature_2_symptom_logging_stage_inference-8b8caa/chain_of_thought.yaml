@@ -35,3 +35,12 @@
   - symptom_scoring
   - tracker_schema
   - future_enhancement
+- message: Committed TrackerState model defining user_id, injury_date, checkin_time,
+    symptom answers, and clearance flags. Reinforces the need to explicitly guide
+    Custom GPTs with OpenAPI schemas and tool prompts to ensure all fields are populated
+    in correct structure.
+  timestamp: '2025-05-09T19:18:58.885398'
+  tags:
+  - tracker_state
+  - schema
+  - gpt_input_guidance
