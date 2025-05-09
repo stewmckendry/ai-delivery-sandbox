@@ -774,3 +774,4 @@ tasks:
     - app/engines/test_triage_engine.py
     - app/engines/stage_engine.py
     - project/delivery/features/feature_6_yaml_engines/stage_logic_notes.md
+    - app/models/stage.py
