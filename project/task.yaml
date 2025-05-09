@@ -738,3 +738,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/discovery/spike_yaml_inference_gpt/task.yaml
     prompt: framework/task_templates/discovery/spike_yaml_inference_gpt/prompt_template.md
+    outputs:
+    - project/spikes/yaml_inference_gpt_spike.md
