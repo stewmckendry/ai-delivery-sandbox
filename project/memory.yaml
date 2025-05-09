@@ -579,3 +579,14 @@
   - model
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: app/models/triage.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/models/triage.py
+  file_type: py
+  description: Data models for defining and organizing triage questions and stages
+    in a structured flow.
+  tags:
+  - model
+  - flow
+  - config
+  last_updated: '2025-05-09'
+  pod_owner: ResearchPod
