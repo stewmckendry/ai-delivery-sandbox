@@ -612,3 +612,14 @@
   - flow
   last_updated: '2025-05-09'
   pod_owner: QAPod
+- path: app/engines/stage_engine.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/engines/stage_engine.py
+  file_type: py
+  description: This file contains a class for loading and processing stage data from
+    a YAML file to infer stages based on symptoms and time since injury.
+  tags:
+  - model
+  - config
+  - flow
+  last_updated: '2025-05-09'
+  pod_owner: ResearchPod
