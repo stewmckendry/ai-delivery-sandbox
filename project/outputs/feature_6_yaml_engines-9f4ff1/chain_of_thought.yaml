@@ -74,3 +74,12 @@
   - unit-tests
   - triage_engine
   - test_coverage
+- message: Aligned stage_engine.py with actual stages.yaml schema by switching to
+    `duration_min_hours` and `symptom_severity_max`. Added static cutoff mapping in
+    engine. Also committed new schema addendum file documenting stage_criteria_logic
+    and how it's used to match recovery stage logic.
+  timestamp: '2025-05-09T17:34:35.012642'
+  tags:
+  - stage_engine
+  - schema_alignment
+  - schema_docs
