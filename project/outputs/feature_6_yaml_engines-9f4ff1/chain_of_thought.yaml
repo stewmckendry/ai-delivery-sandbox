@@ -83,3 +83,14 @@
   - stage_engine
   - schema_alignment
   - schema_docs
+- message: "Committed stage schema models based on stages.yaml structure. These include\
+    \ both the input logic (StageCriteriaLogic) and output summary (StageResult).\
+    \ Added detailed comments per attribute to improve readability and tool integration.\
+    \ We now need to address how symptom severity scoring will be implemented to support\
+    \ 'symptom_severity_max' logic \u2014 this may be handled in Feature Area 2 where\
+    \ symptoms are logged and scored."
+  timestamp: '2025-05-09T17:38:48.833368'
+  tags:
+  - stage_schema
+  - severity_logic
+  - symptoms_dependency
