@@ -769,3 +769,4 @@ tasks:
     - app/engines/triage_engine.py
     - project/delivery/features/feature_6_yaml_engines/task_list.md
     - project/delivery/features/feature_6_yaml_engines/schema_notes.md
+    - app/models/triage.py
