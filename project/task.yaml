@@ -729,3 +729,12 @@ tasks:
     prompt: framework/task_templates/discovery/spike_powerbi_dashboard/prompt_template.md
     outputs:
     - project/spikes/powerbi_dashboard_spike.md
+  spike_yaml_inference_gpt-6a817a:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-09T01:52:08.923946'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/discovery/spike_yaml_inference_gpt/task.yaml
+    prompt: framework/task_templates/discovery/spike_yaml_inference_gpt/prompt_template.md
