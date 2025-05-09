@@ -10,7 +10,7 @@ This tracks all major outputs and steps for delivering the YAML Engines feature.
 | schema_validator.py | CI tool to validate YAMLs | ⬜ Not Started
 | Triage schemas | `app/models/triage.py` | ✅ Done
 | Stage schemas | `app/models/stage.py` | ⬜ Not Started
-| Tracker state schema | `app/models/tracker.py` | ⬜ Not Started
+| Tracker state schema | `app/models/tracker.py` | ✅ Done
 | YAML explainer doc | Descriptions and usage of YAML-based flows | ✅ Done
 | Unit tests | Test `triage_engine.py` logic | ⬜ Not Started
 | CI validator script | Lint YAML and enforce changelog entries | ⬜ Not Started
