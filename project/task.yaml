@@ -800,3 +800,4 @@ tasks:
     - project/delivery/feature_scope_tracker.md
     - project/delivery/features/feature_2_symptom_logging_stage_inference/test_symptom_stage_tools.py
     - app/tools/validator.py
+    - project/delivery/features/feature_2_symptom_logging_stage_inference/validator_notes.md
