@@ -727,3 +727,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/discovery/spike_powerbi_dashboard/task.yaml
     prompt: framework/task_templates/discovery/spike_powerbi_dashboard/prompt_template.md
+    outputs:
+    - project/spikes/powerbi_dashboard_spike.md
