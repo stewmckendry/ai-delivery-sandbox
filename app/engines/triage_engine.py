@@ -1,19 +1,24 @@
-from pathlib import Path
-from typing import List, Dict
+import requests
 import yaml
+from typing import List, Dict
 from pydantic import ValidationError
-from app.models.triage import TriageMap, TriageQuestion
+from app.models.triage import TriageMap
 
-TRIAGE_YAML_PATH = Path("reference/triage_map.yaml")
+# Constants for remote YAML access
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox"
+BRANCH = "sandbox-silver-tiger"
+YAML_PATH = "reference/triage_map.yaml"
 
 class TriageEngine:
-    def __init__(self, path: Path = TRIAGE_YAML_PATH):
-        self.path = path
+    def __init__(self, url: str = None):
+        self.url = url or f"{GITHUB_RAW_BASE}/{BRANCH}/{YAML_PATH}"
         self.data = self._load()
 
     def _load(self) -> TriageMap:
-        with open(self.path, 'r') as f:
-            raw = yaml.safe_load(f)
+        response = requests.get(self.url)
+        if response.status_code != 200:
+            raise RuntimeError(f"Failed to load triage YAML: {response.status_code}")
+        raw = yaml.safe_load(response.text)
         try:
             return TriageMap(**raw)
         except ValidationError as e:
