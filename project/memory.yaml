@@ -684,3 +684,14 @@
   - schema
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/outputs/feature_2_symptom_logging_stage_inference-8b8caa/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/feature_2_symptom_logging_stage_inference-8b8caa/chain_of_thought.yaml
+  file_type: yaml
+  description: Design spec for Feature 2, detailing tools, schemas, and flow context
+    for symptom logging and stage inference.
+  tags:
+  - design
+  - symptom_logging
+  - stage_inference
+  last_updated: '2025-05-09'
+  pod_owner: ResearchPod
