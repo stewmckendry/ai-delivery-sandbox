@@ -1,0 +1,9 @@
+- message: Committed design spec for Feature 2. Defined tools `symptom_logger` and
+    `get_stage_guidance`, their schemas, flow context, and DB schema references. This
+    connects symptoms.yaml inputs to tracker state and recovery stage output via the
+    existing stage_engine. Ready to build schema models next.
+  timestamp: '2025-05-09T18:08:23.904099'
+  tags:
+  - design
+  - symptom_logging
+  - stage_inference
