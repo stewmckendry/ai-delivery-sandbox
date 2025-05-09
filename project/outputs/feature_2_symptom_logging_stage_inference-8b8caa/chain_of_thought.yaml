@@ -26,3 +26,12 @@
   - tool_contracts
   - gpt_alignment
   - stage_guidance
+- message: Captured that symptom scoring (e.g., weighted, categorized) is currently
+    a sum of symptom values but should be enhanced in Feature Area 5. Updated task
+    list to mark this for future work. Preparing to implement extended TrackerState
+    schema next.
+  timestamp: '2025-05-09T19:11:35.738609'
+  tags:
+  - symptom_scoring
+  - tracker_schema
+  - future_enhancement
