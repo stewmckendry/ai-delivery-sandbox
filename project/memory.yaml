@@ -493,3 +493,15 @@
   - feature
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/outputs/feature_6_yaml_engines-9f4ff1/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/feature_6_yaml_engines-9f4ff1/prompt_used.txt
+  file_type: txt
+  description: Instructions for designing, implementing, deploying, and testing YAML
+    engines with support for changelog tracking and validation.
+  tags:
+  - YAML
+  - engines
+  - deployment
+  - validation
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
