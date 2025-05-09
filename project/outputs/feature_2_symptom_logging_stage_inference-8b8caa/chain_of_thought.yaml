@@ -17,3 +17,12 @@
   - metadata
   - validation
   - symptom_yaml
+- message: Added get_stage_guidance.py which infers recovery stage using stage_engine.
+    Also committed tool_contracts_notes.md to document how we communicate input format
+    to Custom GPTs to ensure schema alignment. This guards against bad payloads and
+    enables smoother tool calls.
+  timestamp: '2025-05-09T18:29:33.450503'
+  tags:
+  - tool_contracts
+  - gpt_alignment
+  - stage_guidance
