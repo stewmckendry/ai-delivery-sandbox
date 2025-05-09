@@ -14,8 +14,8 @@ This tracks all major outputs and steps for delivering this feature area.
 | models/tracker.py | Extend with symptom log fields | ✅ Done
 | DB schema | Design tables for symptom_log and metadata | ✅ Done
 | Unit tests | Validate tools and models | ✅ Done
-| validator updates | Add YAML validation for symptoms_* (optional) | ⬜ Not Started
-| DB write integration | Add real persistence layer to symptom_logger | ⬜ Not Started
+| validator updates | Add YAML validation for symptoms_* (optional) | ✅ Done
+| DB write integration | Add real persistence layer using Azure SQL + SQLAlchemy | ✅ Done
 | Tool contracts notes | Document GPT schema guidance | ✅ Done
 | Symptom scoring enhancement | Add weighted scoring / categorization → Feature 5 | ⬜ Not Started
 | Scope tracker | Update master scope log with FA2 content | ✅ Done
