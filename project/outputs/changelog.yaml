@@ -45,3 +45,9 @@
   committed_by: GPTPod
   message: Update db_schema_notes to reflect change from SQLite to Azure SQL with
     SQLAlchemy for cloud-hosted persistence
+- timestamp: '2025-05-09T20:13:15.076198'
+  path: project/delivery/feature_scope_tracker.md
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Update feature scope tracker to reflect switch from SQLite to Azure SQL
+    (SQLAlchemy) in Feature Area 2
