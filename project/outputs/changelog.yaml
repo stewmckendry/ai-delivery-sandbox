@@ -51,3 +51,13 @@
   committed_by: GPTPod
   message: Update feature scope tracker to reflect switch from SQLite to Azure SQL
     (SQLAlchemy) in Feature Area 2
+- timestamp: '2025-05-09T20:19:01.531491'
+  path: app/db/db_models.py
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Add SQLAlchemy models for Azure SQL integration and local SQLite fallback
+- timestamp: '2025-05-09T20:19:01.531491'
+  path: project/memory.yaml
+  task_id: feature_2_symptom_logging_stage_inference-8b8caa
+  committed_by: GPTPod
+  message: Memory update related to app/db/db_models.py
