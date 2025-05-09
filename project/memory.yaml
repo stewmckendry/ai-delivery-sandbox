@@ -800,3 +800,14 @@
   - github
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/validator_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/validator_notes.md
+  file_type: md
+  description: Documentation for integrating a centralized YAML validator for symptom
+    IDs in the symptom logging stage.
+  tags:
+  - validation
+  - integration
+  - config
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
