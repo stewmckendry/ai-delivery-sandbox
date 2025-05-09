@@ -823,3 +823,15 @@
   - SQLAlchemy
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: app/db/db_writer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/db/db_writer.py
+  file_type: py
+  description: Script to log symptoms and update tracker metadata in an Azure SQL
+    database.
+  tags:
+  - database
+  - logging
+  - sqlalchemy
+  - azure
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
