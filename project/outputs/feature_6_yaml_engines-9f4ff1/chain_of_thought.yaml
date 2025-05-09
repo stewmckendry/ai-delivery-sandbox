@@ -11,3 +11,25 @@
   - initial-plan
   - engine-architecture
   - yaml-validation
+- message: 'Finalized the design spec after several key clarifications:
+
+    - Updated pydantic schemas based on real structure of triage_map.yaml and stages.yaml
+
+    - Clarified difference between get_triage_flow and get_triage_question, and when
+    assess_concussion is invoked
+
+    - Detailed user journey per engine, mapping upstream/downstream usage
+
+    - Confirmed engines are read-only logic, but their outputs are logged by tools
+    to SQLite/Azure SQL per system architecture
+
+    - Schema validator will not relocate YAMLs but validate in-place using models
+    in app/models/
+
+
+    Next step is to begin building triage_engine.py using these inputs.'
+  timestamp: '2025-05-09T14:03:17.818027'
+  tags:
+  - design-complete
+  - schema-alignment
+  - user-flow-clarity
