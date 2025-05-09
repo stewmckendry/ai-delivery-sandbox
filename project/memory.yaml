@@ -442,3 +442,16 @@
   - user experience
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: project/outputs/spike_session_memory_linking-7d7c03/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/spike_session_memory_linking-7d7c03/chain_of_thought.yaml
+  file_type: yaml
+  description: Summary of discovery spikes related to Epic FHIR, Power BI Dashboard,
+    YAML Inference, and Session Memory, outlining de-risked flows and next steps for
+    implementation.
+  tags:
+  - discovery
+  - spike
+  - flow
+  - implementation
+  last_updated: '2025-05-09'
+  pod_owner: ResearchPod
