@@ -802,3 +802,4 @@ tasks:
     - app/tools/validator.py
     - project/delivery/features/feature_2_symptom_logging_stage_inference/validator_notes.md
     - app/db/db_models.py
+    - app/db/db_writer.py
