@@ -788,3 +788,4 @@ tasks:
     prompt: framework/task_templates/build/feature_2_symptom_logging_stage_inference/prompt_template.md
     outputs:
     - project/delivery/features/feature_2_symptom_logging_stage_inference/plan.md
+    - project/delivery/features/feature_2_symptom_logging_stage_inference/task_list.md
