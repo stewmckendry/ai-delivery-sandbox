@@ -729,3 +729,15 @@
   - enrichment
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: app/tools/symptom_logger.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/symptom_logger.py
+  file_type: py
+  description: FastAPI router for logging symptoms, validating symptom IDs against
+    known references, and updating tracker state.
+  tags:
+  - api
+  - validation
+  - health
+  - fastapi
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
