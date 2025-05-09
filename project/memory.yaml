@@ -714,3 +714,15 @@
   - validation
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/schema_notes.md
+  file_type: md
+  description: Design addendum detailing the use of symptom metadata for validation
+    and enrichment in Feature 2's symptom logging stage.
+  tags:
+  - schema
+  - validation
+  - metadata
+  - enrichment
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
