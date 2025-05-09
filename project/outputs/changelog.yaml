@@ -81,3 +81,9 @@
   committed_by: GPTPod
   message: Mark stage schema complete and note follow-up for symptom scoring in Feature
     Area 2
+- timestamp: '2025-05-09T17:43:44.225951'
+  path: app/engines/schema_validator.py
+  task_id: feature_6_yaml_engines-9f4ff1
+  committed_by: GPTPod
+  message: Add schema_validator.py CLI tool to validate triage and stage YAMLs using
+    pydantic models
