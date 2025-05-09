@@ -65,3 +65,12 @@
   - tracker_schema
   - triage_alignment
   - input_contract
+- message: Added pytest-based unit tests for triage_engine covering loading, next-question
+    selection, and red flag detection. This ensures schema validity and logic correctness
+    for triage flows. Tests will be useful both during local development and when
+    integrated into CI validation runs.
+  timestamp: '2025-05-09T17:25:00.870670'
+  tags:
+  - unit-tests
+  - triage_engine
+  - test_coverage
