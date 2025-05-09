@@ -659,3 +659,16 @@
   - process
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/plan.md
+  file_type: md
+  description: Plan for implementing symptom logging and stage inference features,
+    including database schema design, integration with existing logic, and preparation
+    for data visualization.
+  tags:
+  - plan
+  - design
+  - model
+  - integration
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
