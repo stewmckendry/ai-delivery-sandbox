@@ -22,7 +22,7 @@ Update after each feature delivery or when scope changes during build.
 ---
 
 ### 📅 Feature Area 2 – Symptom Logging + Stage Inference
-**Status**: In Progress
+**Status**: Done
 
 ✅ Core Scope
 - Log symptom check-ins
@@ -121,6 +121,8 @@ Update after each feature delivery or when scope changes during build.
 - Token limits, expiry, rate limiting
 - Incident context fields (e.g., activity, reporter) (from FA2)
 - Multi-language YAML support (from FA6)
+- New tool: `log_incident_detail` (explicit reporting of incident before symptoms)
+- Support for user journey entry points 1–3
 
 📤 Deferred
 - Role-based RBAC + data walls → FA8
