@@ -481,3 +481,15 @@
   - YAML
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/delivery/delivery_guidelines.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/delivery_guidelines.md
+  file_type: md
+  description: Guidelines for delivering features of the Concussion Recovery GPT App,
+    detailing task lifecycle, outputs per phase, and feature-specific delivery plans.
+  tags:
+  - delivery
+  - guidelines
+  - lifecycle
+  - feature
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
