@@ -37,6 +37,13 @@ Stores persistent context for each user.
 
 ---
 
+### 💡 Builder Notes
+- Initial implementation may use SQLite (or mock JSON)
+- Use ORM or Pydantic-sql for alignment
+- Align with `TrackerState`, `SymptomCheckIn` schemas
+
+---
+
 ### ☁️ Azure SQL Integration
 These tables will be exported and used in Azure-based dashboards and reports in Feature Area 5:
 
@@ -47,10 +54,19 @@ These tables will be exported and used in Azure-based dashboards and reports in 
 
 ---
 
-### 🧱 Builder Notes
-- Initial implementation may use SQLite (or mock JSON)
-- Use ORM or Pydantic-sql for alignment
-- Align with `TrackerState`, `SymptomCheckIn` schemas
+### 📈 Future Enhancements
+We plan to extend these tables with contextual incident metadata for richer system-level insights. Example fields:
+
+- `sport_or_activity`: e.g. soccer, football, cycling
+- `injury_context`: e.g. game, practice, fall, unknown
+- `reporter_role`: e.g. self, coach, parent, clinician
+
+This will support:
+- Epidemiology studies
+- Risk profiling by activity
+- Policy feedback and trend analysis
+
+Implemented in: Feature Area 7 or 8 (incident detail capture + analysis)
 
 ---
 
