@@ -56,3 +56,12 @@
   - triage_schema
   - engine_alignment
   - task_tracking
+- message: 'Added TrackerState schema in app/models/tracker.py with embedded clarification:
+    question IDs in `answers` must align with those defined in triage_map.yaml. This
+    reinforces contract between input state and YAML-defined logic and ensures triage_engine
+    can traverse or evaluate correctly.'
+  timestamp: '2025-05-09T17:20:18.008764'
+  tags:
+  - tracker_schema
+  - triage_alignment
+  - input_contract
