@@ -37,20 +37,13 @@ Stores persistent context for each user.
 
 ---
 
-### 💡 Builder Notes
-- Initial implementation may use SQLite (or mock JSON)
-- Use ORM or Pydantic-sql for alignment
-- Align with `TrackerState`, `SymptomCheckIn` schemas
-
----
-
 ### ☁️ Azure SQL Integration
-These tables will be exported and used in Azure-based dashboards and reports in Feature Area 5:
+These tables will be implemented directly in Azure SQL instead of SQLite.
 
-- `symptom_log` → time-series trends, red flag frequency, symptom evolution
-- `tracker_metadata` → recovery tracking, funnel metrics, return-to-play analytics
-- Export via batch script or pipeline (CSV/JSON)
-- Aligned with Power BI spike format
+- All writes will use SQLAlchemy engine
+- No local persistence layer
+- Schema matches export format expected by Power BI and analytics
+- This change improves durability and aligns with cloud-hosted environment from start
 
 ---
 
