@@ -765,3 +765,15 @@
   - gpt
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/db_schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/db_schema_notes.md
+  file_type: md
+  description: Documentation of the database schema for symptom logging and tracker
+    metadata, including table structures and integration notes for Azure SQL.
+  tags:
+  - db_schema
+  - logging
+  - integration
+  - azure
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
