@@ -6,7 +6,7 @@ This tracks all major outputs and steps for delivering the YAML Engines feature.
 |------|-------------|--------|
 | Design Spec | Document requirements, flows, schemas | ✅ Done
 | triage_engine.py | Engine for loading and querying triage map | ✅ Done
-| stage_engine.py | Engine for stage inference using symptoms | ⬜ Not Started
+| stage_engine.py | Engine for stage inference using symptoms | ✅ Done
 | schema_validator.py | CI tool to validate YAMLs | ⬜ Not Started
 | Triage schemas | `app/models/triage.py` | ✅ Done
 | Stage schemas | `app/models/stage.py` | ⬜ Not Started
