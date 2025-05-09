@@ -718,3 +718,12 @@ tasks:
     prompt: framework/task_templates/discovery/ways_of_working/define_ways_of_working/prompt_template.md
     status: completed
     updated_at: '2025-05-08T14:26:12.871963'
+  spike_powerbi_dashboard-1a0d77:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-09T01:44:58.030583'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/discovery/spike_powerbi_dashboard/task.yaml
+    prompt: framework/task_templates/discovery/spike_powerbi_dashboard/prompt_template.md
