@@ -417,3 +417,15 @@
   - PowerBI
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/spikes/yaml_inference_gpt_spike.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/spikes/yaml_inference_gpt_spike.md
+  file_type: md
+  description: Evaluation of methods for integrating structured medical YAML logic
+    with GPT for symptom triage and recovery advice in a concussion recovery app.
+  tags:
+  - yaml
+  - gpt
+  - inference
+  - medical
+  last_updated: '2025-05-09'
+  pod_owner: ResearchPod
