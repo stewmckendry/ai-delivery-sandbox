@@ -646,3 +646,16 @@
   - flow
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: project/delivery/build_delivery_flow_addendum.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/build_delivery_flow_addendum.md
+  file_type: md
+  description: Document outlining the standardized process for feature delivery during
+    the Build Phase, including planning, design, building, validation, and communication
+    steps.
+  tags:
+  - delivery
+  - flow
+  - feature
+  - process
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
