@@ -1,0 +1,13 @@
+- message: "Initiated Feature Area 6 task. YAMLs will be loaded from Git repo directly\
+    \ from reference folder. Will use Pydantic for schema enforcement.\n\nFor validation:\n\
+    - At runtime, each tool call will validate YAML structure and field presence (for\
+    \ resilience).\n- At deploy time (CI), we\u2019ll run a validator script to check\
+    \ full schema conformance and changelog presence.\n\nPlanning to separate logic\
+    \ by engine:\n- triage_engine.py \u2192 triage flow + risk flags\n- stage_engine.py\
+    \ \u2192 stage guidance\n\nThese engines will be invoked by tools like get_triage_flow\
+    \ and get_stage_guidance."
+  timestamp: '2025-05-09T12:44:24.787023'
+  tags:
+  - initial-plan
+  - engine-architecture
+  - yaml-validation
