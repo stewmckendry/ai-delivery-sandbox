@@ -566,3 +566,16 @@
   - engine
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_6_yaml_engines/schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_6_yaml_engines/schema_notes.md
+  file_type: md
+  description: Documentation on YAML-based schema concepts for triage and stage engines,
+    including structure and usage of various YAML files and their integration with
+    models and engines.
+  tags:
+  - schema
+  - YAML
+  - engine
+  - model
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
