@@ -94,3 +94,11 @@
   - stage_schema
   - severity_logic
   - symptoms_dependency
+- message: Finalized schema_validator.py with CLI support to validate triage and stage
+    YAML files using pydantic models. Supports both --all and --schema/file modes.
+    This tool can be wired into CI or used manually to prevent schema drift.
+  timestamp: '2025-05-09T17:44:03.533210'
+  tags:
+  - schema_validator
+  - cli_tool
+  - validation
