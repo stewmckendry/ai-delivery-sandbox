@@ -1,87 +1,173 @@
-## 📋 Draft Backlog – Concussion Recovery GPT App (Build Phase)
+## 📋 Delivery Backlog – Concussion Recovery GPT App (PoC)
 
 ---
 
-### 🧠 GPT Assistant & Tools
+### 🧠 FEATURE AREA 1 – Triage + Concussion Assessment
 
-#### 🔹 Structured Triage & Assessment
-- [ ] Implement `get_triage_flow` to return full YAML triage map
-- [ ] Implement `get_triage_question` for sequential logic
-- [ ] Implement `flag_risk` for red flag detection
-- [ ] Implement `assess_concussion` to summarize input into structured findings
-- [ ] Define custom GPT instructions and memory behavior for triage flow
+#### 🎯 Goals
+- Enable guided triage with YAML logic and red flag detection
+- Assess concussion likelihood based on user input
+- Initiate recovery tracker if needed
 
-#### 🔹 Tracker Management
-- [ ] Implement `create_tracker` and `update_symptoms` to log user data
-- [ ] Implement `get_tracker_status` and `get_tracker_by_code`
-- [ ] Add `resume_tracker(tracker_id)` logic and magic link format
+#### 🔨 Includes
+- `get_triage_flow`, `get_triage_question`
+- `flag_risk`, `assess_concussion`
+- `create_tracker`
+- GPT instructions for triage and guidance delivery
+- Prompt schema design and fallback behavior
 
-#### 🔹 Recovery Stage & Return-to-Play
-- [ ] Implement `get_stage_guidance` using `stages.yaml` + symptom/activity inputs
-
-#### 🔹 Clinician Export
-- [ ] Implement `export_summary` with support for both PDF and FHIR bundles
-- [ ] Connect export to Epic FHIR Observation API
+#### 🔍 Mapped Backlog Items
+- Structured Triage & Assessment
+- Tracker Management (part)
+- YAML Engines (triage)
 
 ---
 
-### ⚙️ FastAPI Backend & Infra
+### 📅 FEATURE AREA 2 – Symptom Logging + Stage Inference
 
-#### 🔹 YAML Engines
-- [ ] Build `triage_engine.py` to parse triage_map.yaml
-- [ ] Build `stage_engine.py` to parse stages.yaml and compute stage logic
-- [ ] Add YAML validation logic and versioning metadata
+#### 🎯 Goals
+- Enable daily check-ins with symptom tracking
+- Infer recovery stage and give return-to-play guidance
 
-#### 🔹 DB & Persistence
-- [ ] Design tracker DB and symptom DB schemas
-- [ ] Implement DB access layer with SQLite (local) and Azure SQL (prod)
+#### 🔨 Includes
+- `update_symptoms`, `get_tracker_status`, `get_stage_guidance`
+- `stage_engine.py`, symptom DB
+- Resume tracker logic + magic link
+- GPT prompt tuning for recovery updates
 
-#### 🔹 Wearables Integration
-- [ ] Stub `get_wearable_data` with HealthKit sandbox pull or mock generator
-
-#### 🔹 Azure Integration
-- [ ] Set up batch export from FastAPI to Azure SQL for Power BI
-- [ ] Define export schema (`concussion_dashboard_export`)
-- [ ] Connect Power BI and configure slicers, filters, visuals
-
----
-
-### 📊 Dashboard & Reporting
-
-- [ ] Implement staging job to extract recovery logs to Azure
-- [ ] Build Power BI dashboard (filters: sport, age, stage, gender, risk)
-- [ ] Test time-based trend graphs and compliance metrics
+#### 🔍 Mapped Backlog Items
+- Tracker Management (rest)
+- Recovery Stage Logic
+- YAML Engines (stage)
+- Session Memory / Resume UX
 
 ---
 
-### 🪸 Medical Knowledge Graph
+### 📦 FEATURE AREA 3 – Wearables Integration + Guidance
 
-- [ ] Finalize and freeze: `triage_map.yaml`, `stages.yaml`, all `symptoms_*.yaml`
-- [ ] Add version control and changelog to YAMLs
-- [ ] Ensure compatibility with parsing engines
+#### 🎯 Goals
+- Incorporate mock wearable data into stage logic and recovery decisions
 
----
+#### 🔨 Includes
+- `get_wearable_data`
+- FastAPI logic for mock data generation
 
-### 🌐 EHR Integration (Epic FHIR)
-
-- [ ] Finalize FHIR app approval process in Epic Sandbox
-- [ ] Secure Client ID/Secret and test token exchange
-- [ ] Extend `export_summary` to support Observation POST
+#### 🔍 Mapped Backlog Items
+- Wearables Integration (PoC only)
 
 ---
 
-### 📱 UX Enhancements & Exploratory Features
+### 🏥 FEATURE AREA 4 – Clinician Export (PDF + FHIR)
 
-- [ ] Magic link generator + UX for user handoff
-- [ ] Enable GPT to support multiple user roles (coach, parent, clinician)
-- [ ] TeamSnap integration (stub or research only)
-- [ ] Mobile UI shell for embedded GPT
+#### 🎯 Goals
+- Allow users to export structured summaries of recovery
+- Send to Epic FHIR sandbox or as PDF
+
+#### 🔨 Includes
+- `export_summary` tool (PDF + FHIR)
+- `epic_writer.py`, `epic_client.yaml`
+- FHIR write stub for future pull support
+
+#### 🔍 Mapped Backlog Items
+- Clinician Export
+- EHR Integration
 
 ---
 
-### 🔐 Non-Functional Requirements
+### 📊 FEATURE AREA 5 – Azure Dashboard + Data Export
 
-- [ ] Privacy & anonymization enforcement
-- [ ] Logging, monitoring, error handling in FastAPI
-- [ ] Testing framework setup (pytest, Postman)
-- [ ] OpenAPI schema validation and CI checks
+#### 🎯 Goals
+- Aggregate recovery logs for Power BI dashboards
+
+#### 🔨 Includes
+- Azure SQL staging schema (`concussion_dashboard_export`)
+- FastAPI export job
+- Power BI dashboard setup (filters, charts)
+
+#### 🔍 Mapped Backlog Items
+- Azure Integration
+- Dashboard & Reporting
+
+---
+
+### ⚙️ FEATURE AREA 6 – YAML Engines + Tool Contracts
+
+#### 🎯 Goals
+- Ensure consistent YAML logic parsing and schema control
+- Serve as foundation for Feature Areas 1 & 2
+
+#### 🔨 Includes
+- `triage_engine.py`, `stage_engine.py`
+- YAML schema validation and changelogs
+- YAML versioning and changelog enforcement
+- OpenAPI tool specs for all tools
+
+#### 🔍 Mapped Backlog Items
+- YAML Engines
+- Medical Knowledge Graph
+- Non-Functional: CI, validation
+
+---
+
+### 🧪 FEATURE AREA 7 – Testing, Security, and Infra Readiness
+
+#### 🎯 Goals
+- Ensure backend quality, observability, test coverage, and basic security
+
+#### 🔨 Includes
+- Pytest suite for FastAPI tools
+- Postman contract tests
+- Logging, monitoring, error handling
+- GPT-level observability (tool usage, fallback, red flag rates)
+- Anonymization, HTTPS, no PHI in logs
+- Magic link expiry, rate limiting, token security
+
+#### 🔍 Mapped Backlog Items
+- Testing Framework
+- Logging/Monitoring
+- Security & Privacy
+- OpenAPI validation
+
+---
+
+### 💡 FEATURE AREA 8 – UX Enhancements & Exploratory Work
+
+#### 🎯 Goals
+- Improve PoC polish and explore future UX capabilities
+
+#### 🔨 Includes
+- Magic link generation and guidance for resuming sessions
+- GPT role-based flows for parent, coach, clinician
+- TeamSnap integration (stub or research only)
+- FHIR pull/read stub (out of PoC scope)
+
+#### 🔍 Mapped Backlog Items
+- UX Enhancements
+- Exploratory Features
+
+> Note: Mobile UI shell replaced by Custom GPT front-end. No custom UI needed in PoC.
+
+---
+
+### 🧭 FEATURE AREA 9 – Conversational Agent as App Layer
+
+> This feature generalizes the approach used in Feature Area 1, showing how guided triage and structured workflows can evolve into a broader architecture where the agent fully replaces app logic.
+
+#### 🎯 Goals
+- Demonstrate that a conversational agent can replace traditional forms and static apps
+- Use structured, tool-driven workflows coordinated entirely by the agent
+- Show domain transferability of the pattern
+
+#### 🔨 Includes
+- Design an additional agent-led flow (e.g., school nurse intake, post-game wellness check)
+- Ensure the agent:
+  - Collects data conversationally
+  - Calls YAML tools and DB functions
+  - Outputs structured results or exports
+- Instructions and tooling that generalize to other domains
+
+#### 🔍 Mapped Backlog Gaps Filled
+- Prompt orchestration and workflow chaining
+- Agent-as-UI pattern
+- Multi-tool coordination by LLM
+- Pattern portability across verticals
