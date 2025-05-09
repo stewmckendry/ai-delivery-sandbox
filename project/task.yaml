@@ -763,3 +763,5 @@ tasks:
     instance_of: framework/task_templates/build/feature_6_yaml_engines/task.yaml
     prompt: framework/task_templates/build/feature_6_yaml_engines/prompt_template.md
     prompt_used: project/outputs/feature_6_yaml_engines-9f4ff1/prompt_used.txt
+    outputs:
+    - project/delivery/features/feature_6_yaml_engines/plan.md
