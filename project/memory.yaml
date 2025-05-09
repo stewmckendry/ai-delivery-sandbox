@@ -429,3 +429,16 @@
   - medical
   last_updated: '2025-05-09'
   pod_owner: ResearchPod
+- path: project/spikes/session_memory_spike.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/spikes/session_memory_spike.md
+  file_type: md
+  description: Exploration of methods to persist user session memory across multiple
+    GPT interactions for a concussion recovery app, including options for memory key
+    management and backend integration.
+  tags:
+  - session memory
+  - backend
+  - flow
+  - user experience
+  last_updated: '2025-05-09'
+  pod_owner: ResearchPod
