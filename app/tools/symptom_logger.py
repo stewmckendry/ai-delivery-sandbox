@@ -5,6 +5,7 @@ from typing import Dict
 from fastapi import APIRouter
 from app.models.symptoms import SymptomCheckIn, SymptomLogResult
 from app.models.tracker import TrackerState
+from app.db.db_writer import log_symptoms_to_db  # DB write logic
 
 router = APIRouter()
 
@@ -37,7 +38,15 @@ def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
     # Construct tracker state
     state = TrackerState(answers=payload.symptoms)
 
-    # TODO: Replace stub with actual DB implementation in future task
+    # Write to database
+    log_symptoms_to_db(
+        user_id=payload.user_id,
+        injury_date=payload.injury_date,
+        checkin_time=payload.checkin_time,
+        symptoms=payload.symptoms,
+        stage=None,
+        source="gpt"
+    )
 
     return SymptomLogResult(
         tracker_state=state,
