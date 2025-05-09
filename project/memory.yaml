@@ -405,3 +405,15 @@
   - backend
   last_updated: '2025-05-08'
   pod_owner: ResearchPod
+- path: project/spikes/powerbi_dashboard_spike.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/spikes/powerbi_dashboard_spike.md
+  file_type: md
+  description: Document outlining the design and structure of a Power BI dashboard
+    for monitoring concussion recovery, including proposed filters and key metrics.
+  tags:
+  - dashboard
+  - design
+  - metrics
+  - PowerBI
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
