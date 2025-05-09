@@ -53,3 +53,8 @@
   - scope_tracking
   - multi_feature
   - completion_log
+- message: Integrated real Azure SQL write into `symptom_logger` using `log_symptoms_to_db`.
+    Replaced placeholder logic with full SQLAlchemy model writes. This aligns tool
+    with production-ready persistence and eliminates dependency on local SQLite. Updated
+    environment config for cloud hosting readiness.
+  timestamp: '2025-05-09T20:27:29.423773'
