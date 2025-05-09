@@ -33,6 +33,7 @@ Update after each feature delivery or when scope changes during build.
 - YAML validation of symptoms
 - DB schema notes for persistence
 - Tool contracts for Custom GPT
+- Switched DB write integration from SQLite to direct Azure SQL (SQLAlchemy)
 
 📤 Deferred
 - Symptom score rollups → FA5
