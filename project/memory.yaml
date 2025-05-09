@@ -789,3 +789,14 @@
   - tracker
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: app/tools/validator.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/validator.py
+  file_type: py
+  description: Script to validate symptom IDs against known references from YAML files
+    hosted on GitHub.
+  tags:
+  - validation
+  - yaml
+  - github
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
