@@ -541,3 +541,16 @@
   - schema
   last_updated: '2025-05-09'
   pod_owner: DevPod
+- path: app/engines/triage_engine.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/engines/triage_engine.py
+  file_type: py
+  description: Implementation of a triage engine that processes a YAML-based triage
+    map to guide users through a series of questions and evaluate flags based on their
+    responses.
+  tags:
+  - triage
+  - flow
+  - model
+  - yaml
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
