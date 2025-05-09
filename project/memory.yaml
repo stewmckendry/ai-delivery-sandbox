@@ -811,3 +811,15 @@
   - config
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: app/db/db_models.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/db/db_models.py
+  file_type: py
+  description: Contains ORM models and database setup for symptom logging and user
+    metadata tracking.
+  tags:
+  - database
+  - model
+  - ORM
+  - SQLAlchemy
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
