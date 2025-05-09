@@ -672,3 +672,15 @@
   - integration
   last_updated: '2025-05-09'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_2_symptom_logging_stage_inference/design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_2_symptom_logging_stage_inference/design.md
+  file_type: md
+  description: Design document for a feature that enables symptom logging and stage
+    inference using a conversational agent, detailing modules, schemas, and flow.
+  tags:
+  - design
+  - flow
+  - model
+  - schema
+  last_updated: '2025-05-09'
+  pod_owner: DeliveryPod
