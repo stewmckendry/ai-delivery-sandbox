@@ -44,3 +44,12 @@
   - tracker_state
   - schema
   - gpt_input_guidance
+- message: Committed master feature_scope_tracker.md to track scope, additions, and
+    deferrals across all 9 feature areas. This will serve as the persistent source
+    of truth for planning. Also updated Feature 2 task list with DB schema and scope
+    tracker completion.
+  timestamp: '2025-05-09T19:52:44.433172'
+  tags:
+  - scope_tracking
+  - multi_feature
+  - completion_log
