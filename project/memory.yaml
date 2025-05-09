@@ -703,3 +703,14 @@
   - auto
   last_updated: '2025-05-09'
   pod_owner: ''
+- path: app/models/symptoms.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/models/symptoms.py
+  file_type: py
+  description: Defines data models for logging symptom check-ins and stage inference
+    requests, using Pydantic for validation.
+  tags:
+  - model
+  - schema
+  - validation
+  last_updated: '2025-05-09'
+  pod_owner: DevPod
