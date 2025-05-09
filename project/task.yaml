@@ -749,3 +749,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/discovery/spike_session_memory_linking/task.yaml
     prompt: framework/task_templates/discovery/spike_session_memory_linking/prompt_template.md
+    outputs:
+    - project/spikes/session_memory_spike.md
