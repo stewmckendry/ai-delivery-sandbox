@@ -1,0 +1,22 @@
+- message: 'All discovery spikes completed:
+
+
+    1. **Epic FHIR**: Identified how to register apps and use Client ID for token
+    access, pending app approval flow from Epic Dev Portal.
+
+    2. **Power BI Dashboard**: Designed staging schema and filters for tracking incidents,
+    stages, and compliance. Azure SQL export is core.
+
+    3. **YAML Inference**: GPT should preload structured logic from YAML files and
+    reason conversationally through it using tools like `get_triage_flow`.
+
+    4. **Session Memory**: Recommends using tracker code and optional magic link.
+    GPT should store tracker ID in memory when available.
+
+
+    Collectively, these spikes de-risk critical flows: user continuity, system dashboarding,
+    clinical export, and AI reasoning logic. We''re now ready to transition into implementation.
+
+
+    Next: backlog grooming and task sequencing for build phase.'
+  timestamp: '2025-05-09T02:21:30.950504'
