@@ -12,9 +12,10 @@ This tracks all major outputs and steps for delivering this feature area.
 | get_stage_guidance.py | Tool to run stage_engine on current state | ✅ Done
 | models/symptoms.py | Define symptom scoring models (0–5) | ✅ Done
 | models/tracker.py | Extend with symptom log fields | ✅ Done
-| DB schema | Design tables for symptom_log and metadata | ⬜ Not Started
-| Unit tests | Validate tools and models | ⬜ Not Started
+| DB schema | Design tables for symptom_log and metadata | ✅ Done
+| Unit tests | Validate tools and models | ⬜ Next
 | validator updates | Add YAML validation for symptoms_* (optional) | ⬜ Not Started
 | DB write integration | Add real persistence layer to symptom_logger | ⬜ Not Started
 | Tool contracts notes | Document GPT schema guidance | ✅ Done
 | Symptom scoring enhancement | Add weighted scoring / categorization → Feature 5 | ⬜ Not Started
+| Scope tracker | Update master scope log with FA2 content | ✅ Done
