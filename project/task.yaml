@@ -751,3 +751,4 @@ tasks:
     prompt: framework/task_templates/discovery/spike_session_memory_linking/prompt_template.md
     outputs:
     - project/spikes/session_memory_spike.md
+    - project/delivery/build_phase_backlog.md
