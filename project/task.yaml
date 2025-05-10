@@ -815,3 +815,4 @@ tasks:
     prompt: framework/task_templates/build/project/delivery/features/feature_4_clinician_export/plan.md/prompt_template.md
     outputs:
     - project/delivery/features/feature_4_clinician_export/plan.md
+    - project/delivery/features/feature_4_clinician_export/task_list.md
