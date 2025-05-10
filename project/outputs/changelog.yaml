@@ -1,54 +1,5 @@
-- timestamp: '2025-05-10T01:37:50.677491'
+- timestamp: '2025-05-10T02:20:35.676215'
   path: project/task.yaml
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
-- timestamp: '2025-05-10T02:07:05.853456'
-  path: project/delivery/features/feature_4_clinician_export/design.md
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: 'Add design.md for Feature 4: maps tracker + symptoms to FHIR and PDF output
-    with file paths and logic flow'
-- timestamp: '2025-05-10T02:07:05.853456'
-  path: project/memory.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Memory update related to project/delivery/features/feature_4_clinician_export/design.md
-- timestamp: '2025-05-10T02:07:11.806568'
-  path: project/task.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
-- timestamp: '2025-05-10T02:09:26.802198'
-  path: project/delivery/features/feature_4_clinician_export/design.md
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: 'Add PDF template mock and full design mapping for Feature 4: export tool
-    output (FHIR + PDF)'
-- timestamp: '2025-05-10T02:14:37.867304'
-  path: app/engines/epic_writer.py
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Add epic_writer.py to generate minimal FHIR Bundle from tracker and symptom
-    log
-- timestamp: '2025-05-10T02:14:37.867304'
-  path: project/memory.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Memory update related to app/engines/epic_writer.py
-- timestamp: '2025-05-10T02:14:43.286276'
-  path: project/task.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
-- timestamp: '2025-05-10T02:20:30.431408'
-  path: app/engines/pdf_renderer.py
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Update pdf_renderer.py to return temp file path for upload; fetch template
-    from GitHub
-- timestamp: '2025-05-10T02:20:30.431408'
-  path: project/memory.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Memory update related to app/engines/pdf_renderer.py
