@@ -24,3 +24,13 @@
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
+- timestamp: '2025-05-10T01:29:36.681927'
+  path: project/delivery/features/feature_4_clinician_export/task_list.md
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: 'Add task_list.md for Feature 4: Clinician Export (PDF + FHIR)'
+- timestamp: '2025-05-10T01:29:36.681927'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/features/feature_4_clinician_export/task_list.md
