@@ -1003,3 +1003,14 @@
   - validation
   last_updated: '2025-05-10'
   pod_owner: QAPod
+- path: test/test_pdf_renderer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/test/test_pdf_renderer.py
+  file_type: py
+  description: Test script for verifying the PDF rendering functionality and file
+    creation.
+  tags:
+  - test
+  - pdf
+  - rendering
+  last_updated: '2025-05-10'
+  pod_owner: QAPod
