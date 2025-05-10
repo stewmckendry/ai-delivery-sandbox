@@ -992,3 +992,14 @@
   - validation
   last_updated: '2025-05-10'
   pod_owner: QAPod
+- path: test/test_fhir_schema.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/test/test_fhir_schema.py
+  file_type: py
+  description: Test script to verify the structure and content of FHIR bundles generated
+    by the epic_writer engine.
+  tags:
+  - test
+  - fhir
+  - validation
+  last_updated: '2025-05-10'
+  pod_owner: QAPod
