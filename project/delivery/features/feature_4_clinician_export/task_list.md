@@ -19,10 +19,10 @@
 - [x] Stub `upload_to_storage()` for simulated upload
 
 ### 🧪 Test
-- [ ] Unit test `epic_writer` with sample logs
-- [ ] Validate JSON schema against FHIR
-- [ ] Test PDF output layout + edge cases
-- [ ] Create integration test `test_export_summary.py`
+- [x] Unit test `epic_writer` with sample logs (`test_fhir_schema.py`)
+- [x] Validate FHIR JSON bundle fields
+- [x] Test PDF output rendering and file check (`test_pdf_renderer.py`)
+- [x] Integration test `test_export_summary.py` for tool output
 
 ### ✅ Wrap
 - [ ] Confirm outputs against `delivery_guidelines.md`
@@ -32,4 +32,4 @@
 
 ---
 
-Next up: test and validation coverage
+Next up: delivery audit and trace log
