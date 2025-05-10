@@ -25,3 +25,14 @@
   committed_by: GPTPod
   message: 'Add PDF template mock and full design mapping for Feature 4: export tool
     output (FHIR + PDF)'
+- timestamp: '2025-05-10T02:14:37.867304'
+  path: app/engines/epic_writer.py
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Add epic_writer.py to generate minimal FHIR Bundle from tracker and symptom
+    log
+- timestamp: '2025-05-10T02:14:37.867304'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Memory update related to app/engines/epic_writer.py
