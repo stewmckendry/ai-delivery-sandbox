@@ -56,10 +56,10 @@ Enable users to export their recovery data for clinical use, in both:
 - [x] Draft and commit `plan.md` and `task_list.md`
 
 #### 📐 Design
-- [ ] Define PDF layout and example content
-- [ ] Draft FHIR JSON structure (Condition, Observation, CarePlan)
-- [ ] Document schema in `schema_notes.md`
-- [ ] Capture decisions and logic in `design.md`
+- [x] Define PDF layout and example content
+- [x] Draft FHIR JSON structure (Condition, Observation, CarePlan)
+- [x] Document schema in `schema_notes.md`
+- [x] Capture decisions and logic in `design.md`
 
 #### 🛠 Build
 - [ ] Build `export_summary.py` API tool (FastAPI-compliant)
