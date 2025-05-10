@@ -804,3 +804,12 @@ tasks:
     - app/db/db_models.py
     - app/db/db_writer.py
     - project/delivery/features/feature_2_symptom_logging_stage_inference/user_journey_flows.md
+  project/delivery/features/feature_4_clinician_export/plan.md-aca516:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-10T01:24:40.069187'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/build/project/delivery/features/feature_4_clinician_export/plan.md/task.yaml
+    prompt: framework/task_templates/build/project/delivery/features/feature_4_clinician_export/plan.md/prompt_template.md
