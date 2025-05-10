@@ -969,3 +969,14 @@
   - fhir
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: app/templates/clinical_summary.html
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/templates/clinical_summary.html
+  file_type: html
+  description: HTML template for generating a concussion recovery summary report with
+    user-specific data.
+  tags:
+  - template
+  - report
+  - clinical
+  last_updated: '2025-05-10'
+  pod_owner: DeliveryPod
