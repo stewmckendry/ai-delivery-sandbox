@@ -19,3 +19,9 @@
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
+- timestamp: '2025-05-10T02:09:26.802198'
+  path: project/delivery/features/feature_4_clinician_export/design.md
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: 'Add PDF template mock and full design mapping for Feature 4: export tool
+    output (FHIR + PDF)'
