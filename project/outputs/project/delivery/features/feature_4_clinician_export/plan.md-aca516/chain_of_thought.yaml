@@ -1,0 +1,14 @@
+- message: "Drafted `pdf_renderer.py` and committed file that generates concussion\
+    \ summary PDFs using Git-hosted HTML templates. Instead of returning bytes, the\
+    \ function now saves to a temp file so `export_summary` can upload and return\
+    \ a link. This fits our design pattern and supports file-based delivery through\
+    \ the GPT tool.\n\nNext step is building `export_summary.py` which will:\n- Call\
+    \ `build_fhir_bundle()`\n- Call `render_pdf()`\n- Upload the PDF file\n- Return\
+    \ OpenAPI-typed response with PDF link + FHIR bundle\n\nWe\u2019ll also define\
+    \ its Pydantic model and test in `test_export_summary.py`."
+  timestamp: '2025-05-10T02:22:12.158727'
+  tags:
+  - pdf
+  - tool
+  - file-output
+  - sandbox-silver-tiger
