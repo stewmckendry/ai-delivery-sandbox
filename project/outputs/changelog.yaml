@@ -3,3 +3,14 @@
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
+- timestamp: '2025-05-10T02:29:59.066673'
+  path: project/delivery/features/feature_4_clinician_export/export_flow_notes.md
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: 'Add export_flow_notes.md: explains full export pipeline and maps code
+    to PDF + FHIR delivery'
+- timestamp: '2025-05-10T02:29:59.066673'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/features/feature_4_clinician_export/export_flow_notes.md
