@@ -980,3 +980,15 @@
   - clinical
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: test/test_export_summary.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/test/test_export_summary.py
+  file_type: py
+  description: Test script for validating the export summary functionality of the
+    application
+  tags:
+  - test
+  - export
+  - summary
+  - validation
+  last_updated: '2025-05-10'
+  pod_owner: QAPod
