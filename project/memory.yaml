@@ -897,3 +897,15 @@
   - documentation
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_4_clinician_export/design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_4_clinician_export/design.md
+  file_type: md
+  description: Design document for a feature that exports clinical summaries in PDF
+    and FHIR formats based on a user's recovery state.
+  tags:
+  - design
+  - flow
+  - export
+  - tool
+  last_updated: '2025-05-10'
+  pod_owner: DeliveryPod
