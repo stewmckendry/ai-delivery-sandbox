@@ -957,3 +957,15 @@
   - pdf
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_4_clinician_export/export_flow_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_4_clinician_export/export_flow_notes.md
+  file_type: md
+  description: Documentation on the export flow for clinician data, detailing PDF
+    and FHIR generation processes and tool entry points.
+  tags:
+  - export
+  - flow
+  - pdf
+  - fhir
+  last_updated: '2025-05-10'
+  pod_owner: DeliveryPod
