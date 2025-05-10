@@ -826,3 +826,4 @@ tasks:
     - app/templates/clinical_summary.html
     - test/test_export_summary.py
     - test/test_fhir_schema.py
+    - test/test_pdf_renderer.py
