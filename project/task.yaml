@@ -813,3 +813,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/build/project/delivery/features/feature_4_clinician_export/plan.md/task.yaml
     prompt: framework/task_templates/build/project/delivery/features/feature_4_clinician_export/plan.md/prompt_template.md
+    outputs:
+    - project/delivery/features/feature_4_clinician_export/plan.md
