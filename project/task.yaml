@@ -824,3 +824,4 @@ tasks:
     - app/tools/export_summary.py
     - project/delivery/features/feature_4_clinician_export/export_flow_notes.md
     - app/templates/clinical_summary.html
+    - test/test_export_summary.py
