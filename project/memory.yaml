@@ -885,3 +885,15 @@
   - PDF
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_4_clinician_export/schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_4_clinician_export/schema_notes.md
+  file_type: md
+  description: Documentation for exporting clinician data using FHIR standards, including
+    examples of JSON structures for Condition, Observation, and CarePlan resources.
+  tags:
+  - FHIR
+  - export
+  - schema
+  - documentation
+  last_updated: '2025-05-10'
+  pod_owner: DeliveryPod
