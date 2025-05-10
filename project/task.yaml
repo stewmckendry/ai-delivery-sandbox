@@ -804,6 +804,7 @@ tasks:
     - app/db/db_models.py
     - app/db/db_writer.py
     - project/delivery/features/feature_2_symptom_logging_stage_inference/user_journey_flows.md
+    - project/retrospectives/feature_2_symptom_logging_stage_inference.md
   project/delivery/features/feature_4_clinician_export/plan.md-aca516:
     assigned_pod: ProductPod
     pod_owner: ProductPod
