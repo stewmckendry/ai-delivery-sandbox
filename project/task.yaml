@@ -820,3 +820,4 @@ tasks:
     - project/delivery/features/feature_4_clinician_export/schema_notes.md
     - project/delivery/features/feature_4_clinician_export/design.md
     - app/engines/epic_writer.py
+    - app/engines/pdf_renderer.py
