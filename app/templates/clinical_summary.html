@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+      body { font-family: sans-serif; margin: 40px; }
+      h1 { color: #1a1a1a; }
+      table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      th { background-color: #f2f2f2; }
+    </style>
+  </head>
+  <body>
+    <h1>Concussion Recovery Summary</h1>
+    <p><strong>User ID:</strong> {{ user_id }}</p>
+    <p><strong>Export Date:</strong> {{ export_date }}</p>
+
+    <h2>Diagnosis</h2>
+    <p>Condition: Concussion</p>
+    <p>Stage: {{ stage }}</p>
+
+    <h2>Symptom Log</h2>
+    <table>
+      <thead>
+        <tr><th>Symptom</th><th>Severity</th><th>Timestamp</th></tr>
+      </thead>
+      <tbody>
+        {% for s in symptoms %}
+        <tr>
+          <td>{{ s.name or s.symptom_id }}</td>
+          <td>{{ s.severity }}</td>
+          <td>{{ s.timestamp }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Recommendations</h2>
+    <ul>
+      <li>Rest and limit screen time</li>
+      <li>Follow return-to-play guidance</li>
+      <li>Notify your doctor if symptoms worsen</li>
+    </ul>
+  </body>
+</html>
