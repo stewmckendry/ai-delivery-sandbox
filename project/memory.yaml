@@ -873,3 +873,15 @@
   - development
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_4_clinician_export/plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_4_clinician_export/plan.md
+  file_type: md
+  description: Plan for developing a feature to export recovery data for clinical
+    use in PDF and FHIR formats, including scope, tasks, and dependencies.
+  tags:
+  - plan
+  - export
+  - FHIR
+  - PDF
+  last_updated: '2025-05-10'
+  pod_owner: DeliveryPod
