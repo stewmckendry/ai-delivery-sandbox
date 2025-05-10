@@ -25,3 +25,21 @@
   - pdf
   - traceability
   - sandbox-silver-tiger
+- message: 'Marked all testing tasks complete in task list. Full coverage now includes:
+
+    - Unit validation of FHIR structure (`test_fhir_schema.py`)
+
+    - PDF generation and file assertions (`test_pdf_renderer.py`)
+
+    - Integration flow test for the full tool (`test_export_summary.py`)
+
+
+    These confirm contract compliance and real-data output for the `export_summary`
+    tool. We now move into delivery validation and closeout steps.'
+  timestamp: '2025-05-10T02:55:15.205328'
+  tags:
+  - test
+  - validation
+  - pdf
+  - FHIR
+  - sandbox-silver-tiger
