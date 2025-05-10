@@ -822,3 +822,4 @@ tasks:
     - app/engines/epic_writer.py
     - app/engines/pdf_renderer.py
     - app/tools/export_summary.py
+    - project/delivery/features/feature_4_clinician_export/export_flow_notes.md
