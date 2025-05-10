@@ -12,3 +12,16 @@
   - tool
   - file-output
   - sandbox-silver-tiger
+- message: Completed and committed `export_summary.py`, the main FastAPI tool that
+    bundles PDF + FHIR export. Stubbed cloud upload and wired it to call `build_fhir_bundle()`
+    and `render_pdf()`. Also added `export_flow_notes.md`, an addendum that documents
+    the entire export process, including file locations, inputs, and modular tool
+    flow. This reinforces traceability and makes onboarding easier for future pods.
+  timestamp: '2025-05-10T02:30:10.202713'
+  tags:
+  - tool
+  - export
+  - FHIR
+  - pdf
+  - traceability
+  - sandbox-silver-tiger
