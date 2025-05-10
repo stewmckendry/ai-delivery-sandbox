@@ -933,3 +933,15 @@
   - delivery
   last_updated: '2025-05-10'
   pod_owner: DeliveryPod
+- path: project/outputs/project/delivery/features/feature_4_clinician_export/plan.md-aca516/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/project/delivery/features/feature_4_clinician_export/plan.md-aca516/chain_of_thought.yaml
+  file_type: yaml
+  description: Details the development and next steps for generating and exporting
+    concussion summary PDFs using HTML templates and FHIR bundles.
+  tags:
+  - pdf
+  - export
+  - file-output
+  - tool
+  last_updated: '2025-05-10'
+  pod_owner: DeliveryPod
