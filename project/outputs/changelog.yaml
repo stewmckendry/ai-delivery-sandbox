@@ -64,3 +64,14 @@
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: Memory update related to project/delivery/features/feature_4_clinician_export/plan.md
+- timestamp: '2025-05-10T01:37:44.894408'
+  path: project/delivery/features/feature_4_clinician_export/schema_notes.md
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Add schema_notes.md with FHIR structure, examples, and explanations for
+    Feature 4
+- timestamp: '2025-05-10T01:37:44.894408'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/features/feature_4_clinician_export/schema_notes.md
