@@ -21,6 +21,17 @@ def upload_to_storage(pdf_path):
 
 @router.post("/export_summary", response_model=ExportResponse)
 def export_summary(user_id: str):
+    """
+    Tool: export_summary
+    Input: user_id (str)
+    Returns: ExportResponse with PDF summary URL and FHIR bundle
+    Flow:
+    - Fetch user tracker and logs from DB
+    - Generate FHIR bundle using epic_writer
+    - Render PDF using pdf_renderer
+    - Upload PDF to cloud (stubbed)
+    - Return combined output for GPT or frontend display
+    """
     # Fetch user tracker state and logs
     tracker, logs = get_tracker_and_logs(user_id)
 
