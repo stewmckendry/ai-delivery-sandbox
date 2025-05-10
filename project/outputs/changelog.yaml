@@ -1,37 +1,5 @@
-- timestamp: '2025-05-10T02:29:42.681257'
+- timestamp: '2025-05-10T02:30:31.333952'
   path: project/task.yaml
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
-- timestamp: '2025-05-10T02:29:59.066673'
-  path: project/delivery/features/feature_4_clinician_export/export_flow_notes.md
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: 'Add export_flow_notes.md: explains full export pipeline and maps code
-    to PDF + FHIR delivery'
-- timestamp: '2025-05-10T02:29:59.066673'
-  path: project/memory.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Memory update related to project/delivery/features/feature_4_clinician_export/export_flow_notes.md
-- timestamp: '2025-05-10T02:30:04.230719'
-  path: project/task.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Append output file to project/delivery/features/feature_4_clinician_export/plan.md-aca516
-- timestamp: '2025-05-10T02:30:10.519824'
-  path: project/outputs/project/delivery/features/feature_4_clinician_export/plan.md-aca516/chain_of_thought.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: unknown
-  message: Append chain of thought to task project/delivery/features/feature_4_clinician_export/plan.md-aca516
-- timestamp: '2025-05-10T02:30:26.168820'
-  path: app/templates/clinical_summary.html
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: 'Add clinical_summary.html: PDF template for concussion summary with user
-    info and symptom log'
-- timestamp: '2025-05-10T02:30:26.168820'
-  path: project/memory.yaml
-  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
-  committed_by: GPTPod
-  message: Memory update related to app/templates/clinical_summary.html
