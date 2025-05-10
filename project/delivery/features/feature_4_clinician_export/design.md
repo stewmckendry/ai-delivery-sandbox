@@ -30,6 +30,51 @@ Provide a tool that generates exportable clinical summaries (PDF and FHIR) based
 
 ---
 
+### 🖼️ PDF Template Mock
+File: `app/templates/clinical_summary.html`
+
+```html
+<html>
+  <head><style>body { font-family: sans-serif; }</style></head>
+  <body>
+    <h1>Concussion Recovery Summary</h1>
+    <p><strong>User ID:</strong> {{ user_id }}</p>
+    <p><strong>Date:</strong> {{ export_date }}</p>
+
+    <h2>Diagnosis</h2>
+    <p>Condition: Concussion</p>
+    <p>Stage: {{ stage }}</p>
+
+    <h2>Symptom Log</h2>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <thead>
+        <tr><th>Symptom</th><th>Severity</th><th>Timestamp</th></tr>
+      </thead>
+      <tbody>
+        {% for s in symptoms %}
+        <tr>
+          <td>{{ s.name }}</td>
+          <td>{{ s.severity }}</td>
+          <td>{{ s.timestamp }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Recommendations</h2>
+    <ul>
+      <li>Rest and limit screen time</li>
+      <li>Follow return-to-play guidance</li>
+      <li>Notify your doctor if symptoms worsen</li>
+    </ul>
+  </body>
+</html>
+```
+
+This template will be filled via Jinja2 and rendered using WeasyPrint or equivalent.
+
+---
+
 ### 🛠 Tool Design: `export_summary`
 ```python
 @tool()
