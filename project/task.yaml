@@ -818,3 +818,4 @@ tasks:
     - project/delivery/features/feature_4_clinician_export/plan.md
     - project/delivery/features/feature_4_clinician_export/task_list.md
     - project/delivery/features/feature_4_clinician_export/schema_notes.md
+    - project/delivery/features/feature_4_clinician_export/design.md
