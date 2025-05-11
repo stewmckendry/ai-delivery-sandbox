@@ -14,8 +14,6 @@ def build_fhir_bundle(tracker, symptom_logs):
     }
 
     # ----- CONDITION -----
-    # Represents the diagnosis of concussion
-    # SNOMED code 71904000 is the standard code for "Concussion" per HL7 guidance
     condition = {
         "resourceType": "Condition",
         "clinicalStatus": {
@@ -37,20 +35,25 @@ def build_fhir_bundle(tracker, symptom_logs):
     bundle["entry"].append({"resource": condition})
 
     # ----- OBSERVATIONS -----
-    # Each symptom log becomes an Observation resource
     timestamps = []
     for log in symptom_logs:
+        note_parts = []
+        for key in ["reporter_type", "incident_context", "sport_type", "age_group", "team_id"]:
+            if key in log:
+                note_parts.append(f"{key}: {log[key]}")
+
         obs = {
             "resourceType": "Observation",
-            "code": {"text": log["symptom_id"]},  # symptom name or ID
+            "code": {"text": log["symptom_id"]},
             "valueInteger": log["severity"],
             "subject": {"reference": f"Patient/{tracker['user_id']}"},
-            "effectiveDateTime": log["timestamp"]  # ISO timestamp
+            "effectiveDateTime": log["timestamp"],
+            "note": [{"text": "; ".join(note_parts)}] if note_parts else []
         }
         timestamps.append(log["timestamp"])
         bundle["entry"].append({"resource": obs})
 
-    # Infer CarePlan period from symptom timestamps
+    # ----- CARE PLAN -----
     if timestamps:
         period_start = min(timestamps)
         period_end = max(timestamps)
@@ -58,8 +61,6 @@ def build_fhir_bundle(tracker, symptom_logs):
         today = datetime.now().date().isoformat()
         period_start = period_end = today
 
-    # ----- CARE PLAN -----
-    # Encodes recovery advice based on inferred stage
     care_plan = {
         "resourceType": "CarePlan",
         "status": "active",
