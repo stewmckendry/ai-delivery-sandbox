@@ -1014,3 +1014,15 @@
   - rendering
   last_updated: '2025-05-10'
   pod_owner: QAPod
+- path: project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
+  file_type: md
+  description: Documentation on integrating Azure Blob Storage for exporting downloadable
+    PDF summaries, including setup, upload process, and security measures.
+  tags:
+  - azure
+  - export
+  - storage
+  - security
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
