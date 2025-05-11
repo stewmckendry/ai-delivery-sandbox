@@ -19,16 +19,16 @@
 - [x] Document export process + frequency in addendum
 - [x] Add fields: `reporter_type`, `incident_context`, `sport_type`, `age_group`, `team_id`
 - [x] Update DB schema, models, and export tool to include metadata
-- [ ] Update `symptoms.py` to add metadata to `SymptomCheckIn`
-- [ ] Update `db_writer.py` to persist new metadata fields
-- [ ] Update `export_to_sql.py` to export metadata fields
-- [ ] Update `clinical_summary.html` to show metadata
-- [ ] Update `epic_writer.py` to include metadata as Observation notes
-- [ ] Update `pdf_renderer.py` to render new metadata fields
-- [ ] Add triage questions for sport_type, age_group, team_id
-- [ ] Update triage_map.yaml to include new metadata questions
+- [x] Update `symptoms.py` to add metadata to `SymptomCheckIn`
+- [x] Update `db_writer.py` to persist new metadata fields
+- [x] Update `export_to_sql.py` to export metadata fields
+- [x] Update `clinical_summary.html` to show metadata
+- [x] Update `epic_writer.py` to include metadata as Observation notes
+- [x] Update `pdf_renderer.py` to render new metadata fields
+- [ ] Add triage questions for `sport_type`, `age_group`, `team_id`
+- [ ] Update `triage_map.yaml` to include new metadata questions
 - [ ] Update triage test flows to cover new question types (if affected)
-- [ ] Map triage question responses from TrackerState.answers into symptom metadata
+- [ ] Map triage question responses from `TrackerState.answers` into symptom metadata
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
