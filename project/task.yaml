@@ -829,3 +829,4 @@ tasks:
     - test/test_pdf_renderer.py
     - project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
     - project/delivery/feature_scope_tracker.md
+    - requirements.txt
