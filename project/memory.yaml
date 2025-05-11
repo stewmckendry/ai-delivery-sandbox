@@ -83,3 +83,15 @@
   - dashboard
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_5_dashboard_export/data_flow_addendum.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_5_dashboard_export/data_flow_addendum.md
+  file_type: md
+  description: Documentation of the end-to-end metadata flow from triage collection
+    to Power BI dashboard export, detailing each step and associated tools.
+  tags:
+  - data flow
+  - metadata
+  - export
+  - dashboard
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
