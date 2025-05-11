@@ -153,3 +153,14 @@
   - bundle
   last_updated: '2025-05-11'
   pod_owner: ResearchPod
+- path: app/engines/pdf_renderer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/engines/pdf_renderer.py
+  file_type: py
+  description: Script to generate a PDF summary from a template using user data and
+    metadata
+  tags:
+  - pdf
+  - template
+  - rendering
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
