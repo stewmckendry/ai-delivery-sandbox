@@ -1037,3 +1037,16 @@
   - config
   last_updated: '2025-05-11'
   pod_owner: DevPod
+- path: project/delivery/features/feature_5_dashboard_export/plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_5_dashboard_export/plan.md
+  file_type: md
+  description: Plan for exporting tracker and symptom log data to an Azure SQL-backed
+    dashboard for analytics, including Power BI dashboard prototyping and export format
+    testing.
+  tags:
+  - export
+  - dashboard
+  - analytics
+  - config
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
