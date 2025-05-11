@@ -38,6 +38,11 @@ def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
     # Construct tracker state
     state = TrackerState(answers=payload.symptoms)
 
+    # Resolve metadata: prefer payload.metadata, fallback to TrackerState.answers
+    metadata = payload.metadata or {}
+    def get_meta(field):
+        return metadata.get(field) or payload.symptoms.get(field)
+
     # Write to database
     log_symptoms_to_db(
         user_id=payload.user_id,
@@ -46,11 +51,11 @@ def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
         symptoms=payload.symptoms,
         stage=None,
         source="gpt",
-        reporter_type=payload.metadata.get("reporter_type"),
-        incident_context=payload.metadata.get("incident_context"),
-        sport_type=payload.metadata.get("sport_type"),
-        age_group=payload.metadata.get("age_group"),
-        team_id=payload.metadata.get("team_id")
+        reporter_type=get_meta("reporter_type"),
+        incident_context=get_meta("incident_context"),
+        sport_type=get_meta("sport_type"),
+        age_group=get_meta("age_group"),
+        team_id=get_meta("team_id")
     )
 
     return SymptomLogResult(
