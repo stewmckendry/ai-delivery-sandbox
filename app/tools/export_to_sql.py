@@ -30,14 +30,25 @@ def export_to_sql():
             for log in logs:
                 conn.execute(
                     text("""
-                    INSERT INTO symptom_log_export (user_id, symptom_id, severity, timestamp)
-                    VALUES (:user_id, :symptom_id, :severity, :timestamp)
+                    INSERT INTO symptom_log_export (
+                        user_id, symptom_id, severity, timestamp,
+                        reporter_type, incident_context, sport_type, age_group, team_id
+                    )
+                    VALUES (
+                        :user_id, :symptom_id, :severity, :timestamp,
+                        :reporter_type, :incident_context, :sport_type, :age_group, :team_id
+                    )
                     """),
                     {
                         "user_id": user_id,
                         "symptom_id": log['symptom_id'],
                         "severity": log['severity'],
-                        "timestamp": log['timestamp']
+                        "timestamp": log['timestamp'],
+                        "reporter_type": log.get('reporter_type'),
+                        "incident_context": log.get('incident_context'),
+                        "sport_type": log.get('sport_type'),
+                        "age_group": log.get('age_group'),
+                        "team_id": log.get('team_id')
                     }
                 )
 
