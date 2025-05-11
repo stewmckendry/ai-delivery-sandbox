@@ -71,3 +71,15 @@
   - validation
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: project/outputs/project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6/chain_of_thought.yaml
+  file_type: yaml
+  description: Update log for expanding the SymptomLog schema with additional metadata
+    fields and related code changes.
+  tags:
+  - metadata
+  - schema
+  - logger
+  - dashboard
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
