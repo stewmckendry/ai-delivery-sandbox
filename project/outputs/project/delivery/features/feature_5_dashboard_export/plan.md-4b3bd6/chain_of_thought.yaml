@@ -9,3 +9,13 @@
   - logger
   - dashboard
   - sandbox-silver-tiger
+- message: 'Starting updates to symptoms.py: Add metadata to SymptomCheckIn schema
+    to support enriched logging from triage-derived TrackerState answers. This ensures
+    metadata can be passed through FastAPI POST body cleanly.'
+  timestamp: '2025-05-11T20:18:09.543381'
+  tags:
+  - metadata
+  - symptoms
+  - trackerstate
+  - task-list
+  - sandbox-silver-tiger
