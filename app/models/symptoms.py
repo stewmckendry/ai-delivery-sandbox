@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 from datetime import datetime, date
 from pydantic import BaseModel
 from app.models.tracker import TrackerState
@@ -10,6 +10,7 @@ class SymptomCheckIn(BaseModel):
     injury_date: date
     checkin_time: datetime
     symptoms: Dict[str, int]  # symptom_id → 0–5 severity
+    metadata: Optional[Dict[str, str]] = None  # for reporter_type, sport_type, etc.
 
 class SymptomLogResult(BaseModel):
     """Output schema after logging a check-in"""
