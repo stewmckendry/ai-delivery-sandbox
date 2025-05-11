@@ -231,3 +231,9 @@
   task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
   committed_by: ProductPod
   message: Append output file to project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+- timestamp: '2025-05-11T23:39:53.349162'
+  path: project/delivery/tool_catalog.md
+  task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+  committed_by: ProductPod
+  message: Update tool catalog to reflect guidance for mode_description and symptom_links
+    fields used in get_triage_flow
