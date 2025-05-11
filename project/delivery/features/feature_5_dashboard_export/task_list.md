@@ -6,16 +6,19 @@
 - [x] Draft and commit `task_list.md`
 
 ### 📐 Design
-- [ ] Define export schema: which fields go where
-- [ ] YAML and tracker field mapping docs
-- [ ] Sample Power BI config (mock or real)
+- [x] Define export schema: which fields go where
+- [x] YAML and tracker field mapping docs
+- [x] Sample Power BI config (mock or real)
+- [x] Document metadata enrichment opportunities
 
 ### 🛠 Build
-- [ ] Tool: `export_to_sql.py`
-- [ ] YAML + Tracker field extractors
-- [ ] SQL insert/update logic
+- [x] Tool: `export_to_sql.py`
+- [x] YAML + Tracker field extractors (`reference_loader.py`)
+- [x] SQL insert/update logic
 - [ ] Scheduled or manual export mode
-- [ ] Document export process + frequency in addendum
+- [x] Document export process + frequency in addendum
+- [ ] Add fields: `reporter_type`, `incident_context`, `sport_type`, `age_group`, `team_id`
+- [ ] Update DB schema, models, and export tool to include metadata
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
