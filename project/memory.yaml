@@ -11,3 +11,15 @@
   - infrastructure
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_5_dashboard_export/schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_5_dashboard_export/schema_notes.md
+  file_type: md
+  description: Documentation of schema notes for Feature 5, detailing data export
+    tables and their integration with YAML configurations for dashboard analytics.
+  tags:
+  - schema
+  - export
+  - YAML
+  - SQL
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
