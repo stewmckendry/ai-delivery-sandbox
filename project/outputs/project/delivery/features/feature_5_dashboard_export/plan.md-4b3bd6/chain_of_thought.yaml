@@ -39,3 +39,12 @@
   - triage
   - data_flow
   - audit
+- message: Starting tool catalog draft to clarify purpose, usage, inputs/outputs,
+    and trigger points for all GPT-facing tools. This will help define the GPT orchestration
+    flow and identify gaps or redundancies in tool design.
+  timestamp: '2025-05-11T21:07:17.619809'
+  tags:
+  - tooling
+  - gpt-integration
+  - triage
+  - assessment
