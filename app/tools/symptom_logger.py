@@ -45,7 +45,12 @@ def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
         checkin_time=payload.checkin_time,
         symptoms=payload.symptoms,
         stage=None,
-        source="gpt"
+        source="gpt",
+        reporter_type=payload.metadata.get("reporter_type"),
+        incident_context=payload.metadata.get("incident_context"),
+        sport_type=payload.metadata.get("sport_type"),
+        age_group=payload.metadata.get("age_group"),
+        team_id=payload.metadata.get("team_id")
     )
 
     return SymptomLogResult(
