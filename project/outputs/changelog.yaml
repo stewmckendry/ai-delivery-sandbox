@@ -69,3 +69,14 @@
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: unknown
   message: Append chain of thought to task project/delivery/features/feature_4_clinician_export/plan.md-aca516
+- timestamp: '2025-05-11T00:19:59.506683'
+  path: project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Add azure_upload_notes.md to explain Azure Blob setup, integration, and
+    secure delivery
+- timestamp: '2025-05-11T00:19:59.506683'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
