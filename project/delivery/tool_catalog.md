@@ -11,7 +11,7 @@ This catalog outlines the tools available for use by the Custom GPT to manage tr
 - **When to Use:** At the start of triage, to understand the full question flow
 - **Input:** None
 - **Output:** JSON of all triage stages/questions from `triage_map.yaml`
-- **Note:** Enables GPT to plan conversation sequence
+- **Note:** Enables GPT to plan conversation sequence. Each question includes `mode_description` to inform how to ask and `symptom_links` to guide which symptoms to listen for.
 
 #### `get_triage_question`
 - **Purpose:** Return the next unanswered question
