@@ -830,3 +830,12 @@ tasks:
     - project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
     - project/delivery/feature_scope_tracker.md
     - requirements.txt
+  project/delivery/features/feature_5_dashboard_export/plan.md-2b809f:
+    assigned_pod: ProductPod
+    pod_owner: ProductPod
+    created_at: '2025-05-11T00:36:09.945219'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/build/project/delivery/features/feature_5_dashboard_export/plan.md/task.yaml
+    prompt: framework/task_templates/build/project/delivery/features/feature_5_dashboard_export/plan.md/prompt_template.md
