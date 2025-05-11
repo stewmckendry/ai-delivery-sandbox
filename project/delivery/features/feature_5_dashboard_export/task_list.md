@@ -17,8 +17,14 @@
 - [x] SQL insert/update logic
 - [ ] Scheduled or manual export mode
 - [x] Document export process + frequency in addendum
-- [ ] Add fields: `reporter_type`, `incident_context`, `sport_type`, `age_group`, `team_id`
-- [ ] Update DB schema, models, and export tool to include metadata
+- [x] Add fields: `reporter_type`, `incident_context`, `sport_type`, `age_group`, `team_id`
+- [x] Update DB schema, models, and export tool to include metadata
+- [ ] Update `symptoms.py` to add metadata to `SymptomCheckIn`
+- [ ] Update `db_writer.py` to persist new metadata fields
+- [ ] Update `export_to_sql.py` to export metadata fields
+- [ ] Update `clinical_summary.html` to show metadata
+- [ ] Update `epic_writer.py` to include metadata as Observation notes
+- [ ] Update `pdf_renderer.py` to render new metadata fields
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
