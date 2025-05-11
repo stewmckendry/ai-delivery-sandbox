@@ -19,3 +19,12 @@
   - trackerstate
   - task-list
   - sandbox-silver-tiger
+- message: 'Starting triage_map.yaml update to include new metadata questions: sport_type,
+    age_group, team_id. These will feed into TrackerState.answers for reuse in symptom
+    logging. Ensures triage path supports enriched data pipeline.'
+  timestamp: '2025-05-11T20:32:52.300025'
+  tags:
+  - triage
+  - yaml
+  - metadata
+  - sandbox-silver-tiger
