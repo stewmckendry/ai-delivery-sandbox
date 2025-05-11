@@ -117,3 +117,15 @@
   - azure
   last_updated: '2025-05-11'
   pod_owner: DevPod
+- path: app/tools/export_to_sql.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/export_to_sql.py
+  file_type: py
+  description: Script to export tracker logs and symptom logs to an SQL database using
+    SQLAlchemy
+  tags:
+  - export
+  - database
+  - sql
+  - logs
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
