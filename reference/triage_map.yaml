@@ -15,6 +15,42 @@ triage_flow:
         tool_tags:
           - "triage_stage"
 
+      - id: sport_type
+        prompt: "What sport was the player participating in?"
+        type: text
+        intent: identify_sport
+        mode: clarify
+        response_parsing: "text"
+        example_user_answers:
+          - "Soccer"
+          - "Ice hockey"
+        tool_tags:
+          - "triage_stage"
+
+      - id: age_group
+        prompt: "What age group is the player part of?"
+        type: text
+        intent: identify_age_group
+        mode: clarify
+        response_parsing: "text"
+        example_user_answers:
+          - "High school"
+          - "U14"
+        tool_tags:
+          - "triage_stage"
+
+      - id: team_id
+        prompt: "What is the name of the team or program they play for?"
+        type: text
+        intent: identify_team
+        mode: clarify
+        response_parsing: "text"
+        example_user_answers:
+          - "Tigers U14"
+          - "Region 5 Travel Soccer"
+        tool_tags:
+          - "triage_stage"
+
       - id: injury_date
         prompt: "When did the injury occur?"
         type: date
