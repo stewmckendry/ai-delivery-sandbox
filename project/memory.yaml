@@ -59,3 +59,15 @@
   - sqlalchemy
   last_updated: '2025-05-11'
   pod_owner: DevPod
+- path: app/tools/symptom_logger.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/symptom_logger.py
+  file_type: py
+  description: API endpoint for logging symptoms, validating against known symptoms,
+    and storing data in the database.
+  tags:
+  - api
+  - database
+  - symptoms
+  - validation
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
