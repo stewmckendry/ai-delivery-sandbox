@@ -138,3 +138,9 @@
   task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
   committed_by: ProductPod
   message: Append output file to project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+- timestamp: '2025-05-11T20:31:32.503290'
+  path: project/delivery/features/feature_5_dashboard_export/task_list.md
+  task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+  committed_by: ProductPod
+  message: Mark all metadata pipeline build tasks as complete. Flag remaining triage
+    YAML and mapping steps.
