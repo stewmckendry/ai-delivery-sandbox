@@ -25,6 +25,9 @@
 - [ ] Update `clinical_summary.html` to show metadata
 - [ ] Update `epic_writer.py` to include metadata as Observation notes
 - [ ] Update `pdf_renderer.py` to render new metadata fields
+- [ ] Add triage questions for sport_type, age_group, team_id
+- [ ] Update triage_map.yaml to include new metadata questions
+- [ ] Update triage test flows to cover new question types (if affected)
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
