@@ -827,3 +827,4 @@ tasks:
     - test/test_export_summary.py
     - test/test_fhir_schema.py
     - test/test_pdf_renderer.py
+    - project/delivery/features/feature_4_clinician_export/azure_upload_notes.md
