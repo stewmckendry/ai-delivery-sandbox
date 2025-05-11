@@ -1,0 +1,11 @@
+- message: 'Expanded SymptomLog schema to include metadata fields: reporter_type,
+    sport_type, age_group, team_id, and incident_context. Updated symptom_logger.py
+    to accept and persist these fields via payload.metadata. Committed changes to
+    db_models.py and symptom_logger.py. Preparing to audit all related tools for compatibility.'
+  timestamp: '2025-05-11T19:54:20.551791'
+  tags:
+  - metadata
+  - schema
+  - logger
+  - dashboard
+  - sandbox-silver-tiger
