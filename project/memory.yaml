@@ -141,3 +141,15 @@
   - html
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: app/engines/epic_writer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/engines/epic_writer.py
+  file_type: py
+  description: Function to construct a FHIR Bundle for concussion management, including
+    condition, observations, and care plan.
+  tags:
+  - FHIR
+  - health
+  - data
+  - bundle
+  last_updated: '2025-05-11'
+  pod_owner: ResearchPod
