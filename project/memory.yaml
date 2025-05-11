@@ -1062,3 +1062,15 @@
   - test
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_5_dashboard_export/design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_5_dashboard_export/design.md
+  file_type: md
+  description: Design document detailing the schema and export process for Azure Dashboard
+    and Data Export, including YAML mappings and Power BI targets.
+  tags:
+  - design
+  - export
+  - schema
+  - YAML
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
