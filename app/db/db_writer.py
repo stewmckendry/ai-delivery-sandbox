@@ -6,7 +6,19 @@ import json
 from app.db.db_models import SymptomLog, TrackerMetadata, SessionLocal
 
 
-def log_symptoms_to_db(user_id: str, injury_date: datetime, checkin_time: datetime, symptoms: dict, stage: str = None, source: str = "gpt"):
+def log_symptoms_to_db(
+    user_id: str,
+    injury_date: datetime,
+    checkin_time: datetime,
+    symptoms: dict,
+    stage: str = None,
+    source: str = "gpt",
+    reporter_type: str = None,
+    incident_context: str = None,
+    sport_type: str = None,
+    age_group: str = None,
+    team_id: str = None
+):
     """Persist symptom log and update tracker state in Azure SQL."""
     db: Session = SessionLocal()
     try:
@@ -18,7 +30,12 @@ def log_symptoms_to_db(user_id: str, injury_date: datetime, checkin_time: dateti
             injury_date=injury_date,
             symptoms=json.dumps(symptoms),  # Store symptoms as JSON string
             stage_inferred=stage,
-            source=source
+            source=source,
+            reporter_type=reporter_type,
+            incident_context=incident_context,
+            sport_type=sport_type,
+            age_group=age_group,
+            team_id=team_id
         )
         db.add(log_entry)
 
