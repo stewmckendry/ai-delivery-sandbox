@@ -28,3 +28,14 @@
   - yaml
   - metadata
   - sandbox-silver-tiger
+- message: 'Audit complete: All tools and models support the new metadata fields (reporter_type,
+    sport_type, age_group, team_id). The only missing piece is ensuring GPT orchestration
+    captures and stores user answers into TrackerState.answers during triage. This
+    flow begins with asking triage_map.yaml questions and likely culminates in a call
+    to `assess_concussion`, which must persist the enriched TrackerState.'
+  timestamp: '2025-05-11T20:46:25.539489'
+  tags:
+  - metadata
+  - triage
+  - data_flow
+  - audit
