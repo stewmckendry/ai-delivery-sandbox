@@ -48,3 +48,14 @@
   - test
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: app/db/db_models.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/db/db_models.py
+  file_type: py
+  description: Contains SQLAlchemy ORM models for the symptom logging database, including
+    metadata fields for dashboard use.
+  tags:
+  - model
+  - database
+  - sqlalchemy
+  last_updated: '2025-05-11'
+  pod_owner: DevPod
