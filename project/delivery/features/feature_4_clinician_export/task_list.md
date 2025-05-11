@@ -17,6 +17,7 @@
 - [x] Build `pdf_renderer.py` to generate PDF
 - [x] Create and commit `clinical_summary.html` template
 - [x] Stub `upload_to_storage()` for simulated upload
+- [x] Implement real Azure Blob upload in `upload_to_storage()`
 
 ### 🧪 Test
 - [x] Unit test `epic_writer` with sample logs (`test_fhir_schema.py`)
@@ -25,11 +26,11 @@
 - [x] Integration test `test_export_summary.py` for tool output
 
 ### ✅ Wrap
-- [ ] Confirm outputs against `delivery_guidelines.md`
-- [ ] Implement real `upload_to_storage()` for Azure/S3
-- [ ] Log reasoning trace and task metadata
-- [ ] Notify Human Lead for approval
+- [x] Confirm outputs against `delivery_guidelines.md`
+- [x] Log reasoning trace and task metadata
+- [x] Notify Human Lead for approval
+- [x] Add Azure delivery notes (`azure_upload_notes.md`)
 
 ---
 
-Next up: delivery audit and trace log
+Feature complete and ready to close. Next task: prepare Feature 5 kickoff scope or delivery retrospective.
