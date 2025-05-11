@@ -101,3 +101,9 @@
   task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
   committed_by: GPTPod
   message: 'Fix: remove Azure secrets from export_summary.py and use environment variables'
+- timestamp: '2025-05-11T00:34:28.248362'
+  path: project/delivery/feature_scope_tracker.md
+  task_id: project/delivery/features/feature_4_clinician_export/plan.md-aca516
+  committed_by: GPTPod
+  message: Mark Feature 4 as Done in scope tracker with notes on tools delivered and
+    Azure integration
