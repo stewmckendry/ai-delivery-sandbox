@@ -58,15 +58,17 @@ Update after each feature delivery or when scope changes during build.
 ---
 
 ### 🏥 Feature Area 4 – Clinician Export (PDF + FHIR)
-**Status**: Not Started
+**Status**: Done
 
 ✅ Core Scope
 - Summarize tracker data for export
 - Support Epic FHIR sandbox + PDF output
 
-📥 Proposed
-- `export_summary` tool
-- `epic_writer`, `epic_client.yaml`
+📥 Added During Build
+- `export_summary`, `epic_writer`, `pdf_renderer`
+- Azure Blob upload + signed SAS delivery
+- FHIR and PDF flow notes
+- Full test coverage and tool traceability
 
 📤 Deferred
 - Real FHIR pull support → post-PoC
