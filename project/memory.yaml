@@ -23,3 +23,15 @@
   - SQL
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_5_dashboard_export/dashboard_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_5_dashboard_export/dashboard_flow.md
+  file_type: md
+  description: Documentation for the dashboard export flow of Feature 5, detailing
+    the export pipeline from SQL to Power BI and key dashboard concepts.
+  tags:
+  - dashboard
+  - flow
+  - export
+  - Power BI
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
