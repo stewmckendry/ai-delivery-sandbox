@@ -95,3 +95,13 @@
   - dashboard
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: app/models/symptoms.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/models/symptoms.py
+  file_type: py
+  description: Contains data models for symptom check-in and stage inference processes
+  tags:
+  - model
+  - schema
+  - health
+  last_updated: '2025-05-11'
+  pod_owner: DevPod
