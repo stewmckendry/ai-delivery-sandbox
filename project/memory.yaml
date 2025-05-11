@@ -1026,3 +1026,14 @@
   - security
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: requirements.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/requirements.txt
+  file_type: txt
+  description: A list of Python package dependencies required for building and testing
+    a web application.
+  tags:
+  - dependencies
+  - web
+  - config
+  last_updated: '2025-05-11'
+  pod_owner: DevPod
