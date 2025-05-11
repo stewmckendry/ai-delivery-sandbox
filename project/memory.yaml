@@ -187,3 +187,15 @@
   - export
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: app/tools/get_triage_flow.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_triage_flow.py
+  file_type: py
+  description: API endpoint to retrieve and process a triage flow map for GPT integration,
+    flattening stages and questions with context and intent.
+  tags:
+  - api
+  - triage
+  - flow
+  - gpt
+  last_updated: '2025-05-11'
+  pod_owner: DeliveryPod
