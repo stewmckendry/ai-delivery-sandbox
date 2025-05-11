@@ -92,3 +92,14 @@
   task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
   committed_by: ProductPod
   message: Append output file to project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+- timestamp: '2025-05-11T20:26:09.916688'
+  path: app/templates/clinical_summary.html
+  task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+  committed_by: ProductPod
+  message: 'Update clinical_summary.html to show enriched metadata: reporter, context,
+    sport, age, team'
+- timestamp: '2025-05-11T20:26:09.916688'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+  committed_by: ProductPod
+  message: Memory update related to app/templates/clinical_summary.html
