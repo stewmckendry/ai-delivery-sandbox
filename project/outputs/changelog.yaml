@@ -215,3 +215,14 @@
   task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
   committed_by: ProductPod
   message: Append output file to project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+- timestamp: '2025-05-11T23:39:31.033470'
+  path: app/tools/get_triage_flow.py
+  task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+  committed_by: ProductPod
+  message: Add get_triage_flow tool to return GPT-friendly question structure with
+    symptom links and mode descriptions
+- timestamp: '2025-05-11T23:39:31.033470'
+  path: project/memory.yaml
+  task_id: project/delivery/features/feature_5_dashboard_export/plan.md-4b3bd6
+  committed_by: ProductPod
+  message: Memory update related to app/tools/get_triage_flow.py
