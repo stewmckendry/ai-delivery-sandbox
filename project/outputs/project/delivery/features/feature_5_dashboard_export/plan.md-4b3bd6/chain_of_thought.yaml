@@ -48,3 +48,13 @@
   - gpt-integration
   - triage
   - assessment
+- message: Completed and committed get_triage_flow.py with flattened GPT-friendly
+    triage map including mode descriptions and symptom_links. Logged this guidance
+    into the tool catalog. Next, implementing symptom link validator to ensure triage_map.yaml
+    aligns with symptoms_*.yaml.
+  timestamp: '2025-05-11T23:40:04.215583'
+  tags:
+  - triage
+  - tools
+  - symptom_links
+  - validation
