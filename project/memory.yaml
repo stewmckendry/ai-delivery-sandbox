@@ -209,3 +209,14 @@
   - database
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/symptom_logger.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/symptom_logger.py
+  file_type: py
+  description: FastAPI endpoint for logging symptoms, validating symptom IDs, and
+    writing data to the database.
+  tags:
+  - api
+  - database
+  - logging
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
