@@ -4,7 +4,7 @@
 - [x] Create task in `feature_scope_tracker.md`
 - [x] Draft and commit `plan.md`
 - [x] Draft and commit `task_list.md`
-- [ ] Document and validate tool catalog (triage, assessment, export)
+- [x] Document and validate tool catalog (triage, assessment, export)
 
 ### 📐 Design
 - [x] Define export schema: which fields go where
@@ -30,8 +30,8 @@
 - [x] Update `triage_map.yaml` to include new metadata questions
 - [x] Update triage test flows to cover new question types (if affected)
 - [x] Map triage question responses from `TrackerState.answers` into symptom metadata
-- [ ] Confirm GPT orchestration persists triage answers to `TrackerState` (e.g., via `assess_concussion`)
-- [ ] Build tools to support triage orchestration: `get_triage_flow`, `get_triage_question`, `assess_concussion`, `log_incident_detail`
+- [x] Confirm GPT orchestration persists triage answers to `TrackerState` (e.g., via `assess_concussion`)
+- [x] Build tools to support triage orchestration: `get_triage_flow`, `get_triage_question`, `assess_concussion`, `log_incident_detail`
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
