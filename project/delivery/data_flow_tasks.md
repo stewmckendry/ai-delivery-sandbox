@@ -30,10 +30,10 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 ### [x] Update `export_to_sql.py`
 - Include new model/table if created
 
-### [ ] Extend `assess_concussion.py`
+### [x] Extend `assess_concussion.py`
 - Optionally log red flag assessment result to DB
 
-### [ ] Extend `get_stage_guidance.py`
+### [x] Extend `get_stage_guidance.py`
 - Optionally log inferred stage to DB
 
 ---
