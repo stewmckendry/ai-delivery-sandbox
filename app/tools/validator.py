@@ -1,33 +1,31 @@
-import yaml
-import requests
-from typing import Set
+from app.symptom_library import load_symptom_definitions
+from app.db.db_models import SymptomLog
+from sqlalchemy.orm import Session
+from app.db.db_models import SessionLocal
 
-SYMPTOM_YAML_PATHS = [
-    "reference/symptoms_physical.yaml",
-    "reference/symptoms_emotional.yaml",
-    "reference/symptoms_sleep.yaml",
-    "reference/symptoms_red_flag.yaml",
-]
 
-GITHUB_RAW_BASE = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox"
-BRANCH = "sandbox-silver-tiger"
+def audit_symptom_schema():
+    """Compare YAML symptom definitions with SymptomLog data fields."""
+    db: Session = SessionLocal()
+    try:
+        symptom_ids_in_logs = set()
+        for row in db.query(SymptomLog).all():
+            try:
+                symptom_data = eval(row.symptoms)
+                if isinstance(symptom_data, dict):
+                    symptom_ids_in_logs.update(symptom_data.keys())
+            except Exception:
+                continue
 
-def load_known_symptom_ids() -> Set[str]:
-    """Fetch all known symptom IDs from reference YAMLs in GitHub."""
-    ids = set()
-    for path in SYMPTOM_YAML_PATHS:
-        url = f"{GITHUB_RAW_BASE}/{BRANCH}/{path}"
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = yaml.safe_load(response.text)
-            for item in data.get("symptoms", []):
-                ids.add(item["id"])
-    return ids
+        defined_ids = load_symptom_definitions().keys()
+        undefined = symptom_ids_in_logs - set(defined_ids)
 
-def validate_symptom_ids(input_ids: Set[str]) -> bool:
-    """Check if all input symptom IDs are valid."""
-    known_ids = load_known_symptom_ids()
-    invalid_ids = input_ids - known_ids
-    if invalid_ids:
-        raise ValueError(f"Invalid symptom IDs found: {sorted(invalid_ids)}")
-    return True
+        print("\n[SYMPTOM AUDIT REPORT]")
+        if not undefined:
+            print("All symptom IDs in logs are defined in YAML.")
+        else:
+            print("Undefined symptom IDs found in logs:")
+            for uid in sorted(undefined):
+                print(f" - {uid}")
+    finally:
+        db.close()
