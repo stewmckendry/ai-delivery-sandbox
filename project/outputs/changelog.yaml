@@ -189,3 +189,8 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: 'Remove TrackerMetadata logic from db_writer.py #cleanup #data-flow-fix'
+- timestamp: '2025-05-12T16:37:39.544198'
+  path: app/tools/symptom_logger.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Clean up TrackerMetadata usage from symptom_logger.py #cleanup #data-flow-fix'
