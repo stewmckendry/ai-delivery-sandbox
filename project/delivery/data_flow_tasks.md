@@ -21,23 +21,21 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 ### [x] Extend `assess_concussion.py`
 ### [x] Extend `get_stage_guidance.py`
 ### [x] Update `symptom_logger.py`, `db_writer.py` to use new SymptomLog fields
-### [ ] Refactor YAML parsing into `symptom_library.py`
+### [x] Refactor YAML parsing into `symptom_library.py`
 
 ---
 
 ## 🧪 3. Validation + Schema Alignment
 
 ### [ ] Introduce `symptom_log_map.yaml` for follow-ups
-### [ ] Add YAML-to-schema audit in `validator.py`
+### [x] Add YAML-to-schema audit in `validator.py`
 
 ---
 
 ## 🧼 4. Cleanup
 
 ### [ ] Remove unused `TrackerMetadata` refs
-### [ ] Replace old doc `data_flow_addendum.md`
-### [ ] Fix export_to_sql to align with `SymptomLog` — ✅ Done
-### [ ] Wire in `ConcussionAssessment` and `StageLog` to export flow
+### [x] Replace old doc `data_flow_addendum.md` (merged into master)
 
 ---
 
