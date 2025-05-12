@@ -84,3 +84,9 @@
   committed_by: GPTPod
   message: 'Mark symptom_library refactor and YAML schema audit as complete in task
     list #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:07:17.682389'
+  path: app/tools/symptom_logger.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Replace ad hoc symptom ID check with validate_symptom_ids() in symptom_logger
+    #data-flow-fix #symptom-schema'
