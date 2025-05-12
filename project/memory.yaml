@@ -245,3 +245,15 @@
   - health
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: project/delivery/features/feature_5_dashboard_export/assess_concussion_addendum.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/features/feature_5_dashboard_export/assess_concussion_addendum.md
+  file_type: md
+  description: Tool to flag concussion risk indicators based on symptom metadata,
+    providing non-diagnostic advice for clinical evaluation.
+  tags:
+  - tool
+  - symptoms
+  - YAML
+  - clinical
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
