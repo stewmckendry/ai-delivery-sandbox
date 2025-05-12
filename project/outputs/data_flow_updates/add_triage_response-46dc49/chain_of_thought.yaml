@@ -30,3 +30,13 @@
   - stage
   - logging
   - tools
+- message: Completed full cleanup of SymptomLog handling. Renamed reserved 'metadata'
+    field to 'log_metadata'. Added structured context fields (incident_context, reporter_type,
+    etc.). Updated db_writer.py and symptom_logger.py to populate new fields. Added
+    SymptomLog to export_to_sql.py. Updated task tracker accordingly.
+  timestamp: '2025-05-12T15:49:37.918787'
+  tags:
+  - symptom-schema
+  - logging
+  - db-model
+  - export
