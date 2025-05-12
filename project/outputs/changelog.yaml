@@ -81,3 +81,9 @@
   task_id: gpt-instructions-update
   committed_by: GPTPod
   message: Append output file to gpt-instructions-update
+- timestamp: '2025-05-12T22:01:47.338698'
+  path: app/openapi.json
+  task_id: update-openapi-url-schema
+  committed_by: GPTPod
+  message: 'Update openapi.json: fix schema structure and update server URL for GPT
+    ingestion'
