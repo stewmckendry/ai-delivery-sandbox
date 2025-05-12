@@ -24,13 +24,10 @@ def log_symptoms_to_db(
     try:
         # Create a new symptom log record
         log_entry = SymptomLog(
-            id=str(uuid4()),  # Unique log ID
             user_id=user_id,
-            checkin_time=checkin_time,
-            injury_date=injury_date,
-            symptoms=json.dumps(symptoms),  # Store symptoms as JSON string
-            stage_inferred=stage,
-            source=source,
+            timestamp=checkin_time,
+            symptoms=json.dumps(symptoms),
+            log_metadata=json.dumps({"stage": stage, "source": source}),
             reporter_type=reporter_type,
             incident_context=incident_context,
             sport_type=sport_type,
