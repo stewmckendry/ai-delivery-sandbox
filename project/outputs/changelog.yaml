@@ -23,3 +23,14 @@
   task_id: fix-azure-sdk
   committed_by: GPTPod
   message: Append output file to fix-azure-sdk
+- timestamp: '2025-05-12T21:04:16.064522'
+  path: project/delivery/azure_odbc_setup_note.md
+  task_id: deployment-notes
+  committed_by: GPTPod
+  message: Add deployment note documenting ODBC setup fix for Azure SQL + Railway
+    + pyodbc
+- timestamp: '2025-05-12T21:04:16.064522'
+  path: project/memory.yaml
+  task_id: deployment-notes
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/azure_odbc_setup_note.md
