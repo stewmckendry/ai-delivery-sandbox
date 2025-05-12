@@ -879,3 +879,4 @@ tasks:
     - reference/symptom_log_map.yaml
     - app/tools/get_symptom_log_map.py
     - app/tools/get_linked_symptoms.py
+    - app/main.py
