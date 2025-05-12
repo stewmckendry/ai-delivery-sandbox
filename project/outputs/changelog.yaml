@@ -19,3 +19,8 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: Append output file to data_flow_updates/add_triage_response-46dc49
+- timestamp: '2025-05-12T15:42:17.119478'
+  path: app/tools/export_to_sql.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add export logic for SymptomLog to export_to_sql.py #symptom-schema #data-flow-fix'
