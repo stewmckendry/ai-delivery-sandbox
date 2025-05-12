@@ -185,3 +185,15 @@
   - sql
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/assess_concussion.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/assess_concussion.py
+  file_type: py
+  description: API endpoint for assessing concussion risk based on user-reported symptoms
+    and predefined symptom data.
+  tags:
+  - api
+  - assessment
+  - health
+  - database
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
