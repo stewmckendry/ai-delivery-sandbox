@@ -45,3 +45,15 @@
   - tracker
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: project/outputs/feature_5_dashboard_export/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/feature_5_dashboard_export/chain_of_thought.yaml
+  file_type: yaml
+  description: Documentation of completed tooling for Feature 5, including OpenAPI
+    schema generation and scope tracking.
+  tags:
+  - tooling
+  - schema
+  - openapi
+  - scope-tracking
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
