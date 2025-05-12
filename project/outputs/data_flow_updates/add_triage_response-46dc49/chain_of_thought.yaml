@@ -20,3 +20,13 @@
   - tool
   - export
   - triage
+- message: Extended pipeline to support structured logging from assess_concussion
+    and get_stage_guidance. Added ConcussionAssessment and StageLog models. assess_concussion
+    now records red flag evaluations with summary; get_stage_guidance records inferred
+    stage per user. Updated both tools and marked related tasks complete in the tracker.
+  timestamp: '2025-05-12T15:13:59.400220'
+  tags:
+  - assessment
+  - stage
+  - logging
+  - tools
