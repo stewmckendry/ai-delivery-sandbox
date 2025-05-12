@@ -403,3 +403,15 @@
   - fhir
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: project/delivery/data_flow_addendum_pdf_export.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/data_flow_addendum_pdf_export.md
+  file_type: md
+  description: Document detailing updates to the PDF and FHIR export logic to align
+    with new structured schema, including changes to components and data sources.
+  tags:
+  - export
+  - schema
+  - FHIR
+  - PDF
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
