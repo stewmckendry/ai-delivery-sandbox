@@ -63,3 +63,9 @@
   committed_by: GPTPod
   message: 'Refactor render_pdf to support new symptom log schema with context and
     stage #pdf-export'
+- timestamp: '2025-05-12T18:14:57.411081'
+  path: app/tools/export_summary.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Fix export_summary.py to use get_export_bundle and new engines for PDF
+    + FHIR #pdf-export'
