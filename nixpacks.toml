@@ -1,6 +1,6 @@
 [phases.setup]
 nixPkgs = ["curl", "bash"]
-aptPkgs = ["unixodbc-dev", "libodbc1", "gnupg", "apt-transport-https"]
+aptPkgs = ["unixodbc-dev", "libodbc2", "gnupg", "apt-transport-https"]
 
 [phases.install]
 cmds = [
