@@ -57,3 +57,9 @@
   committed_by: GPTPod
   message: 'Update build_fhir_bundle to reflect new schema with metadata-rich SymptomLog
     entries #pdf-export #fhir'
+- timestamp: '2025-05-12T18:14:32.241349'
+  path: app/engines/pdf_renderer.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Refactor render_pdf to support new symptom log schema with context and
+    stage #pdf-export'
