@@ -486,6 +486,7 @@ tasks:
     instance_of: task_templates/Phase2_development/2.7_prep_deploy_guide/task.yaml
     outputs:
     - docs/deployment/deployment_guide.md
+    - project/delivery/features/feature_5_dashboard_export/deploy_guide.md
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.8_prepare_deployment_guide.txt
