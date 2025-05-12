@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String, Integer, DateTime, Boolean, Text
 from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
 
 Base = declarative_base()
 
@@ -21,3 +22,13 @@ class TrackerMetadata(Base):
     last_stage_id = Column(String)
     cleared_to_play = Column(Boolean)
     answers = Column(Text)
+
+class TriageResponse(Base):
+    __tablename__ = "triage_response_export"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    question_id = Column(String)
+    question_text = Column(Text)
+    answer = Column(Text)
+    timestamp = Column(DateTime, default=datetime.utcnow)
