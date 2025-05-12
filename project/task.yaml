@@ -874,3 +874,4 @@ tasks:
     - project/delivery/data_flow_master.md
     - app/tools/symptom_logger.py
     - app/db/db_writer.py
+    - app/symptom_library.py
