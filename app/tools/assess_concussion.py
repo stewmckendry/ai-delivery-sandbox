@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from typing import Dict, List
 import requests
 import yaml
+from datetime import datetime
+from app.db.db_models import ConcussionAssessment, SessionLocal
 
 router = APIRouter()
 
@@ -14,6 +16,7 @@ SYMPTOM_YAML_URLS = [
 ]
 
 class AssessmentRequest(BaseModel):
+    user_id: str
     answers: Dict[str, int]  # symptom_id → 0–5 severity rating
 
 @router.post("/assess_concussion", tags=["assessment"])
@@ -47,6 +50,23 @@ def assess_concussion(payload: AssessmentRequest):
 
     likely = bool(red_flags or high_risk_symptoms or moderate_risk_count >= 3)
     summary = "This response suggests symptoms consistent with a potential concussion. Please seek clinical evaluation." if likely else "No red flags or high-risk symptom patterns were detected. Monitor closely and consult a provider if symptoms worsen."
+
+    # Save result to DB
+    db = SessionLocal()
+    try:
+        db.add(ConcussionAssessment(
+            user_id=payload.user_id,
+            timestamp=datetime.utcnow(),
+            concussion_likely=likely,
+            red_flags_present=bool(red_flags),
+            summary=summary
+        ))
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+    finally:
+        db.close()
 
     return {
         "concussion_likely": likely,
