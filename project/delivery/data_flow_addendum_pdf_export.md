@@ -1,57 +1,104 @@
 # 📎 Data Flow Addendum – PDF & FHIR Export Update
 
-This document supplements `data_flow_master_v2.md` with recent fixes and enrichments to the PDF and FHIR export logic, ensuring alignment with the structured schema.
+This document supplements `data_flow_master_v2.md` with fixes and enrichments to the PDF and FHIR export logic, ensuring alignment with the structured schema.
 
 ---
 
 ## 🧾 Purpose
-Ensure that export outputs include:
-- Structured logs from `SymptomLog`, `IncidentReport`, and `StageLog`
-- Enriched context: concussion flags, extra notes, injury metadata
-- Auditability and human-readable summaries
+Ensure export outputs reflect all structured logs, context metadata, and recovery status.
 
 ---
 
-## 🔧 Components Updated
+## 🔧 Updated Components
 
 | File | Description |
 |------|-------------|
-| `db_reader.py` | Implements `get_export_bundle()` to load all structured data for a user |
-| `pdf_renderer.py` | Renders injury context, flags, stage, and recent symptoms with metadata |
-| `epic_writer.py` | Emits Observations for symptoms, metadata, and assessment results |
-| `export_summary.py` | Gathers and uploads outputs to Azure Blob, returns signed URL and FHIR |
+| `db_reader.py` | Loads all structured export fields: `IncidentReport`, `SymptomLog`, `StageLog`, `ConcussionAssessment` |
+| `pdf_renderer.py` | Human-readable PDF including injury details, symptoms, and context |
+| `epic_writer.py` | Machine-readable FHIR `Bundle` of `Observations` with metadata |
+| `export_summary.py` | Assembles output, uploads PDF to Azure, returns signed URL and FHIR payload |
 
 ---
 
-## 📄 PDF Output Enrichment
+## 📄 PDF Summary Template
 
-Includes:
-- User ID and export time
-- Injury date, reporter role, sport, age group, incident context
-- Flags: `cleared_to_play`, `lost_consciousness`, `diagnosed_concussion`, etc.
-- Latest stage and 5 recent symptoms with severity and extra notes
+```
+Clinical Summary – Concussion Recovery Tracker
+-------------------------------------------------
+User ID: abc123
+Export Time: 2025-05-12T16:00:00Z
 
-PDF uploaded to Azure Blob via `upload_to_storage()`.
+Injury Date: 2025-04-01
+Reporter Role: coach
+Sport: soccer
+Age Group: U16
+Incident Context: during match
+Cleared to Play: False
+Lost Consciousness: False
+Diagnosed Concussion: True
+Still Symptomatic: True
+Seen Provider: True
+
+Current Recovery Stage: stage_2
+
+Symptom History:
+- 2025-05-10 | headache (3) – coach
+  Notes: still ongoing, worse in morning
+- 2025-05-08 | dizziness (2) – coach
+  Notes: improving
+```
 
 ---
 
-## 💊 FHIR Bundle Enrichment
+## 💊 FHIR Bundle Sample Output
 
-Each symptom encoded as `Observation`:
-- `symptom_id`, `severity`, `timestamp`
-- Context: `reporter_type`, `incident_context`, `sport_type`, `age_group`, `team_id`
-- Notes: `extra_notes`
-
-Additional Observations for:
-- `Inferred Recovery Stage`
-- `Concussion Assessment Summary`, `Red Flags Present`, `Concussion Likely`
+```json
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {"text": "headache"},
+        "valueInteger": 3,
+        "effectiveDateTime": "2025-05-10T14:00:00Z",
+        "note": [{"text": "still ongoing, worse in morning"}],
+        "extension": [
+          {"url": "reporter", "valueString": "coach"},
+          {"url": "incident_context", "valueString": "during match"},
+          {"url": "sport_type", "valueString": "soccer"},
+          {"url": "age_group", "valueString": "U16"},
+          {"url": "team_id", "valueString": "team123"}
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {"text": "Inferred Recovery Stage"},
+        "valueString": "stage_2",
+        "effectiveDateTime": "2025-05-10T15:00:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {"text": "Concussion Assessment Summary"},
+        "valueString": "moderate risk of prolonged recovery",
+        "effectiveDateTime": "2025-05-10T15:00:00Z"
+      }
+    }
+  ]
+}
+```
 
 ---
 
-## ✅ Outcome
-Export logic is now:
-- Fully aligned with structured schema
-- Rich in clinical context and metadata
-- Ready for use by clinicians and external dashboards
-
-This final step ensures that insights from the recovery tracker are portable and audit-ready.
+## ✅ Result
+- Export is now deeply contextual and clinically traceable
+- PDF and FHIR both reflect real-time data in schema
+- Azure upload supported with signed links for download or EHR sharing
