@@ -1,33 +1,28 @@
-from jinja2 import Environment, FileSystemLoader
-from weasyprint import HTML
-import requests
 from datetime import datetime
-import tempfile
-import os
+from jinja2 import Template
 
-def render_pdf(user_id, stage, symptoms, metadata):
-    """
-    Generates a PDF summary from a template and returns the byte stream.
-    """
-    env = Environment(loader=FileSystemLoader("app/templates"))
-    template = env.get_template("clinical_summary.html")
+TEMPLATE = """
+<h2>Symptom Tracker Summary</h2>
+<p><strong>Recovery Stage:</strong> {{ stage or 'Not recorded' }}</p>
+<p><strong>Team:</strong> {{ team_id }} | <strong>Age:</strong> {{ age_group }} | <strong>Sport:</strong> {{ sport_type }}</p>
+<p><strong>Reporter:</strong> {{ reporter_type }} | <strong>Context:</strong> {{ incident_context }}</p>
+<p><strong>Logs:</strong></p>
+<ul>
+{% for s in symptoms %}
+  <li>{{ s.timestamp }} - {{ s.symptom_id }} ({{ s.severity }})</li>
+{% endfor %}
+</ul>
+"""
 
-    html_out = template.render(
-        user_id=user_id,
-        export_date=datetime.now().strftime("%Y-%m-%d"),
+def render_pdf(symptoms: list, stage: str, context: dict):
+    template = Template(TEMPLATE)
+    html = template.render(
+        symptoms=symptoms[-5:],  # show last 5
         stage=stage,
-        symptoms=symptoms,
-        reporter_type=metadata.get("reporter_type", ""),
-        incident_context=metadata.get("incident_context", ""),
-        sport_type=metadata.get("sport_type", ""),
-        age_group=metadata.get("age_group", ""),
-        team_id=metadata.get("team_id", "")
+        team_id=context.get("team_id"),
+        age_group=context.get("age_group"),
+        sport_type=context.get("sport_type"),
+        reporter_type=context.get("reporter_type"),
+        incident_context=context.get("incident_context")
     )
-
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
-        HTML(string=html_out).write_pdf(f.name)
-        with open(f.name, "rb") as result_file:
-            pdf_bytes = result_file.read()
-        os.unlink(f.name)
-
-    return pdf_bytes
+    return html  # placeholder: return HTML string for now
