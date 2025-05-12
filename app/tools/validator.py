@@ -1,7 +1,7 @@
 from app.symptom_library import load_symptom_definitions
 from app.db.db_models import SymptomLog
 from sqlalchemy.orm import Session
-from app.db.db_models import SessionLocal
+from app.db.database import SessionLocal
 
 
 def audit_symptom_schema():
