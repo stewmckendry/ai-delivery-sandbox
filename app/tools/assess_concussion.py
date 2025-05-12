@@ -4,7 +4,8 @@ from typing import Dict, List
 import requests
 import yaml
 from datetime import datetime
-from app.db.db_models import ConcussionAssessment, SessionLocal
+from app.db.db_models import ConcussionAssessment
+from app.db.database import SessionLocal
 
 router = APIRouter()
 
