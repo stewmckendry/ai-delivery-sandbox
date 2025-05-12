@@ -30,8 +30,10 @@
 - [x] Update `triage_map.yaml` to include new metadata questions
 - [x] Update triage test flows to cover new question types (if affected)
 - [x] Map triage question responses from `TrackerState.answers` into symptom metadata
-- [x] Confirm GPT orchestration persists triage answers to `TrackerState` (e.g., via `assess_concussion`)
-- [x] Build tools to support triage orchestration: `get_triage_flow`, `get_triage_question`, `assess_concussion`, `log_incident_detail`
+- [ ] Build `get_triage_question` tool
+- [ ] Build `assess_concussion` tool
+- [x] Build `get_triage_flow` tool
+- [x] Build `log_incident_detail` tool
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
