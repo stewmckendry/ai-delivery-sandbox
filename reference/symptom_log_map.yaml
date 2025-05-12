@@ -6,7 +6,10 @@ symptom_log:
     type: block
     prompt: "Let's review your symptoms. Please rate the severity of each one."
     linked_symptoms:
-      tool_tag: ["physical", "emotional", "sleep"]
+      - headache
+      - dizziness
+      - sleeping_less
+      - emotional_irritability
     symptoms:
       - physical_headache
       - physical_dizziness
