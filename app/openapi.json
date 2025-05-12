@@ -22,11 +22,40 @@
         "bearerFormat": "JWT"
       }
     },
-    "schemas": {}  
+    "schemas": {}
   },
   "paths": {
-    ...
-    (unchanged path definitions)
-    ...
+    "/get_triage_flow": {
+      "get": {
+        "operationId": "getTriageFlow",
+        "summary": "Get all triage questions",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Fetch Full Triage Flow",
+          "instructions": "Use this at the start of triage to load the full question map.",
+          "summary_keywords": ["triage", "map", "flow"]
+        },
+        "responses": {
+          "200": {
+            "description": "Returns all questions in triage map",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flow": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
