@@ -69,3 +69,8 @@
   committed_by: GPTPod
   message: 'Fix export_summary.py to use get_export_bundle and new engines for PDF
     + FHIR #pdf-export'
+- timestamp: '2025-05-12T18:18:54.223320'
+  path: app/db/db_reader.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Fix SessionLocal import in db_reader.py to pull from database.py #cleanup'
