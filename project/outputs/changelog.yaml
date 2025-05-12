@@ -174,3 +174,14 @@
   committed_by: GPTPod
   message: 'Update PDF + FHIR data flow addendum with enrichment and upload logic
     #pdf-export #data-flow'
+- timestamp: '2025-05-12T19:27:05.396929'
+  path: project/delivery/deploy_guide_addendum.md
+  task_id: deployment-addendum
+  committed_by: GPTPod
+  message: 'Add deployment guide addendum: Azure DB usage, admin tools, and schema
+    setup details'
+- timestamp: '2025-05-12T19:27:05.396929'
+  path: project/memory.yaml
+  task_id: deployment-addendum
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/deploy_guide_addendum.md
