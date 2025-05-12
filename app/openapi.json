@@ -24,6 +24,7 @@
     },
     "schemas": {}
   },
+<<<<<<< HEAD
   "paths": {
     "/get_triage_flow": {
       "get": {
@@ -48,6 +49,31 @@
                       "items": {
                         "type": "object"
                       }
+=======
+  "paths": { 
+  "/get_triage_flow": {
+    "get": {
+      "operationId": "getTriageFlow",
+      "summary": "Get all triage questions",
+      "tags": ["Triage"],
+      "x-gpt-action": {
+        "name": "Fetch Full Triage Flow",
+        "instructions": "Use this at the start of triage to load the full question map.",
+        "summary_keywords": ["triage", "map", "flow"]
+      },
+      "responses": {
+        "200": {
+          "description": "Returns all questions in triage map",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flow": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+>>>>>>> 72b6903 (schema update)
                     }
                   }
                 }
@@ -57,5 +83,285 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+  },
+    "/get_triage_question": {
+      "post": {
+        "operationId": "getTriageQuestion",
+        "summary": "Get next triage question",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Fetch Next Triage Question",
+          "instructions": "Use this after each answer to advance the triage dialog.",
+          "summary_keywords": ["triage", "question", "next"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["tracker_state"],
+                "properties": {
+                  "tracker_state": { "type": "object" },
+                  "last_question_id": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns next triage question or a done message"
+          }
+        }
+      }
+    },
+    "/log_incident_detail": {
+      "post": {
+        "operationId": "logIncidentDetail",
+        "summary": "Log triage answers",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Log Triage Metadata",
+          "instructions": "Call after triage is complete to store user answers.",
+          "summary_keywords": ["log", "triage", "incident"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id", "answers"],
+                "properties": {
+                  "user_id": { "type": "string" },
+                  "answers": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmation of stored triage metadata"
+          }
+        }
+      }
+    },
+    "/assess_concussion": {
+      "post": {
+        "operationId": "assessConcussion",
+        "summary": "Evaluate red flags and symptom severity",
+        "tags": ["Assessment"],
+        "x-gpt-action": {
+          "name": "Assess Concussion Risk",
+          "instructions": "Run after triage to detect red flags or concerning patterns.",
+          "summary_keywords": ["concussion", "assessment", "red flags"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "answers": {
+                    "type": "object",
+                    "description": "Symptom ID to severity rating"
+                  }
+                }
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Check symptoms after triage",
+                  "value": {
+                    "answers": {
+                      "headache": 3,
+                      "nausea": 2,
+                      "seizure": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns red flag status and high-risk count"
+          }
+        }
+      }
+    },
+    "/log_symptoms": {
+      "post": {
+        "operationId": "logSymptoms",
+        "summary": "Log symptom check-in",
+        "tags": ["Symptoms"],
+        "x-gpt-action": {
+          "name": "Log Symptoms",
+          "instructions": "Submit a symptom check-in with metadata.",
+          "summary_keywords": ["symptom", "log", "check-in"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id", "symptoms"],
+                "properties": {
+                  "user_id": { "type": "string" },
+                  "injury_date": { "type": "string", "format": "date" },
+                  "checkin_time": { "type": "string", "format": "date-time" },
+                  "symptoms": { "type": "object" },
+                  "metadata": { "type": "object" }
+                }
+              },
+              "examples": {
+                "checkin": {
+                  "summary": "User symptom report",
+                  "value": {
+                    "user_id": "abc123",
+                    "injury_date": "2024-01-01",
+                    "checkin_time": "2024-01-10T12:00:00Z",
+                    "symptoms": { "headache": 2, "fatigue": 3 }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Logs saved successfully"
+          }
+        }
+      }
+    },
+    "/get_stage_guidance": {
+      "post": {
+        "operationId": "getStageGuidance",
+        "summary": "Infer recovery stage",
+        "tags": ["Assessment"],
+        "x-gpt-action": {
+          "name": "Get Stage Guidance",
+          "instructions": "Use after symptom check-in to infer current recovery stage.",
+          "summary_keywords": ["stage", "guidance", "inference"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tracker_state": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns current recovery stage"
+          }
+        }
+      }
+    },
+    "/export_summary": {
+      "post": {
+        "operationId": "exportSummary",
+        "summary": "Export summary as PDF + FHIR",
+        "tags": ["Export"],
+        "x-gpt-action": {
+          "name": "Export Summary",
+          "instructions": "Generate a PDF and FHIR summary for a user.",
+          "summary_keywords": ["export", "summary", "PDF"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id"],
+                "properties": {
+                  "user_id": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PDF URL and FHIR bundle"
+          }
+        }
+      }
+    },
+    "/export_to_sql": {
+      "post": {
+        "operationId": "exportToSql",
+        "summary": "Export data to SQL",
+        "tags": ["Export"],
+        "x-gpt-action": {
+          "name": "Export to SQL",
+          "instructions": "Push all tracker and symptom logs to analytics DB.",
+          "summary_keywords": ["export", "SQL", "dashboard"]
+        },
+        "responses": {
+          "200": {
+            "description": "Export triggered"
+          }
+        }
+      }
+    },
+    "/get_symptom_log_map": {
+      "get": {
+        "summary": "get_symptom_log_map",
+        "operationId": "get_symptom_log_map_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_linked_symptoms/{user_id}": {
+      "get": {
+        "summary": "get_linked_symptoms",
+        "operationId": "get_linked_symptoms_user_id_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+>>>>>>> 72b6903 (schema update)
   }
 }
