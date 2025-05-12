@@ -243,3 +243,14 @@
   - validation
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/validator.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/validator.py
+  file_type: py
+  description: Script to audit symptom definitions in YAML against logged symptom
+    data in the database.
+  tags:
+  - validation
+  - audit
+  - database
+  last_updated: '2025-05-12'
+  pod_owner: QAPod
