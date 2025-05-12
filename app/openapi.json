@@ -280,6 +280,49 @@
           }
         }
       }
+    },
+    "/get_symptom_log_map": {
+      "get": {
+        "summary": "get_symptom_log_map",
+        "operationId": "get_symptom_log_map_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_linked_symptoms/{user_id}": {
+      "get": {
+        "summary": "get_linked_symptoms",
+        "operationId": "get_linked_symptoms_user_id_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
