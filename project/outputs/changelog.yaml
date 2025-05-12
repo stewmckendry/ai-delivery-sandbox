@@ -50,3 +50,9 @@
   task_id: fix-libodbc1
   committed_by: GPTPod
   message: Append output file to fix-libodbc1
+- timestamp: '2025-05-12T20:51:07.405720'
+  path: nixpacks.toml
+  task_id: fix-python-version
+  committed_by: GPTPod
+  message: Add explicit Python version to nixpacks.toml to ensure pip is available
+    during build
