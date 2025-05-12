@@ -87,7 +87,8 @@ Update after each feature delivery or when scope changes during build.
 - Contextual metadata integration
 - Dynamic risk scoring logic (from FA1)
 - Symptom score rollups (from FA2)
-- New tools: `log_incident_detail`, `get_triage_flow`, `get_triage_question`, `assess_concussion`
+- New tools: `log_incident_detail`, `get_triage_flow`, `get_triage_question`, `assess_concussion`, `log_symptoms`, `get_stage_guidance`, `export_summary`
+- `main.py` + OpenAPI + FastAPI router
 
 📤 Deferred
 - Longitudinal views and filters → FA8
