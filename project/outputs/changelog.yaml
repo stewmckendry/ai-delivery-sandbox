@@ -3,3 +3,14 @@
   task_id: fix-pyodbc-import
   committed_by: GPTPod
   message: Append output file to fix-pyodbc-import
+- timestamp: '2025-05-12T20:13:49.473450'
+  path: nixpacks.toml
+  task_id: odbc-driver-fix
+  committed_by: GPTPod
+  message: Add nixpacks.toml to install ODBC driver and dependencies for pyodbc on
+    Railway
+- timestamp: '2025-05-12T20:13:49.473450'
+  path: project/memory.yaml
+  task_id: odbc-driver-fix
+  committed_by: GPTPod
+  message: Memory update related to nixpacks.toml
