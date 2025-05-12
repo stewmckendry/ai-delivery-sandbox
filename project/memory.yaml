@@ -199,3 +199,14 @@
   - gpt
   last_updated: '2025-05-11'
   pod_owner: DeliveryPod
+- path: app/tools/log_incident_detail.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/log_incident_detail.py
+  file_type: py
+  description: API endpoint to log incident details from user triage answers into
+    the database.
+  tags:
+  - api
+  - triage
+  - database
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
