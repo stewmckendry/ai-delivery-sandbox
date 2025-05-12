@@ -5,7 +5,8 @@ from app.models.symptoms import SymptomCheckIn, SymptomLogResult
 from app.models.tracker import TrackerState
 from app.db.db_writer import log_symptoms_to_db
 from app.symptom_library import validate_symptom_ids
-from app.db.db_models import SessionLocal, IncidentReport
+from app.db.database import SessionLocal
+from app.db.db_models import IncidentReport
 
 router = APIRouter()
 
