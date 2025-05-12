@@ -90,3 +90,9 @@
   committed_by: GPTPod
   message: 'Replace ad hoc symptom ID check with validate_symptom_ids() in symptom_logger
     #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:08:01.576423'
+  path: app/tools/log_incident_detail.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add validate_symptom_ids to symptom parsing in log_incident_detail.py
+    #data-flow-fix #symptom-schema'
