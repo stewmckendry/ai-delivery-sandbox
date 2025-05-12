@@ -391,3 +391,15 @@
   - rendering
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/export_summary.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/export_summary.py
+  file_type: py
+  description: API endpoint to generate and export a summary report in PDF and FHIR
+    bundle format based on user data.
+  tags:
+  - api
+  - export
+  - report
+  - fhir
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
