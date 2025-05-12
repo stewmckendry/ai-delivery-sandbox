@@ -3,7 +3,7 @@ from uuid import uuid4
 from datetime import datetime
 import json
 
-from app.db.db_models import SymptomLog, TrackerMetadata, SessionLocal
+from app.db.db_models import SymptomLog, SessionLocal
 
 
 def log_symptoms_to_db(
@@ -19,10 +19,9 @@ def log_symptoms_to_db(
     age_group: str = None,
     team_id: str = None
 ):
-    """Persist symptom log and update tracker state in Azure SQL."""
+    """Persist symptom log to Azure SQL."""
     db: Session = SessionLocal()
     try:
-        # Create a new symptom log record
         log_entry = SymptomLog(
             user_id=user_id,
             timestamp=checkin_time,
@@ -35,27 +34,9 @@ def log_symptoms_to_db(
             team_id=team_id
         )
         db.add(log_entry)
-
-        # Fetch or create the user's tracker metadata
-        metadata = db.query(TrackerMetadata).filter_by(user_id=user_id).first()
-        if not metadata:
-            metadata = TrackerMetadata(
-                user_id=user_id,
-                injury_date=injury_date,
-                last_stage_id=stage or "",
-                cleared_to_play=False,
-                last_checkin_time=checkin_time
-            )
-        else:
-            # Update last check-in and optionally stage
-            metadata.last_checkin_time = checkin_time
-            if stage:
-                metadata.last_stage_id = stage
-
-        db.merge(metadata)  # Insert or update tracker state
-        db.commit()  # Save all changes
+        db.commit()
     except Exception as e:
-        db.rollback()  # Rollback if there's an error
-        raise  # Re-raise for caller to handle
+        db.rollback()
+        raise
     finally:
-        db.close()  # Always close session
+        db.close()
