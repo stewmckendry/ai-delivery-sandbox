@@ -869,3 +869,4 @@ tasks:
     - app/tools/export_to_sql.py
     - app/db/db_models.py
     - app/tools/log_incident_detail.py
+    - app/tools/assess_concussion.py
