@@ -5,6 +5,8 @@ symptom_log:
   - id: symptom_checkin_block
     type: block
     prompt: "Let's review your symptoms. Please rate the severity of each one."
+    linked_symptoms:
+      tool_tag: ["physical", "emotional", "sleep"]
     symptoms:
       - physical_headache
       - physical_dizziness
