@@ -196,3 +196,8 @@
   committed_by: GPTPod
   message: 'Add PDF + FHIR export sample output and templates to addendum #export
     #documentation'
+- timestamp: '2025-05-12T20:08:03.740040'
+  path: requirements.txt
+  task_id: fix-pyodbc-import
+  committed_by: GPTPod
+  message: Add missing pyodbc dependency required for Azure SQL connections
