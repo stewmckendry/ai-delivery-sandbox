@@ -156,3 +156,9 @@
   committed_by: GPTPod
   message: 'Enrich FHIR bundle with assessment, extra_notes, and context metadata
     #fhir #pdf-export'
+- timestamp: '2025-05-12T18:55:30.301178'
+  path: app/tools/export_summary.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Wire new metadata fields into export_summary for PDF and FHIR enrichment
+    #pdf-export #fhir #metadata'
