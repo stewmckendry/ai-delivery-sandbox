@@ -6,6 +6,7 @@ from fastapi import APIRouter
 from app.models.symptoms import SymptomCheckIn, SymptomLogResult
 from app.models.tracker import TrackerState
 from app.db.db_writer import log_symptoms_to_db  # DB write logic
+from app.db.db_models import TrackerMetadata, SessionLocal
 
 router = APIRouter()
 
@@ -38,10 +39,17 @@ def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
     # Construct tracker state
     state = TrackerState(answers=payload.symptoms)
 
-    # Resolve metadata: prefer payload.metadata, fallback to TrackerState.answers
+    # Resolve metadata: prefer payload.metadata, fallback to TrackerState.answers, fallback to DB
     metadata = payload.metadata or {}
+
+    db = SessionLocal()
+    try:
+        existing = db.query(TrackerMetadata).filter_by(user_id=payload.user_id).first()
+    finally:
+        db.close()
+
     def get_meta(field):
-        return metadata.get(field) or payload.symptoms.get(field)
+        return metadata.get(field) or payload.symptoms.get(field) or getattr(existing, field, None)
 
     # Write to database
     log_symptoms_to_db(
@@ -56,9 +64,4 @@ def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
         sport_type=get_meta("sport_type"),
         age_group=get_meta("age_group"),
         team_id=get_meta("team_id")
-    )
-
-    return SymptomLogResult(
-        tracker_state=state,
-        message="Symptoms logged and tracker state updated."
     )
