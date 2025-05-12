@@ -461,3 +461,15 @@
   - fastapi
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: project/delivery/azure_odbc_setup_note.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/azure_odbc_setup_note.md
+  file_type: md
+  description: Documentation of a solution for resolving a deployment error with Azure
+    SQL ODBC connector using a custom Dockerfile on Railway.
+  tags:
+  - azure
+  - odbc
+  - docker
+  - deployment
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
