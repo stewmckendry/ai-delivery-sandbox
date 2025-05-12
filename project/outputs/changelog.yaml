@@ -184,3 +184,8 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: unknown
   message: Append chain of thought to task 2.8_prepare_deployment_guide
+- timestamp: '2025-05-12T12:44:22.019945'
+  path: requirements.txt
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Add 'uvicorn' to requirements.txt to fix Railway startup command
