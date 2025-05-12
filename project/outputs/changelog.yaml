@@ -189,3 +189,8 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: ProductPod
   message: Add 'uvicorn' to requirements.txt to fix Railway startup command
+- timestamp: '2025-05-12T12:54:18.468380'
+  path: .logs/issues/project.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in project scope
