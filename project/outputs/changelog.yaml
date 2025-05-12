@@ -194,3 +194,9 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: 'Clean up TrackerMetadata usage from symptom_logger.py #cleanup #data-flow-fix'
+- timestamp: '2025-05-12T16:40:15.119990'
+  path: app/tools/symptom_logger.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Fallback to IncidentReport for context fields in symptom_logger.py #data-flow-fix
+    #cleanup'
