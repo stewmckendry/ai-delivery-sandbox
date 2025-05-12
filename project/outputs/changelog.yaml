@@ -119,3 +119,13 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: ProductPod
   message: Append output file to 2.8_prepare_deployment_guide
+- timestamp: '2025-05-12T11:26:35.904784'
+  path: project/delivery/features/feature_5_dashboard_export/custom_gpt_setup.md
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: 'Add complete setup guide for Custom GPT: Concussion Recovery Assistant'
+- timestamp: '2025-05-12T11:26:35.904784'
+  path: project/memory.yaml
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Memory update related to project/delivery/features/feature_5_dashboard_export/custom_gpt_setup.md
