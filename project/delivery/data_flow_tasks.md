@@ -23,7 +23,7 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 
 ## 🛠️ 2. Tool Updates
 
-### [ ] Update `log_incident_detail.py`
+### [x] Update `log_incident_detail.py`
 - Log each Q&A from triage into `TriageResponse`
 - Optionally create single-row `IncidentReport`
 
