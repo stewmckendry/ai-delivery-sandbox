@@ -1,8 +1,9 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from typing import Dict, List, Optional
+from typing import Dict
 from datetime import datetime
-from app.db.db_models import TriageResponse, IncidentReport, SessionLocal
+from app.db.db_models import TriageResponse, IncidentReport
+from app.db.database import SessionLocal
 from app.symptom_library import validate_symptom_ids
 
 router = APIRouter()
@@ -16,7 +17,6 @@ class IncidentLogRequest(BaseModel):
 def log_incident_detail(request: IncidentLogRequest):
     db = SessionLocal()
     try:
-        # Log triage answers
         for qid, answer in request.answers.items():
             if qid == "symptoms":
                 continue
@@ -28,7 +28,6 @@ def log_incident_detail(request: IncidentLogRequest):
                 timestamp=request.timestamp
             ))
 
-        # Optional structured metadata
         structured = {}
         for field in [
             "injury_date", "reporter_role", "sport_type", "age_group",
@@ -39,13 +38,12 @@ def log_incident_detail(request: IncidentLogRequest):
             if field in request.answers:
                 structured[field] = request.answers[field]
 
-        # Validate symptoms if present
         if "symptoms" in structured:
             try:
                 sym_ids = eval(structured["symptoms"]).keys()
                 validate_symptom_ids(list(sym_ids))
             except Exception:
-                pass  # Allow fallthrough if parsing fails
+                pass
 
         if structured:
             db.add(IncidentReport(
