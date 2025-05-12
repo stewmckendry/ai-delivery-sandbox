@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["curl", "cacert", "bash"]
+nixPkgs = ["curl", "bash"]
 aptPkgs = ["unixodbc-dev", "libodbc1", "gnupg", "apt-transport-https"]
 
 [phases.install]
