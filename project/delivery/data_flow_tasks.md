@@ -57,6 +57,10 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 ### [ ] Replace old doc `data_flow_addendum.md`
 - New source: `data_flow_master.md`
 
+### [ ] Fix export_to_sql to align with SymptomLog and canonical schema
+- Refactor symptom_log_export logic
+- Reference: data_flow_master.md
+
 ---
 
 ## 📍 Tracking
