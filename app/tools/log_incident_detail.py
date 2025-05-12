@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from app.db.db_models import TrackerMetadata, TriageResponse, SessionLocal
+from app.db.db_models import TrackerMetadata, TriageResponse, IncidentReport, SessionLocal
 from datetime import datetime
 import requests, yaml
 
@@ -16,7 +16,7 @@ class IncidentDetailRequest(BaseModel):
 def log_incident_detail(data: IncidentDetailRequest):
     """
     Save the user's triage answers as metadata in the Tracker.
-    Also logs each Q&A into TriageResponse for audit/export.
+    Also logs each Q&A into TriageResponse and structured metadata into IncidentReport.
     """
     db = SessionLocal()
     try:
@@ -53,6 +53,24 @@ def log_incident_detail(data: IncidentDetailRequest):
                 answer=str(answer),
                 timestamp=datetime.utcnow()
             ))
+
+        # Insert IncidentReport if structured fields exist
+        db.merge(IncidentReport(
+            user_id=data.user_id,
+            injury_date=injury_date,
+            reporter_role=data.answers.get("reporter_role"),
+            sport_type=data.answers.get("sport_type"),
+            age_group=data.answers.get("age_group"),
+            team_id=data.answers.get("team_id"),
+            injury_context=data.answers.get("injury_context"),
+            symptoms=str(data.answers.get("symptoms")),
+            lost_consciousness=data.answers.get("lost_consciousness"),
+            seen_provider=data.answers.get("seen_provider"),
+            diagnosed_concussion=data.answers.get("diagnosed_concussion"),
+            still_symptomatic=data.answers.get("still_symptomatic"),
+            cleared_to_play=data.answers.get("cleared_to_play"),
+            timestamp=datetime.utcnow()
+        ))
 
         db.commit()
         return {"status": "success", "user_id": data.user_id}
