@@ -1,7 +1,7 @@
 import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from app.db.db_models import TriageResponse, IncidentReport, SymptomLog, SessionLocal
+from app.db.db_models import TriageResponse, IncidentReport, SymptomLog, StageLog, ConcussionAssessment, SessionLocal
 from reference_loader import load_triage_map, load_stages_yaml
 import json
 
@@ -94,6 +94,44 @@ def export_to_sql():
                     "sport_type": row.sport_type,
                     "age_group": row.age_group,
                     "team_id": row.team_id
+                }
+            )
+
+        # Export stage results
+        stage_logs = db.query(StageLog).all()
+        for row in stage_logs:
+            conn.execute(
+                text("""
+                INSERT INTO stage_result_export (
+                    user_id, inferred_stage, timestamp
+                ) VALUES (
+                    :user_id, :inferred_stage, :timestamp
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "inferred_stage": row.inferred_stage,
+                    "timestamp": row.timestamp
+                }
+            )
+
+        # Export concussion assessments
+        assessments = db.query(ConcussionAssessment).all()
+        for row in assessments:
+            conn.execute(
+                text("""
+                INSERT INTO concussion_assessment_export (
+                    user_id, timestamp, concussion_likely, red_flags_present, summary
+                ) VALUES (
+                    :user_id, :timestamp, :concussion_likely, :red_flags_present, :summary
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "timestamp": row.timestamp,
+                    "concussion_likely": row.concussion_likely,
+                    "red_flags_present": row.red_flags_present,
+                    "summary": row.summary
                 }
             )
     db.close()
