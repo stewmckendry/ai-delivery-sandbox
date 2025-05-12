@@ -32,3 +32,21 @@ class TriageResponse(Base):
     question_text = Column(Text)
     answer = Column(Text)
     timestamp = Column(DateTime, default=datetime.utcnow)
+
+class IncidentReport(Base):
+    __tablename__ = "incident_report_export"
+
+    user_id = Column(String, primary_key=True)
+    injury_date = Column(DateTime)
+    reporter_role = Column(String)
+    sport_type = Column(String)
+    age_group = Column(String)
+    team_id = Column(String)
+    injury_context = Column(String)
+    symptoms = Column(Text)
+    lost_consciousness = Column(Boolean)
+    seen_provider = Column(Boolean)
+    diagnosed_concussion = Column(Boolean)
+    still_symptomatic = Column(Boolean)
+    cleared_to_play = Column(Boolean)
+    timestamp = Column(DateTime, default=datetime.utcnow)
