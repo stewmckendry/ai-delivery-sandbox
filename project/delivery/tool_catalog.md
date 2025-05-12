@@ -4,7 +4,7 @@ This catalog outlines the tools available for use by the Custom GPT to manage tr
 
 ---
 
-### 🧭 1. Triage Tools (Planned)
+### 🧭 1. Triage Tools
 
 #### `get_triage_flow`
 - **Purpose:** Load the full YAML-driven triage map to guide GPT dialog
@@ -21,11 +21,11 @@ This catalog outlines the tools available for use by the Custom GPT to manage tr
 - **Note:** Alternative to above if GPT isn't managing state fully
 
 #### `log_incident_detail`
-- **Purpose:** Store triage answers into TrackerState
+- **Purpose:** Store triage answers into TrackerMetadata
 - **When to Use:** After triage conversation is complete
 - **Input:** user_id, answers dict
-- **Output:** TrackerState
-- **Note:** Enables reuse of metadata in symptom logging/export
+- **Output:** success message
+- **Note:** Answers stored as JSON for future reuse. Also sets up metadata for use in later tools.
 
 #### `assess_concussion`
 - **Purpose:** Evaluate answers and infer red flags & stage
@@ -43,6 +43,7 @@ This catalog outlines the tools available for use by the Custom GPT to manage tr
 - **When to Use:** After user completes daily check-in
 - **Input:** SymptomCheckIn (symptoms + metadata)
 - **Output:** TrackerState
+- **Note:** Looks up missing metadata from `TrackerMetadata` if not included in payload. Persists via `log_symptoms_to_db`.
 
 #### `get_stage_guidance`
 - **Purpose:** Infer recovery stage and suggest next steps
@@ -59,12 +60,13 @@ This catalog outlines the tools available for use by the Custom GPT to manage tr
 - **When to Use:** On user or clinician request
 - **Input:** user_id
 - **Output:** PDF contents (or storage URL), FHIR bundle
+- **Note:** PDF and FHIR files are written locally and uploaded to Azure Blob using `upload_to_storage`.
 
 #### `export_to_sql`
 - **Purpose:** Push anonymized data to analytics database
 - **When to Use:** On schedule or manual trigger
 - **Input:** None
-- **Output:** None (writes to DB)
+- **Output:** None (writes to SQL DB)
 
 ---
 
