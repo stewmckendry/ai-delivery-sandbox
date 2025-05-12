@@ -867,3 +867,4 @@ tasks:
     outputs:
     - project/delivery/data_flow_tasks.md
     - app/tools/export_to_sql.py
+    - app/db/db_models.py
