@@ -438,3 +438,14 @@
   - admin
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: nixpacks.toml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/nixpacks.toml
+  file_type: toml
+  description: Configuration for setting up and installing dependencies using Nix
+    and APT for a project.
+  tags:
+  - config
+  - setup
+  - dependencies
+  last_updated: '2025-05-12'
+  pod_owner: DevPod
