@@ -29,3 +29,8 @@
   task_id: fix-nix-cacert-conflict
   committed_by: GPTPod
   message: Append output file to fix-nix-cacert-conflict
+- timestamp: '2025-05-12T20:45:42.699771'
+  path: nixpacks.toml
+  task_id: fix-nix-cacert-conflict
+  committed_by: GPTPod
+  message: Fix nixpacks.toml by removing cacert to avoid SSL bundle conflict
