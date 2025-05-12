@@ -6,7 +6,7 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 
 ## 🔧 1. Schema + Model Updates
 
-### [ ] Add `TriageResponse` model
+### [x] Add `TriageResponse` model
 - Fields: `user_id`, `question_id`, `question_text`, `answer`, `timestamp`
 - Table: `triage_response_export`
 - File: `db_models.py`
