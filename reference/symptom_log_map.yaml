@@ -1,0 +1,26 @@
+# Structured schema for follow-up symptom logging
+# Mirrors triage_map but focused on periodic symptom check-ins
+
+symptom_log:
+  - id: symptom_checkin_block
+    type: block
+    prompt: "Let's review your symptoms. Please rate the severity of each one."
+    symptoms:
+      - physical_headache
+      - physical_dizziness
+      - emotional_irritability
+      - sleep_difficulty
+    guidance:
+      red_flag_if: ["red_flag_nausea", "red_flag_double_vision"]
+      escalate_if:
+        - condition: "severity >= 4"
+          message: "This symptom may need further evaluation."
+
+metadata:
+  required_fields:
+    - reporter_type
+    - incident_context
+    - sport_type
+    - age_group
+    - team_id
+  notes: "All symptom IDs must be defined in symptoms_*.yaml. This file standardizes what is captured during follow-up."
