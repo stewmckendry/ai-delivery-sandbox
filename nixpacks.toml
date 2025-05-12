@@ -1,3 +1,9 @@
+[build]
+nixpacksVersion = 1
+
+[variables]
+PYTHON_VERSION = "3.12"
+
 [phases.setup]
 nixPkgs = ["curl", "bash"]
 aptPkgs = ["unixodbc-dev", "libodbc2", "gnupg", "apt-transport-https"]
