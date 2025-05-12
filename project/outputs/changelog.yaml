@@ -150,3 +150,9 @@
   committed_by: GPTPod
   message: 'Enrich PDF with incident context, concussion flags, and extra notes #pdf-export
     #data-enrichment'
+- timestamp: '2025-05-12T18:55:07.951281'
+  path: app/engines/epic_writer.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Enrich FHIR bundle with assessment, extra_notes, and context metadata
+    #fhir #pdf-export'
