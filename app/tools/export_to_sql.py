@@ -16,9 +16,124 @@ def export_to_sql():
 
     db = SessionLocal()
     with engine.begin() as conn:
-        # Export logic unchanged
-        pass
+        # Export triage responses
+        triage_rows = db.query(TriageResponse).all()
+        for row in triage_rows:
+            conn.execute(
+                text("""
+                INSERT INTO triage_response_export (
+                    user_id, question_id, question_text, answer, timestamp
+                ) VALUES (
+                    :user_id, :question_id, :question_text, :answer, :timestamp
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "question_id": row.question_id,
+                    "question_text": row.question_text,
+                    "answer": row.answer,
+                    "timestamp": row.timestamp
+                }
+            )
 
+        # Export incident reports
+        incident_rows = db.query(IncidentReport).all()
+        for row in incident_rows:
+            conn.execute(
+                text("""
+                INSERT INTO incident_report_export (
+                    user_id, injury_date, reporter_role, sport_type, age_group,
+                    team_id, injury_context, symptoms, lost_consciousness,
+                    seen_provider, diagnosed_concussion, still_symptomatic,
+                    cleared_to_play, timestamp
+                ) VALUES (
+                    :user_id, :injury_date, :reporter_role, :sport_type, :age_group,
+                    :team_id, :injury_context, :symptoms, :lost_consciousness,
+                    :seen_provider, :diagnosed_concussion, :still_symptomatic,
+                    :cleared_to_play, :timestamp
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "injury_date": row.injury_date,
+                    "reporter_role": row.reporter_role,
+                    "sport_type": row.sport_type,
+                    "age_group": row.age_group,
+                    "team_id": row.team_id,
+                    "injury_context": row.injury_context,
+                    "symptoms": row.symptoms,
+                    "lost_consciousness": row.lost_consciousness,
+                    "seen_provider": row.seen_provider,
+                    "diagnosed_concussion": row.diagnosed_concussion,
+                    "still_symptomatic": row.still_symptomatic,
+                    "cleared_to_play": row.cleared_to_play,
+                    "timestamp": row.timestamp
+                }
+            )
+
+        # Export symptom logs
+        symptom_logs = db.query(SymptomLog).all()
+        for row in symptom_logs:
+            conn.execute(
+                text("""
+                INSERT INTO symptom_log_export (
+                    user_id, timestamp, symptoms, log_metadata, incident_context,
+                    reporter_type, sport_type, age_group, team_id
+                ) VALUES (
+                    :user_id, :timestamp, :symptoms, :log_metadata, :incident_context,
+                    :reporter_type, :sport_type, :age_group, :team_id
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "timestamp": row.timestamp,
+                    "symptoms": row.symptoms,
+                    "log_metadata": row.log_metadata,
+                    "incident_context": row.incident_context,
+                    "reporter_type": row.reporter_type,
+                    "sport_type": row.sport_type,
+                    "age_group": row.age_group,
+                    "team_id": row.team_id
+                }
+            )
+
+        # Export stage results
+        stage_logs = db.query(StageLog).all()
+        for row in stage_logs:
+            conn.execute(
+                text("""
+                INSERT INTO stage_result_export (
+                    user_id, inferred_stage, timestamp
+                ) VALUES (
+                    :user_id, :inferred_stage, :timestamp
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "inferred_stage": row.inferred_stage,
+                    "timestamp": row.timestamp
+                }
+            )
+
+        # Export concussion assessments
+        assessments = db.query(ConcussionAssessment).all()
+        for row in assessments:
+            conn.execute(
+                text("""
+                INSERT INTO concussion_assessment_export (
+                    user_id, timestamp, concussion_likely, red_flags_present, summary
+                ) VALUES (
+                    :user_id, :timestamp, :concussion_likely, :red_flags_present, :summary
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "timestamp": row.timestamp,
+                    "concussion_likely": row.concussion_likely,
+                    "red_flags_present": row.red_flags_present,
+                    "summary": row.summary
+                }
+            )
     db.close()
 
 if __name__ == "__main__":
