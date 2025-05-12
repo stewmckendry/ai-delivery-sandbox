@@ -30,8 +30,8 @@
 - [x] Update `triage_map.yaml` to include new metadata questions
 - [x] Update triage test flows to cover new question types (if affected)
 - [x] Map triage question responses from `TrackerState.answers` into symptom metadata
-- [ ] Build `get_triage_question` tool
-- [ ] Build `assess_concussion` tool
+- [x] Build `get_triage_question` tool
+- [x] Build `assess_concussion` tool
 - [x] Build `get_triage_flow` tool
 - [x] Build `log_incident_detail` tool
 
