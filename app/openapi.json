@@ -23,5 +23,94 @@
       }
     }
   },
-  "paths": {}
+  "paths": {
+    "/get_triage_flow": {
+      "get": {
+        "operationId": "getTriageFlow",
+        "summary": "Get all triage questions",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Fetch Full Triage Flow",
+          "instructions": "Use this at the start of triage to load the full question map.",
+          "summary_keywords": ["triage", "map", "flow"]
+        },
+        "responses": {
+          "200": {
+            "description": "Returns all questions in triage map",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_triage_question": {
+      "post": {
+        "operationId": "getTriageQuestion",
+        "summary": "Get next triage question",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Fetch Next Triage Question",
+          "instructions": "Use this after each answer to advance the triage dialog.",
+          "summary_keywords": ["triage", "question", "next"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["tracker_state"],
+                "properties": {
+                  "tracker_state": { "type": "object" },
+                  "last_question_id": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns next triage question or a done message"
+          }
+        }
+      }
+    },
+    "/log_incident_detail": {
+      "post": {
+        "operationId": "logIncidentDetail",
+        "summary": "Log triage answers",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Log Triage Metadata",
+          "instructions": "Call after triage is complete to store user answers.",
+          "summary_keywords": ["log", "triage", "incident"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id", "answers"],
+                "properties": {
+                  "user_id": { "type": "string" },
+                  "answers": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmation of stored triage metadata"
+          }
+        }
+      }
+    }
+  }
 }
