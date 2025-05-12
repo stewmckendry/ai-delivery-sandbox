@@ -112,3 +112,9 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: Append output file to data_flow_updates/add_triage_response-46dc49
+- timestamp: '2025-05-12T16:19:40.531734'
+  path: reference/symptom_log_map.yaml
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Enhance symptom_log_map.yaml with linked_symptoms and schema notes #data-flow-fix
+    #symptom-schema'
