@@ -23,3 +23,8 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: Append output file to data_flow_updates/add_triage_response-46dc49
+- timestamp: '2025-05-12T15:31:59.766111'
+  path: project/delivery/data_flow_tasks.md
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Update task list with full symptom logging fix plan #data-flow-fix #symptom-schema'
