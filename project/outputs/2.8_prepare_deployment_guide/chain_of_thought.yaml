@@ -47,3 +47,13 @@
   - start-command
   - uvicorn
   - chain-of-thought
+- message: Deployment failed due to missing TrackerMetadata model. This model is referenced
+    in log_incident_detail.py but was never defined. Design docs suggest it should
+    track triage metadata for export. Defined a TrackerMetadata model and will commit
+    it to db_models.py to resolve the issue.
+  timestamp: '2025-05-12T12:54:34.128632'
+  tags:
+  - database
+  - schema
+  - chain-of-thought
+  - triage
