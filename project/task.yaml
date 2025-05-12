@@ -864,3 +864,5 @@ tasks:
     status: backlog
     instance_of: framework/task_templates/delivery/data_flow_updates/add_triage_response/task.yaml
     prompt: framework/task_templates/delivery/data_flow_updates/add_triage_response/prompt_template.md
+    outputs:
+    - project/delivery/data_flow_tasks.md
