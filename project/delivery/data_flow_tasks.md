@@ -11,7 +11,7 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 - Table: `triage_response_export`
 - File: `db_models.py`
 
-### [ ] Add optional `IncidentReport` model
+### [x] Add optional `IncidentReport` model
 - Fields: all structured metadata from triage_map.yaml
 - File: `db_models.py`
 
@@ -27,7 +27,7 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 - Log each Q&A from triage into `TriageResponse`
 - Optionally create single-row `IncidentReport`
 
-### [ ] Update `export_to_sql.py`
+### [x] Update `export_to_sql.py`
 - Include new model/table if created
 
 ### [ ] Extend `assess_concussion.py`
