@@ -347,3 +347,13 @@
   - validation
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/db/database.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/db/database.py
+  file_type: py
+  description: Configuration for setting up the database connection using SQLAlchemy
+  tags:
+  - database
+  - config
+  - sqlalchemy
+  last_updated: '2025-05-12'
+  pod_owner: DevPod
