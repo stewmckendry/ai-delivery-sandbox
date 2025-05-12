@@ -118,3 +118,9 @@
   committed_by: GPTPod
   message: 'Enhance symptom_log_map.yaml with linked_symptoms and schema notes #data-flow-fix
     #symptom-schema'
+- timestamp: '2025-05-12T16:20:15.824696'
+  path: app/db/db_models.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add extra_notes field to SymptomLog for unlisted or freeform symptom logging
+    #data-flow-fix #symptom-schema'
