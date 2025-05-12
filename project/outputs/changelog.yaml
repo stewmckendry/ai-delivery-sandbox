@@ -24,3 +24,9 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: 'Add export logic for SymptomLog to export_to_sql.py #symptom-schema #data-flow-fix'
+- timestamp: '2025-05-12T15:49:27.568470'
+  path: project/delivery/data_flow_tasks.md
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Mark SymptomLog refactor and export logic as complete; flag remaining
+    export tasks #data-flow-fix'
