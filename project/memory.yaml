@@ -449,3 +449,15 @@
   - dependencies
   last_updated: '2025-05-12'
   pod_owner: DevPod
+- path: Dockerfile
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/Dockerfile
+  file_type: unknown
+  description: Dockerfile for setting up a Python environment with necessary system
+    and Python dependencies to run a FastAPI application.
+  tags:
+  - docker
+  - environment
+  - setup
+  - fastapi
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
