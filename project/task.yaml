@@ -876,3 +876,4 @@ tasks:
     - app/db/db_writer.py
     - app/symptom_library.py
     - app/tools/validator.py
+    - reference/symptom_log_map.yaml
