@@ -7,59 +7,36 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 ## 🔧 1. Schema + Model Updates
 
 ### [x] Add `TriageResponse` model
-- Fields: `user_id`, `question_id`, `question_text`, `answer`, `timestamp`
-- Table: `triage_response_export`
-- File: `db_models.py`
-
 ### [x] Add optional `IncidentReport` model
-- Fields: all structured metadata from triage_map.yaml
-- File: `db_models.py`
-
 ### [ ] Rename `metadata` field → `log_metadata`
-- File: `SymptomLog` in `db_models.py`
-- Update all uses in `symptom_logger`, `db_writer`, etc.
+### [ ] Add missing context fields to `SymptomLog`
+### [ ] Add `StageLog` and `ConcussionAssessment` to model list
 
 ---
 
 ## 🛠️ 2. Tool Updates
 
 ### [x] Update `log_incident_detail.py`
-- Log each Q&A from triage into `TriageResponse`
-- Optionally create single-row `IncidentReport`
-
 ### [x] Update `export_to_sql.py`
-- Include new model/table if created
-
 ### [x] Extend `assess_concussion.py`
-- Optionally log red flag assessment result to DB
-
 ### [x] Extend `get_stage_guidance.py`
-- Optionally log inferred stage to DB
+### [ ] Update `symptom_logger.py`, `db_writer.py` to use new SymptomLog fields
+### [ ] Refactor YAML parsing into `symptom_library.py`
 
 ---
 
-## 🧪 3. Validation + Reporting
+## 🧪 3. Validation + Schema Alignment
 
-### [ ] Audit YAML vs model field sync
-- Files: `triage_map.yaml`, `symptoms_*.yaml`, `models/`, `db_models.py`
-
-### [ ] Update Power BI SQL views
-- Reflect new triage and stage data
-- Ensure aggregation, anonymity
+### [ ] Introduce `symptom_log_map.yaml` for follow-ups
+### [ ] Add YAML-to-schema audit in `validator.py`
 
 ---
 
 ## 🧼 4. Cleanup
 
 ### [ ] Remove unused `TrackerMetadata` refs
-- Files: `log_incident_detail.py`, legacy code
-
 ### [ ] Replace old doc `data_flow_addendum.md`
-- New source: `data_flow_master.md`
-
-### [ ] Fix export_to_sql to align with SymptomLog and canonical schema
-- Refactor symptom_log_export logic
-- Reference: data_flow_master.md
+### [ ] Fix export_to_sql to align with `SymptomLog`
 
 ---
 
