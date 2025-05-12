@@ -866,3 +866,4 @@ tasks:
     prompt: framework/task_templates/delivery/data_flow_updates/add_triage_response/prompt_template.md
     outputs:
     - project/delivery/data_flow_tasks.md
+    - app/tools/export_to_sql.py
