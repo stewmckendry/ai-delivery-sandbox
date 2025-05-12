@@ -50,3 +50,21 @@ class IncidentReport(Base):
     still_symptomatic = Column(Boolean)
     cleared_to_play = Column(Boolean)
     timestamp = Column(DateTime, default=datetime.utcnow)
+
+class ConcussionAssessment(Base):
+    __tablename__ = "concussion_assessment_export"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    concussion_likely = Column(Boolean)
+    red_flags_present = Column(Boolean)
+    summary = Column(Text)
+
+class StageLog(Base):
+    __tablename__ = "stage_result_export"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    inferred_stage = Column(String)
+    timestamp = Column(DateTime, default=datetime.utcnow)
