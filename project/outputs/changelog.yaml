@@ -323,3 +323,8 @@
   task_id: fix-sessionlocal-imports
   committed_by: GPTPod
   message: Append output file to fix-sessionlocal-imports
+- timestamp: '2025-05-12T17:54:15.044147'
+  path: app/tools/assess_concussion.py
+  task_id: fix-sessionlocal-imports
+  committed_by: GPTPod
+  message: Fix SessionLocal import in assess_concussion.py to use database.py
