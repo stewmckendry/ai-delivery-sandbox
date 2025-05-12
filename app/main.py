@@ -6,7 +6,9 @@ from app.tools import (
     assess_concussion,
     symptom_logger,
     get_stage_guidance,
-    export_summary
+    export_summary,
+    get_symptom_log_map,
+    get_linked_symptoms
 )
 
 app = FastAPI(
@@ -22,7 +24,9 @@ app.include_router(log_incident_detail.router)
 app.include_router(assess_concussion.router)
 app.include_router(symptom_logger.router)
 app.include_router(get_stage_guidance.router)
-app.include_router(export_summary.router)  # Non-async tools like export_to_sql are CLI-only
+app.include_router(export_summary.router)
+app.include_router(get_symptom_log_map.router)
+app.include_router(get_linked_symptoms.router)
 
 @app.get("/openapi.json")
 def get_openapi_schema():
