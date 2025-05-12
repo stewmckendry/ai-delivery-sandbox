@@ -489,6 +489,7 @@ tasks:
     - project/delivery/features/feature_5_dashboard_export/deploy_guide.md
     - project/delivery/features/feature_5_dashboard_export/custom_gpt_setup.md
     - requirements.txt
+    - app/db/db_models.py
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.8_prepare_deployment_guide.txt
