@@ -11,23 +11,13 @@ class SymptomLog(Base):
     user_id = Column(String)
     timestamp = Column(DateTime)
     symptoms = Column(Text)
-    log_metadata = Column(Text)  # Renamed from 'metadata'
+    log_metadata = Column(Text)
     incident_context = Column(String)
     reporter_type = Column(String)
     sport_type = Column(String)
     age_group = Column(String)
     team_id = Column(String)
-    extra_notes = Column(Text)  # new: capture freeform notes or unlisted symptoms
-
-class TrackerMetadata(Base):
-    __tablename__ = "tracker_export"
-
-    user_id = Column(String, primary_key=True)
-    injury_date = Column(DateTime)
-    last_checkin_time = Column(DateTime)
-    last_stage_id = Column(String)
-    cleared_to_play = Column(Boolean)
-    answers = Column(Text)
+    extra_notes = Column(Text)
 
 class TriageResponse(Base):
     __tablename__ = "triage_response_export"
