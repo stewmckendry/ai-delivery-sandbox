@@ -38,3 +38,12 @@
   - bug
   - requirements
   - chain-of-thought
+- message: 'Railway start command failed with ''uvicorn: command not found''. Diagnosis
+    revealed that ''uvicorn'' is not included in requirements.txt. This is needed
+    for FastAPI app startup, so we''ll add it to the dependencies and recommit.'
+  timestamp: '2025-05-12T12:44:10.784840'
+  tags:
+  - deployment
+  - start-command
+  - uvicorn
+  - chain-of-thought
