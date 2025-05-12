@@ -23,3 +23,8 @@
   task_id: fix-sessionlocal-imports
   committed_by: GPTPod
   message: Append output file to fix-sessionlocal-imports
+- timestamp: '2025-05-12T17:56:57.627297'
+  path: app/tools/symptom_logger.py
+  task_id: fix-sessionlocal-imports
+  committed_by: GPTPod
+  message: Fix SessionLocal import in symptom_logger.py to use database.py
