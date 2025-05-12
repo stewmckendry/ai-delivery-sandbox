@@ -190,3 +190,9 @@
   task_id: deployment-addendum
   committed_by: GPTPod
   message: Append output file to deployment-addendum
+- timestamp: '2025-05-12T19:29:49.256446'
+  path: project/delivery/data_flow_addendum_pdf_export.md
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add PDF + FHIR export sample output and templates to addendum #export
+    #documentation'
