@@ -323,3 +323,14 @@
   - tools
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: project/delivery/tool_catalog_v2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/tool_catalog_v2.md
+  file_type: md
+  description: Document detailing the updated tools and flow support in version 2
+    of the tool catalog.
+  tags:
+  - tools
+  - flow
+  - update
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
