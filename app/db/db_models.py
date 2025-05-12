@@ -17,6 +17,7 @@ class SymptomLog(Base):
     sport_type = Column(String)
     age_group = Column(String)
     team_id = Column(String)
+    extra_notes = Column(Text)  # new: capture freeform notes or unlisted symptoms
 
 class TrackerMetadata(Base):
     __tablename__ = "tracker_export"
