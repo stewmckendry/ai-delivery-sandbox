@@ -877,3 +877,4 @@ tasks:
     - app/symptom_library.py
     - app/tools/validator.py
     - reference/symptom_log_map.yaml
+    - app/tools/get_symptom_log_map.py
