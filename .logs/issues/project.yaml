@@ -1,0 +1,14 @@
+- type: bug
+  scope: project
+  issue_id: b289f031-93ed-41bc-a7f5-17d032eba704
+  task_id: 2.8_prepare_deployment_guide
+  title: Invalid dependency 'yaml' in requirements.txt
+  detail: '''yaml'' is listed as a dependency, but no such package exists on PyPI.
+    The correct package name is ''PyYAML''. This caused a Railway deployment failure.'
+  suggested_fix: Replace 'yaml' with 'PyYAML' in requirements.txt
+  tags:
+  - dependency
+  - deployment
+  - requirements
+  status: open
+  timestamp: '2025-05-12T12:39:08.082681'
