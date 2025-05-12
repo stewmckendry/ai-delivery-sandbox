@@ -92,3 +92,8 @@
   task_id: update-openapi-url-schema
   committed_by: GPTPod
   message: Append output file to update-openapi-url-schema
+- timestamp: '2025-05-12T22:06:05.984859'
+  path: app/openapi.json
+  task_id: openapi-schema-patch
+  committed_by: GPTPod
+  message: 'Fix GPT schema error: add response properties for /get_triage_flow'
