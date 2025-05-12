@@ -61,3 +61,14 @@
   task_id: fix-python-version
   committed_by: GPTPod
   message: Append output file to fix-python-version
+- timestamp: '2025-05-12T20:52:34.059790'
+  path: Dockerfile
+  task_id: custom-dockerfile-fix
+  committed_by: GPTPod
+  message: Add custom Dockerfile to support pyodbc with full ODBC dependencies for
+    Railway
+- timestamp: '2025-05-12T20:52:34.059790'
+  path: project/memory.yaml
+  task_id: custom-dockerfile-fix
+  committed_by: GPTPod
+  message: Memory update related to Dockerfile
