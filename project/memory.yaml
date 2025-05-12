@@ -368,3 +368,15 @@
   - export
   last_updated: '2025-05-12'
   pod_owner: DevPod
+- path: app/engines/epic_writer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/engines/epic_writer.py
+  file_type: py
+  description: Function to construct a FHIR bundle from symptom data and recovery
+    stage information.
+  tags:
+  - fhir
+  - bundle
+  - data
+  - health
+  last_updated: '2025-05-12'
+  pod_owner: ResearchPod
