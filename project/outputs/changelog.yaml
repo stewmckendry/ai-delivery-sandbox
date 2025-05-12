@@ -96,3 +96,14 @@
   committed_by: GPTPod
   message: 'Add validate_symptom_ids to symptom parsing in log_incident_detail.py
     #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:09:55.850298'
+  path: reference/symptom_log_map.yaml
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add structured schema for follow-up symptom logging as symptom_log_map.yaml
+    #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:09:55.850298'
+  path: project/memory.yaml
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: Memory update related to reference/symptom_log_map.yaml
