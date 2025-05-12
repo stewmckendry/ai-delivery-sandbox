@@ -276,3 +276,14 @@
   - yaml
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/get_linked_symptoms.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_linked_symptoms.py
+  file_type: py
+  description: API endpoint to retrieve linked symptoms for a user from the database,
+    using either the latest symptom log or triage responses.
+  tags:
+  - api
+  - database
+  - retrieval
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
