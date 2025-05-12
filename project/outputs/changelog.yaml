@@ -39,3 +39,9 @@
   task_id: fix-nix-cacert-conflict
   committed_by: GPTPod
   message: Append output file to fix-nix-cacert-conflict
+- timestamp: '2025-05-12T20:48:50.216444'
+  path: nixpacks.toml
+  task_id: fix-libodbc1
+  committed_by: GPTPod
+  message: Replace deprecated libodbc1 with libodbc2 in nixpacks.toml for ODBC driver
+    install
