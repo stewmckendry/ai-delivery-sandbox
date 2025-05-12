@@ -34,6 +34,11 @@
 - [x] Build `assess_concussion` tool
 - [x] Build `get_triage_flow` tool
 - [x] Build `log_incident_detail` tool
+- [x] Build `log_symptoms` tool
+- [x] Build `get_stage_guidance` tool
+- [x] Build `export_summary` tool
+- [x] Add `main.py` and router registration
+- [x] Add `openapi.json` with all tool paths
 
 ### 🧪 Test
 - [ ] Export test with known tracker/log pair
