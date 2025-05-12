@@ -11,7 +11,12 @@ class SymptomLog(Base):
     user_id = Column(String)
     timestamp = Column(DateTime)
     symptoms = Column(Text)
-    metadata = Column(Text)
+    log_metadata = Column(Text)  # Renamed from 'metadata'
+    incident_context = Column(String)
+    reporter_type = Column(String)
+    sport_type = Column(String)
+    age_group = Column(String)
+    team_id = Column(String)
 
 class TrackerMetadata(Base):
     __tablename__ = "tracker_export"
