@@ -8,9 +8,9 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 
 ### [x] Add `TriageResponse` model
 ### [x] Add optional `IncidentReport` model
-### [ ] Rename `metadata` field → `log_metadata`
-### [ ] Add missing context fields to `SymptomLog`
-### [ ] Add `StageLog` and `ConcussionAssessment` to model list
+### [x] Rename `metadata` field → `log_metadata`
+### [x] Add missing context fields to `SymptomLog`
+### [x] Add `StageLog` and `ConcussionAssessment` to model list
 
 ---
 
@@ -20,7 +20,7 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 ### [x] Update `export_to_sql.py`
 ### [x] Extend `assess_concussion.py`
 ### [x] Extend `get_stage_guidance.py`
-### [ ] Update `symptom_logger.py`, `db_writer.py` to use new SymptomLog fields
+### [x] Update `symptom_logger.py`, `db_writer.py` to use new SymptomLog fields
 ### [ ] Refactor YAML parsing into `symptom_library.py`
 
 ---
@@ -36,7 +36,8 @@ This list tracks the delivery of fixes and enhancements from the data flow maste
 
 ### [ ] Remove unused `TrackerMetadata` refs
 ### [ ] Replace old doc `data_flow_addendum.md`
-### [ ] Fix export_to_sql to align with `SymptomLog`
+### [ ] Fix export_to_sql to align with `SymptomLog` — ✅ Done
+### [ ] Wire in `ConcussionAssessment` and `StageLog` to export flow
 
 ---
 
