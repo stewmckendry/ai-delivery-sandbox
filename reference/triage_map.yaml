@@ -85,9 +85,23 @@ triage_flow:
         parse_with: symptom_extractor
         mode: probe
         symptom_links:
-          - "headache"
-          - "dizziness"
-          - "confusion"
+          - irritability
+          - sadness
+          - anxiety
+          - headache
+          - nausea
+          - vomiting
+          - dizziness
+          - balance_problems
+          - neck_pain
+          - double_vision
+          - limb_weakness
+          - seizure
+          - loss_of_consciousness
+          - drowsiness
+          - sleeping_more
+          - difficulty_falling_asleep
+          - sleeping_less
         response_parsing: "list of symptoms"
         example_user_answers:
           - "He was dizzy and had a headache."
