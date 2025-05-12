@@ -33,3 +33,9 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: 'Merge original and addendum into data_flow_master.md #data-flow-fix'
+- timestamp: '2025-05-12T15:39:01.640383'
+  path: app/db/db_models.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Rename SymptomLog.metadata to log_metadata and add context fields #data-flow-fix
+    #symptom-schema'
