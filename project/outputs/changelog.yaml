@@ -250,3 +250,8 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: ProductPod
   message: Append output file to 2.8_prepare_deployment_guide
+- timestamp: '2025-05-12T14:11:40.082460'
+  path: project/delivery/data_flow_master.md
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Recommit full unredacted data_flow_master.md as audit source of truth
