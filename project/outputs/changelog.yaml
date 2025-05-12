@@ -54,3 +54,14 @@
   task_id: qa-retro
   committed_by: GPTPod
   message: Append output file to qa-retro
+- timestamp: '2025-05-12T21:15:24.325571'
+  path: project/delivery/custom_gpt_setup.md
+  task_id: update-gpt-setup
+  committed_by: GPTPod
+  message: 'Update custom_gpt_setup.md: rename assistant to ConcussionGPT, update
+    OpenAPI URL and tooling steps'
+- timestamp: '2025-05-12T21:15:24.325571'
+  path: project/memory.yaml
+  task_id: update-gpt-setup
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/custom_gpt_setup.md
