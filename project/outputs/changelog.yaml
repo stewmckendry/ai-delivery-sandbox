@@ -134,3 +134,8 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: ProductPod
   message: Append output file to 2.8_prepare_deployment_guide
+- timestamp: '2025-05-12T11:29:11.611755'
+  path: project/delivery/features/feature_5_dashboard_export/deploy_guide.md
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: GPTPod
+  message: Regenerate and commit full Deployment Guide with all instructions unredacted
