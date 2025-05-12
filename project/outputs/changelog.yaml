@@ -174,3 +174,8 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: ProductPod
   message: Append output file to 2.8_prepare_deployment_guide
+- timestamp: '2025-05-12T12:43:58.127268'
+  path: .logs/issues/project.yaml
+  task_id: null
+  committed_by: GPTPod
+  message: Log <class 'type'> in project scope
