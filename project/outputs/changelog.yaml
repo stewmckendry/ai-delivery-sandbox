@@ -368,3 +368,9 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: 'Add IncidentReport export logic to export_to_sql.py #data-flow-fix #triage-db'
+- timestamp: '2025-05-12T14:54:37.863996'
+  path: project/delivery/data_flow_tasks.md
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Mark IncidentReport model, logger, and export steps as complete #data-flow-fix
+    #triage-db'
