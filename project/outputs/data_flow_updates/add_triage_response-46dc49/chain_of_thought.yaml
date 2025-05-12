@@ -9,3 +9,14 @@
   - schema
   - tool
   - db-model
+- message: Extended data pipeline to include IncidentReport model. Defined model in
+    db_models.py with all structured triage fields. Updated log_incident_detail.py
+    to populate this row from the answers dict if available. Extended export_to_sql.py
+    to write incident_report_export rows to SQL. Updated task tracker to reflect completion
+    of schema, logger, and export steps.
+  timestamp: '2025-05-12T14:54:57.551035'
+  tags:
+  - schema
+  - tool
+  - export
+  - triage
