@@ -29,3 +29,12 @@
   - gpt-setup
   - docs
   - system-integration
+- message: Railway deployment failed due to 'yaml' not being a valid PyPI package.
+    Diagnosis revealed that the package should be 'PyYAML'. We fetched requirements.txt,
+    confirmed the error, and logged a bug for this dependency issue.
+  timestamp: '2025-05-12T12:39:27.669733'
+  tags:
+  - deployment
+  - bug
+  - requirements
+  - chain-of-thought
