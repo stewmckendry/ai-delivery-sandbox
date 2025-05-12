@@ -162,3 +162,9 @@
   committed_by: GPTPod
   message: 'Wire new metadata fields into export_summary for PDF and FHIR enrichment
     #pdf-export #fhir #metadata'
+- timestamp: '2025-05-12T19:12:38.211043'
+  path: app/tools/export_summary.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Restore upload_to_storage in export_summary.py for PDF delivery via Azure
+    Blob #pdf-export'
