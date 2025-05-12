@@ -19,3 +19,8 @@
   task_id: odbc-driver-fix
   committed_by: GPTPod
   message: Append output file to odbc-driver-fix
+- timestamp: '2025-05-12T20:45:02.585465'
+  path: nixpacks.toml
+  task_id: fix-nix-cacert-conflict
+  committed_by: GPTPod
+  message: Fix nixpacks.toml by removing cacert to avoid SSL bundle conflict
