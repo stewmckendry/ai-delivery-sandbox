@@ -1,8 +1,9 @@
 import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from app.db.db_models import TriageResponse, IncidentReport, SessionLocal
+from app.db.db_models import TriageResponse, IncidentReport, SymptomLog, SessionLocal
 from reference_loader import load_triage_map, load_stages_yaml
+import json
 
 # Establish database connection
 SQL_CONN_STR = os.getenv("AZURE_SQL_CONNECTION_STRING")
@@ -67,6 +68,32 @@ def export_to_sql():
                     "still_symptomatic": row.still_symptomatic,
                     "cleared_to_play": row.cleared_to_play,
                     "timestamp": row.timestamp
+                }
+            )
+
+        # Export symptom logs
+        symptom_logs = db.query(SymptomLog).all()
+        for row in symptom_logs:
+            conn.execute(
+                text("""
+                INSERT INTO symptom_log_export (
+                    user_id, timestamp, symptoms, log_metadata, incident_context,
+                    reporter_type, sport_type, age_group, team_id
+                ) VALUES (
+                    :user_id, :timestamp, :symptoms, :log_metadata, :incident_context,
+                    :reporter_type, :sport_type, :age_group, :team_id
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "timestamp": row.timestamp,
+                    "symptoms": row.symptoms,
+                    "log_metadata": row.log_metadata,
+                    "incident_context": row.incident_context,
+                    "reporter_type": row.reporter_type,
+                    "sport_type": row.sport_type,
+                    "age_group": row.age_group,
+                    "team_id": row.team_id
                 }
             )
     db.close()
