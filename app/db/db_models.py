@@ -1,21 +1,23 @@
 from sqlalchemy import Column, String, Integer, DateTime, Boolean, Text
-from sqlalchemy.orm import declarative_base, sessionmaker
-from datetime import datetime
+from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
 class SymptomLog(Base):
-    __tablename__ = "symptom_log"
+    __tablename__ = "symptom_log_export"
 
-    id = Column(String, primary_key=True)
-    user_id = Column(String, nullable=False)
-    symptom_id = Column(String, nullable=False)
-    severity = Column(Integer, nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    timestamp = Column(DateTime)
+    symptoms = Column(Text)
+    metadata = Column(Text)
 
-    # New metadata fields for dashboard
-    reporter_type = Column(String)       # e.g., "self", "coach", "parent"
-    incident_context = Column(String)    # e.g., "practice", "game"
-    sport_type = Column(String)          # e.g., "soccer", "hockey"
-    age_group = Column(String)           # e.g., "U14", "High School"
-    team_id = Column(String)             # Optional program/team grouping
+class TrackerMetadata(Base):
+    __tablename__ = "tracker_export"
+
+    user_id = Column(String, primary_key=True)
+    injury_date = Column(DateTime)
+    last_checkin_time = Column(DateTime)
+    last_stage_id = Column(String)
+    cleared_to_play = Column(Boolean)
+    answers = Column(Text)
