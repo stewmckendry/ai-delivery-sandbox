@@ -8,3 +8,4 @@ PyYAML
 pytest
 uvicorn
 pyodbc
+azure-storage-blob
