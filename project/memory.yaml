@@ -287,3 +287,15 @@
   - retrieval
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/main.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/main.py
+  file_type: py
+  description: FastAPI application setup for a concussion recovery tool, including
+    triage, symptom tracking, and guidance features.
+  tags:
+  - api
+  - flow
+  - health
+  - app
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
