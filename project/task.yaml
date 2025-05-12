@@ -875,3 +875,4 @@ tasks:
     - app/tools/symptom_logger.py
     - app/db/db_writer.py
     - app/symptom_library.py
+    - app/tools/validator.py
