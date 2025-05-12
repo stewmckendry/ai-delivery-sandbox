@@ -124,3 +124,14 @@
   committed_by: GPTPod
   message: 'Add extra_notes field to SymptomLog for unlisted or freeform symptom logging
     #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:21:22.733169'
+  path: app/tools/get_symptom_log_map.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add tool route /get_symptom_log_map to return structured follow-up schema
+    #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:21:22.733169'
+  path: project/memory.yaml
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: Memory update related to app/tools/get_symptom_log_map.py
