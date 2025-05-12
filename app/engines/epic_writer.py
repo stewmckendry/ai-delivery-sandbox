@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def build_fhir_bundle(symptoms: list, stage: str, incident: object = None):
+def build_fhir_bundle(symptoms: list, stage: str, incident: object = None, assessment: object = None):
     bundle = {
         "resourceType": "Bundle",
         "type": "collection",
@@ -15,6 +15,7 @@ def build_fhir_bundle(symptoms: list, stage: str, incident: object = None):
                 "code": {"text": entry["symptom_id"]},
                 "valueInteger": entry.get("severity"),
                 "effectiveDateTime": entry.get("timestamp"),
+                "note": [{"text": entry.get("extra_notes", "")}],
                 "extension": [
                     {"url": "reporter", "valueString": entry.get("reporter_type")},
                     {"url": "incident_context", "valueString": entry.get("incident_context")},
@@ -34,6 +35,35 @@ def build_fhir_bundle(symptoms: list, stage: str, incident: object = None):
                 "code": {"text": "Inferred Recovery Stage"},
                 "valueString": stage,
                 "effectiveDateTime": datetime.utcnow().isoformat()
+            }
+        })
+
+    if assessment:
+        bundle["entry"].append({
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {"text": "Concussion Assessment Summary"},
+                "valueString": assessment.summary,
+                "effectiveDateTime": assessment.timestamp.isoformat()
+            }
+        })
+        bundle["entry"].append({
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {"text": "Concussion Likely"},
+                "valueBoolean": assessment.concussion_likely,
+                "effectiveDateTime": assessment.timestamp.isoformat()
+            }
+        })
+        bundle["entry"].append({
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {"text": "Red Flags Present"},
+                "valueBoolean": assessment.red_flags_present,
+                "effectiveDateTime": assessment.timestamp.isoformat()
             }
         })
 
