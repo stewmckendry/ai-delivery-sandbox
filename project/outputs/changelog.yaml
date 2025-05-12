@@ -199,3 +199,13 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: unknown
   message: Append chain of thought to task 2.8_prepare_deployment_guide
+- timestamp: '2025-05-12T12:55:01.469860'
+  path: app/db/db_models.py
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Add missing TrackerMetadata model to db_models.py for triage export
+- timestamp: '2025-05-12T12:55:01.469860'
+  path: project/memory.yaml
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Memory update related to app/db/db_models.py
