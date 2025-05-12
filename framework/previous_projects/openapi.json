@@ -1,0 +1,2569 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GitHub File Proxy + Promote Patch Tool",
+    "version": "1.2.0",
+    "description": "Fetch GitHub repo files and generate patch metadata for AI-native delivery."
+  },
+  "servers": [
+    {
+      "url": "https://ai-delivery-framework-production.up.railway.app",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {}
+  },
+  "paths": {
+    "/system/metrics": {
+      "post": {
+        "operationId": "getSystemMetrics",
+        "summary": "Retrieve metrics summary or export full report",
+        "tags": ["System", "Metrics"],
+        "x-gpt-action": {
+          "name": "Fetch Delivery or Reasoning Metrics",
+          "instructions": "Use this to get delivery or reasoning metrics. Choose mode: `summary` for aggregated stats, `export` for raw task-level data.",
+          "summary_keywords": ["metrics", "summary", "export", "delivery", "reasoning"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "mode"],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Repo name containing task outputs"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to fetch metrics from (default is 'main')"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": ["summary", "export"],
+                    "description": "Whether to return a summary or full export"
+                  },
+                  "format": {
+                    "type": "string",
+                    "enum": ["json", "csv"],
+                    "description": "Format of export (optional, default is JSON)"
+                  }
+                }
+              },
+              "examples": {
+                "summary": {
+                  "summary": "Get delivery reasoning summary",
+                  "value": {
+                    "repo_name": "ai-delivery-framework",
+                    "branch": "sandbox-emarald-hawk",
+                    "mode": "summary"
+                  }
+                },
+                "export_csv": {
+                  "summary": "Export reasoning metrics as CSV",
+                  "value": {
+                    "repo_name": "ai-delivery-framework",
+                    "branch": "sandbox-emerald-owl",
+                    "mode": "export",
+                    "format": "csv"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns metrics summary or full report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "metrics": {
+                      "type": "object",
+                      "description": "Contains either a summary or full export of metrics",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actions/list": {
+      "get": {
+        "operationId": "listAvailableActions",
+        "summary": "List available tools and capabilities",
+        "description": "Returns a grouped list of actions with names, paths, descriptions, and methods.",
+        "tags": [
+          "Utilities"
+        ],
+        "x-gpt-action": {
+          "name": "List Available Actions",
+          "instructions": "Retrieve a list of actions grouped by functionality, including paths, descriptions, and supported methods.",
+          "summary_keywords": [
+            "actions",
+            "list",
+            "tools"
+          ]
+        },
+        "responses": {
+          "200": {
+            "description": "List of available actions grouped by category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "tools": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "path": {
+                                  "type": "string"
+                                },
+                                "method": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/fetch_files": {
+      "post": {
+        "operationId": "fetchFiles",
+        "summary": "Fetch one or more files from a GitHub repo",
+        "tags": ["System", "Files"],
+        "x-gpt-action": {
+          "name": "Fetch Files from Repo",
+          "instructions": "Use this to retrieve one or more files. Set `mode` to `single` or `batch`. Provide `path` for single or `paths` array for batch.",
+          "summary_keywords": ["fetch", "file", "github", "repo"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "mode"],
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": ["single", "batch"],
+                    "description": "Whether to fetch a single file or a list"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repo name (e.g., ai-delivery-framework)"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to fetch from (default is 'main')"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "Path to a single file (required for mode=single)"
+                  },
+                  "paths": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "List of file paths (required for mode=batch)"
+                  }
+                }
+              },
+              "examples": {
+                "single": {
+                  "summary": "Get a single file",
+                  "value": {
+                    "mode": "single",
+                    "repo_name": "ai-delivery-framework",
+                    "branch": "sandbox-emerald-owl",
+                    "path": "framework/prompt_template.md"
+                  }
+                },
+                "batch": {
+                  "summary": "Fetch multiple files",
+                  "value": {
+                    "mode": "batch",
+                    "repo_name": "ai-delivery-framework",
+                    "branch": "sandbox-emerald-owl",
+                    "paths": [
+                      "project/task.yaml",
+                      "project/memory.yaml"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returned file content(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "files": {
+                      "type": "object",
+                      "description": "Mapping of file paths to content",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/commit_and_log_output": {
+      "post": {
+        "summary": "Commit and log a single output file for a task",
+        "operationId": "commitAndLogOutput",
+        "tags": [
+          "Tasks"
+        ],
+        "x-gpt-action": {
+          "name": "Commit and Log Output File",
+          "instructions": "Use this to commit and log a single output file for a task.",
+          "summary_keywords": [
+            "commit",
+            "log",
+            "output"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "task_id",
+                  "file_path",
+                  "content",
+                  "message"
+                ],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "The name of the GitHub repository (e.g. nhl-predictor)"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "The ID of the task being committed"
+                  },
+                  "file_path": {
+                    "type": "string",
+                    "description": "The path to the file being committed"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "The content of the file being committed"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The commit message for the file"
+                  },
+                  "committed_by": {
+                    "type": "string",
+                    "description": "The name of the person or gpt pod committing the file",
+                    "default": "GPTPod"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to write to (default is 'main')"
+                  }
+                }
+              },
+              "example": {
+                "repo_name": "nhl-predictor",
+                "task_id": "2.4_build",
+                "file_path": "project/outputs/2.4_build/spec.yaml",
+                "content": "output file content here...",
+                "message": "Add feature spec",
+                "committed_by": "DevPod",
+                "branch": "sandbox-emarald-hawk"  
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Output file committed and logged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/git/rollback_commit": {
+      "post": {
+        "operationId": "rollbackCommit",
+        "summary": "Rollback one or more files in a branch to their state before a given commit",
+        "tags": ["Git", "Recovery"],
+        "x-gpt-action": {
+          "name": "Rollback Commit",
+          "instructions": "Use this to undo one or more changes in a given commit. Provide the `commit_sha`, `branch`, and `repo_name`. Optionally list specific `paths` to limit rollback scope. Always include their assigned repo_name and branch. Confirm rollback with a clear message",
+          "summary_keywords": ["rollback", "undo", "revert", "commit"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "commit_sha", "branch"],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repo name (e.g., nhl-predictor)"
+                  },
+                  "commit_sha": {
+                    "type": "string",
+                    "description": "The commit to roll back from"
+                  },
+                  "paths": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Optional list of files to revert (if omitted, reverts all)"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Optional reason to log with the rollback"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch where rollback should be applied"
+                  }
+                }
+              },
+              "examples": {
+                "revert_all": {
+                  "summary": "Revert entire commit",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "commit_sha": "abc123",
+                    "branch": "sandbox-emerald-wave"
+                  }
+                },
+                "revert_partial": {
+                  "summary": "Revert only specific files",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "commit_sha": "abc123",
+                    "branch": "sandbox-emerald-wave",
+                    "paths": ["project/memory.yaml"],
+                    "reason": "Bad memory update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rollback confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "reverted_files": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/git/commit": {
+      "post": {
+        "operationId": "commitChanges",
+        "summary": "Commit changes to a GitHub repository",
+        "tags": [
+          "Git"
+        ],
+        "x-gpt-action": {
+          "name": "Commit Changes",
+          "instructions": "Use this to commit changes to a GitHub repository. Provide `repo_name`, `branch`, and `message`. Optionally include `paths` to specify files to commit.",
+          "summary_keywords": [
+            "commit",
+            "changes",
+            "git"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "message"
+                ],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repository name (e.g., nhl-predictor)"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to commit to (default is 'main')"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Commit message"
+                  },
+                  "paths": {
+                    "type": [
+                      "array",
+                      {
+                        "$ref": "#/components/schemas/FilePath"
+                      }
+                    ],
+                    "$ref": "#/components/schemas/FilePath"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CommitResponse"
+          }
+        }
+      }
+    },
+    "/system/guide": {
+      "post": {
+        "operationId": "getOnboardingGuide",
+        "summary": "Return the onboarding guide from GitHub",
+        "tags": [
+          "System"
+        ],
+        "x-gpt-action": {
+          "name": "Get Onboarding Guide",
+          "instructions": "Use this to retrieve onboarding instructions. Set `simple=true` for a non-technical guide.",
+          "summary_keywords": [
+            "onboarding",
+            "guide",
+            "instructions"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name"
+                ],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repository name (e.g. 'nhl-predictor')"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to fetch from (default is 'main')"
+                  },
+                  "simple": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Set to true to retrieve a non-technical guide"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Markdown onboarding guide from GitHub",
+            "content": {
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/artifacts/{task_id}": {
+      "get": {
+        "operationId": "getTaskArtifacts",
+        "summary": "Fetch all artifacts for a specific task",
+        "tags": [
+          "Tasks"
+        ],
+        "x-gpt-action": {
+          "name": "Get Task Artifacts",
+          "instructions": "Use this to retrieve all related data for a task, including its prompt, outputs, chain of thought, reasoning trace, and handoff notes.",
+          "summary_keywords": [
+            "artifacts",
+            "task",
+            "data"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The task ID for which to fetch artifacts",
+            "example": "1.2_define_user_and_delivery_flows"
+          },
+          {
+            "name": "repo_name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The GitHub repository name",
+            "example": "ai-delivery-framework"
+          },
+          {
+            "name": "branch",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Git branch to fetch from (default is 'main')"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All available artifacts related to the task",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "prompt": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Prompt content used to start the task"
+                    },
+                    "outputs": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "description": "Dictionary of output file paths and contents"
+                    },
+                    "chain_of_thought": {
+                      "type": "array",
+                      "description": "List of thought entries",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "timestamp": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "reasoning_trace": {
+                      "type": "object",
+                      "description": "Reasoning trace dictionary generated by the GPT pod",
+                      "additionalProperties": true
+                    },
+                    "handoff_notes": {
+                      "type": "array",
+                      "description": "List of handoff note entries",
+                      "items": {
+                        "type": "object"
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/manage": {
+      "post": {
+        "operationId": "manageMemory",
+        "summary": "Perform memory file operations (add, index, diff, validate)",
+        "tags": [
+          "Memory"
+        ],
+        "x-gpt-action": {
+          "name": "Manage Memory Files",
+          "instructions": "Use this to add, index, diff, or validate memory entries. Set the `action` parameter and include the correct fields for each operation.",
+          "summary_keywords": [
+            "memory",
+            "add",
+            "index",
+            "diff",
+            "validate"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "action"
+                ],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Name of the GitHub repository"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "index",
+                      "diff",
+                      "validate"
+                    ],
+                    "description": "**add**: add files with optional metadata\n**index**: scan base_paths for new files\n**diff**: list missing memory entries\n**validate**: check if files exist in memory.yaml and GitHub"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "required": [
+                            "path"
+                          ],
+                          "properties": {
+                            "path": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "tags": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "pod_owner": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "description": "Used in `add` and `validate` actions"
+                  },
+                  "base_paths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Used in `index` and `diff` actions"
+                  }
+                }
+              },
+              "examples": {
+                "add": {
+                  "summary": "Add memory files",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "main",
+                    "action": "add",
+                    "files": [
+                      {
+                        "path": "src/app/main.py"
+                      }
+                    ]
+                  }
+                },
+                "index": {
+                  "summary": "Index new files",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "action": "index",
+                    "base_paths": [
+                      "src/"
+                    ]
+                  }
+                },
+                "diff": {
+                  "summary": "Compare memory to GitHub files",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "action": "diff",
+                    "base_paths": [
+                      "src/",
+                      "data/"
+                    ]
+                  }
+                },
+                "validate": {
+                  "summary": "Validate file existence",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "action": "validate",
+                    "files": [
+                      "README.md",
+                      "src/utils/helpers.py"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Memory operation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "object",
+                      "description": "Details about the memory operation",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/query": {
+      "post": {
+        "operationId": "queryMemory",
+        "summary": "Query memory index (search, list, summary, or stats)",
+        "tags": [
+          "Memory"
+        ],
+        "x-gpt-action": {
+          "name": "Query Memory Index",
+          "instructions": "Use this to search, list, summarize, or get stats from the memory index. Set `mode` to one of: `search`, `list`, `summary`, or `stats`, and include required fields per mode. Use `offset` and `limit` with `list` to page through results.",
+          "summary_keywords": [
+            "memory",
+            "search",
+            "list",
+            "stats",
+            "summary"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "mode"],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Name of the GitHub repository"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to query (default is 'main')"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": ["search", "list", "summary", "stats"],
+                    "description": "Query type: `search`, `list`, `summary`, or `stats`"
+                  },
+                  "keyword": {
+                    "type": "string",
+                    "description": "Used only for `search` mode"
+                  },
+                  "pod_owner": {
+                    "type": "string",
+                    "description": "Optional filter for `list` mode"
+                  },
+                  "tag": {
+                    "type": "string",
+                    "description": "Optional filter for `list` mode"
+                  },
+                  "file_type": {
+                    "type": "string",
+                    "description": "Optional filter for `list` mode"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "description": "Index to start listing from (used in `list` mode)"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of entries to return (used in `list` mode)"
+                  }
+                }
+              },
+              "examples": {
+                "search": {
+                  "summary": "Search memory index",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "mode": "search",
+                    "keyword": "task prompt"
+                  }
+                },
+                "list": {
+                  "summary": "List memory entries by tag",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "mode": "list",
+                    "tag": "prompt",
+                    "offset": 0,
+                    "limit": 50
+                  }
+                },
+                "summary": {
+                  "summary": "Summarize memory index",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "mode": "summary"
+                  }
+                },
+                "stats": {
+                  "summary": "Get memory stats",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "mode": "stats"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Query result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "object",
+                      "description": "Query results (search hits, list of entries, summary, or stats)",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/manage_entry": {
+      "post": {
+        "operationId": "manageMemoryEntry",
+        "summary": "Update or remove a memory entry",
+        "tags": [
+          "Memory"
+        ],
+        "x-gpt-action": {
+          "name": "Manage Memory Entry",
+          "instructions": "Use this to update or remove a memory entry. Set `action` to `update` or `remove`, and include `repo_name` and `path`. For updates, include optional fields to modify.",
+          "summary_keywords": [
+            "memory",
+            "entry",
+            "update",
+            "remove"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "path",
+                  "action"
+                ],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Name of the GitHub repository"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "Path of the file to update or remove"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "update",
+                      "remove"
+                    ],
+                    "description": "`update` to change metadata, `remove` to delete entry"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "New description (for update only)"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "New tags (for update only)"
+                  },
+                  "pod_owner": {
+                    "type": "string",
+                    "description": "New pod owner (for update only)"
+                  }
+                }
+              },
+              "examples": {
+                "update": {
+                  "summary": "Update memory entry",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "path": "project/outputs/task.yaml",
+                    "action": "update",
+                    "description": "Tracks task definitions",
+                    "tags": [
+                      "tasks",
+                      "config"
+                    ],
+                    "pod_owner": "DeliveryPod"
+                  }
+                },
+                "remove": {
+                  "summary": "Remove memory entry",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "path": "docs/old_doc.md",
+                    "action": "remove"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Entry updated or removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/manage_metadata": {
+      "post": {
+        "operationId": "manageTaskMetadata",
+        "summary": "Update or clone task metadata",
+        "tags": [
+          "Tasks"
+        ],
+        "x-gpt-action": {
+          "name": "Manage Task Metadata",
+          "instructions": "Use this to update a task’s metadata or to clone a task. Set `action` to `update_metadata` or `clone`.",
+          "summary_keywords": [
+            "task",
+            "update",
+            "metadata",
+            "clone"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "action"
+                ],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Repository name where the task lives"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "update_metadata",
+                      "clone"
+                    ],
+                    "description": "`update_metadata` for metadata edits, `clone` to copy a task"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "ID of the task to update (required for `update_metadata`)"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "outputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "ready": {
+                    "type": "boolean"
+                  },
+                  "done": {
+                    "type": "boolean"
+                  },
+                  "original_task_id": {
+                    "type": "string",
+                    "description": "ID of the task to clone (required for `clone`)"
+                  },
+                  "descriptor": {
+                    "type": "string",
+                    "description": "Descriptor of the cloned task’s purpose"
+                  }
+                }
+              },
+              "examples": {
+                "update_metadata": {
+                  "summary": "Update task metadata",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "action": "update_metadata",
+                    "task_id": "2.1_design_feature_and_tech_spec",
+                    "description": "Refactor metadata tool",
+                    "ready": true
+                  }
+                },
+                "clone": {
+                  "summary": "Clone a task",
+                  "value": {
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "action": "clone",
+                    "original_task_id": "2.1_design_feature_and_tech_spec",
+                    "descriptor": "for task 2.1 follow-up"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task metadata updated or cloned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "updated_metadata": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/lifecycle": {
+      "post": {
+        "operationId": "manageTaskLifecycle",
+        "summary": "Manage task lifecycle: activate, start, complete, reopen, next, scale out, or create",
+        "tags": [
+          "Tasks"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "action"
+                ],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "activate",
+                      "start",
+                      "complete",
+                      "reopen",
+                      "next",
+                      "scale_out",
+                      "create"
+                    ],
+                    "description": "Lifecycle action to perform. Each action has specific required fields.\n\n- `activate`: Mark task(s) as `planned`\n- `start`: Mark as `in_progress` and log prompt\n- `complete`: Finalize task and store outputs\n- `reopen`: Reopen completed task\n- `next`: Get next available task for a Pod\n- `scale_out`: Clone and continue task\n- `create`: Generate new task from template"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repository where the task is defined (required for all actions)"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "ID of the task (required for: start, complete, reopen, scale_out)"
+                  },
+                  "prompt_used": {
+                    "type": "string",
+                    "description": "Prompt content used to start the task (required for: start)"
+                  },
+                  "outputs": {
+                    "type": "array",
+                    "description": "Files generated by the task (required for: complete)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "string"
+                        },
+                        "content": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "content"
+                      ]
+                    }
+                  },
+                  "reasoning_trace": {
+                    "type": "object",
+                    "description": "Reasoning trace for the task (optional for: complete)",
+                    "properties": {
+                      "task_id": {
+                        "type": "string"
+                      },
+                      "thoughts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "thought": {
+                              "type": "string"
+                            },
+                            "tags": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "scoring": {
+                        "type": "object",
+                        "properties": {
+                          "thought_quality": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5
+                          },
+                          "recall_used": {
+                            "type": "boolean"
+                          },
+                          "novel_insight": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "summary": {
+                        "type": "string"
+                      },
+                      "improvement_opportunities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "alternatives": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "handoff_note": {
+                    "type": "object",
+                    "description": "Structured note passed to next pod or task (optional for: complete, scale_out)",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "from_pod": {
+                        "type": "string"
+                      },
+                      "to_pod": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      },
+                      "token_count": {
+                        "type": "integer"
+                      },
+                      "next_prompt": {
+                        "type": "string"
+                      },
+                      "reference_files": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "notes": {
+                        "type": "string"
+                      },
+                      "ways_of_working": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "handoff_to_same_pod": {
+                    "type": "boolean",
+                    "description": "Optional flag used in 'complete' to indicate scale continuation"
+                  },
+                  "token_count": {
+                    "type": "integer",
+                    "description": "Estimated token usage (used in complete/scale_out)"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Explanation for 'reopen' or 'scale_out'"
+                  },
+                  "pod_owner": {
+                    "type": "string",
+                    "description": "Which pod to query for next task (used in: next)"
+                  },
+                  "phase": {
+                    "type": "string",
+                    "description": "Phase where new task is created (used in: create)"
+                  },
+                  "task_key": {
+                    "type": "string",
+                    "description": "Task template path in framework (used in: create)"
+                  },
+                  "assigned_pod": {
+                    "type": "string",
+                    "description": "Assigned Pod name (used in: create)"
+                  },
+                  "prompt_variables": {
+                    "type": "string",
+                    "description": "Optional inputs for prompt customization (used in: create)"
+                  }
+                }
+              },
+              "examples": {
+                "activate": {
+                  "summary": "Activate tasks",
+                  "value": {
+                    "action": "activate",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emarald-hawk",
+                    "task_id": ["1.1_capture_project_goals_prompt", "1.2_define_user_and_delivery_flows", "1.3_define_architecture"]
+                  }
+                },
+                "start": {
+                  "summary": "Start task",
+                  "value": {
+                    "action": "start",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "task_id": "2.1",
+                    "prompt_used": "Design the system architecture..."
+                  }
+                },
+                "complete": {
+                  "summary": "Complete task",
+                  "value": {
+                    "action": "complete",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "task_id": "2.1",
+                    "outputs": [
+                      {
+                        "path": "outputs/2.1/summary.md",
+                        "content": "Architecture defined."
+                      }
+                    ],
+                    "reasoning_trace": {
+                      "task_id": "2.1",
+                      "thoughts": [
+                        {
+                          "thought": "Used persona constraints.",
+                          "tags": [
+                            "planning"
+                          ]
+                        }
+                      ],
+                      "scoring": {
+                        "thought_quality": 5,
+                        "recall_used": true,
+                        "novel_insight": true
+                      },
+                      "summary": "Clear, reusable design.",
+                      "improvement_opportunities": [
+                        "Consider edge cases"
+                      ],
+                      "alternatives": [
+                        "Use microservices"
+                      ]
+                    },
+                    "handoff_note": {
+                      "timestamp": "2025-05-01T12:00:00Z",
+                      "from_pod": "ProductPod",
+                      "to_pod": "DevPod",
+                      "reason": "Implementation next",
+                      "token_count": 14000
+                    }
+                  }
+                },
+                "reopen": {
+                  "summary": "Reopen task",
+                  "value": {
+                    "action": "reopen",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "task_id": "2.1",
+                    "reason": "QA failed"
+                  }
+                },
+                "next": {
+                  "summary": "Get next task for pod",
+                  "value": {
+                    "action": "next",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "pod_owner": "DevPod"
+                  }
+                },
+                "scale_out": {
+                  "summary": "Scale out task",
+                  "value": {
+                    "action": "scale_out",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "task_id": "2.2",
+                    "reason": "Token limit exceeded",
+                    "handoff_note": {
+                      "from_pod": "DevPod",
+                      "to_pod": "DevPod",
+                      "reason": "Split task for scale",
+                      "notes": "Continue generating tests"
+                    }
+                  }
+                },
+                "create": {
+                  "summary": "Create new task from template",
+                  "value": {
+                    "action": "create",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "phase": "phase3",
+                    "task_key": "3.1a_write_docs",
+                    "task_id": "3.1a",
+                    "assigned_pod": "WriterPod",
+                    "prompt_variables": {
+                      "doc_type": "README",
+                      "target_audience": "Developers"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task lifecycle action completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "object",
+                      "description": "Lifecycle result summary",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/handoff": {
+      "post": {
+        "operationId": "manageTaskHandoff",
+        "summary": "Manage task handoffs (append, fetch, auto-generate, execute)",
+        "tags": [
+          "Tasks"
+        ],
+        "x-gpt-action": {
+          "name": "Manage Task Handoff",
+          "instructions": "Use this to manage handoffs between tasks or pods. Set `action` to one of: `append`, `fetch`, `generate_auto`, or `execute_auto`.",
+          "summary_keywords": [
+            "handoff",
+            "transition",
+            "note",
+            "next task"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "repo_name",
+                  "action"
+                ],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "append",
+                      "fetch",
+                      "generate_auto",
+                      "execute_auto"
+                    ],
+                    "description": "`append`: manually add a handoff note\n`fetch`: retrieve last handoff\n`generate_auto`: GPT generates note\n`execute_auto`: log + link to next task"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repository name (required for all actions)"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "Task ID (required for all except `append`, which takes it in path)"
+                  },
+                  "from_pod": {
+                    "type": "string",
+                    "description": "Sender pod (required for `append`)"
+                  },
+                  "to_pod": {
+                    "type": "string",
+                    "description": "Receiver pod (required for `append` and `execute_auto`)"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Reason for handoff (used in `append`, `execute_auto`)"
+                  },
+                  "token_count": {
+                    "type": "integer",
+                    "description": "Tokens used so far (used in `append`)"
+                  },
+                  "next_prompt": {
+                    "type": "string",
+                    "description": "Suggested next GPT prompt (used in `append`)"
+                  },
+                  "reference_files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Relevant files (optional, used in `append`)"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Extra notes for the next pod (optional)"
+                  },
+                  "ways_of_working": {
+                    "type": "string",
+                    "description": "How the pod intends to collaborate (optional)"
+                  },
+                  "next_task_id": {
+                    "type": "string",
+                    "description": "ID of the downstream task to receive the handoff (required in `execute_auto`)"
+                  },
+                  "handoff_mode": {
+                    "type": "string",
+                    "description": "e.g., `async` or `sync` (optional in `execute_auto`)"
+                  }
+                }
+              },
+              "examples": {
+                "append": {
+                  "summary": "Append a manual handoff note",
+                  "value": {
+                    "action": "append",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "task_id": "2.3",
+                    "from_pod": "DevPod",
+                    "to_pod": "QAPod",
+                    "reason": "Feature complete, ready for QA",
+                    "token_count": 13200,
+                    "next_prompt": "Please test component A and validate edge case B",
+                    "reference_files": [
+                      "src/main.py",
+                      "test/test_main.py"
+                    ],
+                    "notes": "Watch out for flakiness in test X",
+                    "ways_of_working": "Continue async updates via chain_of_thought.yaml"
+                  }
+                },
+                "fetch": {
+                  "summary": "Fetch latest handoff note",
+                  "value": {
+                    "action": "fetch",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "3.1"
+                  }
+                },
+                "generate_auto": {
+                  "summary": "Auto-generate handoff from reasoning",
+                  "value": {
+                    "action": "generate_auto",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "2.4"
+                  }
+                },
+                "execute_auto": {
+                  "summary": "Auto handoff to downstream task",
+                  "value": {
+                    "action": "execute_auto",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "3.1",
+                    "next_task_id": "3.2",
+                    "handoff_mode": "async"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Handoff action completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "handoff_result": {
+                      "type": "object",
+                      "description": "Handoff action result",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/chain_of_thought": {
+      "post": {
+        "operationId": "manageChainOfThought",
+        "summary": "Manage chain_of_thought logging (append or fetch)",
+        "tags": [
+          "Tasks"
+        ],
+        "x-gpt-action": {
+          "name": "Manage Chain of Thought",
+          "instructions": "Use this to append thoughts, issues, or lessons to a task or fetch an existing chain_of_thought.yaml.",
+          "summary_keywords": [
+            "task",
+            "chain of thought",
+            "log",
+            "issues",
+            "lessons",
+            "fetch"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "action",
+                  "repo_name",
+                  "task_id"
+                ],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "append",
+                      "fetch"
+                    ],
+                    "description": "`append` = log new thought, `fetch` = retrieve thoughts for a task"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Name of the GitHub repository"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "ID of the task to log or retrieve chain of thought for"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Main message or thought (required for `append`)"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional list of tags (e.g., tool, phase, issue-type)"
+                  },
+                  "issues": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional list of issues observed during the task"
+                  },
+                  "lessons": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional list of lessons learned from the experience"
+                  }
+                }
+              },
+              "examples": {
+                "append": {
+                  "summary": "Append new thought with issues and tags",
+                  "value": {
+                    "action": "append",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-hawk",
+                    "task_id": "2.1_model_inputs",
+                    "message": "We encountered retry issues on GitHub PATCH.",
+                    "tags": [
+                      "retry",
+                      "infra"
+                    ],
+                    "issues": [
+                      "GitHub API rate limit caused retry delays"
+                    ],
+                    "lessons": [
+                      "Preload or cache common files",
+                      "Add sleep between commits"
+                    ]
+                  }
+                },
+                "fetch": {
+                  "summary": "Fetch existing chain of thought for a task",
+                  "value": {
+                    "action": "fetch",
+                    "repo_name": "ai-delivery-framework",
+                    "task_id": "2.1_model_inputs"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully handled chain of thought action",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "chain_of_thought": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/reasoning_trace": {
+      "post": {
+        "operationId": "manageReasoningTrace",
+        "summary": "Fetch reasoning trace for a task or summarize reasoning across tasks",
+        "tags": [
+          "Tasks",
+          "Metrics"
+        ],
+        "x-gpt-action": {
+          "name": "Reasoning Trace Manager",
+          "instructions": "Use this to fetch the final or full reasoning trace for a task (`fetch`), or get a reasoning quality report across all tasks (`summary`).",
+          "summary_keywords": [
+            "reasoning",
+            "trace",
+            "summary",
+            "quality",
+            "task",
+            "metrics"
+          ]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "action",
+                  "repo_name"
+                ],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "fetch",
+                      "summary"
+                    ],
+                    "description": "`fetch`: Get reasoning trace for a task\n`summary`: Get reasoning quality report across all tasks"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repository name"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "Required for `fetch` to specify which task's trace to retrieve"
+                  },
+                  "full": {
+                    "type": "boolean",
+                    "description": "**Used in `fetch`.** If `true`, includes `prompt_used`, `chain_of_thought`, and the `reasoning_trace`. If `false`, returns only the structured `reasoning_trace` object."
+                  },
+                  "format": {
+                    "type": "string",
+                    "description": "**Used in `summary`.** If set to `csv`, returns the reasoning summary as a CSV string. Otherwise, returns JSON."
+                  }
+                }
+              },
+              "examples": {
+                "fetch": {
+                  "summary": "Fetch final reasoning trace for a task",
+                  "value": {
+                    "action": "fetch",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "2.1_model_inputs",
+                    "full": false
+                  }
+                },
+                "fetch_full": {
+                  "summary": "Fetch full trace with prompt and chain_of_thought",
+                  "value": {
+                    "action": "fetch",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "2.1_model_inputs",
+                    "full": true
+                  }
+                },
+                "summary_json": {
+                  "summary": "Get reasoning summary in JSON",
+                  "value": {
+                    "action": "summary",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl"
+                  }
+                },
+                "summary_csv": {
+                  "summary": "Get reasoning summary as CSV",
+                  "value": {
+                    "action": "summary",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "format": "csv"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reasoning trace data or summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "description": "Reasoning trace result or summary",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/query": {
+      "post": {
+        "operationId": "queryTasks",
+        "summary": "Query task metadata, dependencies, phases, or graph",
+        "tags": ["Tasks"],
+        "x-gpt-action": {
+          "name": "Query Tasks",
+          "instructions": "Use this to list, group, or fetch task metadata. Set `mode` to one of: `list`, `list_phases`, `graph`, `dependencies`, `get_details`.",
+          "summary_keywords": ["task", "query", "graph", "phases", "metadata", "dependencies"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["mode", "repo_name"],
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": ["list", "list_phases", "graph", "dependencies", "get_details"],
+                    "description": "Which query to run:\n- `list`: List all tasks\n- `list_phases`: Group tasks by SDLC phase\n- `graph`: Return dependency graph\n- `dependencies`: Show up/downstream of a task\n- `get_details`: Return metadata for a specific task"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repo where task.yaml lives"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "Required for `get_details` or `dependencies`"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Optional filter for `list` (e.g., `done`, `in_progress`)"
+                  },
+                  "pod_owner": {
+                    "type": "string",
+                    "description": "Optional filter for `list` by pod (e.g., `DevPod`)"
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Optional filter for `list` by task category"
+                  }
+                }
+              },
+              "examples": {
+                "list_all": {
+                  "summary": "List all tasks",
+                  "value": {
+                    "mode": "list",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl"
+                  }
+                },
+                "list_filtered": {
+                  "summary": "List in-progress tasks for ProductPod",
+                  "value": {
+                    "mode": "list",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "status": "in_progress",
+                    "pod_owner": "ProductPod"
+                  }
+                },
+                "list_phases": {
+                  "summary": "Group tasks by SDLC phase",
+                  "value": {
+                    "mode": "list_phases",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl"
+                  }
+                },
+                "graph": {
+                  "summary": "Get task dependency graph",
+                  "value": {
+                    "mode": "graph",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl"
+                  }
+                },
+                "dependencies": {
+                  "summary": "Show upstream/downstream for a task",
+                  "value": {
+                    "mode": "dependencies",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "1.3_define_architecture"
+                  }
+                },
+                "get_details": {
+                  "summary": "Get metadata for a task",
+                  "value": {
+                    "mode": "get_details",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-owl",
+                    "task_id": "3.2_write_tests"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Query results for the selected task mode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query_result": {
+                      "type": "object",
+                      "description": "Query result content",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/manage_issues": {
+      "post": {
+        "operationId": "manageIssues",
+        "summary": "Log, fetch, or update bugs and enhancements in the system tracker",
+        "tags": ["System"],
+        "x-gpt-action": {
+          "name": "Manage Issues or Enhancements",
+          "instructions": "Use this to log a bug/enhancement, fetch tracker entries, or update status. Choose an action from: `log`, `fetch`, `update_status`.",
+          "summary_keywords": ["bug", "enhancement", "issue", "status", "tracker"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "action"],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["log", "fetch", "update_status"],
+                    "description": "What kind of operation to perform."
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Target GitHub repository name"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "enum": ["framework", "project"],
+                    "description": "Where the issue applies (required for log, update_status, optional for fetch)"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["bug", "enhancement"],
+                    "description": "Type of issue (required for log, optional for fetch)"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "Optional task this issue relates to"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Issue or enhancement title (required for log)"
+                  },
+                  "detail": {
+                    "type": "string",
+                    "description": "Optional details (used in log)"
+                  },
+                  "suggested_fix": {
+                    "type": "string",
+                    "description": "Optional recommended fix (used in log and update)"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Optional categorization tags"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["open", "closed"],
+                    "description": "Issue status (optional for log and fetch; required for update_status)"
+                  },
+                  "issue_id": {
+                    "type": "string",
+                    "description": "Unique ID for issue (required for update_status, optional for fetch)"
+                  },
+                  "tag": {
+                    "type": "string",
+                    "description": "Filter tag (used in fetch)"
+                  },
+                  "new_status": {
+                    "type": "string",
+                    "enum": ["open", "closed"],
+                    "description": "New status value (used in update_status)"
+                  }
+                }
+              },
+              "examples": {
+                "log": {
+                  "summary": "Log a bug",
+                  "value": {
+                    "action": "log",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emarald-hawk",
+                    "scope": "framework",
+                    "type": "bug",
+                    "task_id": "2.1_model_inputs",
+                    "title": "Retry logic failed silently",
+                    "detail": "API returned 200 but file did not update",
+                    "suggested_fix": "Add retry logging visibility",
+                    "tags": ["infra", "retry"],
+                    "status": "open"
+                  }
+                },
+                "fetch": {
+                  "summary": "Fetch framework enhancements",
+                  "value": {
+                    "action": "fetch",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emarald-hawk",
+                    "scope": "framework",
+                    "type": "enhancement",
+                    "tag": "ui",
+                    "status": "open"
+                  }
+                },
+                "update_status": {
+                  "summary": "Mark issue closed",
+                  "value": {
+                    "action": "update_status",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emarald-hawk",
+                    "scope": "project",
+                    "issue_id": "abc123-def456",
+                    "new_status": "closed",
+                    "suggested_fix": "Add retry logging visibility"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "issue_data": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Entry not found (only applies to update_status)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": { "type": "string" }
+                  },
+                  "example": {
+                    "detail": "Entry with issue_id 'abc123' not found."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+   "/system/changelog": {
+      "post": {
+        "operationId": "manageChangelog",
+        "summary": "Validate or update the project changelog",
+        "tags": ["System", "Changelog"],
+        "x-gpt-action": {
+          "name": "Manage Changelog",
+          "instructions": "Use this to validate changelog completeness or to add an entry for a completed task. Use `action=validate` to check for missing entries, and `action=update` to add a new one.",
+          "summary_keywords": ["changelog", "update", "validate"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "action"],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["validate", "update"],
+                    "description": "What to do: validate changelog completeness or add a task-specific entry"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repo where the changelog is tracked"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to operate on (default is 'main')"
+                  },
+                  "dry_run": {
+                    "type": "boolean",
+                    "description": "If true, performs validation without writing changes (only applies to action=validate)"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "description": "Task ID being added to the changelog (only for action=update)"
+                  },
+                  "changelog_message": {
+                    "type": "string",
+                    "description": "New entry text to be appended to the changelog (only for action=update)"
+                  }
+                }
+              },
+              "examples": {
+                "validate": {
+                  "summary": "Dry run changelog validation",
+                  "value": {
+                    "action": "validate",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emarald-hawk",
+                    "dry_run": true
+                  }
+                },
+                "update": {
+                  "summary": "Add a changelog entry",
+                  "value": {
+                    "action": "update",
+                    "repo_name": "ai-delivery-framework",
+                    "task_id": "2.2_build_and_patch",
+                    "changelog_message": "Added tracing logic and error handling to GitHub push"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success message and details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "changelog_result": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sandbox/init": {
+      "post": {
+        "operationId": "initSandbox",
+        "summary": "Initialize or reuse a sandbox branch and optionally scaffold a project",
+        "tags": ["Sandbox", "Project"],
+        "x-gpt-action": {
+          "name": "Initialize Sandbox or Project",
+          "instructions": "Use this tool to initialize a sandbox workspace. Start with `mode = branch` to create or reuse a branch. Then, optionally call with `mode = project` to scaffold memory and task files into that branch.",
+          "summary_keywords": ["sandbox", "branch", "init", "project", "token", "workspace"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name", "mode"],
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": ["branch", "project"],
+                    "description": "Whether to initialize a branch or scaffold a project"
+                  },
+                  "repo_name": {
+                    "type": "string",
+                    "description": "GitHub repo name (e.g., nhl-predictor)"
+                  },
+                  "reuse_token": {
+                    "type": "string",
+                    "description": "Optional secure token to reconnect to an existing branch (branch mode only)"
+                  },
+                  "force_new": {
+                    "type": "boolean",
+                    "description": "If true, ignores reuse_token and forces creation of a new branch"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "description": "Git branch to initialize the project into (required for mode = project)"
+                  },
+                  "project_name": {
+                    "type": "string",
+                    "description": "Name of the user's project (required for mode = project)"
+                  },
+                  "project_description": {
+                    "type": "string",
+                    "description": "Description of what the project is and what it aims to do (required for mode = project)"
+                  }
+                }
+              },
+              "examples": {
+                "create_branch": {
+                  "summary": "Start a new sandbox branch",
+                  "value": {
+                    "mode": "branch",
+                    "repo_name": "nhl-predictor"
+                  }
+                },
+                "reuse_branch": {
+                  "summary": "Reuse an existing sandbox branch with a token",
+                  "value": {
+                    "mode": "branch",
+                    "repo_name": "nhl-predictor",
+                    "reuse_token": "c2FuZGJveC1lbWVyYWxkLWZveA=="
+                  }
+                },
+                "init_project": {
+                  "summary": "Scaffold project files into a given branch",
+                  "value": {
+                    "mode": "project",
+                    "repo_name": "nhl-predictor",
+                    "branch": "sandbox-emerald-fox",
+                    "project_name": "Smart NHL Predictor",
+                    "project_description": "An app that forecasts NHL game outcomes"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a sandbox context or project setup confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "branch": {
+                      "type": "string",
+                      "description": "The branch created or reused"
+                    },
+                    "repo_name": {
+                      "type": "string",
+                      "description": "The GitHub repo name"
+                    },
+                    "reuse_token": {
+                      "type": "string",
+                      "description": "Token for reusing this branch later (returned only for branch mode)"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "User-facing success message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/sandbox_usage": {
+      "post": {
+        "operationId": "getSandboxUsage",
+        "summary": "View usage metrics for sandbox branches",
+        "tags": ["Admin", "Metrics"],
+        "x-gpt-action": {
+          "name": "Admin: View Sandbox Usage",
+          "instructions": "Use this to inspect sandbox activity across branches. It returns a list of sandbox branches and usage stats (files committed, last activity, trace count). Useful for system admins to track engagement.",
+          "summary_keywords": ["sandbox", "admin", "usage", "metrics", "branches"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["repo_name"],
+                "properties": {
+                  "repo_name": {
+                    "type": "string",
+                    "description": "Name of the GitHub repository (e.g., nhl-predictor)"
+                  }
+                }
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Get sandbox usage for nhl-predictor",
+                  "value": {
+                    "repo_name": "nhl-predictor"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Summary of sandbox branches and activity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "active_sandboxes": {
+                      "type": "integer",
+                      "description": "Number of sandbox branches detected"
+                    },
+                    "branches": {
+                      "type": "array",
+                      "description": "List of sandbox branches with usage info",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "branch": { "type": "string" },
+                          "repo_name": { "type": "string" },
+                          "created": { "type": "string" },
+                          "last_commit": { "type": "string" },
+                          "files_committed": { "type": "integer" },
+                          "reasoning_traces": { "type": "integer" },
+                          "error": { "type": "string" }
+                        },
+                        "required": ["branch", "repo_name"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
