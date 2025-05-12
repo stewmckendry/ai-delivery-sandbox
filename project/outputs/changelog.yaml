@@ -13,3 +13,8 @@
   task_id: fix-sessionlocal-import
   committed_by: GPTPod
   message: Append output file to fix-sessionlocal-import
+- timestamp: '2025-05-12T21:00:05.008201'
+  path: requirements.txt
+  task_id: fix-azure-sdk
+  committed_by: GPTPod
+  message: Add azure-storage-blob to requirements.txt for BlobServiceClient support
