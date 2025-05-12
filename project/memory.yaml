@@ -265,3 +265,14 @@
   - symptom_logging
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/get_symptom_log_map.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_symptom_log_map.py
+  file_type: py
+  description: API endpoint to retrieve a structured schema for symptom follow-up
+    logging from a YAML file
+  tags:
+  - api
+  - schema
+  - yaml
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
