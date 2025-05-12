@@ -426,3 +426,15 @@
   - schema
   last_updated: '2025-05-12'
   pod_owner: DevPod
+- path: project/delivery/deploy_guide_addendum.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/deploy_guide_addendum.md
+  file_type: md
+  description: Addendum to the deployment guide detailing Azure database setup, storage
+    tools, admin workflows, and schema configuration for the project.
+  tags:
+  - deployment
+  - Azure
+  - database
+  - admin
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
