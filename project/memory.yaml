@@ -197,3 +197,15 @@
   - database
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/tools/get_stage_guidance.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_stage_guidance.py
+  file_type: py
+  description: API endpoint to infer and log recovery stage based on symptoms and
+    time since injury.
+  tags:
+  - api
+  - inference
+  - logging
+  - database
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
