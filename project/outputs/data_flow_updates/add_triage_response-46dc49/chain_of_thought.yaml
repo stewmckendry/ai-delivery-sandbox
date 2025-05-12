@@ -40,3 +40,13 @@
   - logging
   - db-model
   - export
+- message: Created shared symptom_library.py to unify symptom metadata across tools.
+    Replaced ad-hoc YAML loading in tools with validated loader. Added audit_symptom_schema
+    to validator.py to detect mismatches between logged symptom IDs and YAML definitions.
+    Ensured log_incident_detail parses and checks symptoms from triage intake using
+    shared loader.
+  timestamp: '2025-05-12T16:00:32.973926'
+  tags:
+  - symptom-library
+  - schema-check
+  - refactor
