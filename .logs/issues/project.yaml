@@ -12,3 +12,17 @@
   - requirements
   status: open
   timestamp: '2025-05-12T12:39:08.082681'
+- type: bug
+  scope: project
+  issue_id: 13d0f272-abb4-4566-a56f-e426f7dd7662
+  task_id: 2.8_prepare_deployment_guide
+  title: Missing 'uvicorn' in requirements.txt
+  detail: Railway build failed because 'uvicorn' is not installed. It is required
+    for the server startup but not included in the project's requirements.txt.
+  suggested_fix: Add 'uvicorn' to requirements.txt to ensure the FastAPI app can start.
+  tags:
+  - deployment
+  - uvicorn
+  - requirements
+  status: open
+  timestamp: '2025-05-12T12:43:58.125979'
