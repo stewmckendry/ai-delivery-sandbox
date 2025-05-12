@@ -168,3 +168,9 @@
   committed_by: GPTPod
   message: 'Restore upload_to_storage in export_summary.py for PDF delivery via Azure
     Blob #pdf-export'
+- timestamp: '2025-05-12T19:13:24.152843'
+  path: project/delivery/data_flow_addendum_pdf_export.md
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Update PDF + FHIR data flow addendum with enrichment and upload logic
+    #pdf-export #data-flow'
