@@ -70,3 +70,9 @@
   task_id: update-gpt-setup
   committed_by: GPTPod
   message: Append output file to update-gpt-setup
+- timestamp: '2025-05-12T21:19:48.375151'
+  path: project/delivery/custom_gpt_setup.md
+  task_id: gpt-instructions-update
+  committed_by: GPTPod
+  message: Update custom_gpt_setup.md with expanded system instructions and tool list
+    based on tool_catalog_v2
