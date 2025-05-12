@@ -74,3 +74,13 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: 'Fix SessionLocal import in db_reader.py to pull from database.py #cleanup'
+- timestamp: '2025-05-12T18:44:03.594452'
+  path: project/delivery/data_flow_addendum_pdf_export.md
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add data flow addendum note for PDF + FHIR export changes #data-flow #export'
+- timestamp: '2025-05-12T18:44:03.594452'
+  path: project/memory.yaml
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: Memory update related to project/delivery/data_flow_addendum_pdf_export.md
