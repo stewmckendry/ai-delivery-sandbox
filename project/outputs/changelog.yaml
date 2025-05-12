@@ -255,3 +255,8 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: ProductPod
   message: Recommit full unredacted data_flow_master.md as audit source of truth
+- timestamp: '2025-05-12T14:25:51.943889'
+  path: app/db/db_models.py
+  task_id: data-flow-schema-updates
+  committed_by: GPTPod
+  message: 'Add TriageResponse model to db_models.py #data-flow-fix #triage-db'
