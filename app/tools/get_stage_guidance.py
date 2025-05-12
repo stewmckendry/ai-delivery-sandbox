@@ -2,7 +2,8 @@ from fastapi import APIRouter
 from app.models.symptoms import StageInferenceRequest, StageInferenceResult
 from app.models.stage import StageResult
 from app.engines.stage_engine import StageEngine
-from app.db.db_models import StageLog, SessionLocal
+from app.db.db_models import StageLog
+from app.db.database import SessionLocal
 from datetime import datetime
 
 router = APIRouter()
