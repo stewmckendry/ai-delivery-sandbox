@@ -491,6 +491,7 @@ tasks:
     - requirements.txt
     - app/db/db_models.py
     - project/delivery/data_flow_master.md
+    - project/delivery/data_flow_tasks.md
     phase: Phase 2 - Development
     pod_owner: DevPod
     prompt: prompts/dev/2.8_prepare_deployment_guide.txt
