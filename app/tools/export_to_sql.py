@@ -1,56 +1,40 @@
 import os
 from sqlalchemy import create_engine, text
-from app.db.db_reader import get_all_tracker_logs
+from sqlalchemy.orm import sessionmaker
+from app.db.db_models import TriageResponse, SessionLocal
 from reference_loader import load_triage_map, load_stages_yaml
 
 # Establish database connection
 SQL_CONN_STR = os.getenv("AZURE_SQL_CONNECTION_STRING")
 engine = create_engine(SQL_CONN_STR)
+Session = sessionmaker(bind=engine)
 
 def export_to_sql():
-    tracker_logs = get_all_tracker_logs()
     triage_map = load_triage_map()
     stages_yaml = load_stages_yaml()
 
+    db = SessionLocal()
     with engine.begin() as conn:
-        for tracker, logs in tracker_logs:
-            user_id = tracker['user_id']
-            current_stage = tracker['state']['stage']
-            last_updated = tracker['updated_at']
-            triage_level = triage_map.get(tracker['state'].get('triage_id', ''), {}).get('level', 'unknown')
-
+        # Export all triage responses
+        triage_rows = db.query(TriageResponse).all()
+        for row in triage_rows:
             conn.execute(
                 text("""
-                INSERT INTO tracker_export (user_id, current_stage, last_updated, triage_level)
-                VALUES (:user_id, :stage, :updated, :level)
-                """),
-                {"user_id": user_id, "stage": current_stage, "updated": last_updated, "level": triage_level}
-            )
-
-            for log in logs:
-                conn.execute(
-                    text("""
-                    INSERT INTO symptom_log_export (
-                        user_id, symptom_id, severity, timestamp,
-                        reporter_type, incident_context, sport_type, age_group, team_id
-                    )
-                    VALUES (
-                        :user_id, :symptom_id, :severity, :timestamp,
-                        :reporter_type, :incident_context, :sport_type, :age_group, :team_id
-                    )
-                    """),
-                    {
-                        "user_id": user_id,
-                        "symptom_id": log['symptom_id'],
-                        "severity": log['severity'],
-                        "timestamp": log['timestamp'],
-                        "reporter_type": log.get('reporter_type'),
-                        "incident_context": log.get('incident_context'),
-                        "sport_type": log.get('sport_type'),
-                        "age_group": log.get('age_group'),
-                        "team_id": log.get('team_id')
-                    }
+                INSERT INTO triage_response_export (
+                    user_id, question_id, question_text, answer, timestamp
+                ) VALUES (
+                    :user_id, :question_id, :question_text, :answer, :timestamp
                 )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "question_id": row.question_id,
+                    "question_text": row.question_text,
+                    "answer": row.answer,
+                    "timestamp": row.timestamp
+                }
+            )
+    db.close()
 
 if __name__ == "__main__":
     export_to_sql()
