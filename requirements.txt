@@ -4,5 +4,5 @@ pydantic
 weasyprint
 jinja2
 requests
-yaml
+PyYAML
 pytest
