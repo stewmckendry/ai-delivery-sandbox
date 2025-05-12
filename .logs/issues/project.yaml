@@ -26,3 +26,20 @@
   - requirements
   status: open
   timestamp: '2025-05-12T12:43:58.125979'
+- type: bug
+  scope: project
+  issue_id: d96ad783-aa17-48fa-8f8a-73748d866779
+  task_id: 2.8_prepare_deployment_guide
+  title: Missing TrackerMetadata model in db_models.py
+  detail: log_incident_detail.py tries to log triage metadata using a model called
+    TrackerMetadata, but this model does not exist in db_models.py. This breaks import
+    and database integration.
+  suggested_fix: Define TrackerMetadata model in db_models.py to match log structure.
+    Update import and DB writer to align.
+  tags:
+  - database
+  - import
+  - triage
+  - bug
+  status: open
+  timestamp: '2025-05-12T12:54:18.466536'
