@@ -146,3 +146,14 @@
   committed_by: GPTPod
   message: 'Add symptom_links to symptom_log_map.yaml for continuity with triage #data-flow-fix
     #symptom-schema'
+- timestamp: '2025-05-12T16:27:48.229672'
+  path: app/tools/get_linked_symptoms.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add /get_linked_symptoms tool to return prior reported symptoms from TriageResponse
+    or SymptomLog #data-flow-fix #symptom-schema'
+- timestamp: '2025-05-12T16:27:48.229672'
+  path: project/memory.yaml
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: Memory update related to app/tools/get_linked_symptoms.py
