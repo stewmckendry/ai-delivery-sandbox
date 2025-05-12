@@ -3,7 +3,8 @@ from uuid import uuid4
 from datetime import datetime
 import json
 
-from app.db.db_models import SymptomLog, SessionLocal
+from app.db.db_models import SymptomLog
+from app.db.database import SessionLocal
 
 
 def log_symptoms_to_db(
