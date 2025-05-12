@@ -415,3 +415,14 @@
   - PDF
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: app/db/init_schema.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/db/init_schema.py
+  file_type: py
+  description: Script to initialize the database schema by creating tables using SQLAlchemy
+    and environment variables
+  tags:
+  - database
+  - initialization
+  - schema
+  last_updated: '2025-05-12'
+  pod_owner: DevPod
