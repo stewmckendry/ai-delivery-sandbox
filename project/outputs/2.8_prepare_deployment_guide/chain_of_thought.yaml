@@ -16,3 +16,16 @@
   - setup
   - environment
   - testing
+- message: 'Prepared a complete deployment guide covering the full system stack: FastAPI
+    (Railway), Azure SQL, Blob storage, Power BI, and Swagger. Included detailed steps
+    for setting up each component, running locally, configuring env vars, and validating
+    all endpoints. Also created a Custom GPT Setup guide that defines its tools, logic
+    sequence, system instructions, and tone. Recommitted both guides with full content
+    due to size/redaction limits. Confirmed OpenAPI alignment, system flow, and GPT
+    behavior expectations.'
+  timestamp: '2025-05-12T11:30:39.348550'
+  tags:
+  - deployment
+  - gpt-setup
+  - docs
+  - system-integration
