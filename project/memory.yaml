@@ -93,3 +93,15 @@
   - health
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: .logs/issues/project.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/project.yaml
+  file_type: yaml
+  description: Log of a bug related to an invalid dependency in the project's requirements
+    causing deployment failure
+  tags:
+  - bug
+  - dependency
+  - deployment
+  - requirements
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
