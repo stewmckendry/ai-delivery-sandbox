@@ -232,3 +232,14 @@
   - tracker
   last_updated: '2025-05-12'
   pod_owner: DevPod
+- path: app/symptom_library.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/symptom_library.py
+  file_type: py
+  description: Module to load and validate symptom definitions from YAML files hosted
+    online.
+  tags:
+  - model
+  - config
+  - validation
+  last_updated: '2025-05-12'
+  pod_owner: DeliveryPod
