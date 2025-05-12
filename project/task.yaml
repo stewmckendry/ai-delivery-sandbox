@@ -868,3 +868,4 @@ tasks:
     - project/delivery/data_flow_tasks.md
     - app/tools/export_to_sql.py
     - app/db/db_models.py
+    - app/tools/log_incident_detail.py
