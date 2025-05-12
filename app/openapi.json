@@ -1,0 +1,27 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Concussion Recovery App – GPT Tools",
+    "version": "1.0.0",
+    "description": "Tools for triage, symptom tracking, stage guidance, and export in a concussion recovery GPT."
+  },
+  "servers": [
+    {
+      "url": "https://concussion-recovery-gpt.up.railway.app",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {}
+}
