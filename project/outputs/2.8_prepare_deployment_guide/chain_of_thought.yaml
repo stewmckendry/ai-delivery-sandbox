@@ -1,0 +1,18 @@
+- message: 'Start deployment guide task. Key priorities include:
+
+    - Explain how to run the FastAPI server locally (`main.py`), including requirements
+    and env setup
+
+    - Detail deployment options (Railway, Azure App Service)
+
+    - Outline how SQL and Blob credentials are configured (env vars or secrets)
+
+    - Show how to validate endpoints (e.g., Swagger at `/docs` or curl)
+
+    - Include Power BI dashboard sync setup if applicable'
+  timestamp: '2025-05-12T11:07:37.365242'
+  tags:
+  - deployment
+  - setup
+  - environment
+  - testing
