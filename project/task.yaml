@@ -885,3 +885,4 @@ tasks:
     - project/delivery/tool_catalog_v2.md
     - project/retrospectives/schema_impl_pod_retro.md
     - project/delivery/feature_scope_tracker.md
+    - app/db/db_reader.py
