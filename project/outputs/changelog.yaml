@@ -379,3 +379,9 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: unknown
   message: Append chain of thought to task data_flow_updates/add_triage_response-46dc49
+- timestamp: '2025-05-12T15:07:36.509067'
+  path: app/db/db_models.py
+  task_id: data_flow_updates/add_triage_response-46dc49
+  committed_by: GPTPod
+  message: 'Add ConcussionAssessment and StageLog models for logging results from
+    assessment and stage guidance #data-flow-fix'
