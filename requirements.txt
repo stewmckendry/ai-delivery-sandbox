@@ -7,3 +7,4 @@ requests
 PyYAML
 pytest
 uvicorn
+pyodbc
