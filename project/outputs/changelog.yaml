@@ -103,3 +103,14 @@
   task_id: 2.8_prepare_deployment_guide
   committed_by: unknown
   message: Memory update related to project/outputs/2.8_prepare_deployment_guide/chain_of_thought.yaml
+- timestamp: '2025-05-12T11:21:07.474125'
+  path: project/delivery/features/feature_5_dashboard_export/deploy_guide.md
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Add detailed deployment guide for concussion recovery GPT including FastAPI,
+    Railway, SQL, Blob, and Power BI setup
+- timestamp: '2025-05-12T11:21:07.474125'
+  path: project/memory.yaml
+  task_id: 2.8_prepare_deployment_guide
+  committed_by: ProductPod
+  message: Memory update related to project/delivery/features/feature_5_dashboard_export/deploy_guide.md
