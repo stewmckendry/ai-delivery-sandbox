@@ -1,7 +1,7 @@
 import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from app.db.db_models import TriageResponse, SessionLocal
+from app.db.db_models import TriageResponse, IncidentReport, SessionLocal
 from reference_loader import load_triage_map, load_stages_yaml
 
 # Establish database connection
@@ -15,7 +15,7 @@ def export_to_sql():
 
     db = SessionLocal()
     with engine.begin() as conn:
-        # Export all triage responses
+        # Export triage responses
         triage_rows = db.query(TriageResponse).all()
         for row in triage_rows:
             conn.execute(
@@ -31,6 +31,41 @@ def export_to_sql():
                     "question_id": row.question_id,
                     "question_text": row.question_text,
                     "answer": row.answer,
+                    "timestamp": row.timestamp
+                }
+            )
+
+        # Export incident reports
+        incident_rows = db.query(IncidentReport).all()
+        for row in incident_rows:
+            conn.execute(
+                text("""
+                INSERT INTO incident_report_export (
+                    user_id, injury_date, reporter_role, sport_type, age_group,
+                    team_id, injury_context, symptoms, lost_consciousness,
+                    seen_provider, diagnosed_concussion, still_symptomatic,
+                    cleared_to_play, timestamp
+                ) VALUES (
+                    :user_id, :injury_date, :reporter_role, :sport_type, :age_group,
+                    :team_id, :injury_context, :symptoms, :lost_consciousness,
+                    :seen_provider, :diagnosed_concussion, :still_symptomatic,
+                    :cleared_to_play, :timestamp
+                )
+                """),
+                {
+                    "user_id": row.user_id,
+                    "injury_date": row.injury_date,
+                    "reporter_role": row.reporter_role,
+                    "sport_type": row.sport_type,
+                    "age_group": row.age_group,
+                    "team_id": row.team_id,
+                    "injury_context": row.injury_context,
+                    "symptoms": row.symptoms,
+                    "lost_consciousness": row.lost_consciousness,
+                    "seen_provider": row.seen_provider,
+                    "diagnosed_concussion": row.diagnosed_concussion,
+                    "still_symptomatic": row.still_symptomatic,
+                    "cleared_to_play": row.cleared_to_play,
                     "timestamp": row.timestamp
                 }
             )
