@@ -73,3 +73,14 @@
   task_id: symptom_logger_refactor
   committed_by: GPTPod
   message: Append output file to symptom_logger_refactor
+- timestamp: '2025-05-13T16:32:56.015383'
+  path: app/db/db_writer.py
+  task_id: cleanup-db-writer
+  committed_by: GPTPod
+  message: "Deprecate db_writer.py \u2014 symptom logging now handled directly in\
+    \ symptom_logger"
+- timestamp: '2025-05-13T16:32:56.015383'
+  path: project/memory.yaml
+  task_id: cleanup-db-writer
+  committed_by: GPTPod
+  message: Memory update related to app/db/db_writer.py
