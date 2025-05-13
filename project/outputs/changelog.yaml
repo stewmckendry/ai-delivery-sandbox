@@ -46,3 +46,9 @@
   task_id: symptom-schema-update
   committed_by: GPTPod
   message: Append output file to symptom-schema-update
+- timestamp: '2025-05-13T16:21:39.313454'
+  path: project/delivery/triage_flow_qa_task_list.md
+  task_id: symptom-schema-update
+  committed_by: GPTPod
+  message: Update task list with changes from SymptomLog schema redesign and downstream
+    impact
