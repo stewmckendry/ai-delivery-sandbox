@@ -3,3 +3,14 @@
   task_id: update-assess-concussion
   committed_by: GPTPod
   message: Append output file to update-assess-concussion
+- timestamp: '2025-05-13T19:23:26.595361'
+  path: app/tools/log_incident_detail.py
+  task_id: log_incident_detail_schema_update
+  committed_by: GPTPod
+  message: Fix log_incident_detail to support dictionary of symptoms with scores and
+    handle missing scores gracefully
+- timestamp: '2025-05-13T19:23:26.595361'
+  path: project/memory.yaml
+  task_id: log_incident_detail_schema_update
+  committed_by: GPTPod
+  message: Memory update related to app/tools/log_incident_detail.py
