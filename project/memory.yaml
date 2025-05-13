@@ -78,3 +78,17 @@
   - documentation
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/delivery/data_flow_master_v2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/delivery/data_flow_master_v2.md
+  file_type: md
+  description: This document provides a comprehensive guide on the data flow for the
+    Concussion Recovery App, detailing the journey from data intake to SQL export
+    and dashboard reporting, including schema maps, tool coverage, validation logic,
+    and Power BI reporting strategies.
+  tags:
+  - data flow
+  - schema
+  - export
+  - validation
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
