@@ -132,3 +132,8 @@
   task_id: data_flow_updates/add_triage_response-46dc49
   committed_by: GPTPod
   message: Append output file to data_flow_updates/add_triage_response-46dc49
+- timestamp: '2025-05-13T00:06:58.673782'
+  path: Dockerfile
+  task_id: uvicorn-host-fix
+  committed_by: GPTPod
+  message: Ensure uvicorn binds to 0.0.0.0 using exec in Dockerfile CMD
