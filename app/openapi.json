@@ -32,7 +32,7 @@
         "tags": ["Triage"],
         "x-gpt-action": {
           "name": "Fetch Full Triage Flow",
-          "instructions": "Use this at the start of triage to load the full question map. GPT should walk the user through each question in order, using `qid` to track answers, 'prompt' for sample way to ask questions, and `mode` to determine whether to clarify or probe before moving on (at your discretion if answer is unclear). Optionally reference `context`, `intent`, and `example_user_answers` for phrasing. **Keep it conversational & empathetic, not clinical!**",
+          "instructions": "Use this at the start of triage to load the full question map. GPT should walk the user through each question in order using `prompt`, track user answers by question `id` (for the next tool call: log_incident_details), and adjust behavior based on `mode` (at your discretion to clarify or probe for more information from user if response is unclear). Optionally reference `context`, `intent`, and `example_user_answers` for phrasing.\n\nIf the question's `id` is `symptoms`, you must:\n- Check if user-mentioned symptoms match entries in `symptom_links`\n- Ask for severity of each symptom on a scale of 1-10 (higher is worse)\n- Only add a new symptom if it's not matched to known links\n- Store symptoms as a JSON object: `{symptom: severity}`",
           "summary_keywords": ["triage", "map", "flow"]
         },
         "responses": {
@@ -90,7 +90,7 @@
         "tags": ["Triage"],
         "x-gpt-action": {
           "name": "Log Incident Details",
-          "instructions": "Call this only after collecting all triage answers. Use the `qa_log` field to send a list of {qid, answer} pairs. Do not send timestamp or raw answers fields. Use values gathered during the flow.",
+          "instructions": "Use this after completing triage. Submit structured answers under `answers` and include `user_id` and `timestamp`.\n\nIf `answers.symptoms` is present:\n- Ensure it's a dictionary of symptom: severity (e.g., `{ \"headache\": 7 }`)\n- Match symptoms to known list first using `symptom_links` (from `/get_triage_flow`)\n- Only include new symptoms if unmatched\n- Ask user to rate each symptom from 1-10 if not already done",
           "summary_keywords": ["log", "incident", "triage"]
         },
         "requestBody": {
@@ -104,55 +104,38 @@
                     "type": "string",
                     "example": "user_abc123"
                   },
-                  "incident_context": {
+                  "timestamp": {
                     "type": "string",
-                    "description": "What happened during the injury",
-                    "example": "He got hit from behind and hit his head on the boards"
+                    "format": "date-time",
+                    "example": "2025-05-13T00:00:00Z"
                   },
-                  "sport_type": {
-                    "type": "string",
-                    "example": "hockey"
-                  },
-                  "age_group": {
-                    "type": "string",
-                    "example": "U9"
-                  },
-                  "team_id": {
-                    "type": "string",
-                    "example": "Ted Reeves Tornados"
-                  },
-                  "qa_log": {
-                    "type": "array",
-                    "description": "List of question-answer pairs from the triage",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "qid": {
-                          "type": "string",
-                          "example": "q1"
-                        },
-                        "answer": {
-                          "type": "string",
-                          "example": "my son"
-                        }
-                      },
-                      "required": ["qid", "answer"]
-                    },
-                    "example": [
-                      {"qid": "q1", "answer": "my son"},
-                      {"qid": "q2", "answer": "hockey"},
-                      {"qid": "q3", "answer": "U9"}
-                    ]
+                  "answers": {
+                    "type": "object",
+                    "description": "Key-value map of question IDs (from get_triage_map) and user answers. Include only the IDs captured during triage.",
+                    "example": {
+                      "reporter_role": "my son",
+                      "sport_type": "hockey",
+                      "age_group": "U9",
+                      "team_id": "Ted Reeves Tornados",
+                      "injury_date": "a few days ago",
+                      "injury_context": "He got hit from behind and hit his head on the boards",
+                      "symptoms": "{\"headache\":7,\"dizziness\":1,\"scared\":1}",
+                      "lost_consciousness": "no",
+                      "seen_provider": "no",
+                      "diagnosed_concussion": "no",
+                      "still_symptomatic": "mild pain",
+                      "cleared_to_play": "no"
+                    }
                   }
                 },
-                "required": ["user_id", "incident_context", "qa_log"]
+                "required": ["user_id", "timestamp", "answers"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Incident log accepted"
+            "description": "Incident log saved"
           }
         }
       }
