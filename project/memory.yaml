@@ -172,3 +172,16 @@
   - flow
   last_updated: '2025-05-13'
   pod_owner: QAPod
+- path: test/e2e/scenario_1_baseline_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/test/e2e/scenario_1_baseline_flow.md
+  file_type: md
+  description: End-to-end test scenario for validating a baseline recovery flow with
+    mild symptoms, ensuring smooth user journey from triage to stage guidance and
+    export.
+  tags:
+  - e2e
+  - test
+  - flow
+  - validation
+  last_updated: '2025-05-13'
+  pod_owner: QAPod
