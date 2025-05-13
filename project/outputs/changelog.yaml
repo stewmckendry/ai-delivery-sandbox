@@ -84,3 +84,8 @@
   task_id: fix-log-incident-symptoms
   committed_by: GPTPod
   message: Append output file to fix-log-incident-symptoms
+- timestamp: '2025-05-13T13:26:59.592522'
+  path: app/tools/log_incident_detail.py
+  task_id: fix-injury-date-cast
+  committed_by: GPTPod
+  message: 'Fix: cast injury_date string to datetime before saving to IncidentReport'
