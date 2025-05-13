@@ -41,3 +41,14 @@
   task_id: refactor-log-incident
   committed_by: GPTPod
   message: Append output file to refactor-log-incident
+- timestamp: '2025-05-13T17:39:03.330680'
+  path: app/tools/get_stage_guidance.py
+  task_id: refactor-get-stage-guidance
+  committed_by: GPTPod
+  message: Refactor get_stage_guidance to pull from DB, accept overrides, and log
+    to RecoveryCheck when needed
+- timestamp: '2025-05-13T17:39:03.330680'
+  path: project/memory.yaml
+  task_id: refactor-get-stage-guidance
+  committed_by: GPTPod
+  message: Memory update related to app/tools/get_stage_guidance.py
