@@ -534,3 +534,16 @@
   - FastAPI
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: .logs/issues/framework_improvement_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/framework_improvement_plan.md
+  file_type: md
+  description: Document outlining plans for improving artifact organization, commit
+    logging, task lifecycle management, and early integration of QA and deployment
+    processes.
+  tags:
+  - artifact
+  - logging
+  - task
+  - qa
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
