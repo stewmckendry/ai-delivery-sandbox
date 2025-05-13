@@ -12,7 +12,7 @@ router = APIRouter()
 class IncidentLogRequest(BaseModel):
     user_id: str
     timestamp: datetime
-    answers: Dict[str, Union[str, List[str]]]
+    answers: Dict[str, Union[str, List[str], bool]]
 
 @router.post("/log_incident_detail")
 def log_incident_detail(request: IncidentLogRequest):
@@ -45,6 +45,12 @@ def log_incident_detail(request: IncidentLogRequest):
                 structured["symptoms"] = json.dumps(structured["symptoms"])
             except Exception:
                 structured["symptoms"] = json.dumps(structured["symptoms"])
+
+        if "injury_date" in structured and isinstance(structured["injury_date"], str):
+            try:
+                structured["injury_date"] = datetime.fromisoformat(structured["injury_date"])
+            except Exception:
+                structured["injury_date"] = datetime.utcnow()
 
         if structured:
             db.add(IncidentReport(
