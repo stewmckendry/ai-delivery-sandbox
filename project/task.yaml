@@ -893,3 +893,4 @@ tasks:
     - project/delivery/data_flow_addendum_pdf_export.md
     - .logs/issues/framework_assessment.md
     - .logs/issues/framework_improvement_plan.md
+    - .logs/issues/recommended_repo_structure.md
