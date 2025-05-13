@@ -385,12 +385,12 @@
     "/export_summary": {
       "post": {
         "operationId": "exportSummary",
-        "summary": "Export summary as PDF + FHIR",
+        "summary": "Export summary as PDF and FHIR bundle",
         "tags": ["Export"],
         "x-gpt-action": {
           "name": "Export Summary",
-          "instructions": "Generate a PDF and FHIR summary for a user.",
-          "summary_keywords": ["export", "summary", "PDF"]
+          "instructions": "Call this to generate a follow-up care summary for a user. You must pass the `user_id` used in prior triage or symptom logs.\n\nThis action will return:\n- `pdf_url`: A downloadable PDF file with triage, symptom, and stage information\n- `fhir_bundle`: A structured medical handoff in FHIR format\n\n🧠 How to communicate results:\n- Tell the user: 'Here’s a summary of what we’ve logged together.'\n- If they’re a parent or coach, say: 'You can share this PDF with your doctor, school, or coach.'\n- If they ask what FHIR is, explain: 'It’s a standard format for medical data. Some clinics may be able to import it directly.'\n- Reassure: 'This isn’t a diagnosis, but a summary of what’s been recorded and assessed so far.'",
+          "summary_keywords": ["export", "summary", "PDF", "FHIR"]
         },
         "requestBody": {
           "required": true,
@@ -400,7 +400,11 @@
                 "type": "object",
                 "required": ["user_id"],
                 "properties": {
-                  "user_id": { "type": "string" }
+                  "user_id": {
+                    "type": "string",
+                    "description": "ID used in triage/symptom logs",
+                    "example": "user_abc123"
+                  }
                 }
               }
             }
@@ -408,7 +412,25 @@
         },
         "responses": {
           "200": {
-            "description": "PDF URL and FHIR bundle"
+            "description": "Returns PDF URL and FHIR bundle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pdf_url": {
+                      "type": "string",
+                      "description": "Signed Azure Blob URL to download summary PDF",
+                      "example": "https://concussionexports.blob.core.windows.net/exports/summary_abc123.pdf?...SAS_TOKEN..."
+                    },
+                    "fhir_bundle": {
+                      "type": "object",
+                      "description": "FHIR-compliant JSON bundle of symptom, triage, and stage data"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
