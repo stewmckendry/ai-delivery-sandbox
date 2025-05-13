@@ -12,7 +12,7 @@ router = APIRouter()
 class IncidentLogRequest(BaseModel):
     user_id: str
     timestamp: datetime
-    answers: Dict[str, Union[str, List[str], bool]]
+    answers: Dict[str, Union[str, List[str], Dict[str, int], bool]]
 
 @router.post("/log_incident_detail")
 def log_incident_detail(request: IncidentLogRequest):
@@ -57,20 +57,20 @@ def log_incident_detail(request: IncidentLogRequest):
             ))
 
         # Save individual symptom logs
-        symptom_list = structured.get("symptoms", [])
-        if isinstance(symptom_list, list):
-            for s in symptom_list:
+        symptom_dict = structured.get("symptoms", {})
+        if isinstance(symptom_dict, dict):
+            for s_input, score in symptom_dict.items():
                 try:
-                    validate_symptom_ids([s])
-                    canonical_id = s
+                    validate_symptom_ids([s_input])
+                    canonical_id = s_input
                 except Exception:
                     canonical_id = "other"
                 db.add(SymptomLog(
                     user_id=request.user_id,
                     timestamp=request.timestamp,
                     symptom_id=canonical_id,
-                    symptom_input=s,
-                    score=1,
+                    symptom_input=s_input,
+                    score=int(score) if isinstance(score, int) else 1,
                     notes="",
                     log_metadata="{}"
                 ))
