@@ -30,3 +30,9 @@
   task_id: triage-fixes-ongoing
   committed_by: GPTPod
   message: Append output file to triage-fixes-ongoing
+- timestamp: '2025-05-13T17:21:59.820517'
+  path: app/tools/log_incident_detail.py
+  task_id: refactor-log-incident
+  committed_by: GPTPod
+  message: Refactor log_incident_detail to also log symptoms as individual rows in
+    SymptomLog
