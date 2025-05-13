@@ -90,7 +90,7 @@
         "tags": ["Triage"],
         "x-gpt-action": {
           "name": "Log Incident Details",
-          "instructions": "Use this after completing triage. Submit structured answers under `answers` and include `user_id` and `timestamp`.\n\nIf `answers.symptoms` is present:\n- Ensure it's a dictionary of symptom: severity (e.g., `{ \"headache\": 7 }`)\n- Match symptoms to known list first using `symptom_links` (from `/get_triage_flow`)\n- Only include new symptoms if unmatched\n- Ask user to rate each symptom from 1-10 if not already done",
+          "instructions": "Call this after completing triage. Format payload as:\n- `user_id`: string\n- `timestamp`: ISO date string\n- `answers`: a dictionary mapping question IDs to answers\n\nIf including `symptoms`, it must be a **stringified JSON object** (e.g., \"{\\\"headache\\\": 7, \\\"dizziness\\\": 2}\").\nAvoid sending it as a list or nested structure.",
           "summary_keywords": ["log", "incident", "triage"]
         },
         "requestBody": {
