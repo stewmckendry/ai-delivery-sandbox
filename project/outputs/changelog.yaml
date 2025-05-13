@@ -38,3 +38,13 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Remove deprecated /get_triage_question from tool test plan
+- timestamp: '2025-05-13T23:41:30.703251'
+  path: test/e2e/scenario_1_baseline_flow.md
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: 'Add E2E Scenario 1 test plan: baseline recovery flow with mild symptoms'
+- timestamp: '2025-05-13T23:41:30.703251'
+  path: project/memory.yaml
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Memory update related to test/e2e/scenario_1_baseline_flow.md
