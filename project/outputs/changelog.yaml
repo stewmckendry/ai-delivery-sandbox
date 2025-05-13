@@ -167,3 +167,8 @@
   task_id: bind-fix-entrypoint
   committed_by: GPTPod
   message: Append output file to bind-fix-entrypoint
+- timestamp: '2025-05-13T00:15:40.574816'
+  path: Dockerfile
+  task_id: bind-fix-entrypoint
+  committed_by: GPTPod
+  message: Update Dockerfile to use entrypoint.sh for uvicorn host fix
