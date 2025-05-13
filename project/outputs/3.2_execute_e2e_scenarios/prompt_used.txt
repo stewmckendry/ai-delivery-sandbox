@@ -1,0 +1,1 @@
+Run full E2E tests for concussion recovery assistant across all tool flows. Validate tool logic, schema alignment, messaging, and UX. Identify and document any gaps or improvements.
