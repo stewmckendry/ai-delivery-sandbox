@@ -10,8 +10,7 @@ TRIAGE_MAP_URL = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-san
 def get_triage_flow():
     """
     Load and return a GPT-friendly triage flow map.
-    Flattens stage/questions into a list with stage context.
-    Clarifies intent for each mode and includes linked symptom IDs.
+    Flattens stage/questions into a list with essential fields only.
     """
     response = requests.get(TRIAGE_MAP_URL)
     response.raise_for_status()
@@ -19,20 +18,16 @@ def get_triage_flow():
 
     flat_questions = []
     for stage in triage_yaml.get("triage_flow", []):
-        context = stage.get("name")
         for q in stage.get("questions", []):
-            mode_description = "ask for details" if q.get("mode") == "probe" else "ask for confirmation"
             flat_questions.append({
                 "id": q.get("id"),
                 "prompt": q.get("prompt"),
                 "type": q.get("type"),
                 "intent": q.get("intent"),
                 "mode": q.get("mode"),
-                "mode_description": mode_description,
                 "example_user_answers": q.get("example_user_answers"),
-                "context": context,
-                "tool_tags": q.get("tool_tags", []),
-                "symptom_links": q.get("symptom_links", [])
+                "symptom_links": q.get("symptom_links", []),
+                "skip_if": q.get("skip_if", {})
             })
 
     return {"questions": flat_questions}
