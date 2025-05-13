@@ -142,3 +142,8 @@
   task_id: uvicorn-host-fix
   committed_by: GPTPod
   message: Append output file to uvicorn-host-fix
+- timestamp: '2025-05-13T00:12:52.177989'
+  path: Dockerfile
+  task_id: uvicorn-port-binding-fix
+  committed_by: GPTPod
+  message: 'Fix uvicorn binding: switch CMD to shell form for correct host exposure'
