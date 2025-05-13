@@ -111,20 +111,38 @@
                   },
                   "answers": {
                     "type": "object",
-                    "description": "Key-value map of question IDs (from get_triage_map) and user answers. Include only the IDs captured during triage.",
+                    "description": "Key-value map of triage answers. Use string, boolean, or list of strings. For `symptoms`, pass as an array of symptom IDs.",
+                    "properties": {
+                      "reporter_role": { "type": "string", "example": "my son" },
+                      "sport_type": { "type": "string", "example": "hockey" },
+                      "age_group": { "type": "string", "example": "U9" },
+                      "team_id": { "type": "string", "example": "Ted Reeves Tornados" },
+                      "injury_date": { "type": "string", "example": "2025-05-05" },
+                      "injury_context": { "type": "string", "example": "He hit his head on the boards" },
+                      "symptoms": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": ["headache", "dizziness"]
+                      },
+                      "lost_consciousness": { "type": "boolean", "example": false },
+                      "seen_provider": { "type": "boolean", "example": true },
+                      "diagnosed_concussion": { "type": "boolean", "example": false },
+                      "still_symptomatic": { "type": "boolean", "example": true },
+                      "cleared_to_play": { "type": "boolean", "example": false }
+                    },
                     "example": {
                       "reporter_role": "my son",
                       "sport_type": "hockey",
                       "age_group": "U9",
                       "team_id": "Ted Reeves Tornados",
-                      "injury_date": "a few days ago",
+                      "injury_date": "2025-05-05",
                       "injury_context": "He got hit from behind and hit his head on the boards",
-                      "symptoms": "{\"headache\":7,\"dizziness\":1,\"scared\":1}",
-                      "lost_consciousness": "no",
-                      "seen_provider": "no",
-                      "diagnosed_concussion": "no",
-                      "still_symptomatic": "mild pain",
-                      "cleared_to_play": "no"
+                      "symptoms": ["headache", "dizziness"],
+                      "lost_consciousness": false,
+                      "seen_provider": true,
+                      "diagnosed_concussion": false,
+                      "still_symptomatic": true,
+                      "cleared_to_play": false
                     }
                   }
                 },
