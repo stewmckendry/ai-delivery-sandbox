@@ -437,14 +437,75 @@
     },
     "/get_symptom_log_map": {
       "get": {
-        "summary": "get_symptom_log_map",
-        "operationId": "get_symptom_log_map_get",
+        "summary": "Fetch Symptom Log Structure",
+        "operationId": "getSymptomLogMap",
+        "tags": ["Symptoms"],
+        "x-gpt-action": {
+          "name": "Get Symptom Log Map",
+          "instructions": "Call this to structure a follow-up symptom check-in.\n- Use the `prompt` to introduce the check-in\n- Walk through each `symptoms` entry and ask for a 1–10 score\n- If any `linked_symptoms` are mentioned, ask follow-up questions\n- Honor the `guidance` field: if severity ≥ threshold, inform the user and consider flagging it\n\nExample message: 'Let’s review your symptoms today. How would you rate your headache from 1 to 10?'",
+          "summary_keywords": ["symptom", "check-in", "severity", "red flag"]
+        },
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "Structured symptom check-in logic",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "symptom_log": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "example": "symptom_checkin_block" },
+                          "prompt": { "type": "string", "example": "Let's review your symptoms. Please rate the severity of each one." },
+                          "linked_symptoms": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["headache", "dizziness"]
+                          },
+                          "symptoms": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["physical_headache", "sleep_difficulty"]
+                          },
+                          "guidance": {
+                            "type": "object",
+                            "properties": {
+                              "red_flag_if": {
+                                "type": "array",
+                                "items": { "type": "string" },
+                                "example": ["red_flag_nausea"]
+                              },
+                              "escalate_if": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "condition": { "type": "string", "example": "severity >= 4" },
+                                    "message": { "type": "string", "example": "This symptom may need further evaluation." }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "properties": {
+                        "required_fields": {
+                          "type": "array",
+                          "items": { "type": "string" },
+                          "example": ["reporter_type", "sport_type"]
+                        },
+                        "notes": { "type": "string" }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
