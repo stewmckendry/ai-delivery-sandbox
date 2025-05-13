@@ -1,10 +1,8 @@
-from sqlalchemy.orm import Session
-from app.db.db_models import SymptomLog, StageLog, IncidentReport
 from app.db.database import SessionLocal
-
+from app.db.db_models import SymptomLog, StageLog, IncidentReport
 
 def get_export_bundle(user_id: str):
-    db: Session = SessionLocal()
+    db = SessionLocal()
     try:
         symptoms = db.query(SymptomLog).filter_by(user_id=user_id).order_by(SymptomLog.timestamp).all()
         stage = db.query(StageLog).filter_by(user_id=user_id).order_by(StageLog.timestamp.desc()).first()
@@ -12,24 +10,27 @@ def get_export_bundle(user_id: str):
 
         symptom_logs = []
         for row in symptoms:
-            import json
-            parsed = json.loads(row.symptoms)
-            for sid, sev in parsed.items():
-                symptom_logs.append({
-                    "symptom_id": sid,
-                    "severity": sev,
-                    "timestamp": row.timestamp.isoformat(),
-                    "reporter_type": row.reporter_type,
-                    "incident_context": row.incident_context,
-                    "sport_type": row.sport_type,
-                    "age_group": row.age_group,
-                    "team_id": row.team_id
+            entry = {
+                "symptom_id": row.symptom_id,
+                "severity": row.score,
+                "timestamp": row.timestamp.isoformat(),
+                "notes": row.notes,
+                "source": "canonical" if row.symptom_id != "other" else "other"
+            }
+            if incident:
+                entry.update({
+                    "reporter_type": incident.reporter_type,
+                    "incident_context": incident.injury_context,
+                    "sport_type": incident.sport_type,
+                    "age_group": incident.age_group,
+                    "team_id": incident.team_id
                 })
+            symptom_logs.append(entry)
 
         return {
-            "incident": incident,
-            "stage": stage.inferred_stage if stage else None,
-            "symptoms": symptom_logs
+            "symptoms": symptom_logs,
+            "stage": stage,
+            "incident": incident
         }
     finally:
         db.close()
