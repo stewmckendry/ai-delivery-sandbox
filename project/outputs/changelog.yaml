@@ -67,3 +67,9 @@
   task_id: refactor-get-stage-guidance
   committed_by: GPTPod
   message: Append output file to refactor-get-stage-guidance
+- timestamp: '2025-05-13T17:43:35.289169'
+  path: app/db/db_models.py
+  task_id: refactor-get-stage-guidance
+  committed_by: GPTPod
+  message: Restore full db_models.py including SymptomLog, IncidentReport, and new
+    RecoveryCheck
