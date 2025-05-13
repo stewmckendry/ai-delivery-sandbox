@@ -6,10 +6,6 @@
 - [ ] Returns full triage map with expected schema fields
 - [ ] `skip_if` and `symptom_links` behavior confirmed
 
-**/get_triage_question**
-- [ ] Correct next question after given tracker state
-- [ ] Handles completion (no remaining questions)
-
 **/log_incident_detail**
 - [ ] Correctly logs structured answer payloads
 - [ ] Symptom map accepted, validated, and saved
@@ -52,3 +48,5 @@
 ---
 
 Next: Create end-to-end test user flows to validate full lifecycle from triage to export.
+
+Note: `/get_triage_question` excluded from test scope (deprecated).
