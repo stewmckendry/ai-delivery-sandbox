@@ -134,3 +134,15 @@
   - YAML
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/delivery/data_schema_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/data_schema_flow.md
+  file_type: md
+  description: Documentation of the data flow and schema alignment from frontend tools
+    to SQL storage for the Concussion Recovery Assistant.
+  tags:
+  - data flow
+  - schema
+  - SQL
+  - FastAPI
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
