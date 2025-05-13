@@ -547,3 +547,16 @@
   - qa
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: .logs/issues/recommended_repo_structure.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/recommended_repo_structure.md
+  file_type: md
+  description: Document outlining the recommended repository structure for artifact
+    governance, covering best practices across the software development lifecycle
+    to minimize artifact sprawl.
+  tags:
+  - repository
+  - structure
+  - governance
+  - sdlc
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
