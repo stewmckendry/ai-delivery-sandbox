@@ -30,3 +30,14 @@
   task_id: revise-assess-concussion
   committed_by: GPTPod
   message: Append output file to revise-assess-concussion
+- timestamp: '2025-05-13T16:18:46.025002'
+  path: app/db/db_models.py
+  task_id: symptom-schema-update
+  committed_by: GPTPod
+  message: Redesign SymptomLog schema for normalized structure (1 row per symptom,
+    with canonical ID, score, input, notes)
+- timestamp: '2025-05-13T16:18:46.025002'
+  path: project/memory.yaml
+  task_id: symptom-schema-update
+  committed_by: GPTPod
+  message: Memory update related to app/db/db_models.py
