@@ -94,3 +94,8 @@
   task_id: fix-injury-date-cast
   committed_by: GPTPod
   message: Append output file to fix-injury-date-cast
+- timestamp: '2025-05-13T13:34:04.969125'
+  path: app/tools/log_incident_detail.py
+  task_id: log-incident-error-reporting
+  committed_by: GPTPod
+  message: Improve /log_incident_detail error reporting for GPT feedback
