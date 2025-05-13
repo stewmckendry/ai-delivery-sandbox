@@ -453,25 +453,43 @@
     },
     "/get_linked_symptoms/{user_id}": {
       "get": {
-        "summary": "get_linked_symptoms",
-        "operationId": "get_linked_symptoms_user_id_get",
+        "summary": "Get Logged Symptoms",
+        "operationId": "getLinkedSymptoms",
+        "tags": ["Symptoms"],
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
             "required": true,
             "schema": {
-              "title": "User Id",
-              "type": "string"
-            }
+              "type": "string",
+              "example": "user_abc123"
+            },
+            "description": "The user ID to fetch symptom logs for"
           }
         ],
+        "x-gpt-action": {
+          "name": "View Logged Symptoms",
+          "instructions": "Use this to show a user their past symptom check-ins.\n\nReturns a list of all symptoms recorded for the given user_id, including:\n- `symptom_id`: canonical symptom name\n- `score`: 1–10 severity score\n- `notes`: optional metadata or freeform notes\n- `timestamp`: when the symptom was logged\n\n🧠 How to communicate results:\n- 'Here are the symptom check-ins you’ve recorded.'\n- Explain trends: 'Looks like headache severity dropped from 6 to 2 over the last week.'\n- Offer next steps: 'Want to do another check-in now?'\n- Reassure: 'This is just for tracking — it’s not a clinical diagnosis.'",
+          "summary_keywords": ["symptoms", "history", "log"]
+        },
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "List of logged symptoms with scores and timestamps",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symptom_id": { "type": "string", "example": "headache" },
+                      "score": { "type": "integer", "example": 5 },
+                      "notes": { "type": "string", "example": "User noted mild throbbing after school." },
+                      "timestamp": { "type": "string", "format": "date-time", "example": "2025-05-10T14:00:00Z" }
+                    }
+                  }
+                }
               }
             }
           }
