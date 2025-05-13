@@ -146,3 +146,16 @@
   - FastAPI
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/outputs/3.2_execute_e2e_scenarios/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/outputs/3.2_execute_e2e_scenarios/prompt_used.txt
+  file_type: txt
+  description: Instructions for executing end-to-end tests for the concussion recovery
+    assistant, focusing on tool flows, logic validation, schema alignment, messaging,
+    and UX.
+  tags:
+  - e2e
+  - testing
+  - validation
+  - flow
+  last_updated: '2025-05-13'
+  pod_owner: QAPod
