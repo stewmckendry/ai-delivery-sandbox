@@ -511,3 +511,16 @@
   - audit
   last_updated: '2025-05-12'
   pod_owner: DeliveryPod
+- path: .logs/issues/framework_assessment.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/framework_assessment.md
+  file_type: md
+  description: Document outlining challenges and improvement opportunities in artifact
+    management, tool utilization, task management, and delivery workflow within the
+    project framework.
+  tags:
+  - workflow
+  - delivery
+  - logging
+  - management
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
