@@ -8,16 +8,13 @@ class SymptomLog(Base):
     __tablename__ = "symptom_log_export"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(String)
-    timestamp = Column(DateTime)
-    symptoms = Column(Text)
-    log_metadata = Column(Text)
-    incident_context = Column(String)
-    reporter_type = Column(String)
-    sport_type = Column(String)
-    age_group = Column(String)
-    team_id = Column(String)
-    extra_notes = Column(Text)
+    user_id = Column(String, nullable=False)
+    timestamp = Column(DateTime, nullable=False)
+    symptom_id = Column(String, nullable=False)
+    symptom_input = Column(String, nullable=False)
+    score = Column(Integer, nullable=True)
+    notes = Column(Text, nullable=True)
+    log_metadata = Column(Text, nullable=True)
 
 class TriageResponse(Base):
     __tablename__ = "triage_response_export"
