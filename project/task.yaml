@@ -892,3 +892,4 @@ tasks:
     - app/tools/export_summary.py
     - project/delivery/data_flow_addendum_pdf_export.md
     - .logs/issues/framework_assessment.md
+    - .logs/issues/framework_improvement_plan.md
