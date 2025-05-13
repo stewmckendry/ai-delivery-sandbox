@@ -23,3 +23,15 @@
   - OpenAPI
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: .logs/issues/repo_structure_sdlc_domains_v2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/repo_structure_sdlc_domains_v2.md
+  file_type: md
+  description: Document outlining a comprehensive repository structure for AI-enabled
+    systems, covering all stages of the software development lifecycle.
+  tags:
+  - sdlc
+  - structure
+  - ai
+  - development
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
