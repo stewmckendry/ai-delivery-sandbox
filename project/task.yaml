@@ -549,8 +549,9 @@ tasks:
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
     ready: true
-    status: backlog
-    updated_at: '2025-04-26T23:06:52.875900'
+    status: in_progress
+    updated_at: '2025-05-13T23:35:02.465429'
+    prompt_used: project/outputs/3.2_execute_e2e_scenarios/prompt_used.txt
   3.3_fix_bugs_e2e:
     assigned_to: unassigned
     category: e2e
