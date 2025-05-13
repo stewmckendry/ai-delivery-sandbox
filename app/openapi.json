@@ -90,7 +90,7 @@
         "tags": ["Triage"],
         "x-gpt-action": {
           "name": "Log Incident Details",
-          "instructions": "Call this after completing triage. Format payload as:\n- `user_id`: string\n- `timestamp`: ISO date string\n- `answers`: a dictionary mapping question IDs to answers\n\nIf including `symptoms`, it must be a **stringified JSON object** (e.g., \"{\\\"headache\\\": 7, \\\"dizziness\\\": 2}\").\nAvoid sending it as a list or nested structure.",
+          "instructions": "Call this after completing triage. Format payload as:\n- `user_id`: string\n- `timestamp`: ISO date string\n- `answers`: a dictionary mapping question IDs to answers\n\nIf including `symptoms`, pass them as a **dictionary**: `{ \"headache\": 7, \"dizziness\": 2 }`.\nAvoid sending it as a list.\nScores should range from 1 (mild) to 10 (severe). If score is unclear, use 1 as default.",
           "summary_keywords": ["log", "incident", "triage"]
         },
         "requestBody": {
@@ -111,7 +111,7 @@
                   },
                   "answers": {
                     "type": "object",
-                    "description": "Key-value map of triage answers. Use string, boolean, or list of strings. For `symptoms`, pass as an array of symptom IDs.",
+                    "description": "Key-value map of triage answers. Use string, boolean, or list of strings. For `symptoms`, provide a dictionary of { symptom_id: score }.",
                     "properties": {
                       "reporter_role": { "type": "string", "example": "my son" },
                       "sport_type": { "type": "string", "example": "hockey" },
@@ -120,9 +120,9 @@
                       "injury_date": { "type": "string", "format": "date", "example": "2025-05-05" },
                       "injury_context": { "type": "string", "example": "He hit his head on the boards" },
                       "symptoms": {
-                        "type": "array",
-                        "items": { "type": "string" },
-                        "example": ["headache", "dizziness"]
+                        "type": "object",
+                        "description": "Dictionary of symptom IDs and their scores (1–10)",
+                        "example": { "headache": 7, "dizziness": 2 }
                       },
                       "lost_consciousness": { "type": "boolean", "example": false },
                       "seen_provider": { "type": "boolean", "example": true },
@@ -137,7 +137,7 @@
                       "team_id": "Ted Reeves Tornados",
                       "injury_date": "2025-05-05",
                       "injury_context": "He got hit from behind and hit his head on the boards",
-                      "symptoms": ["headache", "dizziness"],
+                      "symptoms": { "headache": 7, "dizziness": 2 },
                       "lost_consciousness": false,
                       "seen_provider": true,
                       "diagnosed_concussion": false,
