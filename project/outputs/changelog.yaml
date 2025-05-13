@@ -34,3 +34,9 @@
   task_id: log_incident_detail_schema_update
   committed_by: GPTPod
   message: Append output file to log_incident_detail_schema_update
+- timestamp: '2025-05-13T19:11:25.624039'
+  path: app/tools/log_incident_detail.py
+  task_id: log_incident_detail_schema_update
+  committed_by: GPTPod
+  message: 'Fix: support dictionary of symptom scores in log_incident_detail and fail
+    gracefully if score missing'
