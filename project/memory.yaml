@@ -572,3 +572,15 @@
   - security
   last_updated: '2025-05-13'
   pod_owner: DevPod
+- path: project/data_flow/data_flow_template.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/data_flow/data_flow_template.md
+  file_type: md
+  description: Template outlining best practices for data flow processes, including
+    step-by-step breakdowns and known gaps.
+  tags:
+  - flow
+  - template
+  - data
+  - process
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
