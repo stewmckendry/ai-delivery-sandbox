@@ -33,3 +33,8 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Append output file to 3.2_execute_e2e_scenarios
+- timestamp: '2025-05-13T23:38:30.521474'
+  path: test/e2e/tool_test_plan.md
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Remove deprecated /get_triage_question from tool test plan
