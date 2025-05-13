@@ -117,7 +117,7 @@
                       "sport_type": { "type": "string", "example": "hockey" },
                       "age_group": { "type": "string", "example": "U9" },
                       "team_id": { "type": "string", "example": "Ted Reeves Tornados" },
-                      "injury_date": { "type": "string", "example": "2025-05-05" },
+                      "injury_date": { "type": "string", "format": "date", "example": "2025-05-05" },
                       "injury_context": { "type": "string", "example": "He hit his head on the boards" },
                       "symptoms": {
                         "type": "array",
