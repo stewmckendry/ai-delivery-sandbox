@@ -1,45 +1,62 @@
 import json
-from typing import Dict
-from fastapi import APIRouter
-from app.models.symptoms import SymptomCheckIn, SymptomLogResult
-from app.models.tracker import TrackerState
-from app.db.db_writer import log_symptoms_to_db
-from app.symptom_library import validate_symptom_ids
+import requests
+import yaml
+from typing import List
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+from datetime import datetime
 from app.db.database import SessionLocal
-from app.db.db_models import IncidentReport
+from app.db.db_models import SymptomLog
 
 router = APIRouter()
 
-@router.post("/log_symptoms", response_model=SymptomLogResult)
-def log_symptoms(payload: SymptomCheckIn) -> SymptomLogResult:
-    validate_symptom_ids(list(payload.symptoms.keys()))
+SYMPTOM_YAML_URLS = [
+    "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_red_flag.yaml",
+    "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_physical.yaml",
+    "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_emotional.yaml",
+    "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/symptoms_sleep.yaml",
+]
 
-    state = TrackerState(answers=payload.symptoms)
-    metadata = payload.metadata or {}
+class SymptomEntry(BaseModel):
+    symptom_input: str
+    score: int
+    notes: str = ""
+
+class SymptomCheckPayload(BaseModel):
+    user_id: str
+    timestamp: datetime
+    symptoms: List[SymptomEntry]
+
+@router.post("/log_symptoms")
+def log_symptoms(payload: SymptomCheckPayload):
+    # Load reference symptom list
+    known_symptoms = {}
+    for url in SYMPTOM_YAML_URLS:
+        response = requests.get(url)
+        response.raise_for_status()
+        yaml_data = yaml.safe_load(response.text)
+        for s in yaml_data.get("symptoms", []):
+            known_symptoms[s["name"].lower()] = s["id"]
 
     db = SessionLocal()
     try:
-        incident = db.query(IncidentReport).filter_by(user_id=payload.user_id).order_by(IncidentReport.timestamp.desc()).first()
+        for entry in payload.symptoms:
+            canonical_id = known_symptoms.get(entry.symptom_input.lower(), "other")
+            log = SymptomLog(
+                user_id=payload.user_id,
+                timestamp=payload.timestamp,
+                symptom_id=canonical_id,
+                symptom_input=entry.symptom_input,
+                score=entry.score,
+                notes=entry.notes,
+                log_metadata="{}"
+            )
+            db.add(log)
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Error logging symptoms: {str(e)}")
     finally:
         db.close()
 
-    def get_meta(field):
-        return (
-            metadata.get(field)
-            or payload.symptoms.get(field)
-            or (getattr(incident, field, None) if incident else None)
-        )
-
-    log_symptoms_to_db(
-        user_id=payload.user_id,
-        injury_date=payload.injury_date,
-        checkin_time=payload.checkin_time,
-        symptoms=payload.symptoms,
-        stage=None,
-        source="gpt",
-        reporter_type=get_meta("reporter_type"),
-        incident_context=get_meta("incident_context"),
-        sport_type=get_meta("sport_type"),
-        age_group=get_meta("age_group"),
-        team_id=get_meta("team_id")
-    )
+    return {"status": "ok", "message": "Symptoms logged successfully."}
