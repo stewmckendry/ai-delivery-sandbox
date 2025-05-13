@@ -547,6 +547,7 @@ tasks:
     - project/delivery/data_flow_master_v3.md
     - test/e2e/tool_test_plan.md
     - test/e2e/scenario_1_baseline_flow.md
+    - test/e2e/results/scenario_1_interim_result.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
