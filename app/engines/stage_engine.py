@@ -50,4 +50,12 @@ class StageEngine:
                     }
                 )
 
-        raise ValueError("No matching stage found for given inputs")
+        return StageResult(
+            stage_id="no_stage_matched",
+            label="Unable to determine stage",
+            guidance="I wasn’t able to match a recovery stage based on the current inputs. Please consult a clinician for personalized guidance.",
+            matched_criteria={
+                "hours": hours_since_injury,
+                "symptom_score": severity_score
+            }
+        )
