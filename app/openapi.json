@@ -310,23 +310,6 @@
         }
       }
     },
-    "/export_to_sql": {
-      "post": {
-        "operationId": "exportToSql",
-        "summary": "Export data to SQL",
-        "tags": ["Export"],
-        "x-gpt-action": {
-          "name": "Export to SQL",
-          "instructions": "Push all tracker and symptom logs to analytics DB.",
-          "summary_keywords": ["export", "SQL", "dashboard"]
-        },
-        "responses": {
-          "200": {
-            "description": "Export triggered"
-          }
-        }
-      }
-    },
     "/get_symptom_log_map": {
       "get": {
         "summary": "get_symptom_log_map",
