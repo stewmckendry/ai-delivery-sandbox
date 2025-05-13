@@ -185,3 +185,16 @@
   - validation
   last_updated: '2025-05-13'
   pod_owner: QAPod
+- path: test/e2e/results/scenario_1_interim_result.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/test/e2e/results/scenario_1_interim_result.md
+  file_type: md
+  description: Interim test results for Scenario 1, detailing successes and failures
+    in the baseline flow, including issues with symptom data handling and next steps
+    for resolution.
+  tags:
+  - test
+  - flow
+  - error
+  - database
+  last_updated: '2025-05-13'
+  pod_owner: QAPod
