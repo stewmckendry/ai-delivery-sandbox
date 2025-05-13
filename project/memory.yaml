@@ -96,3 +96,16 @@
   - testing
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: .logs/issues/framework_reengineer_gpt_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/framework_reengineer_gpt_plan.md
+  file_type: md
+  description: This file contains a detailed plan for reengineering the AI-native
+    software development lifecycle framework, outlining pod workflows, transition
+    steps, and integration strategies for GPTs and human collaboration.
+  tags:
+  - framework
+  - workflow
+  - integration
+  - sdlc
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
