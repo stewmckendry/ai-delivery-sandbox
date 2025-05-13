@@ -114,3 +114,14 @@
   task_id: stage-guidance-graceful-fail
   committed_by: GPTPod
   message: Append output file to stage-guidance-graceful-fail
+- timestamp: '2025-05-13T18:25:45.203658'
+  path: app/tools/get_triage_flow.py
+  task_id: triage-flow-logic-fixes
+  committed_by: GPTPod
+  message: 'Cleaned up get_triage_flow: removed unused context, tool_tags, and mode_description
+    fields; added skip_if passthrough'
+- timestamp: '2025-05-13T18:25:45.203658'
+  path: project/memory.yaml
+  task_id: triage-flow-logic-fixes
+  committed_by: GPTPod
+  message: Memory update related to app/tools/get_triage_flow.py
