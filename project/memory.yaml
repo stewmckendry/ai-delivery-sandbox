@@ -56,3 +56,13 @@
   - logging
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: test/test_commit_check.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/test/test_commit_check.txt
+  file_type: txt
+  description: Test file to verify the functionality of the commit tool
+  tags:
+  - test
+  - commit
+  - tool
+  last_updated: '2025-05-13'
+  pod_owner: DevPod
