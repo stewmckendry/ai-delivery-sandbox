@@ -159,3 +159,16 @@
   - flow
   last_updated: '2025-05-13'
   pod_owner: QAPod
+- path: test/e2e/tool_test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/test/e2e/tool_test_plan.md
+  file_type: md
+  description: Detailed test plan for validating end-to-end functionality of the Concussion
+    Recovery Assistant tools, covering triage, assessment, symptom tracking, and export
+    features.
+  tags:
+  - e2e
+  - test plan
+  - validation
+  - flow
+  last_updated: '2025-05-13'
+  pod_owner: QAPod
