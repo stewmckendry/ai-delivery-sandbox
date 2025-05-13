@@ -24,3 +24,14 @@
   - task_list
   last_updated: '2025-05-13'
   pod_owner: QAPod
+- path: app/tools/get_triage_flow.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_triage_flow.py
+  file_type: py
+  description: API endpoint to retrieve and flatten a GPT-friendly triage flow map
+    from a remote YAML file.
+  tags:
+  - api
+  - triage
+  - flow
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
