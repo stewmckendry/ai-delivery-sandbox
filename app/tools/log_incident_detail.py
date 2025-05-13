@@ -1,17 +1,18 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from typing import Dict
+from typing import Dict, List, Union
 from datetime import datetime
 from app.db.db_models import TriageResponse, IncidentReport
 from app.db.database import SessionLocal
 from app.symptom_library import validate_symptom_ids
+import json
 
 router = APIRouter()
 
 class IncidentLogRequest(BaseModel):
     user_id: str
     timestamp: datetime
-    answers: Dict[str, str]
+    answers: Dict[str, Union[str, List[str]]]
 
 @router.post("/log_incident_detail")
 def log_incident_detail(request: IncidentLogRequest):
@@ -24,7 +25,7 @@ def log_incident_detail(request: IncidentLogRequest):
                 user_id=request.user_id,
                 question_id=qid,
                 question_text=qid,
-                answer=answer,
+                answer=str(answer),
                 timestamp=request.timestamp
             ))
 
@@ -40,10 +41,10 @@ def log_incident_detail(request: IncidentLogRequest):
 
         if "symptoms" in structured:
             try:
-                sym_ids = eval(structured["symptoms"]).keys()
-                validate_symptom_ids(list(sym_ids))
+                validate_symptom_ids(structured["symptoms"])
+                structured["symptoms"] = json.dumps(structured["symptoms"])
             except Exception:
-                pass
+                structured["symptoms"] = json.dumps(structured["symptoms"])
 
         if structured:
             db.add(IncidentReport(
