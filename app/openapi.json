@@ -319,8 +319,8 @@
         "tags": ["Assessment"],
         "x-gpt-action": {
           "name": "Get Stage Guidance",
-          "instructions": "Use after symptom check-in to infer current recovery stage.",
-          "summary_keywords": ["stage", "guidance", "inference"]
+          "instructions": "Use this after a symptom check-in to determine the user's current recovery stage.\n\nRequired:\n- `user_id`: unique ID used in prior logs\n\nOptional:\n- `symptoms`: dictionary of { symptom_id: score }, if triage not done\n- `injury_date`: ISO date string if not previously logged\n- `checkin_time`: timestamp for when this check-in occurred (default is now)\n\nIf `symptoms` and `injury_date` are not included, the system will fetch recent symptom logs. If missing, notify the user to complete a triage check-in.\n\n🧠 How to communicate results:\n- Provide a brief, clear explanation of the user's current recovery stage (e.g., 'You’re currently in Stage 2 – Light Activity').\n- Be empathetic and reassuring: 'Everyone heals at a different pace. Let’s make sure we’re tracking things properly.'\n- Offer return-to-play guidance: explain what is and isn’t safe right now, based on the stage.\n- Be prepared to answer user questions, like whether they can return to practice or competition.\n- Always remind them: 'I'm not a doctor, but I can help guide you through the structured recovery steps.'",
+          "summary_keywords": ["stage", "guidance", "recovery"]
         },
         "requestBody": {
           "required": true,
@@ -328,8 +328,33 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["user_id"],
                 "properties": {
-                  "tracker_state": { "type": "object" }
+                  "user_id": {
+                    "type": "string",
+                    "description": "User ID used in previous logs",
+                    "example": "user_abc123"
+                  },
+                  "injury_date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Injury date if triage not done",
+                    "example": "2025-05-01"
+                  },
+                  "symptoms": {
+                    "type": "object",
+                    "description": "Dictionary of symptoms and severity if check-in not done",
+                    "example": {
+                      "headache": 5,
+                      "dizziness": 3
+                    }
+                  },
+                  "checkin_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Timestamp of check-in, defaults to now",
+                    "example": "2025-05-15T10:00:00Z"
+                  }
                 }
               }
             }
@@ -337,7 +362,22 @@
         },
         "responses": {
           "200": {
-            "description": "Returns current recovery stage"
+            "description": "Returns inferred stage and summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "stage": { "type": "string", "example": "stage_2" },
+                    "stage_name": { "type": "string", "example": "Light Activity" },
+                    "stage_summary": {
+                      "type": "string",
+                      "example": "You may resume light activity, but no contact sports yet. Monitor symptoms closely."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
