@@ -83,3 +83,16 @@
   - workflow
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: .logs/issues/framework_reengineer_gpt_pov.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/framework_reengineer_gpt_pov.md
+  file_type: md
+  description: Document detailing the challenges and proposed improvements in the
+    AI-native delivery model for GPT tooling, focusing on testing, schema design,
+    and process integration.
+  tags:
+  - framework
+  - delivery
+  - schema
+  - testing
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
