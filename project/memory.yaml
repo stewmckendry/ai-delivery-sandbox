@@ -155,3 +155,15 @@
   - validation
   last_updated: '2025-05-13'
   pod_owner: QAPod
+- path: app/tools/get_stage_guidance.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_stage_guidance.py
+  file_type: py
+  description: API endpoint to provide stage guidance based on user symptoms and injury
+    data, with logging and inference capabilities.
+  tags:
+  - api
+  - inference
+  - logging
+  - database
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
