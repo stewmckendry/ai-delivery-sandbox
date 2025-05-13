@@ -121,3 +121,14 @@
   task_id: refactor-db-reader
   committed_by: GPTPod
   message: Append output file to refactor-db-reader
+- timestamp: '2025-05-13T17:00:23.885939'
+  path: app/tools/export_to_sql.py
+  task_id: retire-export-to-sql
+  committed_by: GPTPod
+  message: "Retire export_to_sql tool \u2014 real-time inserts now handled directly;\
+    \ use Azure Data Studio for admin exports"
+- timestamp: '2025-05-13T17:00:23.885939'
+  path: project/memory.yaml
+  task_id: retire-export-to-sql
+  committed_by: GPTPod
+  message: Memory update related to app/tools/export_to_sql.py
