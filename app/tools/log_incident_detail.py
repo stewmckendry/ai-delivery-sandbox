@@ -62,7 +62,7 @@ def log_incident_detail(request: IncidentLogRequest):
         db.commit()
     except Exception as e:
         db.rollback()
-        raise e
+        return {"status": "error", "detail": str(e)}
     finally:
         db.close()
 
