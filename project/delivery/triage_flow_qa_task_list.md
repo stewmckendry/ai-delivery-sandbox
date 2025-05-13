@@ -7,13 +7,17 @@ This task list addresses key issues surfaced during full triage testing via Conc
 ## ✅ Phase 1: Tool Interface Fixes
 
 ### 🔧 General
-- [ ] Improve error messaging across all tools (replace `UnrecognizedKwargsError` with readable errors)
-- [ ] Revalidate OpenAPI schemas to match tool expectations
+- [x] Improve error messaging across all tools (replace `UnrecognizedKwargsError` with readable errors)
+- [x] Revalidate OpenAPI schemas to match tool expectations
 
 ### 🛠 Tool-Specific Fixes
-- [ ] `assess_concussion`: Confirm expected inputs; reject extras clearly
-- [ ] `log_symptoms`: Accept structured symptom list + timestamp
-- [ ] `get_stage_guidance`: Clarify what `tracker_state` means and whether tool needs rework
+- [x] `assess_concussion`: Pull symptom scores from DB, not request; restore assessment logic
+- [ ] `symptom_logger.py`: Rewrite to log one row per symptom with canonical ID, score, notes
+- [ ] `get_linked_symptoms.py`: Refactor to select rows from new SymptomLog model
+- [ ] `validator.py`: Update to scan row-based symptom entries instead of parsing JSON blob
+- [ ] `export_to_sql.py`: Rebuild export for new schema layout
+- [ ] `db_reader.py`: Refactor symptom parsing logic to row model
+- [ ] `db_writer.py`: Update insert logic to handle per-symptom rows
 
 ---
 
@@ -37,6 +41,6 @@ This task list addresses key issues surfaced during full triage testing via Conc
 
 ---
 
-Once complete, these changes will improve data consistency, user understanding, and system resilience.
+> Latest: SymptomLog normalized. Next steps target upstream log and export tooling.
 
 > Created by QAPod, based on triage-to-log incident test retro.
