@@ -32,7 +32,7 @@
         "tags": ["Triage"],
         "x-gpt-action": {
           "name": "Fetch Full Triage Flow",
-          "instructions": "Use this at the start of triage to load the full question map.",
+          "instructions": "Use this at the start of triage to load the full question map. GPT should walk the user through each question in order, using `qid` to track answers, 'prompt' for sample way to ask questions, and `mode` to determine whether to clarify or probe before moving on (at your discretion if answer is unclear). Optionally reference `context`, `intent`, and `example_user_answers` for phrasing. **Keep it conversational & empathetic, not clinical!**",
           "summary_keywords": ["triage", "map", "flow"]
         },
         "responses": {
@@ -46,10 +46,36 @@
                     "flow": {
                       "type": "array",
                       "items": {
-                        "type": "object"
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "example": "q1" },
+                          "prompt": { "type": "string", "example": "Who are you reporting this for?" },
+                          "type": { "type": "string", "example": "text" },
+                          "intent": { "type": "string", "example": "reporter_role" },
+                          "mode": { "type": "string", "example": "clarify", "description": "Use 'probe' to follow up, 'clarify' to confirm answer" },
+                          "mode_description": { "type": "string", "example": "ask for confirmation" },
+                          "example_user_answers": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["my son", "a player", "I'm their coach"]
+                          },
+                          "context": { "type": "string", "example": "Initial Intake" },
+                          "tool_tags": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["triage", "reporting"]
+                          },
+                          "symptom_links": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["headache", "dizziness"]
+                          }
+                        },
+                        "required": ["id", "prompt"]
                       }
                     }
-                  }
+                  },
+                  "required": ["flow"]
                 }
               }
             }
@@ -60,12 +86,12 @@
     "/log_incident_detail": {
       "post": {
         "operationId": "logIncidentDetail",
-        "summary": "Log triage answers",
+        "summary": "Log structured triage outcome",
         "tags": ["Triage"],
         "x-gpt-action": {
-          "name": "Log Triage Metadata",
-          "instructions": "Call after triage is complete to store user answers.",
-          "summary_keywords": ["log", "triage", "incident"]
+          "name": "Log Incident Details",
+          "instructions": "Call this only after collecting all triage answers. Use the `qa_log` field to send a list of {qid, answer} pairs. Do not send timestamp or raw answers fields. Use values gathered during the flow.",
+          "summary_keywords": ["log", "incident", "triage"]
         },
         "requestBody": {
           "required": true,
@@ -73,18 +99,60 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["user_id", "answers"],
                 "properties": {
-                  "user_id": { "type": "string" },
-                  "answers": { "type": "object" }
-                }
+                  "user_id": {
+                    "type": "string",
+                    "example": "user_abc123"
+                  },
+                  "incident_context": {
+                    "type": "string",
+                    "description": "What happened during the injury",
+                    "example": "He got hit from behind and hit his head on the boards"
+                  },
+                  "sport_type": {
+                    "type": "string",
+                    "example": "hockey"
+                  },
+                  "age_group": {
+                    "type": "string",
+                    "example": "U9"
+                  },
+                  "team_id": {
+                    "type": "string",
+                    "example": "Ted Reeves Tornados"
+                  },
+                  "qa_log": {
+                    "type": "array",
+                    "description": "List of question-answer pairs from the triage",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "qid": {
+                          "type": "string",
+                          "example": "q1"
+                        },
+                        "answer": {
+                          "type": "string",
+                          "example": "my son"
+                        }
+                      },
+                      "required": ["qid", "answer"]
+                    },
+                    "example": [
+                      {"qid": "q1", "answer": "my son"},
+                      {"qid": "q2", "answer": "hockey"},
+                      {"qid": "q3", "answer": "U9"}
+                    ]
+                  }
+                },
+                "required": ["user_id", "incident_context", "qa_log"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Confirmation of stored triage metadata"
+            "description": "Incident log accepted"
           }
         }
       }
