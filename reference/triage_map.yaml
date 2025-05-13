@@ -12,8 +12,6 @@ triage_flow:
         example_user_answers:
           - "I'm their coach."
           - "This is for my son."
-        tool_tags:
-          - "triage_stage"
 
       - id: sport_type
         prompt: "What sport was the player participating in?"
@@ -24,8 +22,6 @@ triage_flow:
         example_user_answers:
           - "Soccer"
           - "Ice hockey"
-        tool_tags:
-          - "triage_stage"
 
       - id: age_group
         prompt: "What age group is the player part of?"
@@ -36,8 +32,6 @@ triage_flow:
         example_user_answers:
           - "High school"
           - "U14"
-        tool_tags:
-          - "triage_stage"
 
       - id: team_id
         prompt: "What is the name of the team or program they play for?"
@@ -48,8 +42,6 @@ triage_flow:
         example_user_answers:
           - "Tigers U14"
           - "Region 5 Travel Soccer"
-        tool_tags:
-          - "triage_stage"
 
       - id: injury_date
         prompt: "When did the injury occur?"
@@ -60,8 +52,6 @@ triage_flow:
         example_user_answers:
           - "Two days ago."
           - "Last Saturday during practice."
-        tool_tags:
-          - "triage_stage"
 
       - id: injury_context
         prompt: "What happened at the time of the injury?"
@@ -75,8 +65,6 @@ triage_flow:
         followup_conditions:
           - condition: "mentions helmet or surface"
             prompt: "Was the player wearing a helmet? Was it a hard or soft surface?"
-        tool_tags:
-          - "triage_stage"
 
       - id: symptoms
         prompt: "What symptoms did the player experience after the incident?"
@@ -106,9 +94,6 @@ triage_flow:
         example_user_answers:
           - "He was dizzy and had a headache."
           - "They were confused and nauseous."
-        tool_tags:
-          - "triggers_flag"
-          - "starts_tracker"
 
       - id: lost_consciousness
         prompt: "Did the player lose consciousness?"
@@ -122,8 +107,6 @@ triage_flow:
           - "No, they stayed awake."
         symptom_links:
           - "loss_of_consciousness"
-        tool_tags:
-          - "triggers_flag"
 
   - id: stage_medical_evaluation
     name: "Medical Evaluation"
@@ -137,8 +120,6 @@ triage_flow:
         example_user_answers:
           - "Yes, we went to urgent care."
           - "No, not yet."
-        tool_tags:
-          - "triage_stage"
 
       - id: diagnosed_concussion
         prompt: "Have they been officially diagnosed with a concussion?"
@@ -149,8 +130,8 @@ triage_flow:
         example_user_answers:
           - "The doctor said it's a concussion."
           - "They didn’t call it that."
-        tool_tags:
-          - "triage_stage"
+        skip_if:
+          seen_provider: false
 
   - id: stage_return_readiness
     name: "Return to Play Readiness"
@@ -167,8 +148,6 @@ triage_flow:
         symptom_links:
           - "headache"
           - "fatigue"
-        tool_tags:
-          - "stage_decision_input"
 
       - id: cleared_to_play
         prompt: "Has the player been cleared to return to play by a professional?"
@@ -179,5 +158,5 @@ triage_flow:
         example_user_answers:
           - "Yes, the doctor said they're good to go."
           - "No, we haven’t seen the doctor again."
-        tool_tags:
-          - "stage_decision_input"
+        skip_if:
+          seen_provider: false
