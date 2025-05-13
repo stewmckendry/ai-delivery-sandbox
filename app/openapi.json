@@ -32,7 +32,7 @@
         "tags": ["Triage"],
         "x-gpt-action": {
           "name": "Fetch Full Triage Flow",
-          "instructions": "Use this at the start of triage to load the full question map. GPT should walk the user through each question in order using the `prompt` field, track the `id`, and adjust its approach based on the `mode` (e.g., probe for more detail, clarify user input).\n\nAs you walk through each question:\n- Save each response as `{id: answer}` in a local `answers` dictionary\n- This `answers` object will be required when calling `/log_incident_detail`\n- Do not forget or discard prior answers during the conversation\n\nIf a question's `intent` is `symptoms`, then:\n- Match user-reported symptoms to the `symptom_links` list first\n- Ask for a severity score (1–10) for each symptom (10 = severe)\n- If unmatched, create a new symptom entry\n- Format the final symptom payload as a dictionary: `{symptom: severity}`",
+          "instructions": "Use this at the start of triage to load the full question map. Walk the user through questions one at a time using `prompt`, track the `id`, and apply the `mode` (e.g., probe, clarify).\n\nKey behavior:\n- Track each answer in an `answers` map like `{ id: answer }`\n- After final question, call `/log_incident_detail` with all answers\n- If a `skip_if` is present (e.g., `seen_provider=false`), GPT should:\n  1. Skip asking the question\n  2. Infer the answer (e.g., `diagnosed_concussion=false`)\n  3. Confirm with the user: “I’ll mark ‘diagnosed_concussion’ as false — is that okay?”\n\n🔍 If the intent is `symptoms`:\n- Use `symptom_links` to match input to known symptoms\n- Ask for severity (1–10)\n- Format as: `{ symptom_id: score }`",
           "summary_keywords": ["triage", "map", "flow"]
         },
         "responses": {
@@ -52,23 +52,20 @@
                           "prompt": { "type": "string", "example": "Who are you reporting this for?" },
                           "type": { "type": "string", "example": "text" },
                           "intent": { "type": "string", "example": "reporter_role" },
-                          "mode": { "type": "string", "example": "clarify", "description": "Use 'probe' to follow up, 'clarify' to confirm answer" },
-                          "mode_description": { "type": "string", "example": "ask for confirmation" },
+                          "mode": { "type": "string", "example": "clarify", "description": "Use 'probe' to follow up, 'clarify' to confirm answer if responses lack detail or are unclear" },
                           "example_user_answers": {
                             "type": "array",
                             "items": { "type": "string" },
                             "example": ["my son", "a player", "I'm their coach"]
                           },
-                          "context": { "type": "string", "example": "Initial Intake" },
-                          "tool_tags": {
-                            "type": "array",
-                            "items": { "type": "string" },
-                            "example": ["triage", "reporting"]
-                          },
                           "symptom_links": {
                             "type": "array",
                             "items": { "type": "string" },
                             "example": ["headache", "dizziness"]
+                          },
+                          "skip_if": {
+                            "type": "object",
+                            "description": "Optional conditional logic to skip the question if condition met"
                           }
                         },
                         "required": ["id", "prompt"]
