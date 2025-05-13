@@ -3,3 +3,9 @@
   task_id: retire-export-to-sql
   committed_by: GPTPod
   message: Append output file to retire-export-to-sql
+- timestamp: '2025-05-13T17:03:17.810204'
+  path: project/delivery/triage_flow_qa_task_list.md
+  task_id: symptom-schema-update
+  committed_by: GPTPod
+  message: Mark Batch 2 tools as complete, move validator.py to next step in task
+    list
