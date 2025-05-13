@@ -560,3 +560,15 @@
   - sdlc
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/system_design/system_design_template.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/system_design/system_design_template.md
+  file_type: md
+  description: Template for designing a system, including architecture, components,
+    security, and operational requirements.
+  tags:
+  - system design
+  - architecture
+  - components
+  - security
+  last_updated: '2025-05-13'
+  pod_owner: DevPod
