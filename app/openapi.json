@@ -232,7 +232,7 @@
           }
         }
       }
-    }
+    },
     "/log_symptoms": {
       "post": {
         "operationId": "logSymptoms",
@@ -240,7 +240,7 @@
         "tags": ["Symptoms"],
         "x-gpt-action": {
           "name": "Log Symptoms",
-          "instructions": "Submit a symptom check-in with metadata.",
+          "instructions": "Use this to log new or updated symptoms after triage. Ask the user to rate each symptom from 1 (very mild) to 10 (very severe). Match to a known symptom definition when possible using `symptom_input`. If there’s no match, store it with category `other`. Include optional notes if the user adds context (e.g., time of day, triggers).",
           "summary_keywords": ["symptom", "log", "check-in"]
         },
         "requestBody": {
@@ -249,23 +249,56 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["user_id", "symptoms"],
+                "required": ["user_id", "timestamp", "symptoms"],
                 "properties": {
-                  "user_id": { "type": "string" },
-                  "injury_date": { "type": "string", "format": "date" },
-                  "checkin_time": { "type": "string", "format": "date-time" },
-                  "symptoms": { "type": "object" },
-                  "metadata": { "type": "object" }
+                  "user_id": {
+                    "type": "string",
+                    "description": "Unique user ID",
+                    "example": "user_abc123"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "When the check-in occurred",
+                    "example": "2025-05-13T16:30:00Z"
+                  },
+                  "symptoms": {
+                    "type": "array",
+                    "description": "List of symptoms reported by the user",
+                    "items": {
+                      "type": "object",
+                      "required": ["symptom_input", "score"],
+                      "properties": {
+                        "symptom_input": {
+                          "type": "string",
+                          "description": "User's phrase describing the symptom",
+                          "example": "headache"
+                        },
+                        "score": {
+                          "type": "integer",
+                          "description": "Severity score from 1 (mild) to 10 (severe). GPT should ask the user how much this symptom is affecting them on that scale.",
+                          "example": 5
+                        },
+                        "notes": {
+                          "type": "string",
+                          "description": "Optional user-provided notes",
+                          "example": "mostly in the morning or after reading"
+                        }
+                      }
+                    }
+                  }
                 }
               },
               "examples": {
                 "checkin": {
-                  "summary": "User symptom report",
+                  "summary": "Typical symptom check-in",
                   "value": {
                     "user_id": "abc123",
-                    "injury_date": "2024-01-01",
-                    "checkin_time": "2024-01-10T12:00:00Z",
-                    "symptoms": { "headache": 2, "fatigue": 3 }
+                    "timestamp": "2025-05-13T16:30:00Z",
+                    "symptoms": [
+                      { "symptom_input": "headache", "score": 4 },
+                      { "symptom_input": "dizziness", "score": 3, "notes": "especially after standing up" }
+                    ]
                   }
                 }
               }
@@ -274,7 +307,7 @@
         },
         "responses": {
           "200": {
-            "description": "Logs saved successfully"
+            "description": "Symptoms logged successfully"
           }
         }
       }
