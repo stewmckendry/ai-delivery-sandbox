@@ -7,7 +7,7 @@ This task list addresses key issues surfaced during full triage testing via Conc
 ## 🛠 General System Fixes
 - [ ] Improve error messaging across all tools (replace `UnrecognizedKwargsError` with readable errors)
 - [ ] Revalidate OpenAPI schemas to match tool expectations
-- [ ] Update SQL Server schema to match `db_models.py` (e.g., SymptomLog changes)
+- [x] Update SQL Server schema to match `db_models.py` (e.g., SymptomLog changes)
 
 ---
 
@@ -19,10 +19,11 @@ This task list addresses key issues surfaced during full triage testing via Conc
 
 ---
 
-## 🔁 Phase 2: Tool Enhancements
-- [ ] Update `log_incident_detail.py` to also insert symptoms into `SymptomLog`
-- [ ] Audit `get_stage_guidance`, `export_summary`, and `get_symptom_log_map` for refactors
-- [ ] Revalidate and simplify OpenAPI + GPT instructions across all tools
+## ✅ Phase 2: Tool Enhancements
+- [x] Update `log_incident_detail.py` to insert to `SymptomLog`
+- [x] Refactor `get_stage_guidance.py` to use DB + quick input
+- [x] Add graceful fallback in `StageEngine` when no stage matched
+- [ ] Audit `get_symptom_log_map`, `export_summary` (confirmed working, not yet removed from list)
 
 ---
 
@@ -45,6 +46,6 @@ This task list addresses key issues surfaced during full triage testing via Conc
 
 ---
 
-> Latest: Core tools refactored. Now targeting incident logging, SQL schema sync, and downstream tool readiness.
+> Latest: Stage guidance tool is now robust with fallback, override support, and RecoveryCheck logs.
 
 > Managed by QAPod — scope owned, batch-controlled.
