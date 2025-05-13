@@ -898,3 +898,4 @@ tasks:
     - project/data_flow/data_flow_template.md
     - project/schema/schema_template.md
     - project/tool_catalog/tool_catalog_template.md
+    - .logs/issues/repo_structure_sdlc_domains_v2.md
