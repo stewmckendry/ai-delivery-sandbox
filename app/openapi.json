@@ -65,7 +65,10 @@
                           },
                           "skip_if": {
                             "type": "object",
-                            "description": "Optional conditional logic to skip the question if condition met"
+                            "description": "If the condition is met, GPT should skip this question and infer the answer.",
+                            "example": {
+                              "seen_provider": false
+                            }
                           }
                         },
                         "required": ["id", "prompt"]
