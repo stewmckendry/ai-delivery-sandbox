@@ -12,12 +12,12 @@ This task list addresses key issues surfaced during full triage testing via Conc
 
 ### 🛠 Tool-Specific Fixes
 - [x] `assess_concussion`: Pull symptom scores from DB, not request; restore assessment logic
-- [ ] `symptom_logger.py`: Rewrite to log one row per symptom with canonical ID, score, notes
-- [ ] `get_linked_symptoms.py`: Refactor to select rows from new SymptomLog model
-- [ ] `validator.py`: Update to scan row-based symptom entries instead of parsing JSON blob
-- [ ] `export_to_sql.py`: Rebuild export for new schema layout
-- [ ] `db_reader.py`: Refactor symptom parsing logic to row model
-- [ ] `db_writer.py`: Update insert logic to handle per-symptom rows
+- [x] `symptom_logger.py`: Rewrite to log one row per symptom with canonical ID, score, notes
+- [x] `get_linked_symptoms.py`: Refactor to read row-based symptom logs
+- [x] `db_reader.py`: Refactor symptom parsing logic to row model
+- [x] `db_writer.py`: Deprecated (replaced by direct logging)
+- [x] `export_to_sql.py`: Deprecated (Azure Studio now used for exports)
+- [ ] `validator.py`: Update to scan row-based symptom entries and flag unexpected or missing canonical matches
 
 ---
 
@@ -41,6 +41,6 @@ This task list addresses key issues surfaced during full triage testing via Conc
 
 ---
 
-> Latest: SymptomLog normalized. Next steps target upstream log and export tooling.
+> Latest: SymptomLog, export, and read tools are fully aligned. Validator is next to update.
 
 > Created by QAPod, based on triage-to-log incident test retro.
