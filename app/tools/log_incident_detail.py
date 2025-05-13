@@ -41,6 +41,10 @@ def log_incident_detail(request: IncidentLogRequest):
             if field in request.answers:
                 structured[field] = request.answers[field]
 
+        # Serialize symptoms dict if present
+        if "symptoms" in structured and isinstance(structured["symptoms"], dict):
+            structured["symptoms"] = json.dumps(structured["symptoms"])
+
         # Handle datetime parsing
         if "injury_date" in structured and isinstance(structured["injury_date"], str):
             try:
@@ -57,7 +61,7 @@ def log_incident_detail(request: IncidentLogRequest):
             ))
 
         # Save individual symptom logs
-        symptom_dict = structured.get("symptoms", {})
+        symptom_dict = request.answers.get("symptoms", {})
         if isinstance(symptom_dict, dict):
             for s_input, score in symptom_dict.items():
                 try:
