@@ -584,3 +584,15 @@
   - process
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/schema/schema_template.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/schema/schema_template.md
+  file_type: md
+  description: Template for defining and validating schema structures, including field
+    definitions, validation rules, and export mappings.
+  tags:
+  - schema
+  - validation
+  - export
+  - config
+  last_updated: '2025-05-13'
+  pod_owner: DevPod
