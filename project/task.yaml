@@ -895,3 +895,4 @@ tasks:
     - .logs/issues/framework_improvement_plan.md
     - .logs/issues/recommended_repo_structure.md
     - project/system_design/system_design_template.md
+    - project/data_flow/data_flow_template.md
