@@ -11,3 +11,15 @@
   - project_files
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/tool_catalog/tool_catalog_template.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/tool_catalog/tool_catalog_template.md
+  file_type: md
+  description: Template for documenting and managing tool catalogs, including registration,
+    tagging, and discovery of tools integrated with FastAPI.
+  tags:
+  - tool
+  - catalog
+  - integration
+  - OpenAPI
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
