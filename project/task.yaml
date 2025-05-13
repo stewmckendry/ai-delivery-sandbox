@@ -891,3 +891,4 @@ tasks:
     - app/engines/pdf_renderer.py
     - app/tools/export_summary.py
     - project/delivery/data_flow_addendum_pdf_export.md
+    - .logs/issues/framework_assessment.md
