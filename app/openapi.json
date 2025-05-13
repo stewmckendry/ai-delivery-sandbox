@@ -165,7 +165,7 @@
         "tags": ["Assessment"],
         "x-gpt-action": {
           "name": "Assess Concussion Risk",
-          "instructions": "Run after triage to detect red flags or concerning patterns.",
+          "instructions": "Use this after symptoms have been logged to check for red flags or high-risk patterns. Submit only the `user_id`.\n\nIf:\n- `concussion_likely = true`, emphasize monitoring and urge clinical evaluation.\n- `red_flags` are present, gently but clearly recommend urgent medical attention.\n- Only `moderate_risk_symptoms` exist, advise rest and monitoring, and suggest seeing a provider if symptoms persist or worsen.\n\nExample phrases:\n- “Some symptoms raise concern. It’s best to check with a healthcare provider.”\n- “This pattern suggests a possible concussion. Please rest and monitor closely.”\n- “Red flags were detected — please seek clinical help immediately.”",
           "summary_keywords": ["concussion", "assessment", "red flags"]
         },
         "requestBody": {
@@ -175,21 +175,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "answers": {
-                    "type": "object",
-                    "description": "Symptom ID to severity rating"
+                  "user_id": {
+                    "type": "string",
+                    "description": "User ID to assess symptom log for",
+                    "example": "user_abc123"
                   }
-                }
+                },
+                "required": ["user_id"]
               },
               "examples": {
                 "basic": {
-                  "summary": "Check symptoms after triage",
+                  "summary": "Assess recent symptoms for user",
                   "value": {
-                    "answers": {
-                      "headache": 3,
-                      "nausea": 2,
-                      "seizure": 1
-                    }
+                    "user_id": "user_child_hockey"
                   }
                 }
               }
@@ -198,11 +196,43 @@
         },
         "responses": {
           "200": {
-            "description": "Returns red flag status and high-risk count"
+            "description": "Returns red flag and risk-level symptom findings, plus an assessment summary and recommendation text.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "concussion_likely": {
+                      "type": "boolean",
+                      "description": "True if red flags, high risk symptoms, or 3+ moderate symptoms were found"
+                    },
+                    "red_flags": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "Red flag symptoms — these require urgent attention"
+                    },
+                    "high_risk_symptoms": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "High-risk symptoms — clinical check is advised"
+                    },
+                    "moderate_risk_symptoms": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "Moderate symptoms — monitor and seek help if they persist"
+                    },
+                    "summary": {
+                      "type": "string",
+                      "description": "Human-readable assessment summary for the user"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
-    },
+    }
     "/log_symptoms": {
       "post": {
         "operationId": "logSymptoms",
