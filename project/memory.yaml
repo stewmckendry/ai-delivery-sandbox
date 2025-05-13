@@ -66,3 +66,15 @@
   - tool
   last_updated: '2025-05-13'
   pod_owner: DevPod
+- path: project/delivery/tool_catalog_v2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/delivery/tool_catalog_v2.md
+  file_type: md
+  description: Catalog of FastAPI routes for the Concussion Recovery App, detailing
+    intake, symptom logging, assessments, and export functionalities.
+  tags:
+  - api
+  - routes
+  - FastAPI
+  - documentation
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
