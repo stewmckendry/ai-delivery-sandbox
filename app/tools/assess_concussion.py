@@ -6,7 +6,6 @@ import yaml
 from datetime import datetime
 from app.db.db_models import ConcussionAssessment, SymptomLog
 from app.db.database import SessionLocal
-import json
 
 router = APIRouter()
 
@@ -24,7 +23,6 @@ class AssessmentRequest(BaseModel):
 def assess_concussion(payload: AssessmentRequest):
     db = SessionLocal()
     try:
-        # Load all reference symptoms
         known_symptoms = {}
         for url in SYMPTOM_YAML_URLS:
             response = requests.get(url)
@@ -33,19 +31,18 @@ def assess_concussion(payload: AssessmentRequest):
             for s in yaml_data.get("symptoms", []):
                 known_symptoms[s["id"]] = s
 
-        # Get latest symptom log
-        log = db.query(SymptomLog).filter_by(user_id=payload.user_id).order_by(SymptomLog.timestamp.desc()).first()
-        if not log:
+        logs = db.query(SymptomLog).filter_by(user_id=payload.user_id).all()
+        if not logs:
             raise HTTPException(status_code=400, detail="No symptom log found. Complete triage first.")
 
-        try:
-            symptom_scores = json.loads(log.symptoms)
-        except Exception:
-            raise HTTPException(status_code=500, detail="Failed to parse symptom log.")
+        symptom_scores = {}
+        for entry in logs:
+            if entry.symptom_id and entry.score is not None:
+                symptom_scores[entry.symptom_id] = entry.score
 
         red_flags = []
         high_risk_symptoms = []
-        moderate_risk_count = 0
+        moderate_risk_symptoms = []
 
         for sid, rating in symptom_scores.items():
             if rating < 1:
@@ -53,16 +50,15 @@ def assess_concussion(payload: AssessmentRequest):
             meta = known_symptoms.get(sid)
             if not meta:
                 continue
-
             tags = meta.get("tool_tags", [])
             if "red_flag" in tags:
                 red_flags.append(meta["name"])
             elif meta.get("risk_level") == "high":
                 high_risk_symptoms.append(meta["name"])
             elif meta.get("risk_level") == "medium":
-                moderate_risk_count += 1
+                moderate_risk_symptoms.append(meta["name"])
 
-        likely = bool(red_flags or high_risk_symptoms or moderate_risk_count >= 3)
+        likely = bool(red_flags or high_risk_symptoms or len(moderate_risk_symptoms) >= 3)
         summary = "This response suggests symptoms consistent with a potential concussion. Please seek clinical evaluation." if likely else "No red flags or high-risk symptom patterns were detected. Monitor closely and consult a provider if symptoms worsen."
 
         db.add(ConcussionAssessment(
@@ -73,6 +69,7 @@ def assess_concussion(payload: AssessmentRequest):
             summary=summary
         ))
         db.commit()
+
     except HTTPException:
         raise
     except Exception as e:
@@ -83,8 +80,8 @@ def assess_concussion(payload: AssessmentRequest):
 
     return {
         "concussion_likely": likely,
-        "red_flags_present": red_flags,
+        "red_flags": red_flags,
         "high_risk_symptoms": high_risk_symptoms,
-        "moderate_risk_count": moderate_risk_count,
+        "moderate_risk_symptoms": moderate_risk_symptoms,
         "summary": summary
     }
