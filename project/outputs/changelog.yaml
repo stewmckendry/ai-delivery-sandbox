@@ -57,3 +57,8 @@
   task_id: refactor-get-stage-guidance
   committed_by: GPTPod
   message: Append output file to refactor-get-stage-guidance
+- timestamp: '2025-05-13T17:39:20.720028'
+  path: app/db/db_models.py
+  task_id: refactor-get-stage-guidance
+  committed_by: GPTPod
+  message: Add RecoveryCheck model for quick return-to-play guidance entries
