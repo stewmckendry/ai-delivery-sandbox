@@ -109,3 +109,15 @@
   - sdlc
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: project/delivery/tool_catalog_v3.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/tool_catalog_v3.md
+  file_type: md
+  description: Catalog of tools used by ConcussionGPT, detailing their purposes, inputs,
+    logic, and database interactions.
+  tags:
+  - tool
+  - schema
+  - flow
+  - gpt
+  last_updated: '2025-05-13'
+  pod_owner: DeliveryPod
