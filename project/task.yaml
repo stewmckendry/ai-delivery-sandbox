@@ -543,6 +543,7 @@ tasks:
     outputs:
     - test/e2e/e2e_test_results.md
     - project/retrospectives/feature_3_tool_refactor_and_schema_alignment.md
+    - project/delivery/tool_catalog_v3.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
