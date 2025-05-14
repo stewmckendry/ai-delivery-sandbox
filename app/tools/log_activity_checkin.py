@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 from app.db.database import SessionLocal
 from app.db.db_models import ActivityCheckin, SymptomLog
-from app.tools.symptom_logger import validate_symptom_ids
+from app.symptom_library import validate_symptom_ids
 
 router = APIRouter()
 
