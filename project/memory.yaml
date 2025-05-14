@@ -198,3 +198,14 @@
   - database
   last_updated: '2025-05-13'
   pod_owner: QAPod
+- path: reference/stages.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/reference/stages.yaml
+  file_type: yaml
+  description: Configuration file defining stages with criteria for symptom severity
+    and duration.
+  tags:
+  - config
+  - stages
+  - criteria
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
