@@ -609,3 +609,8 @@
   committed_by: GPTPod
   message: Add log_activity_checkin_flat to accept GPT-compatible **kwargs and forward
     to structured handler
+- timestamp: '2025-05-14T18:44:26.212417'
+  path: app/main.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Register log_activity_checkin_flat route for GPT compatibility
