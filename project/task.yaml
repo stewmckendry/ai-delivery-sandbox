@@ -565,6 +565,7 @@ tasks:
     - project/delivery/return_to_play_flow.md
     - project/delivery/gpt_system_instructions.md
     - app/tools/export_summary.py
+    - app/db/db_reader.py
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
