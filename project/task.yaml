@@ -555,6 +555,7 @@ tasks:
     - app/db/db_models.py
     - app/engines/stage_engine.py
     - app/tools/get_stage_guidance.py
+    - project/delivery/return_to_play_task_list.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
