@@ -508,3 +508,9 @@
   committed_by: GPTPod
   message: Fix SymptomLog schema to include symptom_input and log_metadata fields
     used by log_incident_detail
+- timestamp: '2025-05-14T13:52:06.817099'
+  path: app/db/db_models.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Rename 'likelihood' to 'concussion_likely' in ConcussionAssessment to match
+    assess_concussion
