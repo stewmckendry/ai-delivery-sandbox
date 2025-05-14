@@ -572,6 +572,7 @@ tasks:
     - test/e2e/results/scenario_1_summary.md
     - test/e2e/scenario_2_test_plan.md
     - app/tools/assess_concussion.py
+    - app/tools/log_checkin_gptfix.py
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
