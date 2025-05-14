@@ -76,3 +76,14 @@ class RecoveryCheck(Base):
     symptoms = Column(Text)
     source = Column(String)
     notes = Column(Text)
+
+class ActivityCheckin(Base):
+    __tablename__ = "activity_checkin_export"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String, nullable=False)
+    stage_attempted = Column(String, nullable=False)
+    timestamp = Column(DateTime, nullable=False)
+    symptoms_reported = Column(Text, nullable=True)
+    symptoms_worsened = Column(Boolean, nullable=False)
+    notes = Column(Text, nullable=True)
