@@ -25,8 +25,9 @@ def get_checkin_flow():
                 "type": q.get("type"),
                 "intent": q.get("intent"),
                 "mode": q.get("mode"),
-                "example_user_answers": q.get("example_user_answers"),
-                "response_parsing": q.get("response_parsing")
+                "response_parsing": q.get("response_parsing"),
+                "note": q.get("note"),
+                "example_user_answers": q.get("example_user_answers")
             })
 
     return {"questions": flat_questions}
