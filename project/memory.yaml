@@ -360,3 +360,16 @@
   - check-in
   last_updated: '2025-05-14'
   pod_owner: DeliveryPod
+- path: project/delivery/gpt_system_instructions.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/gpt_system_instructions.md
+  file_type: md
+  description: Instructions for ConcussionGPT, an AI assistant designed to guide users
+    through concussion recovery triage and support processes, including symptom assessment
+    and logging.
+  tags:
+  - prompt
+  - flow
+  - health
+  - support
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
