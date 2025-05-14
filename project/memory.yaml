@@ -209,3 +209,16 @@
   - criteria
   last_updated: '2025-05-14'
   pod_owner: DeliveryPod
+- path: project/delivery/stage_guidance_architecture.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/stage_guidance_architecture.md
+  file_type: md
+  description: Documentation for the get_stage_guidance tool, detailing its purpose,
+    inputs, logic flow, SCAT6 alignment, and developer notes for inferring a user's
+    recovery stage based on symptoms and injury timing.
+  tags:
+  - tool
+  - logic
+  - SCAT6
+  - recovery
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
