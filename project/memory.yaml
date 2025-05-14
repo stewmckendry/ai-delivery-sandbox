@@ -245,3 +245,15 @@
   - health
   last_updated: '2025-05-14'
   pod_owner: DevPod
+- path: app/engines/stage_engine.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/engines/stage_engine.py
+  file_type: py
+  description: This file contains the StageEngine class, which loads stage configurations
+    from a YAML file and infers the current stage for a user based on symptom logs
+    stored in a database.
+  tags:
+  - model
+  - config
+  - database
+  last_updated: '2025-05-14'
+  pod_owner: DevPod
