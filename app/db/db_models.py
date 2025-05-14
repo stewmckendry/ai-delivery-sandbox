@@ -46,6 +46,7 @@ class ActivityCheckin(Base):
     user_id = Column(String, primary_key=True)
     timestamp = Column(DateTime, primary_key=True)
     stage_attempted = Column(String)
+    symptoms_reported = Column(JSON)
     symptoms_worsened = Column(Boolean)
     notes = Column(String)
 
