@@ -1,37 +1,43 @@
-from datetime import datetime
 from jinja2 import Template
 
-PDF_TEMPLATE = """
-Clinical Summary – Concussion Recovery Tracker
--------------------------------------------------
-User ID: {{ user_id }}
-Export Time: {{ now }}
+template = Template("""
+Recovery Summary for {{ user_id }}
 
-{% if incident %}
-Injury Date: {{ incident.injury_date }}
-Reporter Role: {{ incident.reporter_role }}
-Sport: {{ incident.sport_type }}
-Age Group: {{ incident.age_group }}
-Incident Context: {{ incident.injury_context }}
-Cleared to Play: {{ incident.cleared_to_play }}
-Lost Consciousness: {{ incident.lost_consciousness }}
-Diagnosed Concussion: {{ incident.diagnosed_concussion }}
-Still Symptomatic: {{ incident.still_symptomatic }}
-Seen Provider: {{ incident.seen_provider }}
-{% endif %}
+---
 
-{% if stage %}
-Current Recovery Stage: {{ stage }}
-{% endif %}
+📅 Incident Date: {{ incident.injury_date.strftime('%Y-%m-%d') if incident else 'N/A' }}
+📝 Context: {{ incident.injury_context if incident else 'N/A' }}
+🏀 Sport: {{ incident.sport_type if incident else 'N/A' }}
+👥 Age Group: {{ incident.age_group if incident else 'N/A' }}
 
+---
 
-Symptom History:
-{% for s in symptoms[-5:] %}
-- {{ s.timestamp }} | {{ s.symptom_id }} ({{ s.severity }}) – {{ s.reporter_type or 'unknown' }}
-  Notes: {{ s.extra_notes or 'n/a' }}
+📊 Symptoms:
+{% for s in symptoms[:10] %}- {{ s.symptom_id }}: {{ s.score }} {% if s.notes %} ({{ s.notes }}) {% endif %}
 {% endfor %}
-"""
 
-def render_pdf(user_id: str, symptoms: list, stage: str = None, incident: object = None):
-    tmpl = Template(PDF_TEMPLATE)
-    return tmpl.render(user_id=user_id, symptoms=symptoms, stage=stage, incident=incident, now=datetime.utcnow().isoformat())
+---
+
+📈 Current Stage: {{ stage.name if stage else 'N/A' }}
+✅ Activities: {{ ", ".join(stage.allowed_activities) if stage else 'N/A' }}
+📍 Criteria: {{ ", ".join(stage.progression_criteria) if stage else 'N/A' }}
+
+---
+
+🧪 Last Activity Check-in:
+Stage Attempted: {{ activity.stage_attempted if activity else 'N/A' }}
+Worsened: {{ 'Yes' if activity and activity.symptoms_worsened else 'No' if activity else 'N/A' }}
+
+---
+
+"""
+)
+
+def render_pdf(user_id, symptoms, stage, incident, activity):
+    return template.render(
+        user_id=user_id,
+        symptoms=symptoms,
+        stage=stage,
+        incident=incident,
+        activity=activity
+    )
