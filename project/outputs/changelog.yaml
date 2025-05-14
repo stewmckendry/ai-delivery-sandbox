@@ -357,3 +357,8 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Update get_stage_guidance.py to return allowed_activities and progression_criteria
+- timestamp: '2025-05-14T03:44:41.745898'
+  path: app/models/stage.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Update StageResult model to include next_step_advice and inference_mode
