@@ -570,3 +570,8 @@
   committed_by: GPTPod
   message: Fix FastAPI body parsing by explicitly marking request as Body object for
     symptom field recognition
+- timestamp: '2025-05-14T14:56:26.274690'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Add traceback detail to HTTPException for easier debugging of log_activity_checkin
