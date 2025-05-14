@@ -59,7 +59,11 @@ class StageLog(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String)
-    inferred_stage = Column(String)
+    stage_id = Column(String)
+    stage_name = Column(String)
+    mild_days = Column(Integer)
+    max_score_today = Column(Integer)
+    recent_mild_day = Column(Date)
     timestamp = Column(DateTime, default=datetime.utcnow)
 
 class RecoveryCheck(Base):
