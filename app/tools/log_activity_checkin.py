@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel, Field
 from typing import Dict, Optional
 from datetime import datetime
@@ -20,12 +20,12 @@ class CheckinRequest(BaseModel):
 
 @router.post("/log_activity_checkin", tags=["Check-in"])
 def log_activity_checkin(
-    user_id: str,
-    stage_attempted: str,
-    timestamp: datetime,
-    symptoms: Dict[str, int],
-    symptoms_worsened: bool,
-    notes: Optional[str] = None
+    user_id: str = Body(...),
+    stage_attempted: str = Body(...),
+    timestamp: datetime = Body(...),
+    symptoms: Dict[str, int] = Body(...),
+    symptoms_worsened: bool = Body(...),
+    notes: Optional[str] = Body(None)
 ):
     req = CheckinRequest(
         user_id=user_id,
