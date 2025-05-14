@@ -348,3 +348,15 @@
   - user_history
   last_updated: '2025-05-14'
   pod_owner: DeliveryPod
+- path: project/delivery/return_to_play_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/delivery/return_to_play_flow.md
+  file_type: md
+  description: Document detailing the logic and tools for managing concussion recovery
+    and return-to-play process using daily check-ins and stage guidance.
+  tags:
+  - flow
+  - recovery
+  - guidance
+  - check-in
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
