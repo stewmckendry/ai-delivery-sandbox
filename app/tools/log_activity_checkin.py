@@ -1,68 +1,61 @@
-from fastapi import APIRouter, HTTPException, Body
-from pydantic import BaseModel, Field
-from typing import Dict, Optional
+from fastapi import APIRouter
+from pydantic import BaseModel
+from typing import Dict, Union
 from datetime import datetime
-import json
-import traceback
 from app.db.database import SessionLocal
 from app.db.db_models import ActivityCheckin, SymptomLog
 from app.symptom_library import validate_symptom_ids
+import json
 
 router = APIRouter()
 
-class CheckinRequest(BaseModel):
+class CheckinLogRequest(BaseModel):
     user_id: str
-    stage_attempted: str
     timestamp: datetime
-    symptoms: Dict[str, int] = Field(..., description="Dictionary of {symptom_id: score}")
-    symptoms_worsened: bool
-    notes: Optional[str] = None
+    answers: Dict[str, Union[str, Dict[str, Union[str, int, float]], bool]]
 
 @router.post("/log_activity_checkin", tags=["Check-in"])
-def log_activity_checkin(
-    req: CheckinRequest = Body(..., embed=False)
-):
-    print("✅ log_activity_checkin called with:", req)
-
+def log_activity_checkin(request: CheckinLogRequest):
     db = SessionLocal()
     try:
-        db.add(ActivityCheckin(
-            user_id=req.user_id,
-            stage_attempted=req.stage_attempted,
-            timestamp=req.timestamp,
-            symptoms_reported=json.dumps(req.symptoms),
-            symptoms_worsened=req.symptoms_worsened,
-            notes=req.notes
-        ))
+        structured = {}
+        for field in ["stage_attempted", "symptoms", "symptoms_worsened", "notes"]:
+            if field in request.answers:
+                structured[field] = request.answers[field]
 
-        for s_input, score in req.symptoms.items():
-            try:
-                validate_symptom_ids([s_input])
-                canonical_id = s_input
-            except Exception:
-                canonical_id = "other"
+        if "symptoms" in structured and isinstance(structured["symptoms"], dict):
+            structured["symptoms_reported"] = json.dumps(structured.pop("symptoms"))
 
-            db.add(SymptomLog(
-                user_id=req.user_id,
-                timestamp=req.timestamp,
-                symptom_id=canonical_id,
-                symptom_input=s_input,
-                score=int(score) if isinstance(score, int) else 1,
-                notes="activity_checkin",
-                log_metadata=json.dumps({"stage_attempted": req.stage_attempted})
+        if structured:
+            db.add(ActivityCheckin(
+                user_id=request.user_id,
+                timestamp=request.timestamp,
+                **structured
             ))
 
+        symptom_dict = request.answers.get("symptoms", {})
+        if isinstance(symptom_dict, dict):
+            for s_input, score in symptom_dict.items():
+                try:
+                    validate_symptom_ids([s_input])
+                    canonical_id = s_input
+                except Exception:
+                    canonical_id = "other"
+                db.add(SymptomLog(
+                    user_id=request.user_id,
+                    timestamp=request.timestamp,
+                    symptom_id=canonical_id,
+                    symptom_input=s_input,
+                    score=int(score) if isinstance(score, int) else 1,
+                    notes="activity_checkin",
+                    log_metadata=json.dumps({"stage_attempted": request.answers.get("stage_attempted", "")})
+                ))
+
         db.commit()
-        return {"message": "Check-in and symptoms logged successfully"}
+        return {"status": "ok"}
 
     except Exception as e:
         db.rollback()
-        raise HTTPException(
-            status_code=500,
-            detail={
-                "error": str(e),
-                "traceback": traceback.format_exc()
-            }
-        )
+        return {"status": "error", "detail": str(e)}
     finally:
         db.close()
