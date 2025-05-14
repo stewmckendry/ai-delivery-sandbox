@@ -27,6 +27,7 @@ def get_checkin_flow():
                 "mode": q.get("mode"),
                 "response_parsing": q.get("response_parsing"),
                 "note": q.get("note"),
+                "options": q.get("options"),
                 "example_user_answers": q.get("example_user_answers")
             })
 
