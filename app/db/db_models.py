@@ -30,7 +30,7 @@ class TriageResponse(Base):
     question_text = Column(Text)
     answer = Column(Text)
     timestamp = Column(DateTime, default=datetime.utcnow)
-    
+
 class SymptomLog(Base):
     __tablename__ = "symptom_log_export"
     user_id = Column(String, primary_key=True)
@@ -61,7 +61,7 @@ class ConcussionAssessment(Base):
     __tablename__ = "concussion_assessment_export"
     user_id = Column(String, primary_key=True)
     timestamp = Column(DateTime, primary_key=True)
-    likelihood = Column(String)
+    concussion_likely = Column(Boolean)
     red_flags = Column(JSON)
     moderate_symptoms = Column(JSON)
     inferred = Column(Boolean)
