@@ -20,22 +20,8 @@ class CheckinRequest(BaseModel):
 
 @router.post("/log_activity_checkin", tags=["Check-in"])
 def log_activity_checkin(
-    user_id: str = Body(...),
-    stage_attempted: str = Body(...),
-    timestamp: datetime = Body(...),
-    symptoms: Dict[str, int] = Body(...),
-    symptoms_worsened: bool = Body(...),
-    notes: Optional[str] = Body(None)
+    req: CheckinRequest = Body(..., embed=False)
 ):
-    req = CheckinRequest(
-        user_id=user_id,
-        stage_attempted=stage_attempted,
-        timestamp=timestamp,
-        symptoms=symptoms,
-        symptoms_worsened=symptoms_worsened,
-        notes=notes
-    )
-
     print("✅ log_activity_checkin called with:", req)
 
     db = SessionLocal()
