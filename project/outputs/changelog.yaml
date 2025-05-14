@@ -347,3 +347,8 @@
   committed_by: GPTPod
   message: Update get_stage_guidance to include inference_mode and next_step_advice,
     and log inference_mode in StageLog
+- timestamp: '2025-05-14T03:32:32.164800'
+  path: app/db/db_models.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Update db_models.py to drop RecoveryCheck and add inference_mode to StageLog
