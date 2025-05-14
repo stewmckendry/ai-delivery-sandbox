@@ -313,3 +313,15 @@
   - overview
   last_updated: '2025-05-14'
   pod_owner: DeliveryPod
+- path: app/tools/get_checkin_flow.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_checkin_flow.py
+  file_type: py
+  description: Endpoint to retrieve and flatten a GPT-friendly check-in flow from
+    a YAML map.
+  tags:
+  - api
+  - checkin
+  - flow
+  - yaml
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
