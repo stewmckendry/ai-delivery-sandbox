@@ -322,6 +322,9 @@
                   },
                   "symptoms": {
                     "type": "object",
+                    "additionalProperties": {
+                      "type": "integer"
+                    },
                     "description": "Dictionary of { symptom: score } representing what they felt after the activity",
                     "example": {
                       "headache": 3,
