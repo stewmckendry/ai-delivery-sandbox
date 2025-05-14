@@ -14,7 +14,7 @@ class CheckinRequest(BaseModel):
     user_id: str
     stage_attempted: str
     timestamp: datetime
-    symptoms: Optional[Dict[str, int]] = Field(..., description="Dictionary of {symptom_id: score}")
+    symptoms: Dict[str, int] = Field(..., description="Dictionary of {symptom_id: score}")
     symptoms_worsened: bool
     notes: Optional[str] = None
 
