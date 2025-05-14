@@ -620,3 +620,9 @@
   committed_by: GPTPod
   message: Refactor log_activity_checkin to accept flat parameters only, construct
     CheckinRequest internally
+- timestamp: '2025-05-14T18:55:48.266347'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Explicitly define all log_activity_checkin parameters as Body(...) to fix
+    GPT schema mismatch
