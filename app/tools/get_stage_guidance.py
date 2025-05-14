@@ -33,7 +33,9 @@ def get_stage_guidance(req: StageGuidanceRequest):
             "stage": result.stage_id,
             "stage_name": result.stage_name,
             "stage_summary": result.stage_summary,
-            "next_step_advice": result.next_step_advice
+            "next_step_advice": result.next_step_advice,
+            "allowed_activities": result.allowed_activities,
+            "progression_criteria": result.progression_criteria
         }
 
     except Exception as e:
