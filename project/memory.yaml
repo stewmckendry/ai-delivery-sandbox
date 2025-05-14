@@ -269,3 +269,14 @@
   - logging
   last_updated: '2025-05-14'
   pod_owner: DeliveryPod
+- path: app/tools/log_activity_checkin.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/log_activity_checkin.py
+  file_type: py
+  description: API endpoint for logging user activity check-ins and symptoms to the
+    database
+  tags:
+  - api
+  - logging
+  - database
+  last_updated: '2025-05-14'
+  pod_owner: DevPod
