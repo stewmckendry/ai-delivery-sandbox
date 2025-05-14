@@ -564,3 +564,9 @@
   committed_by: GPTPod
   message: Fix import path to use validate_symptom_ids from app.symptom_library instead
     of app.tools.symptom_logger
+- timestamp: '2025-05-14T14:51:50.143720'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Fix FastAPI body parsing by explicitly marking request as Body object for
+    symptom field recognition
