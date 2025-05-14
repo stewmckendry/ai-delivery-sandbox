@@ -626,3 +626,8 @@
   committed_by: GPTPod
   message: Explicitly define all log_activity_checkin parameters as Body(...) to fix
     GPT schema mismatch
+- timestamp: '2025-05-14T19:07:40.832305'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Use embed=False for CheckinRequest to support GPT flat JSON structure
