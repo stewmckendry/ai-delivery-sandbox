@@ -9,6 +9,7 @@ from app.tools.export_summary import router as export_router
 from app.tools.get_linked_symptoms import router as linked_router
 from app.tools.log_activity_checkin import router as activity_checkin_router
 from app.tools.get_stage_overview import router as overview_router
+from app.tools.get_checkin_flow import router as checkin_flow_router
 
 app = FastAPI()
 
@@ -22,3 +23,4 @@ app.include_router(export_router)
 app.include_router(linked_router)
 app.include_router(activity_checkin_router)
 app.include_router(overview_router)
+app.include_router(checkin_flow_router)
