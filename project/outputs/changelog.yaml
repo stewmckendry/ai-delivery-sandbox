@@ -541,3 +541,8 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Add summary field to ConcussionAssessment in assess_concussion tool
+- timestamp: '2025-05-14T14:30:23.941626'
+  path: app/db/db_models.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Add symptoms_reported to ActivityCheckin model to match tool and SQL schema
