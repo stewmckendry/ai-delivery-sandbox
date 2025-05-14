@@ -67,3 +67,22 @@ def log_activity_checkin(req: CheckinRequest = Body(...)):
         )
     finally:
         db.close()
+
+@router.post("/log_activity_checkin_flat", tags=["Check-in"])
+def log_activity_checkin_flat(
+    user_id: str,
+    stage_attempted: str,
+    timestamp: datetime,
+    symptoms: Dict[str, int],
+    symptoms_worsened: bool,
+    notes: Optional[str] = None
+):
+    req = CheckinRequest(
+        user_id=user_id,
+        stage_attempted=stage_attempted,
+        timestamp=timestamp,
+        symptoms=symptoms,
+        symptoms_worsened=symptoms_worsened,
+        notes=notes
+    )
+    return log_activity_checkin(req)
