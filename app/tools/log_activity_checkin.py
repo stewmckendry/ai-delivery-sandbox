@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel, Field
 from typing import Dict, Optional
 from datetime import datetime
@@ -18,7 +18,7 @@ class CheckinRequest(BaseModel):
     notes: Optional[str] = None
 
 @router.post("/log_activity_checkin", tags=["Check-in"])
-def log_activity_checkin(req: CheckinRequest):
+def log_activity_checkin(req: CheckinRequest = Body(...)):
     db = SessionLocal()
     try:
         # Log activity check-in summary
