@@ -43,6 +43,7 @@ def export_summary(user_id: str):
     symptoms = bundle["symptoms"]
     stage = bundle["stage"]
     incident = bundle["incident"]
+    activity = bundle["activity"]
 
     db = SessionLocal()
     try:
@@ -50,8 +51,8 @@ def export_summary(user_id: str):
     finally:
         db.close()
 
-    pdf_str = render_pdf(user_id, symptoms, stage, incident)
+    pdf_str = render_pdf(user_id, symptoms, stage, incident, activity)
     pdf_url = upload_to_storage(pdf_str)
-    fhir = build_fhir_bundle(symptoms, stage, incident, assessment)
+    fhir = build_fhir_bundle(symptoms, stage, incident, assessment, activity)
 
     return ExportResponse(pdf_url=pdf_url, fhir_bundle=fhir)
