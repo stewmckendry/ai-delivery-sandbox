@@ -362,17 +362,38 @@
         },
         "responses": {
           "200": {
-            "description": "Returns inferred stage and summary",
+            "description": "Returns inferred stage and recovery details",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "stage": { "type": "string", "example": "stage_2" },
-                    "stage_name": { "type": "string", "example": "Light Activity" },
+                    "stage_id": { "type": "string", "example": "stage_2" },
+                    "stage_name": { "type": "string", "example": "Light Aerobic Exercise" },
                     "stage_summary": {
                       "type": "string",
-                      "example": "You may resume light activity, but no contact sports yet. Monitor symptoms closely."
+                      "example": "You may begin light movement like walking or stationary biking."
+                    },
+                    "allowed_activities": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["Walking", "Stationary cycling", "Gentle stretching"]
+                    },
+                    "progression_criteria": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": [
+                        "At least 24 hours symptom-free at this level.",
+                        "No symptom worsening with light exertion."
+                      ]
+                    },
+                    "matched_factors": {
+                      "type": "object",
+                      "properties": {
+                        "consecutive_mild_days": { "type": "integer", "example": 2 },
+                        "most_recent_mild_day": { "type": "string", "format": "date", "example": "2025-05-13" },
+                        "max_score_today": { "type": "integer", "example": 2 }
+                      }
                     }
                   }
                 }
