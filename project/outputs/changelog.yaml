@@ -546,3 +546,9 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Add symptoms_reported to ActivityCheckin model to match tool and SQL schema
+- timestamp: '2025-05-14T14:38:48.076637'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Update log_activity_checkin to accept 'symptoms' and map to 'symptoms_reported'
+    in DB
