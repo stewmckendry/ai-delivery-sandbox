@@ -2,8 +2,10 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Dict, Optional
 from datetime import datetime
+import json
 from app.db.database import SessionLocal
-from app.db.db_models import ActivityCheckin
+from app.db.db_models import ActivityCheckin, SymptomLog
+from app.tools.symptom_logger import validate_symptom_ids
 
 router = APIRouter()
 
@@ -16,19 +18,39 @@ class CheckinRequest(BaseModel):
     notes: Optional[str] = None
 
 @router.post("/log_activity_checkin", tags=["Check-in"])
-def log_activity_checkin(request: CheckinRequest):
+def log_activity_checkin(req: CheckinRequest):
     db = SessionLocal()
     try:
+        # Log activity check-in summary
         db.add(ActivityCheckin(
-            user_id=request.user_id,
-            timestamp=request.timestamp,
-            stage_attempted=request.stage_attempted,
-            symptoms_reported=request.symptoms,
-            symptoms_worsened=request.symptoms_worsened,
-            notes=request.notes
+            user_id=req.user_id,
+            stage_attempted=req.stage_attempted,
+            timestamp=req.timestamp,
+            symptoms_reported=json.dumps(req.symptoms),
+            symptoms_worsened=req.symptoms_worsened,
+            notes=req.notes
         ))
+
+        # Log each symptom to SymptomLog
+        for s_input, score in req.symptoms.items():
+            try:
+                validate_symptom_ids([s_input])
+                canonical_id = s_input
+            except Exception:
+                canonical_id = "other"
+
+            db.add(SymptomLog(
+                user_id=req.user_id,
+                timestamp=req.timestamp,
+                symptom_id=canonical_id,
+                symptom_input=s_input,
+                score=int(score) if isinstance(score, int) else 1,
+                notes="activity_checkin",
+                log_metadata=json.dumps({"stage_attempted": req.stage_attempted})
+            ))
+
         db.commit()
-        return {"message": "Check-in logged successfully"}
+        return {"message": "Check-in and symptoms logged successfully"}
 
     except Exception as e:
         db.rollback()
