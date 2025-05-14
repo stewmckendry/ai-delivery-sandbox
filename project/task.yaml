@@ -563,6 +563,7 @@ tasks:
     - app/tools/get_checkin_flow.py
     - app/tools/get_user_history.py
     - project/delivery/return_to_play_flow.md
+    - project/delivery/gpt_system_instructions.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
