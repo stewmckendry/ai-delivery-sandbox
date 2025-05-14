@@ -64,6 +64,7 @@ class ConcussionAssessment(Base):
     concussion_likely = Column(Boolean)
     red_flags = Column(JSON)
     moderate_symptoms = Column(JSON)
+    summary = Column(String)
 
 class SymptomLink(Base):
     __tablename__ = "symptom_link"
