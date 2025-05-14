@@ -552,3 +552,9 @@
   committed_by: GPTPod
   message: Update log_activity_checkin to accept 'symptoms' and map to 'symptoms_reported'
     in DB
+- timestamp: '2025-05-14T14:41:48.287857'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Fix log_activity_checkin to log SymptomLog entries and retain json dump
+    for symptoms_reported
