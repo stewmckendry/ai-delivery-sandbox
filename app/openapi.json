@@ -763,6 +763,87 @@
           }
         }
       }
+    },
+    "/get_user_history": {
+      "post": {
+        "operationId": "getUserHistory",
+        "summary": "Fetch prior user data for continuity",
+        "tags": ["User"],
+        "x-gpt-action": {
+          "name": "Get User History",
+          "instructions": "Use this when GPT has no memory of prior conversation and needs to 'pick up where it left off'.\n\nThis tool returns any known data previously logged by the user — such as injury date, symptom check-ins, or past activities. Use this to:\n\n- Avoid re-asking questions (e.g., 'when was your injury?')\n- Pre-fill answers for the check-in flow (e.g., latest symptoms, last stage attempted)\n- Re-engage returning users by offering contextual guidance (e.g., 'Last time you tried Stage 2 — want to continue?')\n\nOnly use this if no other memory is available — skip it in continuous flows.",
+          "summary_keywords": ["user", "history", "symptoms", "incident", "stage"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "The user ID to look up",
+                    "example": "user_001"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns known information previously logged by the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "incident_logged": { "type": "boolean", "example": true },
+                    "incident_info": {
+                      "type": "object",
+                      "properties": {
+                        "injury_date": { "type": "string", "example": "2025-05-01" },
+                        "reporter_role": { "type": "string", "example": "my son" },
+                        "sport_type": { "type": "string", "example": "soccer" },
+                        "diagnosed_concussion": { "type": "boolean", "example": false }
+                      }
+                    },
+                    "last_symptom_log_timestamp": {
+                      "type": "string",
+                      "example": "2025-05-12T10:00:00Z"
+                    },
+                    "last_symptom_log": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "symptom_id": { "type": "string", "example": "headache" },
+                          "score": { "type": "integer", "example": 3 }
+                        }
+                      }
+                    },
+                    "last_activity_checkin": {
+                      "type": "object",
+                      "properties": {
+                        "stage_attempted": { "type": "string", "example": "stage_2" },
+                        "timestamp": { "type": "string", "example": "2025-05-12T10:00:00Z" },
+                        "symptoms_worsened": { "type": "boolean", "example": false }
+                      }
+                    },
+                    "stages_attempted": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["stage_1", "stage_2"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
