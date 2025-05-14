@@ -558,3 +558,9 @@
   committed_by: GPTPod
   message: Fix log_activity_checkin to log SymptomLog entries and retain json dump
     for symptoms_reported
+- timestamp: '2025-05-14T14:47:05.687030'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Fix import path to use validate_symptom_ids from app.symptom_library instead
+    of app.tools.symptom_logger
