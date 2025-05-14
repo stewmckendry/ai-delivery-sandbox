@@ -266,3 +266,8 @@
   committed_by: GPTPod
   message: Update get_stage_overview to return progression_criteria and guidance_phrases
     for GPT support
+- timestamp: '2025-05-14T02:30:42.974644'
+  path: app/main.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Register get_stage_overview router in main.py
