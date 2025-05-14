@@ -698,6 +698,71 @@
           }
         }
       }
+    },
+    "/get_checkin_flow": {
+      "get": {
+        "operationId": "getCheckinFlow",
+        "summary": "Load check-in question map",
+        "tags": ["Checkin"],
+        "x-gpt-action": {
+          "name": "Get Check-in Flow",
+          "instructions": "Use this to start a structured check-in after a user attempts stage activities. Walk through questions one at a time using `prompt`, track the `id`, and apply the `mode` (e.g., probe, clarify).\n\nKey behavior:\n- Track each answer in an `answers` map like `{ id: answer }`\n- After final question, call `/log_activity_checkin` with full payload\n- If the `options` field is present and includes stage IDs, do not show them directly. Instead, call `/get_stage_overview` to get user-friendly names and summaries, and use those to help the user identify the correct stage (e.g., 'Light aerobic exercise').\n- If the `note` field is present, follow its instructions to support GPT behavior (e.g., clarify mappings or special logic)\n\n🔍 If the intent is `collect_symptoms`:\n- Use `symptom_links` to match to known symptoms\n- Ask for severity (1–10)\n- Format as: `{ symptom_id: score }`",
+          "summary_keywords": ["check-in", "questions", "activity", "symptoms"]
+        },
+        "responses": {
+          "200": {
+            "description": "List of structured check-in questions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "questions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "example": "stage_attempted" },
+                          "prompt": {
+                            "type": "string",
+                            "example": "Did you try any of these activities recently?"
+                          },
+                          "type": { "type": "string", "example": "select" },
+                          "intent": { "type": "string", "example": "identify_stage" },
+                          "mode": {
+                            "type": "string",
+                            "example": "clarify",
+                            "description": "Use 'probe' to follow up, 'clarify' to confirm unclear responses"
+                          },
+                          "response_parsing": {
+                            "type": "string",
+                            "example": "stage_id"
+                          },
+                          "note": {
+                            "type": "string",
+                            "example": "GPT should call get_stage_overview and map user responses to stage_id"
+                          },
+                          "options": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "If this is a pick-list question, these are the allowed values",
+                            "example": ["stage_1", "stage_2", "stage_3"]
+                          },
+                          "example_user_answers": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["Yes, I did light biking and walking"]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
