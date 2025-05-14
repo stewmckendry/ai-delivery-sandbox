@@ -337,3 +337,14 @@
   - documentation
   last_updated: '2025-05-14'
   pod_owner: DeliveryPod
+- path: app/tools/get_user_history.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/tools/get_user_history.py
+  file_type: py
+  description: API endpoint to retrieve a user's incident reports, symptom logs, and
+    activity check-ins from the database
+  tags:
+  - api
+  - database
+  - user_history
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
