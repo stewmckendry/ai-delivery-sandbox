@@ -312,97 +312,6 @@
         }
       }
     },
-    "/get_stage_guidance": {
-      "post": {
-        "operationId": "getStageGuidance",
-        "summary": "Infer recovery stage",
-        "tags": ["Assessment"],
-        "x-gpt-action": {
-          "name": "Get Stage Guidance",
-          "instructions": "Use this after a symptom check-in to determine the user's current recovery stage.\n\nRequired:\n- `user_id`: unique ID used in prior logs\n\nOptional:\n- `symptoms`: dictionary of { symptom_id: score }, if triage not done\n- `injury_date`: ISO date string if not previously logged\n- `checkin_time`: timestamp for when this check-in occurred (default is now)\n\nIf `symptoms` and `injury_date` are not included, the system will fetch recent symptom logs. If missing, notify the user to complete a triage check-in.\n\n🧠 How to communicate results:\n- Provide a brief, clear explanation of the user's current recovery stage (e.g., 'You’re currently in Stage 2 – Light Activity').\n- Be empathetic and reassuring: 'Everyone heals at a different pace. Let’s make sure we’re tracking things properly.'\n- Offer return-to-play guidance: explain what is and isn’t safe right now, based on the stage.\n- Be prepared to answer user questions, like whether they can return to practice or competition.\n- Always remind them: 'I'm not a doctor, but I can help guide you through the structured recovery steps.'",
-          "summary_keywords": ["stage", "guidance", "recovery"]
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["user_id"],
-                "properties": {
-                  "user_id": {
-                    "type": "string",
-                    "description": "User ID used in previous logs",
-                    "example": "user_abc123"
-                  },
-                  "injury_date": {
-                    "type": "string",
-                    "format": "date",
-                    "description": "Injury date if triage not done",
-                    "example": "2025-05-01"
-                  },
-                  "symptoms": {
-                    "type": "object",
-                    "description": "Dictionary of symptoms and severity if check-in not done",
-                    "example": {
-                      "headache": 5,
-                      "dizziness": 3
-                    }
-                  },
-                  "checkin_time": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "Timestamp of check-in, defaults to now",
-                    "example": "2025-05-15T10:00:00Z"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Returns inferred stage and recovery details",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "stage_id": { "type": "string", "example": "stage_2" },
-                    "stage_name": { "type": "string", "example": "Light Aerobic Exercise" },
-                    "stage_summary": {
-                      "type": "string",
-                      "example": "You may begin light movement like walking or stationary biking."
-                    },
-                    "allowed_activities": {
-                      "type": "array",
-                      "items": { "type": "string" },
-                      "example": ["Walking", "Stationary cycling", "Gentle stretching"]
-                    },
-                    "progression_criteria": {
-                      "type": "array",
-                      "items": { "type": "string" },
-                      "example": [
-                        "At least 24 hours symptom-free at this level.",
-                        "No symptom worsening with light exertion."
-                      ]
-                    },
-                    "matched_factors": {
-                      "type": "object",
-                      "properties": {
-                        "consecutive_mild_days": { "type": "integer", "example": 2 },
-                        "most_recent_mild_day": { "type": "string", "format": "date", "example": "2025-05-13" },
-                        "max_score_today": { "type": "integer", "example": 2 }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/export_summary": {
       "post": {
         "operationId": "exportSummary",
@@ -836,6 +745,90 @@
                       "type": "array",
                       "items": { "type": "string" },
                       "example": ["stage_1", "stage_2"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_stage_guidance": {
+      "post": {
+        "operationId": "getStageGuidance",
+        "summary": "Infer current recovery stage",
+        "tags": ["Assessment"],
+        "x-gpt-action": {
+          "name": "Get Stage Guidance",
+          "instructions": "Use this after a user logs symptoms or activity. This tool determines which recovery stage the user is currently in.\n\n🧠 GPT behavior:\n- If the user hasn't logged activity before, this will assume Stage 1\n- If the user has logged activity and symptoms worsened, they will regress a stage\n- If symptoms are mild but 24h hasn't passed, stay in current stage\n- If mild and 24h passed, progress to next stage\n\nAlways explain:\n- What stage they’re in\n- Why they’re in it (e.g., time since check-in, symptom severity)\n- What to do next (e.g., 'log activity again tomorrow')\n\n🧠 How to communicate results:\n- Provide a brief, clear explanation of the user's current recovery stage (e.g., 'You’re currently in Stage 2 – Light Activity').\n- Be empathetic and reassuring: 'Everyone heals at a different pace. Let’s make sure we’re tracking things properly.'\n- Offer return-to-play guidance: explain what is and isn’t safe right now, based on the stage.\n- Be prepared to answer user questions, like whether they can return to practice or competition.\n- Always remind them: 'I'm not a doctor, but I can help guide you through the structured recovery steps.'",
+          "summary_keywords": ["stage", "guidance", "recovery"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "User ID used in previous logs",
+                    "example": "user_abc123"
+                  },
+                  "injury_date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Injury date if triage not done",
+                    "example": "2025-05-01"
+                  },
+                  "symptoms": {
+                    "type": "object",
+                    "description": "Dictionary of symptoms and severity if check-in not done",
+                    "example": {
+                      "headache": 5,
+                      "dizziness": 3
+                    }
+                  },
+                  "checkin_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Timestamp of check-in, defaults to now",
+                    "example": "2025-05-15T10:00:00Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns inferred stage and advice",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "stage": { "type": "string", "example": "stage_2" },
+                    "stage_name": { "type": "string", "example": "Light Aerobic" },
+                    "stage_summary": {
+                      "type": "string",
+                      "example": "You may resume light activity like walking or biking, but avoid contact sports."
+                    },
+                    "next_step_advice": {
+                      "type": "string",
+                      "example": "You're doing well. Log activity again tomorrow if symptoms remain mild."
+                    },
+                    "allowed_activities": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["Walking", "Stationary cycling"]
+                    },
+                    "progression_criteria": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["24 hours symptom-free", "No symptom worsening"]
                     }
                   }
                 }
