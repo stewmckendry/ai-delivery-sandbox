@@ -36,8 +36,10 @@ class SymptomLog(Base):
     user_id = Column(String, primary_key=True)
     timestamp = Column(DateTime, primary_key=True)
     symptom_id = Column(String, primary_key=True)
+    symptom_input = Column(String)
     score = Column(Integer)
     notes = Column(String)
+    log_metadata = Column(Text)
 
 class ActivityCheckin(Base):
     __tablename__ = "activity_checkin_export"
