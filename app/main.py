@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.requests import Request
+
 from app.tools.get_triage_flow import router as triage_router
 from app.tools.log_incident_detail import router as incident_router
 from app.tools.get_symptom_log_map import router as symptom_map_router
@@ -13,6 +15,16 @@ from app.tools.get_checkin_flow import router as checkin_flow_router
 from app.tools.get_user_history import router as history_router
 
 app = FastAPI()
+
+@app.middleware("http")
+async def log_request_body(request: Request, call_next):
+    try:
+        body = await request.body()
+        print(f"\n📥 Incoming Request: {request.method} {request.url.path}")
+        print(f"🔍 Body: {body.decode('utf-8')}")
+    except Exception as e:
+        print(f"⚠️ Error reading request body: {e}")
+    return await call_next(request)
 
 app.include_router(triage_router)
 app.include_router(incident_router)
