@@ -18,6 +18,10 @@ class CheckinRequest(BaseModel):
     symptoms_worsened: bool
     notes: Optional[str] = None
 
+    def __init__(__pydantic_self__, **data):
+        print("🧪 CheckinRequest constructed with data:", data)
+        super().__init__(**data)
+
 @router.post("/log_activity_checkin", tags=["Check-in"])
 def log_activity_checkin(req: CheckinRequest = Body(...)):
     print("✅ log_activity_checkin called with payload:", req)
