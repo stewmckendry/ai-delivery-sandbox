@@ -352,3 +352,8 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Update db_models.py to drop RecoveryCheck and add inference_mode to StageLog
+- timestamp: '2025-05-14T03:44:26.225960'
+  path: app/tools/get_stage_guidance.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Update get_stage_guidance.py to return allowed_activities and progression_criteria
