@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Dict, Optional
 from datetime import datetime
 import json
+import traceback
 from app.db.database import SessionLocal
 from app.db.db_models import ActivityCheckin, SymptomLog
 from app.symptom_library import validate_symptom_ids
@@ -21,7 +22,6 @@ class CheckinRequest(BaseModel):
 def log_activity_checkin(req: CheckinRequest = Body(...)):
     db = SessionLocal()
     try:
-        # Log activity check-in summary
         db.add(ActivityCheckin(
             user_id=req.user_id,
             stage_attempted=req.stage_attempted,
@@ -31,7 +31,6 @@ def log_activity_checkin(req: CheckinRequest = Body(...)):
             notes=req.notes
         ))
 
-        # Log each symptom to SymptomLog
         for s_input, score in req.symptoms.items():
             try:
                 validate_symptom_ids([s_input])
@@ -54,6 +53,12 @@ def log_activity_checkin(req: CheckinRequest = Body(...)):
 
     except Exception as e:
         db.rollback()
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error": str(e),
+                "traceback": traceback.format_exc()
+            }
+        )
     finally:
         db.close()
