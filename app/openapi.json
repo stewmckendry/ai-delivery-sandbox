@@ -641,6 +641,63 @@
           }
         }
       }
+    },
+    "/get_stage_overview": {
+      "get": {
+        "operationId": "getStageOverview",
+        "summary": "List all recovery stages",
+        "tags": ["Stage"],
+        "x-gpt-action": {
+          "name": "Get Stage Overview",
+          "instructions": "Use this to show the user all recovery stages and help them understand the return-to-play process. Include the stage name, summary, allowed activities, and progression criteria. This is useful after a concussion assessment or if the user asks 'what’s next' or 'what are the steps?'.\n\nYou can also reference this to help the user decide which stage they attempted during check-ins.",
+          "summary_keywords": ["stage", "recovery", "overview", "activities"]
+        },
+        "responses": {
+          "200": {
+            "description": "List of all defined recovery stages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "stage_id": { "type": "string", "example": "stage_2" },
+                      "stage_number": { "type": "integer", "example": 2 },
+                      "name": { "type": "string", "example": "Light Aerobic Exercise" },
+                      "summary": {
+                        "type": "string",
+                        "example": "You may begin light movement like walking or stationary biking."
+                      },
+                      "activities": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": ["Walking", "Stationary cycling"]
+                      },
+                      "progression_criteria": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": [
+                          "At least 24 hours symptom-free at this level.",
+                          "No symptom worsening with light exertion."
+                        ]
+                      },
+                      "guidance_phrases": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": [
+                          "You’re in Stage 2. Light activity is a great first step as long as symptoms don’t worsen.",
+                          "Keep it light and stop if anything feels off."
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
