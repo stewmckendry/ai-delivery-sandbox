@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional, Dict
-from datetime import datetime, timedelta
+from datetime import datetime
 from app.db.database import SessionLocal
-from app.db.db_models import IncidentReport, SymptomLog, StageLog, RecoveryCheck
+from app.db.db_models import IncidentReport, RecoveryCheck, StageLog
 from app.engines.stage_engine import StageEngine
 import json
 
@@ -19,55 +19,33 @@ class StageRequest(BaseModel):
 def get_stage_guidance(req: StageRequest):
     db = SessionLocal()
     try:
-        # Use overrides if provided
-        injury_date = req.injury_date
-        symptoms = req.symptoms
-        checkin_time = req.checkin_time or datetime.utcnow().isoformat()
-
-        # Fetch from DB if missing
-        if not injury_date or not symptoms:
-            incident = db.query(IncidentReport).filter_by(user_id=req.user_id).first()
-            recent_symptoms = db.query(SymptomLog).filter_by(user_id=req.user_id).order_by(SymptomLog.timestamp.desc()).limit(10).all()
-
-            if not incident or not recent_symptoms:
-                raise HTTPException(status_code=400, detail="Missing injury date or symptoms. Please complete a triage check-in first.")
-
-            if not injury_date:
-                injury_date = incident.injury_date.isoformat()
-            if not symptoms:
-                symptoms = {}
-                for s in recent_symptoms:
-                    if s.symptom_id not in symptoms:
-                        symptoms[s.symptom_id] = s.score or 1
-
-        # Log to recovery_check if using overrides
+        # Log override if present
         if req.symptoms or req.injury_date:
             db.add(RecoveryCheck(
                 user_id=req.user_id,
                 timestamp=datetime.utcnow(),
-                injury_date=datetime.fromisoformat(injury_date).date(),
-                symptoms=json.dumps(symptoms),
+                injury_date=datetime.fromisoformat(req.injury_date).date() if req.injury_date else None,
+                symptoms=json.dumps(req.symptoms or {}),
                 source="quick_prompt",
                 notes=""
             ))
 
-        # Run inference
+        # Infer stage
         engine = StageEngine()
-        result = engine.infer_stage(
-            user_id=req.user_id,
-            injury_date=injury_date,
-            checkin_time=checkin_time,
-            symptoms=symptoms
-        )
+        result = engine.infer_stage(user_id=req.user_id)
 
-        # Log to StageLog
+        # Log structured result
         db.add(StageLog(
             user_id=req.user_id,
-            timestamp=datetime.utcnow(),
-            result_json=json.dumps(result.dict())
+            stage_id=result.stage_id,
+            stage_name=result.stage_name,
+            mild_days=result.matched_factors.get("consecutive_mild_days", 0),
+            max_score_today=result.matched_factors.get("max_score_today", 0),
+            recent_mild_day=result.matched_factors.get("most_recent_mild_day", None),
+            timestamp=datetime.utcnow()
         ))
-        db.commit()
 
+        db.commit()
         return result.dict()
 
     except HTTPException as e:
