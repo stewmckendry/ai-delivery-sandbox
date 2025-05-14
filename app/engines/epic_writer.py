@@ -1,40 +1,30 @@
-from datetime import datetime
-
-def build_fhir_bundle(symptoms: list, stage: str, incident: object = None, assessment: object = None):
+def build_fhir_bundle(symptoms, stage, incident, assessment, activity):
     bundle = {
         "resourceType": "Bundle",
         "type": "collection",
         "entry": []
     }
 
-    for entry in symptoms:
-        obs = {
+    for s in symptoms:
+        bundle["entry"].append({
             "resource": {
                 "resourceType": "Observation",
-                "status": "final",
-                "code": {"text": entry["symptom_id"]},
-                "valueInteger": entry.get("severity"),
-                "effectiveDateTime": entry.get("timestamp"),
-                "note": [{"text": entry.get("extra_notes", "")}],
-                "extension": [
-                    {"url": "reporter", "valueString": entry.get("reporter_type")},
-                    {"url": "incident_context", "valueString": entry.get("incident_context")},
-                    {"url": "sport_type", "valueString": entry.get("sport_type")},
-                    {"url": "age_group", "valueString": entry.get("age_group")},
-                    {"url": "team_id", "valueString": entry.get("team_id")},
-                ]
+                "code": {"text": s.symptom_id},
+                "valueInteger": s.score,
+                "effectiveDateTime": s.timestamp.isoformat(),
+                "note": [{"text": s.notes}] if s.notes else []
             }
-        }
-        bundle["entry"].append(obs)
+        })
 
     if stage:
         bundle["entry"].append({
             "resource": {
                 "resourceType": "Observation",
-                "status": "final",
-                "code": {"text": "Inferred Recovery Stage"},
-                "valueString": stage,
-                "effectiveDateTime": datetime.utcnow().isoformat()
+                "code": {"text": "Recovery Stage"},
+                "valueString": stage.name,
+                "note": [{
+                    "text": ", ".join(stage.allowed_activities + stage.progression_criteria)
+                }]
             }
         })
 
@@ -42,28 +32,35 @@ def build_fhir_bundle(symptoms: list, stage: str, incident: object = None, asses
         bundle["entry"].append({
             "resource": {
                 "resourceType": "Observation",
-                "status": "final",
-                "code": {"text": "Concussion Assessment Summary"},
-                "valueString": assessment.summary,
-                "effectiveDateTime": assessment.timestamp.isoformat()
+                "code": {"text": "Concussion Assessment"},
+                "valueString": "Concussion suspected" if assessment.inferred else "Low likelihood",
+                "note": [{
+                    "text": f"Red flags: {assessment.red_flags}; Moderate symptoms: {assessment.moderate_symptoms}"
+                }]
             }
         })
+
+    if activity:
         bundle["entry"].append({
             "resource": {
                 "resourceType": "Observation",
-                "status": "final",
-                "code": {"text": "Concussion Likely"},
-                "valueBoolean": assessment.concussion_likely,
-                "effectiveDateTime": assessment.timestamp.isoformat()
+                "code": {"text": "Activity Check-In"},
+                "valueString": activity.stage_attempted,
+                "effectiveDateTime": activity.timestamp.isoformat(),
+                "note": [{
+                    "text": "Symptoms worsened" if activity.symptoms_worsened else "No symptom worsening"
+                }]
             }
         })
+
+    if incident:
         bundle["entry"].append({
             "resource": {
                 "resourceType": "Observation",
-                "status": "final",
-                "code": {"text": "Red Flags Present"},
-                "valueBoolean": assessment.red_flags_present,
-                "effectiveDateTime": assessment.timestamp.isoformat()
+                "code": {"text": "Incident Report"},
+                "valueString": incident.injury_context,
+                "effectiveDateTime": incident.injury_date.isoformat(),
+                "note": [{"text": f"Sport: {incident.sport_type}, Age: {incident.age_group}"}]
             }
         })
 
