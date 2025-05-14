@@ -561,6 +561,7 @@ tasks:
     - reference/checkin_map.yaml
     - app/tools/get_stage_overview.py
     - app/tools/get_checkin_flow.py
+    - app/tools/get_user_history.py
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
