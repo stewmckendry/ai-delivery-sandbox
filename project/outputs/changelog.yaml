@@ -603,3 +603,9 @@
   committed_by: GPTPod
   message: Add debug print to CheckinRequest constructor to trace pydantic field parsing
     for symptoms
+- timestamp: '2025-05-14T18:44:00.392151'
+  path: app/tools/log_activity_checkin.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Add log_activity_checkin_flat to accept GPT-compatible **kwargs and forward
+    to structured handler
