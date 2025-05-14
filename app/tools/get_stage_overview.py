@@ -13,7 +13,9 @@ def get_stage_overview():
             "stage_number": s.stage_number,
             "name": s.name,
             "summary": s.guidance_phrases[0] if s.guidance_phrases else "",
-            "activities": s.allowed_activities
+            "activities": s.allowed_activities,
+            "progression_criteria": s.progression_criteria,
+            "guidance_phrases": s.guidance_phrases
         }
         for s in stage_map
     ]
