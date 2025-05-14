@@ -16,12 +16,12 @@ app = FastAPI()
 
 app.include_router(triage_router)
 app.include_router(incident_router)
-app.include_router(symptom_map_router)
-app.include_router(symptom_logger_router)
+#app.include_router(symptom_map_router) - deprecated, replaced by checkin_flow
+#app.include_router(symptom_logger_router) - deprecated, replaced by activity_checkin
 app.include_router(assess_router)
 app.include_router(stage_router)
 app.include_router(export_router)
-app.include_router(linked_router)
+#app.include_router(linked_router) - deprecated, replaced by history
 app.include_router(activity_checkin_router)
 app.include_router(overview_router)
 app.include_router(checkin_flow_router)
