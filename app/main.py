@@ -1,33 +1,22 @@
 from fastapi import FastAPI
-from app.tools import (
-    get_triage_flow,
-    get_triage_question,
-    log_incident_detail,
-    assess_concussion,
-    symptom_logger,
-    get_stage_guidance,
-    export_summary,
-    get_symptom_log_map,
-    get_linked_symptoms
-)
+from app.tools.get_triage_flow import router as triage_router
+from app.tools.log_incident_detail import router as incident_router
+from app.tools.get_symptom_log_map import router as symptom_map_router
+from app.tools.symptom_logger import router as symptom_logger_router
+from app.tools.assess_concussion import router as assess_router
+from app.tools.get_stage_guidance import router as stage_router
+from app.tools.export_summary import router as export_router
+from app.tools.get_linked_symptoms import router as linked_router
+from app.tools.log_activity_checkin import router as activity_checkin_router
 
-app = FastAPI(
-    title="Concussion Recovery App – GPT Tools",
-    version="1.0.0",
-    description="Tools for triage, symptom tracking, stage guidance, and export in a concussion recovery GPT."
-)
+app = FastAPI()
 
-# Register routers
-app.include_router(get_triage_flow.router)
-app.include_router(get_triage_question.router)
-app.include_router(log_incident_detail.router)
-app.include_router(assess_concussion.router)
-app.include_router(symptom_logger.router)
-app.include_router(get_stage_guidance.router)
-app.include_router(export_summary.router)
-app.include_router(get_symptom_log_map.router)
-app.include_router(get_linked_symptoms.router)
-
-@app.get("/openapi.json")
-def get_openapi_schema():
-    return app.openapi()
+app.include_router(triage_router)
+app.include_router(incident_router)
+app.include_router(symptom_map_router)
+app.include_router(symptom_logger_router)
+app.include_router(assess_router)
+app.include_router(stage_router)
+app.include_router(export_router)
+app.include_router(linked_router)
+app.include_router(activity_checkin_router)
