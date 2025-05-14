@@ -13,6 +13,7 @@ from app.tools.log_activity_checkin import router as activity_checkin_router
 from app.tools.get_stage_overview import router as overview_router
 from app.tools.get_checkin_flow import router as checkin_flow_router
 from app.tools.get_user_history import router as history_router
+from app.tools.log_checkin_gptfix import router as checkin_gptfix_router
 
 app = FastAPI()
 
@@ -38,3 +39,4 @@ app.include_router(activity_checkin_router)
 app.include_router(overview_router)
 app.include_router(checkin_flow_router)
 app.include_router(history_router)
+app.include_router(checkin_gptfix_router)
