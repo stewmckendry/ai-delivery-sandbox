@@ -575,3 +575,9 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Add traceback detail to HTTPException for easier debugging of log_activity_checkin
+- timestamp: '2025-05-14T15:12:58.694493'
+  path: app/tools/log_activity_checkin.py
+  task_id: symptoms-fix-log-activity-checkin
+  committed_by: GPTPod
+  message: Fix symptoms recognition in log_activity_checkin by making it a required
+    field in Pydantic model
