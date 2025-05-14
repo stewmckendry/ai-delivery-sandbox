@@ -568,6 +568,7 @@ tasks:
     - app/db/db_reader.py
     - app/engines/epic_writer.py
     - app/engines/pdf_renderer.py
+    - project/retrospectives/return_to_play_redesign.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
