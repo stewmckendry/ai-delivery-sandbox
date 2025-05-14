@@ -1,57 +1,42 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Optional, Dict
 from datetime import datetime
-from app.db.database import SessionLocal
-from app.db.db_models import IncidentReport, RecoveryCheck, StageLog
+from sqlalchemy.orm import Session
 from app.engines.stage_engine import StageEngine
-import json
+from app.db.database import SessionLocal
+from app.db.db_models import StageLog
 
 router = APIRouter()
 
-class StageRequest(BaseModel):
+class StageGuidanceRequest(BaseModel):
     user_id: str
-    injury_date: Optional[str] = None
-    symptoms: Optional[Dict[str, int]] = None
-    checkin_time: Optional[str] = None
+    injury_date: str = None
+    symptoms: dict = None
+    checkin_time: str = None
 
-@router.post("/get_stage_guidance", tags=["stage"])
-def get_stage_guidance(req: StageRequest):
-    db = SessionLocal()
+@router.post("/get_stage_guidance", tags=["Assessment"])
+def get_stage_guidance(req: StageGuidanceRequest):
+    db: Session = SessionLocal()
     try:
-        # Log override if present
-        if req.symptoms or req.injury_date:
-            db.add(RecoveryCheck(
-                user_id=req.user_id,
-                timestamp=datetime.utcnow(),
-                injury_date=datetime.fromisoformat(req.injury_date).date() if req.injury_date else None,
-                symptoms=json.dumps(req.symptoms or {}),
-                source="quick_prompt",
-                notes=""
-            ))
+        result = StageEngine().infer_stage(req.user_id)
 
-        # Infer stage
-        engine = StageEngine()
-        result = engine.infer_stage(user_id=req.user_id)
-
-        # Log structured result
         db.add(StageLog(
             user_id=req.user_id,
+            timestamp=datetime.utcnow(),
             stage_id=result.stage_id,
-            stage_name=result.stage_name,
-            mild_days=result.matched_factors.get("consecutive_mild_days", 0),
-            max_score_today=result.matched_factors.get("max_score_today", 0),
-            recent_mild_day=result.matched_factors.get("most_recent_mild_day", None),
-            timestamp=datetime.utcnow()
+            inference_mode=result.matched_factors.get("inference_mode"),
+            matched_factors=result.matched_factors
         ))
-
         db.commit()
-        return result.dict()
 
-    except HTTPException as e:
-        raise e
+        return {
+            "stage": result.stage_id,
+            "stage_name": result.stage_name,
+            "stage_summary": result.stage_summary,
+            "next_step_advice": result.next_step_advice
+        }
+
     except Exception as e:
-        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         db.close()
