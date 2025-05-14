@@ -65,8 +65,8 @@ def assess_concussion(payload: AssessmentRequest):
             user_id=payload.user_id,
             timestamp=datetime.utcnow(),
             concussion_likely=likely,
-            red_flags_present=bool(red_flags),
-            summary=summary
+            red_flags=red_flags,
+            moderate_symptoms=moderate_risk_symptoms
         ))
         db.commit()
 
