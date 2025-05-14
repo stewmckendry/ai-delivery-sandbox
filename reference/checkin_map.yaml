@@ -1,0 +1,61 @@
+checkin_flow:
+  - id: stage_activity_review
+    name: "Activity Attempt"
+    description: "Confirm and describe the activities the user has recently tried"
+    questions:
+      - id: stage_attempted
+        prompt: "Here are some common activity stages. Did you try any of these recently?"
+        note: "GPT should call get_stage_overview and present friendly stage summaries. Map user’s answer to a stage_id like 'stage_2'."
+        type: select
+        intent: identify_stage
+        options:
+          - stage_1
+          - stage_2
+          - stage_3
+          - stage_4
+          - stage_5
+          - stage_6
+        mode: clarify
+        response_parsing: "stage_id"
+
+      - id: activity_summary
+        prompt: "Can you tell me what kinds of activities you did?"
+        type: text
+        intent: describe_activities
+        mode: probe
+        response_parsing: "narrative"
+
+  - id: stage_symptom_check
+    name: "Symptom Feedback"
+    description: "Ask how the user felt after doing the activities"
+    questions:
+      - id: symptoms_worsened
+        prompt: "Did your symptoms get worse after doing those activities?"
+        type: boolean
+        intent: detect_flare
+        response_parsing: "yes/no"
+        example_user_answers:
+          - "Yes, I felt more dizzy."
+          - "No, I felt fine afterward."
+
+      - id: symptoms
+        prompt: "Let’s check in on your symptoms. What are you feeling today?"
+        type: list
+        intent: collect_symptoms
+        parse_with: symptom_extractor
+        mode: probe
+        response_parsing: "list of symptoms"
+        example_user_answers:
+          - "Still a bit of headache and some nausea."
+          - "Mild dizziness but not bad."
+
+  - id: stage_notes
+    name: "Additional Notes"
+    description: "Capture optional context or observations"
+    questions:
+      - id: notes
+        prompt: "Any other notes about how you felt or what triggered symptoms?"
+        type: text
+        intent: collect_notes
+        mode: probe
+        response_parsing: "narrative"
