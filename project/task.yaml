@@ -550,6 +550,7 @@ tasks:
     - test/e2e/results/scenario_1_interim_result.md
     - app/tools/log_incident_detail.py
     - reference/stages.yaml
+    - project/delivery/stage_guidance_architecture.md
     phase: Phase 3 - E2E Testing
     pod_owner: QAPod
     prompt: prompts/qa/3.2_execute_e2e_scenarios.txt
