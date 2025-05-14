@@ -280,3 +280,14 @@
   - database
   last_updated: '2025-05-14'
   pod_owner: DevPod
+- path: app/main.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/app/main.py
+  file_type: py
+  description: FastAPI application setup with multiple routers for handling various
+    health-related functionalities.
+  tags:
+  - api
+  - routing
+  - health
+  last_updated: '2025-05-14'
+  pod_owner: DeliveryPod
