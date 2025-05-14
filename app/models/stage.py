@@ -29,3 +29,5 @@ class StageResult(BaseModel):
     allowed_activities: List[str]
     progression_criteria: List[str]
     matched_factors: Dict[str, Any]
+    next_step_advice: str
+    inference_mode: str
