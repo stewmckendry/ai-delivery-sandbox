@@ -20,6 +20,16 @@ class IncidentReport(Base):
     still_symptomatic = Column(Boolean)
     cleared_to_play = Column(Boolean)
 
+class TriageResponse(Base):
+    __tablename__ = "triage_response_export"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String)
+    question_id = Column(String)
+    question_text = Column(Text)
+    answer = Column(Text)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    
 class SymptomLog(Base):
     __tablename__ = "symptom_log_export"
     user_id = Column(String, primary_key=True)
