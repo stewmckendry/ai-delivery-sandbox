@@ -114,3 +114,15 @@
   - logging
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: app/tools/export_summary.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/app/tools/export_summary.py
+  file_type: py
+  description: API endpoint for exporting concussion assessment summaries as PDFs
+    and FHIR bundles, with Azure Blob storage integration.
+  tags:
+  - api
+  - export
+  - storage
+  - fhir
+  last_updated: '2025-05-15'
+  pod_owner: DeliveryPod
