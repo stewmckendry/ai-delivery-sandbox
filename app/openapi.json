@@ -286,73 +286,6 @@
         }
       }
     },
-    "/log_activity_checkin": {
-      "post": {
-        "operationId": "logActivityCheckin",
-        "summary": "Log activity check-in",
-        "tags": ["Activity"],
-        "x-gpt-action": {
-          "name": "Log Activity Check-in",
-          "instructions": "Use this after the user reports trying out a stage’s activities. Ask which activities they attempted and whether their symptoms worsened afterwards. You must record both the symptoms they experienced and whether symptoms worsened.\n\nRequired fields:\n- `user_id`: unique ID for this user\n- `stage_attempted`: the stage they were trying (e.g., 'stage_2')\n- `timestamp`: when they did the activity\n- `symptoms`: dictionary of symptom descriptions and scores\n- `symptoms_worsened`: whether symptoms worsened after the activity\n\nAlways include optional notes if the user shares extra context (e.g., 'worse after biking').",
-          "summary_keywords": ["activity", "log", "stage", "worsened", "check-in"]
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["user_id", "stage_attempted", "timestamp", "symptoms", "symptoms_worsened"],
-                "properties": {
-                  "user_id": {
-                    "type": "string",
-                    "description": "Unique user ID",
-                    "example": "user_abc123"
-                  },
-                  "stage_attempted": {
-                    "type": "string",
-                    "description": "ID of the stage the user attempted (e.g., stage_2)",
-                    "example": "stage_2"
-                  },
-                  "timestamp": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "When the user attempted the activities",
-                    "example": "2025-05-13T10:00:00Z"
-                  },
-                  "symptoms": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "integer"
-                    },
-                    "description": "Dictionary of { symptom: score } representing what they felt after the activity",
-                    "example": {
-                      "headache": 3,
-                      "dizziness": 2
-                    }
-                  },
-                  "symptoms_worsened": {
-                    "type": "boolean",
-                    "description": "Did their symptoms get worse after the activity?",
-                    "example": false
-                  },
-                  "notes": {
-                    "type": "string",
-                    "description": "Optional user-provided context or observations",
-                    "example": "Felt more tired after stretching"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Activity and symptoms logged successfully"
-          }
-        }
-      }
-    },
     "/get_stage_overview": {
       "get": {
         "operationId": "getStageOverview",
@@ -636,6 +569,67 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/log_activity_checkin": {
+      "post": {
+        "operationId": "logActivityCheckin",
+        "summary": "Log activity check-in",
+        "tags": ["Activity"],
+        "x-gpt-action": {
+          "name": "Log Activity Check-in",
+          "instructions": "Call this after completing triage. Format payload as:\n- `user_id`: string\n- `timestamp`: ISO date string\n- `answers`: a dictionary mapping question IDs to answers\n\nIf including `symptoms`, pass them as a **dictionary**: `{ \"headache\": 7, \"dizziness\": 2 }`.\nAvoid sending it as a list.\nScores should range from 1 (mild) to 10 (severe). If score is unclear, use 1 as default.",
+          "summary_keywords": ["activity", "log", "check-in", "stage", "symptoms"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id", "timestamp", "answers"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "Unique user ID",
+                    "example": "user_abc123"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the check-in",
+                    "example": "2025-05-14T10:00:00Z"
+                  },
+                  "answers": {
+                    "type": "object",
+                    "description": "Key-value map of activity checkin answers. Use string, boolean, or list of strings. For `symptoms`, provide a dictionary of { symptom_id: score }.",
+                    "properties": {
+                      "stage_attempted": { "type": "string", "example": "stage_2" },
+                      "symptoms": {
+                        "type": "object",
+                        "description": "Dictionary of symptom IDs and their scores (1–10)",
+                        "example": { "headache": 7, "dizziness": 2 }
+                      },
+                      "symptoms_worsened": { "type": "boolean", "example": false },
+                      "notes": { "type": "string", "example": "Felt more tired after stretching" }
+                    },  
+                    "example": {
+                      "stage_attempted": "stage_2",
+                      "symptoms": { "headache": 2, "fatigue": 1 },
+                      "symptoms_worsened": false,
+                      "notes": "Felt fine after stretching"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity and symptoms logged successfully"
           }
         }
       }
