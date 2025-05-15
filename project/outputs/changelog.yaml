@@ -668,3 +668,9 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Refactor log_activity_checkin to use answers-style request like log_incident_detail
+- timestamp: '2025-05-15T02:47:12.474713'
+  path: app/tools/export_summary.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Fix export_summary to accept POST body with user_id (ExportRequest) instead
+    of query param.
