@@ -12,6 +12,9 @@ from datetime import datetime, timedelta
 
 router = APIRouter()
 
+class ExportRequest(BaseModel):
+    user_id: str
+
 class ExportResponse(BaseModel):
     pdf_url: str
     fhir_bundle: dict
@@ -38,7 +41,8 @@ def upload_to_storage(content: str):
     return f"https://concussionexports.blob.core.windows.net/{container_name}/{blob_name}?{sas_token}"
 
 @router.post("/export_summary", response_model=ExportResponse)
-def export_summary(user_id: str):
+def export_summary(req: ExportRequest):
+    user_id = req.user_id
     bundle = get_export_bundle(user_id)
     symptoms = bundle["symptoms"]
     stage = bundle["stage"]
