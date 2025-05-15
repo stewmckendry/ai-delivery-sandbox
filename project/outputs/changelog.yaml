@@ -679,3 +679,9 @@
   task_id: 3.2_execute_e2e_scenarios
   committed_by: GPTPod
   message: Refactor export_summary to use infer_stage for aligned stage structure
+- timestamp: '2025-05-15T03:04:22.817927'
+  path: app/tools/export_summary.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: 'Fix import for stage inference: use StageEngine().infer_stage() instead
+    of direct import'
