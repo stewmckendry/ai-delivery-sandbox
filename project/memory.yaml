@@ -504,3 +504,14 @@
   - database
   last_updated: '2025-05-15'
   pod_owner: QAPod
+- path: dashboard/powerbi_queries.sql
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/dashboard/powerbi_queries.sql
+  file_type: sql
+  description: SQL queries for generating Power BI reports on sports-related incidents
+    and concussions.
+  tags:
+  - sql
+  - report
+  - data_analysis
+  last_updated: '2025-05-15'
+  pod_owner: DeliveryPod
