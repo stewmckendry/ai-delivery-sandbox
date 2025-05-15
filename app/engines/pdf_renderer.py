@@ -51,8 +51,9 @@ def render_pdf(data):
 
         <h2>Symptom History</h2>
         <ul>
-            {''.join(f"<li>{s['timestamp']}: {s['symptom_id']} = {s['score']}</li>" for s in symptoms) or "<li>No symptoms logged.</li>"}
+            {''.join(f"<li>{s.timestamp}: {s.symptom_id} = {s.score}</li>" for s in symptoms) or "<li>No symptoms logged.</li>"}
         </ul>
+
     </body>
     </html>
     """
