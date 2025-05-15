@@ -92,3 +92,14 @@
   - validation
   last_updated: '2025-05-13'
   pod_owner: DeliveryPod
+- path: app/models/stage.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/app/models/stage.py
+  file_type: py
+  description: Defines models for stage criteria and stage mapping, including logic
+    for progression and activity guidelines.
+  tags:
+  - model
+  - config
+  - flow
+  last_updated: '2025-05-15'
+  pod_owner: DevPod
