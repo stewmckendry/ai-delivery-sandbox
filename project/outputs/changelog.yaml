@@ -696,3 +696,9 @@
   task_id: fix-export-summary-stage-reference
   committed_by: GPTPod
   message: Append output file to fix-export-summary-stage-reference
+- timestamp: '2025-05-15T03:43:18.404945'
+  path: app/db/db_models.py
+  task_id: update-stage-model
+  committed_by: GPTPod
+  message: Expand StageLog model to match stage_result_export SQL schema for compatibility
+    with rendering and export functions
