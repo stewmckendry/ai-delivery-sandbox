@@ -717,3 +717,9 @@
   task_id: update-stage-model
   committed_by: GPTPod
   message: Append output file to update-stage-model
+- timestamp: '2025-05-15T03:50:54.733143'
+  path: app/tools/get_stage_guidance.py
+  task_id: get-stage-guidance
+  committed_by: GPTPod
+  message: Restore get_stage_guidance to require only user_id and include updated
+    StageLog fields
