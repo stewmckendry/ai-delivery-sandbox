@@ -685,3 +685,9 @@
   committed_by: GPTPod
   message: 'Fix import for stage inference: use StageEngine().infer_stage() instead
     of direct import'
+- timestamp: '2025-05-15T03:25:16.827363'
+  path: app/tools/export_summary.py
+  task_id: fix-export-summary-stage-reference
+  committed_by: GPTPod
+  message: Fix export_summary tool to use stage from get_export_bundle instead of
+    reinferring it
