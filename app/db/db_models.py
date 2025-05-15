@@ -55,6 +55,10 @@ class StageLog(Base):
     user_id = Column(String, primary_key=True)
     timestamp = Column(DateTime, primary_key=True)
     stage_id = Column(String)
+    stage_name = Column(String)
+    mild_days = Column(Integer)
+    max_score_today = Column(Integer)
+    recent_mild_day = Column(DateTime)
     inference_mode = Column(String)
     matched_factors = Column(JSON)
 
