@@ -551,3 +551,15 @@
   - data visualization
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: .logs/issues/project.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/.logs/issues/project.yaml
+  file_type: yaml
+  description: File containing a list of open project-related bugs, detailing issues
+    with dependencies, missing models, and server errors, along with suggested fixes.
+  tags:
+  - bug
+  - deployment
+  - requirements
+  - database
+  last_updated: '2025-05-15'
+  pod_owner: DevPod
