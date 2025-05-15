@@ -4,6 +4,10 @@ from azure.storage.blob import BlobServiceClient, generate_blob_sas, BlobSasPerm
 import tempfile, uuid, os
 
 def render_pdf(data):
+    incident = data.get('incident') or {}
+    stage = data.get('stage') or {}
+    symptoms = data.get('symptoms') or []
+
     html_content = f"""
     <html>
     <head>
@@ -17,31 +21,31 @@ def render_pdf(data):
     </head>
     <body>
         <h1>Concussion Recovery Summary</h1>
-        <p><strong>User ID:</strong> {data['user_id']}</p>
+        <p><strong>User ID:</strong> {data.get('user_id', 'N/A')}</p>
         <p><strong>Generated:</strong> {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC</p>
 
         <h2>Incident Summary</h2>
         <ul>
-            {''.join(f'<li><strong>{k}:</strong> {v}</li>' for k, v in data['incident'].items())}
+            {''.join(f'<li><strong>{k}:</strong> {v}</li>' for k, v in incident.items()) or "<li>No incident data available.</li>"}
         </ul>
 
         <h2>Stage Guidance</h2>
-        <p><strong>Stage:</strong> {data['stage']['stage_name']}</p>
-        <p>{data['stage']['stage_summary']}</p>
+        <p><strong>Stage:</strong> {stage.get('stage_name', 'N/A')}</p>
+        <p>{stage.get('stage_summary', 'No summary available.')}</p>
 
         <h3>What You Can Do</h3>
         <ul>
-            {''.join(f'<li>{a}</li>' for a in data['stage']['allowed_activities'])}
+            {''.join(f'<li>{a}</li>' for a in stage.get('allowed_activities', [])) or "<li>Not specified</li>"}
         </ul>
 
         <h3>How to Progress</h3>
         <ul>
-            {''.join(f'<li>{p}</li>' for p in data['stage']['progression_criteria'])}
+            {''.join(f'<li>{p}</li>' for p in stage.get('progression_criteria', [])) or "<li>Not specified</li>"}
         </ul>
 
         <h2>Symptom History</h2>
         <ul>
-            {''.join(f"<li>{s['timestamp']}: {s['symptom_id']} = {s['score']}</li>" for s in data['symptoms'])}
+            {''.join(f"<li>{s['timestamp']}: {s['symptom_id']} = {s['score']}</li>" for s in symptoms) or "<li>No symptoms logged.</li>"}
         </ul>
     </body>
     </html>
