@@ -2,7 +2,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # --- Setup ---
-DB_URL = "<your Azure SQL connection string here>"  # replace before running
+DB_URL = "placeholder"  # replace this locally, not in git
 engine = create_engine(DB_URL)
 
 # --- Export incident_report_export to CSV ---
