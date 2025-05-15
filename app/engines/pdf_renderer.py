@@ -50,17 +50,17 @@ def render_pdf(data):
         </ul>
 
         <h2>Recovery Guidance</h2>
-        <p><strong>Stage:</strong> {stage.get('stage_name', 'N/A')}</p>
-        <p>{stage.get('stage_summary', 'No summary available.')}</p>
+        <p><strong>Stage:</strong> {getattr(stage, 'stage_name', 'N/A')}</p>
+        <p>{getattr(stage, 'stage_summary', 'No summary available.')}</p>
 
         <h3>What You Can Do</h3>
         <ul>
-            {''.join(f'<li>{a}</li>' for a in stage.get('allowed_activities', [])) or "<li>Not specified</li>"}
+            {''.join(f'<li>{a}</li>' for a in getattr(stage, 'allowed_activities', []) or []) or "<li>Not specified</li>"}
         </ul>
 
         <h3>How to Progress</h3>
         <ul>
-            {''.join(f'<li>{p}</li>' for p in stage.get('progression_criteria', [])) or "<li>Not specified</li>"}
+            {''.join(f'<li>{p}</li>' for p in getattr(stage, 'progression_criteria', []) or []) or "<li>Not specified</li>"}
         </ul>
 
         <h2>Symptom History</h2>
