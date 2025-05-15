@@ -4,7 +4,6 @@ from app.engines.epic_writer import build_fhir_bundle
 from app.engines.pdf_renderer import render_pdf
 from app.db.db_reader import get_export_bundle
 from app.db.db_models import ConcussionAssessment
-from app.engines.stage_engine import StageEngine
 from app.db.database import SessionLocal
 import uuid
 import os
@@ -48,15 +47,13 @@ def export_summary(req: ExportRequest):
     symptoms = bundle["symptoms"]
     incident = bundle["incident"]
     activity = bundle["activity"]
+    stage = bundle["stage"]
 
     db = SessionLocal()
     try:
         assessment = db.query(ConcussionAssessment).filter_by(user_id=user_id).order_by(ConcussionAssessment.timestamp.desc()).first()
     finally:
         db.close()
-
-    # Infer stage using engine to get full structure
-    stage = StageEngine().infer_stage(user_id)
 
     pdf_str = render_pdf(user_id, symptoms, stage, incident, activity)
     pdf_url = upload_to_storage(pdf_str)
