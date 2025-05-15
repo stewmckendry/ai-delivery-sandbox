@@ -1,9 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Optional, Dict
 from datetime import datetime
+from sqlalchemy.orm import Session
 from app.engines.stage_engine import StageEngine
-from app.models.stage import StageResult
 from app.db.database import SessionLocal
 from app.db.db_models import StageLog
 
@@ -11,42 +10,36 @@ router = APIRouter()
 
 class StageGuidanceRequest(BaseModel):
     user_id: str
-    injury_date: Optional[str] = None
-    symptoms: Optional[Dict[str, int]] = None
-    checkin_time: Optional[datetime] = None
 
-@router.post("/get_stage_guidance")
+@router.post("/get_stage_guidance", tags=["Assessment"])
 def get_stage_guidance(req: StageGuidanceRequest):
-    engine = StageEngine()
-    result: StageResult = engine.infer_stage(
-        user_id=req.user_id,
-        injury_date=req.injury_date,
-        symptoms=req.symptoms,
-        checkin_time=req.checkin_time
-    )
-
-    db = SessionLocal()
+    db: Session = SessionLocal()
     try:
+        result = StageEngine().infer_stage(req.user_id)
+
         db.add(StageLog(
             user_id=req.user_id,
             timestamp=datetime.utcnow(),
             stage_id=result.stage_id,
             stage_name=result.stage_name,
-            mild_days=result.mild_days or 0,
-            max_score_today=result.max_score_today or 0,
-            recent_mild_day=result.recent_mild_day,
-            inference_mode=result.inference_mode,
-            matched_factors=result.matched_factors or {}
+            mild_days=result.matched_factors.get("mild_days"),
+            max_score_today=result.matched_factors.get("max_score_today"),
+            recent_mild_day=result.matched_factors.get("recent_mild_day"),
+            inference_mode=result.matched_factors.get("inference_mode"),
+            matched_factors=result.matched_factors
         ))
         db.commit()
+
+        return {
+            "stage": result.stage_id,
+            "stage_name": result.stage_name,
+            "stage_summary": result.stage_summary,
+            "next_step_advice": result.next_step_advice,
+            "allowed_activities": result.allowed_activities,
+            "progression_criteria": result.progression_criteria
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     finally:
         db.close()
-
-    return {
-        "stage": result.stage_id,
-        "stage_name": result.stage_name,
-        "stage_summary": result.stage_summary,
-        "next_step_advice": result.next_step_advice,
-        "allowed_activities": result.allowed_activities,
-        "progression_criteria": result.progression_criteria
-    }
