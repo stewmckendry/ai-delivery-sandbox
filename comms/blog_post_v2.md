@@ -8,19 +8,19 @@
 
 This post is the first in a new series exploring how AI-powered GPT agents can be applied to solve real-world problems — starting with health, sport, and youth wellbeing.
 
-For this proof-of-concept (PoC), I (Stewart) partnered with **Jocelyne Verity**, a health executive with 15 years of experience spanning PwC, EY, Canadian Mental Health Association, and Southlake Regional Health Centre. Together, we’re collaborating on AI advisory with a purpose — using AI for good.
+For this proof-of-concept (PoC), I (Stewart) partnered with **Jocelyne Verity**, a health leader with 15 years of experience spanning PwC, EY, Canadian Mental Health Association, and Southlake Health. Together, we’re collaborating on AI advisory with a purpose — using AI for good.
 
 ---
 
 ## 🚤 The Hidden Threat: Concussions in Youth Sport
 
-Each year, thousands of young athletes in Ontario face a hidden threat on the field, rink, or court: concussions. These brain injuries are often underreported, misunderstood, and mismanaged—not due to a lack of concern, but due to a lack of accessible, consistent tools and support.
+Each year, thousands of young athletes in Ontario face a hidden threat on the field, rink, or court: concussions. These brain injuries are often underreported, misunderstood, and mismanaged. Not due to a lack of concern, but due to a lack of accessible, consistent tools and support.
 
-In Ontario, **Rowan’s Law** has made concussion awareness and return-to-play protocols a legal obligation. Still, there remains a major gap in real-time, accessible concussion support. Several national sport organizations—including Nordiq Canada, Canada Soccer, and the Canadian Junior Hockey League—have implemented formal concussion protocols requiring injury reporting and medical clearance before athletes return to play. These efforts align with **Sport Canada** mandates and the **Canadian Guideline on Concussion in Sport**, developed by **Parachute Canada** with the **Public Health Agency of Canada**. Over 50 NSOs have collaborated with Parachute to adopt standardized concussion policies, signaling a nationwide commitment to athlete safety and injury surveillance.
+In Ontario, **Rowan’s Law** has made concussion awareness and return-to-play protocols a legal obligation. Still, there remains a major gap in real-time, accessible concussion support. Several national sport organizations including Nordiq Canada, Canada Soccer, and the Canadian Junior Hockey League —have implemented formal concussion protocols requiring injury reporting and medical clearance before athletes return to play. These efforts align with **Sport Canada** mandates and the **Canadian Guideline on Concussion in Sport**, developed by **Parachute Canada** with the **Public Health Agency of Canada**. Over 50 NSOs have collaborated with Parachute to adopt standardized concussion policies, signaling a nationwide commitment to athlete safety and injury surveillance.
 
 This app was born from real challenges seen both on the field and in the clinic:
 
-* Parents and coaches often don’t know what counts as a concussion. “My head hurts”—is it serious or not?
+* Parents and coaches often don’t know what counts as a concussion. “My head hurts” — is it serious or not?
 * Families turn to endless Google searches, unsure which advice to trust. They ask: What can my child do? When can they go back? Is it safe?
 * There’s a growing demand for structured injury reporting and return-to-play compliance.
 * Health professionals are often left out of the loop, lacking structured symptom and recovery data when they see the patient.
@@ -29,7 +29,7 @@ This app was born from real challenges seen both on the field and in the clinic:
 
 ## 🧠 Meet the Concussion Recovery GPT
 
-We’ve built a prototype of a custom **ChatGPT agent** designed specifically to support concussion management in youth sports. This tool isn’t just a chatbot — it’s an intelligent, structured digital assistant that guides parents, coaches, and players through symptom checking, recovery tracking, and safe return-to-sport protocols grounded in clinical standards like **SCAT6** and national sport org guidelines.
+We’ve built a prototype of a custom **ChatGPT agent** designed specifically to support concussion management in youth sports. This tool isn’t just a chatbot — it’s an intelligent, structured digital assistant that guides parents, coaches, and players through symptom checking, recovery tracking, and safe return-to-sport protocols grounded in clinical standards like **SCAT6** and national sport guidelines.
 
 > Importantly, ConcussionGPT is **not a doctor** — and it will say so. It is a support tool that helps users access existing medical knowledge and guidelines in a way that is **personalized, conversational, and easy to understand**.
 
@@ -37,7 +37,7 @@ We’ve built a prototype of a custom **ChatGPT agent** designed specifically to
 
 * Helps assess potential concussions through guided Q\&A
 * Logs symptoms and recovery progress day by day
-* Provides stage-specific return-to-play advice
+* Provides stage specific return-to-play advice
 * Shares structured reports with healthcare professionals
 * Offers anonymized insights to sports organizations
 
@@ -73,7 +73,7 @@ This isn't just a GPT front-end. It’s built using the **AI Delivery Framework*
 * **Azure SQL database** for storing structured, anonymized recovery logs
 * **Azure Blob Storage** for exporting PDFs and clinician-ready reports
 * **Power BI dashboards** with filters by sport, age group, stage, and time
-* **FHIR-compatible export** to send structured data to systems like Epic
+* **FHIR-compatible export** to send structured data to EMRs
 
 This architecture enables **data validation at every step**, with transparent and auditable flows from user input → guidance → report.
 
