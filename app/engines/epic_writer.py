@@ -33,7 +33,7 @@ def build_fhir_bundle(symptoms, stage, incident, assessment, activity):
             "resource": {
                 "resourceType": "Observation",
                 "code": {"text": "Concussion Assessment"},
-                "valueString": "Concussion suspected" if assessment.inferred else "Low likelihood",
+                "valueString": "Concussion suspected" if assessment.concussion_likely else "Low likelihood",
                 "note": [{
                     "text": f"Red flags: {assessment.red_flags}; Moderate symptoms: {assessment.moderate_symptoms}"
                 }]
