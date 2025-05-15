@@ -55,8 +55,13 @@ def export_summary(req: ExportRequest):
     finally:
         db.close()
 
-    pdf_str = render_pdf(user_id, symptoms, stage, incident, activity)
-    pdf_url = upload_to_storage(pdf_str)
+    pdf_url = render_pdf({
+        "user_id": user_id,
+        "symptoms": symptoms,
+        "incident": incident,
+        "activity": activity,
+        "stage": stage
+    })
     fhir = build_fhir_bundle(symptoms, stage, incident, assessment, activity)
 
     return ExportResponse(pdf_url=pdf_url, fhir_bundle=fhir)
