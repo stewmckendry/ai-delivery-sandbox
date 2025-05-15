@@ -71,10 +71,3 @@ class ConcussionAssessment(Base):
     moderate_symptoms = Column(JSON)
     summary = Column(String)
 
-class SymptomLink(Base):
-    __tablename__ = "symptom_link"
-    user_phrase = Column(String, primary_key=True)
-    matched_symptom = Column(String)
-    category = Column(String)
-    score = Column(Integer)
-    notes = Column(String)
