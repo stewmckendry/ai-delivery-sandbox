@@ -126,3 +126,14 @@
   - fhir
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: dashboard/generate_mock_incidents.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/dashboard/generate_mock_incidents.py
+  file_type: py
+  description: Script to generate and insert mock incident reports into a database
+    for testing purposes
+  tags:
+  - data generation
+  - database
+  - testing
+  last_updated: '2025-05-15'
+  pod_owner: DevPod
