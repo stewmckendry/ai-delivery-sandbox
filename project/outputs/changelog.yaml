@@ -674,3 +674,8 @@
   committed_by: GPTPod
   message: Fix export_summary to accept POST body with user_id (ExportRequest) instead
     of query param.
+- timestamp: '2025-05-15T02:59:51.090052'
+  path: app/tools/export_summary.py
+  task_id: 3.2_execute_e2e_scenarios
+  committed_by: GPTPod
+  message: Refactor export_summary to use infer_stage for aligned stage structure
