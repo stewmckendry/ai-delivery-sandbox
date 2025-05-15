@@ -728,3 +728,13 @@
   task_id: get-stage-guidance
   committed_by: GPTPod
   message: Append output file to get-stage-guidance
+- timestamp: '2025-05-15T12:44:43.494284'
+  path: comms/blog_post_v1.md
+  task_id: blog_post_4
+  committed_by: WriterPod
+  message: Initial draft of blog post on ConcussionGPT committed for refinement.
+- timestamp: '2025-05-15T12:44:43.494284'
+  path: project/memory.yaml
+  task_id: blog_post_4
+  committed_by: WriterPod
+  message: Memory update related to comms/blog_post_v1.md
