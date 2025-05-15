@@ -480,3 +480,16 @@
   - GPT
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: comms/LinkedIn_post_v1.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/comms/LinkedIn_post_v1.md
+  file_type: md
+  description: LinkedIn post announcing a new AI tool, ConcussionGPT, designed to
+    assist in concussion recovery, with details on its development and integration
+    with various technologies.
+  tags:
+  - AI
+  - product
+  - delivery
+  - integration
+  last_updated: '2025-05-15'
+  pod_owner: DeliveryPod
