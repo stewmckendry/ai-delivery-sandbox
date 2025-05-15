@@ -43,3 +43,22 @@
   - bug
   status: open
   timestamp: '2025-05-12T12:54:18.466536'
+- type: bug
+  scope: project
+  issue_id: 25623f9c-736d-40d9-8893-56bfcf1dfee5
+  task_id: null
+  title: 500 Error on export_summary for user_ey_bulldogs_001
+  detail: The /export_summary endpoint returns a 500 error when invoked with user_id
+    'user_ey_bulldogs_001'. Logs indicate an unhandled ExceptionGroup in ASGI application
+    during response generation, likely in PDF or FHIR export routines.
+  suggested_fix: Trace through export_summary tool for potential missing or malformed
+    data in DB queries, PDF generation, or FHIR bundle construction. Add more granular
+    error handling and logging around those components.
+  tags:
+  - export_summary
+  - 500-error
+  - PDF
+  - FHIR
+  - critical
+  status: open
+  timestamp: '2025-05-15T19:34:26.431515'
