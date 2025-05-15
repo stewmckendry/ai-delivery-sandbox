@@ -1,77 +1,68 @@
-# Power BI Dashboard Setup Guide for ConcussionGPT
+# Power BI Dashboard Setup Guide for ConcussionGPT (CSV Flow for Mac)
 
-This guide walks you through installing Power BI, connecting it to the Azure SQL database, and building a blog-ready dashboard.
-
----
-
-## 🧰 Step 1: Install Power BI Desktop
-
-1. Go to [Power BI Desktop Download](https://powerbi.microsoft.com/desktop/)
-2. Click **Download Free** and install via the Microsoft Store or EXE
-3. Launch Power BI Desktop after installation
+This guide walks you through exporting data from Azure SQL, visualizing it via CSV, and creating a blog-ready dashboard using Power BI — fully compatible with macOS.
 
 ---
 
-## 🔌 Step 2: Connect to Azure SQL Database
+## 🛠 Step 1: Export Data to CSV
 
-1. Open Power BI Desktop
-2. Click **Home > Get Data > SQL Server**
-3. Enter the server and database info:
-   - **Server**: `concussiondbserver.database.windows.net`
-   - **Database**: `concussiondb`
-4. Click **Advanced options** and paste this query from your file:
-   ```sql
-   SELECT sport_type, COUNT(*) AS incident_count FROM incident_report_export GROUP BY sport_type;
+1. Open the script `dashboard/export_to_csv.py`
+2. Replace `DB_URL` with your Azure SQL connection string
+3. Run the script in VS Code terminal:
+   ```bash
+   python dashboard/export_to_csv.py
    ```
-   *(You can repeat this for each saved SQL query.)*
-5. For authentication:
-   - Choose **Database**
-   - Username: `sqladmin`
-   - Password: `shamrock201627!`
-6. Click **Connect** (use encrypted connection)
+4. This will create a file `incident_data_export.csv` in your local directory
 
 ---
 
-## 📊 Step 3: Build Your Visuals
+## 📊 Step 2: Visualize in Power BI Web (app.powerbi.com)
 
-Repeat these steps for each of the 5 queries in `dashboard/powerbi_queries.sql`:
+1. Go to [https://app.powerbi.com](https://app.powerbi.com) and sign in
+2. Click **Workspaces > My Workspace > New Report > Upload a File**
+3. Upload your `incident_data_export.csv`
+4. Choose "Auto-create report" or click **+ New Report** to build your own
 
-### 1. Incidents by Sport
-- **Visual**: *Bar Chart*
-- Fields: sport_type (X-axis), incident_count (Y-axis)
+### Use SQL Queries to Build Charts
+Refer to the SQL queries in `dashboard/powerbi_queries.sql` to guide your chart building:
+- These queries define how data should be grouped and summarized
+- In Power BI, use the **Fields panel** to manually recreate these aggregations using drag-and-drop or DAX (Power BI formulas)
 
-### 2. Diagnosed vs Not by Age Group
-- **Visual**: *Stacked Bar*
-- Fields: age_group (X), count (Y), diagnosed_concussion (Legend)
+Example:
+- For the "Incidents by Sport" bar chart:
+  - Use `sport_type` as axis
+  - Use `Count of sport_type` or `Count of incident_id` as value
+- For "Avg Days to Clearance":
+  - Create a new measure: `AvgDays = AVERAGE(DATEDIFF([injury_date], [timestamp], DAY))`
 
-### 3. Incidents Over Time
-- **Visual**: *Line Chart*
-- Fields: date (X), incident_count (Y)
+### Suggested Charts
+- **Bar Chart**: Incidents by Sport
+- **Stacked Bar**: Diagnosed vs Not Diagnosed by Age Group
+- **Line Chart**: Incidents Over Time
+- **Pie Chart**: Cleared vs Still Symptomatic
+- **Card/Box**: Avg Days to Clearance (create as a custom measure)
 
-### 4. Clearance Outcomes
-- **Visual**: *Pie Chart*
-- Fields: cleared_to_play (Legend), count (Values)
-
-### 5. Avg Days to Clearance
-- **Visual**: *Card*
-- Field: avg_days_to_clear
+### Combine Into One Dashboard
+1. After creating charts, save each as a visual in the report
+2. Arrange them all onto **one Power BI page** (drag and resize as needed)
+3. Use headings, separators, and layout spacing for a clean design
 
 ---
 
-## 📸 Step 4: Export for Blog
+## 📸 Step 3: Export for Blog
 
-1. Arrange your visuals in a 1-page layout
-2. Click **File > Export > Export to PDF** or use a snipping tool to screenshot
-3. Save the image and embed it in your blog post
+1. With your dashboard open, click **File > Export > PDF**
+2. Or use your Mac's screenshot tool to capture the full page
+3. Embed the export into your blog post
 
 ---
 
-## 💡 Tips for New Users
-- Use **Data View** to explore raw tables
-- Use **Format** panel (paint roller icon) to customize chart styles
-- Use **Refresh** to update your visuals after running the data insert script
+## 🧠 Tips
+- Add chart titles and axis labels
+- Use color to group by outcome, age, or sport
+- Align charts and avoid clutter to improve blog-readiness
 
-You're now set to build a clean, informative concussion dashboard for sport leaders!
+You're now ready to create a clean, blog-ready dashboard on concussion insights — even from a Mac!
 
 ---
 
