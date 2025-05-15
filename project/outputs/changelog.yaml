@@ -707,3 +707,8 @@
   task_id: update-stage-model
   committed_by: GPTPod
   message: Append output file to update-stage-model
+- timestamp: '2025-05-15T03:43:43.856282'
+  path: app/tools/get_stage_guidance.py
+  task_id: update-stage-model
+  committed_by: GPTPod
+  message: Update get_stage_guidance to save all stage result fields for export compatibility
