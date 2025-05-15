@@ -538,3 +538,16 @@
   - csv
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: project/retrospectives/concussion_dashboard_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-silver-tiger/project/retrospectives/concussion_dashboard_retrospective.md
+  file_type: md
+  description: Retrospective analysis of the ConcussionGPT dashboard project, highlighting
+    successes, areas for improvement, lessons learned, and future recommendations
+    for dashboard development.
+  tags:
+  - retrospective
+  - dashboard
+  - Power BI
+  - data visualization
+  last_updated: '2025-05-15'
+  pod_owner: DeliveryPod
