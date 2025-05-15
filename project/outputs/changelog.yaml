@@ -828,3 +828,9 @@
   task_id: dashboard_powerbi_setup
   committed_by: ProductPod
   message: Append output file to dashboard_powerbi_setup
+- timestamp: '2025-05-15T18:45:09.596121'
+  path: dashboard/powerbi_setup_guide.md
+  task_id: dashboard_powerbi_setup
+  committed_by: ProductPod
+  message: Add instructions on how to use SQL queries to guide Power BI visuals and
+    layout in dashboard
