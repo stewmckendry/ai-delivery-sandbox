@@ -160,3 +160,15 @@
   - SQL
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: app/engines/pdf_renderer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/app/engines/pdf_renderer.py
+  file_type: py
+  description: Script to render concussion recovery summaries as PDFs and upload them
+    to Azure Blob Storage
+  tags:
+  - pdf
+  - rendering
+  - azure
+  - storage
+  last_updated: '2025-05-15'
+  pod_owner: DeliveryPod
