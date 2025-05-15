@@ -2,9 +2,15 @@ from weasyprint import HTML
 from datetime import datetime, timedelta
 from azure.storage.blob import BlobServiceClient, generate_blob_sas, BlobSasPermissions
 import tempfile, uuid, os
+from sqlalchemy.orm import class_mapper
+
+def to_dict(model_obj):
+    return {c.key: getattr(model_obj, c.key) for c in class_mapper(model_obj.__class__).columns}
+
 
 def render_pdf(data):
     incident = data.get('incident') or {}
+    incident_dict = to_dict(incident) if incident else {}
     stage = data.get('stage') or {}
     symptoms = data.get('symptoms') or []
 
@@ -26,7 +32,7 @@ def render_pdf(data):
 
         <h2>Incident Summary</h2>
         <ul>
-            {''.join(f'<li><strong>{k}:</strong> {v}</li>' for k, v in incident.items()) or "<li>No incident data available.</li>"}
+            {''.join(f'<li><strong>{k}:</strong> {v}</li>' for k, v in incident_dict.items()) or "<li>No incident data available.</li>"}
         </ul>
 
         <h2>Stage Guidance</h2>
