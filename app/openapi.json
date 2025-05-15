@@ -350,7 +350,7 @@
         "tags": ["Checkin"],
         "x-gpt-action": {
           "name": "Get Check-in Flow",
-          "instructions": "Use this to start a structured check-in after a user attempts stage activities. Walk through questions one at a time using `prompt`, track the `id`, and apply the `mode` (e.g., probe, clarify).\n\nKey behavior:\n- Track each answer in an `answers` map like `{ id: answer }`\n- After final question, call `/log_activity_checkin` with full payload\n- If the `options` field is present and includes stage IDs, do not show them directly. Instead, call `/get_stage_overview` to get user-friendly names and summaries, and use those to help the user identify the correct stage (e.g., 'Light aerobic exercise').\n- If the `note` field is present, follow its instructions to support GPT behavior (e.g., clarify mappings or special logic)\n\n🔍 If the intent is `collect_symptoms`:\n- Use `symptom_links` to match to known symptoms\n- Ask for severity (1–10)\n- Format as: `{ symptom_id: score }`",
+          "instructions": "Use this to start a structured check-in after a user attempts stage activities. Walk through questions one at a time using prompt, track the id, and apply the mode (e.g., probe, clarify).\n\nKey behavior:\n- Track each answer in an answers map like { id: answer }\n- After final question, call /log_activity_checkin with user_id, timestamp, and full answers\n- If the options field includes stage IDs, call /get_stage_overview to describe them in plain language\n- If a note field is present, follow it to clarify next steps or tool use\n\n🔍 If the intent is collect_symptoms:\n- Use symptom_links to match to known symptoms\n- Ask for severity (1–10)\n- Format as { symptom_id: score }",
           "summary_keywords": ["check-in", "questions", "activity", "symptoms"]
         },
         "responses": {
@@ -496,7 +496,7 @@
         "tags": ["Assessment"],
         "x-gpt-action": {
           "name": "Get Stage Guidance",
-          "instructions": "Use this after a user logs symptoms or activity. This tool determines which recovery stage the user is currently in.\n\n🧠 GPT behavior:\n- If the user hasn't logged activity before, this will assume Stage 1\n- If the user has logged activity and symptoms worsened, they will regress a stage\n- If symptoms are mild but 24h hasn't passed, stay in current stage\n- If mild and 24h passed, progress to next stage\n\nAlways explain:\n- What stage they’re in\n- Why they’re in it (e.g., time since check-in, symptom severity)\n- What to do next (e.g., 'log activity again tomorrow')\n\n🧠 How to communicate results:\n- Provide a brief, clear explanation of the user's current recovery stage (e.g., 'You’re currently in Stage 2 – Light Activity').\n- Be empathetic and reassuring: 'Everyone heals at a different pace. Let’s make sure we’re tracking things properly.'\n- Offer return-to-play guidance: explain what is and isn’t safe right now, based on the stage.\n- Be prepared to answer user questions, like whether they can return to practice or competition.\n- Always remind them: 'I'm not a doctor, but I can help guide you through the structured recovery steps.'",
+          "instructions": "Use this after a user logs symptoms or activity. This tool determines which recovery stage the user is currently in.  You specify a 'user_id' and the tool works off previously logged data to generate stage guidance.\n\n🧠 GPT behavior:\n- If the user hasn't logged activity before, this will assume Stage 1\n- If the user has logged activity and symptoms worsened, they will regress a stage\n- If symptoms are mild but 24h hasn't passed, stay in current stage\n- If mild and 24h passed, progress to next stage\n\nAlways explain:\n- What stage they’re in\n- Why they’re in it (e.g., time since check-in, symptom severity)\n- What to do next (e.g., 'log activity again tomorrow')\n\n🧠 How to communicate results:\n- Provide a brief, clear explanation of the user's current recovery stage (e.g., 'You’re currently in Stage 2 – Light Activity').\n- Be empathetic and reassuring: 'Everyone heals at a different pace. Let’s make sure we’re tracking things properly.'\n- Offer return-to-play guidance: explain what is and isn’t safe right now, based on the stage.\n- Be prepared to answer user questions, like whether they can return to practice or competition.\n- Always remind them: 'I'm not a doctor, but I can help guide you through the structured recovery steps.'",
           "summary_keywords": ["stage", "guidance", "recovery"]
         },
         "requestBody": {
@@ -511,28 +511,7 @@
                     "type": "string",
                     "description": "User ID used in previous logs",
                     "example": "user_abc123"
-                  },
-                  "injury_date": {
-                    "type": "string",
-                    "format": "date",
-                    "description": "Injury date if triage not done",
-                    "example": "2025-05-01"
-                  },
-                  "symptoms": {
-                    "type": "object",
-                    "description": "Dictionary of symptoms and severity if check-in not done",
-                    "example": {
-                      "headache": 5,
-                      "dizziness": 3
-                    }
-                  },
-                  "checkin_time": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "Timestamp of check-in, defaults to now",
-                    "example": "2025-05-15T10:00:00Z"
-                  }
-                }
+                  }                }
               }
             }
           }
