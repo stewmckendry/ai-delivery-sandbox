@@ -691,3 +691,8 @@
   committed_by: GPTPod
   message: Fix export_summary tool to use stage from get_export_bundle instead of
     reinferring it
+- timestamp: '2025-05-15T03:25:19.957236'
+  path: project/task.yaml
+  task_id: fix-export-summary-stage-reference
+  committed_by: GPTPod
+  message: Append output file to fix-export-summary-stage-reference
