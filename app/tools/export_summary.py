@@ -18,11 +18,12 @@ class ExportResponse(BaseModel):
 @router.post("/export_summary", response_model=ExportResponse)
 def export_summary(req: ExportRequest):
     user_id = req.user_id
-    bundle = get_export_bundle(user_id)
-    symptoms = bundle["symptoms"]
-    incident = bundle["incident"]
-    activity = bundle["activity"]
-    stage = bundle["stage"]
+    bundle = get_export_bundle(user_id) or {}
+
+    symptoms = bundle.get("symptoms", [])
+    incident = bundle.get("incident")
+    activity = bundle.get("activity")
+    stage = bundle.get("stage")
 
     db = SessionLocal()
     try:
@@ -37,6 +38,7 @@ def export_summary(req: ExportRequest):
         "activity": activity,
         "stage": stage
     })
+
     fhir = build_fhir_bundle(symptoms, stage, incident, assessment, activity)
 
     return ExportResponse(pdf_url=pdf_url, fhir_bundle=fhir)
