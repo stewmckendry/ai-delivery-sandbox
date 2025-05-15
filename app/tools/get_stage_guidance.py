@@ -10,9 +10,6 @@ router = APIRouter()
 
 class StageGuidanceRequest(BaseModel):
     user_id: str
-    injury_date: str = None
-    symptoms: dict = None
-    checkin_time: str = None
 
 @router.post("/get_stage_guidance", tags=["Assessment"])
 def get_stage_guidance(req: StageGuidanceRequest):
