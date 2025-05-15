@@ -4,7 +4,7 @@ from app.engines.epic_writer import build_fhir_bundle
 from app.engines.pdf_renderer import render_pdf
 from app.db.db_reader import get_export_bundle
 from app.db.db_models import ConcussionAssessment
-from app.engines.stage_engine import infer_stage
+from app.engines.stage_engine import StageEngine
 from app.db.database import SessionLocal
 import uuid
 import os
@@ -56,7 +56,7 @@ def export_summary(req: ExportRequest):
         db.close()
 
     # Infer stage using engine to get full structure
-    stage = infer_stage(user_id)
+    stage = StageEngine().infer_stage(user_id)
 
     pdf_str = render_pdf(user_id, symptoms, stage, incident, activity)
     pdf_url = upload_to_storage(pdf_str)
