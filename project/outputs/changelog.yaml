@@ -18,3 +18,13 @@
   task_id: dashboard_powerbi_setup
   committed_by: ProductPod
   message: Append output file to dashboard_powerbi_setup
+- timestamp: '2025-05-15T16:39:59.138666'
+  path: dashboard/powerbi_queries.sql
+  task_id: dashboard_powerbi_setup
+  committed_by: ProductPod
+  message: Add Power BI SQL queries for key concussion insights
+- timestamp: '2025-05-15T16:39:59.138666'
+  path: project/memory.yaml
+  task_id: dashboard_powerbi_setup
+  committed_by: ProductPod
+  message: Memory update related to dashboard/powerbi_queries.sql
