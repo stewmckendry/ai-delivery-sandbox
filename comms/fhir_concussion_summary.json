@@ -1,0 +1,86 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "code": {
+          "text": "headache"
+        },
+        "valueInteger": 1,
+        "effectiveDateTime": "2025-05-15T00:00:00",
+        "note": []
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "code": {
+          "text": "sadness"
+        },
+        "valueInteger": 1,
+        "effectiveDateTime": "2025-05-15T00:00:00",
+        "note": []
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "code": {
+          "text": "Recovery Stage"
+        },
+        "valueString": "Symptom-Limited Activity",
+        "note": [
+          {
+            "text": "Walking around the house, Light reading, Watching non-stimulating TV, No new or worsening symptoms for at least 24 hours., Can tolerate cognitive and light physical activity without symptom increase."
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "code": {
+          "text": "Concussion Assessment"
+        },
+        "valueString": "Low likelihood",
+        "note": [
+          {
+            "text": "Red flags: []; Moderate symptoms: ['Headache', 'Sadness']"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "code": {
+          "text": "Activity Check-In"
+        },
+        "valueString": "stage_1",
+        "effectiveDateTime": "2025-05-15T00:00:00",
+        "note": [
+          {
+            "text": "No symptom worsening"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "code": {
+          "text": "Incident Report"
+        },
+        "valueString": "He collided with another player in the outfield when they both tried to catch a pop fly",
+        "effectiveDateTime": "2025-05-14T00:00:00",
+        "note": [
+          {
+            "text": "Sport: Baseball, Age: U9"
+          }
+        ]
+      }
+    }
+  ]
+}
