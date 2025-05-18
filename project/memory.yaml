@@ -215,3 +215,15 @@
   - auto
   last_updated: '2025-05-18'
   pod_owner: ''
+- path: project/outputs/1.1_capture_project_goals/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/outputs/1.1_capture_project_goals/chain_of_thought.yaml
+  file_type: yaml
+  description: Document detailing the comprehensive project goals for PolicyCopilot,
+    synthesizing inputs like vision, problem framing, and use cases within the GoC
+    Gating Process.
+  tags:
+  - project-goals
+  - discovery
+  - policycopilot
+  last_updated: '2025-05-18'
+  pod_owner: ResearchPod
