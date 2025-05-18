@@ -14,3 +14,16 @@
   - Embedding test+deploy expectations early improves quality.
   - Strong user journey mapping up front improves schema coherence.
   - Reasoning logs and task lifecycle reduce delivery chaos.
+- message: Finalized and committed ways_of_working.md. The doc now includes clear
+    folder guidance, a practical handoff process, version control clarity, and integration
+    with memory/indexing conventions. It reflects learnings from 15 retrospectives
+    and aligns team expectations for structure and flow. Iterations clarified roles
+    of addendums, version archives, and planning artifacts like user journeys and
+    architecture views.
+  timestamp: '2025-05-18T19:29:14.627996'
+  tags:
+  - ways-of-working
+  - retrospective
+  - process
+  - repo-structure
+  - handoff
