@@ -172,3 +172,14 @@
   - storage
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: project/outputs/framework/define_ways_of_working.md-6f0188/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/outputs/framework/define_ways_of_working.md-6f0188/chain_of_thought.yaml
+  file_type: yaml
+  description: Document outlining improved ways of working based on retrospective
+    analysis, including process insights, repo structure guidance, and delivery practices.
+  tags:
+  - process
+  - repo-structure
+  - delivery
+  last_updated: '2025-05-18'
+  pod_owner: DeliveryPod
