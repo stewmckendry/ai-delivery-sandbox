@@ -210,11 +210,15 @@
 - path: project/discovery/project_goals.md
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/discovery/project_goals.md
   file_type: md
-  description: Fallback summary for project/discovery/project_goals.md
+  description: Document outlining the goals and vision for the PolicyCopilot proof-of-concept,
+    focusing on streamlining government document creation with AI assistance.
   tags:
-  - auto
+  - goals
+  - AI
+  - policy
+  - government
   last_updated: '2025-05-18'
-  pod_owner: ''
+  pod_owner: ResearchPod
 - path: project/outputs/1.1_capture_project_goals/chain_of_thought.yaml
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/outputs/1.1_capture_project_goals/chain_of_thought.yaml
   file_type: yaml
