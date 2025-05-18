@@ -207,3 +207,11 @@
   - goals
   last_updated: '2025-05-18'
   pod_owner: ResearchPod
+- path: project/discovery/project_goals.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/discovery/project_goals.md
+  file_type: md
+  description: Fallback summary for project/discovery/project_goals.md
+  tags:
+  - auto
+  last_updated: '2025-05-18'
+  pod_owner: ''
