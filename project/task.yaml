@@ -123,6 +123,8 @@ tasks:
     assigned_to: unassigned
     instance_of: task_templates/Phase1_discovery/1.1_capture_project_goals/task.yaml
     prompt_used: project/outputs/1.1_capture_project_goals/prompt_used.txt
+    outputs:
+    - project/discovery/project_goals.md
   1.2_define_user_and_delivery_flows:
     description: Define and capture user flows (personas, journeys) and delivery flows
       (SDLC, pods)
