@@ -108,7 +108,7 @@ tasks:
     phase: Phase 1 - Discovery
     category: discovery
     pod_owner: DevPod
-    status: backlog
+    status: in_progress
     prompt: prompts/dev/capture_project_goals.txt
     inputs:
     - docs/project_goals.md
@@ -119,9 +119,10 @@ tasks:
     done: false
     created_by: human
     created_at: '2025-04-26T23:06:52.825512'
-    updated_at: '2025-04-26T23:06:52.825514'
+    updated_at: '2025-05-18T23:07:54.203842'
     assigned_to: unassigned
     instance_of: task_templates/Phase1_discovery/1.1_capture_project_goals/task.yaml
+    prompt_used: project/outputs/1.1_capture_project_goals/prompt_used.txt
   1.2_define_user_and_delivery_flows:
     description: Define and capture user flows (personas, journeys) and delivery flows
       (SDLC, pods)
