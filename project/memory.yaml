@@ -183,3 +183,16 @@
   - delivery
   last_updated: '2025-05-18'
   pod_owner: DeliveryPod
+- path: project/ways_of_working.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/ways_of_working.md
+  file_type: md
+  description: Guidelines and processes for collaborative work in the AI-Delivery
+    Sandbox Project, focusing on team roles, rapid iteration, documentation, and repository
+    structure.
+  tags:
+  - collaboration
+  - workflow
+  - documentation
+  - repository
+  last_updated: '2025-05-18'
+  pod_owner: DeliveryPod
