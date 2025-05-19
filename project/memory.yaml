@@ -289,3 +289,15 @@
   - validation
   last_updated: '2025-05-19'
   pod_owner: QAPod
+- path: project/discovery/acceptance_criteria.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/discovery/acceptance_criteria.md
+  file_type: md
+  description: Document detailing the acceptance criteria for core components of PolicyGPT,
+    ensuring functionality, quality, and usability standards are met.
+  tags:
+  - acceptance_criteria
+  - integration
+  - tools
+  - usability
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
