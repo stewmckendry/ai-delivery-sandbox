@@ -231,3 +231,14 @@
   - policycopilot
   last_updated: '2025-05-18'
   pod_owner: ResearchPod
+- path: project/discovery/policygpt_user_journeys.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/discovery/policygpt_user_journeys.md
+  file_type: md
+  description: Document outlining user personas and journeys for PolicyGPT, detailing
+    roles, needs, pain points, and support provided by the tool.
+  tags:
+  - user journey
+  - personas
+  - flow
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
