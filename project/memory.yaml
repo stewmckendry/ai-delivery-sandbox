@@ -472,3 +472,15 @@
   - PolicyGPT
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/outputs/2.2_build_and_patch/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/outputs/2.2_build_and_patch/prompt_used.txt
+  file_type: txt
+  description: Details the implementation steps for the PolicyGPT system, including
+    API endpoints, session management, and document flow.
+  tags:
+  - implementation
+  - PolicyGPT
+  - flow
+  - DevPod
+  last_updated: '2025-05-19'
+  pod_owner: DevPod
