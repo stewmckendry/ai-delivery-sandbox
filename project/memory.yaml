@@ -314,3 +314,17 @@
   - quality
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/system_design/system_architecture.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/system_architecture.md
+  file_type: md
+  description: This document outlines the high-level system architecture for PolicyGPT,
+    detailing the integration of frontend and backend components, data flow, and OpenAPI
+    tooling, with a focus on user interaction, document management, and knowledge
+    base integration.
+  tags:
+  - architecture
+  - flow
+  - integration
+  - backend
+  last_updated: '2025-05-19'
+  pod_owner: DevPod
