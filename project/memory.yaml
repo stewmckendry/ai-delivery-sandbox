@@ -341,3 +341,16 @@
   - process
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/system_design/db_schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/db_schema_notes.md
+  file_type: md
+  description: This file contains detailed notes on the database schema for the PolicyGPT
+    platform, including definitions and purposes of various data models and entities,
+    as well as their storage and indexing strategies.
+  tags:
+  - db_schema
+  - data_model
+  - backend
+  - documentation
+  last_updated: '2025-05-19'
+  pod_owner: DevPod
