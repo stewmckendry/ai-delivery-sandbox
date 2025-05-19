@@ -195,6 +195,8 @@ tasks:
     assigned_to: unassigned
     instance_of: task_templates/Phase1_discovery/1.4_write_acceptance_criteria/task.yaml
     prompt_used: project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+    outputs:
+    - project/discovery/acceptance_criteria.md
   1.5_research_spikes:
     description: Investigate and document unresolved questions, unknowns, or tool
       comparisons
