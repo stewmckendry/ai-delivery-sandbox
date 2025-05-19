@@ -149,6 +149,8 @@ tasks:
     updated_at: '2025-04-26T23:06:52.824304'
     assigned_to: unassigned
     instance_of: task_templates/Phase1_discovery/1.2_define_user_flows/task.yaml
+    outputs:
+    - project/discovery/policygpt_user_journeys.md
   1.3_break_into_features:
     description: Analyze project scope and break it into features, experiments, or
       hypotheses
