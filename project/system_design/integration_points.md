@@ -1,6 +1,6 @@
 ---
 
-## title: Integration Points
+## Integration Points
 
 ## Overview
 
@@ -8,15 +8,14 @@ This document outlines how various system components—GPT, FastAPI tools, datab
 
 ## Integration Overview Table
 
-| Component     | Connects To         | Method             | Fallbacks / Resilience      |
-| ------------- | ------------------- | ------------------ | --------------------------- |
-| GPT Agent     | FastAPI Tools       | OpenAPI tool calls | Retry with default payloads |
-| FastAPI Tools | PostgreSQL DB       | SQLAlchemy ORM     | Local cache + error log     |
-| FastAPI Tools | Google Drive API    | REST API + OAuth   | Local save + retry          |
-| FastAPI Tools | Airtable API        | REST API + API key | Cached reference files      |
-| FastAPI Tools | ChromaDB (KB)       | Python SDK         | Fallback to file search     |
-| FastAPI Tools | External Web Search | REST call          | Notify user + skip fallback |
-
+| Component     | Connects To         | Method             | Fallbacks / Resilience       |
+| ------------- | ------------------- | ------------------ | ---------------------------- |
+| GPT Agent     | FastAPI Tools       | OpenAPI tool calls | Retry with default payloads  |
+| FastAPI Tools | PostgreSQL DB       | SQLAlchemy ORM     | Local cache + error log      |
+| FastAPI Tools | Google Drive API    | REST API + OAuth   | Local save + retry           |
+| FastAPI Tools | Airtable API        | REST API + API key | Cached reference files       |
+| FastAPI Tools | ChromaDB (KB)       | Python SDK         | Fallback to file search      |
+| FastAPI Tools | External Web Search | REST call          | Notify user + skip fallback  |
 ---
 
 ## Interface Contracts
@@ -216,13 +215,10 @@ Each integration directly maps to features and A/Cs:
 
 
 
-Next Steps
+## Next Steps
 
 - Add retry queue per tool with alerts
-
 - Map external service dependencies with latency thresholds
-
 - Add Swagger test scaffolds to each integration call
-
 
 ##
