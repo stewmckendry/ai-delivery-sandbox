@@ -446,3 +446,16 @@
   - PoC
   last_updated: '2025-05-19'
   pod_owner: ResearchPod
+- path: project/system_design/gating_doc_quality.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/gating_doc_quality.md
+  file_type: md
+  description: Document outlining the system design approach for generating high-quality
+    documentation suitable for Government of Canada approvals, addressing challenges
+    like over-summarization and traceability gaps.
+  tags:
+  - system_design
+  - quality
+  - documentation
+  - config
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
