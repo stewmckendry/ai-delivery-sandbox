@@ -301,3 +301,16 @@
   - usability
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/build/acceptance_criteria.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/acceptance_criteria.md
+  file_type: md
+  description: This document outlines the acceptance criteria for the core components
+    of PolicyGPT, detailing the requirements for functionality, quality, traceability,
+    and usability across various tools and integrations.
+  tags:
+  - acceptance_criteria
+  - integration
+  - usability
+  - quality
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
