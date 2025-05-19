@@ -242,3 +242,16 @@
   - flow
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/build/PolicyGPT_Features.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/PolicyGPT_Features.md
+  file_type: md
+  description: Document detailing the functional and technical components required
+    for implementing PolicyGPT, including foundational work packages, user-facing
+    tools, and their mapping to user journeys.
+  tags:
+  - features
+  - implementation
+  - documentation
+  - integration
+  last_updated: '2025-05-19'
+  pod_owner: ResearchPod
