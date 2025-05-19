@@ -354,3 +354,16 @@
   - documentation
   last_updated: '2025-05-19'
   pod_owner: DevPod
+- path: project/system_design/tool_catalog.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/tool_catalog.md
+  file_type: md
+  description: Catalog of tools available for the GPT agent and backend API, detailing
+    their functions, inputs/outputs, implementation, and invocation contexts for PolicyGPT
+    tasks.
+  tags:
+  - tools
+  - API
+  - PolicyGPT
+  - documentation
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
