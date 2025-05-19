@@ -393,3 +393,16 @@
   - fallback
   last_updated: '2025-05-19'
   pod_owner: DevPod
+- path: project/system_design/error_handling_matrix.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/error_handling_matrix.md
+  file_type: md
+  description: Document detailing error detection, categorization, logging, and resolution
+    strategies for the PolicyGPT system, including mitigation patterns and fallback
+    strategies across various system layers.
+  tags:
+  - error_handling
+  - system_design
+  - logging
+  - fallback
+  last_updated: '2025-05-19'
+  pod_owner: DevPod
