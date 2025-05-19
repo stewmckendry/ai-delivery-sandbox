@@ -267,3 +267,14 @@
   - user-journey
   last_updated: '2025-05-19'
   pod_owner: ResearchPod
+- path: project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/outputs/1.4_write_acceptance_criteria/prompt_used.txt
+  file_type: txt
+  description: Document detailing the prompt used for writing acceptance criteria
+    in task 1.4
+  tags:
+  - prompt
+  - acceptance_criteria
+  - documentation
+  last_updated: '2025-05-19'
+  pod_owner: QAPod
