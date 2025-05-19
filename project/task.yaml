@@ -285,7 +285,7 @@ tasks:
     phase: Phase 2 - Development
     category: dev
     pod_owner: DevPod
-    status: backlog
+    status: in_progress
     prompt: prompts/dev/2.2_build_and_patch.txt
     inputs:
     - docs/specs/spec_<feature_id>.md
@@ -301,9 +301,10 @@ tasks:
     done: false
     created_by: human
     created_at: '2025-04-26T23:06:52.858960'
-    updated_at: '2025-04-26T23:06:52.858974'
+    updated_at: '2025-05-19T17:42:50.163386'
     assigned_to: unassigned
     instance_of: task_templates/Phase2_development/2.2_build_feature/task.yaml
+    prompt_used: project/outputs/2.2_build_and_patch/prompt_used.txt
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
