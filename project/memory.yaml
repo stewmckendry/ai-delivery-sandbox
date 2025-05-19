@@ -278,3 +278,14 @@
   - documentation
   last_updated: '2025-05-19'
   pod_owner: QAPod
+- path: project/outputs/1.4_write_acceptance_criteria/chain_of_thought.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/outputs/1.4_write_acceptance_criteria/chain_of_thought.yaml
+  file_type: yaml
+  description: Document detailing the process and considerations for drafting acceptance
+    criteria for features, focusing on observable outcomes and validation.
+  tags:
+  - acceptance-criteria
+  - features
+  - validation
+  last_updated: '2025-05-19'
+  pod_owner: QAPod
