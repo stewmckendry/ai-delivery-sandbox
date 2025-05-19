@@ -1,0 +1,350 @@
+Gate 0: 
+  name: "Verify Business Problem or Opportunity (Pre-Project)"
+  decision: "Proceed with developing a preliminary business case and identifying solution options:contentReference[oaicite:2]{index=2}."
+  artifacts:
+    - name: "Investment Proposal (Concept Case)"
+      required: true
+      purpose: "Articulate the business problem or opportunity and justify further exploration."
+      definition: "A brief initial document outlining the issue/opportunity, its context, and the desired outcomes at a high level."
+      evidence_role: "Basis for go/no-go decision to develop a business case:contentReference[oaicite:3]{index=3}."
+      evaluation_criteria:
+        - "Is the problem or opportunity clearly defined and worth pursuing now?:contentReference[oaicite:4]{index=4}"
+        - "Is it aligned with departmental strategic objectives and GoC priorities?:contentReference[oaicite:5]{index=5}"
+      template_link: "N/A (typically an informal concept brief; no standard TBS template)."
+      sections: ["Problem Statement", "Background/Context", "Desired Outcomes", "Preliminary Benefits", "Strategic Alignment"]
+      user_inputs: ["Description of the problem/opportunity", "Strategic context", "Preliminary idea of benefits"]
+      maturity: "Concept stage (rough outline of need and value, minimal detail)."
+
+Gate 1:
+  name: "Validate Business Justification and Select Short List of Options"
+  decision: "Analyze feasibility of options and identify a preferred shortlist for further development:contentReference[oaicite:6]{index=6}."
+  artifacts:
+    - name: "Business Case (Preliminary)"
+      required: true
+      purpose: "Establish the initial business justification and feasible options."
+      definition: "A high-level business case outlining the business need, strategic fit, and a **long list of options** narrowed to a short list:contentReference[oaicite:7]{index=7}."
+      evidence_role: "Provides justification and options analysis to support Gate 1 decision:contentReference[oaicite:8]{index=8}."
+      evaluation_criteria:
+        - "Does the business justification provide enough substantiation to proceed?:contentReference[oaicite:9]{index=9}"
+        - "Has a short list of viable options been identified from the long list?:contentReference[oaicite:10]{index=10}"
+      template_link: "TBS Business Case Template (RTF):contentReference[oaicite:11]{index=11} – use for structure; content here is preliminary."
+      sections: ["Executive Summary", "Business Need/Opportunity", "Strategic Alignment", "Options Considered (Long List)", "Preliminary Options Analysis (Short List)", "Preliminary Costs and Benefits", "Initial Risks"]
+      user_inputs: ["Problem statement and outcomes", "List of all considered options", "Rough cost estimates and benefits for each option", "Key assumptions and constraints"]
+      maturity: "Preliminary (high-level estimates, qualitative analysis)."
+
+    - name: "Project Charter (Preliminary)"
+      required: true
+      purpose: "Formally authorize the project initiation and define its broad parameters."
+      definition: "A preliminary project charter covering the project’s scope, objectives, stakeholders, and governance at a high level:contentReference[oaicite:12]{index=12}:contentReference[oaicite:13]{index=13}."
+      evidence_role: "Sets out project scope and governance to inform Gate 1 decision (ensures project is defined and has sponsorship)."
+      evaluation_criteria:
+        - "*Key elements:* Does the project have a defined sponsor and governance structure?:contentReference[oaicite:14]{index=14}:contentReference[oaicite:15]{index=15}"
+        - "(Although not explicitly listed in Gate 1 criteria, a clear charter helps confirm roles & commitments.)"
+      template_link: "TBS Project Charter Template (2008):contentReference[oaicite:16]{index=16} (e.g., via NPMS)."
+      sections: ["Document Control & Approvals", "Executive Summary", "Project Objectives and Scope", "Major Deliverables & Milestones", "High-Level Timeline", "Preliminary Budget Estimate", "Key Stakeholders", "Governance and Roles/Responsibilities"]
+      user_inputs: ["Project objective and scope description", "High-level deliverables/milestones", "Initial budget estimate", "Names of sponsor, project manager, key team members", "Governance committee info"]
+      maturity: "Preliminary (some sections may be draft or placeholders; scope and costs are high-level)."
+
+Gate 2:
+  name: "Approve Preferred Option and Approach"
+  decision: "Decide on proceeding with the **preferred option** based on a detailed justification:contentReference[oaicite:17]{index=17}."
+  artifacts:
+    - name: "Business Case (Detailed)"
+      required: true
+      purpose: "Present a full analysis of the preferred option vs alternatives, to seek formal project approval."
+      definition: "A comprehensive business case document covering detailed analysis of shortlisted options and a recommended solution, with full cost-benefit and risk analysis:contentReference[oaicite:18]{index=18}."
+      evidence_role: "Key document for Gate 2 decision; used to justify the recommended option on its merits:contentReference[oaicite:19]{index=19}."
+      evaluation_criteria:
+        - "Which option is recommended and why is it better than the others?:contentReference[oaicite:20]{index=20}"
+        - "Does the cost-benefit analysis justify the investment?:contentReference[oaicite:21]{index=21}"
+        - "Are risks, complexity, and stakeholder considerations well understood and managed?:contentReference[oaicite:22]{index=22}"
+      template_link: "TBS Business Case Template + Guide:contentReference[oaicite:23]{index=23}:contentReference[oaicite:24]{index=24}."
+      sections: ["Executive Summary", "Strategic Context (Alignment to GC priorities):contentReference[oaicite:25]{index=25}", "Problem/Opportunity Definition", "Options Analysis (including Status Quo and other alternatives):contentReference[oaicite:26]{index=26}", "Preferred Option Description", "Cost and Benefit Analysis (full life-cycle costs):contentReference[oaicite:27]{index=27}", "Risk Assessment and Mitigation Plan", "Implementation Approach", "Performance Measurement/Benefits Realization Strategy", "Conclusion/Recommendation"]
+      user_inputs: ["Updated problem and context details", "Detailed description of each shortlisted option", "Quantitative cost estimates and benefit projections", "Risk register or summary of key risks", "Justification for the recommended option"]
+      maturity: "Detailed (fully fleshed out, suitable for Treasury Board or senior approval)."
+
+    - name: "Benefits Realization Plan (Initial)"
+      required: yes
+      purpose: "Define how the project’s benefits will be tracked and realized over time."
+      definition: "An initial plan outlining expected benefits, performance indicators, and how/when benefits will be measured and realized throughout and after the project."
+      evidence_role: "Supports whether the investment’s expected outcomes are clearly defined and will be managed:contentReference[oaicite:28]{index=28}."
+      evaluation_criteria:
+        - "Are the expected outcomes and benefits clearly articulated and measurable?【45†L146-154】"
+        - "Is there a plan to ensure benefits align with GC strategic objectives and will be realized?【45†L139-148】:contentReference[oaicite:30]{index=30}"
+      template_link: "GC Outcomes Management Guide (if available) or departmental template."
+      sections: ["Outcome Definitions", "Performance Indicators/Targets", "Benefit Owners (who is accountable for each benefit)", "Measurement Method and Frequency", "Benefit Realization Schedule"]
+      user_inputs: ["List of intended benefits and how they tie to organizational objectives:contentReference[oaicite:31]{index=31}", "Metrics for each benefit", "Timeline for benefit realization (e.g. during project vs post-project)"]
+      maturity: "Initial (framework of benefits tracking, to be refined as project planning progresses)."
+
+    - name: "Project Charter (Final Draft)"
+      required: optional (if not finalized at Gate 1)
+      purpose: "Update/confirm the project’s formal charter now that the preferred solution is known."
+      definition: "If the preliminary charter from Gate 1 needs refinement (e.g. updated scope, budget, schedule after option selection), a final charter version is prepared. It documents the agreed scope, objectives, high-level plan, and authorities for the chosen option."
+      evidence_role: "Confirms governance and accountability for the chosen project path:contentReference[oaicite:32]{index=32}."
+      evaluation_criteria:
+        - "Are clear roles (Sponsor, PM, etc.) assigned for the project’s execution?:contentReference[oaicite:33]{index=33}"
+        - "Has governance been updated to support the preferred option (e.g. new stakeholders or partners)?"
+      template_link: "TBS Project Charter Template (2008):contentReference[oaicite:34]{index=34}."
+      sections: "(Same as Gate 1 charter, but refined) – *notably:* updated scope definition for chosen solution, updated cost/time estimates, and reconfirmed governance & sign-off."
+      user_inputs: ["Revised scope and deliverables per chosen option", "Updated high-level schedule and budget", "Any new stakeholders or roles introduced"]
+      maturity: "Finalized (charter ready for formal approval, if not already signed off)."
+
+    - name: "Project Gating Plan"
+      required: yes
+      purpose: "Outline the project’s specific gating review schedule and independent review plan."
+      definition: "A plan that lists all the planned gate reviews for the project, the timing (milestones) for each, and the evidence required at each gate. (Often included within the Project Management Plan or governance strategy.)"
+      evidence_role: "Demonstrates that a structured oversight plan is in place as per TBS gating requirements:contentReference[oaicite:35]{index=35}:contentReference[oaicite:36]{index=36}."
+      evaluation_criteria:
+        - "Is there a clear plan for ongoing gate reviews and oversight throughout the project?"
+        - "Does the gating plan align with departmental gating model and risk level of the project?"
+      template_link: "Sample Gating Plan Template (from TBS Guide Appendix A):contentReference[oaicite:37]{index=37}."
+      sections: ["Gate Schedule (list gates 0–5 and approximate dates/milestones)", "Key Decision at Each Gate", "Required Artifacts per Gate", "Planned Independent Reviews (if any, e.g. IV&V at certain gates)"]
+      user_inputs: ["Project timeline/milestones for major phases", "Department’s standard gate model (to align naming and count)", "Any additional reviews needed (security, privacy, etc.)"]
+      maturity: "Baseline (established before execution, to be updated if project changes)."
+
+    - name: "Project Management Plan (High-Level)"
+      required: yes
+      purpose: "Provide an initial high-level plan for executing the project (scope, schedule, resources, etc.) to support the chosen option."
+      definition: "A **high-level Project Management Plan (PMP)** outlining how the project will be managed. At Gate 2, this may be a summary or framework covering major elements: work breakdown structure, timeline, organizational structure, and management strategies for scope, time, cost, quality, risk, procurement, and communications."
+      evidence_role: "Shows that a viable approach exists for implementing the project (feasibility of delivering the preferred option):contentReference[oaicite:38]{index=38}."
+      evaluation_criteria:
+        - "Has a project plan with key milestones and cost estimates been developed?:contentReference[oaicite:39]{index=39}"
+        - "Have clear roles and accountabilities been assigned for project execution?:contentReference[oaicite:40]{index=40}"
+      template_link: "No single template (use PMI/PRINCE2-aligned structures; departmental PM methodologies)."
+      sections: ["Project Scope Statement", "Work Breakdown Structure (major work packages)", "Milestone Schedule", "Organization and Staffing Plan", "Initial Resource and Cost Estimates", "Risk Management Strategy (overview)", "Procurement Strategy (overview)", "Communication Plan (overview)"]
+      user_inputs: ["Decomposed scope (major deliverables/work packages)", "Preliminary timeline or Gantt chart of phases", "Initial org chart or team roles needed", "High-level resource requirements and spending plan"]
+      maturity: "High-level (not fully detailed; provides planning framework to be detailed after funding)."
+
+    - name: "Procurement Plan (Preliminary)"
+      required: conditional (if project involves significant procurement)
+      purpose: "Outline how products/services will be acquired to implement the project."
+      definition: "An initial procurement strategy identifying what acquisitions are needed (contracts, equipment, etc.), potential sourcing strategies (e.g. RFP, standing offers), and timelines."
+      evidence_role: "Ensures the preferred option is supported by a realistic procurement approach:contentReference[oaicite:41]{index=41}."
+      evaluation_criteria:
+        - "Is the procurement plan realistic and aligned with the project schedule?:contentReference[oaicite:42]{index=42}"
+        - "Have procurement risks or lead times been considered?"
+      template_link: "Departmental procurement plan template or PSPC guide (if available)."
+      sections: ["Items/Services to Procure", "Procurement Strategy (methods, e.g. competitive vs sole-source)", "Major Contracting Milestones", "Dependencies/Lead Times", "Contract Management Approach"]
+      user_inputs: ["List of major items or services needed", "Preferred procurement approach for each (with justification)", "Estimated timelines for procurement processes"]
+      maturity: "Preliminary (conceptual plan, subject to change as details firm up)."
+
+    - name: "Project Complexity and Risk Assessment (PCRA) – Preliminary"
+      required: yes (for GoC projects requiring TB approval)
+      purpose: "Assess the project’s complexity and risk level according to TBS criteria."
+      definition: "The standardized PCRA evaluation, initially completed with preliminary data. It yields a rating (low/medium/high/very high) across various dimensions (project size, risk, complexity) that influences oversight requirements."
+      evidence_role: "Provides an objective risk rating to determine governance and approval needs (e.g., TB approval thresholds). Often required in Treasury Board submissions."
+      evaluation_criteria:
+        - "Has the project’s risk level been assessed and is the governance commensurate with that risk?:contentReference[oaicite:43]{index=43}"
+        - "Are mitigation strategies in place for high-risk aspects identified?"
+      template_link: "TBS PCRA Questionnaire/Tool."
+      sections: ["PCRA Summary (overall score/category)", "Scoring by Dimension (Schedule, Technical, Organizational, etc.)", "Key Risk Drivers Noted", "Implications for Oversight (e.g. Gate frequency, review requirements)"]
+      user_inputs: ["Inputs to PCRA questionnaire (project size, novelty, dependencies, etc.)"]
+      maturity: "Preliminary (initial assessment, to be updated as project details solidify)."
+
+Gate 3:
+  name: "Fund Project Deliverables (Project Approval)"
+  decision: "Formal approval of project funding and authority to execute, based on detailed plans and readiness to proceed:contentReference[oaicite:44]{index=44}."
+  artifacts:
+    - name: "Business Case (Updated)"
+      required: true
+      purpose: "Revalidate the business case assumptions and costs just before funding commitment."
+      definition: "An updated version of the detailed business case, reflecting any changes or new information (e.g. refined cost estimates, updated benefits) prior to seeking funding. It should still demonstrate that the investment is sound."
+      evidence_role: "Confirms the business case is still valid and robust in light of detailed planning and risk assessment:contentReference[oaicite:45]{index=45}."
+      evaluation_criteria:
+        - "Is the project still viable given the detailed project plan and any changes?:contentReference[oaicite:46]{index=46}"
+        - "Does the business case hold up in light of identified risks and updated costs?:contentReference[oaicite:47]{index=47}"
+      template_link: "TBS Business Case Template (same as Gate 2) – updated data."
+      sections: "(Same as detailed business case sections, updated) – e.g. revised cost tables, refined benefits, any changes to recommended approach or scope."
+      user_inputs: ["Finalized costs (e.g. from vendor bids or refined estimates)", "Updated risk status", "Any condition or change since Gate 2"]
+      maturity: "Baseline Final (forms the basis for funding approval)."
+
+    - name: "Benefits Realization Plan (Updated)"
+      required: true
+      purpose: "Refine and baseline the benefits plan now that project is approved, for tracking going forward."
+      definition: "An updated benefits plan with finalized performance measures and target values, reflecting the approved project’s scope and timeline."
+      evidence_role: "Assures decision-makers that mechanisms are in place to realize and measure benefits:contentReference[oaicite:48]{index=48}."
+      evaluation_criteria:
+        - "Are benefit targets and owners confirmed prior to project execution?:contentReference[oaicite:49]{index=49}:contentReference[oaicite:50]{index=50}"
+        - "Have any changes in expected benefits (since initial plan) been accounted for?"
+      template_link: "Outcome Management Strategy (if TBS guide available)."
+      sections: "(Same as initial benefits plan sections, with any target updates and a schedule for post-project benefit reviews)"
+      user_inputs: ["Confirmed benefit metrics and baseline measurements", "Assignment of benefit realization responsibility (who will track benefits post-project)"]
+      maturity: "Baseline (to be used for monitoring benefits through project and after closure)."
+
+    - name: "Project Gating Plan (Final)"
+      required: yes
+      purpose: "Finalize the gating and oversight plan now that project schedules and milestones are firm."
+      definition: "The project’s finalized gating schedule, updated with actual dates/milestones tied to the now-approved project plan. It may include scheduling of independent reviews (e.g. third-party reviews at certain gates)."
+      evidence_role: "Ensures continued oversight: the project has integrated the gating checkpoints into its execution plan:contentReference[oaicite:51]{index=51}."
+      evaluation_criteria:
+        - "Does the gating plan reflect the project’s execution timeline and risk (e.g., more frequent checkpoints if high risk)?"
+        - "Have independent review points been planned as required by TBS or department?"
+      template_link: "Sample Gating Plan (TBS Appendix A) – updated with project specifics."
+      sections: "(Same as Gate 2 gating plan, updated dates and any added review details)"
+      user_inputs: ["Approved schedule milestones for each gate", "Scheduling with review committees or independent reviewers"]
+      maturity: "Final (committed oversight schedule)."
+
+    - name: "Project Management Plan (Detailed PMP)"
+      required: true
+      purpose: "Serve as the **master plan** for executing and controlling the project."
+      definition: "A comprehensive and integrated Project Management Plan covering all aspects of project execution: scope baseline, detailed schedule, cost baseline, resource plan, quality, communications, risk management, procurement, and change control processes."
+      evidence_role: "Demonstrates that the project is fully planned out and ready for execution – a prerequisite to release funding:contentReference[oaicite:52]{index=52}."
+      evaluation_criteria:
+        - "Do the detailed schedule and budget seem reasonable for delivering the scope?:contentReference[oaicite:53]{index=53}"
+        - "Are project governance, resources, and risk responses in place for execution?:contentReference[oaicite:54]{index=54}:contentReference[oaicite:55]{index=55}"
+      template_link: "Departmental PMP template or PMBOK-aligned plan format."
+      sections: ["Scope Management Plan (final scope statement, WBS, deliverables)", "Schedule (detailed timeline/Gantt with milestones):contentReference[oaicite:56]{index=56}", "Cost Management Plan (budget baseline, funding profile)", "Resource Management Plan (team roles, staffing and contract resources plan)", "Quality Management Plan (standards and acceptance criteria)", "Risk Management Plan (risk register, mitigations, contingency plans)", "Procurement Plan (detailed, if applicable, or reference updated procurement strategy)", "Communications Plan (stakeholder communications matrix and schedule)", "Change Control Process (how scope/schedule changes will be handled during the project)"]
+      user_inputs: ["WBS and task list", "Detailed timeline (possibly from scheduling tool)", "Detailed budget breakdown", "Resource assignments", "Identified risks with mitigation strategies"]
+      maturity: "Detailed (fully developed baseline plan at project start, to be maintained)."
+
+    - name: "Transition Plan (Preliminary)"
+      required: conditional (if project will deliver a new service/system)
+      purpose: "Prepare for transitioning project outputs into operational service."
+      definition: "An initial plan for implementing the change: outlines how the new solution will be deployed, how business operations will switch from old to new (cutover), and any interim arrangements."
+      evidence_role: "Shows forethought about deployment and operational readiness as funding is approved:contentReference[oaicite:57]{index=57}."
+      evaluation_criteria:
+        - "Is there a high-level transition and change management strategy in place?:contentReference[oaicite:58]{index=58}"
+        - "Have operational requirements (training, support) been considered prior to implementation?"
+      template_link: "Transition-to-Operations Plan template (if available via CIOB or departmental)."
+      sections: ["Overview of Transition Approach", "Impacted Systems/Processes", "Deployment Strategy (phases, pilot, cutover plan)", "Data Migration Plan (if applicable)", "Training Plan (reference to Change Management Plan)", "Support and Maintenance Setup", "Fallback/Contingency Plan"]
+      user_inputs: ["Summary of how new capabilities will be rolled out", "Identification of legacy systems or processes to retire", "Plan for user training and support during transition"]
+      maturity: "Preliminary (to be detailed closer to implementation)."
+
+    - name: "Procurement Plan (Updated)"
+      required: conditional (if procurement is part of project)
+      purpose: "Finalize procurement details now that project funding is approved."
+      definition: "An updated version of the procurement plan, with finalized procurement schedules, selected procurement vehicles, and any tender documents prepared or in progress."
+      evidence_role: "Ensures no procurement obstacles will derail project execution; aligns contracts with project plan:contentReference[oaicite:59]{index=59}."
+      evaluation_criteria:
+        - "Are all necessary contracts planned/signed to support the project timeline?:contentReference[oaicite:60]{index=60}"
+        - "Have procurement risks (vendor delays, etc.) been mitigated or accounted for?"
+      template_link: "N/A (department-specific)."
+      sections: "(Same as preliminary procurement plan, with specifics updated e.g. contract values, timelines, vendor names if known)"
+      user_inputs: ["Actual procurement results or updated timelines (e.g. if RFP is completed or in progress)"]
+      maturity: "Finalized (all major acquisitions underway or scheduled)."
+
+    - name: "Project Complexity and Risk Assessment (PCRA) – Updated"
+      required: yes
+      purpose: "Re-assess the project complexity/risk after planning to confirm its category."
+      definition: "Updated PCRA reflecting any changes from preliminary stage (e.g. refined scope could increase or reduce risk score). The updated rating ensures appropriate oversight (if risk increased, possibly more scrutiny)."
+      evidence_role: "Validates that the project’s risk profile is understood at time of funding. If high or very high, certain TBS requirements (like active monitoring, more frequent gates) kick in."
+      evaluation_criteria:
+        - "Has the PCRA been updated and does it confirm the gating and approval approach is still appropriate?"
+        - "If risk rating changed, have additional controls been put in place?"
+      template_link: "TBS PCRA Tool (updated results)."
+      sections: "(Same as preliminary PCRA, updated scores with final inputs)"
+      user_inputs: ["Any new information for PCRA inputs (e.g. confirmed project budget, timelines, complexity factors)"]
+      maturity: "Updated (final baseline for risk category)."
+
+Gate 4:
+  name: "Confirm Readiness for Service (Pre-Implementation)"
+  decision: "Verify the project outputs (deliverables) are complete and the organization is ready to transition to operations:contentReference[oaicite:61]{index=61}."
+  artifacts:
+    - name: "Business Case (Updated/Validated)"
+      required: true
+      purpose: "Reconfirm project viability and outcomes before go-live."
+      definition: "A final check of the business case – by this stage, most project costs have been incurred, but benefits and outcome expectations are revisited to ensure the project is still on track to deliver value."
+      evidence_role: "Provides assurance that, even at the end of build phase, the rationale for the project remains sound (no major changes that would undermine the original justification)."
+      evaluation_criteria:
+        - "Do the intended benefits remain attainable and aligned to strategic objectives?:contentReference[oaicite:62]{index=62}"
+        - "Is the project output still expected to deliver the outcomes in the business case? (No scope creep that voids original benefits.)"
+      template_link: "Business Case document (same as before, updated if necessary)."
+      sections: "(Primarily the benefits/outcomes sections and cost sections might be updated with any new info, plus noting any changes or conditions since funding approval.)"
+      user_inputs: ["Any changes in scope or external factors affecting benefits", "Interim performance metrics if available (e.g. early test results)"]
+      maturity: "Validated (should match what was promised, or explain deviations)."
+
+    - name: "Project Charter (Updated)"
+      required: yes
+      purpose: "Update the charter if any fundamental changes occurred (scope, timelines) before transition."
+      definition: "The charter is revisited to document final scope delivered, final budget spent, and any changes in authority or responsibilities as the project moves to operations. Essentially a reconciliation of what was planned vs what was delivered, for governance records."
+      evidence_role: "Ensures all stakeholders (sponsor, operations owner) formally agree that the project outputs meet the charter and are ready to be accepted."
+      evaluation_criteria:
+        - "Has the business owner agreed to accept the project outputs?:contentReference[oaicite:63]{index=63}"
+        - "Are accountabilities for post-project operations clearly assigned?:contentReference[oaicite:64]{index=64}"
+      template_link: "Project Charter document (with addendum or version update)."
+      sections: ["Updated Executive Summary (highlight if objectives met)", "Final Scope Delivered vs. Original Scope", "Final Schedule and Cost vs. Baseline", "Acceptance by Operations/Business Owner", "Roles and Responsibilities for ongoing operations (who takes over asset)"]
+      user_inputs: ["Summary of any scope changes approved", "Final actual cost and timeline", "Name of operational owner taking responsibility going forward"]
+      maturity: "Final (project closure state in charter form)."
+
+    - name: "Benefits Realization Plan (Revised/Final Pre-Launch)"
+      required: true
+      purpose: "Ensure benefit tracking mechanisms are in place as the solution goes live."
+      definition: "A revised benefits plan reflecting any changes in expected benefits or timing. It should include concrete plans for post-implementation benefit reviews (when, how to measure)."
+      evidence_role: "Confirms that upon deploying the project, there is a clear plan to realize and measure the intended benefits:contentReference[oaicite:65]{index=65}."
+      evaluation_criteria:
+        - "Have benefits to date been identified (if any interim benefits realized)?:contentReference[oaicite:66]{index=66}"
+        - "Is accountability for ongoing benefits management assigned?:contentReference[oaicite:67]{index=67}"
+      template_link: "Outcome Management Plan."
+      sections: "(Same structure as earlier benefits plan, updated with any new timelines or responsibilities now that we’re at deployment)"
+      user_inputs: ["Actual benefits realized during project (if any quick wins)", "Schedule for future benefits review (e.g. 6 months and 1 year post-implementation)"]
+      maturity: "Finalized for transition (becomes responsibility of operations/benefit owner post-project)."
+
+    - name: "Transition Plan (Detailed)"
+      required: yes
+      purpose: "Lay out the detailed steps to move from project mode to operational mode."
+      definition: "A comprehensive implementation plan for rolling out the new product/service into the live environment. Includes tasks for cutover, data migration, user training, support arrangements, and decommissioning of old systems (if applicable)."
+      evidence_role: "Core evidence that the organization is **ready for service** – all activities for a smooth transition are planned:contentReference[oaicite:68]{index=68}."
+      evaluation_criteria:
+        - "Is the system or output complete and tested, with plans to address any open issues?:contentReference[oaicite:69]{index=69}"
+        - "Are new processes in place, users trained, and support ready for go-live?:contentReference[oaicite:70]{index=70}"
+        - "Will the existing service remain until the new one is confirmed stable?:contentReference[oaicite:71]{index=71}"
+      template_link: "Deployment/Transition Plan template (departmental)."
+      sections: ["Go-Live Readiness Checklist (criteria to declare readiness)", "Testing Summary and Results:contentReference[oaicite:72]{index=72}", "Data Migration Activities", "Training Completed:contentReference[oaicite:73]{index=73}", "Operational Support Arrangements (helpdesk, maintenance)", "Communication Plan for Launch (user comms, stakeholders)", "Roll-back Plan or Contingencies", "Decommissioning Plan for legacy (if applicable):contentReference[oaicite:74]{index=74}"]
+      user_inputs: ["Summary of test results (UAT, etc.)", "Confirmation of support team readiness", "Schedule of deployment events (dates/times)", "List of stakeholders to notify at launch"]
+      maturity: "Detailed (ready to execute the cutover)."
+
+    - name: "Risk Management Plan (Current)"
+      required: yes
+      purpose: "Document the current risk status and remaining risks during transition to operations."
+      definition: "An updated risk register or risk management document focusing on transition and early operations. It lists any open project risks and new risks related to deploying and operating the solution."
+      evidence_role: "Shows that risks are under control and no show-stoppers exist before go-live:contentReference[oaicite:75]{index=75}."
+      evaluation_criteria:
+        - "Do any requirements or issues remain open, and is there a plan to address them?:contentReference[oaicite:76]{index=76}"
+        - "Have all high risks been mitigated or have contingency plans?:contentReference[oaicite:77]{index=77}"
+      template_link: "Risk Register (Excel or tool) or departmental risk log template."
+      sections: ["Open Risks Summary", "Mitigation Actions Completed", "New Risks for Transition/Operations", "Contingency Plans and Triggers"]
+      user_inputs: ["List of any unresolved issues or risks", "Mitigation action owners for remaining risks", "New operational risks identified (e.g. user adoption issues)"]
+      maturity: "Current (living document up to deployment day; handed over to operations for ongoing risks)."
+
+Gate 5:
+  name: "Complete Project and Post-Implementation Review (Close-Out)"
+  decision: "Formally close out the project, hand off to operations, and conduct a post-implementation review (PIR):contentReference[oaicite:78]{index=78}."
+  artifacts:
+    - name: "Benefits Realization Plan (Updated Post-Implementation)"
+      required: yes
+      purpose: "Finalize benefits tracking with actual results and future monitoring plans."
+      definition: "The benefits realization plan is updated at project close-out to capture any immediate benefits achieved and to confirm the plan for longer-term benefits tracking by the business owner."
+      evidence_role: "Ensures that the project’s success will continue to be measured and that accountability for benefits is transferred to the organization:contentReference[oaicite:79]{index=79}."
+      evaluation_criteria:
+        - "Has the project been fully transitioned to the business, with accountability for benefits assigned?:contentReference[oaicite:80]{index=80}"
+        - "Have initial benefits (if any) been measured and are plans in place for ongoing benefit reviews?:contentReference[oaicite:81]{index=81}"
+      template_link: "Outcome Realization Report/Plan."
+      sections: ["Summary of Benefits Achieved to Date", "Outstanding Benefits and Timeline to Realize", "Responsible Owner (post-project) for each benefit", "Measurement & Reporting Plan (who will report, how often)"]
+      user_inputs: ["Quantifiable benefits realized upon project completion (if available)", "Plan for follow-up benefit reviews (e.g. an evaluation 1 year later)"]
+      maturity: "Final (hand-off to operations – benefits tracking is now a business-as-usual activity)."
+
+    - name: "Project Close-Out Report"
+      required: yes
+      purpose: "Document the formal closure of the project, including performance, lessons learned, and approvals to close."
+      definition: "A comprehensive close-out report summarizing how the project performed against its baseline (scope, schedule, cost), the outcomes achieved, lessons learned, and confirmation that all closure activities (e.g. documentation, contracts, resources) are completed."
+      evidence_role: "Core evidence for Gate 5: demonstrates the project has been delivered and can be closed:contentReference[oaicite:82]{index=82}."
+      evaluation_criteria:
+        - "Has the project delivered all intended outputs and been fully transitioned?:contentReference[oaicite:83]{index=83}"
+        - "Can the project be formally closed with no outstanding obligations?:contentReference[oaicite:84]{index=84}"
+      template_link: "GC Project Close-Out Report Template (if available, or PMI Close-Out template)."
+      sections: ["Project Summary (scope and objectives recap)", "Final Delivery Status (what was delivered vs planned)", "Final Schedule and Cost Summary (variance analysis)", "Quality and Acceptance Status (any pending deliverables or warranty items)", "Transition to Operations (confirmation that operations accepted deliverables):contentReference[oaicite:85]{index=85}", "Outstanding Items (if any post-project actions)", "Lessons Learned", "Post-Implementation Review Plan (if a formal PIR will be done later)", "Sign-off (Sponsor/Steering Committee approval to close)"]
+      user_inputs: ["Final actual cost and timeline data", "List of any objectives not met or scope items dropped (and rationale)", "Key lessons learned during execution"]
+      maturity: "Final (project documentation completed and archived)."
+
+    - name: "Operational Documents (if applicable)"
+      required: optional
+      purpose: "Ensure operational readiness and continuity after project."
+      definition: "Any supporting documents needed for ongoing operations that were produced by project’s end. For example, an updated **Service Operations Manual**, **Support Plan**, or a **Decommissioning Plan** for legacy systems."
+      evidence_role: "Demonstrates that the project’s end state has been integrated with the organization’s operational processes:contentReference[oaicite:86]{index=86}."
+      evaluation_criteria:
+        - "Have all operational support documents and agreements been handed over?"
+        - "If the project involved replacing a system, has the old system decommissioning or data archival been addressed?:contentReference[oaicite:87]{index=87}"
+      template_link: "N/A (varies by project – e.g., IT projects may require a System Operations Guide)."
+      sections: ["(Depends on artifact: e.g., Decommissioning Plan would list retired components and disposal steps)"]
+      user_inputs: ["Confirmation of completion of these artifacts or tasks"]
+      maturity: "Final (completed as part of closure)."
