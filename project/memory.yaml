@@ -433,3 +433,16 @@
   - prompt
   last_updated: '2025-05-19'
   pod_owner: ResearchPod
+- path: project/discovery/policygpt_poc_review.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/discovery/policygpt_poc_review.md
+  file_type: md
+  description: Document assessing the readiness for the PolicyGPT proof-of-concept
+    phase by synthesizing stakeholder perspectives and reviewing discovery and system
+    design deliverables.
+  tags:
+  - review
+  - discovery
+  - system design
+  - PoC
+  last_updated: '2025-05-19'
+  pod_owner: ResearchPod
