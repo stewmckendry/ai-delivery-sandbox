@@ -1,0 +1,17 @@
+- message: "Drafting acceptance criteria for each feature will focus on observable\
+    \ outcomes\u2014e.g., what the user sees, what files are generated, how metadata\
+    \ is handled, or whether validation logic is triggered. We\u2019ll draw heavily\
+    \ on the functionality/process steps already defined in the feature spec.\n\n\
+    We should ensure:\n- Criteria can be tested in isolation or as part of a flow\n\
+    - Criteria validate both content quality (structure, tone, alignment) and system\
+    \ behavior (commit logs, traceability, etc.)\n- Edge cases are handled, including\
+    \ missing inputs, long drafts, or redactions.\n\nSome features like evidence search\
+    \ or translation will need criteria across both UX and backend accuracy (e.g.,\
+    \ citation relevance, language formatting).\n\nPlan: Go tool by tool from section\
+    \ 2 of the features doc, write acceptance criteria for each, then map those back\
+    \ to user journeys as sanity check."
+  timestamp: '2025-05-19T09:41:20.510508'
+  tags:
+  - acceptance-criteria
+  - features
+  - validation
