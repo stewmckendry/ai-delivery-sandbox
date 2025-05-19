@@ -16,7 +16,8 @@ This document outlines how various system components—GPT, FastAPI tools, datab
 | FastAPI Tools | Airtable API        | REST API + API key | Cached reference files       |
 | FastAPI Tools | ChromaDB (KB)       | Python SDK         | Fallback to file search      |
 | FastAPI Tools | External Web Search | REST call          | Notify user + skip fallback  |
----
+
+***
 
 ## Interface Contracts
 
