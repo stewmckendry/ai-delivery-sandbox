@@ -3,3 +3,14 @@
   task_id: system_design
   committed_by: ProductPod
   message: Append output file to system_design
+- timestamp: '2025-05-19T13:37:28.235411'
+  path: project/system_design/integration_points.md
+  task_id: system_design
+  committed_by: GPTPod
+  message: Add integration points system design doc with full scaffolds, validations,
+    and verification mapping to features and acceptance criteria
+- timestamp: '2025-05-19T13:37:28.235411'
+  path: project/memory.yaml
+  task_id: system_design
+  committed_by: GPTPod
+  message: Memory update related to project/system_design/integration_points.md
