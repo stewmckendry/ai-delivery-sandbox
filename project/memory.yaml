@@ -406,3 +406,16 @@
   - fallback
   last_updated: '2025-05-19'
   pod_owner: DevPod
+- path: project/system_design/session_memory_model.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/session_memory_model.md
+  file_type: md
+  description: Document detailing the session memory model for PolicyGPT, including
+    memory scope layers, lifecycle stages, and implementation model using PostgreSQL
+    and YAML.
+  tags:
+  - memory
+  - model
+  - session
+  - architecture
+  last_updated: '2025-05-19'
+  pod_owner: DevPod
