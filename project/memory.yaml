@@ -172,3 +172,16 @@
   - storage
   last_updated: '2025-05-15'
   pod_owner: DeliveryPod
+- path: project/discovery/policygpt_user_journeys.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/discovery/policygpt_user_journeys.md
+  file_type: md
+  description: Documentation of user personas and journeys for PolicyGPT, detailing
+    roles, needs, pain points, and the support provided by the system to streamline
+    document preparation and review processes.
+  tags:
+  - user journey
+  - personas
+  - flow
+  - documentation
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
