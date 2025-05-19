@@ -419,3 +419,17 @@
   - architecture
   last_updated: '2025-05-19'
   pod_owner: DevPod
+- path: project/system_design/reference_model.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/reference_model.md
+  file_type: md
+  description: This file outlines the core conceptual framework for PolicyGPT's artifact
+    generation lifecycle, detailing the structure and evaluation of gates, artifacts,
+    transitions, and metadata. It supports tool orchestration, prompt engineering,
+    validation, and user interface logic.
+  tags:
+  - model
+  - lifecycle
+  - validation
+  - prompt
+  last_updated: '2025-05-19'
+  pod_owner: ResearchPod
