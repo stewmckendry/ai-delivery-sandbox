@@ -380,3 +380,16 @@
   - backend
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/system_design/integration_points.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/integration_points.md
+  file_type: md
+  description: Document detailing the integration points and patterns between various
+    system components like GPT, FastAPI, databases, and external services within PolicyGPT,
+    including interface contracts and fallback mechanisms.
+  tags:
+  - integration
+  - system_design
+  - orchestration
+  - fallback
+  last_updated: '2025-05-19'
+  pod_owner: DevPod
