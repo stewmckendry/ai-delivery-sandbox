@@ -328,3 +328,16 @@
   - backend
   last_updated: '2025-05-19'
   pod_owner: DevPod
+- path: project/system_design/data_flow_master.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/data_flow_master.md
+  file_type: md
+  description: Document detailing the data flow process within the PolicyGPT system,
+    covering user input to artifact export, aligned with system architecture and feature
+    requirements.
+  tags:
+  - data flow
+  - system architecture
+  - PolicyGPT
+  - process
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
