@@ -185,3 +185,16 @@
   - documentation
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/system_design/data_flow_master.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/system_design/data_flow_master.md
+  file_type: md
+  description: This document outlines the data flow process within the PolicyGPT system,
+    detailing each step from user input to final document export, including tools
+    and mitigations used at each stage.
+  tags:
+  - data flow
+  - system architecture
+  - PolicyGPT
+  - process
+  last_updated: '2025-05-19'
+  pod_owner: DeliveryPod
