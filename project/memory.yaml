@@ -859,3 +859,16 @@
   - Google Drive
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP14/WP14_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP14/WP14_definition.md
+  file_type: md
+  description: Defines the integration of external sources into the toolchain, focusing
+    on querying, structuring, and logging data from public web sources or APIs for
+    policy drafting.
+  tags:
+  - integration
+  - search
+  - logging
+  - toolchain
+  last_updated: '2025-05-20'
+  pod_owner: DevPod
