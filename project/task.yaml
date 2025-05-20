@@ -328,6 +328,7 @@ tasks:
     - project/build/wps/pod_message.md
     - project/build/work_package_tracker.md
     - project/build/wps/pod_message_lead.md
+    - project/build/wps/pod_message_observer.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
