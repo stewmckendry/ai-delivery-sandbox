@@ -62,6 +62,49 @@
 
 ---
 
+### 🔹 From `PolicyGPT_Features v2.md` and `acceptance_criteria v2.md`
+
+**Mapped to WP1 – Policy Artifact Generator**
+- `app/templates/gate_reference/*.yaml` – from Feature 1.1
+- `app/templates/artifact_checklists/*.md` – from Acceptance 2.1
+- `app/tools/checklist_generator.py`, `validate_artifact.py` – from Feature 1.1
+
+**Mapped to WP2 – Document Commit + Audit Logging**
+- `app/tools/commit_to_drive.py`, `commit_document.py` – from Feature 1.2, 2.7
+- `app/db/models/version_log.py`, `approval_log.py` – from Acceptance 2.9
+
+**Mapped to WP3 – Toolchain Integration Layer**
+- `app/engines/planner_orchestrator.py` – from Feature 2.10
+- `app/tools/validate_section.py`, `compose_and_cite.py`, `log_reasoning_trace.py`
+
+**Mapped to WP4 – Gating Doc Quality Engine**
+- `app/engines/style_validator.py`, `app/tools/tone_checker.py` – from Feature 2.3, 2.4
+- `app/tools/acceptance_criteria_checker.py`
+
+**Mapped to WP6 – Review Workflow Routing Layer**
+- `app/tools/feedback_mapper.py`, `app/db/models/comment_log.py` – from Acceptance 2.6
+
+**Mapped to WP7 – Project Profile Engine**
+- `app/db/models/project_profile.py`, `profile_editor.py` – from Feature 1.3
+- `app/templates/project.yaml`, `app/tools/sync_profile.py`
+
+**Mapped to WP8 – Evidence and Citation Tool**
+- `app/tools/evidence_finder.py`, `citation_logger.py` – from Feature 1.4, 2.3
+- `app/db/models/evidence_index.py`
+
+**Mapped to WP9 – Input Ingestion + Summarizer**
+- `app/tools/file_uploader.py`, `yaml_summarizer.py` – from Feature 2.2
+- `app/tools/test/test_ingestion.py`
+
+**Mapped to WP10 – Export and Translation Layer**
+- `app/tools/pdf_exporter.py`, `doc_translator.py` – from Acceptance 2.7, 2.8
+- `app/tools/test/test_export_translations.py`
+
+**Mapped to WP11 – Document Feedback and Diff Engine**
+- `app/tools/diff_checker.py`, `feedback_logger.py` – from Acceptance 2.6
+
+---
+
 ✅ More mappings to be appended as system_design files are processed.
 
-Next expected source files: acceptance criteria, tool catalog, api contracts.
+Next expected source files: tool catalog, API contracts.
