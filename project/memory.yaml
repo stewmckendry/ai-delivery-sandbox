@@ -795,3 +795,16 @@
   - workflow
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP9/WP9_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/WP9_definition.md
+  file_type: md
+  description: Document defining the scope, deliverables, and tasks for the input
+    ingestion and summarization work package, including tools for parsing and retry
+    logic.
+  tags:
+  - ingestion
+  - summarization
+  - flow
+  - tools
+  last_updated: '2025-05-20'
+  pod_owner: DevPod
