@@ -909,3 +909,15 @@
   - documentation
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/pod_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/pod_message.md
+  file_type: md
+  description: Template for activating a Work Package Pod, including instructions,
+    expectations, and reference files.
+  tags:
+  - template
+  - activation
+  - workflow
+  - delivery
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
