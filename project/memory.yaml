@@ -656,3 +656,16 @@
   - documentation
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP1a/WP1a_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_definition.md
+  file_type: md
+  description: Definition and scope of work package WP1a focused on scaffolding and
+    assembling structured gate documents from source materials, including deliverables,
+    tasks, and acceptance criteria.
+  tags:
+  - scaffolding
+  - assembly
+  - document
+  - workflow
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
