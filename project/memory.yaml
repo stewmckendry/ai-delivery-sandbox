@@ -732,3 +732,16 @@
   - config
   last_updated: '2025-05-20'
   pod_owner: DevPod
+- path: project/build/wps/WP4/WP4_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP4/WP4_definition.md
+  file_type: md
+  description: Document outlining the definition and scope of the Gating Doc Quality
+    Engine, focusing on validation of gate document sections for structure, completeness,
+    and logic.
+  tags:
+  - validation
+  - quality
+  - documentation
+  - automation
+  last_updated: '2025-05-20'
+  pod_owner: QAPod
