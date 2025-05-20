@@ -237,3 +237,14 @@
   - protocol
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/lead_pod_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/lead_pod_message.md
+  file_type: md
+  description: Document outlining the responsibilities and coordination tasks for
+    the Lead Pod in managing Work Package Pods.
+  tags:
+  - coordination
+  - management
+  - workflow
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
