@@ -633,3 +633,15 @@
   - system_design
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/policygpt_lessons_learned.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/policygpt_lessons_learned.md
+  file_type: md
+  description: Documentation of lessons learned from addressing file truncation issues
+    during commits in PolicyGPT, including root causes and implemented fixes.
+  tags:
+  - documentation
+  - lessons learned
+  - commit
+  - policygpt
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
