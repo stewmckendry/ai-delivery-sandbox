@@ -384,3 +384,13 @@
   task_id: WP1a
   committed_by: GPTPod
   message: Append output file to WP1a
+- timestamp: '2025-05-20T18:08:09.478544'
+  path: project/build/wps/WP1b/WP1b_definition.md
+  task_id: WP1b
+  committed_by: GPTPod
+  message: Add full WP1b definition including scope, deliverables, tasks, clarifications
+- timestamp: '2025-05-20T18:08:09.478544'
+  path: project/memory.yaml
+  task_id: WP1b
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP1b/WP1b_definition.md
