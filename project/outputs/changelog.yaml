@@ -522,3 +522,14 @@
   task_id: WP7
   committed_by: GPTPod
   message: Append output file to WP7
+- timestamp: '2025-05-20T19:12:58.477096'
+  path: project/build/wps/WP8/WP8_definition.md
+  task_id: wp8_definition
+  committed_by: GPTPod
+  message: Add WP8 definition with clarifications on proactive/reactive evidence integration
+    and citation indexing.
+- timestamp: '2025-05-20T19:12:58.477096'
+  path: project/memory.yaml
+  task_id: wp8_definition
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP8/WP8_definition.md
