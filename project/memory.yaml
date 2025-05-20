@@ -694,3 +694,16 @@
   - versioning
   last_updated: '2025-05-20'
   pod_owner: DevPod
+- path: project/build/wps/WP3a/WP3a_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/WP3a_definition.md
+  file_type: md
+  description: Definition and scope document for the Planner + Memory Layer work package,
+    detailing deliverables, tasks, and acceptance criteria for developing an autonomous
+    planning engine.
+  tags:
+  - planning
+  - memory
+  - design
+  - deliverables
+  last_updated: '2025-05-20'
+  pod_owner: ResearchPod
