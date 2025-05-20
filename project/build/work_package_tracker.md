@@ -1,23 +1,23 @@
-## 📦 Work Package Status Tracker
+# Work Package Status Tracker
 
-| WP ID  | WP Name                              | Status     | Assigned Pod     | Notes                                                                 |
-|--------|---------------------------------------|------------|------------------|-----------------------------------------------------------------------|
-| WP1a   | Scaffolding + Assembly               | Defined    | Pod-Assembler    | Ready for implementation                                              |
-| WP1b   | Task Logging + Finalization          | Defined    | Pod-Finalizer    | Ready for implementation                                              |
-| WP2    | Document Commit + Audit Logging      | Defined    | Pod-Commit       | Ready for implementation                                              |
-| WP3a   | Planner + Memory Layer               | Defined    | Pod-Planner      | Ready for implementation                                              |
-| WP3b   | Tool Registration + API Wrapping     | Defined    | Pod-API          | Ready for implementation                                              |
-| WP3c   | Middleware + Logging                 | Defined    | Pod-Middleware   | Ready for implementation                                              |
-| WP4    | Gating Doc Quality Engine            | Defined    | Pod-Quality      | Ready for implementation                                              |
-| WP5    | System Design Patch + Harmonization  | Defined    | Pod-Harmonizer   | Always active                                                         |
-| WP6    | Review Workflow Routing Layer        | Defined    | Pod-Routing      | Deprioritized for now                                                 |
-| WP7    | Project Profile Engine               | Defined    | Pod-Profile      | Ready for implementation                                              |
-| WP8    | Evidence and Citation Tool           | Defined    | Pod-Evidence     | Ready for implementation                                              |
-| WP9    | Input Ingestion + Summarizer         | Defined    | Pod-Ingestor     | Ready for implementation                                              |
-| WP10   | Export and Translation Layer         | Defined    | Pod-Exporter     | Ready for implementation                                              |
-| WP11   | Document Feedback and Diff Engine    | Defined    | Pod-Feedback     | Ready for implementation                                              |
-| WP12   | System Design Feedback Loop          | Defined    | Pod-Architect    | Always active                                                         |
-| WP13   | Google Drive Integration Tools       | Defined    | Pod-Drive        | Ready for implementation                                              |
-| WP14   | External Source Integration          | Defined    | Pod-Research     | Ready for implementation                                              |
-| WP15   | GitHub Integration Tools             | Defined    | Pod-GitHub       | Architecture decision pending                                         |
-| WP16   | Input Prompt UX Layer                | Defined    | Pod-UX           | Ready for implementation                                              |
+| WP ID | Name | Status | Assigned Pod | Blockers | Notes | Phase |
+|-------|------|--------|--------------|----------|-------|--------|
+| WP1a | Scaffolding + Assembly | Defined | Pod-Athena | None | Ready for activation | Phase 1 |
+| WP1b | Logging + Finalization | Defined | Pod-Hermes | None | Ready for Phase 2 | Phase 2 |
+| WP2 | Commit + Logging | Defined | Pod-Thor | None | Part of workflow completion | Phase 3 |
+| WP3a | Planner + Memory Layer | Defined | Pod-Orion | None | MVP critical | Phase 1 |
+| WP3b | Tool Wrapping + API | Defined | Pod-Helix | None | MVP critical | Phase 1 |
+| WP3c | Middleware + Logging | Defined | Pod-Vega | None | For system instrumentation | Phase 2 |
+| WP4 | Gating Doc Quality | Defined | Pod-Zeus | None | Document validation engine | Phase 2 |
+| WP5 | Harmonization + Docs | Defined | Pod-Muse | None | Always Active | Always Active |
+| WP6 | Review Routing | Defined | Pod-Cirrus | None | Route docs to reviewers | Phase 3 |
+| WP7 | Project Profile | Defined | Pod-Lyra | None | Tracks project state | Phase 3 |
+| WP8 | Citation Tool | Defined | Pod-Atlas | None | Citation and evidence logging | Phase 2 |
+| WP9 | Input Ingestion | Defined | Pod-Kronos | None | Ingests user materials | Phase 1 |
+| WP10 | Export + Translate | Defined | Pod-Lumen | None | Export gate packages | Phase 3 |
+| WP11 | Feedback + Diff Engine | Defined | Pod-Spectrum | None | Handle feedback and diffs | Phase 2 |
+| WP12 | System Design Feedback | Defined | Pod-Observer | None | Always monitors for spec drift | Always Active |
+| WP13 | Google Drive Integration | Defined | Pod-DriveLink | None | File storage + fetch | Phase 2 |
+| WP14 | External Source Integration | Defined | Pod-Apollo | None | Integrate web sources | Phase 3 |
+| WP15 | GitHub Integration | Defined | Pod-Octopus | None | Sync to/from GitHub | Phase 3 |
+| WP16 | Input Prompt UX Layer | Defined | Pod-Navigator | None | Guided input experience | Phase 1 |
