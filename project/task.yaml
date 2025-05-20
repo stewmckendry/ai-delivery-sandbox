@@ -667,3 +667,12 @@ tasks:
     prompt: framework/task_templates/discovery/framework/define_ways_of_working.md/prompt_template.md
     outputs:
     - project/ways_of_working.md
+  build/wp1_policy_artifact_generator-b7c5a9:
+    assigned_pod: Pod-GateDrafting
+    pod_owner: Pod-GateDrafting
+    created_at: '2025-05-20T14:00:51.193741'
+    updated_at: null
+    done: false
+    status: backlog
+    instance_of: framework/task_templates/build/build/wp1_policy_artifact_generator/task.yaml
+    prompt: framework/task_templates/build/build/wp1_policy_artifact_generator/prompt_template.md
