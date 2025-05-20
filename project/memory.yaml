@@ -224,3 +224,16 @@
   - logging
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/work_package_tracker.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/work_package_tracker.md
+  file_type: md
+  description: Document tracking the status and details of various work packages,
+    including their assigned pods and phases, along with a protocol for pod rehydration
+    to maintain operational continuity.
+  tags:
+  - tracker
+  - workflow
+  - status
+  - protocol
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
