@@ -309,6 +309,7 @@ tasks:
     - project/build/prompts/lead_productpod_activation_message.md
     - project/build/build_phase_tracker.md
     - project/build/wps/wp_approach.md
+    - project/build/wps/wp_mapping_log.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
