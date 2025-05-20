@@ -808,3 +808,15 @@
   - tools
   last_updated: '2025-05-20'
   pod_owner: DevPod
+- path: project/build/wps/WP10/WP10_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP10/WP10_definition.md
+  file_type: md
+  description: Defines the export and translation processes for creating standardized
+    gate submission packages, including bilingual document handling.
+  tags:
+  - export
+  - translation
+  - compliance
+  - documentation
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
