@@ -645,3 +645,14 @@
   - policygpt
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_definition_process.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/wp_definition_process.md
+  file_type: md
+  description: Document outlining the step-by-step process for defining and finalizing
+    work packages, including responsibilities, deliverables, and acceptance criteria.
+  tags:
+  - workflow
+  - process
+  - documentation
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
