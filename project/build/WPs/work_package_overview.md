@@ -77,6 +77,8 @@
 
 * `app/db/models/ProjectProfile.py`
 * `project/reference/project_profile.yaml`
+* `app/tools/show_profile.py`
+* `app/tools/project_profile_updater.py`
 
 ### WP8 – Evidence and Citation Tool
 
@@ -131,6 +133,20 @@
 #### Outcome:
 Enable external research and source integration for policy drafting and evidence enrichment. Supports real-time retrieval from trusted web sources and APIs.
 
+### WP15 – GitHub Integration Tools
+
+**TBD – Architecture Decision Pending**
+
+* `github_trace_exporter.py`
+* `github_memory_fetcher.py`
+
+### WP16 – Input Prompt UX Layer
+
+* `app/tools/input_prompt_generator.py`
+* `app/tools/input_checker.py`
+* `config/prompt_templates.yaml`
+
+
 ---
 
 ## 🧪 Identified Issues and Recommendations (Applied)
@@ -156,34 +172,38 @@ Each phase includes a user-focused milestone for measurable value delivery:
 
 **As a policy drafter**, I will be able to scaffold, ingest, and assemble draft gate documents using input material. This allows me to produce an initial version of required documentation without manual formatting or duplication.
 
-* WP1a: Scaffolding + Assembly
-* WP3a: Planner + Memory Layer
-* WP3b: Tool Wrapping + API
-* WP9: Input Ingestion
+* WP1a: Scaffolding + Assembly  
+* WP3a: Planner + Memory Layer  
+* WP3b: Tool Wrapping + API  
+* WP9: Input Ingestion  
+* **WP16: Input Prompt UX Layer** – guides users in providing structured or unstructured inputs
 
 ### ⏩ Phase 2 – Iterative Enhancements (Parallel)
 
 **As a policy team**, we can now validate document quality, track version differences, and cite evidence. This improves quality, accuracy, and auditability of the draft documents.
 
-* WP1b: Logging + Finalization
-* WP3c: Middleware + Logging
-* WP4: Gating Doc Quality
-* WP8: Citation Tool
-* WP11: Feedback + Diff Engine
+* WP1b: Logging + Finalization  
+* WP3c: Middleware + Logging  
+* WP4: Gating Doc Quality  
+* WP8: Citation Tool  
+* WP11: Feedback + Diff Engine  
+* **WP13: Google Drive Integration** – enables storing and retrieving files within external doc repository
 
 ### 🔁 Phase 3 – Workflow Completion (Some Sequential)
 
 **As a review committee**, I can receive documents for review, route them to appropriate approvers, export official versions, and store project profiles. This enables full lifecycle management of policy submissions.
 
-* WP2: Commit + Logging
-* WP6: Review Routing
-* WP10: Export + Translate
-* WP7: Project Profile
+* WP2: Commit + Logging  
+* WP6: Review Routing  
+* WP10: Export + Translate  
+* WP7: Project Profile  
+* **WP14: External Source Integration** – supports evidence enrichment from web APIs and public sources  
+* **WP15: GitHub Integration** – extends trace export or planner hydration into Git-based workflows
 
 ### 🔄 Always Active
 
-* WP12: System Design Feedback – provides real-time design updates during build
-* WP5: Harmonization + Docs – ensures consistent updates across documentation
+* WP12: System Design Feedback – provides real-time design updates during build  
+* WP5: Harmonization + Docs – ensures consistent updates across documentation  
 
 ---
 

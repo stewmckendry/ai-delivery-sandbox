@@ -23,19 +23,23 @@ By the end of this WP, as an **autonomous planning engine**, I will be able to d
 | `app/engines/memory_sync.py` | Writes raw LLM inputs/outputs to memory for provenance and planner recall. |
 | `app/db/models/PromptLog.py` | Stores GPT tool invocation details for audit and research use. |
 | `app/db/models/SessionSnapshot.py` | Persists in-flight planner state for rehydration and resume capability. |
+| `project/memory/reasoning_trace.yaml` | YAML trace of planner toolchain execution, logged per section or task for rehydration and debugging. |
+
 
 ### 📄 Supporting Documentation (to generate)
 | File Path | Description |
 |-----------|-------------|
 | `project/build/wps/WP3a/WP3a_planner_design.md` | Breakdown of planner logic, orchestration examples, and memory references. |
 | `project/build/wps/WP3a/WP3a_test_cases.md` | Planner test flows across user journeys (Gate 1, 2, 3, etc.) |
-| `project/build/wps/WP3a/WP3a_memory_schema.md` | Snapshot + log schema mapping + YAML trace structure. |
+| `project/build/wps/WP3a/WP3a_memory_schema.md` | Snapshot + log schema mapping, including `PromptLog`, `SessionSnapshot`, and `reasoning_trace.yaml` structure. |
+
 
 ### ✅ Acceptance Criteria
 - [ ] Planner can decompose goals into structured plans
 - [ ] Each step is logged into `PromptLog`
 - [ ] Full planner state is captured into `SessionSnapshot`
 - [ ] Memory can be rehydrated across GPT sessions
+- [ ] Planner logs and commits `reasoning_trace.yaml` for each execution trace.
 
 ### 🛠 Tasks
 | Task ID | Description |
