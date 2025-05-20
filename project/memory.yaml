@@ -496,3 +496,15 @@
   - discovery
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/build/prompts/lead_productpod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/prompts/lead_productpod_activation_message.md
+  file_type: md
+  description: Instructions for the Lead ProductPod to coordinate and track the build
+    phase of PolicyGPT, including defining work packages, assigning tasks to other
+    pods, and ensuring high-quality delivery.
+  tags:
+  - prompt
+  - coordination
+  - delivery
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
