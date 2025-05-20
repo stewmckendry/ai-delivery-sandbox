@@ -307,6 +307,7 @@ tasks:
     prompt_used: project/outputs/2.2_build_and_patch/prompt_used.txt
     outputs:
     - project/build/prompts/lead_productpod_activation_message.md
+    - project/build/build_phase_tracker.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
