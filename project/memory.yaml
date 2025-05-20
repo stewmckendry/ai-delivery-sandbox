@@ -531,3 +531,16 @@
   - traceability
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_mapping_log.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/wp_mapping_log.md
+  file_type: md
+  description: This file logs the mapping of discovery artifacts to proposed deliverables
+    and work packages, detailing the connections between source files and their corresponding
+    work packages.
+  tags:
+  - mapping
+  - deliverables
+  - work packages
+  - discovery
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
