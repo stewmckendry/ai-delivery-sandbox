@@ -40,3 +40,43 @@
 **Secrets and Auth (General Coverage)**
 - `.env.sample` – template for all required secrets (Drive, Airtable, OpenAI, etc.)
 - `config/env_vars.yaml` – structured mapping of secrets to runtime config
+
+---
+
+### 🔹 From `gate_reference_v2.yaml`, `reference_model_v2.md`, `gating_doc_quality_v2.md`
+
+**Mapped to WP4 – Gating Doc Quality Engine**
+- `app/tools/compose_and_cite.py` – chained tool: search > synthesize > draft > validate
+- `app/tools/validate_section.py` – quality rule checker before commit
+- `app/tools/log_reasoning_trace.py` – saves GPT rationale steps
+- `app/engines/document_orchestrator.py` – plans full-document workflow per gate requirements
+- `app/db/models/reasoning_trace.py`, `tool_log.py`, `section_draft.py` – structured traceability
+- `app/tools/diff_and_summarize_sections.py` – generates reviewer-facing change summaries
+- `app/tools/doc_feedback_to_task.py` – feedback parsing for planner reuse
+- `app/tools/record_approval_decision.py` – logs reviewer approvals
+
+**Mapped to WP1 – Policy Artifact Generator**
+- `app/templates/gate_rationale_prompt_template.md` – embeds structured expectations per section
+- `config/policygpt_config.yaml` – system prompt rules and planner toggles
+
+**Mapped to WP11 – Document Feedback and Diff Engine**
+- `app/db/models/document_feedback.py`
+- `app/db/models/document_diff.py`
+- `app/db/models/approval_log.py`
+
+**Mapped to WP3 – Toolchain Integration**
+- `app/openapi/openapi_schema.yaml` – adds commit/validate APIs
+- `main.py` – routes validator and planner actions
+
+**Mapped to WP5 – System Design Patch**
+- `project/build/design_patch/gating_doc_loop_support.md`
+
+**Other Design Tactics**
+- `.env.sample`, `config/tool_config.yaml`, `planner_enabled`, `quality_validator` embedded in YAML headers
+- `app/tools/chunked_writer.py` – token-safe save/append module
+- `app/utils/approval_gatekeeper.py` – checks approval prerequisites
+- `app/utils/feedback_flagger.py` – highlights unresolved feedback pre-commit
+- `app/utils/consistency_checker.py` – enforces narrative coherence
+- `project/reference/gate_reference.yaml` – reused by planner for gate rules
+
+These deliverables operationalize GPT-based quality controls and decision traceability aligned with Canada’s gating requirements.
