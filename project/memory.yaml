@@ -581,3 +581,16 @@
   - error handling
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/phase2_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/phase2_plan.md
+  file_type: md
+  description: Document outlining the plan for consolidating mapping logs into a single,
+    validated overview, including steps for manual export, internal consolidation,
+    review, and final output.
+  tags:
+  - planning
+  - consolidation
+  - workflow
+  - deliverables
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
