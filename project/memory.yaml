@@ -983,3 +983,15 @@
   - efficiency
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/speed_tactics_for_pods.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/speed_tactics_for_pods.md
+  file_type: md
+  description: Guide for WP Pods to enhance speed and efficiency in build, deploy,
+    test, and documentation processes with an inline-first approach and shared utilities.
+  tags:
+  - build
+  - deploy
+  - test
+  - documentation
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
