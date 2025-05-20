@@ -6,17 +6,19 @@ This document outlines how errors are detected, categorized, logged, and resolve
 
 ### 🔁 Error Handling Overview Table
 
-| Layer          | Error Type                       | Detection Mechanism               | Handling Strategy                        | Logged In                    |
-| -------------- | -------------------------------- | --------------------------------- | ---------------------------------------- | ---------------------------- |
-| GPT Agent      | Invalid inputs / missing context | Prompt inspection + schema errors | Tool call retries + ask user for context | PromptLog, SessionLog        |
-| FastAPI Tools  | Validation / schema mismatch     | Pydantic schema + OpenAPI rules   | 422 response + GPT fallback or log error | ToolLog, ErrorLog            |
-| FastAPI Tools  | Tool chaining failure            | Code exception or null response   | GPT notified + fallback or skip          | ToolLog, ChainLog            |
-| Planner Engine | No valid toolchain or task loop  | Internal reasoning trace step     | End planner run, log status              | TaskMetadata, ReasoningTrace |
-| Google Drive   | API auth failure or rate limit   | HTTP response codes               | Retry with backoff, local save           | ExternalServiceLog           |
-| Airtable       | Token failure or schema mismatch | Response body + validation errors | Use static YAML fallback                 | ExternalServiceLog           |
-| ChromaDB       | No results or low match score    | Semantic match scoring            | Retry with broader query or use fallback | SearchLog, KBLog             |
-| Web Search     | No credible results or timeout   | Status codes + content filters    | Skip + notify user                       | WebLog                       |
-| Database       | Write fail / read missing entity | Exception handling                | Rollback transaction, retry              | DBLog, AuditTrail            |
+| Layer          | Error Type                          | Detection Mechanism               | Handling Strategy                        | Logged In                    |
+| -------------- | ----------------------------------- | --------------------------------- | ---------------------------------------- | ---------------------------- |
+| GPT Agent      | Invalid inputs / missing context    | Prompt inspection + schema errors | Tool call retries + ask user for context | PromptLog, SessionLog        |
+| GPT Agent      | Tool fail / no result fallback      | Tool output inspection            | Trigger retry or fallback prompt         | PromptLog, ToolLog           |
+| FastAPI Tools  | Validation / schema mismatch        | Pydantic schema + OpenAPI rules   | 422 response + GPT fallback or log error | ToolLog, ErrorLog            |
+| FastAPI Tools  | Tool chaining failure               | Code exception or null response   | GPT notified + fallback or skip          | ToolLog, ChainLog            |
+| Planner Engine | No valid toolchain or task loop     | Internal reasoning trace step     | End planner run, log status              | TaskMetadata, ReasoningTrace |
+| Google Drive   | API auth failure or rate limit      | HTTP response codes               | Retry with backoff, local save           | ExternalServiceLog           |
+| Airtable       | Token failure or schema mismatch    | Response body + validation errors | Use static YAML fallback                 | ExternalServiceLog           |
+| ChromaDB       | No results or low match score       | Semantic match scoring            | Retry with broader query or use fallback | SearchLog, KBLog             |
+| Web Search     | No credible results or timeout      | Status codes + content filters    | Skip + notify user                       | WebLog                       |
+| User Input     | Malformed file / unsupported format | Upload pre-processor              | Reject with error + log failure          | ErrorLog, PromptLog          |
+| Database       | Write fail / read missing entity    | Exception handling                | Rollback transaction, retry              | DBLog, AuditTrail            |
 
 ---
 
@@ -28,6 +30,7 @@ This document outlines how errors are detected, categorized, logged, and resolve
 * **Local Caching**: For Drive/Airtable, fallback to cached or locally stored content.
 * **YAML Snapshots**: All session state and project profiles cached in structured YAML for restore.
 * **Chunked Upload**: If document exceeds token size or file size, it is chunked and retries issued per chunk.
+* **Input File Ingestion**: GPT initiates structured processing of user-uploaded notes, transcripts, files, and stores output to project memory or `project_profile.yaml`. Failures are logged and user re-prompted.
 
 ---
 
@@ -57,14 +60,15 @@ This document outlines how errors are detected, categorized, logged, and resolve
 
 ### 🧾 Logging and Alerting
 
-| Log Type           | Captures                                           | Review Frequency |
-| ------------------ | -------------------------------------------------- | ---------------- |
-| PromptLog          | GPT inputs, tool calls, responses                  | Daily            |
-| ToolLog            | Tool invocation start, end, success/fail           | Hourly           |
-| ErrorLog           | 4xx/5xx FastAPI errors + exception stack traces    | Realtime         |
-| ExternalServiceLog | Third-party errors with response body + timestamps | Realtime         |
-| AuditTrail         | All document actions with user + tool trace        | Daily            |
-| TaskMetadata       | Planner execution state + error chains             | Daily            |
+| Log Type           | Captures                                            | Review Frequency |
+| ------------------ | --------------------------------------------------- | ---------------- |
+| PromptLog          | GPT inputs, tool calls, responses                   | Daily            |
+| ToolLog            | Tool invocation start, end, success/fail            | Hourly           |
+| ErrorLog           | 4xx/5xx FastAPI errors + exception stack traces     | Realtime         |
+| ExternalServiceLog | Third-party errors with response body + timestamps  | Realtime         |
+| AuditTrail         | All document actions with user + tool trace         | Daily            |
+| TaskMetadata       | Planner execution state + error chains              | Daily            |
+| FallbackUsageLog   | Tracks GPT fallbacks, retry counts, rerun summaries | Weekly           |
 
 ---
 
@@ -76,6 +80,7 @@ This document outlines how errors are detected, categorized, logged, and resolve
 * **YAML schema**: validates project profile and session files before reuse
 * **Citation check**: ensures source link validity before drafting final output
 * **Planner guardrails**: fail fast if required steps are skipped or no valid tool exists
+* **GPT retry scaffold**: fallback triggered only after structured failure signal
 
 ---
 
@@ -88,6 +93,7 @@ This document outlines how errors are detected, categorized, logged, and resolve
 | GPT Limits   | Tool response too long                | Chunk content + use token estimator |
 | DB Sync      | Out-of-sync project state             | Lock YAML + DB on commit            |
 | Planner      | Repeats tool loop or fails tool match | Planner trace abort + log           |
+| Session Mem  | Cross-session token loss risk         | Sync to persistent YAML checkpoint  |
 
 ---
 
@@ -149,14 +155,24 @@ CREATE TABLE TaskMetadata (
     started_at TIMESTAMP,
     completed_at TIMESTAMP
 );
+
+CREATE TABLE FallbackUsageLog (
+    id SERIAL PRIMARY KEY,
+    gpt_session_id TEXT,
+    tool_name TEXT,
+    fallback_type TEXT,
+    fallback_reason TEXT,
+    timestamp TIMESTAMP
+);
 ```
 
 ---
 
 ### ✅ Next Actions
 
-* [ ] Add planner-specific logging to `TaskMetadata`
-* [ ] Implement retry queue tracking and metrics dashboard
-* [ ] Add fallback result flag to PromptLog and DocumentVersion metadata
-* [ ] Align all tool schemas to reflect error-resilience hooks (e.g., output status, fallback used)
-* [ ] Create alerting logic for frequent failure patterns or GPT fallback overuse
+* [x] Add planner-specific logging to `TaskMetadata`
+* [x] Implement retry queue tracking and metrics dashboard
+* [x] Add fallback result flag to `PromptLog` and `DocumentVersion` metadata
+* [x] Align all tool schemas to reflect error-resilience hooks (e.g., output status, fallback used)
+* [x] Create alerting logic for frequent failure patterns or GPT fallback overuse
+* [ ] Add structured input ingestion validation and retrial tracking

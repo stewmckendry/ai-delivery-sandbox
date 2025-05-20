@@ -1,6 +1,6 @@
 ## API Contracts (v2)
 
-This document defines the API interface exposed by the PolicyGPT backend for use by the custom GPT agent, web client, and integrations. It reflects v2 design updates for planner-based task flow, session memory syncing, audit trail persistence, and dynamic document generation.
+This document defines the API interface exposed by the PolicyGPT backend for use by the custom GPT agent, web client, and integrations. It reflects v2 design updates for planner-based task flow, session memory syncing, audit trail persistence, dynamic document generation, and human-in-the-loop feedback.
 
 ---
 
@@ -15,14 +15,14 @@ This document defines the API interface exposed by the PolicyGPT backend for use
 
 ### 🧰 Core Task Tool Endpoints
 
-| Route                          | Method | Purpose                                         |
-| ------------------------------ | ------ | ----------------------------------------------- |
-| `/tasks/create_planner_task`   | POST   | Initialize a planner-driven document task       |
-| `/tasks/fetch_gate_metadata`   | GET    | Get sections required for a gate/artifact combo |
-| `/tasks/fetch_examples`        | GET    | Return gold star exemplars for a given section  |
-| `/tasks/compose_and_cite`      | POST   | Generate draft with citation trace              |
-| `/tasks/validate_section`      | POST   | Validate a section for factual or logical gaps  |
-| `/tasks/commit_and_log_output` | POST   | Save output to YAML + log reasoning trace       |
+| Route                          | Method | Purpose                                                                     |
+| ------------------------------ | ------ | --------------------------------------------------------------------------- |
+| `/tasks/create_planner_task`   | POST   | Initialize a planner-driven document task (GPT prompt setup + backend plan) |
+| `/tasks/fetch_gate_metadata`   | GET    | Get sections required for a gate/artifact combo                             |
+| `/tasks/fetch_examples`        | GET    | Return gold star exemplars for a given section                              |
+| `/tasks/compose_and_cite`      | POST   | Generate draft with citation trace                                          |
+| `/tasks/validate_section`      | POST   | Validate a section for factual or logical gaps                              |
+| `/tasks/commit_and_log_output` | POST   | Save output to YAML + log reasoning trace                                   |
 
 #### 🧠 Example: `/tasks/compose_and_cite`
 
@@ -48,6 +48,51 @@ This document defines the API interface exposed by the PolicyGPT backend for use
   "reasoning_steps": ["fact matched", "risk categorized"]
 }
 ```
+
+---
+
+### 🔄 Toolchain Flow: User Journeys
+
+#### 🧭 Journey: Drafting a Section
+
+1. User starts a planner task via `/tasks/create_planner_task`
+2. GPT fetches gate metadata and examples
+3. GPT uses `/tasks/compose_and_cite`
+4. GPT invokes `/tasks/validate_section`
+5. GPT (or human) calls `/tasks/commit_and_log_output`
+
+#### 🧭 Journey: Generating a Complete Document
+
+1. Repeat above flow per section
+2. GPT calls `/export/export_summary` or `/export/generate_bundle`
+3. Bundle includes all committed sections + project profile + trace logs
+
+#### 🧭 Journey: Handling Stakeholder Feedback
+
+1. Feedback triggers re-prompt or issue logging
+2. GPT uses `/trace/log_issue_or_lesson` to track it
+3. Revised section generated with same toolchain
+4. Optional: re-validate and re-commit updated version
+
+#### 🧭 Journey: Planner-Driven Chaining (Autonomous or Semi-Auto)
+
+1. GPT calls `/tasks/auto_toolchain_run`
+2. Planner reads from `gate_reference.yaml` + `project_profile.yaml`
+3. Planner generates chain of calls (e.g., compose → validate → commit)
+4. Toolchain executes sequentially or in batches
+
+#### 🧭 Journey: User Input Ingestion
+
+1. User uploads file (transcript, notes, etc.)
+2. GPT calls `/system/describe_file` → file tagged + metadata extracted
+3. GPT (or planner) may call `/system/index_memory` to refresh embedding search
+
+#### 🧭 Journey: Setting Up Planner Task
+
+* `create_planner_task` has dual role:
+
+  * **(a)** Instruct GPT what to say to user in context-aware prompt setup
+  * **(b)** Set backend plan for which tools to run when GPT delegates execution
 
 ---
 
@@ -107,3 +152,4 @@ This document defines the API interface exposed by the PolicyGPT backend for use
 * [ ] Add GPT-detectable output validation schema on all compose + validate tools
 * [ ] Group OpenAPI tool definitions by phase (e.g., Plan, Draft, Validate, Export)
 * [ ] Publish OpenAPI JSON spec to hosted `/openapi.json` for GPT consumption
+* [ ] Add task flow examples to documentation portal for each gate + artifact type

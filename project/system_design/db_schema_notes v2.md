@@ -95,6 +95,57 @@ started_at TIMESTAMP
 completed_at TIMESTAMP
 ```
 
+## 🔧 Patch: Add DB Schema Entities for Document Feedback and Project-Level Logging
+
+### 📌 Add New Table: `DocumentFeedback`
+
+```sql
+document_feedback_id TEXT PRIMARY KEY
+document_id TEXT                      -- Foreign key to full document (e.g., artifact version or section group)
+submitted_by TEXT
+feedback_text TEXT
+feedback_type TEXT                    -- e.g., 'usability', 'clarity', 'alignment', 'recommendation'
+status TEXT                           -- e.g., 'open', 'in_progress', 'resolved'
+linked_task_id TEXT                   -- Optional reference to auto-generated TaskMetadata
+created_at TIMESTAMP
+resolved_at TIMESTAMP
+```
+
+### 📌 Add New Table: DocumentDiff
+```sql
+diff_id TEXT PRIMARY KEY
+document_id TEXT                      -- Target document version ID
+previous_version_id TEXT             -- Comparison base
+diff_summary TEXT                    -- Natural language or markdown diff
+diff_type TEXT                       -- e.g., 'minor', 'major', 'formatting', 'structural'
+generated_by TEXT                    -- GPT or Human
+created_at TIMESTAMP
+```
+
+### 📌 Add New Table: ApprovalLog
+```sql
+approval_id TEXT PRIMARY KEY
+document_id TEXT
+approver_id TEXT
+decision TEXT                        -- e.g., 'approved', 'rejected', 'approved_with_changes'
+comments TEXT
+signed_at TIMESTAMP
+```
+
+### 📌 Add New Table: ProjectProfile
+```sql
+project_id TEXT PRIMARY KEY
+title TEXT
+sponsor TEXT
+project_type TEXT
+total_budget NUMERIC
+start_date DATE
+end_date DATE
+strategic_alignment TEXT
+current_gate INT
+last_updated TIMESTAMP
+```
+
 ---
 
 ### 🗺️ Read/Write Scenarios (Usage Journeys)
@@ -106,6 +157,18 @@ completed_at TIMESTAMP
 | Draft validated          | `ArtifactSection.content`, `ReasoningTrace.steps`              | `AuditTrail` (append: validation status, errors, reviewer)                 |
 | Human feedback submitted | `ArtifactSection.content`, `PromptLog.input/output`            | `AuditTrail` (feedback entry), `ArtifactSection.validated = false`         |
 | Final version committed  | `ArtifactSection.content`, `ReasoningTrace`                    | `DocumentVersionLog` (snapshot + Drive path), `AuditTrail` (commit action) |
+
+### 🔄 Updates to Read/Write Scenarios
+
+| Scenario                   | Reads From                                      | Writes To                     |
+|----------------------------|-------------------------------------------------|-------------------------------|
+| Document-level feedback    | DocumentVersionLog, ArtifactSection             | DocumentFeedback, AuditTrail |
+| Version comparison triggered | DocumentVersionLog, ArtifactSection.content   | DocumentDiff                  |
+| Reviewer sign-off          | DocumentVersionLog, ProjectProfile              | ApprovalLog                   |
+| Project dashboard views    | ProjectProfile, AuditTrail, DocumentDiff        | N/A                           |
+
+---
+
 
 > 🔍 **Clarifications:**
 >
@@ -124,3 +187,8 @@ completed_at TIMESTAMP
 * [ ] Auto-sync `ArtifactSection` and `DocumentVersionLog` with Drive backend
 * [ ] Add logic to update `google_doc_url` fields upon Drive push/export
 * [ ] Optional: Use webhooks or polling to detect edits in Drive and flag updates in `ArtifactSection`
+- [ ] Create migration scripts for all new tables  
+- [ ] Add linking logic between `DocumentVersionLog` and `DocumentFeedback`  
+- [ ] Extend admin UI to show feedback, approval, and diff logs  
+- [ ] Auto-generate tasks from feedback using `doc_feedback_to_task`  
+- [ ] Enable gating logic to require `ApprovalLog` before artifact commit  

@@ -46,6 +46,34 @@ This model governs how PolicyGPT handles memory at different time horizons, enab
 
 ---
 
+### 🔄 New Clarifications: Memory Continuation Logic
+
+#### Cross-Session Memory Rehydration
+
+| Use Case                        | Source Layer        | Memory Retrieved                     |
+|--------------------------------|---------------------|--------------------------------------|
+| User returns after a break     | Mid-Term + Long-Term| `reasoning_trace.yaml`, last `PromptLog`, `ArtifactSection` content |
+| Planner re-run after session end | Mid-Term           | `planner_task_trace.yaml`, `validation_log.yaml` |
+| Full-document revision         | Long-Term           | All `ArtifactSection` content, `DocumentVersionLog`, `DocumentFeedback` |
+
+---
+
+### 🧠 Session Memory Bootstrap Logic
+
+```yaml
+on_session_start:
+  if prior_section_draft exists:
+    load reasoning_trace.yaml
+    load planner_task_trace.yaml
+    load validation_log.yaml
+  else if prior_document_version exists:
+    load latest DocumentVersionLog
+    load all related ArtifactSection entries
+  else:
+    start fresh planner sequence
+```
+---
+
 ### 🗂️ Memory Schema (Mid-Term YAMLs)
 
 #### `reasoning_trace.yaml`
@@ -107,3 +135,6 @@ notes: "Evidence weak. Needs stronger citation."
 * [ ] Expose `reasoning_trace.yaml` in UI for human review
 * [ ] Enable "resume from trace" in planner
 * [ ] Add search endpoint over `reasoning_trace.yaml` for reuse across gates
+* [ ] Detect prior planner runs and pre-fill memory when `section_id` or `document_id` is reused  
+* [ ] Enable planner to switch between "fresh", "rehydrated", and "full document" memory modes  
+* [ ] Auto-link memory objects in `AuditTrail` for traceability across sessions

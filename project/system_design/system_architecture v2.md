@@ -129,3 +129,68 @@ This document provides a high-level system architecture for PolicyGPT, updated t
 * Implement smart reroute when validator fails
 
 This enhanced architecture positions PolicyGPT to reliably deliver high-grade documentation with deep traceability and audit readiness across all government gating stages.
+
+---
+
+# PATCH: System Architecture (v2.4 – Document Feedback + Approval Flow Enabled)
+
+## 🔄 New Layer Additions and Enhancements
+
+### 9. Feedback & Approval System
+
+**Tech:** PostgreSQL + Planner Hooks + AuditTrail
+
+* **Function:** Captures human feedback and formal approvals tied to document versions
+
+* **Components:**
+
+  * `DocumentFeedback`: stores reviewer comments linked to `ArtifactSection` or full artifact
+  * `ApprovalLog`: captures Gate-level decision metadata
+  * `doc_feedback_to_task`: tool that parses feedback into planner-ready tasks
+  * `diff_and_summarize_sections`: highlights deltas between versions to aid review
+
+* **Planner Integration:**
+
+  * Feedback triggers follow-up planning
+  * Approvals gate `commitDocument` operations
+
+* **UI Support:** Reviewer dashboard with version compare + feedback resolution tracker
+
+---
+
+### 🧠 Memory Model Alignment
+
+**Enhancement:** Align memory across document sessions using:
+
+* `reasoning_trace.yaml` (YAML)
+* `DocumentVersionLog` (DB)
+* `DocumentDiff` (DB)
+* Memory rehydration logic that detects reused `section_id` or `document_id` and loads prior planner state, validator log, and citations.
+
+---
+
+### 📂 Updated Implementation Patterns
+
+* Planner recognizes unresolved feedback and injects `reviseSection` steps
+* Validator blocks commit unless `ApprovalLog` present for finalized gates
+* Feedback and approval logs indexed for traceability in `AuditTrail`
+* Expanded UI to show full-document orchestration trace with feedback loop
+
+---
+
+### 📊 Architecture Support Table (Updated)
+
+| Capability                        | Architecture Component                           |
+| -------------------------------- | ------------------------------------------------ |
+| Agentic orchestration            | `document_orchestrator`, `planner_log`           |
+| Multi-tool chaining              | `compose_and_cite`, FastAPI orchestration        |
+| Quality enforcement              | `validate_section`, validator layer              |
+| Feedback loop + planning         | `DocumentFeedback`, `doc_feedback_to_task`       |
+| Version diffing for reviews      | `diff_and_summarize_sections`, `DocumentDiff`    |
+| Reviewer approvals and gating    | `ApprovalLog`, commit validator extensions       |
+| Memory-based task reuse          | Memory rehydration logic, `reasoning_trace.yaml` |
+| Document narrative cohesion      | Planner cross-linker, full-document task plan    |
+
+---
+
+These updates ensure PolicyGPT operates as a fully traceable, human-in-the-loop document generation system—capable of responding to reviewer feedback, supporting audit-ready approvals, and maintaining structured reasoning across iterations.

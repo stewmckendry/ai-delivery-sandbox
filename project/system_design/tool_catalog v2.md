@@ -100,17 +100,50 @@ This catalog defines the full suite of tools available to the PolicyGPT system, 
 * **Inputs:** File (PDF, DOCX)
 * **Outputs:** Vectorized record + refresh log
 
+### 15. `doc_feedback_to_task`
+
+* **Function:** Converts full-document feedback into new planner tasks or edits
+* **Inputs:** `document_id`, `feedback_text`, optional `feedback_type`
+* **Outputs:** Suggested edits or tasks (YAML task format)
+* **Use Case:** Enables post-review updates or planning retries
+
+### 16. `diff_and_summarize_sections`
+
+* **Function:** Computes section-level diffs and summarizes key changes
+* **Inputs:** `old_content`, `new_content`, `section_type`
+* **Outputs:** Structured diff summary + optional changelog snippet
+* **Use Case:** Version tracking, approval workflows, audit logs
+
+### 17. `submitDocumentFeedback`
+
+* **Function:** Captures user-level feedback on document drafts
+* **Inputs:** `document_id`, `feedback_text`, `user_id`, `feedback_type`, `timestamp`
+* **Outputs:** Logged feedback entry
+* **Chaining Context:** Can trigger `doc_feedback_to_task` or planner retries
+* **Notes:** Stored in `DocumentFeedback` table for traceability
+
+### 18. `summarize_feedback_log`
+
+* **Function:** Synthesizes all feedback entries for a document
+* **Inputs:** `document_id`
+* **Outputs:** Summary of themes, suggested actions
+* **Use Case:** Planner review, coordination with approvers
+
 ---
 
-## Enhancements Summary
+## 🔁 Updated Enhancements Summary (with additions)
 
-| Tool                  | Enhancement                                    |
-| --------------------- | ---------------------------------------------- |
-| `compose_and_cite`    | Enables tool chaining + validation checkpoint  |
-| `validateSection`     | Enforces structure, completeness, traceability |
-| `logReasoningTrace`   | Adds provenance record per drafting sequence   |
-| `commitSection`       | Requires validation before write               |
-| `searchKnowledgeBase` | Tied to planner search intent                  |
+| Tool                     | Enhancement                                             |
+|--------------------------|----------------------------------------------------------|
+| `compose_and_cite`       | Enables tool chaining + validation checkpoint            |
+| `validateSection`        | Enforces structure, completeness, traceability           |
+| `logReasoningTrace`      | Adds provenance record per drafting sequence             |
+| `commitSection`          | Requires validation before write                         |
+| `searchKnowledgeBase`    | Tied to planner search intent                            |
+| `doc_feedback_to_task`   | Adds feedback-driven revision planning                   |
+| `diff_and_summarize_sections` | Enables section-level diff tracking for audit           |
+| `submitDocumentFeedback` | Captures user feedback at document level                 |
+| `summarize_feedback_log` | Aggregates feedback to guide future edits or reviews     |
 
 ---
 

@@ -101,3 +101,65 @@ planner_task_trace.yaml:
 ---
 
 This reference model ensures traceable, planner-driven output aligned with GC gating expectations and structured document integrity.
+
+----
+
+## PATCH: Reference Model (v2.1 - Full Document Feedback Support)
+
+### 🧠 Document-Level Feedback and Planner Adaptation
+
+PolicyGPT now supports reasoning and drafting at the **full document level**, not just per-section. Planner and validator logic are extended accordingly.
+
+---
+
+#### 🔁 Multi-Section Planning
+
+When a user triggers a **full-document generation or revision**, the planner will:
+
+- Parse `gate_reference.yaml` to get all sections for the artifact
+- Generate a multi-step plan (`planner_task_trace.yaml`) with tool chains per section
+- Execute section-wise tool flows while maintaining a unified `reasoning_trace.yaml`
+
+---
+
+#### 📌 Feedback-Aware Regeneration
+
+Planner supports feedback from `DocumentFeedback` records:
+
+- Tool `doc_feedback_to_task` converts document-level comments to structured regeneration tasks
+- Planner merges these with prior `reasoning_trace.yaml` to decide whether to:
+  - Regenerate entire section
+  - Append missing fields
+  - Rephrase content
+
+---
+
+#### 📎 Full Document Trace Logging
+
+Each full document commit results in:
+
+- A new `DocumentVersionLog` entry
+- A grouped `reasoning_trace.yaml` with trace per section
+- Optional diffs (`DocumentDiff`) and feedback logs (`DocumentFeedback`) linked via `ApprovalLog`
+
+---
+
+#### 📋 Reference Enforcement Across Document
+
+`validateSection` is extended to validate individual sections **and**:
+
+- Enforce presence of all required sections
+- Ensure full document completeness per artifact/gate requirements
+
+---
+
+### ✅ New Implementation Tasks
+
+- [ ] Implement planner mode: `"full_document_regen"`  
+- [ ] Extend `doc_feedback_to_task` for multi-section diffs  
+- [ ] Add logic to reference model to enforce full-document artifact schemas  
+- [ ] Add links between `DocumentFeedback`, `ApprovalLog`, and `reasoning_trace.yaml`
+
+---
+
+These changes allow PolicyGPT to reason over entire artifacts, adapt to human feedback, and maintain traceability—supporting high-fidelity, full-document drafting for GC gating and beyond.

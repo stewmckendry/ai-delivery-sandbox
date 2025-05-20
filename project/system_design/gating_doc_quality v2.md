@@ -216,3 +216,76 @@ This schema ensures that each generated section is traceable, testable, and link
 ## Summary
 
 This enhanced system design integrates planning, validation, and traceability improvements to ensure that PolicyGPT outputs meet the Deep Research standard for evidence-based, coherent, auditable documents. Each enhancement supports the audit, quality, and usability goals expected of high-stakes government gating documentation.
+
+---
+
+# PATCH: Gating Doc Quality (v2.3 – Full Document + Feedback Loop Support) 
+
+## 🔄 Enhancements for Document-Level Feedback and Approval
+
+To support document-level feedback and gate approvals, the system introduces:
+
+### 🔧 New Tools
+
+* `diff_and_summarize_sections`: Compares prior and current versions to highlight key changes for reviewers.
+* `doc_feedback_to_task`: Parses human feedback into planner-ready regeneration tasks.
+* `record_approval_decision`: Logs reviewer sign-off, linking to specific version and rationale.
+
+These tools work together to ensure comments are addressed and the planner reuses reviewer context in follow-up revisions.
+
+---
+
+### ✅ New Database Support
+
+Schema enhancements enable end-to-end feedback and approval tracking:
+
+| Table            | Field / Relation            | Purpose                                                |
+| ---------------- | --------------------------- | ------------------------------------------------------ |
+| `DocumentFeedback` | `doc_version_id`, `comments`, `reviewer_id`, `section_id`, `resolved` | Captures structured feedback tied to a document or section |
+| `ApprovalLog`      | `doc_version_id`, `approver_id`, `decision`, `timestamp`, `comments` | Tracks formal reviewer sign-off for versioned artifacts |
+| `DocumentDiff`     | `old_version_id`, `new_version_id`, `diff_text`, `summary`           | Captures high-level diffs for reviewer context          |
+
+These logs are referenced in `AuditTrail` and surfaced in UI dashboards.
+
+---
+
+### 🧠 Planner Integration
+
+Planner adjusts to handle:
+
+- **Feedback-based Regeneration:** Tasks created from `DocumentFeedback` records guide selective redrafting.
+- **Approval Gatekeeping:** `commitDocument` now checks for required approvals before finalization.
+- **Full Document Reasoning Trace:** Planner logs span multiple sections, allowing reviewers to trace logic across artifact boundaries.
+
+---
+
+### 🗂️ Session Memory Extension
+
+Memory model now stores and rehydrates:
+
+- Prior `DocumentDiff` summaries for GPT context
+- Unresolved feedback for follow-up drafts
+- `ApprovalLog` state to determine gating readiness
+
+---
+
+### 📄 New Quality Control Checks
+
+| Check                         | Trigger              | Tool Used                  |
+| ---------------------------- | -------------------- | -------------------------- |
+| Required fields present      | Before commit        | `validate_section`         |
+| Feedback fully resolved      | On commit attempt    | `doc_feedback_to_task`     |
+| Reviewer approval present    | On commit            | `record_approval_decision` |
+| Narrative consistency across sections | On document compose | `document_orchestrator`     |
+
+---
+
+### ✨ Additional Design Tactics
+
+* Flag unresolved feedback in UI before commit
+* Embed approval status in YAML headers (e.g. `status: approved`, `approved_by:`)
+* Visualize diffs for reviewers inside Drive or export PDF
+
+---
+
+These additions ensure PolicyGPT is capable of handling real-world gate review cycles—enabling high-quality, reviewable documents with minimal rework and maximum transparency.

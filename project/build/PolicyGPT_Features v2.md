@@ -237,3 +237,130 @@ This document outlines the functional and technical components required to imple
 3. **User** confirms or updates content.
 4. **GPT** updates draft, logs changes, re-commits via 2.7.
    - Tracks metadata and approval history via 2.9.
+
+---
+
+# PolicyGPT Feature Breakdown (updated v2)
+
+This document outlines the functional and technical components required to implement PolicyGPT. Features are organized into foundational work packages and user-facing tools, and mapped to user journeys.
+
+---
+
+## 1. Foundational Work Packages
+
+### 1.1 Document and Metadata Reference Layer
+- **Description**: Source of truth for gating criteria, artifact templates, document types, required inputs, acceptance criteria, and prompt examples. It includes artifact-specific structures (e.g., financial tables, HR plans), terminology, and compliance formats tailored to GC standards.
+- **Examples**: YAML file for Gate 0 containing list of artifacts (e.g., Investment Proposal, Risk Register), required fields, example prompts, default templates for risk analysis.
+- **In Scope**: YAML + markdown templates, example prompts, validation logic, evidence requirements, alignment mappings.
+- **Out of Scope**: Live syncing with external policy databases.
+- **Tasks**:
+  - Build and version reference YAML files.
+  - Define schema and example prompts.
+  - Map prompts and artifacts to departmental policies and GC priorities.
+  - Load into ChromaDB.
+- **Design Decisions**:
+  - Treat prompt examples as metadata fields.
+  - Each artifact has its own reference entry.
+  - Maintain linkage to source policy directives.
+- **Acceptance Criteria**:
+  - Reference files can be queried by gate, artifact, or input need.
+  - Includes example schema-aligned drafting prompts and acceptance checklists.
+  - Maps include artifact-specific formatting and terminology requirements.
+
+### 1.2 Google Drive Integration
+- **Description**: Tools to commit, fetch, and search versioned documents.
+- **Examples**: Committing a section with `commitSection`, returning URL with metadata.
+- **Tasks**:
+  - Implement Drive upload API.
+  - Store metadata alongside each file.
+  - Provide secure fetch and search.
+  - Search previous artifacts and precedents to support drafting.
+- **Acceptance Criteria**:
+  - Commit returns shareable Drive URL with version tag.
+  - Fetch tool supports version filtering and metadata search.
+  - Files and metadata are used in subsequent section drafting.
+
+### 1.3 YAML Project Profile Engine
+- **Description**: Holds core project inputs (goal, scope, stakeholders, risks) that inform drafting.
+- **Tasks**:
+  - Define project profile schema.
+  - Populate with user inputs or GPT-synthesized info.
+  - Sync across all sections.
+- **Design Decisions**:
+  - Used by section drafting tools to maintain continuity.
+- **Acceptance Criteria**:
+  - All artifact sections use consistent inputs and tone from profile.
+  - Profile is editable and shared across tools.
+
+### 1.4 Evidence and Alignment Search
+- **Description**: Comprises two parts:
+  - **External Evidence Search**: StatsCan, academic databases, OECD, GC portals.
+  - **Internal Alignment Search**: Previously ingested GC guidance, mandates, strategic plans.
+- **Function**: Supports rationale development, citations, alignment with strategy.
+- **Inputs**: Section topic, context, metadata tags.
+- **Outputs**: Structured snippets, citations, source links.
+- **Process**:
+  - Run web search or query local indexed sources.
+  - Match results to section needs (e.g., problem statement).
+  - Format for inclusion in content.
+- **Tasks**:
+  - Integrate external plugins.
+  - Build internal ChromaDB index.
+  - Enable section-level evidence search.
+- **Acceptance Criteria**:
+  - Supports structured evidence prompts.
+  - Results used in justification blocks.
+  - Can be traced to original source.
+
+### 1.5 Token Count Utility
+- **Function**: Checks token count and flags limits.
+- **Inputs**: Draft section, outline, profile.
+- **Outputs**: Token alert or chunking plan.
+- **Process**:
+  - Count input/output tokens per section.
+  - Split content or compress if needed.
+- **Tasks**:
+  - Build count + warning logic.
+  - Auto-chunk if needed.
+- **Acceptance Criteria**:
+  - Avoids token overflow errors.
+
+---
+
+## 2. Core User Tools
+
+### 2.1 Artifact Lookup & Checklist Builder
+...
+
+### 2.10 Planner-Orchestrated Drafting
+- **Function**: Uses gate reference and project profile to orchestrate full-document planning and section-by-section drafting
+- **Inputs**: `project.yaml`, `gate_reference.yaml`, user inputs
+- **Outputs**: Sequenced task plan, per-section tool calls, reasoning trace
+- **Process**:
+  - Generate section plan based on gate and project metadata
+  - Execute planner-linked tools (e.g., `compose_and_cite`, `validate_section`)
+  - Log all rationale steps and tool paths to `reasoning_trace.yaml`
+- **Enhancements**:
+  - Full-document cohesion with planner links across sections
+  - Section validator gating before commit
+  - Detects reused section or document ID to rehydrate memory
+  - Logs chain-of-thought and input lineage
+
+---
+
+## 3. User Journey Overlay
+
+### Journey A: Structured Iteration (Primary Path)
+...
+
+### Journey D: Planner-Orchestrated Generation
+1. **User** indicates they want to generate a full artifact package using planner mode.
+2. **Planner** builds a section plan using `gate_reference.yaml` + `project.yaml`.
+3. **PolicyGPT** auto-triggers toolchains for each section:
+   - **Tools**: `compose_and_cite`, `searchKnowledgeBase`, `validate_section`
+4. **Each section** is committed only after validation passes.
+5. **User** reviews a reasoning trace and summary report.
+6. **Final document** is exported, approved, and logged via:
+   - **Tools**: `commit_document`, `log_reasoning_trace`, `export_final`
+
+---

@@ -1,0 +1,849 @@
+- gate_id: 0
+  name: "Gate 0 – Verify Business Problem or Opportunity (Pre-Project)"
+  decision: "Proceed with developing a preliminary business case and identifying solution options."
+  artifacts:
+    - artifact_id: investment_proposal_concept
+      name: "Investment Proposal (Concept Case)"
+      required: true
+      purpose: "Articulate the business problem or opportunity and justify further exploration."
+      definition: "A brief initial document outlining the issue/opportunity, its context, and the desired outcomes at a high level."
+      evidence_role: "Basis for go/no-go decision to develop a business case."
+      evaluation_criteria:
+        - "Is the problem or opportunity clearly defined and worth pursuing now?"
+        - "Is it aligned with departmental strategic objectives and GoC priorities?"
+      template_path: "reference/templates/investment_proposal_concept.md"
+      exemplar_path: "reference/examples/investment_proposal_concept_gold.md"
+      acceptance_criteria_path: "reference/acceptance/investment_proposal_concept_criteria.md"
+      project_profile_fields:
+        - project_name
+        - strategic_alignment
+        - department
+        - business_owner
+      sections:
+        - section_id: problem_statement
+          title: "Problem Statement"
+          mandatory: true
+        - section_id: background
+          title: "Background/Context"
+        - section_id: desired_outcomes
+          title: "Desired Outcomes"
+        - section_id: preliminary_benefits
+          title: "Preliminary Benefits"
+        - section_id: strategic_alignment
+          title: "Strategic Alignment"
+      user_inputs:
+        - "Description of the problem/opportunity"
+        - "Strategic context"
+        - "Preliminary idea of benefits"
+      maturity: "Concept stage (rough outline of need and value, minimal detail)."
+      notes: "Often created informally; structure and completeness vary widely. PolicyGPT should guide the user to clarify high-level justification before proceeding."
+
+- gate_id: 1
+  name: "Gate 1 – Validate Business Justification and Select Short List of Options"
+  decision: "Analyze feasibility of options and identify a preferred shortlist for further development."
+  artifacts:
+    - artifact_id: business_case_preliminary
+      name: "Business Case (Preliminary)"
+      required: true
+      purpose: "Establish the initial business justification and feasible options."
+      definition: "A high-level business case outlining the business need, strategic fit, and a long list of options narrowed to a short list."
+      evidence_role: "Provides justification and options analysis to support Gate 1 decision."
+      evaluation_criteria:
+        - "Does the business justification provide enough substantiation to proceed?"
+        - "Has a short list of viable options been identified from the long list?"
+      template_path: "reference/templates/business_case_preliminary.md"
+      exemplar_path: "reference/examples/business_case_preliminary_gold.md"
+      acceptance_criteria_path: "reference/acceptance/business_case_preliminary_criteria.md"
+      project_profile_fields:
+        - project_name
+        - strategic_alignment
+        - business_owner
+        - problem_statement
+        - planned_start_date
+        - estimated_budget
+      sections:
+        - section_id: exec_summary
+          title: "Executive Summary"
+        - section_id: business_need
+          title: "Business Need/Opportunity"
+        - section_id: strategic_alignment
+          title: "Strategic Alignment"
+        - section_id: options_considered
+          title: "Options Considered (Long List)"
+        - section_id: options_analysis
+          title: "Preliminary Options Analysis (Short List)"
+        - section_id: prelim_costs_benefits
+          title: "Preliminary Costs and Benefits"
+        - section_id: initial_risks
+          title: "Initial Risks"
+      user_inputs:
+        - "Problem statement and outcomes"
+        - "List of all considered options"
+        - "Rough cost estimates and benefits for each option"
+        - "Key assumptions and constraints"
+      maturity: "Preliminary (high-level estimates, qualitative analysis)."
+      notes: "Uses TBS Business Case Template (RTF) for structure, but this version is high-level."
+
+    - artifact_id: project_charter_preliminary
+      name: "Project Charter (Preliminary)"
+      required: true
+      purpose: "Formally authorize the project initiation and define its broad parameters."
+      definition: "A preliminary project charter covering the project’s scope, objectives, stakeholders, and governance at a high level."
+      evidence_role: "Sets out project scope and governance to inform Gate 1 decision (ensures project is defined and has sponsorship)."
+      evaluation_criteria:
+        - "Does the project have a defined sponsor and governance structure?"
+        - "Is there a clear articulation of scope, timeline, and high-level responsibilities?"
+      template_path: "reference/templates/project_charter_preliminary.md"
+      exemplar_path: "reference/examples/project_charter_preliminary_gold.md"
+      acceptance_criteria_path: "reference/acceptance/project_charter_preliminary_criteria.md"
+      project_profile_fields:
+        - project_name
+        - department
+        - project_sponsor
+        - governance_committee
+        - delivery_lead
+        - target_outcomes
+      sections:
+        - section_id: approvals
+          title: "Document Control & Approvals"
+        - section_id: exec_summary
+          title: "Executive Summary"
+        - section_id: project_scope
+          title: "Project Objectives and Scope"
+        - section_id: deliverables
+          title: "Major Deliverables & Milestones"
+        - section_id: timeline
+          title: "High-Level Timeline"
+        - section_id: budget
+          title: "Preliminary Budget Estimate"
+        - section_id: stakeholders
+          title: "Key Stakeholders"
+        - section_id: governance
+          title: "Governance and Roles/Responsibilities"
+      user_inputs:
+        - "Project objective and scope description"
+        - "High-level deliverables/milestones"
+        - "Initial budget estimate"
+        - "Names of sponsor, project manager, key team members"
+        - "Governance committee info"
+      maturity: "Preliminary (some sections may be draft or placeholders; scope and costs are high-level)."
+      notes: "Draws from the TBS Project Charter Template (2008); structured to support GoC approval pathways."
+
+- gate_id: 2
+  name: "Gate 2 – Approve Preferred Option and Approach"
+  decision: "Decide on proceeding with the preferred option based on a detailed justification."
+  artifacts:
+    - artifact_id: business_case_detailed
+      name: "Business Case (Detailed)"
+      required: true
+      purpose: "Present a full analysis of the preferred option vs alternatives, to seek formal project approval."
+      definition: "A comprehensive business case document covering detailed analysis of shortlisted options and a recommended solution, with full cost-benefit and risk analysis."
+      evidence_role: "Key document for Gate 2 decision; used to justify the recommended option on its merits."
+      evaluation_criteria:
+        - "Which option is recommended and why is it better than the others?"
+        - "Does the cost-benefit analysis justify the investment?"
+        - "Are risks, complexity, and stakeholder considerations well understood and managed?"
+      template_path: "reference/templates/business_case_detailed.md"
+      exemplar_path: "reference/examples/business_case_detailed_gold.md"
+      acceptance_criteria_path: "reference/acceptance/business_case_detailed_criteria.md"
+      project_profile_fields:
+        - project_name
+        - problem_statement
+        - strategic_alignment
+        - cost_estimates
+        - risk_profile
+        - recommendation
+      sections:
+        - section_id: exec_summary
+          title: "Executive Summary"
+        - section_id: strategic_context
+          title: "Strategic Context"
+        - section_id: problem_definition
+          title: "Problem/Opportunity Definition"
+        - section_id: options_analysis
+          title: "Options Analysis"
+        - section_id: preferred_option
+          title: "Preferred Option Description"
+        - section_id: cost_benefit
+          title: "Cost and Benefit Analysis"
+        - section_id: risk_mitigation
+          title: "Risk Assessment and Mitigation Plan"
+        - section_id: implementation
+          title: "Implementation Approach"
+        - section_id: performance
+          title: "Performance Measurement / Benefits Realization"
+        - section_id: conclusion
+          title: "Conclusion and Recommendation"
+      user_inputs:
+        - "Updated problem and context details"
+        - "Detailed description of each shortlisted option"
+        - "Quantitative cost estimates and benefit projections"
+        - "Risk register or summary of key risks"
+        - "Justification for the recommended option"
+      maturity: "Detailed (fully fleshed out, suitable for Treasury Board or senior approval)."
+
+    - artifact_id: benefits_plan_initial
+      name: "Benefits Realization Plan (Initial)"
+      required: true
+      purpose: "Define how the project’s benefits will be tracked and realized over time."
+      definition: "An initial plan outlining expected benefits, performance indicators, and how/when benefits will be measured and realized throughout and after the project."
+      evidence_role: "Supports whether the investment’s expected outcomes are clearly defined and will be managed."
+      evaluation_criteria:
+        - "Are the expected outcomes and benefits clearly articulated and measurable?"
+        - "Is there a plan to ensure benefits align with GC strategic objectives and will be realized?"
+      template_path: "reference/templates/benefits_realization_plan.md"
+      exemplar_path: "reference/examples/benefits_realization_plan_initial_gold.md"
+      acceptance_criteria_path: "reference/acceptance/benefits_realization_plan_initial_criteria.md"
+      project_profile_fields:
+        - benefit_metrics
+        - measurement_schedule
+        - benefit_owner
+      sections:
+        - section_id: outcome_defs
+          title: "Outcome Definitions"
+        - section_id: performance_metrics
+          title: "Performance Indicators / Targets"
+        - section_id: benefit_owners
+          title: "Benefit Owners"
+        - section_id: measurement_method
+          title: "Measurement Method and Frequency"
+        - section_id: schedule
+          title: "Benefit Realization Schedule"
+      user_inputs:
+        - "List of intended benefits and how they tie to organizational objectives"
+        - "Metrics for each benefit"
+        - "Timeline for benefit realization (e.g. during project vs post-project)"
+      maturity: "Initial (framework of benefits tracking, to be refined as project planning progresses)."
+
+    - artifact_id: project_charter_final
+      name: "Project Charter (Final Draft)"
+      required: optional
+      purpose: "Update/confirm the project’s formal charter now that the preferred solution is known."
+      definition: "If the preliminary charter from Gate 1 needs refinement, a final version is prepared documenting the agreed scope, objectives, plan, and authorities for the chosen option."
+      evidence_role: "Confirms governance and accountability for the chosen project path."
+      evaluation_criteria:
+        - "Are clear roles (Sponsor, PM, etc.) assigned for the project’s execution?"
+        - "Has governance been updated to support the preferred option?"
+      template_path: "reference/templates/project_charter_final.md"
+      exemplar_path: "reference/examples/project_charter_final_gold.md"
+      acceptance_criteria_path: "reference/acceptance/project_charter_final_criteria.md"
+      project_profile_fields:
+        - project_name
+        - updated_scope
+        - updated_budget
+        - updated_governance
+      sections:
+        - section_id: scope
+          title: "Updated Scope Definition"
+        - section_id: budget
+          title: "Updated Budget and Schedule"
+        - section_id: governance
+          title: "Governance and Approvals"
+      user_inputs:
+        - "Revised scope and deliverables per chosen option"
+        - "Updated high-level schedule and budget"
+        - "Any new stakeholders or roles introduced"
+      maturity: "Finalized (charter ready for formal approval, if not already signed off)."
+
+    - artifact_id: gating_plan
+      name: "Project Gating Plan"
+      required: true
+      purpose: "Outline the project’s specific gating review schedule and independent review plan."
+      definition: "A plan that lists all the planned gate reviews for the project, the timing for each, and the evidence required at each gate."
+      evidence_role: "Demonstrates that a structured oversight plan is in place as per TBS gating requirements."
+      evaluation_criteria:
+        - "Is there a clear plan for ongoing gate reviews and oversight throughout the project?"
+        - "Does the gating plan align with departmental gating model and risk level of the project?"
+      template_path: "reference/templates/gating_plan.md"
+      exemplar_path: "reference/examples/gating_plan_initial_gold.md"
+      acceptance_criteria_path: "reference/acceptance/gating_plan_initial_criteria.md"
+      project_profile_fields:
+        - gate_schedule
+        - oversight_commitments
+      sections:
+        - section_id: schedule
+          title: "Gate Schedule"
+        - section_id: decisions
+          title: "Key Decision at Each Gate"
+        - section_id: artifacts_per_gate
+          title: "Required Artifacts per Gate"
+        - section_id: independent_reviews
+          title: "Planned Independent Reviews"
+      user_inputs:
+        - "Project timeline/milestones for major phases"
+        - "Department’s standard gate model"
+        - "Any additional reviews needed (security, privacy, etc.)"
+      maturity: "Baseline (established before execution, to be updated if project changes)."
+
+    - artifact_id: pmp_high_level
+      name: "Project Management Plan (High-Level)"
+      required: true
+      purpose: "Provide an initial high-level plan for executing the project (scope, schedule, resources, etc.) to support the chosen option."
+      definition: "A high-level Project Management Plan outlining work packages, timeline, staffing, and management strategies for key areas."
+      evidence_role: "Shows that a viable approach exists for implementing the project."
+      evaluation_criteria:
+        - "Has a project plan with key milestones and cost estimates been developed?"
+        - "Have clear roles and accountabilities been assigned for project execution?"
+      template_path: "reference/templates/project_management_plan.md"
+      exemplar_path: "reference/examples/pmp_high_level_gold.md"
+      acceptance_criteria_path: "reference/acceptance/pmp_high_level_criteria.md"
+      project_profile_fields:
+        - wbs
+        - schedule
+        - budget_estimates
+        - roles
+        - risk_strategy
+      sections:
+        - section_id: scope
+          title: "Project Scope Statement"
+        - section_id: wbs
+          title: "Work Breakdown Structure"
+        - section_id: milestones
+          title: "Milestone Schedule"
+        - section_id: staffing
+          title: "Organization and Staffing Plan"
+        - section_id: resources
+          title: "Initial Resource and Cost Estimates"
+        - section_id: risks
+          title: "Risk Management Strategy"
+        - section_id: procurement
+          title: "Procurement Strategy"
+        - section_id: communications
+          title: "Communication Plan"
+      user_inputs:
+        - "Decomposed scope"
+        - "Preliminary Gantt chart"
+        - "Initial org chart or roles"
+        - "Spending plan"
+      maturity: "High-level (not fully detailed; provides planning framework to be detailed after funding)."
+
+    - artifact_id: procurement_plan_prelim
+      name: "Procurement Plan (Preliminary)"
+      required: conditional
+      purpose: "Outline how products/services will be acquired to implement the project."
+      definition: "An initial procurement strategy identifying acquisitions needed, sourcing strategies, and key timelines."
+      evidence_role: "Ensures the preferred option is supported by a realistic procurement approach."
+      evaluation_criteria:
+        - "Is the procurement plan realistic and aligned with the project schedule?"
+        - "Have procurement risks or lead times been considered?"
+      template_path: "reference/templates/procurement_plan_preliminary.md"
+      exemplar_path: "reference/examples/procurement_plan_preliminary_gold.md"
+      acceptance_criteria_path: "reference/acceptance/procurement_plan_preliminary_criteria.md"
+      project_profile_fields:
+        - procurement_items
+        - procurement_strategy
+        - procurement_timeline
+      sections:
+        - section_id: items
+          title: "Items/Services to Procure"
+        - section_id: strategy
+          title: "Procurement Strategy"
+        - section_id: milestones
+          title: "Major Contracting Milestones"
+        - section_id: dependencies
+          title: "Dependencies and Lead Times"
+        - section_id: contract_mgmt
+          title: "Contract Management Approach"
+      user_inputs:
+        - "List of major items or services"
+        - "Preferred procurement approach"
+        - "Estimated timelines for procurement processes"
+      maturity: "Preliminary (conceptual plan, subject to change)."
+
+    - artifact_id: pcra_prelim
+      name: "Project Complexity and Risk Assessment (PCRA) – Preliminary"
+      required: true
+      purpose: "Assess the project’s complexity and risk level according to TBS criteria."
+      definition: "The standardized PCRA evaluation with preliminary data, yielding a complexity rating used to guide oversight."
+      evidence_role: "Provides risk rating to determine governance and approval requirements."
+      evaluation_criteria:
+        - "Has the project’s risk level been assessed and is the governance commensurate with that risk?"
+        - "Are mitigation strategies in place for high-risk aspects identified?"
+      template_path: "reference/templates/pcra_preliminary.md"
+      exemplar_path: "reference/examples/pcra_preliminary_gold.md"
+      acceptance_criteria_path: "reference/acceptance/pcra_preliminary_criteria.md"
+      project_profile_fields:
+        - complexity_rating
+        - governance_implications
+      sections:
+        - section_id: summary
+          title: "PCRA Summary"
+        - section_id: scoring
+          title: "Scoring by Dimension"
+        - section_id: risks
+          title: "Key Risk Drivers"
+        - section_id: implications
+          title: "Implications for Oversight"
+      user_inputs:
+        - "Inputs to PCRA questionnaire (size, novelty, dependencies, etc.)"
+      maturity: "Preliminary (initial assessment, to be updated as project details solidify)."
+
+- gate_id: 3
+  name: "Gate 3 – Fund Project Deliverables (Project Approval)"
+  decision: "Formal approval of project funding and authority to execute, based on detailed plans and readiness to proceed."
+  artifacts:
+    - artifact_id: business_case_updated
+      name: "Business Case (Updated)"
+      required: true
+      purpose: "Revalidate the business case assumptions and costs just before funding commitment."
+      definition: "An updated version of the detailed business case, reflecting any changes or new information (e.g. refined cost estimates, updated benefits) prior to seeking funding. It should still demonstrate that the investment is sound."
+      evidence_role: "Confirms the business case is still valid and robust in light of detailed planning and risk assessment."
+      evaluation_criteria:
+        - "Is the project still viable given the detailed project plan and any changes?"
+        - "Does the business case hold up in light of identified risks and updated costs?"
+      template_path: "reference/templates/business_case_detailed.md"
+      exemplar_path: "reference/examples/business_case_detailed_updated_gold.md"
+      acceptance_criteria_path: "reference/acceptance/business_case_detailed_updated_criteria.md"
+      project_profile_fields:
+        - finalized_costs
+        - updated_risk_status
+        - updated_scope
+      sections:
+        - section_id: exec_summary
+          title: "Executive Summary"
+        - section_id: updated_costs
+          title: "Updated Costs and Benefits"
+        - section_id: changes_to_scope
+          title: "Scope and Approach Changes"
+        - section_id: updated_risks
+          title: "Updated Risk Profile"
+      user_inputs:
+        - "Finalized costs (e.g. from vendor bids or refined estimates)"
+        - "Updated risk status"
+        - "Any condition or change since Gate 2"
+      maturity: "Baseline Final (forms the basis for funding approval)."
+
+    - artifact_id: benefits_plan_updated
+      name: "Benefits Realization Plan (Updated)"
+      required: true
+      purpose: "Refine and baseline the benefits plan now that project is approved, for tracking going forward."
+      definition: "An updated benefits plan with finalized performance measures and target values, reflecting the approved project’s scope and timeline."
+      evidence_role: "Assures decision-makers that mechanisms are in place to realize and measure benefits."
+      evaluation_criteria:
+        - "Are benefit targets and owners confirmed prior to project execution?"
+        - "Have any changes in expected benefits (since initial plan) been accounted for?"
+      template_path: "reference/templates/benefits_realization_plan.md"
+      exemplar_path: "reference/examples/benefits_realization_plan_updated_gold.md"
+      acceptance_criteria_path: "reference/acceptance/benefits_realization_plan_updated_criteria.md"
+      project_profile_fields:
+        - benefit_metrics
+        - performance_baseline
+        - benefit_owner
+      sections:
+        - section_id: updated_targets
+          title: "Finalized Targets and Indicators"
+        - section_id: benefit_owner
+          title: "Accountabilities for Realization"
+        - section_id: review_schedule
+          title: "Post-Implementation Review Schedule"
+      user_inputs:
+        - "Confirmed benefit metrics and baseline measurements"
+        - "Assignment of benefit realization responsibility"
+      maturity: "Baseline (used for monitoring benefits through project and after closure)."
+
+    - artifact_id: gating_plan_final
+      name: "Project Gating Plan (Final)"
+      required: true
+      purpose: "Finalize the gating and oversight plan now that project schedules and milestones are firm."
+      definition: "The project’s finalized gating schedule, updated with actual dates/milestones tied to the now-approved project plan."
+      evidence_role: "Ensures continued oversight: the project has integrated the gating checkpoints into its execution plan."
+      evaluation_criteria:
+        - "Does the gating plan reflect the project’s execution timeline and risk?"
+        - "Have independent review points been planned as required?"
+      template_path: "reference/templates/gating_plan.md"
+      exemplar_path: "reference/examples/gating_plan_final_gold.md"
+      acceptance_criteria_path: "reference/acceptance/gating_plan_final_criteria.md"
+      project_profile_fields:
+        - gate_schedule
+        - review_requirements
+      sections:
+        - section_id: updated_milestones
+          title: "Updated Milestones and Gate Dates"
+        - section_id: oversight_controls
+          title: "Independent Review Points and Controls"
+      user_inputs:
+        - "Approved schedule milestones for each gate"
+        - "Scheduling with review committees or independent reviewers"
+      maturity: "Final (committed oversight schedule)."
+
+    - artifact_id: pmp_detailed
+      name: "Project Management Plan (Detailed PMP)"
+      required: true
+      purpose: "Serve as the master plan for executing and controlling the project."
+      definition: "A comprehensive and integrated Project Management Plan covering all aspects of project execution."
+      evidence_role: "Demonstrates that the project is fully planned and ready for execution."
+      evaluation_criteria:
+        - "Do the detailed schedule and budget seem reasonable for delivering the scope?"
+        - "Are project governance, resources, and risk responses in place?"
+      template_path: "reference/templates/project_management_plan.md"
+      exemplar_path: "reference/examples/pmp_detailed_gold.md"
+      acceptance_criteria_path: "reference/acceptance/pmp_detailed_criteria.md"
+      project_profile_fields:
+        - schedule
+        - budget
+        - risk_responses
+        - resource_plan
+      sections:
+        - section_id: scope_plan
+          title: "Scope Management Plan"
+        - section_id: schedule
+          title: "Detailed Timeline and Milestones"
+        - section_id: cost_plan
+          title: "Cost Baseline and Funding Profile"
+        - section_id: resourcing
+          title: "Resource Assignments and Governance"
+        - section_id: risks
+          title: "Risk Register and Mitigation Plan"
+        - section_id: communications
+          title: "Stakeholder Communications Plan"
+        - section_id: change_control
+          title: "Change Control Procedures"
+      user_inputs:
+        - "WBS and task list"
+        - "Detailed timeline"
+        - "Budget breakdown"
+        - "Resource assignments"
+        - "Identified risks and mitigations"
+      maturity: "Detailed (fully developed baseline plan at project start)."
+
+    - artifact_id: transition_plan_preliminary
+      name: "Transition Plan (Preliminary)"
+      required: conditional
+      purpose: "Prepare for transitioning project outputs into operational service."
+      definition: "An initial plan for implementing the change from project to operations."
+      evidence_role: "Shows forethought about deployment and operational readiness."
+      evaluation_criteria:
+        - "Is there a high-level transition and change management strategy?"
+        - "Have operational requirements (training, support) been considered?"
+      template_path: "reference/templates/transition_plan.md"
+      exemplar_path: "reference/examples/transition_plan_preliminary_gold.md"
+      acceptance_criteria_path: "reference/acceptance/transition_plan_preliminary_criteria.md"
+      project_profile_fields:
+        - operational_readiness
+        - impacted_systems
+        - training_needs
+      sections:
+        - section_id: deployment
+          title: "Deployment Strategy"
+        - section_id: support
+          title: "Support and Maintenance Setup"
+        - section_id: fallback
+          title: "Fallback/Contingency Plans"
+      user_inputs:
+        - "Rollout approach"
+        - "Legacy system retirement plan"
+        - "Training and support needs"
+      maturity: "Preliminary (to be detailed closer to implementation)."
+
+    - artifact_id: procurement_plan_updated
+      name: "Procurement Plan (Updated)"
+      required: conditional
+      purpose: "Finalize procurement details now that project funding is approved."
+      definition: "An updated version of the procurement plan aligned to the approved project."
+      evidence_role: "Ensures no procurement obstacles will derail project execution."
+      evaluation_criteria:
+        - "Are all necessary contracts planned/signed to support the project timeline?"
+        - "Have procurement risks been addressed?"
+      template_path: "reference/templates/procurement_plan.md"
+      exemplar_path: "reference/examples/procurement_plan_updated_gold.md"
+      acceptance_criteria_path: "reference/acceptance/procurement_plan_updated_criteria.md"
+      project_profile_fields:
+        - procurement_schedule
+        - contract_vehicles
+        - vendor_status
+      sections:
+        - section_id: contracts
+          title: "Procurement Vehicles and Timelines"
+        - section_id: vendor
+          title: "Selected Vendors (if known)"
+      user_inputs:
+        - "Actual procurement results or updated timelines"
+      maturity: "Finalized (major acquisitions underway or scheduled)."
+
+    - artifact_id: pcra_updated
+      name: "Project Complexity and Risk Assessment (PCRA) – Updated"
+      required: true
+      purpose: "Re-assess the project complexity/risk after planning to confirm its category."
+      definition: "Updated PCRA reflecting changes from preliminary stage."
+      evidence_role: "Validates the project’s risk profile at time of funding."
+      evaluation_criteria:
+        - "Has the PCRA been updated and still aligns with gating approach?"
+        - "If risk rating changed, are controls in place?"
+      template_path: "reference/templates/pcra.md"
+      exemplar_path: "reference/examples/pcra_updated_gold.md"
+      acceptance_criteria_path: "reference/acceptance/pcra_updated_criteria.md"
+      project_profile_fields:
+        - final_risk_rating
+        - updated_inputs
+      sections:
+        - section_id: risk_summary
+          title: "Final Risk Assessment Summary"
+        - section_id: oversight_measures
+          title: "Oversight Adjustments if Risk Changed"
+      user_inputs:
+        - "New PCRA inputs (budget, schedule, complexity factors)"
+      maturity: "Updated (final baseline for risk category)."
+
+- gate_id: 4
+  name: "Gate 4 – Confirm Readiness for Service (Pre-Implementation)"
+  decision: "Verify the project outputs (deliverables) are complete and the organization is ready to transition to operations."
+  artifacts:
+    - artifact_id: business_case_validated
+      name: "Business Case (Updated/Validated)"
+      required: true
+      purpose: "Reconfirm project viability and outcomes before go-live."
+      definition: "A final check of the business case – by this stage, most project costs have been incurred, but benefits and outcome expectations are revisited to ensure the project is still on track to deliver value."
+      evidence_role: "Provides assurance that, even at the end of build phase, the rationale for the project remains sound."
+      evaluation_criteria:
+        - "Do the intended benefits remain attainable and aligned to strategic objectives?"
+        - "Is the project output still expected to deliver the outcomes in the business case?"
+      template_path: "reference/templates/business_case_detailed.md"
+      exemplar_path: "reference/examples/business_case_validated_gold.md"
+      acceptance_criteria_path: "reference/acceptance/business_case_validated_criteria.md"
+      project_profile_fields:
+        - strategic_alignment
+        - expected_outcomes
+        - business_value
+      sections:
+        - section_id: updated_benefits
+          title: "Updated Benefits and Value Confirmation"
+        - section_id: interim_metrics
+          title: "Interim Performance Metrics (if applicable)"
+        - section_id: change_log
+          title: "Changes or Conditions Since Gate 3"
+      user_inputs:
+        - "Any changes in scope or external factors affecting benefits"
+        - "Interim performance metrics if available"
+      maturity: "Validated (should match what was promised, or explain deviations)."
+
+    - artifact_id: project_charter_updated
+      name: "Project Charter (Updated)"
+      required: true
+      purpose: "Update the charter if any fundamental changes occurred (scope, timelines) before transition."
+      definition: "Reconciles what was planned vs. delivered, and formalizes operational hand-off and accountability."
+      evidence_role: "Ensures all stakeholders formally agree that the project outputs meet the charter and are ready to be accepted."
+      evaluation_criteria:
+        - "Has the business owner agreed to accept the project outputs?"
+        - "Are accountabilities for post-project operations clearly assigned?"
+      template_path: "reference/templates/project_charter.md"
+      exemplar_path: "reference/examples/project_charter_updated_gold.md"
+      acceptance_criteria_path: "reference/acceptance/project_charter_updated_criteria.md"
+      project_profile_fields:
+        - delivered_scope
+        - actual_budget
+        - transition_owner
+      sections:
+        - section_id: summary
+          title: "Updated Executive Summary"
+        - section_id: scope_reconciliation
+          title: "Final Scope Delivered vs. Original Scope"
+        - section_id: budget_reconciliation
+          title: "Final Schedule and Cost vs. Baseline"
+        - section_id: acceptance
+          title: "Acceptance by Operations/Business Owner"
+        - section_id: ops_roles
+          title: "Roles and Responsibilities for Operations"
+      user_inputs:
+        - "Summary of any scope changes"
+        - "Final actual cost and timeline"
+        - "Name of operational owner"
+      maturity: "Final (project closure state in charter form)."
+
+    - artifact_id: benefits_plan_final
+      name: "Benefits Realization Plan (Revised/Final Pre-Launch)"
+      required: true
+      purpose: "Ensure benefit tracking mechanisms are in place as the solution goes live."
+      definition: "A revised benefits plan reflecting any changes in expected benefits or timing. It includes concrete plans for post-implementation benefit reviews."
+      evidence_role: "Confirms that upon deploying the project, there is a clear plan to realize and measure the intended benefits."
+      evaluation_criteria:
+        - "Have benefits to date been identified (if any interim benefits realized)?"
+        - "Is accountability for ongoing benefits management assigned?"
+      template_path: "reference/templates/benefits_realization_plan.md"
+      exemplar_path: "reference/examples/benefits_plan_final_gold.md"
+      acceptance_criteria_path: "reference/acceptance/benefits_plan_final_criteria.md"
+      project_profile_fields:
+        - realization_schedule
+        - measurement_plan
+        - benefit_owner
+      sections:
+        - section_id: benefits_realized
+          title: "Benefits Realized To Date (if any)"
+        - section_id: post_launch_tracking
+          title: "Post-Implementation Review Schedule"
+        - section_id: updated_owners
+          title: "Ongoing Accountability"
+      user_inputs:
+        - "Actual benefits realized during project"
+        - "Schedule for future benefits review"
+      maturity: "Finalized for transition (becomes responsibility of operations/benefit owner post-project)."
+
+    - artifact_id: transition_plan_detailed
+      name: "Transition Plan (Detailed)"
+      required: true
+      purpose: "Lay out the detailed steps to move from project mode to operational mode."
+      definition: "A comprehensive implementation plan for rolling out the new product/service into the live environment."
+      evidence_role: "Core evidence that the organization is ready for service – all activities for a smooth transition are planned."
+      evaluation_criteria:
+        - "Is the system or output complete and tested, with plans to address any open issues?"
+        - "Are new processes in place, users trained, and support ready for go-live?"
+        - "Will the existing service remain until the new one is confirmed stable?"
+      template_path: "reference/templates/transition_plan.md"
+      exemplar_path: "reference/examples/transition_plan_detailed_gold.md"
+      acceptance_criteria_path: "reference/acceptance/transition_plan_detailed_criteria.md"
+      project_profile_fields:
+        - go_live_criteria
+        - support_arrangements
+        - legacy_migration
+      sections:
+        - section_id: readiness_checklist
+          title: "Go-Live Readiness Checklist"
+        - section_id: testing_results
+          title: "Testing Summary and Results"
+        - section_id: training
+          title: "Training Completed"
+        - section_id: support_setup
+          title: "Operational Support Arrangements"
+        - section_id: communications
+          title: "Launch Communications Plan"
+        - section_id: rollback
+          title: "Roll-back Plan or Contingencies"
+        - section_id: decommissioning
+          title: "Decommissioning Plan for Legacy"
+      user_inputs:
+        - "Summary of test results"
+        - "Confirmation of support team readiness"
+        - "Schedule of deployment events"
+        - "List of stakeholders to notify"
+      maturity: "Detailed (ready to execute the cutover)."
+
+    - artifact_id: risk_plan_current
+      name: "Risk Management Plan (Current)"
+      required: true
+      purpose: "Document the current risk status and remaining risks during transition to operations."
+      definition: "An updated risk register or risk management document focusing on transition and early operations."
+      evidence_role: "Shows that risks are under control and no show-stoppers exist before go-live."
+      evaluation_criteria:
+        - "Do any requirements or issues remain open, and is there a plan to address them?"
+        - "Have all high risks been mitigated or have contingency plans?"
+      template_path: "reference/templates/risk_management_plan.md"
+      exemplar_path: "reference/examples/risk_plan_current_gold.md"
+      acceptance_criteria_path: "reference/acceptance/risk_plan_current_criteria.md"
+      project_profile_fields:
+        - unresolved_issues
+        - risk_owners
+        - operational_risks
+      sections:
+        - section_id: open_risks
+          title: "Open Risks Summary"
+        - section_id: completed_mitigations
+          title: "Mitigation Actions Completed"
+        - section_id: new_risks
+          title: "New Risks for Transition/Operations"
+        - section_id: contingencies
+          title: "Contingency Plans and Triggers"
+      user_inputs:
+        - "List of any unresolved issues or risks"
+        - "Mitigation action owners"
+        - "New operational risks identified"
+      maturity: "Current (living document up to deployment day; handed over to operations)."
+
+- gate_id: 5
+  name: "Gate 5 – Complete Project and Post-Implementation Review (Close-Out)"
+  decision: "Formally close out the project, hand off to operations, and conduct a post-implementation review (PIR)."
+  artifacts:
+    - artifact_id: benefits_plan_post
+      name: "Benefits Realization Plan (Updated Post-Implementation)"
+      required: true
+      purpose: "Finalize benefits tracking with actual results and future monitoring plans."
+      definition: "The benefits realization plan is updated at project close-out to capture any immediate benefits achieved and to confirm the plan for longer-term benefits tracking by the business owner."
+      evidence_role: "Ensures that the project’s success will continue to be measured and that accountability for benefits is transferred to the organization."
+      evaluation_criteria:
+        - "Has the project been fully transitioned to the business, with accountability for benefits assigned?"
+        - "Have initial benefits (if any) been measured and are plans in place for ongoing benefit reviews?"
+      template_path: "reference/templates/benefits_realization_plan_post.md"
+      exemplar_path: "reference/examples/benefits_plan_post_gold.md"
+      acceptance_criteria_path: "reference/acceptance/benefits_plan_post_criteria.md"
+      project_profile_fields:
+        - benefit_owner
+        - benefit_tracking_schedule
+        - realized_benefits
+      sections:
+        - section_id: benefits_achieved
+          title: "Summary of Benefits Achieved to Date"
+        - section_id: outstanding_benefits
+          title: "Outstanding Benefits and Timeline to Realize"
+        - section_id: owner_assignment
+          title: "Responsible Owner for Each Benefit"
+        - section_id: measurement_plan
+          title: "Measurement & Reporting Plan"
+      user_inputs:
+        - "Quantifiable benefits realized upon project completion"
+        - "Plan for follow-up benefit reviews"
+      maturity: "Final (hand-off to operations – benefits tracking is now a business-as-usual activity)."
+
+    - artifact_id: project_closeout_report
+      name: "Project Close-Out Report"
+      required: true
+      purpose: "Document the formal closure of the project, including performance, lessons learned, and approvals to close."
+      definition: "A comprehensive close-out report summarizing how the project performed against its baseline (scope, schedule, cost), the outcomes achieved, lessons learned, and confirmation that all closure activities are completed."
+      evidence_role: "Core evidence for Gate 5: demonstrates the project has been delivered and can be closed."
+      evaluation_criteria:
+        - "Has the project delivered all intended outputs and been fully transitioned?"
+        - "Can the project be formally closed with no outstanding obligations?"
+      template_path: "reference/templates/closeout_report.md"
+      exemplar_path: "reference/examples/closeout_report_gold.md"
+      acceptance_criteria_path: "reference/acceptance/closeout_report_criteria.md"
+      project_profile_fields:
+        - delivery_status
+        - final_variance
+        - lessons_learned
+      sections:
+        - section_id: summary
+          title: "Project Summary"
+        - section_id: delivery_status
+          title: "Final Delivery Status"
+        - section_id: final_metrics
+          title: "Final Schedule and Cost Summary"
+        - section_id: quality
+          title: "Quality and Acceptance Status"
+        - section_id: transition
+          title: "Transition to Operations"
+        - section_id: outstanding
+          title: "Outstanding Items"
+        - section_id: lessons
+          title: "Lessons Learned"
+        - section_id: pir_plan
+          title: "Post-Implementation Review Plan"
+        - section_id: signoff
+          title: "Sign-off (Sponsor/Committee Approval)"
+      user_inputs:
+        - "Final actual cost and timeline data"
+        - "List of unmet objectives or dropped scope items"
+        - "Key lessons learned during execution"
+      maturity: "Final (project documentation completed and archived)."
+
+    - artifact_id: operational_documents
+      name: "Operational Documents (if applicable)"
+      required: false
+      purpose: "Ensure operational readiness and continuity after project."
+      definition: "Any supporting documents needed for ongoing operations that were produced by project’s end (e.g., Service Operations Manual, Support Plan, or Decommissioning Plan)."
+      evidence_role: "Demonstrates that the project’s end state has been integrated with the organization’s operational processes."
+      evaluation_criteria:
+        - "Have all operational support documents and agreements been handed over?"
+        - "If the project involved replacing a system, has the old system decommissioning or data archival been addressed?"
+      template_path: "reference/templates/operational_docs.md"
+      exemplar_path: "reference/examples/operational_docs_gold.md"
+      acceptance_criteria_path: "reference/acceptance/operational_docs_criteria.md"
+      project_profile_fields:
+        - support_docs
+        - legacy_decommissioning
+      sections:
+        - section_id: docs_summary
+          title: "List of Operational Documents Provided"
+        - section_id: decommissioning
+          title: "Legacy System Decommissioning Plan"
+        - section_id: archival
+          title: "Data Archival / Transfer Procedures"
+      user_inputs:
+        - "Confirmation of completion of these artifacts or tasks"
+      maturity: "Final (completed as part of closure)."
