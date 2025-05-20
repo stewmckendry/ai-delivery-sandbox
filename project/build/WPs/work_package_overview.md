@@ -97,7 +97,7 @@
 ### WP10 – Export and Translation Layer
 
 * `app/tools/export_to_gate_package.py`
-* `app/tools/translate_to_official_language.py`
+* `app/tools/translate_to_official_language.py`  # this is the same as `dual_language_exporter.py` in traceability matrix
 
 ### WP11 – Document Feedback and Diff Engine
 
