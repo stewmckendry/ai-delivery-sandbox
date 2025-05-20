@@ -334,3 +334,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-20T17:32:20.100686'
+  path: project/build/WPs/work_package_overview.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Committing full content of Work Package Overview after truncation error
