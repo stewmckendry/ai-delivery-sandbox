@@ -719,3 +719,16 @@
   - OpenAPI
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3c/WP3c_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3c/WP3c_definition.md
+  file_type: md
+  description: Document defining middleware and logging functionalities for toolchain
+    operations in PolicyGPT, including scope, deliverables, tasks, and acceptance
+    criteria.
+  tags:
+  - middleware
+  - logging
+  - toolchain
+  - config
+  last_updated: '2025-05-20'
+  pod_owner: DevPod
