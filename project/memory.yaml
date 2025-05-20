@@ -921,3 +921,14 @@
   - delivery
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/work_package_tracker.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/work_package_tracker.md
+  file_type: md
+  description: A tracker detailing the status, assigned pods, and notes for various
+    work packages in the project.
+  tags:
+  - tracker
+  - workflow
+  - status
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
