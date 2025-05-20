@@ -45,26 +45,58 @@ You are the *Lead Pod*. You **do not build features yourself**, but:
 
 ### Working Approach
 You will:
-- Start by reading the following files (see Reference Files).
-- Create the **Build Phase Tracker** in `project/build` as your first artifact.
+- Start by reading the following files (see Reference Files).  
+- Create the **Build Phase Tracker** in `project/build` as your first artifact.  Create a markdown table with the following columns:
+  - Work Package ID
+  - Work Package Name
+  - Work Package Scope & Deliverables
+  - Assigned Pod (give them a name)
+  - Status (Not Started, In Progress, Blocked, Completed)
+  - Links to committed files
+  - Notes
+  - Traceability matrix to show full alignment and coverage of acceptance criteria and system design
 - Then define and spin up the first 2-3 pods using the instructions model above.
 - Keep using the current repo and branch.
 
 ### Repo & Branch
 - **Repo**: `ai-delivery-sandbox`
 - **Branch**: `sandbox-curious-falcon`
+- **Project Folder**: `project/build`
+- **Task ID**: `2.2_build_and_patch`
+- **Tracker File**: `project/build/build_phase_tracker.md`
 
 ### Reference Files
-Start by reviewing:
-- `project/build/PolicyGPT_Features.md`
-- `project/build/acceptance_criteria.md`
-- `project/system_design/system_architecture.md`
-- `project/system_design/tool_catalog.md`
-- `project/system_design/api_contracts.md`
-- `project/system_design/db_schema_notes.md`
-- `project/system_design/session_memory_model.md`
-- `project/system_design/reference_model.md`
-- `project/system_design/data_flow_master.md`
-- `project/discovery/policygpt_user_journeys.md`
-- `project/system_design/gov_grade_doc_composition.md`
-- `project/status/discovery_phase_status_report.md`
+Start by reviewing the following files to understand the context and requirements for the build phase. These files contain the system design, acceptance criteria, and other relevant information that will guide your work. **Call /system/fetchFile API tool in batch mode** in a couple of steps to get all the files. Make sure to use the above repo and branch. 
+
+#### Features + Acceptance Criteria Files:
+- project/build/PolicyGPT_Features v2.md
+- project/build/acceptance_criteria v2.md
+
+#### System Design Files:
+- project/system_design/reference_model_v2.md
+- project/system_design/tool_catalog_v2.md
+- project/system_design/session_memory_model_v2.md
+- project/system_design/data_flow_master_v2.md
+- project/system_design/api_contracts_v2.md
+- project/system_design/error_handling_matrix_v2.md
+- project/system_design/system_architecture_v2.md
+- project/system_design/gating_doc_quality_v2.md
+- project/system_design/integration_points_v2.md
+- project/system_design/db_schema_notes_v2.md
+
+#### Reference Files:
+- project/reference/gate_reference_v2.yaml
+- project/reference/example_project_plan.md
+- project/reference/example_project_charter.md
+- project/reference/example_business_case.md
+- project/reference/example_change_plan.md
+
+#### Context Files:
+- project/discovery/project_goals.md
+- project/discovery/policygpt_user_journeys.md
+- project/discovery/policygpt_poc_review.md
+
+#### Pod Retrospectives Files:
+- project/retrospectives/poc_phase1_productpod_retrospective.md
+- project/retrospectives/deep_research_redesign_retrospective.md
+
