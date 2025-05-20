@@ -897,3 +897,15 @@
   - input-validation
   last_updated: '2025-05-20'
   pod_owner: DevPod
+- path: project/build/wps/build_pods_sop.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/build_pods_sop.md
+  file_type: md
+  description: Standard Operating Procedure for coordinating Work Package Pods and
+    the Lead Pod, detailing activation, responsibilities, and communication protocols.
+  tags:
+  - sop
+  - coordination
+  - workflow
+  - documentation
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
