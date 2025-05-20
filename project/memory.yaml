@@ -970,3 +970,16 @@
   - delivery
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/build_speed_tactics.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/build_speed_tactics.md
+  file_type: md
+  description: Guidelines for efficiently delivering work packages in WP Pods, focusing
+    on early commits, lightweight planning, coordination on shared files, utility
+    reuse, fast handoff, and early escalation of uncertainties.
+  tags:
+  - workflow
+  - coordination
+  - deployment
+  - efficiency
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
