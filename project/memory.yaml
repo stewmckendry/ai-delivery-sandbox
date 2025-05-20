@@ -783,3 +783,15 @@
   - dynamic
   last_updated: '2025-05-20'
   pod_owner: DevPod
+- path: project/build/wps/WP8/WP8_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP8/WP8_definition.md
+  file_type: md
+  description: Definition and scope of the Evidence and Citation Tool for automatic
+    citation insertion and management in policy drafting.
+  tags:
+  - citation
+  - evidence
+  - tool
+  - workflow
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
