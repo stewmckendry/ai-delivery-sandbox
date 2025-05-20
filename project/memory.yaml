@@ -620,3 +620,16 @@
   - acceptance criteria
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/WPs/work_package_overview.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/work_package_overview.md
+  file_type: md
+  description: Document outlining the organization and mapping of deliverables by
+    work package, including a traceability matrix for alignment with source discovery
+    and system design documentation.
+  tags:
+  - documentation
+  - traceability
+  - work_package
+  - system_design
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
