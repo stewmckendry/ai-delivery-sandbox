@@ -312,6 +312,7 @@ tasks:
     - project/build/wps/wp_mapping_log.md
     - project/build/wps/wp_mapping_log_part2.md
     - project/build/wps/wp_mapping_log_part3.md
+    - project/build/wps/wp_mapping_log_part4.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
