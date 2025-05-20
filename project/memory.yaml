@@ -198,3 +198,16 @@
   - process
   last_updated: '2025-05-19'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_mapping_log.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/wp_mapping_log.md
+  file_type: md
+  description: Log file documenting the mapping of discovery artifacts to proposed
+    deliverables and work packages, detailing the source files and their corresponding
+    work package IDs.
+  tags:
+  - mapping
+  - deliverables
+  - work packages
+  - documentation
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
