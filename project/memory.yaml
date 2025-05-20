@@ -707,3 +707,15 @@
   - deliverables
   last_updated: '2025-05-20'
   pod_owner: ResearchPod
+- path: project/build/wps/WP3b/WP3b_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/WP3b_definition.md
+  file_type: md
+  description: Document outlining the definition, scope, deliverables, and tasks for
+    implementing tool registration and API wrapping in a unified interface.
+  tags:
+  - API
+  - integration
+  - configuration
+  - OpenAPI
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
