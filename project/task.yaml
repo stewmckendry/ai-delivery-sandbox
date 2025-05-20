@@ -317,6 +317,7 @@ tasks:
     - project/build/WPs/traceability_matrix_part2.md
     - project/build/WPs/traceability_matrix_part1.md
     - project/build/WPs/work_package_overview.md
+    - project/build/wps/policygpt_lessons_learned.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
