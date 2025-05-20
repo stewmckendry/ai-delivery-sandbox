@@ -115,6 +115,22 @@
 * Examples: updating OpenAPI spec to reflect discovered fallback behavior
 * Deliver: `project/system_design/design_patch_*.md`
 
+### WP13 – Google Drive Integration Tools
+
+* `app/tools/drive_commit.py`
+* `app/tools/drive_search.py`
+* `app/tools/drive_fetch.py`
+
+### WP14 – External Source Integration
+
+* `app/tools/web_search.py` – Tool to query public search engines or curated APIs
+* `app/tools/web_search_formatter.py` – Normalize and structure retrieved data
+* `app/tools/web_search_logger.py` – Track queries, sources, and citations
+* `app/db/models/WebSearchLog.py` – DB model for storing search results and context
+
+#### Outcome:
+Enable external research and source integration for policy drafting and evidence enrichment. Supports real-time retrieval from trusted web sources and APIs.
+
 ---
 
 ## 🧪 Identified Issues and Recommendations (Applied)
