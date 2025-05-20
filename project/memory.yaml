@@ -508,3 +508,14 @@
   - delivery
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/build_phase_tracker.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/build_phase_tracker.md
+  file_type: md
+  description: Document tracking the progress and scope of various work packages in
+    the build phase, including assigned pods and traceability.
+  tags:
+  - project management
+  - traceability
+  - workflow
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
