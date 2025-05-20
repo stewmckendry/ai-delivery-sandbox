@@ -544,3 +544,16 @@
   - discovery
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_mapping_log_part2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/wp_mapping_log_part2.md
+  file_type: md
+  description: Log detailing the mapping of system design files to work packages,
+    including file paths and source references for toolchain integration, document
+    feedback, and audit logging.
+  tags:
+  - mapping
+  - system design
+  - work packages
+  - integration
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
