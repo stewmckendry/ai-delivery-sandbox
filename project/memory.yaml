@@ -569,3 +569,15 @@
   - logging
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_mapping_log_part4.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/wp_mapping_log_part4.md
+  file_type: md
+  description: Append-only log mapping system design files to work packages, detailing
+    file paths and their roles in error handling, document logging, and input ingestion.
+  tags:
+  - mapping
+  - system design
+  - logging
+  - error handling
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
