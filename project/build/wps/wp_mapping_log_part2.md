@@ -40,3 +40,25 @@
 - `app/db/models/approval_log.py` – from "Document Management"
 - `app/db/models/document_version_log.py` – from "Document Management"
 - `app/db/models/audit_trail.py` – from "Document Management"
+
+---
+
+### 🔹 From `data_flow_master_v2.md`, `db_schema_notes_v2.md`, `session_memory_model_v2.md`
+
+**Mapped to WP3 – Toolchain Integration Layer**
+- `app/engines/planner_controller.py` – from Data Flow Stage 1
+- `app/engines/memory_sync.py` – from Data Flow Stage 3
+- `app/tools/export_controller.py` – from Data Flow Stage 5
+- `app/tools/memory_bootstrap.py` – from Memory Model (section: bootstrap from Drive)
+- `app/tools/memory_rehydration_logic.py` – from Memory Model (section: rehydrate state)
+- `app/tools/yaml_memory_exporter.py` – for `reasoning_trace.yaml`
+- `app/tools/yaml_validation_exporter.py` – for `validation_log.yaml`
+- `app/tools/yaml_task_trace_exporter.py` – for `planner_task_trace.yaml`
+
+**Mapped to WP11 – Document Feedback and Diff Engine**
+- `app/engines/feedback_loop.py` – from Data Flow Stage 4
+
+**Mapped to WP2 – Document Commit + Audit Logging**
+- `app/engines/finalizer.py` – from Data Flow Stage 5
+
+**All database models from `db_schema_notes_v2.md` already mapped to appropriate WPs in Part 1**
