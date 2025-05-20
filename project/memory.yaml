@@ -932,3 +932,16 @@
   - status
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/pod_message_lead.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/pod_message_lead.md
+  file_type: md
+  description: Instructions and responsibilities for the Lead Pod in coordinating
+    the build phase of PolicyGPT, including tracking status, managing dependencies,
+    and ensuring delivery.
+  tags:
+  - coordination
+  - delivery
+  - build
+  - management
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
