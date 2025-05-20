@@ -519,3 +519,15 @@
   - workflow
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_approach.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/wp_approach.md
+  file_type: md
+  description: Document outlining the structured approach for defining, tracking,
+    and delivering work packages during the build phase of PolicyGPT.
+  tags:
+  - workflow
+  - build
+  - work_package
+  - traceability
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
