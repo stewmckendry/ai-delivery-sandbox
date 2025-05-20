@@ -757,3 +757,16 @@
   - system
   last_updated: '2025-05-20'
   pod_owner: DevPod
+- path: project/build/wps/WP6/WP6_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP6/WP6_definition.md
+  file_type: md
+  description: Defines the workflow and logic for automatically routing documents
+    to reviewers based on rules and project profiles, including deliverables, tasks,
+    and acceptance criteria.
+  tags:
+  - workflow
+  - routing
+  - logic
+  - documentation
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
