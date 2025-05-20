@@ -308,6 +308,7 @@ tasks:
     - project/build/wps/wp_mapping_log.md
     - project/build/wps/wp_mapping_log_part2.md
     - project/build/wps/work_package_tracker.md
+    - project/build/wps/lead_pod_message.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
