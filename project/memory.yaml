@@ -211,3 +211,16 @@
   - documentation
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/wp_mapping_log_part2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/wp_mapping_log_part2.md
+  file_type: md
+  description: Log file documenting the mapping of system design files to various
+    work packages, detailing deliverables and source file references for toolchain
+    integration, document feedback, and audit logging.
+  tags:
+  - mapping
+  - system design
+  - integration
+  - logging
+  last_updated: '2025-05-20'
+  pod_owner: DeliveryPod
