@@ -391,6 +391,7 @@ tasks:
     - project/reference/gpt_tools_manifest.json
     - app/tools/tool_wrappers/__init__.py
     - app/tools/tool_wrappers/all_wrappers_validation_patch.py
+    - project/build/wps/WP3b/WP3b_midpoint_update.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
