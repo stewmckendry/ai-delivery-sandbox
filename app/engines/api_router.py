@@ -1,19 +1,19 @@
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request
 from app.tools.tool_registry import ToolRegistry
 
 router = APIRouter()
 registry = ToolRegistry()
 
 @router.get("/status")
-def status():
+def get_status():
     return {"status": "ok"}
+
+@router.get("/tools")
+def list_tools():
+    return registry.list_tools()
 
 @router.post("/tools/{tool_id}")
 def run_tool(tool_id: str, request: Request):
+    input_data = request.json()
     tool = registry.get_tool(tool_id)
-    if not tool:
-        raise HTTPException(status_code=404, detail="Tool not found")
-
-    input_dict = request.json()
-    output = tool.run_tool(input_dict)
-    return output
+    return tool.run_tool(input_data)
