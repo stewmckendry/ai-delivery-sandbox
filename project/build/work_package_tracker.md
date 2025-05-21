@@ -2,7 +2,7 @@
 
 | WP ID | Name | Status | Assigned Pod | Blockers | Notes | Phase |
 |-------|------|--------|--------------|----------|-------|--------|
-| WP1a | Scaffolding + Assembly | In Progress | Pod-Athena | None | Midpoint: Stubbed scaffold-assembly pipeline complete. WP2 to implement full GPT + memory + citation logic. | Phase 1 |
+| WP1a | Scaffolding + Assembly | ✅ Complete (Stub Layer) | Pod-Athena | None | Pipeline implemented. CLI flow validated. GPT + memory logic to be built in WP2/WP3. T7 deferred. | Phase 1 |
 | WP1b | Logging + Finalization | Defined | Pod-Hermes | None | Ready for Phase 2 | Phase 2 |
 | WP2 | Commit + Logging | Defined | Pod-Thor | None | Part of workflow completion | Phase 3 |
 | WP3a | Planner + Memory Layer | In Progress | Pod-Orion | None | Pod activated and kicking off | Phase 1 |
