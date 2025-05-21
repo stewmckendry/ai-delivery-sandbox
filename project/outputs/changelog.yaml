@@ -1213,3 +1213,14 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-21T02:50:50.909188'
+  path: project/build/wps/WP3a/WP3a_memory_schema.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add WP3a_memory_schema.md describing PromptLog and SessionSnapshot structure
+    and replay support.
+- timestamp: '2025-05-21T02:50:50.909188'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP3a/WP3a_memory_schema.md
