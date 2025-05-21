@@ -2654,3 +2654,9 @@
   task_id: upload-text-input-integration
   committed_by: GPTPod
   message: Append output file to upload-text-input-integration
+- timestamp: '2025-05-21T20:33:41.358123'
+  path: app/tools/tool_wrappers/structured_input_ingestor.py
+  task_id: structured_input_patch
+  committed_by: GPTPod
+  message: Updated structure_input to rename input_type to tool_name and updated function
+    usage accordingly.
