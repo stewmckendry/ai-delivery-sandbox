@@ -365,6 +365,7 @@ tasks:
     - app/tools/tool_registry.py
     - project/reference/tool_catalog.yaml
     - project/reference/integrations.yaml
+    - app/tools/tool_wrappers/compose_and_cite.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
