@@ -1161,3 +1161,16 @@
   - CLI
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/retrospectives/WP1a_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/retrospectives/WP1a_retrospective.md
+  file_type: md
+  description: Retrospective document for WP1aPod detailing successes, challenges,
+    lessons learned, and suggestions for future improvements in the build phase of
+    a project.
+  tags:
+  - retrospective
+  - build
+  - tooling
+  - CLI
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
