@@ -349,6 +349,7 @@ tasks:
     - project/retrospectives/WP1a_retrospective.md
     - project/build/wps/WP3a/WP3a_planner_design.md
     - project/build/wps/WP3a/WP3a_task_list.md
+    - project/build/wps/WP3a/app/engines/planner_orchestrator.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
