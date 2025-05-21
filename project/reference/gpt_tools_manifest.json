@@ -1,0 +1,29 @@
+{
+  "tools": [
+    {
+      "tool_id": "translateDocument",
+      "description": "Translates a document into a target language.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "doc_id": { "type": "string" },
+          "target_lang": { "type": "string", "enum": ["en", "fr"] }
+        },
+        "required": ["doc_id", "target_lang"]
+      }
+    },
+    {
+      "tool_id": "commitSection",
+      "description": "Commits a specific section of a policy document.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "section_id": { "type": "string" },
+          "author": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["section_id", "content"]
+      }
+    }
+  ]
+}
