@@ -1091,3 +1091,14 @@
   - structure
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/gate_section_expander.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/gate_section_expander.py
+  file_type: py
+  description: Script to expand sections in a scaffold JSON using a mock GPT function
+    and session memory
+  tags:
+  - expansion
+  - scaffold
+  - session
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
