@@ -1805,3 +1805,13 @@
   - metadata
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP9/cli_ingest_batch/retry_ingestion.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/cli_ingest_batch/retry_ingestion.py
+  file_type: py
+  description: Function to retry a given function with exponential backoff upon failure
+  tags:
+  - retry
+  - backoff
+  - utility
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
