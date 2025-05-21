@@ -1339,3 +1339,15 @@
   - configuration
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3b/WP3b_tasks.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/WP3b_tasks.md
+  file_type: md
+  description: Task tracker for building and integrating tool wrapping and API components
+    in the WP3b project.
+  tags:
+  - build
+  - api
+  - config
+  - documentation
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
