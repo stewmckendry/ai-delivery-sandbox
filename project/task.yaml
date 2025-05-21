@@ -382,6 +382,7 @@ tasks:
     - app/tools/tool_wrappers/parseTranscript.py
     - app/tools/tool_wrappers/loadCorpus.py
     - app/tools/tool_wrappers/doc_feedback_to_task.py
+    - app/tools/tool_wrappers/diff_and_summarize_sections.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
