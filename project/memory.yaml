@@ -1351,3 +1351,14 @@
   - documentation
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_registry.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_registry.py
+  file_type: py
+  description: Script to load and manage tool classes defined in a YAML configuration
+    file.
+  tags:
+  - config
+  - tools
+  - registry
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
