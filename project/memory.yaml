@@ -1733,3 +1733,15 @@
   - deliverable
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/retrospectives/WP3b_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/retrospectives/WP3b_retrospective.md
+  file_type: md
+  description: Retrospective document for WP3b Tool Wrapping and API, detailing successes,
+    areas for improvement, and recommendations for future phases.
+  tags:
+  - retrospective
+  - API
+  - tooling
+  - schema
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
