@@ -1396,3 +1396,14 @@
   - yaml
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/searchKnowledgeBase.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/searchKnowledgeBase.py
+  file_type: py
+  description: Command-line tool for processing input data and executing a search
+    in the knowledge base.
+  tags:
+  - tool
+  - cli
+  - processing
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
