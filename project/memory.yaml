@@ -1267,3 +1267,16 @@
   - storage
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP3a/WP3a_test_cases.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/WP3a_test_cases.md
+  file_type: md
+  description: Document detailing test cases for validating the planner and memory
+    layer functionalities, including toolchain execution, logging, session snapshots,
+    and trace accuracy.
+  tags:
+  - test
+  - planner
+  - logging
+  - validation
+  last_updated: '2025-05-21'
+  pod_owner: QAPod
