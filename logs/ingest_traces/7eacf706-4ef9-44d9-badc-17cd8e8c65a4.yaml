@@ -1,0 +1,22 @@
+- id: 7eacf706-4ef9-44d9-badc-17cd8e8c65a4
+  tool: uploadLinkInput
+  input_summary: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/WP9_status_update.md
+    | uploadLinkInput
+  output_summary: "## WP9 Status Update (May 21, 2025)\n\n### \U0001F3AF Summary\n\
+    WP9 is now complete. We delivered a full ingestion pipeline for user inputs (text,\
+    \ files, links), plus session memory and DB logging. These tools now support planner\
+    \ toolchains and ensure inputs are processed into YAML summaries with metadata.\n\
+    \n### \u2705 Completed Deliverables\n| File Path | Description |\n|-----------|-------------|\n\
+    | `app/tools/structured_input_ingestor.py` | Parses and labels user inputs |\n\
+    | `app/tools/retry_ingestion.py` | Adds retry/backoff logic on ingestion failure\
+    \ |\n| `app/tools/text_extractor.py` | Extracts content from file uploads |\n\
+    | `app/tools/tool_wrappers/uploadTextInput.py` | Handles freeform user input |\n\
+    | `app/tools/tool_wrappers/uploadFileInput.py` | Handles file-based uploads |\n\
+    | `app/tools/tool_wrappers/uploadLinkInput.py` | Handles URL inputs |\n| `app/tools/tool_wrappers/createSessionSnapshot.py`\
+    \ | Captures session snapshots for context |\n| `app/db/models/PromptLog.py` |\
+    \ Logs tool inputs/outputs |\n| `ap"
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-21 23:01:27.077640

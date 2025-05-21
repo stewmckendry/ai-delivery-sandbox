@@ -7,3 +7,5 @@ python-docx
 pip<24.1
 PyPDF2
 spacy
+sqlalchemy
+pyodbc
