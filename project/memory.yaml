@@ -1031,3 +1031,15 @@
   - tool wrapping
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP9/WP9_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/WP9_pod_activation_message.md
+  file_type: md
+  description: Activation message for Work Package 9, detailing instructions and expectations
+    for input ingestion implementation.
+  tags:
+  - activation
+  - work package
+  - input ingestion
+  - instructions
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
