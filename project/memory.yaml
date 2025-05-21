@@ -1630,3 +1630,14 @@
   - schema
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/__init__.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/__init__.py
+  file_type: py
+  description: Initialization file for dynamically loading tool wrappers with a standard
+    interface for execution.
+  tags:
+  - tool
+  - wrapper
+  - execution
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
