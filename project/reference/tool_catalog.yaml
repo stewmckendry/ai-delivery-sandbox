@@ -1,21 +1,73 @@
 tools:
-  policy_section_suggester:
-    module: app.tools.tool_wrappers.policy_section_suggester
+  compose_and_cite:
+    module: app.tools.tool_wrappers.compose_and_cite
     class: Tool
-    description: Suggests relevant policy sections based on prompt
-  risk_assessor:
-    module: app.tools.tool_wrappers.risk_assessor
+    description: Orchestrates evidence search → synthesis → draft → validate
+  searchKnowledgeBase:
+    module: app.tools.tool_wrappers.searchKnowledgeBase
     class: Tool
-    description: Scores risk level based on gate content
-  compliance_checker:
-    module: app.tools.tool_wrappers.compliance_checker
+    description: Retrieves semantic matches from embedded documents
+  externalWebSearch:
+    module: app.tools.tool_wrappers.externalWebSearch
     class: Tool
-    description: Checks compliance with gate reference
-  language_rewriter:
-    module: app.tools.tool_wrappers.language_rewriter
+    description: Pulls evidence from trusted web sources
+  composeDraft:
+    module: app.tools.tool_wrappers.composeDraft
     class: Tool
-    description: Rewrites language to meet gate tone and clarity
-  gate_improver:
-    module: app.tools.tool_wrappers.gate_improver
+    description: Generates structured markdown from YAML + evidence
+  validateSection:
+    module: app.tools.tool_wrappers.validateSection
     class: Tool
-    description: Suggests edits to improve gate quality and structure
+    description: Validates required fields and logic structure
+  logReasoningTrace:
+    module: app.tools.tool_wrappers.logReasoningTrace
+    class: Tool
+    description: Stores reasoning trace for each toolchain run
+  commitSection:
+    module: app.tools.tool_wrappers.commitSection
+    class: Tool
+    description: Saves validated section to Drive and DB
+  commitDocument:
+    module: app.tools.tool_wrappers.commitDocument
+    class: Tool
+    description: Assembles and stores full artifact
+  fetchDocument:
+    module: app.tools.tool_wrappers.fetchDocument
+    class: Tool
+    description: Retrieves section or full document
+  getTokenUsage:
+    module: app.tools.tool_wrappers.getTokenUsage
+    class: Tool
+    description: Tracks GPT session size and overflow risk
+  translateDocument:
+    module: app.tools.tool_wrappers.translateDocument
+    class: Tool
+    description: Converts document language (EN ⇆ FR)
+  queryAirtable:
+    module: app.tools.tool_wrappers.queryAirtable
+    class: Tool
+    description: Looks up structured reference mappings
+  parseTranscript:
+    module: app.tools.tool_wrappers.parseTranscript
+    class: Tool
+    description: Converts transcripts to YAML insights
+  loadCorpus:
+    module: app.tools.tool_wrappers.loadCorpus
+    class: Tool
+    description: Embeds and indexes documents into KB
+  doc_feedback_to_task:
+    module: app.tools.tool_wrappers.doc_feedback_to_task
+    class: Tool
+    description: Converts feedback into new planner tasks
+  diff_and_summarize_sections:
+    module: app.tools.tool_wrappers.diff_and_summarize_sections
+    class: Tool
+    description: Computes section diffs and summarizes changes
+  submitDocumentFeedback:
+    module: app.tools.tool_wrappers.submitDocumentFeedback
+    class: Tool
+    description: Captures user feedback on drafts
+  summarize_feedback_log:
+    module: app.tools.tool_wrappers.summarize_feedback_log
+    class: Tool
+    description: Synthesizes feedback entries into summary
