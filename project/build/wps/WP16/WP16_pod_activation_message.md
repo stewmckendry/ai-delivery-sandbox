@@ -11,6 +11,9 @@
 ### 🔍 Context
 We are kicking off `WP16 – Input Prompt UX Layer` as defined in the system architecture. The purpose of this WP is to:
 - Design and build the UX layer that guides users in submitting structured or unstructured inputs, aligned to the selected PolicyGPT flow and gate type.
+- PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
+- Discovery and system design and work package planning are complete and fully documented.
+- You have been assigned Work Package 16 to build the input prompt UX layer for **PolicyGPT**. This WP focuses on the user experience of input prompts, including design, flow, and integration with the tools + memory.
 
 ---
 

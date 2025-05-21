@@ -11,6 +11,9 @@
 ### 🔍 Context
 We are kicking off `WP3a – Planner + Memory Layer` as defined in the system architecture. The purpose of this WP is to:
 - Implement a planning engine that reads context, user state, and intent, then selects/recommends a task flow. This includes logic to query memory, track progress, and update system state.
+- PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
+- Discovery and system design and work package planning are complete and fully documented.
+- You have been assigned Work Package 3a, which is the first of three work packages to build the PolicyGPT system. This WP focuses on the planner and memory layer.
 
 ---
 

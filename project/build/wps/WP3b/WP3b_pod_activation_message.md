@@ -11,6 +11,9 @@
 ### 🔍 Context
 We are kicking off `WP3b – Tool Wrapping + API` as defined in the system architecture. The purpose of this WP is to:
 - Implement core tool interfaces and APIs, wrap external tools to match the PolicyGPT interface contract, and log tool usage for traceability and fallback.
+- PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
+- Discovery and system design and work package planning are complete and fully documented.
+- You have been assigned Work Package 3b, which is the second of three work packages to build the PolicyGPT system. This WP focuses on tool wrapping and API integration.
 
 ---
 

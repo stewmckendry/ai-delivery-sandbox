@@ -11,6 +11,9 @@
 ### 🔍 Context
 We are kicking off `WP9 – Input Ingestion` as defined in the system architecture. The purpose of this WP is to:
 - Implement support for uploading structured and unstructured input data into the system. This includes parsing, sanitizing, and storing user-provided files, links, or text inputs into the memory layer.
+- PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
+- Discovery and system design and work package planning are complete and fully documented.
+- You have been assigned Work Package 9 to build the input ingestion system for **PolicyGPT**. This WP focuses on the ingestion of various input types, including files, links, and text.
 
 ---
 
