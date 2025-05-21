@@ -344,6 +344,7 @@ tasks:
     - app/templates/final_document_assembler.py
     - project/build/wps/WP1a/WP1a_midpoint_update.md
     - project/build/wps/WP1a/WP1a_deployment.md
+    - project/build/wps/WP1a/WP1a_tests.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
