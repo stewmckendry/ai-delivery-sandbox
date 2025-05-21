@@ -1232,3 +1232,15 @@
   - memory
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/db/models/PromptLog.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/PromptLog.py
+  file_type: py
+  description: Defines the PromptLog model for storing logs of prompt interactions
+    in a database
+  tags:
+  - prompt
+  - model
+  - database
+  - logging
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
