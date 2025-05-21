@@ -2606,3 +2606,9 @@
   task_id: wp9_session_memory
   committed_by: ProductPod
   message: Append output file to wp9_session_memory
+- timestamp: '2025-05-21T20:15:29.856235'
+  path: app/db/models/SessionSnapshot.py
+  task_id: fix-sqlalchemy-models
+  committed_by: GPTPod
+  message: Fix SQLAlchemy model to use valid SQL Server column types in SessionSnapshot
+    model.
