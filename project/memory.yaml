@@ -1043,3 +1043,15 @@
   - instructions
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/WP16_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/WP16_pod_activation_message.md
+  file_type: md
+  description: Instructions and context for activating and managing Work Package 16
+    focused on designing the Input Prompt UX Layer.
+  tags:
+  - activation
+  - UX
+  - work package
+  - flow
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
