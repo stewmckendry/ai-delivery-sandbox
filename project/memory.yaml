@@ -1522,3 +1522,13 @@
   - integration
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/parseTranscript.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/parseTranscript.py
+  file_type: py
+  description: Placeholder class for a tool to parse transcripts, currently not implemented
+  tags:
+  - tool
+  - parse
+  - transcript
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
