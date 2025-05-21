@@ -1374,3 +1374,14 @@
   - compliance
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/reference/integrations.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/integrations.yaml
+  file_type: yaml
+  description: Configuration for integrating with external services such as vector
+    database, logging, and authentication.
+  tags:
+  - config
+  - integration
+  - services
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
