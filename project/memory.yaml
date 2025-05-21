@@ -1827,3 +1827,15 @@
   - yaml
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP1a/WP1a_pipeline_overview.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_pipeline_overview.md
+  file_type: md
+  description: Overview of the WP1a pipeline for generating structured documentation
+    artifacts, including tools for scaffolding, expanding, and assembling documents.
+  tags:
+  - pipeline
+  - documentation
+  - scaffolding
+  - tools
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
