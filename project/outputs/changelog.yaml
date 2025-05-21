@@ -1018,3 +1018,9 @@
   committed_by: GPTPod
   message: Fix gate_section_scaffolder.py to parse top-level list of gates instead
     of dict
+- timestamp: '2025-05-21T01:54:08.811820'
+  path: app/tools/gate_section_scaffolder.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update scaffolder to parse gate_id as integer for gate_reference with int
+    keys
