@@ -1,8 +1,122 @@
 {
   "tools": [
     {
+      "tool_id": "compose_and_cite",
+      "description": "Orchestrates evidence search → synthesis → draft → validate",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "prompt": { "type": "string" },
+          "gate_id": { "type": "integer" }
+        },
+        "required": ["prompt", "gate_id"]
+      }
+    },
+    {
+      "tool_id": "searchKnowledgeBase",
+      "description": "Retrieves semantic matches from embedded documents",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "tool_id": "externalWebSearch",
+      "description": "Pulls evidence from trusted web sources",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "tool_id": "composeDraft",
+      "description": "Generates structured markdown from YAML + evidence",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "yaml_input": { "type": "string" }
+        },
+        "required": ["yaml_input"]
+      }
+    },
+    {
+      "tool_id": "validateSection",
+      "description": "Validates required fields and logic structure",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "section_yaml": { "type": "string" }
+        },
+        "required": ["section_yaml"]
+      }
+    },
+    {
+      "tool_id": "logReasoningTrace",
+      "description": "Stores reasoning trace for each toolchain run",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "trace_yaml": { "type": "string" }
+        },
+        "required": ["trace_yaml"]
+      }
+    },
+    {
+      "tool_id": "commitSection",
+      "description": "Saves validated section to Drive and DB",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "section_id": { "type": "string" },
+          "author": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["section_id", "author", "content"]
+      }
+    },
+    {
+      "tool_id": "commitDocument",
+      "description": "Assembles and stores full artifact",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "doc_id": { "type": "string" }
+        },
+        "required": ["doc_id"]
+      }
+    },
+    {
+      "tool_id": "fetchDocument",
+      "description": "Retrieves section or full document",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "doc_id": { "type": "string" },
+          "section_id": { "type": "string" }
+        },
+        "required": ["doc_id", "section_id"]
+      }
+    },
+    {
+      "tool_id": "getTokenUsage",
+      "description": "Tracks GPT session size and overflow risk",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" }
+        },
+        "required": ["session_id"]
+      }
+    },
+    {
       "tool_id": "translateDocument",
-      "description": "Translates a document into a target language.",
+      "description": "Converts document language (EN ⇆ FR)",
       "input_schema": {
         "type": "object",
         "properties": {
@@ -13,16 +127,84 @@
       }
     },
     {
-      "tool_id": "commitSection",
-      "description": "Commits a specific section of a policy document.",
+      "tool_id": "queryAirtable",
+      "description": "Looks up structured reference mappings",
       "input_schema": {
         "type": "object",
         "properties": {
-          "section_id": { "type": "string" },
-          "author": { "type": "string" },
-          "content": { "type": "string" }
+          "table": { "type": "string" },
+          "filter": { "type": "string" }
         },
-        "required": ["section_id", "content"]
+        "required": ["table", "filter"]
+      }
+    },
+    {
+      "tool_id": "parseTranscript",
+      "description": "Converts transcripts to YAML insights",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "transcript_text": { "type": "string" }
+        },
+        "required": ["transcript_text"]
+      }
+    },
+    {
+      "tool_id": "loadCorpus",
+      "description": "Embeds and indexes documents into KB",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "folder": { "type": "string" }
+        },
+        "required": ["folder"]
+      }
+    },
+    {
+      "tool_id": "doc_feedback_to_task",
+      "description": "Converts feedback into new planner tasks",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "feedback_log": { "type": "string" }
+        },
+        "required": ["feedback_log"]
+      }
+    },
+    {
+      "tool_id": "diff_and_summarize_sections",
+      "description": "Computes section diffs and summarizes changes",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "original": { "type": "string" },
+          "revised": { "type": "string" }
+        },
+        "required": ["original", "revised"]
+      }
+    },
+    {
+      "tool_id": "submitDocumentFeedback",
+      "description": "Captures user feedback on drafts",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "doc_id": { "type": "string" },
+          "user": { "type": "string" },
+          "feedback": { "type": "string" }
+        },
+        "required": ["doc_id", "user", "feedback"]
+      }
+    },
+    {
+      "tool_id": "summarize_feedback_log",
+      "description": "Synthesizes feedback entries into summary",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "feedback_log": { "type": "string" }
+        },
+        "required": ["feedback_log"]
       }
     }
   ]
