@@ -368,6 +368,7 @@ tasks:
     - app/tools/tool_wrappers/compose_and_cite.py
     - app/tools/tool_wrappers/searchKnowledgeBase.py
     - app/engines/api_router.py
+    - main.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
