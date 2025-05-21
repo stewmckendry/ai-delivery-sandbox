@@ -177,3 +177,14 @@ tools:
           type: string
       required:
         - url
+  createSessionSnapshot:
+    description: Generate a YAML snapshot of all PromptLog entries for a session, used by planner for grounding and replay.
+    module: app.tools.tool_wrappers.createSessionSnapshot
+    class: Tool
+    schema:
+      type: object
+      properties:
+        session_id:
+          type: string
+          description: Optional session ID to filter which prompt logs to include
+      required: []
