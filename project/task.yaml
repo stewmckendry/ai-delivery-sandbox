@@ -359,6 +359,7 @@ tasks:
     - app/tools/__init__.py
     - project/build/wps/WP3a/WP3a_completion_note.md
     - project/retrospectives/WP3a_retrospective.md
+    - project/retrospectives/retrospective_tracker.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
