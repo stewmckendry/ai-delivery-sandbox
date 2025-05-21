@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from app.engines.memory_sync import log_tool_usage
+from app.utils.trace_utils import write_trace
 
 class Tool:
     def validate(self, input_dict):
@@ -24,12 +25,7 @@ class Tool:
             raise ValueError(f"Error fetching or parsing URL: {e}")
 
         entry = structure_input(text, url, tool_name="uploadLinkInput")
-        trace_path = os.path.join("logs", "ingest_traces")
-        os.makedirs(trace_path, exist_ok=True)
-        out_path = os.path.join(trace_path, f"{entry['id']}.yaml")
-        with open(out_path, "w", encoding="utf-8") as f:
-            yaml.dump([entry], f, sort_keys=False)
-
+        out_path = write_trace(entry)
         log_tool_usage(
             entry["tool"],
             entry["input_summary"],
