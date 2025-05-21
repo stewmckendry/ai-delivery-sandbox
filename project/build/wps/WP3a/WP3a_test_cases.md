@@ -13,7 +13,10 @@ Ensure:
 ## 🧪 Test Case Matrix
 
 ### TC1: Run planner in live mode
-- **Input**: Intent = `generate_section`, Inputs = `{section: outputs}`
+```bash
+python -c "from app.engines.planner_orchestrator import PlannerOrchestrator; \
+  print(PlannerOrchestrator(mode='live').run('generate_section', {'section': 'outputs'}))"
+```
 - **Expected**:
   - Toolchain executed: `intent_classifier` → `schema_loader` → `section_writer`
   - Trace log created
@@ -21,34 +24,45 @@ Ensure:
   - Session snapshot file created
 
 ### TC2: Run planner in replay mode
-- **Input**: Mode = `replay`, same intent and inputs
+```bash
+python -c "from app.engines.planner_orchestrator import PlannerOrchestrator; \
+  print(PlannerOrchestrator(mode='replay').run('generate_section', {'section': 'outputs'}))"
+```
 - **Expected**:
   - Toolchain simulated using logs
   - No LLM/tools triggered
   - Outputs match previous live run
 
 ### TC3: Log structure test
-- **Check**: PromptLog file contains valid entries (JSONL, keys match schema)
+- **Check**: Open `logs/prompt_logs.jsonl`
+- **Expected**: Each line is valid JSON with keys: `timestamp`, `tool`, `input`, `output`
 
 ### TC4: Snapshot reload test
-- **Check**: `load_latest_snapshot()` returns latest session state
+```bash
+python -c "from app.engines.memory_sync import load_latest_snapshot; \
+  print(load_latest_snapshot())"
+```
+- **Expected**: Dictionary of most recent session state
 
 ### TC5: Trace YAML output test
-- **Expected**: Planner returns reasoning trace with accurate tool steps
+- **Check**: Output of TC1 or TC2 includes full reasoning trace list
 
 ### TC6: Missing tool error
-- **Input**: Intent with undefined toolchain
-- **Expected**: Planner raises `ValueError`
+```bash
+python -c "from app.engines.planner_orchestrator import PlannerOrchestrator; \
+  PlannerOrchestrator().run('unknown_intent', {})"
+```
+- **Expected**: Raises `ValueError: No toolchain defined for intent: unknown_intent`
 
 ### TC7: File path fallback
-- **Test**: Output too large → logs written to file, DB stores path only (manually simulate)
+- **Test**: Manually simulate large output in tool run and ensure logs write reference to file instead of inline text (future extension)
 
 ---
 
 ## 🔁 Reusability
-Tests can run as CLI, no UI dependency
-- Example runner script to be added in WP3b
+- CLI-based testing ensures minimal dependencies
+- Future: convert to unit tests or CLI script wrapper
 
 ## 🔐 Notes
-- Snapshot and log file location is hardcoded for now (adjust in prod)
-- Future enhancement: Add checksums for trace validation
+- Adjust paths if running from non-root directory
+- Log files are stored in `logs/` by default
