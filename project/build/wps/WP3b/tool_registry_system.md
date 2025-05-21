@@ -126,3 +126,25 @@ translateDocument:
 - [ ] Add `schema:` metadata to `tool_catalog.yaml`
 - [ ] Add optional validation hooks per tool
 - [ ] Use this schema to improve API and GPT UX
+
+---
+
+## ✅ Input Validation Approach
+
+### 1. Generic Schema-Based Validation (Default)
+- Triggered if `schema:` exists in `tool_catalog.yaml`
+- Attached automatically via `tool_registry.py`
+- Checks:
+  - All required fields present
+  - Enum values are valid (if defined)
+
+### 2. Custom Per-Tool Validation (Override Optional)
+- Tool wrapper can define its own `validate()` method
+- Replaces generic method when present
+- Use case: dynamic rules, nested fields, advanced checks
+
+### Summary Table
+| Type         | Uses Schema in YAML | Automatically Attached | Supports Advanced Rules |
+|--------------|---------------------|-------------------------|--------------------------|
+| Generic      | ✅ Yes              | ✅ Yes                  | ❌ No                    |
+| Custom       | ❌ No (manual)      | ❌ No (manual)          | ✅ Yes                   |
