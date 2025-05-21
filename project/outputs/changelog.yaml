@@ -2643,3 +2643,9 @@
   task_id: wp9_session_memory
   committed_by: GPTPod
   message: Append output file to wp9_session_memory
+- timestamp: '2025-05-21T20:27:15.859049'
+  path: app/tools/tool_wrappers/structured_input_ingestor.py
+  task_id: upload-text-input-integration
+  committed_by: GPTPod
+  message: Patch structure_input to include 'text' field for compatibility with upload
+    tools
