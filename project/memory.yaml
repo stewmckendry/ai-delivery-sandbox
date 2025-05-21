@@ -1255,3 +1255,15 @@
   - session
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP3a/WP3a_memory_schema.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/WP3a_memory_schema.md
+  file_type: md
+  description: Documentation of the memory schema for logging tool runs, interactions,
+    and session snapshots, including storage and replay support details.
+  tags:
+  - schema
+  - logging
+  - replay
+  - storage
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
