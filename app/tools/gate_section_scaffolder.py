@@ -39,20 +39,21 @@ def generate_scaffold(gate_list, gate_id, artifact_id):
 
 def main():
     parser = argparse.ArgumentParser(description="Scaffold gate document structure")
-    parser.add_argument('--gate_id', required=True, help="Gate identifier")
+    parser.add_argument('--gate_id', required=True, help="Gate identifier (integer)")
     parser.add_argument('--artifact_id', required=True, help="Artifact identifier (e.g. 'business_case')")
     parser.add_argument('--ref_path', default="https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml", help="Path or URL to gate reference YAML")
     parser.add_argument('--output', default=None, help="Optional path to write scaffold JSON")
     args = parser.parse_args()
 
+    gate_id = int(args.gate_id)  # Cast to integer since gate IDs are numbers
     gate_spec = load_gate_reference(args.ref_path)
-    scaffold = generate_scaffold(gate_spec, args.gate_id, args.artifact_id)
+    scaffold = generate_scaffold(gate_spec, gate_id, args.artifact_id)
 
     if args.output:
         with open(args.output, 'w') as f:
             json.dump(scaffold, f, indent=2)
     else:
-        print(json.dumps(scaffold, indent=2))
+        print(json.dumps(scaffold, f, indent=2))
 
 if __name__ == "__main__":
     main()
