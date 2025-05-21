@@ -1362,3 +1362,15 @@
   - registry
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/reference/tool_catalog.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/tool_catalog.yaml
+  file_type: yaml
+  description: Catalog of tools for policy suggestion, risk assessment, compliance
+    checking, language rewriting, and gate improvement.
+  tags:
+  - tool
+  - config
+  - policy
+  - compliance
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
