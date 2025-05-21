@@ -1917,3 +1917,14 @@
   - logging
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/uploadLinkInput.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/uploadLinkInput.py
+  file_type: py
+  description: Script to fetch and parse text from a URL, structure the input, and
+    save it as a YAML file.
+  tags:
+  - input
+  - ingestion
+  - parsing
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
