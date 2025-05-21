@@ -393,6 +393,7 @@ tasks:
     - app/tools/tool_wrappers/all_wrappers_validation_patch.py
     - project/build/wps/WP3b/WP3b_midpoint_update.md
     - project/build/tool_implementation_tracker.md
+    - project/deploy/wps/WP3b/deploy.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
