@@ -3,6 +3,7 @@ import yaml
 import uuid
 import datetime
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
+from app.engines.memory_sync import log_tool_usage
 
 class Tool:
     def validate(self, input_dict):
@@ -19,5 +20,7 @@ class Tool:
         out_path = os.path.join(trace_path, f"{entry['id']}.yaml")
         with open(out_path, "w", encoding="utf-8") as f:
             yaml.dump([entry], f, sort_keys=False)
+
+        log_tool_usage("uploadTextInput", entry["meta"], entry["summary"], full_input_path=out_path)
 
         return {"status": "success", "path": out_path}
