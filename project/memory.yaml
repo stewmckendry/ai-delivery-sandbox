@@ -1019,3 +1019,15 @@
   - memory layer
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3b/WP3b_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/WP3b_pod_activation_message.md
+  file_type: md
+  description: Activation message outlining the initiation and execution instructions
+    for Work Package 3b, focusing on tool wrapping and API implementation.
+  tags:
+  - activation
+  - workflow
+  - API
+  - tool wrapping
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
