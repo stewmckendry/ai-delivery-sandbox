@@ -160,3 +160,27 @@ WP9 is a foundation for memory-grounded, traceable inputs. It supports both user
 4. **Retry Path**: Wire in retry logging for failed or malformed inputs
 5. **Deploy Hooks**: If DB or memory setup needs init in Railway
 6. **Completion Note**: Include DB + trace coverage summary
+
+---
+
+### 🧠 Snapshot System Role in Memory and Planner Flow
+
+#### 🧾 Purpose of Snapshot
+- Snapshot files act as **versioned check-points** for what the user has uploaded or entered up to a given point in time.
+- These are used by the Planner (`planner_orchestrator.py`) to ground prompt generation, tool routing, and document assembly.
+
+#### 🧱 PromptLog vs. SessionSnapshot
+| Table | Purpose | Granularity | Used By |
+|-------|---------|-------------|---------|
+| `PromptLog` | Stores each ingestion event (file, link, text) | Fine-grained | Audit trail, trace replay, debugging |
+| `SessionSnapshot` | Stores bundled summary of all relevant `PromptLog` entries | Coarse-grained | Planning, versioning, rehydration |
+
+#### 🛠️ Snapshot Tool Behavior
+- Queries `PromptLog` for entries tied to a `session_id` (if provided) or full table
+- Saves selected entries into `logs/session_snapshots/snapshot_<session_id>_<timestamp>.yaml`
+- Logs metadata into `SessionSnapshot` DB table for planner/system use
+
+#### 🔄 Integration Point
+Once a snapshot is created:
+- Planner loads it via `load_latest_snapshot()` (recently re-added)
+- All retrieved entries can then be passed into toolchains for draft generation, rewriting, or gate document assembly
