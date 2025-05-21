@@ -9,3 +9,4 @@ PyPDF2
 spacy
 sqlalchemy
 pyodbc
+jsonschema>=4.0.0
