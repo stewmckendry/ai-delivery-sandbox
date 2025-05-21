@@ -1417,3 +1417,13 @@
   - tools
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: main.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/main.py
+  file_type: py
+  description: FastAPI application setup with routing and server launch configuration
+  tags:
+  - api
+  - server
+  - routing
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
