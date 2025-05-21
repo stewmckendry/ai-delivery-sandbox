@@ -1,4 +1,5 @@
-| WP   | Status       | Key Learnings                                         | Suggestions                                       | Link                                           |
-|------|--------------|------------------------------------------------------|--------------------------------------------------|------------------------------------------------|
-| WP1a | ✅ Complete  | Validate schema early; modular CLI pipelines work   | Output sample artifacts; CLI ref path override   | [WP1a Retrospective](./WP1a_retrospective.md) |
-| WP3a | ✅ Complete  | Trace/replay mode aids debugging; schema reuse works | Standardize YAML trace; early DB scaffold        | [WP3a Retrospective](./WP3a_retrospective.md) |
+| WP   | Status       | Key Learnings                                                   | Suggestions                                              | Link                                              |
+|------|--------------|----------------------------------------------------------------|-----------------------------------------------------------|---------------------------------------------------|
+| WP1a | ✅ Complete  | Validate schema early; modular CLI pipelines work             | Output sample artifacts; CLI ref path override            | [WP1a Retrospective](./WP1a_retrospective.md)     |
+| WP3a | ✅ Complete  | Trace/replay mode aids debugging; schema reuse works          | Standardize YAML trace; early DB scaffold                 | [WP3a Retrospective](./WP3a_retrospective.md)     |
+| WP3b | ✅ Complete  | Modular tool registry works; schema validation very useful    | Validate stubs early; add doc/gate/section fields early   | [WP3b Retrospective](./WP3b_retrospective.md)     |
