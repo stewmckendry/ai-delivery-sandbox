@@ -12,26 +12,30 @@ def load_gate_reference(source):
         with open(source, 'r') as f:
             return yaml.safe_load(f)
 
-def generate_scaffold(gate_spec, gate_id, artifact_id):
-    try:
-        sections = gate_spec[gate_id]['artifacts'][artifact_id]['sections']
-    except KeyError:
-        raise ValueError(f"Invalid gate_id '{gate_id}' or artifact_id '{artifact_id}' in gate reference.")
+def generate_scaffold(gate_list, gate_id, artifact_id):
+    for gate in gate_list:
+        if gate.get("gate_id") == gate_id:
+            try:
+                sections = gate['artifacts'][artifact_id]['sections']
+            except KeyError:
+                raise ValueError(f"Artifact ID '{artifact_id}' not found in gate '{gate_id}'.")
 
-    scaffold = []
-    for sec in sections:
-        scaffold.append({
-            "section_id": sec.get('id'),
-            "title": sec.get('title'),
-            "content": "TODO: expand section",
-            "next_pod_hint": sec.get('owner', 'ExpanderPod')
-        })
+            scaffold = []
+            for sec in sections:
+                scaffold.append({
+                    "section_id": sec.get('id'),
+                    "title": sec.get('title'),
+                    "content": "TODO: expand section",
+                    "next_pod_hint": sec.get('owner', 'ExpanderPod')
+                })
 
-    return {
-        "gate_id": gate_id,
-        "artifact_id": artifact_id,
-        "scaffold": scaffold
-    }
+            return {
+                "gate_id": gate_id,
+                "artifact_id": artifact_id,
+                "scaffold": scaffold
+            }
+
+    raise ValueError(f"Gate ID '{gate_id}' not found in gate reference list.")
 
 def main():
     parser = argparse.ArgumentParser(description="Scaffold gate document structure")
