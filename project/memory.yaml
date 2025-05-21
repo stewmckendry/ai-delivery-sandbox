@@ -1244,3 +1244,14 @@
   - logging
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/db/models/SessionSnapshot.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/SessionSnapshot.py
+  file_type: py
+  description: Database model for storing session snapshots with metadata such as
+    timestamp, session ID, and user ID.
+  tags:
+  - database
+  - model
+  - session
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
