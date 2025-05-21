@@ -1699,3 +1699,14 @@
   - fastapi
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/test/wps/WP3b/test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP3b/test_plan.md
+  file_type: md
+  description: Test plan for verifying the Tool Registry system across CLI, API, and
+    GPT manifest interfaces.
+  tags:
+  - test
+  - api
+  - validation
+  last_updated: '2025-05-21'
+  pod_owner: QAPod
