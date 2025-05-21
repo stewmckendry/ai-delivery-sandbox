@@ -1102,3 +1102,15 @@
   - session
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/templates/final_document_assembler.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/templates/final_document_assembler.py
+  file_type: py
+  description: Script to assemble expanded sections into a gate document in both Markdown
+    and JSON formats.
+  tags:
+  - document
+  - assembler
+  - json
+  - markdown
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
