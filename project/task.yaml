@@ -377,6 +377,7 @@ tasks:
     - app/tools/tool_wrappers/commitDocument.py
     - app/tools/tool_wrappers/fetchDocument.py
     - app/tools/tool_wrappers/getTokenUsage.py
+    - app/tools/tool_wrappers/translateDocument.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
