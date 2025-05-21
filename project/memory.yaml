@@ -1199,3 +1199,15 @@
   - testing
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3a/app/engines/planner_orchestrator.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/app/engines/planner_orchestrator.py
+  file_type: py
+  description: Script for orchestrating tool chains based on intent, supporting both
+    live and replay modes, and logging tool usage and session snapshots.
+  tags:
+  - orchestration
+  - tools
+  - logging
+  - flow
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
