@@ -8,6 +8,7 @@ def structure_input(raw_text, source, input_type):
         'source': source,
         'type': input_type,
         'timestamp': datetime.datetime.utcnow().isoformat() + 'Z',
+        'text': raw_text,
         'content_summary': raw_text[:1000],
         'tags': ['input', 'upload']
     }
