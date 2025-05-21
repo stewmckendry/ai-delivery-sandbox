@@ -27,6 +27,13 @@ tools:
     module: app.tools.tool_wrappers.commitSection
     class: Tool
     description: Saves validated section to Drive and DB
+    schema:
+      section_id:
+        type: string
+      author:
+        type: string
+      content:
+        type: string
   commitDocument:
     module: app.tools.tool_wrappers.commitDocument
     class: Tool
@@ -43,6 +50,12 @@ tools:
     module: app.tools.tool_wrappers.translateDocument
     class: Tool
     description: Converts document language (EN ⇆ FR)
+    schema:
+      doc_id:
+        type: string
+      target_lang:
+        type: string
+        enum: ["en", "fr"]
   queryAirtable:
     module: app.tools.tool_wrappers.queryAirtable
     class: Tool
