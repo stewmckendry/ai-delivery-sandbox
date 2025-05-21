@@ -1385,3 +1385,14 @@
   - services
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/compose_and_cite.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/compose_and_cite.py
+  file_type: py
+  description: Script to execute a tool that processes input data and returns a status
+    using command-line arguments
+  tags:
+  - tool
+  - cli
+  - yaml
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
