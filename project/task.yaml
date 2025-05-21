@@ -356,6 +356,7 @@ tasks:
     - app/db/models/SessionSnapshot.py
     - project/build/wps/WP3a/WP3a_memory_schema.md
     - project/build/wps/WP3a/WP3a_test_cases.md
+    - app/tools/__init__.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
