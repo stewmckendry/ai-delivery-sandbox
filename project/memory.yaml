@@ -1067,3 +1067,15 @@
   - integration
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP1a/WP1a_tasklist.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_tasklist.md
+  file_type: md
+  description: Task list for scaffolding and assembling components in the WP1a project,
+    including script development and documentation tasks.
+  tags:
+  - tasklist
+  - scaffolding
+  - assembly
+  - documentation
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
