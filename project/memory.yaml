@@ -1906,3 +1906,14 @@
   - yaml
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/uploadFileInput.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/uploadFileInput.py
+  file_type: py
+  description: Script to handle file uploads by extracting and structuring text, then
+    logging the process.
+  tags:
+  - upload
+  - ingestion
+  - logging
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
