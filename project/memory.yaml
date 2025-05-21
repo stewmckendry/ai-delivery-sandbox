@@ -1652,3 +1652,16 @@
   - runtime
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP3b/WP3b_midpoint_update.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/WP3b_midpoint_update.md
+  file_type: md
+  description: Midpoint update for WP3b detailing the status of tool wrapping and
+    API deliverables, including completion status, notes, and handoff routing for
+    various tools.
+  tags:
+  - API
+  - tool wrapping
+  - deliverables
+  - update
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
