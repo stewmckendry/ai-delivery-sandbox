@@ -332,6 +332,7 @@ tasks:
     - project/retrospectives/work_package_retrospective.md
     - project/build/wps/build_speed_tactics.md
     - project/build/wps/speed_tactics_for_pods.md
+    - project/build/wps/WP1a/WP1a_pod_activation_message.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
