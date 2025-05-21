@@ -995,3 +995,15 @@
   - documentation
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP1a/WP1a_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_pod_activation_message.md
+  file_type: md
+  description: Activation message for Work Package 1a, detailing scaffolding and assembly
+    tasks for the PolicyGPT build system.
+  tags:
+  - activation
+  - workflow
+  - build
+  - coordination
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
