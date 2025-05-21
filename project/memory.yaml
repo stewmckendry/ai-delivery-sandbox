@@ -1745,3 +1745,16 @@
   - schema
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3a/WP3a_toolchain_system.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/WP3a_toolchain_system.md
+  file_type: md
+  description: Documentation detailing the WP3a toolchain system, including components
+    like the PlannerOrchestrator, tool catalog, and memory management for executing
+    and logging tasks within PolicyGPT.
+  tags:
+  - toolchain
+  - planner
+  - logging
+  - execution
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
