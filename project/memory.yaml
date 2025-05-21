@@ -1608,3 +1608,14 @@
   - integration
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP3b/WP3b_openapi_coverage.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/WP3b_openapi_coverage.md
+  file_type: md
+  description: Summary of the current FastAPI schema for WP3b, including implemented
+    endpoints and instructions for generating the OpenAPI schema.
+  tags:
+  - api
+  - schema
+  - documentation
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
