@@ -1,0 +1,16 @@
+- id: f1469a5e-6d79-4f5f-858c-ea3b876dffb4
+  tool: uploadTextInput
+  input_summary: direct_input | uploadTextInput
+  output_summary: "The Canadian Infrastructure Bank\u2019s investment in the Ontario\
+    \ Line aims to improve transit accessibility across Toronto.\n\nBudget 2023 introduces\
+    \ changes to the Gate 2 approval process, shifting the funding review to an earlier\
+    \ phase to accelerate delivery.\n\nUser uploaded three reports on bridge conditions,\
+    \ including inspection photos and structural assessments. These files are tagged\
+    \ as Gate 1 evidence.\n\nPlease summarize the transcript of the stakeholder consultation\
+    \ meeting held on March 15.\n\nThis paragraph is intentionally vague to test how\
+    \ the system handles low-information text.\n\n<URL> https://www.infrastructure.gc.ca/transit-transportation/ontario-line-en.html\n"
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-21 21:07:46.727158
