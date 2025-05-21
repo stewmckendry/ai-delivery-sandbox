@@ -1532,3 +1532,14 @@
   - transcript
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/loadCorpus.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/loadCorpus.py
+  file_type: py
+  description: Placeholder class for a tool to load a corpus, with an unimplemented
+    method.
+  tags:
+  - tool
+  - corpus
+  - placeholder
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
