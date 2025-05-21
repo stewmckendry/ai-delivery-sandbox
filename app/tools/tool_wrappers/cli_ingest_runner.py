@@ -1,9 +1,9 @@
 import os
 import sys
 import argparse
-from text_extractor import extract_text
-from structured_input_ingestor import structure_input, to_yaml
-from retry_ingestion import retry_with_backoff
+from app.tools.tool_wrappers.text_extractor import extract_text
+from app.tools.tool_wrappers.structured_input_ingestor import structure_input, to_yaml
+from app.tools.tool_wrappers.retry_ingestion import retry_with_backoff
 
 SAVE_DIR = "project/logs/ingest_traces"
 os.makedirs(SAVE_DIR, exist_ok=True)
