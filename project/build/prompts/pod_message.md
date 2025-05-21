@@ -41,9 +41,11 @@ We are kicking off `{{WP ID}} – {{WP Name}}` as defined in the system architec
 Call /system/fetchFiles in batch mode to retrieve the following files (use the above repo_name and branch):
 Break the files into groups to avoid size limits.
 
-#### Work Package Definitions
+#### Your Work Assignment (WP1a)
+project/build/wps/WP1a/WP1a_definition.md  
+
+#### Other Work Packages
 project/build/wps/work_package_overview.md
-project/build/wps/WP1a/<wp_id>_definition.md
 
 #### Pod SOPs + Message Templates
 project/build/build_pods_sop.md
@@ -64,11 +66,6 @@ project/system_design/system_architecture_v2.md
 project/system_design/gating_doc_quality_v2.md
 project/system_design/integration_points_v2.md
 project/system_design/db_schema_notes_v2.md
-
-#### Retrospective Files
-project/retrospectives/deep_research_redesign_retrospective.md
-project/retrospectives/poc_phase1_productpod_retrospective.md
-project/retrospectives/work_package_retrospective.md
 
 
 ### 🧠 Reminder
