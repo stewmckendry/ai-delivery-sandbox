@@ -20,9 +20,9 @@ class ToolRegistry:
         tool_class = getattr(module, class_name)
         tool_instance = tool_class()
 
-        # Attach schema for validation if present
         if "schema" in tool_entry:
             setattr(tool_instance, "schema", tool_entry["schema"])
+            setattr(tool_instance, "validate", lambda input_dict: self._validate(input_dict, tool_entry["schema"]))
 
         return tool_instance
 
@@ -31,3 +31,13 @@ class ToolRegistry:
             {"tool_id": tool_id, **entry}
             for tool_id, entry in self.catalog.items()
         ]
+
+    def _validate(self, input_dict, schema):
+        missing = [k for k in schema if k not in input_dict]
+        if missing:
+            raise ValueError(f"Missing required field(s): {', '.join(missing)}")
+
+        for key, rule in schema.items():
+            if "enum" in rule:
+                if input_dict.get(key) not in rule["enum"]:
+                    raise ValueError(f"Invalid value for {key}: must be one of {rule['enum']}")
