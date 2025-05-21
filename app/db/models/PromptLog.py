@@ -7,20 +7,24 @@ class PromptLog(Base):
     __tablename__ = 'prompt_logs'
 
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    tool = Column(String(255))
+    input_summary = Column(String)
+    output_summary = Column(String)
+    full_input_path = Column(String)
+    full_output_path = Column(String)
     session_id = Column(String(255))
-    source = Column(String(255))
-    type = Column(String(255))
+    user_id = Column(String(255))
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
-    content_summary = Column(String)
-    tags = Column(String)
 
     def to_dict(self):
         return {
             "id": self.id,
+            "tool": self.tool,
+            "input_summary": self.input_summary,
+            "output_summary": self.output_summary,
+            "full_input_path": self.full_input_path,
+            "full_output_path": self.full_output_path,
             "session_id": self.session_id,
-            "source": self.source,
-            "type": self.type,
-            "timestamp": self.timestamp.isoformat() if self.timestamp else None,
-            "content_summary": self.content_summary,
-            "tags": self.tags
+            "user_id": self.user_id,
+            "timestamp": self.timestamp.isoformat() if self.timestamp else None
         }

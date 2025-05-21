@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 # Central DB URL resolution
-DB_URL = os.getenv("DATABASE_URL", "sqlite:///policy_gpt.db")
+DB_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DB_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
