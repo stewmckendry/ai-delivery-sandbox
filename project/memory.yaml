@@ -1871,3 +1871,15 @@
   - error-handling
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/cli_ingest_runner.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/cli_ingest_runner.py
+  file_type: py
+  description: Script to ingest files, extract and structure text, and save the output
+    as YAML files with retry logic.
+  tags:
+  - ingestion
+  - extraction
+  - yaml
+  - cli
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
