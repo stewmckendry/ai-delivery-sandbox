@@ -341,6 +341,7 @@ tasks:
     - project/build/wps/WP1a/WP1a_tasklist.md
     - app/tools/gate_section_scaffolder.py
     - app/tools/gate_section_expander.py
+    - app/templates/final_document_assembler.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
