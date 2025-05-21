@@ -5,12 +5,14 @@ import datetime
 def structure_input(raw_text, source, tool_name):
     return {
         'id': str(uuid.uuid4()),
-        'source': source,
-        'type': tool_name,
-        'timestamp': datetime.datetime.utcnow().isoformat() + 'Z',
-        'text': raw_text,
-        'content_summary': raw_text[:1000],
-        'tags': ['input', 'upload']
+        'tool': tool_name,
+        'input_summary': f"{source} | {tool_name}",
+        'output_summary': raw_text[:1000],
+        'full_input_path': None,
+        'full_output_path': None,
+        'session_id': None,
+        'user_id': None,
+        'timestamp': datetime.datetime.utcnow()
     }
 
 def to_yaml(entry_dict):

@@ -21,6 +21,14 @@ class Tool:
         with open(out_path, "w", encoding="utf-8") as f:
             yaml.dump([entry], f, sort_keys=False)
 
-        log_tool_usage("uploadTextInput", {"source": entry["source"], "type": entry["type"]}, entry["content_summary"], full_input_path=out_path)
+        log_tool_usage(
+            entry["tool"],
+            entry["input_summary"],
+            entry["output_summary"],
+            full_input_path=out_path,
+            full_output_path=entry.get("full_output_path"),
+            session_id=entry.get("session_id"),
+            user_id=entry.get("user_id")
+        )
 
         return {"status": "success", "path": out_path}
