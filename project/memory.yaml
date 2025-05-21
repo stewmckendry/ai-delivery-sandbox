@@ -1079,3 +1079,15 @@
   - documentation
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/gate_section_scaffolder.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/gate_section_scaffolder.py
+  file_type: py
+  description: Script to generate a scaffold for gate sections based on a reference
+    YAML file, allowing for structured document creation.
+  tags:
+  - scaffold
+  - yaml
+  - document
+  - structure
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
