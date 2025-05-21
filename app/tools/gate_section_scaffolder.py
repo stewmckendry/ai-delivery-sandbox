@@ -2,10 +2,15 @@ import yaml
 import json
 import argparse
 from pathlib import Path
+from urllib.request import urlopen
 
-def load_gate_reference(file_path):
-    with open(file_path, 'r') as f:
-        return yaml.safe_load(f)
+def load_gate_reference(source):
+    if source.startswith("http"):
+        with urlopen(source) as f:
+            return yaml.safe_load(f.read())
+    else:
+        with open(source, 'r') as f:
+            return yaml.safe_load(f)
 
 def generate_scaffold(gate_spec, gate_id, artifact_id):
     try:
@@ -32,7 +37,7 @@ def main():
     parser = argparse.ArgumentParser(description="Scaffold gate document structure")
     parser.add_argument('--gate_id', required=True, help="Gate identifier")
     parser.add_argument('--artifact_id', required=True, help="Artifact identifier (e.g. 'business_case')")
-    parser.add_argument('--ref_path', default="project/reference/gate_reference_v2.yaml", help="Path to gate reference YAML")
+    parser.add_argument('--ref_path', default="https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml", help="Path or URL to gate reference YAML")
     parser.add_argument('--output', default=None, help="Optional path to write scaffold JSON")
     args = parser.parse_args()
 
