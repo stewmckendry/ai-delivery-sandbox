@@ -1,31 +1,23 @@
 import os
 import yaml
-import datetime
 import uuid
+import datetime
+from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 
-schema = {
-    "type": "object",
-    "properties": {
-        "text": {"type": "string"},
-        "source": {"type": "string"}
-    },
-    "required": ["text"]
-}
+class Tool:
+    def validate(self, input_dict):
+        if "text" not in input_dict:
+            raise ValueError("Missing 'text' in input.")
 
-tool_name = "uploadTextInput"
+    def run_tool(self, input_dict):
+        self.validate(input_dict)
+        text = input_dict["text"]
+        entry = structure_input(text, source="direct_input", tool_name="uploadTextInput")
 
-def run(text: str, source: str = "user"):
-    entry = {
-        'id': str(uuid.uuid4()),
-        'source': source,
-        'type': 'uploadTextInput',
-        'timestamp': datetime.datetime.utcnow().isoformat() + 'Z',
-        'content_summary': text[:1000],
-        'tags': ['input', 'text']
-    }
-    trace_path = os.path.join("logs", "ingest_traces")
-    os.makedirs(trace_path, exist_ok=True)
-    out_path = os.path.join(trace_path, f"{entry['id']}.yaml")
-    with open(out_path, "w", encoding="utf-8") as f:
-        yaml.dump([entry], f, sort_keys=False)
-    return {"status": "success", "path": out_path}
+        trace_path = os.path.join("logs", "ingest_traces")
+        os.makedirs(trace_path, exist_ok=True)
+        out_path = os.path.join(trace_path, f"{entry['id']}.yaml")
+        with open(out_path, "w", encoding="utf-8") as f:
+            yaml.dump([entry], f, sort_keys=False)
+
+        return {"status": "success", "path": out_path}
