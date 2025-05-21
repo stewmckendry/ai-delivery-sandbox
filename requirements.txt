@@ -6,3 +6,5 @@ textract<=1.6.4
 beautifulsoup4
 python-docx
 pip<24.1
+PyPDF2
+spacy
