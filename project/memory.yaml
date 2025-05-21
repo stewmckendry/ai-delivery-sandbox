@@ -1928,3 +1928,14 @@
   - parsing
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/createSessionSnapshot.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/createSessionSnapshot.py
+  file_type: py
+  description: Script to create a session snapshot by querying and storing prompt
+    logs in a YAML file
+  tags:
+  - snapshot
+  - database
+  - session
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
