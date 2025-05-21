@@ -2012,3 +2012,16 @@
   - tools
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP9/WP9_database_schema.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/WP9_database_schema.md
+  file_type: md
+  description: Documentation of the database schema and handlers for tool usage logs
+    and session snapshots, including table structures and methods for logging and
+    snapshot creation.
+  tags:
+  - database
+  - schema
+  - logging
+  - session
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
