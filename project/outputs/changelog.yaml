@@ -1092,3 +1092,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Update WP1a tasklist with final status and deferrals to WP2
+- timestamp: '2025-05-21T02:16:18.335853'
+  path: project/build/wps/WP1a/WP1a_lead_pod_update.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add deferred task T7 details to WP1a_lead_pod_update.md for traceability
+    and QA
