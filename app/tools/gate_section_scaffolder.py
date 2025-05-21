@@ -9,7 +9,7 @@ def load_gate_reference(source):
         with urlopen(source) as f:
             return yaml.safe_load(f.read())
     else:
-        with open(source, ' 'r') as f:
+        with open(source, 'r') as f:
             return yaml.safe_load(f)
 
 def generate_scaffold(gate_list, gate_id, artifact_id):
