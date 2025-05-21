@@ -1794,3 +1794,14 @@
   - cli
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP9/cli_ingest_batch/structured_input_ingestor.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/cli_ingest_batch/structured_input_ingestor.py
+  file_type: py
+  description: Script for structuring and converting input data to YAML format with
+    metadata
+  tags:
+  - ingestion
+  - yaml
+  - metadata
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
