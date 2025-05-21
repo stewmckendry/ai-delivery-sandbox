@@ -28,6 +28,6 @@ class Tool:
         with open(out_path, "w", encoding="utf-8") as f:
             yaml.dump([entry], f, sort_keys=False)
 
-        log_tool_usage("uploadFileInput", entry["meta"], entry["summary"], full_input_path=out_path)
+        log_tool_usage("uploadFileInput", {"source": entry["source"], "type": entry["type"]}, entry["content_summary"], full_input_path=out_path)
 
         return {"status": "success", "path": out_path}
