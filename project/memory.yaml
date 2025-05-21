@@ -1861,3 +1861,13 @@
   - metadata
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/retry_ingestion.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/retry_ingestion.py
+  file_type: py
+  description: Function to retry a given function with exponential backoff upon failure
+  tags:
+  - retry
+  - utility
+  - error-handling
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
