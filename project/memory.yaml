@@ -1850,3 +1850,14 @@
   - file processing
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/structured_input_ingestor.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/structured_input_ingestor.py
+  file_type: py
+  description: Script to structure and convert raw input text into a YAML format with
+    metadata.
+  tags:
+  - input
+  - yaml
+  - metadata
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
