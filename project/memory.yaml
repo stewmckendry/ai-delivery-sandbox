@@ -1327,3 +1327,15 @@
   - summary
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3b/WP3b_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/WP3b_design.md
+  file_type: md
+  description: Design plan for wrapping tools and exposing them as API endpoints with
+    a unified router, including OpenAPI specification and configuration management.
+  tags:
+  - design
+  - API
+  - OpenAPI
+  - configuration
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
