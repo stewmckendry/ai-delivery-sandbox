@@ -7,13 +7,13 @@ def load_gate_reference(file_path):
     with open(file_path, 'r') as f:
         return yaml.safe_load(f)
 
-def generate_scaffold(gate_spec, gate_id):
-    if gate_id not in gate_spec:
-        raise ValueError(f"Gate ID '{gate_id}' not found in gate reference.")
+def generate_scaffold(gate_spec, gate_id, artifact_id):
+    try:
+        sections = gate_spec[gate_id]['artifacts'][artifact_id]['sections']
+    except KeyError:
+        raise ValueError(f"Invalid gate_id '{gate_id}' or artifact_id '{artifact_id}' in gate reference.")
 
-    sections = gate_spec[gate_id]['sections']
     scaffold = []
-
     for sec in sections:
         scaffold.append({
             "section_id": sec.get('id'),
@@ -24,18 +24,20 @@ def generate_scaffold(gate_spec, gate_id):
 
     return {
         "gate_id": gate_id,
+        "artifact_id": artifact_id,
         "scaffold": scaffold
     }
 
 def main():
     parser = argparse.ArgumentParser(description="Scaffold gate document structure")
     parser.add_argument('--gate_id', required=True, help="Gate identifier")
+    parser.add_argument('--artifact_id', required=True, help="Artifact identifier (e.g. 'business_case')")
     parser.add_argument('--ref_path', default="project/reference/gate_reference_v2.yaml", help="Path to gate reference YAML")
     parser.add_argument('--output', default=None, help="Optional path to write scaffold JSON")
     args = parser.parse_args()
 
     gate_spec = load_gate_reference(args.ref_path)
-    scaffold = generate_scaffold(gate_spec, args.gate_id)
+    scaffold = generate_scaffold(gate_spec, args.gate_id, args.artifact_id)
 
     if args.output:
         with open(args.output, 'w') as f:
