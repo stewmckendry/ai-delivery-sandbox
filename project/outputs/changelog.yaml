@@ -2327,3 +2327,8 @@
   task_id: WP9
   committed_by: GPTPod
   message: Append output file to WP9
+- timestamp: '2025-05-21T17:15:23.738937'
+  path: app/tools/tool_wrappers/uploadLinkInput.py
+  task_id: WP9
+  committed_by: GPTPod
+  message: Refactor uploadLinkInput to match tool registry wrapper format
