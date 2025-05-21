@@ -3,6 +3,7 @@ from pathlib import Path
 
 class Tool:
     def run_tool(self, input_dict):
+        self.validate(input_dict)
         # Placeholder logic
         return {"status": "success", "step": "searchKnowledgeBase", "input_received": input_dict}
 
