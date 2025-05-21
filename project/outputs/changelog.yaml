@@ -2242,3 +2242,8 @@
   task_id: WP9
   committed_by: GPTPod
   message: Append output file to WP9
+- timestamp: '2025-05-21T17:01:51.698554'
+  path: requirements.txt
+  task_id: WP9
+  committed_by: GPTPod
+  message: Add textract, beautifulsoup4, and python-docx for input ingestion utilities
