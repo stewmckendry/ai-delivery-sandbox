@@ -1,25 +1,33 @@
 import importlib
 import yaml
-from pathlib import Path
+import os
 
 class ToolRegistry:
-    def __init__(self, config_path="project/reference/tool_catalog.yaml"):
-        self.config_path = Path(config_path)
-        self.tools = {}
-        self.load_tools()
-
-    def load_tools(self):
-        with self.config_path.open() as f:
-            catalog = yaml.safe_load(f)
-        for tool_id, entry in catalog.get("tools", {}).items():
-            module_path = entry["module"]
-            class_name = entry.get("class", "Tool")
-            mod = importlib.import_module(module_path)
-            tool_class = getattr(mod, class_name)
-            self.tools[tool_id] = tool_class()
+    def __init__(self):
+        catalog_path = os.path.join("project", "reference", "tool_catalog.yaml")
+        with open(catalog_path, "r") as f:
+            self.catalog = yaml.safe_load(f)["tools"]
 
     def get_tool(self, tool_id):
-        return self.tools.get(tool_id)
+        tool_entry = self.catalog.get(tool_id)
+        if not tool_entry:
+            raise ValueError(f"Tool '{tool_id}' not found")
+
+        module_path = tool_entry["module"]
+        class_name = tool_entry.get("class", "Tool")
+
+        module = importlib.import_module(module_path)
+        tool_class = getattr(module, class_name)
+        tool_instance = tool_class()
+
+        # Attach schema for validation if present
+        if "schema" in tool_entry:
+            setattr(tool_instance, "schema", tool_entry["schema"])
+
+        return tool_instance
 
     def list_tools(self):
-        return list(self.tools.keys())
+        return [
+            {"tool_id": tool_id, **entry}
+            for tool_id, entry in self.catalog.items()
+        ]
