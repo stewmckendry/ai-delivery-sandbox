@@ -386,6 +386,7 @@ tasks:
     - app/tools/tool_wrappers/submitDocumentFeedback.py
     - app/tools/tool_wrappers/summarize_feedback_log.py
     - app/tools/tool_wrappers/policy_section_suggester.py
+    - project/build/wps/WP3b/tool_registry_system.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
