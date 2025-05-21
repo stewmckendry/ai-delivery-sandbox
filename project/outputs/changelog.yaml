@@ -1098,3 +1098,8 @@
   committed_by: GPTPod
   message: Add deferred task T7 details to WP1a_lead_pod_update.md for traceability
     and QA
+- timestamp: '2025-05-21T02:19:37.120718'
+  path: project/build/work_package_tracker.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Mark WP1a complete and summarize final status + handoff to WP2/WP3
