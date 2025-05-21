@@ -1029,3 +1029,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Fix scaffolder to support list of artifact dicts under each gate
+- timestamp: '2025-05-21T01:59:59.042773'
+  path: app/tools/gate_section_scaffolder.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix scaffolder to correctly extract 'section_id' from YAML instead of 'id'
