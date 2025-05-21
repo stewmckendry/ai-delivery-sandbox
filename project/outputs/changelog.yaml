@@ -1854,3 +1854,9 @@
   committed_by: GPTPod
   message: 'Fix bug: await request.json() in run_tool API handler to resolve coroutine
     error'
+- timestamp: '2025-05-21T14:57:04.459399'
+  path: app/engines/api_router.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Return validation errors to client by catching ValueError in run_tool API
+    route
