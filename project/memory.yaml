@@ -1460,3 +1460,14 @@
   - placeholder
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/logReasoningTrace.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/logReasoningTrace.py
+  file_type: py
+  description: Class definition for a tool that logs reasoning traces with a placeholder
+    implementation.
+  tags:
+  - tool
+  - logging
+  - implementation
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
