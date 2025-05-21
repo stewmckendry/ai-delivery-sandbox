@@ -2252,3 +2252,8 @@
   task_id: WP9
   committed_by: GPTPod
   message: Append output file to WP9
+- timestamp: '2025-05-21T17:06:27.636229'
+  path: requirements.txt
+  task_id: WP9
+  committed_by: GPTPod
+  message: Pin textract<=1.6.4 and pip<24.1 to fix Railway deploy compatibility
