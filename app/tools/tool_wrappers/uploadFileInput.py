@@ -9,10 +9,8 @@ from app.engines.memory_sync import log_tool_usage
 
 class Tool:
     def validate(self, input_dict):
-        if "file_path" not in input_dict:
-            raise ValueError("Missing 'file_path' in input.")
-        if not os.path.exists(input_dict["file_path"]):
-            raise FileNotFoundError(f"File not found: {input_dict['file_path']}")
+        # placeholder for validation logic
+        pass
 
     def run_tool(self, input_dict):
         self.validate(input_dict)

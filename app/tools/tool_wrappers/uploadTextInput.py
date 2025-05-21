@@ -7,8 +7,8 @@ from app.engines.memory_sync import log_tool_usage
 
 class Tool:
     def validate(self, input_dict):
-        if "text" not in input_dict:
-            raise ValueError("Missing 'text' in input.")
+        # placeholder for validation logic
+        pass
 
     def run_tool(self, input_dict):
         self.validate(input_dict)
