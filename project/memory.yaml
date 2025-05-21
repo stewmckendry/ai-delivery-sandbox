@@ -1710,3 +1710,14 @@
   - validation
   last_updated: '2025-05-21'
   pod_owner: QAPod
+- path: project/test/wps/WP3b/test_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP3b/test_summary.md
+  file_type: md
+  description: Summary of test outcomes for the Tool Registry API, including endpoint
+    validation and error handling.
+  tags:
+  - test
+  - api
+  - validation
+  last_updated: '2025-05-21'
+  pod_owner: QAPod
