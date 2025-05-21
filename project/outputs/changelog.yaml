@@ -1744,3 +1744,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-21T14:26:38.072554'
+  path: project/build/wps/WP3b/tool_registry_system.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Appended OpenAPI and GPT tool discovery FAQ to bottom of tool_registry_system.md
