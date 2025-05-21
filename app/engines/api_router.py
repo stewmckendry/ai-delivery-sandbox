@@ -16,4 +16,7 @@ def list_tools():
 async def run_tool(tool_id: str, request: Request):
     input_data = await request.json()
     tool = registry.get_tool(tool_id)
-    return tool.run_tool(input_data)
+    try:
+        return tool.run_tool(input_data)
+    except ValueError as ve:
+        return {"error": str(ve)}
