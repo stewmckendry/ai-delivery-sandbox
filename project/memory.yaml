@@ -1174,3 +1174,16 @@
   - CLI
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3a/WP3a_planner_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/WP3a_planner_design.md
+  file_type: md
+  description: Design document for the PolicyGPT Planner and Memory Layer, detailing
+    objectives, architecture, deliverables, and testing plans for orchestrating task
+    flows and maintaining session context.
+  tags:
+  - design
+  - planner
+  - architecture
+  - memory
+  last_updated: '2025-05-21'
+  pod_owner: ResearchPod
