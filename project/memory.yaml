@@ -2049,3 +2049,16 @@
   - cli
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP9/wp9_update.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/wp9_update.md
+  file_type: md
+  description: Document detailing updates on WP9, including implementation of ingestion
+    tools, database logging, and remaining tasks for integration with front-end and
+    Planner toolchains.
+  tags:
+  - ingestion
+  - database
+  - CLI
+  - API
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
