@@ -1564,3 +1564,14 @@
   - implementation
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/submitDocumentFeedback.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/submitDocumentFeedback.py
+  file_type: py
+  description: Script defining a tool for submitting document feedback with a placeholder
+    implementation
+  tags:
+  - tool
+  - feedback
+  - implementation
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
