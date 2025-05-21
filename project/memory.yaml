@@ -1007,3 +1007,15 @@
   - coordination
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP3a/WP3a_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3a/WP3a_pod_activation_message.md
+  file_type: md
+  description: Activation message for Work Package 3a, detailing the scope, instructions,
+    and expectations for implementing a planning engine with memory layer capabilities.
+  tags:
+  - activation
+  - work package
+  - planning engine
+  - memory layer
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
