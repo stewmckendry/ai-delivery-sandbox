@@ -13,7 +13,7 @@ def list_tools():
     return registry.list_tools()
 
 @router.post("/tools/{tool_id}")
-def run_tool(tool_id: str, request: Request):
-    input_data = request.json()
+async def run_tool(tool_id: str, request: Request):
+    input_data = await request.json()
     tool = registry.get_tool(tool_id)
     return tool.run_tool(input_data)
