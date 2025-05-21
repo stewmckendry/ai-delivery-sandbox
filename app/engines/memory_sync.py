@@ -1,14 +1,12 @@
 import json
 import os
 from datetime import datetime
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from app.db.models.PromptLog import PromptLog
 from app.db.models.SessionSnapshot import SessionSnapshot
+from app.db.database import get_session
 
 LOG_DIR = "logs/prompt_logs"
 SNAPSHOT_DIR = "logs/session_snapshots"
-DB_URL = os.getenv("DATABASE_URL", "sqlite:///project/local/prompt_logs.db")
 
 def log_tool_usage(tool_name, input_summary, output_summary, full_input_path, full_output_path=None, session_id=None, user_id=None):
     os.makedirs(LOG_DIR, exist_ok=True)
@@ -27,9 +25,7 @@ def log_tool_usage(tool_name, input_summary, output_summary, full_input_path, fu
     with open(os.path.join(LOG_DIR, "prompt_logs.jsonl"), "a") as f:
         f.write(json.dumps(log_data) + "\n")
 
-    engine = create_engine(DB_URL)
-    Session = sessionmaker(bind=engine)
-    db_session = Session()
+    db_session = get_session()
     try:
         db_log = PromptLog(
             tool=tool_name,
@@ -59,9 +55,7 @@ def save_session_snapshot(session_id, snapshot_path, notes=None, user_id=None):
     with open(os.path.join(SNAPSHOT_DIR, f"snapshot_{session_id}.json"), "w") as f:
         json.dump(snapshot_data, f, indent=2)
 
-    engine = create_engine(DB_URL)
-    Session = sessionmaker(bind=engine)
-    db_session = Session()
+    db_session = get_session()
     try:
         db_snapshot = SessionSnapshot(
             session_id=session_id,
