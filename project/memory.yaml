@@ -1126,3 +1126,15 @@
   - assembly
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP1a/WP1a_deployment.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_deployment.md
+  file_type: md
+  description: Instructions for deploying and assembling scaffolding for mock policy
+    documents using Python scripts.
+  tags:
+  - deployment
+  - scaffolding
+  - assembly
+  - script
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
