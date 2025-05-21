@@ -1,12 +1,19 @@
 import importlib
 import yaml
 import os
+import requests
 
 class ToolRegistry:
-    def __init__(self):
-        catalog_path = os.path.join("project", "reference", "tool_catalog.yaml")
-        with open(catalog_path, "r") as f:
-            self.catalog = yaml.safe_load(f)["tools"]
+    def __init__(self, source="local"):
+        self.source = source
+        if source == "github":
+            url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/tool_catalog.yaml"
+            r = requests.get(url)
+            self.catalog = yaml.safe_load(r.text)["tools"]
+        else:
+            catalog_path = os.path.join("project", "reference", "tool_catalog.yaml")
+            with open(catalog_path, "r") as f:
+                self.catalog = yaml.safe_load(f)["tools"]
 
     def get_tool(self, tool_id):
         tool_entry = self.catalog.get(tool_id)
