@@ -1758,3 +1758,16 @@
   - execution
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP9/WP9_design_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/WP9_design_plan.md
+  file_type: md
+  description: Design plan for the input ingestion system of PolicyGPT, detailing
+    components for ingesting, sanitizing, and structuring diverse user inputs into
+    YAML traces and memory.
+  tags:
+  - design
+  - ingestion
+  - input
+  - YAML
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
