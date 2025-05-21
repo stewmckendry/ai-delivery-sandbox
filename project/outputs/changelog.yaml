@@ -2491,3 +2491,8 @@
   task_id: WP9
   committed_by: GPTPod
   message: Append output file to WP9
+- timestamp: '2025-05-21T18:02:34.313813'
+  path: app/tools/tool_wrappers/uploadTextInput.py
+  task_id: WP9
+  committed_by: GPTPod
+  message: Fix uploadTextInput to replace entry['meta'] with dict of source and type
