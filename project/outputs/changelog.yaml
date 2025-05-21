@@ -2347,3 +2347,8 @@
   task_id: WP9
   committed_by: GPTPod
   message: Append output file to WP9
+- timestamp: '2025-05-21T17:22:28.291326'
+  path: app/tools/tool_wrappers/uploadFileInput.py
+  task_id: WP9
+  committed_by: GPTPod
+  message: Refactor uploadFileInput to use registry-compliant Tool class
