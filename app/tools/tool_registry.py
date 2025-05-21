@@ -2,6 +2,7 @@ import importlib
 import yaml
 import os
 import requests
+from jsonschema import validate, ValidationError
 
 class ToolRegistry:
     def __init__(self, source="local"):
@@ -40,11 +41,7 @@ class ToolRegistry:
         ]
 
     def _validate(self, input_dict, schema):
-        missing = [k for k in schema if k not in input_dict]
-        if missing:
-            raise ValueError(f"Missing required field(s): {', '.join(missing)}")
-
-        for key, rule in schema.items():
-            if "enum" in rule:
-                if input_dict.get(key) not in rule["enum"]:
-                    raise ValueError(f"Invalid value for {key}: must be one of {rule['enum']}")
+        try:
+            validate(instance=input_dict, schema=schema)
+        except ValidationError as e:
+            raise ValueError(f"Input validation error: {e.message}")
