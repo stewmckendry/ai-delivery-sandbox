@@ -1883,3 +1883,15 @@
   - cli
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/logs/ingest_traces/samples/test_input_samples.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/logs/ingest_traces/samples/test_input_samples.txt
+  file_type: txt
+  description: Proposal document for a transportation infrastructure project including
+    scope, budget, and risk assessments for Gate 2 review.
+  tags:
+  - proposal
+  - project
+  - infrastructure
+  - review
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
