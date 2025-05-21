@@ -372,6 +372,7 @@ tasks:
     - app/tools/tool_wrappers/externalWebSearch.py
     - app/tools/tool_wrappers/composeDraft.py
     - app/tools/tool_wrappers/validateSection.py
+    - app/tools/tool_wrappers/logReasoningTrace.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
