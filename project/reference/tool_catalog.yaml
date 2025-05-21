@@ -3,26 +3,46 @@ tools:
     module: app.tools.tool_wrappers.compose_and_cite
     class: Tool
     description: Orchestrates evidence search → synthesis → draft → validate
+    schema:
+      prompt:
+        type: string
+      gate_id:
+        type: integer
   searchKnowledgeBase:
     module: app.tools.tool_wrappers.searchKnowledgeBase
     class: Tool
     description: Retrieves semantic matches from embedded documents
+    schema:
+      query:
+        type: string
   externalWebSearch:
     module: app.tools.tool_wrappers.externalWebSearch
     class: Tool
     description: Pulls evidence from trusted web sources
+    schema:
+      query:
+        type: string
   composeDraft:
     module: app.tools.tool_wrappers.composeDraft
     class: Tool
     description: Generates structured markdown from YAML + evidence
+    schema:
+      yaml_input:
+        type: string
   validateSection:
     module: app.tools.tool_wrappers.validateSection
     class: Tool
     description: Validates required fields and logic structure
+    schema:
+      section_yaml:
+        type: string
   logReasoningTrace:
     module: app.tools.tool_wrappers.logReasoningTrace
     class: Tool
     description: Stores reasoning trace for each toolchain run
+    schema:
+      trace_yaml:
+        type: string
   commitSection:
     module: app.tools.tool_wrappers.commitSection
     class: Tool
@@ -38,14 +58,25 @@ tools:
     module: app.tools.tool_wrappers.commitDocument
     class: Tool
     description: Assembles and stores full artifact
+    schema:
+      doc_id:
+        type: string
   fetchDocument:
     module: app.tools.tool_wrappers.fetchDocument
     class: Tool
     description: Retrieves section or full document
+    schema:
+      doc_id:
+        type: string
+      section_id:
+        type: string
   getTokenUsage:
     module: app.tools.tool_wrappers.getTokenUsage
     class: Tool
     description: Tracks GPT session size and overflow risk
+    schema:
+      session_id:
+        type: string
   translateDocument:
     module: app.tools.tool_wrappers.translateDocument
     class: Tool
@@ -60,27 +91,56 @@ tools:
     module: app.tools.tool_wrappers.queryAirtable
     class: Tool
     description: Looks up structured reference mappings
+    schema:
+      table:
+        type: string
+      filter:
+        type: string
   parseTranscript:
     module: app.tools.tool_wrappers.parseTranscript
     class: Tool
     description: Converts transcripts to YAML insights
+    schema:
+      transcript_text:
+        type: string
   loadCorpus:
     module: app.tools.tool_wrappers.loadCorpus
     class: Tool
     description: Embeds and indexes documents into KB
+    schema:
+      folder:
+        type: string
   doc_feedback_to_task:
     module: app.tools.tool_wrappers.doc_feedback_to_task
     class: Tool
     description: Converts feedback into new planner tasks
+    schema:
+      feedback_log:
+        type: string
   diff_and_summarize_sections:
     module: app.tools.tool_wrappers.diff_and_summarize_sections
     class: Tool
     description: Computes section diffs and summarizes changes
+    schema:
+      original:
+        type: string
+      revised:
+        type: string
   submitDocumentFeedback:
     module: app.tools.tool_wrappers.submitDocumentFeedback
     class: Tool
     description: Captures user feedback on drafts
+    schema:
+      doc_id:
+        type: string
+      user:
+        type: string
+      feedback:
+        type: string
   summarize_feedback_log:
     module: app.tools.tool_wrappers.summarize_feedback_log
     class: Tool
     description: Synthesizes feedback entries into summary
+    schema:
+      feedback_log:
+        type: string
