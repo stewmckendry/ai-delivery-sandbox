@@ -1815,3 +1815,15 @@
   - utility
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP9/cli_ingest_batch/cli_ingest_runner.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP9/cli_ingest_batch/cli_ingest_runner.py
+  file_type: py
+  description: Script to ingest files, extract and structure text, and save the output
+    as YAML with retry logic
+  tags:
+  - ingestion
+  - extraction
+  - cli
+  - yaml
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
