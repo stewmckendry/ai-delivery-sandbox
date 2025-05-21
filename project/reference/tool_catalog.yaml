@@ -1,0 +1,21 @@
+tools:
+  policy_section_suggester:
+    module: app.tools.tool_wrappers.policy_section_suggester
+    class: Tool
+    description: Suggests relevant policy sections based on prompt
+  risk_assessor:
+    module: app.tools.tool_wrappers.risk_assessor
+    class: Tool
+    description: Scores risk level based on gate content
+  compliance_checker:
+    module: app.tools.tool_wrappers.compliance_checker
+    class: Tool
+    description: Checks compliance with gate reference
+  language_rewriter:
+    module: app.tools.tool_wrappers.language_rewriter
+    class: Tool
+    description: Rewrites language to meet gate tone and clarity
+  gate_improver:
+    module: app.tools.tool_wrappers.gate_improver
+    class: Tool
+    description: Suggests edits to improve gate quality and structure
