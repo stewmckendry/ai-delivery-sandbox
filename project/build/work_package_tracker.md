@@ -5,7 +5,7 @@
 | WP1a | Scaffolding + Assembly | ✅ Complete (Stub Layer) | Pod-Athena | None | Pipeline implemented. CLI flow validated. GPT + memory logic to be built in WP2/WP3. T7 deferred. | Phase 1 |
 | WP1b | Logging + Finalization | Defined | Pod-Hermes | None | Ready for Phase 2 | Phase 2 |
 | WP2 | Commit + Logging | Defined | Pod-Thor | None | Part of workflow completion | Phase 3 |
-| WP3a | Planner + Memory Layer | In Progress | Pod-Orion | None | Pod activated and kicking off | Phase 1 |
+| WP3a | Planner + Memory Layer | ✅ Complete | Pod-Orion | None | Planner engine, memory sync, session trace all implemented and tested. Handoff to WP3b and WP4. | Phase 1 |
 | WP3b | Tool Wrapping + API | In Progress | Pod-Helix | None | Pod activated and kicking off | Phase 1 |
 | WP3c | Middleware + Logging | Defined | Pod-Vega | None | For system instrumentation | Phase 2 |
 | WP4 | Gating Doc Quality | Defined | Pod-Zeus | None | Document validation engine | Phase 2 |
