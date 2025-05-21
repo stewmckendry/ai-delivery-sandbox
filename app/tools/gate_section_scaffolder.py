@@ -15,25 +15,25 @@ def load_gate_reference(source):
 def generate_scaffold(gate_list, gate_id, artifact_id):
     for gate in gate_list:
         if gate.get("gate_id") == gate_id:
-            try:
-                sections = gate['artifacts'][artifact_id]['sections']
-            except KeyError:
-                raise ValueError(f"Artifact ID '{artifact_id}' not found in gate '{gate_id}'.")
+            artifacts = gate.get("artifacts", [])
+            for artifact in artifacts:
+                if artifact.get("artifact_id") == artifact_id:
+                    sections = artifact.get("sections", [])
+                    scaffold = []
+                    for sec in sections:
+                        scaffold.append({
+                            "section_id": sec.get('id'),
+                            "title": sec.get('title'),
+                            "content": "TODO: expand section",
+                            "next_pod_hint": sec.get('owner', 'ExpanderPod')
+                        })
 
-            scaffold = []
-            for sec in sections:
-                scaffold.append({
-                    "section_id": sec.get('id'),
-                    "title": sec.get('title'),
-                    "content": "TODO: expand section",
-                    "next_pod_hint": sec.get('owner', 'ExpanderPod')
-                })
-
-            return {
-                "gate_id": gate_id,
-                "artifact_id": artifact_id,
-                "scaffold": scaffold
-            }
+                    return {
+                        "gate_id": gate_id,
+                        "artifact_id": artifact_id,
+                        "scaffold": scaffold
+                    }
+            raise ValueError(f"Artifact ID '{artifact_id}' not found in gate '{gate_id}'.")
 
     raise ValueError(f"Gate ID '{gate_id}' not found in gate reference list.")
 
@@ -53,7 +53,7 @@ def main():
         with open(args.output, 'w') as f:
             json.dump(scaffold, f, indent=2)
     else:
-        print(json.dumps(scaffold, f, indent=2))
+        print(json.dumps(scaffold, indent=2))
 
 if __name__ == "__main__":
     main()
