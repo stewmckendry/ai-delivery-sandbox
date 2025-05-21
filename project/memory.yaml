@@ -1688,3 +1688,14 @@
   - API
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: requirements.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/requirements.txt
+  file_type: txt
+  description: List of Python package dependencies required for running a FastAPI
+    application
+  tags:
+  - dependencies
+  - config
+  - fastapi
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
