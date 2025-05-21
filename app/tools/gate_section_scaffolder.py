@@ -9,7 +9,7 @@ def load_gate_reference(source):
         with urlopen(source) as f:
             return yaml.safe_load(f.read())
     else:
-        with open(source, 'r') as f:
+        with open(source, ' 'r') as f:
             return yaml.safe_load(f)
 
 def generate_scaffold(gate_list, gate_id, artifact_id):
@@ -22,7 +22,7 @@ def generate_scaffold(gate_list, gate_id, artifact_id):
                     scaffold = []
                     for sec in sections:
                         scaffold.append({
-                            "section_id": sec.get('id'),
+                            "section_id": sec.get('section_id'),
                             "title": sec.get('title'),
                             "content": "TODO: expand section",
                             "next_pod_hint": sec.get('owner', 'ExpanderPod')
