@@ -35,6 +35,12 @@ python main.py
 #### 4. **Set Port**
 Ensure Railway is listening on port `8000`
 
+#### ✅ Deployment URL
+Once deployed, access the API at:
+```
+https://robust-adventure-production.up.railway.app
+```
+
 ---
 
 ### ✅ Post-Deploy Verification
