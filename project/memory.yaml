@@ -1055,3 +1055,15 @@
   - flow
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP1a/WP1a_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_design.md
+  file_type: md
+  description: Design document for WP1a, detailing tools for scaffolding, expanding,
+    and assembling gate-based draft documents within the PolicyGPT system.
+  tags:
+  - design
+  - scaffolding
+  - assembly
+  - integration
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
