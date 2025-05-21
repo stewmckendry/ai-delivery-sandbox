@@ -1,0 +1,37 @@
+{
+  "gate_id": 0,
+  "artifact_id": "investment_proposal_concept",
+  "session_id": "test_session_001",
+  "sections": [
+    {
+      "section_id": "problem_statement",
+      "title": "Problem Statement",
+      "content": "[GPT: Expanded section using session 'test_session_001']",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "background",
+      "title": "Background/Context",
+      "content": "[GPT: Expanded section using session 'test_session_001']",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "desired_outcomes",
+      "title": "Desired Outcomes",
+      "content": "[GPT: Expanded section using session 'test_session_001']",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "preliminary_benefits",
+      "title": "Preliminary Benefits",
+      "content": "[GPT: Expanded section using session 'test_session_001']",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "strategic_alignment",
+      "title": "Strategic Alignment",
+      "content": "[GPT: Expanded section using session 'test_session_001']",
+      "next_pod_hint": "ExpanderPod"
+    }
+  ]
+}

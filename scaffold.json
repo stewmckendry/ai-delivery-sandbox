@@ -1,0 +1,36 @@
+{
+  "gate_id": 0,
+  "artifact_id": "investment_proposal_concept",
+  "scaffold": [
+    {
+      "section_id": "problem_statement",
+      "title": "Problem Statement",
+      "content": "TODO: expand section",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "background",
+      "title": "Background/Context",
+      "content": "TODO: expand section",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "desired_outcomes",
+      "title": "Desired Outcomes",
+      "content": "TODO: expand section",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "preliminary_benefits",
+      "title": "Preliminary Benefits",
+      "content": "TODO: expand section",
+      "next_pod_hint": "ExpanderPod"
+    },
+    {
+      "section_id": "strategic_alignment",
+      "title": "Strategic Alignment",
+      "content": "TODO: expand section",
+      "next_pod_hint": "ExpanderPod"
+    }
+  ]
+}
