@@ -395,6 +395,7 @@ tasks:
     - project/build/tool_implementation_tracker.md
     - project/deploy/wps/WP3b/deploy.md
     - requirements.txt
+    - project/test/wps/WP3b/test_plan.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
