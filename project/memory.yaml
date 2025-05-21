@@ -1512,3 +1512,13 @@
   - placeholder
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/queryAirtable.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/queryAirtable.py
+  file_type: py
+  description: Placeholder class for querying Airtable with a run_tool method
+  tags:
+  - tool
+  - placeholder
+  - integration
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
