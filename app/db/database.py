@@ -1,20 +1,18 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.db.models import PromptLog, SessionSnapshot
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-# Update this path or use DATABASE_URL env var
+# Central DB URL resolution
 DB_URL = os.getenv("DATABASE_URL", "sqlite:///policy_gpt.db")
+engine = create_engine(DB_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def init_db():
-    engine = create_engine(DB_URL)
-    Base.metadata.create_all(engine)
-    return engine
+    from app.db.models import PromptLog, SessionSnapshot  # Local import to avoid circular refs
+    Base.metadata.create_all(bind=engine)
 
 def get_session():
-    engine = create_engine(DB_URL)
-    Session = sessionmaker(bind=engine)
-    return Session()
+    return SessionLocal()
