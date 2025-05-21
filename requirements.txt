@@ -2,7 +2,6 @@ fastapi
 uvicorn
 pyyaml
 requests
-textract<=1.6.4
 beautifulsoup4
 python-docx
 pip<24.1
