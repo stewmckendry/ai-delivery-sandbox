@@ -1543,3 +1543,13 @@
   - placeholder
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/doc_feedback_to_task.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/doc_feedback_to_task.py
+  file_type: py
+  description: Placeholder class for a tool that converts document feedback into tasks
+  tags:
+  - tool
+  - placeholder
+  - feedback
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
