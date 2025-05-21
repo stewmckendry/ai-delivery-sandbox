@@ -1491,3 +1491,13 @@
   - commit
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/fetchDocument.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/fetchDocument.py
+  file_type: py
+  description: Class definition for a tool that fetches documents but is not yet implemented
+  tags:
+  - tool
+  - fetch
+  - document
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
