@@ -2,11 +2,11 @@ import yaml
 import uuid
 import datetime
 
-def structure_input(raw_text, source, input_type):
+def structure_input(raw_text, source, tool_name):
     return {
         'id': str(uuid.uuid4()),
         'source': source,
-        'type': input_type,
+        'type': tool_name,
         'timestamp': datetime.datetime.utcnow().isoformat() + 'Z',
         'text': raw_text,
         'content_summary': raw_text[:1000],
