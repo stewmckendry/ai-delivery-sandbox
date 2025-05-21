@@ -1596,3 +1596,15 @@
   - placeholder
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/build/wps/WP3b/tool_registry_system.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP3b/tool_registry_system.md
+  file_type: md
+  description: Documentation detailing the architecture and usage of the dynamic tool
+    registry system for PolicyGPT, including components, usage modes, and extensibility.
+  tags:
+  - architecture
+  - registry
+  - tools
+  - integration
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
