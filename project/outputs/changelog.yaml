@@ -2409,3 +2409,8 @@
   task_id: WP9
   committed_by: GPTPod
   message: Append output file to WP9
+- timestamp: '2025-05-21T17:38:44.962680'
+  path: app/tools/tool_wrappers/text_extractor.py
+  task_id: WP9
+  committed_by: GPTPod
+  message: Refactor text_extractor.py to remove textract and use format-specific parsers
