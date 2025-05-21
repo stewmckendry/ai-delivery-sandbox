@@ -3,7 +3,18 @@ import yaml
 import datetime
 import uuid
 
-def uploadTextInput(text: str, source: str = "user"):
+schema = {
+    "type": "object",
+    "properties": {
+        "text": {"type": "string"},
+        "source": {"type": "string"}
+    },
+    "required": ["text"]
+}
+
+tool_name = "uploadTextInput"
+
+def run(text: str, source: str = "user"):
     entry = {
         'id': str(uuid.uuid4()),
         'source': source,
