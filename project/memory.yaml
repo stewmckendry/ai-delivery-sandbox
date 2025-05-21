@@ -1575,3 +1575,13 @@
   - implementation
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/summarize_feedback_log.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/summarize_feedback_log.py
+  file_type: py
+  description: Placeholder script for a tool to summarize feedback logs
+  tags:
+  - tool
+  - feedback
+  - log
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
