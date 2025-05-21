@@ -10,13 +10,13 @@
 ### 📦 Deliverables Traceability
 | File | Purpose | Design Notes |
 |------|---------|--------------|
-| `app/tools/tool_registry.py` | Central dynamic loader | Uses `importlib`, loads from `tool_config.yaml` |
+| `app/tools/tool_registry.py` | Central dynamic loader | Uses `importlib`, loads from `tool_catalog.yaml` |
 | `app/tools/tool_wrappers/*.py` | Tool wrappers | Normalize I/O per OpenAPI spec |
 | `app/engines/api_router.py` | API endpoint setup | FastAPI routes using registry |
 | `main.py` | Entry + server init | Loads config, registry, runs FastAPI app |
 | `app/openapi/openapi_schema.yaml` | API spec | Generated from FastAPI with overrides |
-| `config/tool_config.yaml` | Tool metadata | CLI + API registration, paths, keys |
-| `config/integrations.yaml` | Service config | Auth + external URLs |
+| `project/reference/tool_catalog.yaml` | Tool metadata | CLI + API registration, paths, keys |
+| `project/reference/integrations.yaml` | Service config | Auth + external URLs |
 | `WP3b_openapi_coverage.md` | Coverage matrix | Traces tool → schema |
 | `WP3b_registration_examples.md` | Code snippets | Show wrapper and FastAPI endpoint |
 
@@ -29,7 +29,7 @@
 ### 🏗️ Implementation Plan
 
 #### T1: `tool_registry.py`
-- Load from `tool_config.yaml`
+- Load from `tool_catalog.yaml`
 - Validate presence of `run_tool(input: dict) -> dict`
 - Support tagging and categorization for API groups
 
@@ -51,7 +51,7 @@
 - Versioned endpoint group `/v1/`
 
 #### T5: Config Files
-- `tool_config.yaml`: entry path, name, input schema ref
+- `tool_catalog.yaml`: entry path, name, input schema ref
 - `integrations.yaml`: any service URLs, keys, timeouts
 
 #### T6: Docs + Examples
@@ -68,7 +68,7 @@
 | All tools registered | Registry and config-driven loader |
 | API router functional | FastAPI dynamic route creation |
 | OpenAPI schema valid | Spec generation with manual checks |
-| Centralized config | `tool_config.yaml`, CLI + API |
+| Centralized config | `tool_catalog.yaml`, CLI + API |
 | Testable endpoints | Stub + YAML emit per tool + test route |
 
 ### 🧪 Build Guidance (from prior WPs)
