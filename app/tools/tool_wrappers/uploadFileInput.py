@@ -6,7 +6,17 @@ from app.tools.tool_wrappers.text_extractor import extract_text
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from app.tools.tool_wrappers.retry_ingestion import retry_with_backoff
 
-def uploadFileInput(file_path: str):
+schema = {
+    "type": "object",
+    "properties": {
+        "file_path": {"type": "string"}
+    },
+    "required": ["file_path"]
+}
+
+tool_name = "uploadFileInput"
+
+def run(file_path: str):
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File does not exist: {file_path}")
 
@@ -14,7 +24,7 @@ def uploadFileInput(file_path: str):
     if raw is None:
         raise ValueError("Failed to extract text from file.")
 
-    entry = structure_input(raw, file_path, "uploadFileInput")
+    entry = structure_input(raw, file_path, tool_name)
     trace_path = os.path.join("logs", "ingest_traces")
     os.makedirs(trace_path, exist_ok=True)
     out_path = os.path.join(trace_path, f"{entry['id']}.yaml")
