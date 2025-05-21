@@ -62,6 +62,18 @@ Recommended areas for WP2/WP3:
 
 ---
 
+### 📌 Deferred Items
+
+**T7: Validate and trace against gate formatting rules**  
+Planned to include:
+- Structural validation of output JSON (e.g. required fields, types)
+- Content quality checks per `gating_doc_quality_v2.md`
+- Traceability to gate + memory inputs
+
+This was postponed and is recommended to be addressed in WP2 or WP5.
+
+---
+
 ### 📎 Output Location
 - Code and scripts: `app/tools/` and `app/templates/`
 - Pipeline tests: `project/test/WP1a/`
