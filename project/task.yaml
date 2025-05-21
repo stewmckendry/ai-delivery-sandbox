@@ -364,6 +364,7 @@ tasks:
     - project/build/wps/WP3b/WP3b_tasks.md
     - app/tools/tool_registry.py
     - project/reference/tool_catalog.yaml
+    - project/reference/integrations.yaml
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
