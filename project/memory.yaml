@@ -1138,3 +1138,14 @@
   - script
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP1a/WP1a_tests.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP1a/WP1a_tests.md
+  file_type: md
+  description: Document detailing unit and integration tests for scaffolding and assembling
+    sections, including output format validation.
+  tags:
+  - unit tests
+  - integration tests
+  - validation
+  last_updated: '2025-05-21'
+  pod_owner: QAPod
