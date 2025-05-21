@@ -1,64 +1,51 @@
 ### 🚀 WP3b Deployment Guide — Tool Registry API on Railway
 
-This guide sets up the FastAPI-based Tool Registry service on Railway cloud.
+This guide sets up the FastAPI-based Tool Registry service using the Railway deployment platform.
 
 ---
 
 ### 🧱 Project Structure
-- **App Entrypoint:** `main.py`
+- **Entrypoint:** `main.py`
 - **API Router:** `app/engines/api_router.py`
-- **Tool Registry Core:** `app/tools/tool_registry.py`
-- **Tool Catalog + Manifest:** `project/reference/tool_catalog.yaml`, `gpt_tools_manifest.json`
+- **Tool Registry Logic:** `app/tools/tool_registry.py`
+- **Schemas + Manifest:** `project/reference/tool_catalog.yaml`, `gpt_tools_manifest.json`
+- **Dependencies:** `requirements.txt`
 
 ---
 
-### 🪜 Deployment Steps (Railway)
+### 🛠 Railway Deployment (Standard Workflow)
 
-#### 1. **Install Railway CLI (if not installed)**
+#### 1. **Push Repo to GitHub**
+Make sure the repo is available under your GitHub account.
+
+#### 2. **Go to [Railway](https://railway.app)**
+Click "New Project" → "Deploy from GitHub Repo" → Choose your `ai-delivery-sandbox` repo.
+
+#### 3. **Configure Environment**
+- **Root directory:** Use project root (where `main.py` lives)
+- **Install command:**
 ```bash
-npm install -g railway
+pip install -r requirements.txt
 ```
-
-#### 2. **Login and Create Project**
+- **Start command:**
 ```bash
-railway login
-railway init
+python main.py
 ```
 
-#### 3. **Set Entrypoint**
-Ensure your `main.py` is the root of your FastAPI app. If needed, wrap with:
-```python
-# main.py
-import uvicorn
-from fastapi import FastAPI
-from app.engines.api_router import router
-
-app = FastAPI()
-app.include_router(router)
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
-```
-
-#### 4. **Deploy to Railway**
-```bash
-railway up
-```
+#### 4. **Set Port**
+Ensure Railway is listening on port `8000`
 
 ---
 
-### 🧪 Post-Deploy Checks
-- `GET /status` → `{"status": "ok"}`
-- `GET /tools` → List of all 18 tools
-- `POST /tools/{tool_id}` → Should enforce schema validation
+### ✅ Post-Deploy Verification
+- `GET /status` → `{ "status": "ok" }`
+- `GET /tools` → returns tool manifest
+- `POST /tools/{tool_id}` → tool validation working
 
 ---
 
-### 📦 Environment Notes
-- The deployed version defaults to `source="github"` to load schemas from the latest tool catalog in GitHub
+### 🔁 Extensions / Handoff
+- Add `RAILWAY_ENVIRONMENT` or `DEPLOY_ENV` to toggle Git vs local loader
+- WP3c may extend this with telemetry, secrets, or security wrappers
 
 ---
-
-### 🔁 Future Extensions
-- Add support for `RAILWAY_ENVIRONMENT` variable to auto-switch source loader
-- Add auth, rate limiting, or telemetry as needed in WP3c
