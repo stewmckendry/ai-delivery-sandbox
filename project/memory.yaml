@@ -1939,3 +1939,14 @@
   - session
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/db/database.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/database.py
+  file_type: py
+  description: Database initialization and session management for the application
+    using SQLAlchemy
+  tags:
+  - database
+  - config
+  - sqlalchemy
+  last_updated: '2025-05-21'
+  pod_owner: DevPod
