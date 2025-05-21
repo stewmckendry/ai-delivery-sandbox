@@ -1619,3 +1619,14 @@
   - documentation
   last_updated: '2025-05-21'
   pod_owner: DevPod
+- path: project/reference/gpt_tools_manifest.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gpt_tools_manifest.json
+  file_type: json
+  description: Manifest of tools with their descriptions and input schemas for document
+    translation and policy section commitment.
+  tags:
+  - tools
+  - config
+  - schema
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
