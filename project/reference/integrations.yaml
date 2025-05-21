@@ -1,0 +1,11 @@
+services:
+  vector_db:
+    url: "https://vector-db.example.com"
+    api_key: "YOUR_API_KEY_HERE"
+  logging:
+    endpoint: "https://log-service.example.com/ingest"
+    format: "yaml"
+    version: 1
+  auth:
+    provider: "mock-auth"
+    token: "dev-token-placeholder"
