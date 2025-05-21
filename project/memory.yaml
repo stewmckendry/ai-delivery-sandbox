@@ -1895,3 +1895,14 @@
   - review
   last_updated: '2025-05-21'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/uploadTextInput.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/uploadTextInput.py
+  file_type: py
+  description: Script to log and save text input data with metadata into YAML files
+    for traceability
+  tags:
+  - input
+  - logging
+  - yaml
+  last_updated: '2025-05-21'
+  pod_owner: DeliveryPod
