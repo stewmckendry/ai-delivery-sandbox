@@ -156,7 +156,7 @@ tools:
       required:
         - text
   uploadFileInput:
-    description: Extract and ingest file contents into the memory system
+    description: Ingest file input into the memory system
     module: app.tools.tool_wrappers.uploadFileInput
     class: Tool
     schema:
@@ -164,8 +164,11 @@ tools:
       properties:
         file_path:
           type: string
-      required:
-        - file_path
+        file_contents:
+          type: string
+      anyOf:
+        - required: ["file_path"]
+        - required: ["file_contents"]
   uploadLinkInput:
     description: Scrape and ingest webpage content into the memory system
     module: app.tools.tool_wrappers.uploadLinkInput

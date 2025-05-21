@@ -17,11 +17,15 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "file_path": {"type": "string"}
+          "file_path": { "type": "string" },
+          "file_content": { "type": "string" }
         },
-        "required": ["file_path"]
+        "anyOf": [
+          { "required": ["file_path"] },
+          { "required": ["file_content"] }
+        ]
       }
-    },
+    },    
     {
       "tool_id": "uploadLinkInput",
       "description": "Scrape and ingest webpage content into the memory system",
