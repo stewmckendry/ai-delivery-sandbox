@@ -10,7 +10,7 @@ from app.utils.trace_utils import write_trace
 
 class Tool:
     def validate(self, input_dict):
-        if "file_path" not in input_dict and "file_contents" not in input_dict:
+        if "file_path" not in input_dict and "file_content" not in input_dict:
             raise ValueError("Must provide either 'file_path' or 'file_contents'.")
 
     def run_tool(self, input_dict):
@@ -21,7 +21,7 @@ class Tool:
             raw = retry_with_backoff(extract_text, file_path=file_path)
             source = file_path
         else:
-            raw = input_dict["file_contents"]
+            raw = input_dict["file_content"]
             source = "uploaded_file"
 
         if raw is None:

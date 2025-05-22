@@ -165,12 +165,12 @@ tools:
         file_path:
           type: string
           description: Path to the file on the local filesystem
-        file_contents:
+        file_content:
           type: string
           description: Raw contents of the file, used if path is not provided
       anyOf:
         - required: ["file_path"]
-        - required: ["file_contents"]
+        - required: ["file_content"]
   uploadLinkInput:
     description: Scrape and ingest webpage content into the memory system
     module: app.tools.tool_wrappers.uploadLinkInput
