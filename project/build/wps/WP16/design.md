@@ -1,4 +1,4 @@
-## WP16 – Input Prompt UX Layer: Design Overview (Updated)
+## WP16 – Input Prompt UX Layer: Design Overview (Revised)
 
 ### 🎯 Purpose
 Design a UX and tooling system that captures user input aligned to gate-specific requirements for PolicyGPT. Supports two modes:
@@ -22,8 +22,8 @@ User -> [Input Prompt UX Layer] -> [Session Memory / Input Tools] -> [GPT Core: 
    - **Data Dump**: Uses ingestion tools to process uploaded documents
 
 3. **Data Collection + Storage**
-   - All input tools (WP16 or WP9) call `log_tool_usage()` → writes to PromptLog
-   - WP16 tools will enrich these calls with `metadata` including `gate`, `artifact`, `section`, `intent`
+   - All upload tools (`uploadTextInput`, `uploadFileInput`, `uploadLinkInput`) call `log_tool_usage()`
+   - WP16 patches these tools to support optional `metadata` field
 
 4. **Validation + Memory Trace**
    - `inputChecker` validates completeness
@@ -33,14 +33,8 @@ User -> [Input Prompt UX Layer] -> [Session Memory / Input Tools] -> [GPT Core: 
    - Compose tool can query PromptLog entries by section/intent
    - Enables drafting logic by filtering structured input context
 
-### 🧠 Change Introduced in WP16
-- Extend WP16 tools to include structured `metadata` in PromptLog calls
-- Define a metadata schema to align `user input` with `gate -> artifact -> section -> intent`
-- Recommend aligning WP9 upload tools next
-
 ### ✅ Implementation Change
-- Modify all WP16 tools to add metadata block
-- Update schema spec to include:
+- Modify upload tools (WP9) to accept `metadata`:
 ```json
 "metadata": {
   "gate": 1,
@@ -49,7 +43,7 @@ User -> [Input Prompt UX Layer] -> [Session Memory / Input Tools] -> [GPT Core: 
   "intent": "justify_budget_rise"
 }
 ```
-- This will live inside `log_tool_usage()` entries
+- This will be passed into `log_tool_usage()`
 
 ### 📈 Benefits
 - Enables downstream drafting by context
