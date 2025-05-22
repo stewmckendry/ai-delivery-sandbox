@@ -2890,3 +2890,13 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Update WP16 task list to reflect PromptLog metadata additions
+- timestamp: '2025-05-22T02:54:58.529174'
+  path: project/build/wps/WP16/WP16_scope_update_CR.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Log change request: extend WP16 scope to include PromptLog metadata enrichment'
+- timestamp: '2025-05-22T02:54:58.529174'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP16/WP16_scope_update_CR.md
