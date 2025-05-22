@@ -6,14 +6,14 @@
 | WP1b | Logging + Finalization | Defined | Pod-Hermes | None | Ready for Phase 2 | Phase 2 |
 | WP2 | Commit + Logging | Defined | Pod-Thor | None | Part of workflow completion | Phase 3 |
 | WP3a | Planner + Memory Layer | ✅ Complete | Pod-Orion | None | Planner engine, memory sync, session trace all implemented and tested. Handoff to WP3b and WP4. | Phase 1 |
-| WP3b | ✅ Complete | Pod-Helix | None | Tool registry, API router, schema validation and manifest all implemented and deployed. Git loader included. `compose_and_cite` chain routed to WP4/5/6. Manifest integration to WP16. | Phase 1 |
+| WP3b | Tool Wrapping + API | ✅ Complete | Pod-Helix | None | Tool registry, API router, schema validation and manifest all implemented and deployed. Git loader included. `compose_and_cite` chain routed to WP4/5/6. Manifest integration to WP16. | Phase 1 |
 | WP3c | Middleware + Logging | Defined | Pod-Vega | None | To deploy Git loader + system instrumentation | Phase 2 |
 | WP4 | Gating Doc Quality | Defined | Pod-Zeus | None | Owns `compose_and_cite`. | Phase 2 |
 | WP5 | Harmonization + Docs | Defined | Pod-Muse | None | Supports `compose_and_cite` and formatting. | Always Active |
 | WP6 | Review Routing | Defined | Pod-Cirrus | None | Participates in `compose_and_cite` finalization. | Phase 3 |
 | WP7 | Project Profile | Defined | Pod-Lyra | None | Tracks project state | Phase 3 |
 | WP8 | Citation Tool | Defined | Pod-Atlas | None | Citation and evidence logging | Phase 2 |
-| WP9 | Input Ingestion | In Progress | Pod-Kronos | None | Pod activated and kicking off | Phase 1 |
+| WP9 | Input Ingestion | ✅ Complete | Pod-Kronos | None | Ingests text, file, URL; stores inputs + snapshots. Created new tools + schemas. See WP9 guide + schema. Spillover: Feedback classification deferred. | Phase 1 |
 | WP10 | Export + Translate | Defined | Pod-Lumen | None | Export gate packages | Phase 3 |
 | WP11 | Feedback + Diff Engine | Defined | Pod-Spectrum | None | Handle feedback and diffs | Phase 2 |
 | WP12 | System Design Feedback | Defined | Pod-Observer | None | Always monitors for spec drift | Always Active |
