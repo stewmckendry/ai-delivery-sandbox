@@ -3382,3 +3382,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: 'Add T3d: migrate vector DB to cloud and update deploy guide'
+- timestamp: '2025-05-22T18:14:07.638152'
+  path: app/tools/tool_wrappers/loadCorpus.py
+  task_id: WP16
+  committed_by: ProductPod
+  message: Implemented loadCorpus tool using embedding + Chroma vector store + metadata
+    logging.
