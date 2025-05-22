@@ -11,7 +11,7 @@ sqlalchemy
 pyodbc
 jsonschema>=4.0.0
 langchain
-chromadb
+chromadb>=0.5.0
 openai
 faiss-cpu
 langchain-community
