@@ -164,27 +164,6 @@ This catalog defines the full suite of tools available to the PolicyGPT system, 
 
 ---
 
-## Tool Catalog Addendum (WP12 Design Update)
-
-### 23. `revise_section`
-
-* **Function:** Revises an existing draft based on feedback or planner task adjustments.
-* **Inputs:** `section_id`, `feedback_text`, optional `chunk_id`
-* **Outputs:** Revised markdown + updated `ReasoningTrace`
-* **Chaining Context:** Used in planner toolchains or GPT revision loops
-* **Notes:** Triggers re-validation after edit
-
-### 24. `confirm_draft_start`
-
-* **Function:** Logs explicit user confirmation to begin drafting a section.
-* **Inputs:** `project_id`, `section_type`, `user_id`, `timestamp`
-* **Outputs:** Confirmation event log
-* **Chaining Context:** Invoked by GPT before calling `create_planner_task`
-* **Notes:** Enables traceable UX handshake for draft initiation
-
-
----
-
 ## 🔁 Updated Enhancements Summary (with additions)
 
 | Tool                     | Enhancement                                             |
