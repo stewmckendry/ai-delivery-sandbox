@@ -1,40 +1,33 @@
 {
   "tools": [
     {
-      "tool_id": "uploadTextInput",
-      "description": "Ingest freeform text input into the memory system",
+      "tool_id": "inputChecker",
+      "description": "Validate user inputs against required metadata and completeness",
       "input_schema": {
         "type": "object",
         "properties": {
-          "text": {"type": "string"}
+          "gate_id": { "type": "integer" },
+          "artifact_id": { "type": "string" },
+          "section_id": { "type": "string" },
+          "inputs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
         },
-        "required": ["text"]
+        "required": ["gate_id", "artifact_id", "section_id", "inputs"]
       }
     },
     {
-      "tool_id": "uploadFileInput",
-      "description": "Extract and ingest file contents into the memory system",
+      "tool_id": "inputPromptGenerator",
+      "description": "Generate structured input prompts based on gate metadata",
       "input_schema": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string" },
-          "file_content": { "type": "string" }
+          "gate_id": { "type": "integer" },
+          "artifact_id": { "type": "string" },
+          "section_id": { "type": "string" }
         },
-        "anyOf": [
-          { "required": ["file_path"] },
-          { "required": ["file_content"] }
-        ]
-      }
-    },    
-    {
-      "tool_id": "uploadLinkInput",
-      "description": "Scrape and ingest webpage content into the memory system",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "url": {"type": "string"}
-        },
-        "required": ["url"]
+        "required": ["gate_id", "artifact_id", "section_id"]
       }
     },
     {
@@ -187,17 +180,6 @@
       }
     },
     {
-      "tool_id": "loadCorpus",
-      "description": "Embeds and indexes documents into KB",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "folder": { "type": "string" }
-        },
-        "required": ["folder"]
-      }
-    },
-    {
       "tool_id": "doc_feedback_to_task",
       "description": "Converts feedback into new planner tasks",
       "input_schema": {
@@ -257,6 +239,99 @@
         },
         "required": []
       }
-    }    
+    },
+    {
+      "tool_id": "uploadTextInput",
+      "description": "Ingest freeform text input into the memory system",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "gate_id": { "type": "integer" },
+              "artifact_id": { "type": "string" },
+              "section_id": { "type": "string" },
+              "intent": { "type": "string" },
+              "session_id": { "type": "string" },
+              "user_id": { "type": "string" }
+            }
+          }
+        },
+        "required": ["text"]
+      }
+    },
+    {
+      "tool_id": "uploadFileInput",
+      "description": "Extract and ingest file contents into the memory system",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "file_content": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "gate_id": { "type": "integer" },
+              "artifact_id": { "type": "string" },
+              "section_id": { "type": "string" },
+              "intent": { "type": "string" },
+              "session_id": { "type": "string" },
+              "user_id": { "type": "string" }
+            }
+          }
+        },
+        "anyOf": [
+          { "required": ["file_path"] },
+          { "required": ["file_content"] }
+        ]
+      }
+    },
+    {
+      "tool_id": "uploadLinkInput",
+      "description": "Scrape and ingest webpage content into the memory system",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "gate_id": { "type": "integer" },
+              "artifact_id": { "type": "string" },
+              "section_id": { "type": "string" },
+              "intent": { "type": "string" },
+              "session_id": { "type": "string" },
+              "user_id": { "type": "string" }
+            }
+          }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "tool_id": "loadCorpus",
+      "description": "Embeds and indexes documents into KB",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "file_contents": { "type": "string" },
+          "file_name": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "gate_id": { "type": "integer" },
+              "artifact_id": { "type": "string" },
+              "section_id": { "type": "string" },
+              "intent": { "type": "string" },
+              "session_id": { "type": "string" },
+              "user_id": { "type": "string" }
+            }
+          }
+        },
+        "required": ["file_contents"]
+      }
+    }
   ]
 }
