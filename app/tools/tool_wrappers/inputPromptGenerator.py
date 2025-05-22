@@ -2,20 +2,25 @@
 
 from typing import List, Dict, Optional
 import yaml
-from app.tools.tool_wrappers import ToolWrapper
 import os
+import requests
 
 TRIAGE_MAP_PATH = "project/reference/triage_map_policygpt.yaml"
-GATE_REFERENCE_PATH = "project/reference/gate_reference_v2.yaml"
+GATE_REFERENCE_URL = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
 
 
-def load_yaml(path: str) -> dict:
-    with open(path, 'r') as file:
-        return yaml.safe_load(file)
+def load_yaml(path_or_url: str) -> dict:
+    if path_or_url.startswith("http"):
+        response = requests.get(path_or_url)
+        response.raise_for_status()
+        return yaml.safe_load(response.text)
+    else:
+        with open(path_or_url, 'r') as file:
+            return yaml.safe_load(file)
 
 
 def generate_input_prompts(gate_id: int, artifact_id: str, section_id: Optional[str] = None) -> List[Dict]:
-    gate_ref = load_yaml(GATE_REFERENCE_PATH)
+    gate_ref = load_yaml(GATE_REFERENCE_URL)
     triage_map = load_yaml(TRIAGE_MAP_PATH)
     prompts = []
 
@@ -56,20 +61,16 @@ def generate_input_prompts(gate_id: int, artifact_id: str, section_id: Optional[
     return prompts
 
 
-class InputPromptGenerator(ToolWrapper):
-    tool_name = "inputPromptGenerator"
-    description = "Generate structured prompts for a given gate, artifact, and section"
-    input_schema = {
-        "type": "object",
-        "properties": {
-            "gate_id": {"type": "integer"},
-            "artifact_id": {"type": "string"},
-            "section_id": {"type": ["string", "null"]}
-        },
-        "required": ["gate_id", "artifact_id"]
-    }
+class Tool:
+    def validate(self, input_dict):
+        if "gate_id" not in input_dict or "artifact_id" not in input_dict:
+            raise ValueError("Both 'gate_id' and 'artifact_id' are required.")
 
-    def run(self, gate_id: int, artifact_id: str, section_id: Optional[str] = None) -> List[Dict]:
+    def run_tool(self, input_dict):
+        self.validate(input_dict)
+        gate_id = input_dict["gate_id"]
+        artifact_id = input_dict["artifact_id"]
+        section_id = input_dict.get("section_id")
         return generate_input_prompts(gate_id, artifact_id, section_id)
 
 
