@@ -2194,3 +2194,15 @@
   - input
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/WP16_input_mode_CR_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/WP16_input_mode_CR_message.md
+  file_type: md
+  description: Document outlining the input mode handling strategy for PolicyGPT's
+    chat UI, focusing on mode-aware UX design and system prompt configuration.
+  tags:
+  - ux
+  - design
+  - prompt
+  - config
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
