@@ -18,3 +18,7 @@ Tracks unfinished or deferred work from each WP.
 | Cloud storage of logs (Drive or S3) | WP9 | Currently writes to disk only | WP6 or new infra WP | Unassigned |
 | Update `trace_utils.write_trace` for cloud | WP9 | Local path only | WP3c or WP6 | Unassigned |
 | Update `createSessionSnapshot` for cloud | WP9 | Local-only logging | WP3c or WP6 | Unassigned |
+| Input mode support in session logging | WP16 | Requires metadata tagging | WP3a | Unassigned |
+| Mode-aware logic in document assembly | WP16 | Requires mode detection | WP4/WP6 | Unassigned |
+| System prompt + starter wiring for modes | WP16 | Needs GPT config setup | GPT_Config | Unassigned |
+| UI toggle metaphor guidance | WP16 | Needs cross-pod UX clarity | WP12 | Unassigned |
