@@ -3482,3 +3482,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-22T19:25:56.677364'
+  path: app/tools/tool_wrappers/inputPromptGenerator.py
+  task_id: WP16
+  committed_by: GPTPod
+  message: Refactor inputPromptGenerator to dynamically generate question map from
+    gate_reference_v2.yaml with metadata enrichment.
