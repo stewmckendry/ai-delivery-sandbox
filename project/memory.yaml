@@ -2470,3 +2470,15 @@
   - config
   last_updated: '2025-05-22'
   pod_owner: ResearchPod
+- path: project/build/wps/WP16/input_prompt_generator_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/input_prompt_generator_design.md
+  file_type: md
+  description: Design document for a tool that dynamically generates structured input
+    prompts for PolicyGPT, using metadata from gate references.
+  tags:
+  - prompt
+  - design
+  - metadata
+  - schema
+  last_updated: '2025-05-22'
+  pod_owner: ResearchPod
