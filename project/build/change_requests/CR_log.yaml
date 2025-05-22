@@ -33,3 +33,19 @@
     wp12: assess UI toggle metaphor for clarity
   notes: >
     This change affects how sessions are initiated and guided across the system. It relies on coordinated updates in memory, UI, and GPT config.
+
+- cr_id: CR-WP16-003
+  wp_id: WP16
+  title: LLM-Powered Input Completeness Checker
+  status: proposed
+  date: 2025-05-22
+  description: >
+    Add an LLM-enhanced mode to the inputChecker tool that uses GPT-4 to assess clarity, completeness, and quality of user-provided inputs. It complements the current rules-based approach by flagging vague, incomplete, or misaligned answers.
+  linked_files:
+    - project/build/wps/WP12/WP16_llm_checker_cr_message.md
+  impact:
+    wp6: consider for draft validation path
+    wp12: owns design patch for LLM orchestration
+    wp2: potential token tracking implications
+  notes: >
+    Recommendation is to defer this to a follow-on WP or future enhancement. WP16 continues with rules-based checker as baseline.
