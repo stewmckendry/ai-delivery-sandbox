@@ -2086,3 +2086,14 @@
   - tools
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/spillover_tracker.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/spillover_tracker.md
+  file_type: md
+  description: Document tracking unfinished or deferred work items from various work
+    packages, including reasons for deferral and suggested ownership.
+  tags:
+  - tracking
+  - work packages
+  - deferred work
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
