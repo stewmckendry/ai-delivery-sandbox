@@ -11,6 +11,7 @@ from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from chromadb.config import Settings
+import chromadb
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
