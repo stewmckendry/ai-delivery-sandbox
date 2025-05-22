@@ -129,6 +129,7 @@ To define the integrated user experience and technical flow that supports both h
 | `/tools/revise_section.py` | Feedback-based revision tool |
 | `/tools/get_token_usage.py` | Pre-check for token planning |
 | `/tools/validate_section.py` | Ensures schema, tone, required fields |
+| `/tasks/confirm_draft_start` | API endpoint to log user confirmation before planner-triggered drafting begins |
 | `/ui/gpt_review_interface.md` | Summarize input + confirm draft interface |
 | `/planner/templates/planner_task_trace.yaml` | Task orchestration schema |
 | `/db/schemas/prompt_log.sql` | Input logs with gate/section metadata |
