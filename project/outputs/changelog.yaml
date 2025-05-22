@@ -2989,3 +2989,9 @@
   committed_by: GPTPod
   message: Update task_list to reflect completed T2 and new task T5 for triage map
     creation
+- timestamp: '2025-05-22T03:37:53.865803'
+  path: app/tools/tool_wrappers/inputPromptGenerator.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Refactor inputPromptGenerator tool to match ToolWrapper pattern used by
+    upload tools and load gate reference from GitHub
