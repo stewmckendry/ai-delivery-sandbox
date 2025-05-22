@@ -2459,3 +2459,14 @@
   - config
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/reference/triage_map_policygpt.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/triage_map_policygpt.yaml
+  file_type: yaml
+  description: Mapping of intents to question blocks for refining PolicyGPT, linking
+    section IDs to intents for strategic alignment and benefits assessment.
+  tags:
+  - mapping
+  - intents
+  - config
+  last_updated: '2025-05-22'
+  pod_owner: ResearchPod
