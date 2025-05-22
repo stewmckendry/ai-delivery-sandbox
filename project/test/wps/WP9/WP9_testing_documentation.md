@@ -1,5 +1,16 @@
 ## WP9 Testing Documentation
 
+## WP9 Tool Testing Summary
+
+| Tool              | CLI Tests | Cloud Tests | Notes |
+|-------------------|-----------|-------------|-------|
+| uploadTextInput   | ✅         | ✅           | JSON payload with `text` |
+| uploadFileInput   | ✅         | ✅           | Supports `file_path` or `file_content` |
+| uploadLinkInput   | ✅         | ✅           | Parses HTML via URL |
+
+Tested end-to-end including DB writes, trace handling, and error cases.
+
+
 ### ✅ Unit Tests
 - `structure_input()` tested independently for timestamp, UUID, truncation logic
 - `text_extractor` tested on DOCX, PDF samples

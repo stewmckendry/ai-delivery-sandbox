@@ -141,11 +141,12 @@ This catalog defines the full suite of tools available to the PolicyGPT system, 
 * **Notes:** Used for analyst paste-in or planner-triggered inputs
 
 ### 20. `uploadFileInput`
-* **Function:** Extracts and logs file-based input (PDF, DOCX)
-* **Inputs:** File path
-* **Outputs:** YAML trace + DB entry
-* **Validation:** Checks file readability and valid extension
-* **Notes:** Supports bulk ingestion of reports or articles
+* **Function:** Extracts and logs file-based input (PDF, DOCX, TXT, HTML)
+* **Inputs:** Either `file_path` (used in CLI/server) or `file_content` (used by GPT or frontend uploads)
+* **Outputs:** YAML trace (if local) + SQL DB entry
+* **Validation:** Confirms presence of `file_path` or `file_content`, ensures readable format
+* **Notes:** Handles backend and frontend ingestion. GPTs pass file content directly; backend calls may use file path.
+
 
 ### 21. `uploadLinkInput`
 * **Function:** Pulls and logs web-based content from a given URL

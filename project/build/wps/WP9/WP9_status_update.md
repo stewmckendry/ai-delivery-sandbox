@@ -49,6 +49,14 @@ WP9 is now complete. We delivered a full ingestion pipeline for user inputs (tex
 - Database read/write handlers implemented
 - Test inputs processed via CLI and backend
 
+### Testing Completed
+
+- Verified all three ingestion tools (uploadTextInput, uploadFileInput, uploadLinkInput) across CLI and cloud.
+- For CLI: tested file paths and text content inputs.
+- For cloud: used `curl` with JSON payloads (file content or URL).
+- Added fallback logic for cloud mode (no local YAML writes).
+- Created unified trace writer and schema validator to support both environments.
+
 ### ➕ Appended Summary (May 21)
 We have now implemented the ability to upload user inputs as text, file, or URL via **CLI or backend API** calls. These inputs are logged locally as YAML files (`logs/ingest_traces/`) and can be programmatically stored into a structured database (`PromptLog`, `SessionSnapshot`).
 
@@ -57,6 +65,12 @@ We have now implemented the ability to upload user inputs as text, file, or URL 
 - Integrate ingestion logs with Planner toolchains
 - Utilize `PromptLog` and `SessionSnapshot` records for doc generation
 - Store raw input files to Google Drive and link paths in the DB
+– Storage Path for Logs: Currently, YAML logs for ingestion traces and session snapshots are written to local disk. In cloud, this is disabled.
+  - Decide on shared storage (e.g., S3, Google Drive).
+  - Update:
+    - `app.utils.trace_utils.write_trace`
+    - `app.tools.tool_wrappers.createSessionSnapshot.py`
+  - This ensures logs are available in cloud for audit/debug.
 
 We created 4 new tools: `uploadTextInput`, `uploadFileInput`, `uploadLinkInput`, and `createSessionSnapshot`. An addendum has been added to the tool catalog documentation:
 - 📄 `project/build/wps/WP9/tool_catalog_addendum.md`

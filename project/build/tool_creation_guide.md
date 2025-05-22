@@ -34,6 +34,48 @@ This guide is for WP Pods implementing new tools using the `tool_registry` and `
      -d '{"text": "example input"}'
    ```
 
+## Testing New Tools (Guide for WP Pods)
+
+When creating a new tool:
+1. Validate CLI tests with realistic input examples.
+2. Add `curl` commands to test cloud deployments.
+3. Ensure schema validation catches missing/invalid fields.
+4. Avoid local file writes in cloud—use `is_cloud_env()` to skip.
+5. Output a structured result and confirm DB logs are written.
+
+
+## Memory Logging System Overview
+
+### 📘 PromptLog
+- **Purpose:** Tracks each tool invocation.
+- **Fields:** Tool, input/output summaries, file paths, session/user IDs.
+- **Storage:** 
+  - Writes JSON line to `prompt_logs.jsonl` (local, if not cloud).
+  - Persists structured record in SQL DB (PromptLog table).
+
+### 📙 SessionSnapshot
+- **Purpose:** Captures session history at a point in time.
+- **Fields:** Snapshot ID, session ID, file path, timestamp.
+- **Storage:**
+  - Writes `.yaml` or `.json` to `snapshots/` (if not cloud).
+  - Persists reference in SQL DB (SessionSnapshot table).
+
+### 🔗 Integration in Tools
+Each tool (e.g., `uploadFileInput`) logs usage:
+```python
+entry = structure_input(raw, source, tool_name="uploadFileInput")
+out_path = write_trace(entry)
+log_tool_usage(tool_name, input_summary, output_summary, out_path, ...)
+```
+
+For snapshots:
+```python
+entries = [e.to_dict() for e in PromptLog.query.all()]
+if not is_cloud_env():
+    write snapshot to disk
+log snapshot in SessionSnapshot DB
+```
+
 ## ✅ Best Practices
 - Start from an existing tool wrapper for structure
 - Keep tool names consistent across file, metadata, and DB
