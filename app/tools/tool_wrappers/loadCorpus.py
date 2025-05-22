@@ -4,7 +4,7 @@ import json
 import datetime
 from typing import List, Optional
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.docstore.document import Document
 from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
