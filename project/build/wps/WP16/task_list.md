@@ -1,12 +1,31 @@
-- T0: Plan & Scope Work Package
-- T1: Design & implement inputPromptGenerator tool
-- T2: Design & implement inputChecker tool
-- T3: Patch WP9 upload tools with metadata logging
-  - P1: Patch structured_input_ingestor.py to accept optional metadata
-  - P2: Patch uploadTextInput.py to accept + pass metadata
-  - P3: Patch uploadLinkInput.py and uploadFileInput.py similarly
-  - P4: Patch trace_utils.py to write metadata to PromptLog
-  - P5: Patch memory_sync.py to write metadata to PromptLog
-- T4: Enhance trace writing + filtering metadata design
-- T5: Document dense artifact ingestion tool + update scope
-- T6: Implement dense artifact ingestion tool
+- [x] T1a – Design input prompt UX layer and metadata schema
+- [x] T1b – Build inputPromptGenerator tool
+- [x] T1c – Build inputChecker tool (Phase 1: Static Evaluation)
+- [x] T1d – Patch upload input tools to pass structured metadata
+- [x] T1e – Patch log_tool_usage to write metadata
+- [ ] T2 – Build inputChecker tool (Phase 2: LLM Evaluation)
+- [ ] T3 – Build `loadCorpus` tool for loading and embedding documents
+- [ ] T4 – Generate UX messages, tool metadata, and starter messages for GPT
+- [ ] T5 – Commit and push tool catalog updates, prompt schema reference, and integration notes
+- [ ] T6 – Final test run and snapshot export of a sample session
+- [ ] T7 – Design GPT Review UX Interface (Input Summary + Confirm to Draft)
+- [ ] T8 – Completion note and lead pod update
+
+💡 CR Scope Additions (Handled in T1c):
+- Strategy to capture input mode using GPT conversation and memory
+- Documentation for GPT config team to implement starter messages + system prompt
+- Spillover coordination flagged to Pod Lead
+
+💡 New Deliverable (Handled in T7):
+- GPT review interface spec to preview user input before draft generation, per `dense_artifact_generation.md`
+
+---
+
+🔧 Patch Plan
+- P1. Add optional metadata dict to structured_input_ingestor.py
+- P2. Patch all upload tools to accept + pass metadata
+- P3. Patch inputChecker to write metadata to PromptLog
+- P4. Patch memory_sync.py log_tool_usage with metadata support
+- P5. [PENDING] Populate PromptLog full_input_path / full_output_path with JSON metadata blob
+- P6. [PENDING] Add tests for tool ingestion and trace logging validation
+- P7. [DONE] Send CR cascade message to Pod Lead
