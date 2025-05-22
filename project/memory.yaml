@@ -2253,3 +2253,15 @@
   - system
   last_updated: '2025-05-22'
   pod_owner: ResearchPod
+- path: project/status/status_report_may_2025.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/status/status_report_may_2025.md
+  file_type: md
+  description: Summary of progress and completion status for various work packages
+    in the PolicyGPT project as of May 2025.
+  tags:
+  - status
+  - progress
+  - work packages
+  - PolicyGPT
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
