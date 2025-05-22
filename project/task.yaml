@@ -405,6 +405,7 @@ tasks:
     - app/tools/tool_wrappers/createSessionSnapshot.py
     - project/ops_tracking/tool_implementation_tracker.md
     - project/build/spillover_tracker.md
+    - project/build/wps/WP16/design.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
