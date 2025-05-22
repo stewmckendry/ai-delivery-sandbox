@@ -1,44 +1,48 @@
 # Prompt Schema Reference for PolicyGPT
 
 ## 📌 Purpose
-This schema defines the expected structure of inputs collected through PolicyGPT's guided input UX layer, organized by:
-- `gate_id`: Integer referring to the current gate (see `gate_reference_v2.yaml`)
-- `artifact_id`: Name of the artifact within the gate (e.g., "investment_proposal_concept")
-- `section_id`: Section within the artifact (e.g., "problem_statement")
-- `inputs`: Array of user-provided strings or evidence linked to that section
+PolicyGPT uses two prompt schemas:
+
+| File | Purpose |
+|------|---------|
+| `prompt_block_schema.json` | Rich question metadata used by `inputPromptGenerator` |
+| `prompt_schema.json` | Minimal format for logging responses in memory |
 
 ---
 
-## 📂 File Location
-- Path: `project/reference/prompt_schema.json`
-- Format: JSON Schema
-- Required fields: `gate_id`, `artifact_id`, `section_id`
+## 1️⃣ `prompt_block_schema.json`
+- Used when generating prompts (step-by-step UX)
+- Includes:
+  - `question`: what GPT asks the user
+  - `input_type`: type of expected input
+  - `metadata`: `gate`, `artifact`, `section`, `intent`
+  - `hints`: optional examples
+  - `answer`: user input (optional at time of creation)
+
+**Used by:**
+- `inputPromptGenerator`
+- Future tools generating or previewing prompts
 
 ---
 
-## 🛠 Tools That Use This Schema
+## 2️⃣ `prompt_schema.json`
+- Used to validate or organize user responses
+- Key fields: `gate_id`, `artifact_id`, `section_id`, `inputs`
 
-### ✅ Already Wired In
-- **inputPromptGenerator**
-  - Uses schema to fetch and format structured prompts
-- **inputChecker**
-  - Evaluates whether user inputs meet expected fields per gate_reference
-
-### 🧩 Still To Be Integrated
-- **compose_and_cite** (planned downstream WP)
-  - Will use this schema to map draft sections to collected user inputs
-- **review_and_reflect** (planned)
-  - May use schema to organize feedback per section
+**Used by:**
+- `inputChecker` (now)
+- `compose_and_cite`, `review_and_reflect` (planned)
 
 ---
 
-## 🧠 GPT Config Notes
-- GPTs using this schema should be aware of:
-  - Gate + artifact context to scope questions
-  - Section-specific prompting with fallback to broader questions
-  - Ability to iterate and validate completeness using `inputChecker`
+## 🧠 Integration Notes
+- Tools may start with `prompt_block`, and convert to `prompt_schema` after user input
+- All prompt logs should include metadata to support filtering + drafting
 
 ---
+
+## 📂 Locations
+- `project/reference/prompt_block_schema.json`
+- `project/reference/prompt_schema.json`
 
 Owner: WP16Pod
-Ready for use by downstream WPs.
