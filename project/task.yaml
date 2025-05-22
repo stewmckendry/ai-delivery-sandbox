@@ -430,6 +430,7 @@ tasks:
     - app/tools/tool_wrappers/uploadFileInput.py
     - app/tools/tool_wrappers/uploadLinkInput.py
     - project/build/design_decisions_log.md
+    - project/build/wps/WP16/loadCorpus_deploy_guide.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
