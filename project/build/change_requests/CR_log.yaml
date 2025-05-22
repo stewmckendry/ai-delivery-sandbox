@@ -1,0 +1,17 @@
+- cr_id: CR-WP16-001
+  wp_id: WP16
+  title: PromptLog Metadata Capture
+  status: committed
+  date: 2025-05-21
+  description: >
+    Enhance WP9 upload tools (uploadTextInput, uploadFileInput, uploadLinkInput) to accept and log structured metadata in PromptLog entries, enabling downstream compose/QA tools to query inputs by gate > artifact > section > intent.
+  linked_files:
+    - project/build/wps/WP16/WP16_scope_update_CR.md
+  impact:
+    wp9: patched
+    wp14: positive, enables scoped compose inputs
+    wp3b: no impact
+    wp12: monitor schema use
+    wp6: align with session memory design
+  notes: >
+    This is the first entry in the central change request log. Future pods should review this file for systemic changes or impacts.
