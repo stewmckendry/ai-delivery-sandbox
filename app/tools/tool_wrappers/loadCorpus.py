@@ -10,6 +10,7 @@ from langchain.docstore.document import Document
 from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
+from chromadb.config import Settings
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
@@ -38,15 +39,17 @@ class Tool:
             doc.metadata.update(metadata)
 
         if USE_REMOTE_CHROMA:
+            client_settings = Settings(
+                chroma_api_impl="rest",
+                chroma_server_host=CHROMA_HOST,
+                chroma_server_http_port=CHROMA_PORT
+            )
+
             vectorstore = Chroma.from_documents(
                 split_docs,
                 OpenAIEmbeddings(),
                 collection_name="policygpt",
-                client_settings={
-                    "chroma_api_impl": "rest",
-                    "chroma_server_host": CHROMA_HOST,
-                    "chroma_server_http_port": CHROMA_PORT,
-                }
+                client_settings=client_settings
             )
         else:
             vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
