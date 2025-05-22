@@ -1,4 +1,4 @@
-## WP16 – Input Prompt UX Layer: Task List (Updated)
+## WP16 – Input Prompt UX Layer: Task List (Revised)
 
 ### ✅ Confirmed Scope Tasks
 
@@ -9,7 +9,7 @@
 | T3 | Tool: inputChecker | Validates required input completeness | `inputChecker.py` |
 | T4 | Tool Integration | Register tools in registry + manifest | `tool_registry.py`, `tool_catalog.yaml` |
 | T5 | UX Flow Logic | Implements guided prompt or data dump mode | `input_prompt_flow.py` |
-| T6 | PromptLog Metadata Integration | Add metadata capture to WP16 tools | Inline via `log_tool_usage()` |
+| T6 | Patch Upload Tools with Metadata | Add metadata param to uploadText/File/Link tools | `upload*.py` updated |
 | T7 | Test Package | CLI-based or config test for end-to-end | `input_prompt_test.py` |
 
 ### 🧠 References
