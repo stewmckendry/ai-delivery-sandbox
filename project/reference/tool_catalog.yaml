@@ -103,13 +103,6 @@ tools:
     schema:
       transcript_text:
         type: string
-  loadCorpus:
-    module: app.tools.tool_wrappers.loadCorpus
-    class: Tool
-    description: Embeds and indexes documents into KB
-    schema:
-      folder:
-        type: string
   doc_feedback_to_task:
     module: app.tools.tool_wrappers.doc_feedback_to_task
     class: Tool
@@ -153,10 +146,25 @@ tools:
       properties:
         text:
           type: string
+        metadata:
+          type: object
+          properties:
+            gate_id:
+              type: integer
+            artifact_id:
+              type: string
+            section_id:
+              type: string
+            intent:
+              type: string
+            session_id:
+              type: string
+            user_id:
+              type: string
       required:
         - text
   uploadFileInput:
-    description: Ingest file input into the memory system
+    description: Extract and ingest file contents into the memory system
     module: app.tools.tool_wrappers.uploadFileInput
     class: Tool
     schema:
@@ -164,10 +172,23 @@ tools:
       properties:
         file_path:
           type: string
-          description: Path to the file on the local filesystem
         file_content:
           type: string
-          description: Raw contents of the file, used if path is not provided
+        metadata:
+          type: object
+          properties:
+            gate_id:
+              type: integer
+            artifact_id:
+              type: string
+            section_id:
+              type: string
+            intent:
+              type: string
+            session_id:
+              type: string
+            user_id:
+              type: string
       anyOf:
         - required: ["file_path"]
         - required: ["file_content"]
@@ -180,8 +201,51 @@ tools:
       properties:
         url:
           type: string
+        metadata:
+          type: object
+          properties:
+            gate_id:
+              type: integer
+            artifact_id:
+              type: string
+            section_id:
+              type: string
+            intent:
+              type: string
+            session_id:
+              type: string
+            user_id:
+              type: string
       required:
         - url
+  loadCorpus:
+    module: app.tools.tool_wrappers.loadCorpus
+    class: Tool
+    description: Embeds and indexes documents into KB
+    schema:
+      type: object
+      properties:
+        file_contents:
+          type: string
+        file_name:
+          type: string
+        metadata:
+          type: object
+          properties:
+            gate_id:
+              type: integer
+            artifact_id:
+              type: string
+            section_id:
+              type: string
+            intent:
+              type: string
+            session_id:
+              type: string
+            user_id:
+              type: string
+      required:
+        - file_contents  
   createSessionSnapshot:
     description: Generate a YAML snapshot of all PromptLog entries for a session, used by planner for grounding and replay.
     module: app.tools.tool_wrappers.createSessionSnapshot
@@ -193,3 +257,42 @@ tools:
           type: string
           description: Optional session ID to filter which prompt logs to include
       required: []
+  inputPromptGenerator:
+    description: Generate structured input prompts based on gate metadata
+    module: app.tools.tool_wrappers.inputPromptGenerator
+    class: Tool
+    schema:
+      type: object
+      properties:
+        gate_id:
+          type: integer
+        artifact_id:
+          type: string
+        section_id:
+          type: string
+      required:
+        - gate_id
+        - artifact_id
+        - section_id
+  inputChecker:
+    description: Validate user inputs against required metadata and completeness
+    module: app.tools.tool_wrappers.inputChecker
+    class: Tool
+    schema:
+      type: object
+      properties:
+        gate_id:
+          type: integer
+        artifact_id:
+          type: string
+        section_id:
+          type: string
+        inputs:
+          type: array
+          items:
+            type: string
+      required:
+        - gate_id
+        - artifact_id
+        - section_id
+        - inputs
