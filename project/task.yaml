@@ -417,6 +417,7 @@ tasks:
     - project/build/system_risks_and_questions.md
     - project/build/wps/WP12/WP12_activation_message.md
     - project/system_design/dense_artifact_generation.md
+    - project/build/wps/WP12/update_message.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
