@@ -44,4 +44,5 @@ class ToolRegistry:
         try:
             validate(instance=input_dict, schema=schema)
         except ValidationError as e:
+            print(f"Validation error: {e.message}")
             raise ValueError(f"Input validation error: {e.message}")
