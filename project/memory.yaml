@@ -2134,3 +2134,15 @@
   - prompt
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/change_requests/CR_log.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/change_requests/CR_log.yaml
+  file_type: yaml
+  description: Log of change requests detailing enhancements and impacts on various
+    work packages, including metadata capture for PromptLog entries.
+  tags:
+  - change request
+  - metadata
+  - log
+  - impact
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
