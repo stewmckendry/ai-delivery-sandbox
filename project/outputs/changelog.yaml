@@ -3541,3 +3541,9 @@
   task_id: WP16
   committed_by: ProductPod
   message: Append output file to WP16
+- timestamp: '2025-05-22T20:12:30.873076'
+  path: project/build/wps/WP16/loadCorpus_deploy_guide.md
+  task_id: WP16
+  committed_by: GPTPod
+  message: Append cloud deployment steps for Chroma vector DB using separate Railway
+    project via infra/chroma/
