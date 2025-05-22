@@ -16,6 +16,7 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         url = input_dict["url"]
+        metadata = input_dict.get("metadata")
         try:
             response = requests.get(url, timeout=10)
             response.raise_for_status()
@@ -24,7 +25,7 @@ class Tool:
         except Exception as e:
             raise ValueError(f"Error fetching or parsing URL: {e}")
 
-        entry = structure_input(text, url, tool_name="uploadLinkInput")
+        entry = structure_input(text, url, tool_name="uploadLinkInput", metadata=metadata)
         out_path = write_trace(entry)
         log_tool_usage(
             entry["tool"],
@@ -33,8 +34,8 @@ class Tool:
             full_input_path=out_path,
             full_output_path=entry.get("full_output_path"),
             session_id=entry.get("session_id"),
-            user_id=entry.get("user_id")
+            user_id=entry.get("user_id"),
+            metadata=entry.get("metadata")
         )
-
 
         return {"status": "success", "path": out_path}
