@@ -2170,3 +2170,15 @@
   - validation
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/inputPromptGenerator.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/inputPromptGenerator.py
+  file_type: py
+  description: Script to generate structured input prompts based on gate, artifact,
+    and section information using YAML configuration files.
+  tags:
+  - prompt
+  - yaml
+  - tool
+  - input
+  last_updated: '2025-05-22'
+  pod_owner: DevPod
