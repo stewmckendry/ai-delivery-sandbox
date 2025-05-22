@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GateInputPrompt",
+  "type": "object",
+  "required": ["question", "input_type", "metadata"],
+  "properties": {
+    "question": {
+      "type": "string",
+      "description": "The prompt question presented to the user"
+    },
+    "answer": {
+      "type": ["string", "null"],
+      "description": "The user's response to the question (optional at creation time)"
+    },
+    "input_type": {
+      "type": "string",
+      "enum": ["text", "multi-line", "file", "link"],
+      "description": "Type of input expected for this prompt"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["gate", "artifact", "section", "intent"],
+      "properties": {
+        "gate": {
+          "type": "integer",
+          "description": "Gate number (e.g., 1, 2, 3)"
+        },
+        "artifact": {
+          "type": "string",
+          "description": "Name of the artifact this input supports"
+        },
+        "section": {
+          "type": "string",
+          "description": "Specific section of the artifact"
+        },
+        "intent": {
+          "type": "string",
+          "description": "Purpose of this question/input"
+        }
+      }
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional hints or examples to guide user answers"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Indicates if the input is mandatory for gate progression"
+    }
+  }
+}
