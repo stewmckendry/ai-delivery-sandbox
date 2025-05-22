@@ -2339,3 +2339,15 @@
   - flow
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP12/WP16_llm_checker_cr_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP12/WP16_llm_checker_cr_message.md
+  file_type: md
+  description: Document proposing an enhancement to the inputChecker tool using GPT-4
+    for evaluating input completeness and clarity.
+  tags:
+  - proposal
+  - enhancement
+  - LLM
+  - inputChecker
+  last_updated: '2025-05-22'
+  pod_owner: ResearchPod
