@@ -2,7 +2,7 @@ import datetime
 import os
 import json
 from sqlalchemy.orm import Session
-from app.db.models import PromptLog
+from app.db.models.PromptLog import PromptLog
 from app.db.database import get_session
 
 def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id=None, metadata=None):
