@@ -2265,3 +2265,16 @@
   - PolicyGPT
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/system_design/dense_artifact_generation.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/system_design/dense_artifact_generation.md
+  file_type: md
+  description: Document outlining the integrated user experience and technical flow
+    for human-in-the-loop and autopilot generation of dense artifact sections in PolicyGPT,
+    including drafting, validation, and finalization processes.
+  tags:
+  - design
+  - flow
+  - LLM
+  - validation
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
