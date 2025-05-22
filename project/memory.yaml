@@ -2121,3 +2121,16 @@
   - UX
   last_updated: '2025-05-22'
   pod_owner: DevPod
+- path: project/build/wps/WP16/WP16_scope_update_CR.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/WP16_scope_update_CR.md
+  file_type: md
+  description: Document detailing the update to WP16 tools to include structured metadata
+    in PromptLog entries for enhanced traceability and integration with downstream
+    tools.
+  tags:
+  - metadata
+  - logging
+  - integration
+  - prompt
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
