@@ -160,15 +160,17 @@ tools:
     module: app.tools.tool_wrappers.uploadFileInput
     class: Tool
     schema:
-      type: object
-      properties:
-        file_path:
-          type: string
-        file_contents:
-          type: string
       anyOf:
-        - required: ["file_path"]
-        - required: ["file_contents"]
+        - type: object
+          properties:
+            file_path:
+              type: string
+          required: ["file_path"]
+        - type: object
+          properties:
+            file_content:
+              type: string
+            required: ["file_content"]
   uploadLinkInput:
     description: Scrape and ingest webpage content into the memory system
     module: app.tools.tool_wrappers.uploadLinkInput
