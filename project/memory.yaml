@@ -2448,3 +2448,14 @@
   - workflow
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/reference/prompt_block_schema.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/prompt_block_schema.json
+  file_type: json
+  description: JSON schema defining the structure and requirements for a gate input
+    prompt, including question, input type, and metadata.
+  tags:
+  - prompt
+  - schema
+  - config
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
