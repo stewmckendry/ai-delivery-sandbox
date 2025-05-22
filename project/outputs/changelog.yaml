@@ -3589,3 +3589,9 @@
   task_id: WP16
   committed_by: GPTPod
   message: Append output file to WP16
+- timestamp: '2025-05-22T21:17:09.710479'
+  path: app/tools/tool_wrappers/loadCorpus.py
+  task_id: WP16
+  committed_by: GPTPod
+  message: Patch loadCorpus to use native chromadb HttpClient for remote mode, avoiding
+    unsupported REST client path.
