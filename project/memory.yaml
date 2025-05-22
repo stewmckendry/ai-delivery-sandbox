@@ -2375,3 +2375,15 @@
   - design
   last_updated: '2025-05-22'
   pod_owner: DevPod
+- path: project/build/design_decisions_log.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/design_decisions_log.md
+  file_type: md
+  description: Log of design decisions regarding updates to the PromptLog database
+    schema, including metadata additions for enhanced filtering and traceability.
+  tags:
+  - design
+  - database
+  - metadata
+  - traceability
+  last_updated: '2025-05-22'
+  pod_owner: DevPod
