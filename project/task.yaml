@@ -311,6 +311,7 @@ tasks:
     - project/build/wps/lead_pod_message.md
     - project/build/wps/pod_observer_message.md
     - project/build/change_requests/CR_log.yaml
+    - project/build/spillover_tracker.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
