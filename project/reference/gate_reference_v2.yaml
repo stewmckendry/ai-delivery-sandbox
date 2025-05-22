@@ -23,14 +23,29 @@
         - section_id: problem_statement
           title: "Problem Statement"
           mandatory: true
+          intents:
+            - "Describe the problem or opportunity."
+            - "Explain why it is important to address this now."
         - section_id: background
           title: "Background/Context"
+          intents:
+            - "Provide context for the problem or opportunity."
+            - "Describe any relevant strategic priorities or policies."
         - section_id: desired_outcomes
           title: "Desired Outcomes"
+          intents:
+            - "Outline the expected outcomes or benefits of addressing the problem."
+            - "Describe how success will be measured."
         - section_id: preliminary_benefits
           title: "Preliminary Benefits"
+          intents:
+            - "List the expected benefits of addressing the problem."
+            - "Describe how these benefits align with departmental or GoC priorities."
         - section_id: strategic_alignment
           title: "Strategic Alignment"
+          intents:
+            - "Explain how the problem or opportunity aligns with departmental and GoC strategic priorities."
+            - "Describe any relevant policies or frameworks."
       user_inputs:
         - "Description of the problem/opportunity"
         - "Strategic context"
@@ -64,18 +79,39 @@
       sections:
         - section_id: exec_summary
           title: "Executive Summary"
+          intents:
+            - "Summarize the business need and proposed options."
+            - "Outline the next steps and decision points."
         - section_id: business_need
           title: "Business Need/Opportunity"
+          intents:
+            - "Describe the business need or opportunity."
+            - "Explain why it is important to address this now."
         - section_id: strategic_alignment
           title: "Strategic Alignment"
+          intents:
+            - "Explain how the business need aligns with departmental and GoC strategic priorities."
+            - "Describe any relevant policies or frameworks."
         - section_id: options_considered
           title: "Options Considered (Long List)"
+          intents:
+            - "List all options considered to address the business need."
+            - "Describe the rationale for including or excluding each option."
         - section_id: options_analysis
           title: "Preliminary Options Analysis (Short List)"
+          intents:
+            - "Provide a high-level analysis of the shortlisted options."
+            - "Describe the criteria used to evaluate the options."
         - section_id: prelim_costs_benefits
           title: "Preliminary Costs and Benefits"
+          intents:
+            - "Provide a high-level estimate of costs and benefits for each option."
+            - "Describe the assumptions and constraints considered."
         - section_id: initial_risks
           title: "Initial Risks"
+          intents:
+            - "Identify potential risks associated with the proposed options."
+            - "Describe the impact and likelihood of each risk."
       user_inputs:
         - "Problem statement and outcomes"
         - "List of all considered options"
@@ -106,20 +142,44 @@
       sections:
         - section_id: approvals
           title: "Document Control & Approvals"
+          intents:
+            - "List of approvers and their roles."
+            - "Document version history."
         - section_id: exec_summary
           title: "Executive Summary"
+          intents:
+            - "Summarize the project’s purpose and scope."
+            - "Outline the key stakeholders and governance."
         - section_id: project_scope
           title: "Project Objectives and Scope"
+          intents:
+            - "Define the project’s objectives and scope."
+            - "Describe the expected outcomes and deliverables."
         - section_id: deliverables
           title: "Major Deliverables & Milestones"
+          intents:
+            - "List the major deliverables and milestones."
+            - "Describe the timeline for each deliverable."
         - section_id: timeline
           title: "High-Level Timeline"
+          intents:
+            - "Provide a high-level timeline for the project."
+            - "Identify key phases and milestones."
         - section_id: budget
           title: "Preliminary Budget Estimate"
+          intents:
+            - "Provide a high-level budget estimate."
+            - "Describe the assumptions and constraints considered."
         - section_id: stakeholders
           title: "Key Stakeholders"
+          intents:
+            - "Identify the key stakeholders involved in the project."
+            - "Describe their roles and responsibilities."
         - section_id: governance
           title: "Governance and Roles/Responsibilities"
+          intents:
+            - "Outline the governance structure for the project."
+            - "Define the roles and responsibilities of the project team."
       user_inputs:
         - "Project objective and scope description"
         - "High-level deliverables/milestones"
@@ -156,24 +216,54 @@
       sections:
         - section_id: exec_summary
           title: "Executive Summary"
+          intents:
+            - "Summarize the business case and key findings."
+            - "Outline the recommended option and next steps."
         - section_id: strategic_context
           title: "Strategic Context"
+          intents:
+            - "Describe the strategic context for the project."
+            - "Explain how the project aligns with departmental and GoC priorities."
         - section_id: problem_definition
           title: "Problem/Opportunity Definition"
+          intents:
+            - "Describe the problem or opportunity."
+            - "Explain why it is important to address this now."
         - section_id: options_analysis
           title: "Options Analysis"
+          intents:
+            - "List all options considered to address the business need."
+            - "Describe the rationale for including or excluding each option."
         - section_id: preferred_option
           title: "Preferred Option Description"
+          intents:
+            - "Provide a high-level analysis of the shortlisted options."
+            - "Describe the criteria used to evaluate the options."
         - section_id: cost_benefit
           title: "Cost and Benefit Analysis"
+          intents:
+            - "Provide a high-level estimate of costs and benefits for each option."
+            - "Describe the assumptions and constraints considered."
         - section_id: risk_mitigation
           title: "Risk Assessment and Mitigation Plan"
+          intents:
+            - "Identify potential risks associated with the proposed options."
+            - "Describe the impact and likelihood of each risk."
         - section_id: implementation
           title: "Implementation Approach"
+          intents:
+            - "Describe the proposed implementation approach."
+            - "Identify key activities and timelines."
         - section_id: performance
           title: "Performance Measurement / Benefits Realization"
+          intents:
+            - "Outline the plan for measuring project performance."
+            - "Describe how benefits will be tracked and reported."
         - section_id: conclusion
           title: "Conclusion and Recommendation"
+          intents:
+            - "Summarize the key findings and recommendations."
+            - "Outline the next steps for project approval."
       user_inputs:
         - "Updated problem and context details"
         - "Detailed description of each shortlisted option"
@@ -201,14 +291,29 @@
       sections:
         - section_id: outcome_defs
           title: "Outcome Definitions"
+          intents:
+            - "Define the expected outcomes of the project."
+            - "Describe how these outcomes align with departmental or GoC priorities."
         - section_id: performance_metrics
           title: "Performance Indicators / Targets"
+          intents:
+            - "Identify the performance indicators for each outcome."
+            - "Describe how these indicators will be measured."
         - section_id: benefit_owners
           title: "Benefit Owners"
+          intents:
+            - "Identify the individuals or teams responsible for realizing each benefit."
+            - "Describe their roles and responsibilities."
         - section_id: measurement_method
           title: "Measurement Method and Frequency"
+          intents:
+            - "Describe the methods and tools used to measure each benefit."
+            - "Outline the frequency of measurement and reporting."
         - section_id: schedule
           title: "Benefit Realization Schedule"
+          intents:
+            - "Outline the schedule for measuring and reporting benefits."
+            - "Describe any dependencies or constraints."
       user_inputs:
         - "List of intended benefits and how they tie to organizational objectives"
         - "Metrics for each benefit"
@@ -235,10 +340,19 @@
       sections:
         - section_id: scope
           title: "Updated Scope Definition"
+          intents:
+            - "Summarize the project’s scope and objectives."
+            - "Describe any changes or refinements since Gate 1."
         - section_id: budget
           title: "Updated Budget and Schedule"
+          intents:
+            - "Provide a high-level budget and schedule for the project."
+            - "Describe any changes or refinements since Gate 1."
         - section_id: governance
           title: "Governance and Approvals"
+          intents:
+            - "Outline the governance structure for the project."
+            - "Define the roles and responsibilities of the project team."
       user_inputs:
         - "Revised scope and deliverables per chosen option"
         - "Updated high-level schedule and budget"
@@ -263,12 +377,24 @@
       sections:
         - section_id: schedule
           title: "Gate Schedule"
+          intents:
+            - "Outline the schedule for each gate review."
+            - "Describe any dependencies or constraints."
         - section_id: decisions
           title: "Key Decision at Each Gate"
+          intents:
+            - "Describe the key decisions to be made at each gate."
+            - "Outline the criteria for each decision."
         - section_id: artifacts_per_gate
           title: "Required Artifacts per Gate"
+          intents:
+            - "List the artifacts required for each gate."
+            - "Describe the purpose of each artifact."
         - section_id: independent_reviews
           title: "Planned Independent Reviews"
+          intents:
+            - "Outline the scope and objectives of each independent review."
+            - "Describe the methodology and criteria for selection."
       user_inputs:
         - "Project timeline/milestones for major phases"
         - "Department’s standard gate model"
@@ -296,20 +422,44 @@
       sections:
         - section_id: scope
           title: "Project Scope Statement"
+          intents:
+            - "Define the project’s scope and objectives."
+            - "Describe the expected outcomes and deliverables."
         - section_id: wbs
           title: "Work Breakdown Structure"
+          intents:
+            - "Outline the work breakdown structure for the project."
+            - "Describe the major work packages and deliverables."
         - section_id: milestones
           title: "Milestone Schedule"
+          intents:
+            - "Outline the key milestones for the project."
+            - "Describe the timeline for each milestone."
         - section_id: staffing
           title: "Organization and Staffing Plan"
+          intents:
+            - "Outline the organization and staffing plan for the project."
+            - "Describe the roles and responsibilities of the project team."
         - section_id: resources
           title: "Initial Resource and Cost Estimates"
+          intents:
+            - "Provide initial resource and cost estimates for the project."
+            - "Describe the assumptions and constraints considered."
         - section_id: risks
           title: "Risk Management Strategy"
+          intents:
+            - "Outline the risk management strategy for the project."
+            - "Describe the process for identifying and managing risks."
         - section_id: procurement
           title: "Procurement Strategy"
+          intents:
+            - "Outline the procurement strategy for the project."
+            - "Describe the key considerations for sourcing and contracting."
         - section_id: communications
           title: "Communication Plan"
+          intents:
+            - "Outline the communication plan for the project."
+            - "Describe the key stakeholders and communication channels."
       user_inputs:
         - "Decomposed scope"
         - "Preliminary Gantt chart"
@@ -336,14 +486,29 @@
       sections:
         - section_id: items
           title: "Items/Services to Procure"
+          intents:
+            - "Identify the items or services required for the project."
+            - "Describe the specifications and quantities needed."
         - section_id: strategy
           title: "Procurement Strategy"
+          intents:
+            - "Outline the approach for procuring the identified items/services."
+            - "Describe any preferred suppliers or sourcing methods."
         - section_id: milestones
           title: "Major Contracting Milestones"
+          intents:
+            - "Identify key milestones in the procurement process."
+            - "Describe the timeline for each milestone."
         - section_id: dependencies
           title: "Dependencies and Lead Times"
+          intents:
+            - "Outline any dependencies that could impact procurement."
+            - "Describe the lead times for each item/service."
         - section_id: contract_mgmt
           title: "Contract Management Approach"
+          intents:
+            - "Outline the approach for managing contracts and suppliers."
+            - "Describe the roles and responsibilities for contract management."
       user_inputs:
         - "List of major items or services"
         - "Preferred procurement approach"
@@ -368,12 +533,24 @@
       sections:
         - section_id: summary
           title: "PCRA Summary"
+          intents:
+            - "Summarize the project’s complexity and risk level."
+            - "Describe the implications for governance and oversight."
         - section_id: scoring
           title: "Scoring by Dimension"
+          intents:
+            - "Outline the scoring criteria used in the PCRA."
+            - "Describe the scoring process and any tools used."
         - section_id: risks
           title: "Key Risk Drivers"
+          intents:
+            - "Identify the key risk drivers for the project."
+            - "Describe the impact and likelihood of each risk."
         - section_id: implications
           title: "Implications for Oversight"
+          intents:
+            - "Outline the implications of the PCRA results for project oversight."
+            - "Describe any additional oversight or governance requirements."
       user_inputs:
         - "Inputs to PCRA questionnaire (size, novelty, dependencies, etc.)"
       maturity: "Preliminary (initial assessment, to be updated as project details solidify)."
@@ -401,12 +578,24 @@
       sections:
         - section_id: exec_summary
           title: "Executive Summary"
+          intents:
+            - "Summarize the project’s scope and objectives."
+            - "Describe any changes or refinements since Gate 1."
         - section_id: updated_costs
           title: "Updated Costs and Benefits"
+          intents:
+            - "Provide a high-level budget and schedule for the project."
+            - "Describe any changes or refinements since Gate 1."
         - section_id: changes_to_scope
           title: "Scope and Approach Changes"
+          intents:
+            - "Outline any changes to the project scope or approach."
+            - "Describe the rationale for these changes."
         - section_id: updated_risks
           title: "Updated Risk Profile"
+          intents:
+            - "Outline the updated risk profile for the project."
+            - "Describe any new risks or changes to existing risks."
       user_inputs:
         - "Finalized costs (e.g. from vendor bids or refined estimates)"
         - "Updated risk status"
@@ -432,10 +621,19 @@
       sections:
         - section_id: updated_targets
           title: "Finalized Targets and Indicators"
+          intents: 
+            - "Confirm the finalized performance indicators and targets."
+            - "Describe how these indicators will be measured."
         - section_id: benefit_owner
           title: "Accountabilities for Realization"
+          intents:
+            - "Confirm the individuals or teams responsible for realizing each benefit."
+            - "Describe their roles and responsibilities."
         - section_id: review_schedule
           title: "Post-Implementation Review Schedule"
+          intents:
+            - "Outline the schedule for measuring and reporting benefits."
+            - "Describe any dependencies or constraints."
       user_inputs:
         - "Confirmed benefit metrics and baseline measurements"
         - "Assignment of benefit realization responsibility"
@@ -459,8 +657,14 @@
       sections:
         - section_id: updated_milestones
           title: "Updated Milestones and Gate Dates"
+          intents:
+            - "Confirm the updated schedule for each gate review."
+            - "Describe any dependencies or constraints."
         - section_id: oversight_controls
           title: "Independent Review Points and Controls"
+          intents:
+            - "Outline the independent review points and controls."
+            - "Describe the methodology and criteria for selection."
       user_inputs:
         - "Approved schedule milestones for each gate"
         - "Scheduling with review committees or independent reviewers"
@@ -486,18 +690,39 @@
       sections:
         - section_id: scope_plan
           title: "Scope Management Plan"
+          intents:
+            - "Outline the project scope and objectives."
+            - "Describe the process for managing scope changes."
         - section_id: schedule
           title: "Detailed Timeline and Milestones"
+          intents:
+            - "Provide a detailed project schedule with milestones."
+            - "Describe the process for monitoring and controlling the schedule."
         - section_id: cost_plan
           title: "Cost Baseline and Funding Profile"
+          intents:
+            - "Provide a detailed cost estimate for the project."
+            - "Describe the process for managing project finances."
         - section_id: resourcing
           title: "Resource Assignments and Governance"
+          intents:
+            - "Outline the resource requirements for the project."
+            - "Describe the governance structure for resource management."
         - section_id: risks
           title: "Risk Register and Mitigation Plan"
+          intents:
+            - "Identify the key risks associated with the project."
+            - "Describe the mitigation strategies for each risk."
         - section_id: communications
           title: "Stakeholder Communications Plan"
+          intents:
+            - "Outline the communication strategy for the project."
+            - "Describe the key stakeholders and their information needs."
         - section_id: change_control
           title: "Change Control Procedures"
+          intents:
+            - "Outline the change control process for the project."
+            - "Describe the roles and responsibilities for managing changes."
       user_inputs:
         - "WBS and task list"
         - "Detailed timeline"
@@ -525,10 +750,19 @@
       sections:
         - section_id: deployment
           title: "Deployment Strategy"
+          intents: 
+            - "Outline the strategy for deploying the project outputs."
+            - "Describe the key activities and timelines."
         - section_id: support
           title: "Support and Maintenance Setup"
+          intents:
+            - "Outline the support model for the project outputs."
+            - "Describe the key activities and timelines for support."
         - section_id: fallback
           title: "Fallback/Contingency Plans"
+          intents:
+            - "Outline the fallback plans in case of deployment issues."
+            - "Describe the key activities and timelines for fallback."
       user_inputs:
         - "Rollout approach"
         - "Legacy system retirement plan"
@@ -554,8 +788,14 @@
       sections:
         - section_id: contracts
           title: "Procurement Vehicles and Timelines"
+          intents:
+            - "Outline the approach for managing contracts and suppliers."
+            - "Describe the roles and responsibilities for contract management."
         - section_id: vendor
           title: "Selected Vendors (if known)"
+          intents:
+            - "Identify the selected vendors for the project."
+            - "Describe the rationale for selecting these vendors."
       user_inputs:
         - "Actual procurement results or updated timelines"
       maturity: "Finalized (major acquisitions underway or scheduled)."
@@ -578,8 +818,14 @@
       sections:
         - section_id: risk_summary
           title: "Final Risk Assessment Summary"
+          intents:
+            - "Summarize the project’s complexity and risk level."
+            - "Describe the implications for governance and oversight."
         - section_id: oversight_measures
           title: "Oversight Adjustments if Risk Changed"
+          intents:
+            - "Outline any adjustments to oversight measures based on updated risk."
+            - "Describe the rationale for these adjustments."
       user_inputs:
         - "New PCRA inputs (budget, schedule, complexity factors)"
       maturity: "Updated (final baseline for risk category)."
@@ -607,10 +853,19 @@
       sections:
         - section_id: updated_benefits
           title: "Updated Benefits and Value Confirmation"
+          intents: 
+            - "Confirm the expected benefits and value of the project."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: interim_metrics
           title: "Interim Performance Metrics (if applicable)"
+          intents:
+            - "Outline any interim performance metrics achieved."
+            - "Describe how these metrics will be measured."
         - section_id: change_log
           title: "Changes or Conditions Since Gate 3"
+          intents:
+            - "Outline any changes or conditions since Gate 3."
+            - "Describe the implications of these changes."
       user_inputs:
         - "Any changes in scope or external factors affecting benefits"
         - "Interim performance metrics if available"
@@ -635,14 +890,29 @@
       sections:
         - section_id: summary
           title: "Updated Executive Summary"
+          intents:
+            - "Summarize the key updates to the project."
+            - "Highlight any critical issues or decisions."
         - section_id: scope_reconciliation
           title: "Final Scope Delivered vs. Original Scope"
+          intents:
+            - "Confirm the final scope delivered."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: budget_reconciliation
           title: "Final Schedule and Cost vs. Baseline"
+          intents:
+            - "Confirm the final schedule and cost."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: acceptance
           title: "Acceptance by Operations/Business Owner"
+          intents:
+            - "Confirm acceptance of the project outputs by the business owner."
+            - "Describe any conditions or requirements for acceptance."
         - section_id: ops_roles
           title: "Roles and Responsibilities for Operations"
+          intents:
+            - "Outline the roles and responsibilities for operations."
+            - "Describe the governance structure for operations."
       user_inputs:
         - "Summary of any scope changes"
         - "Final actual cost and timeline"
@@ -668,10 +938,19 @@
       sections:
         - section_id: benefits_realized
           title: "Benefits Realized To Date (if any)"
+          intents: 
+            - "Summarize the benefits realized to date."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: post_launch_tracking
           title: "Post-Implementation Review Schedule"
+          intents:
+            - "Outline the schedule for measuring and reporting benefits."
+            - "Describe any dependencies or constraints."
         - section_id: updated_owners
           title: "Ongoing Accountability"
+          intents:
+            - "Confirm the ongoing accountability for benefits realization."
+            - "Describe the roles and responsibilities for benefits management."
       user_inputs:
         - "Actual benefits realized during project"
         - "Schedule for future benefits review"
@@ -697,18 +976,39 @@
       sections:
         - section_id: readiness_checklist
           title: "Go-Live Readiness Checklist"
+          intents:
+            - "Outline the checklist for go-live readiness."
+            - "Describe the key activities and timelines."
         - section_id: testing_results
           title: "Testing Summary and Results"
+          intents:
+            - "Summarize the testing results and any issues."
+            - "Describe the implications of these results."
         - section_id: training
           title: "Training Completed"
+          intents:
+            - "Confirm the completion of all training activities."
+            - "Describe the training materials and resources provided."
         - section_id: support_setup
           title: "Operational Support Arrangements"
+          intents:
+            - "Outline the support model for the project outputs."
+            - "Describe the key activities and timelines for support."
         - section_id: communications
           title: "Launch Communications Plan"
+          intents:
+            - "Outline the communication strategy for the project."
+            - "Describe the key stakeholders and their information needs."
         - section_id: rollback
           title: "Roll-back Plan or Contingencies"
+          intents:
+            - "Outline the fallback plans in case of deployment issues."
+            - "Describe the key activities and timelines for fallback."
         - section_id: decommissioning
           title: "Decommissioning Plan for Legacy"
+          intents:
+            - "Outline the approach for decommissioning legacy systems."
+            - "Describe the key activities and timelines for decommissioning."
       user_inputs:
         - "Summary of test results"
         - "Confirmation of support team readiness"
@@ -735,12 +1035,24 @@
       sections:
         - section_id: open_risks
           title: "Open Risks Summary"
+          intents:
+            - "Summarize the open risks and their status."
+            - "Describe the potential impact of these risks."
         - section_id: completed_mitigations
           title: "Mitigation Actions Completed"
+          intents:
+            - "Summarize the mitigation actions that have been completed."
+            - "Describe the effectiveness of these actions."
         - section_id: new_risks
           title: "New Risks for Transition/Operations"
+          intents:
+            - "Identify any new risks that have emerged."
+            - "Describe the potential impact of these risks."
         - section_id: contingencies
           title: "Contingency Plans and Triggers"
+          intents:
+            - "Outline the contingency plans in place."
+            - "Describe the triggers for these plans."
       user_inputs:
         - "List of any unresolved issues or risks"
         - "Mitigation action owners"
@@ -770,12 +1082,24 @@
       sections:
         - section_id: benefits_achieved
           title: "Summary of Benefits Achieved to Date"
+          intents:
+            - "Summarize the benefits realized to date."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: outstanding_benefits
           title: "Outstanding Benefits and Timeline to Realize"
+          intents:
+            - "Identify any outstanding benefits and their status."
+            - "Describe the timeline for realizing these benefits."
         - section_id: owner_assignment
           title: "Responsible Owner for Each Benefit"
+          intents:
+            - "Confirm the assigned owner for each benefit."
+            - "Describe the owner's responsibilities for tracking benefits."
         - section_id: measurement_plan
           title: "Measurement & Reporting Plan"
+          intents:
+            - "Outline the schedule for measuring and reporting benefits."
+            - "Describe any dependencies or constraints."
       user_inputs:
         - "Quantifiable benefits realized upon project completion"
         - "Plan for follow-up benefit reviews"
@@ -800,22 +1124,49 @@
       sections:
         - section_id: summary
           title: "Project Summary"
+          intents:
+            - "Summarize the key updates to the project."
+            - "Highlight any critical issues or decisions."
         - section_id: delivery_status
           title: "Final Delivery Status"
+          intents:
+            - "Confirm the final scope delivered."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: final_metrics
           title: "Final Schedule and Cost Summary"
+          intents:
+            - "Confirm the final schedule and cost."
+            - "Describe any changes or refinements since Gate 3."
         - section_id: quality
           title: "Quality and Acceptance Status"
+          intents:
+            - "Confirm acceptance of the project outputs by the business owner."
+            - "Describe any conditions or requirements for acceptance."
         - section_id: transition
           title: "Transition to Operations"
+          intents:
+            - "Outline the roles and responsibilities for operations."
+            - "Describe the governance structure for operations."
         - section_id: outstanding
           title: "Outstanding Items"
+          intents:
+            - "Summarize the outstanding items and their status."
+            - "Describe the plan for addressing these items."
         - section_id: lessons
           title: "Lessons Learned"
+          intents:
+            - "Summarize the lessons learned during the project."
+            - "Describe the implications of these lessons for future projects."
         - section_id: pir_plan
           title: "Post-Implementation Review Plan"
+          intents:
+            - "Outline the schedule for the post-implementation review."
+            - "Describe the key activities and stakeholders involved."
         - section_id: signoff
           title: "Sign-off (Sponsor/Committee Approval)"
+          intents:
+            - "Confirm the sign-off from the project sponsor or committee."
+            - "Describe any conditions or requirements for sign-off."
       user_inputs:
         - "Final actual cost and timeline data"
         - "List of unmet objectives or dropped scope items"
@@ -840,10 +1191,19 @@
       sections:
         - section_id: docs_summary
           title: "List of Operational Documents Provided"
+          intents:
+            - "Summarize the operational documents provided."
+            - "Describe the purpose and scope of each document."
         - section_id: decommissioning
           title: "Legacy System Decommissioning Plan"
+          intents:
+            - "Outline the plan for decommissioning legacy systems."
+            - "Describe the key activities and timelines for decommissioning."
         - section_id: archival
           title: "Data Archival / Transfer Procedures"
+          intents:
+            - "Outline the procedures for data archival or transfer."
+            - "Describe the key activities and timelines for archival."
       user_inputs:
         - "Confirmation of completion of these artifacts or tasks"
       maturity: "Final (completed as part of closure)."
