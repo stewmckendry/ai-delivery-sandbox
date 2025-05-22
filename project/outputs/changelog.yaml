@@ -3347,3 +3347,13 @@
   committed_by: GPTPod
   message: Patch memory_sync.py to store metadata in full_input_path and serialize
     output_summary in full_output_path
+- timestamp: '2025-05-22T17:42:10.208747'
+  path: project/build/wps/WP16/loadCorpus_deploy_guide.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Add deploy guide for vector DB setup and loadCorpus integration
+- timestamp: '2025-05-22T17:42:10.208747'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Memory update related to project/build/wps/WP16/loadCorpus_deploy_guide.md
