@@ -2097,3 +2097,15 @@
   - deferred work
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/design.md
+  file_type: md
+  description: Design document for the Input Prompt UX Layer in PolicyGPT, detailing
+    user input modes, architecture, and system integration for document generation.
+  tags:
+  - design
+  - prompt
+  - UX
+  - architecture
+  last_updated: '2025-05-22'
+  pod_owner: DevPod
