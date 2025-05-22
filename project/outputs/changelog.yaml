@@ -3183,3 +3183,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-22T15:57:19.715419'
+  path: project/build/spillover_tracker.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Logged WP12 deliverables as spillover items to ensure future WP alignment
