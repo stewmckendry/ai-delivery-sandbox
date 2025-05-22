@@ -2206,3 +2206,25 @@
   - config
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/change_requests/CR_log.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/change_requests/CR_log.yaml
+  file_type: yaml
+  description: Log of change requests detailing enhancements to upload tools for capturing
+    structured metadata in PromptLog entries.
+  tags:
+  - change request
+  - metadata
+  - logging
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
+- path: project/build/spillover_tracker.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/spillover_tracker.md
+  file_type: md
+  description: Document tracking unfinished or deferred work items from various work
+    packages, including reasons for deferral and suggested ownership.
+  tags:
+  - tracking
+  - workflow
+  - management
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
