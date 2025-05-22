@@ -49,6 +49,30 @@
     "required": {
       "type": "boolean",
       "description": "Indicates if the input is mandatory for gate progression"
+    },
+    "artifact_name": {
+      "type": "string",
+      "description": "Human-readable title of the artifact"
+    },
+    "artifact_purpose": {
+      "type": "string",
+      "description": "What the artifact aims to justify or support"
+    },
+    "artifact_template": {
+      "type": "string",
+      "description": "Path to the artifact template"
+    },
+    "artifact_exemplar": {
+      "type": "string",
+      "description": "Path to an exemplar version of the artifact"
+    },
+    "maturity": {
+      "type": "string",
+      "description": "Level of detail expected for this artifact"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional guidance or expectations"
     }
   }
 }
