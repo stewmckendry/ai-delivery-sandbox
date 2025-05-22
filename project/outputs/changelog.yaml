@@ -3467,3 +3467,13 @@
   committed_by: ProductPod
   message: Update prompt schema reference to clarify purpose and usage of prompt_block
     vs. prompt response schemas
+- timestamp: '2025-05-22T19:06:30.964438'
+  path: project/reference/triage_map_policygpt.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Add initial triage_map_policygpt.yaml for inputPromptGenerator mappings
+- timestamp: '2025-05-22T19:06:30.964438'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Memory update related to project/reference/triage_map_policygpt.yaml
