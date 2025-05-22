@@ -3294,3 +3294,8 @@
   task_id: 2.2_build_and_patch
   committed_by: WP16Pod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-22T16:58:54.660239'
+  path: app/tools/tool_wrappers/uploadLinkInput.py
+  task_id: 2.2_build_and_patch
+  committed_by: WP16Pod
+  message: Patch uploadLinkInput.py to support optional metadata input and logging
