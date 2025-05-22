@@ -419,6 +419,7 @@ tasks:
     - project/system_design/dense_artifact_generation.md
     - project/build/wps/WP12/update_message.md
     - project/retrospectives/WP12_draft_generation_patch_retro.md
+    - project/build/wps/WP17/WP17_prompt_patterns_definition.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
