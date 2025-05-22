@@ -421,6 +421,7 @@ tasks:
     - project/retrospectives/WP12_draft_generation_patch_retro.md
     - project/build/wps/WP17/WP17_prompt_patterns_definition.md
     - project/retrospectives/WP12_retrospective.md
+    - project/build/wps/WP16/WP16_new_deliverable_message.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
