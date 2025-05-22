@@ -35,8 +35,6 @@ class Tool:
             entry["tool"],
             entry["input_summary"],
             entry["output_summary"],
-            full_input_path=out_path if "file_path" in input_dict else None,
-            full_output_path=entry.get("full_output_path"),
             session_id=entry.get("session_id"),
             user_id=entry.get("user_id"),
             metadata=entry.get("metadata")
