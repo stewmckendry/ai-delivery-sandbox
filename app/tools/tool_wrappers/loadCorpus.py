@@ -1,10 +1,11 @@
+print("🚀 Starting loadCorpus tool")
+
 import os
 import uuid
 import json
 import datetime
 from typing import List, Optional
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.docstore.document import Document
 from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
@@ -15,6 +16,9 @@ CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")
 USE_REMOTE_CHROMA = CHROMA_HOST is not None
+print("USE_REMOTE_CHROMA:", USE_REMOTE_CHROMA)
+print("CHROMA_HOST:", CHROMA_HOST)
+print("CHROMA_PORT:", CHROMA_PORT)
 
 if not USE_REMOTE_CHROMA:
     os.makedirs(CHROMA_DIR, exist_ok=True)
@@ -53,6 +57,7 @@ class Tool:
         else:
             print("Using local Chroma directory:", CHROMA_DIR)
             from langchain_community.vectorstores import Chroma
+            from langchain_community.embeddings import OpenAIEmbeddings
             vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
             vectorstore.persist()
 
