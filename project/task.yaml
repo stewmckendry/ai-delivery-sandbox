@@ -313,6 +313,7 @@ tasks:
     - project/build/change_requests/CR_log.yaml
     - project/build/spillover_tracker.md
     - project/build/system_risks_and_questions.md
+    - project/build/wps/WP12/WP12_activation_message.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
