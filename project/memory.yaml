@@ -2157,3 +2157,16 @@
   - config
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/reference/prompt_schema_lifecycle.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/prompt_schema_lifecycle.md
+  file_type: md
+  description: Document detailing the lifecycle and structure of prompt schemas used
+    in PolicyGPT, including generation, user interaction, validation, logging, and
+    usage in drafting processes.
+  tags:
+  - prompt
+  - schema
+  - lifecycle
+  - validation
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
