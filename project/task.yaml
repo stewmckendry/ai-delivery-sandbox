@@ -425,6 +425,7 @@ tasks:
     - project/build/wps/WP12/WP16_llm_checker_cr_message.md
     - app/tools/tool_wrappers/inputChecker.py
     - project/build/wps/WP16/PromptLog_metadata_patch.md
+    - app/tools/tool_wrappers/structured_input_ingestor.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
