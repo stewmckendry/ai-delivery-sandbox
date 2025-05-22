@@ -2412,3 +2412,14 @@
   - vector
   last_updated: '2025-05-22'
   pod_owner: ResearchPod
+- path: project/build/wps/WP16/gpt_ux_messages_and_metadata.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/gpt_ux_messages_and_metadata.md
+  file_type: md
+  description: Contains UX messages, tool metadata, and starter prompts for guiding
+    users in PolicyGPT through input collection.
+  tags:
+  - prompt
+  - metadata
+  - UX
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
