@@ -2327,3 +2327,15 @@
   - flow
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/WP16_new_deliverable_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/WP16_new_deliverable_message.md
+  file_type: md
+  description: Design spec and UX flow for a user-facing interface to manage LLM-powered
+    draft generation readiness.
+  tags:
+  - ux
+  - design
+  - interface
+  - flow
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
