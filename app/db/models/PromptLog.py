@@ -1,6 +1,6 @@
 import uuid
 import datetime
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, String, DateTime, Text
 from app.db.database import Base
 
 class PromptLog(Base):
@@ -10,8 +10,8 @@ class PromptLog(Base):
     tool = Column(String(255))
     input_summary = Column(String)
     output_summary = Column(String)
-    full_input_path = Column(String)
-    full_output_path = Column(String)
+    full_input_path = Column(Text)  # Store full input metadata or JSON blob
+    full_output_path = Column(Text)  # Store full output result or JSON blob
     session_id = Column(String(255))
     user_id = Column(String(255))
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
