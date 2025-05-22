@@ -2995,3 +2995,14 @@
   committed_by: GPTPod
   message: Refactor inputPromptGenerator tool to match ToolWrapper pattern used by
     upload tools and load gate reference from GitHub
+- timestamp: '2025-05-22T03:47:23.590729'
+  path: project/build/wps/WP16/WP16_input_mode_note.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add WP16 note on guided vs. bulk input mode handling for PolicyGPT under
+    OpenAI ChatGPT UI constraints
+- timestamp: '2025-05-22T03:47:23.590729'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP16/WP16_input_mode_note.md
