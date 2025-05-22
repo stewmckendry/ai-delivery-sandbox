@@ -306,3 +306,13 @@
   - coordination
   last_updated: '2025-05-22'
   pod_owner: ResearchPod
+- path: project/system_design/dense_artifact_generation.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/system_design/dense_artifact_generation.md
+  file_type: md
+  description: Reference to a canvas document detailing UX and architecture drafting
+  tags:
+  - architecture
+  - ux
+  - design
+  last_updated: '2025-05-22'
+  pod_owner: ResearchPod
