@@ -1,0 +1,56 @@
+problem_statement:
+  intents:
+    - problem_clarity
+    - evidence_support
+
+background:
+  intents:
+    - context_description
+    - prior_initiatives
+
+strategic_alignment:
+  intents:
+    - org_goals
+    - gov_priorities
+
+preliminary_benefits:
+  intents:
+    - benefits_outline
+
+intent:
+  problem_clarity:
+    question: "What is the problem or opportunity you are addressing?"
+    input_type: "multi-line"
+    hints:
+      - "Describe the key issue or opportunity."
+      - "Why is this a priority now?"
+
+  evidence_support:
+    question: "What evidence supports this problem or opportunity?"
+    input_type: "text"
+    hints:
+      - "Any research or stakeholder input?"
+
+  context_description:
+    question: "What background or context is relevant here?"
+    input_type: "multi-line"
+
+  prior_initiatives:
+    question: "Have similar initiatives been attempted before?"
+    input_type: "text"
+
+  org_goals:
+    question: "How does this align with departmental or org goals?"
+    input_type: "text"
+
+  gov_priorities:
+    question: "How does this align with broader GoC priorities?"
+    input_type: "text"
+
+  benefits_outline:
+    question: "What are the preliminary benefits of proceeding?"
+    input_type: "multi-line"
+    hints:
+      - "Mention early indications of value or impact."
+
+notes: "This map links section_ids in gate_reference to intents, and intents to question blocks. For GPT refinement."
