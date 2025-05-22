@@ -340,3 +340,15 @@
   - UX
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/WP16_trace_metadata_patch_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/WP16/WP16_trace_metadata_patch_plan.md
+  file_type: md
+  description: Document outlining the plan to update trace metadata logging by augmenting
+    the PromptLog schema for database compatibility.
+  tags:
+  - metadata
+  - database
+  - schema
+  - logging
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
