@@ -282,3 +282,14 @@
   - project management
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/system_risks_and_questions.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/system_risks_and_questions.md
+  file_type: md
+  description: Log of system risks and open questions related to artifact drafting
+    processes and toolchain integration.
+  tags:
+  - risk
+  - system design
+  - flow
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
