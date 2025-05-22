@@ -2182,3 +2182,15 @@
   - input
   last_updated: '2025-05-22'
   pod_owner: DevPod
+- path: project/build/wps/WP16/WP16_input_mode_note.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/WP16_input_mode_note.md
+  file_type: md
+  description: Documentation of input mode handling for PolicyGPT Input UX Layer,
+    detailing guided and data dump modes within OpenAI Custom GPT chat interface.
+  tags:
+  - documentation
+  - UX
+  - flow
+  - input
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
