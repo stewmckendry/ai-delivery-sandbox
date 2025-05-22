@@ -2423,3 +2423,15 @@
   - UX
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/prompt_schema_reference.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/prompt_schema_reference.md
+  file_type: md
+  description: Reference document for the prompt schema used by PolicyGPT, detailing
+    the structure of inputs and their organization within the system.
+  tags:
+  - prompt
+  - schema
+  - input
+  - config
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
