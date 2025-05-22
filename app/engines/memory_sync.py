@@ -1,11 +1,12 @@
 import datetime
 import os
 import json
+from sqlalchemy.orm import Session
 from app.db.models import PromptLog
-from app.db.database import get_db
+from app.db.database import get_session
 
 def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id=None, metadata=None):
-    db = get_db()
+    db: Session = get_session()
 
     full_input = json.dumps(metadata, indent=2) if metadata else None
     full_output = json.dumps(output_summary, indent=2) if isinstance(output_summary, (dict, list)) else output_summary
