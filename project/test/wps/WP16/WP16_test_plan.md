@@ -9,115 +9,114 @@ This test plan validates all tools built or modified in WP16 in a Railway-deploy
   CHROMA_SERVER_HOST=https://<your-chroma-url>
   CHROMA_SERVER_HTTP_PORT=8000
   ```
-- App deployed and accessible at `https://<your-app>.up.railway.app`
-- Local or Postman access for testing FastAPI endpoints
+- App deployed and accessible at `https://robust-adventure-production.up.railway.app`
+- Use `curl` or Postman to test FastAPI endpoints
 
 ---
 
 ## ✅ Test 1 – `uploadTextInput`
-**Tool:** `uploadTextInput`
-```json
-POST /tools/uploadTextInput
-{
-  "text": "Our department faces recurring delays due to legacy systems.",
-  "metadata": {
-    "gate": 0,
-    "artifact": "investment_proposal_concept",
-    "section": "problem_statement",
-    "intent": "Describe the problem or opportunity."
-  }
-}
+```bash
+curl -X POST https://robust-adventure-production.up.railway.app/tools/uploadTextInput \
+     -H "Content-Type: application/json" \
+     -d '{
+           "text": "Our department faces recurring delays due to legacy systems.",
+           "metadata": {
+             "gate": 0,
+             "artifact": "investment_proposal_concept",
+             "section": "problem_statement",
+             "intent": "Describe the problem or opportunity."
+           }
+         }'
 ```
-✅ **Expect:** `status: success`, PromptLog entry created
+✅ Expect: `status: success`, PromptLog entry created
 
 ---
 
 ## ✅ Test 2 – `uploadFileInput`
-**Tool:** `uploadFileInput`
-```json
-POST /tools/uploadFileInput
-{
-  "file_content": "Strategic alignment summary: Project aligns with 2024 innovation mandate.",
-  "metadata": {
-    "gate": 0,
-    "artifact": "investment_proposal_concept",
-    "section": "strategic_alignment",
-    "intent": "Explain alignment with GoC priorities."
-  }
-}
+```bash
+curl -X POST https://robust-adventure-production.up.railway.app/tools/uploadFileInput \
+     -H "Content-Type: application/json" \
+     -d '{
+           "file_content": "Strategic alignment summary: Project aligns with 2024 innovation mandate.",
+           "metadata": {
+             "gate": 0,
+             "artifact": "investment_proposal_concept",
+             "section": "strategic_alignment",
+             "intent": "Explain alignment with GoC priorities."
+           }
+         }'
 ```
-✅ **Expect:** `status: success`, PromptLog entry created
+✅ Expect: `status: success`, PromptLog entry created
 
 ---
 
 ## ✅ Test 3 – `uploadLinkInput`
-**Tool:** `uploadLinkInput`
-```json
-POST /tools/uploadLinkInput
-{
-  "url": "https://example.com/example-project-page",
-  "metadata": {
-    "gate": 0,
-    "artifact": "investment_proposal_concept",
-    "section": "background",
-    "intent": "Provide strategic background."
-  }
-}
+```bash
+curl -X POST https://robust-adventure-production.up.railway.app/tools/uploadLinkInput \
+     -H "Content-Type: application/json" \
+     -d '{
+           "url": "https://example.com/example-project-page",
+           "metadata": {
+             "gate": 0,
+             "artifact": "investment_proposal_concept",
+             "section": "background",
+             "intent": "Provide strategic background."
+           }
+         }'
 ```
-✅ **Expect:** Web content scraped, logged, and trace path returned
+✅ Expect: content scraped, trace path returned, PromptLog updated
 
 ---
 
 ## ✅ Test 4 – `loadCorpus`
-**Tool:** `loadCorpus`
-```json
-POST /tools/loadCorpus
-{
-  "file_contents": "This document provides baseline risk and cost data for evaluation.",
-  "file_name": "baseline_costs.docx",
-  "metadata": {
-    "gate": 1,
-    "artifact": "business_case",
-    "section": "cost_estimate",
-    "intent": "Provide a cost estimate for the recommended option."
-  }
-}
+```bash
+curl -X POST https://robust-adventure-production.up.railway.app/tools/loadCorpus \
+     -H "Content-Type: application/json" \
+     -d '{
+           "file_contents": "This document provides baseline risk and cost data for evaluation.",
+           "file_name": "baseline_costs.docx",
+           "metadata": {
+             "gate": 1,
+             "artifact": "business_case",
+             "section": "cost_estimate",
+             "intent": "Provide a cost estimate for the recommended option."
+           }
+         }'
 ```
-✅ **Expect:** Embeddings generated, document indexed, PromptLog and Chroma updated
+✅ Expect: document indexed, vector store updated, PromptLog entry
 
 ---
 
 ## ✅ Test 5 – `inputPromptGenerator`
-**Tool:** `inputPromptGenerator`
-```json
-POST /tools/inputPromptGenerator
-{
-  "gate_id": 0,
-  "artifact_id": "investment_proposal_concept"
-}
+```bash
+curl -X POST https://robust-adventure-production.up.railway.app/tools/inputPromptGenerator \
+     -H "Content-Type: application/json" \
+     -d '{
+           "gate_id": 0,
+           "artifact_id": "investment_proposal_concept"
+         }'
 ```
-✅ **Expect:** JSON array of prompts with metadata, section, hints, and maturity tags
+✅ Expect: array of input prompts with metadata
 
 ---
 
 ## ✅ Test 6 – `inputChecker`
-**Tool:** `inputChecker`
-```json
-POST /tools/inputChecker
-{
-  "session_id": "<same-session-used-in-above-tests>",
-  "gate_id": 0,
-  "artifact_id": "investment_proposal_concept"
-}
+```bash
+curl -X POST https://robust-adventure-production.up.railway.app/tools/inputChecker \
+     -H "Content-Type: application/json" \
+     -d '{
+           "session_id": "<same-session-used-in-above-tests>",
+           "gate_id": 0,
+           "artifact_id": "investment_proposal_concept"
+         }'
 ```
-✅ **Expect:** JSON list of missing intents by section
+✅ Expect: JSON with missing intents by section
 
 ---
 
 ## 📎 Notes
-- Include `Authorization` if required for API
-- Use curl or Postman or browser-based tools
-- Capture trace logs or snapshot output for review
+- Replace `<same-session-used-in-above-tests>` with real session_id from PromptLog
+- Optional: enable API logs or snapshot writing to verify trace content
 
 ---
 
@@ -126,4 +125,4 @@ POST /tools/inputChecker
 ls traces/snapshots/
 cat traces/snapshots/<latest>.json
 ```
-✅ Exported file should show `tool`, `input_summary`, `metadata`, and `output`
+✅ Exported snapshot shows `tool`, `input_summary`, `metadata`, `output`
