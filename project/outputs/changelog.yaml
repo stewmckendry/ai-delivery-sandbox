@@ -3493,3 +3493,9 @@
   task_id: WP16
   committed_by: GPTPod
   message: Append output file to WP16
+- timestamp: '2025-05-22T19:26:54.059845'
+  path: project/reference/prompt_block_schema.json
+  task_id: WP16
+  committed_by: GPTPod
+  message: Expanded prompt_block_schema.json to match enriched output structure from
+    inputPromptGenerator
