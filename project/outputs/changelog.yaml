@@ -3461,3 +3461,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-22T19:03:07.268676'
+  path: project/build/wps/WP16/prompt_schema_reference.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Update prompt schema reference to clarify purpose and usage of prompt_block
+    vs. prompt response schemas
