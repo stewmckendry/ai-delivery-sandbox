@@ -1,22 +1,9 @@
-## WP16 – Input Prompt UX Layer: Task List (Revised)
-
-### ✅ Confirmed Scope Tasks
-
-| ID | Task | Description | Output |
-|----|------|-------------|--------|
-| T1 | Prompt Schema Design | Design JSON schema for prompts + metadata | `prompt_schema.json` |
-| T2 | Tool: inputPromptGenerator | Generates prompts based on gate metadata | `inputPromptGenerator.py` |
-| T3 | Tool: inputChecker | Validates required input completeness | `inputChecker.py` |
-| T4 | Tool Integration | Register tools in registry + manifest | `tool_registry.py`, `tool_catalog.yaml` |
-| T5 | UX Flow Logic | Implements guided prompt or data dump mode | `input_prompt_flow.py` |
-| T6 | Patch Upload Tools with Metadata | Add metadata param to uploadText/File/Link tools | `upload*.py` updated |
-| T7 | Test Package | CLI-based or config test for end-to-end | `input_prompt_test.py` |
-
-### 🧠 References
-- `gate_reference_v2.yaml`
-- `triage_map.yaml`
-- `tool_catalog_v3.md`
-- `session_memory_model_v2.md`
-- `uploadTextInput.py` / PromptLog usage pattern
-
----
+- [x] T0: Create prompt_schema.json and lifecycle doc
+- [x] T1: Define prompt schema and explain lifecycle
+- [x] T2: Build `inputPromptGenerator` as registered tool
+- [ ] T3: Design and implement `inputChecker` tool
+- [ ] T4: Patch WP9 upload tools to log metadata block
+- [ ] T5: Create triage_map_policygpt.yaml (placeholder)
+- [ ] T6: Integrate prompt tools into user input flow
+- [ ] T7: Final test + deploy steps
+- [ ] T8: Documentation and lead pod summary
