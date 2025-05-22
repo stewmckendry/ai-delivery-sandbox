@@ -1,4 +1,4 @@
-## WP16 – Input Prompt UX Layer: Design Overview
+## WP16 – Input Prompt UX Layer: Design Overview (Updated)
 
 ### 🎯 Purpose
 Design a UX and tooling system that captures user input aligned to gate-specific requirements for PolicyGPT. Supports two modes:
@@ -12,47 +12,48 @@ The Input Prompt UX Layer serves as the structured intake layer feeding the sess
 User -> [Input Prompt UX Layer] -> [Session Memory / Input Tools] -> [GPT Core: Doc Assembly / Edit / QA]
 ```
 
-### 📐 Architecture Overview
-- **Prompt Generation**: Based on gate type, generates questions using `inputPromptGenerator`
-- **Prompt Mode**: Determines flow: step-by-step (guided) vs. ingest all (data dump)
-- **Input Tools**: Uses `uploadTextInput`, `uploadFileInput`, `uploadLinkInput` etc. from WP9
-- **Input Completeness**: Uses `inputChecker` to validate readiness for doc generation
-- **Memory Integration**: Writes all user answers into session memory format
-
 ### 🔄 End-to-End Flow (Data View)
-
 1. **Know What to Collect**
    - Load gate metadata from `gate_reference_v2.yaml`
    - Gate metadata defines required fields by intent
 
 2. **User Input Modes**
-   - **Guided Prompt**: Calls `inputPromptGenerator` to create prompt sequence
-   - **Data Dump**: Uses ingestion tools to process bulk documents
+   - **Guided Prompt**: Uses `inputPromptGenerator` to generate structured questions
+   - **Data Dump**: Uses ingestion tools to process uploaded documents
 
-3. **Data Collection**
-   - Answers routed via ingestion tools (text, files, links)
-   - Stored in session memory model
+3. **Data Collection + Storage**
+   - All input tools (WP16 or WP9) call `log_tool_usage()` → writes to PromptLog
+   - WP16 tools will enrich these calls with `metadata` including `gate`, `artifact`, `section`, `intent`
 
-4. **Validation**
-   - `inputChecker` scans memory to flag missing required fields
+4. **Validation + Memory Trace**
+   - `inputChecker` validates completeness
+   - Session snapshot may include structured summary for rehydration
 
-5. **Use in Generation**
-   - Session memory becomes context for GPT-driven document generation
+5. **Downstream Use**
+   - Compose tool can query PromptLog entries by section/intent
+   - Enables drafting logic by filtering structured input context
 
-### 🛠 Tool Interfaces
-- `inputPromptGenerator` (wrapper tool): Returns prompt spec from gate
-- `inputChecker` (wrapper tool): Returns pass/fail + missing intents
+### 🧠 Change Introduced in WP16
+- Extend WP16 tools to include structured `metadata` in PromptLog calls
+- Define a metadata schema to align `user input` with `gate -> artifact -> section -> intent`
+- Recommend aligning WP9 upload tools next
 
-### 🧠 Design Decisions
-- Reuse triage-style prompt schema (id, intent, mode, type, etc.)
-- Schema-driven checker improves validation + reuse
-- Wrapper tools match WP3b conventions for tool registration
+### ✅ Implementation Change
+- Modify all WP16 tools to add metadata block
+- Update schema spec to include:
+```json
+"metadata": {
+  "gate": 1,
+  "artifact": "Budget Memo",
+  "section": "Rationale",
+  "intent": "justify_budget_rise"
+}
+```
+- This will live inside `log_tool_usage()` entries
 
-### 📈 Future Extensions
-- Internationalization of prompt wording
-- Adaptive prompting based on answers
-- Inline feedback on user answer quality
+### 📈 Benefits
+- Enables downstream drafting by context
+- Backwards-compatible with existing PromptLog
+- Avoids tight coupling to future compose tool
 
 ---
-
-Let me know if you want visual diagrams or sequence diagrams added next.
