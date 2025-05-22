@@ -6,7 +6,7 @@ from app.db.models.PromptLog import PromptLog
 from app.db.models.SessionSnapshot import SessionSnapshot
 from app.engines.memory_sync import SNAPSHOT_DIR
 from app.db.database import get_session
-from app.utils.env_utils import is_cloud_environment
+from app.utils.cloud_utils import is_cloud_environment
 
 class Tool:
     def validate(self, input_dict):
