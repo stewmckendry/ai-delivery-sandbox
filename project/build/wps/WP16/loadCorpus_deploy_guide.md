@@ -35,6 +35,22 @@ CHROMA_SERVER_HTTP_PORT=8000
 ```
 - Use `Settings` in `loadCorpus` to connect with API client
 
+### Option C – **Deploy Chroma as a Standalone Railway Project** ✅
+1. Create new Railway project
+2. Set root directory to `infra/chroma/`
+3. Deploy using the following Dockerfile:
+```dockerfile
+FROM chromadb/chroma
+EXPOSE 8000
+```
+4. Railway assigns a URL like:
+```env
+CHROMA_SERVER_HOST=https://chroma-prod.up.railway.app
+CHROMA_SERVER_HTTP_PORT=8000
+```
+
+> 💡 This decouples your Chroma DB from your main app and keeps it modular and scalable.
+
 ## 4. 🔐 Authorization (Embedding)
 ```env
 OPENAI_API_KEY=sk-...
@@ -62,4 +78,4 @@ Expected:
 - Embedding count returned
 
 ---
-✅ Guide supports dev and cloud. Use .env to switch configs.
+✅ Guide supports dev, Docker Compose, and separate Railway-hosted vector DB.
