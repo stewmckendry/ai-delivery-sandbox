@@ -5,13 +5,11 @@ import datetime
 from typing import List, Optional
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
 from langchain.docstore.document import Document
 from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
-from chromadb.config import Settings
-import chromadb
+from chromadb import HttpClient
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
@@ -40,19 +38,15 @@ class Tool:
             doc.metadata.update(metadata)
 
         if USE_REMOTE_CHROMA:
-            client_settings = Settings(
-                chroma_api_impl="rest",
-                chroma_server_host=CHROMA_HOST,
-                chroma_server_http_port=CHROMA_PORT
-            )
-
-            vectorstore = Chroma.from_documents(
-                split_docs,
-                OpenAIEmbeddings(),
-                collection_name="policygpt",
-                client_settings=client_settings
+            client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
+            collection = client.get_or_create_collection("policygpt")
+            collection.add(
+                documents=[doc.page_content for doc in split_docs],
+                metadatas=[doc.metadata for doc in split_docs],
+                ids=[str(uuid.uuid4()) for _ in split_docs]
             )
         else:
+            from langchain_community.vectorstores import Chroma
             vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
             vectorstore.persist()
 
