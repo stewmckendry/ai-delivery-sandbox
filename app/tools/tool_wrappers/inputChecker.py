@@ -1,11 +1,10 @@
-# app/tools/tool_wrappers/inputChecker.py
-
 from typing import Dict, List
 from sqlalchemy.orm import Session
 from app.db.database import get_session
 from app.db.models import PromptLog
 import yaml
 import requests
+import json
 
 GATE_REFERENCE_URL = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
 
@@ -17,7 +16,19 @@ def load_gate_reference() -> List[Dict]:
 def get_logged_intents(session_id: str) -> List[str]:
     db: Session = get_session()
     logs = db.query(PromptLog).filter(PromptLog.session_id == session_id).all()
-    return [log.full_input_path.get("intent") for log in logs if log.full_input_path and "intent" in log.full_input_path]
+    intents = []
+    for log in logs:
+        if log.full_input_path:
+            try:
+                payload = json.loads(log.full_input_path)
+                if isinstance(payload, dict):
+                    if "metadata" in payload and "intent" in payload["metadata"]:
+                        intents.append(payload["metadata"]["intent"])
+                    elif "intent" in payload:
+                        intents.append(payload["intent"])
+            except Exception:
+                continue
+    return intents
 
 def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str) -> Dict[str, List[str]]:
     gate_ref = load_gate_reference()
@@ -58,5 +69,4 @@ class Tool:
         )
 
 if __name__ == "__main__":
-    # Example run
     print(identify_missing_intents("test_session", 0, "investment_proposal_concept"))
