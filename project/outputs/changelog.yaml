@@ -2916,3 +2916,8 @@
   committed_by: GPTPod
   message: Refocus T6 to patch WP9 upload tools with metadata support; remove generator/checker
     from logging scope
+- timestamp: '2025-05-22T03:04:19.624394'
+  path: project/build/wps/WP16/WP16_scope_update_CR.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Revise scope change log: focus metadata patching on WP9 upload tools only'
