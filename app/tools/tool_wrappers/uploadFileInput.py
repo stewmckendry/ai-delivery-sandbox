@@ -15,6 +15,7 @@ class Tool:
 
     def run_tool(self, input_dict):
         self.validate(input_dict)
+        metadata = input_dict.get("metadata")
 
         if "file_path" in input_dict:
             file_path = input_dict["file_path"]
@@ -27,7 +28,7 @@ class Tool:
         if raw is None:
             raise ValueError("Failed to extract or read text from file.")
 
-        entry = structure_input(raw, source, tool_name="uploadFileInput")
+        entry = structure_input(raw, source, tool_name="uploadFileInput", metadata=metadata)
         out_path = write_trace(entry)
 
         log_tool_usage(
@@ -37,7 +38,8 @@ class Tool:
             full_input_path=out_path if "file_path" in input_dict else None,
             full_output_path=entry.get("full_output_path"),
             session_id=entry.get("session_id"),
-            user_id=entry.get("user_id")
+            user_id=entry.get("user_id"),
+            metadata=entry.get("metadata")
         )
 
         return {"status": "success", "path": out_path}
