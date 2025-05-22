@@ -3274,3 +3274,8 @@
   task_id: 2.2_build_and_patch
   committed_by: WP16Pod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-22T16:58:22.333653'
+  path: app/tools/tool_wrappers/uploadTextInput.py
+  task_id: 2.2_build_and_patch
+  committed_by: WP16Pod
+  message: Patch uploadTextInput.py to support optional metadata input and logging
