@@ -316,6 +316,7 @@ tasks:
     - project/build/wps/WP12/WP12_activation_message.md
     - project/system_design/dense_artifact_generation.md
     - project/build/wps/WP12/update_message.md
+    - project/retrospectives/WP12_draft_generation_patch_retro.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
