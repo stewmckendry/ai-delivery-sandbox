@@ -407,6 +407,7 @@ tasks:
     - project/build/spillover_tracker.md
     - project/build/wps/WP16/design.md
     - project/build/wps/WP16/task_list.md
+    - project/build/wps/WP16/WP16_scope_update_CR.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
