@@ -7,9 +7,13 @@
 - [ ] T4 – Generate UX messages, tool metadata, and starter messages for GPT
 - [ ] T5 – Commit and push tool catalog updates, prompt schema reference, and integration notes
 - [ ] T6 – Final test run and snapshot export of a sample session
-- [ ] T7 – Completion note and lead pod update
+- [ ] T7 – Design GPT Review UX Interface (Input Summary + Confirm to Draft)
+- [ ] T8 – Completion note and lead pod update
 
 💡 CR Scope Additions (Handled in T1c):
 - Strategy to capture input mode using GPT conversation and memory
 - Documentation for GPT config team to implement starter messages + system prompt
 - Spillover coordination flagged to Pod Lead
+
+💡 New Deliverable (Handled in T7):
+- GPT review interface spec to preview user input before draft generation, per `dense_artifact_generation.md`
