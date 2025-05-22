@@ -38,13 +38,17 @@ class Tool:
             doc.metadata.update(metadata)
 
         if USE_REMOTE_CHROMA:
+            print("Connecting to Chroma host:", CHROMA_HOST)
             client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
+            print("Connected, creating collection")
             collection = client.get_or_create_collection("policygpt")
+            print("Collection created, adding docs")
             collection.add(
                 documents=[doc.page_content for doc in split_docs],
                 metadatas=[doc.metadata for doc in split_docs],
                 ids=[str(uuid.uuid4()) for _ in split_docs]
             )
+            print("Added docs")
         else:
             from langchain_community.vectorstores import Chroma
             vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
