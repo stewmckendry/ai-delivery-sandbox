@@ -2240,3 +2240,16 @@
   - flow
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP12/WP12_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP12/WP12_activation_message.md
+  file_type: md
+  description: Document outlining the investigation and resolution of a design issue
+    related to artifact draft generation in PolicyGPT, including background, key questions,
+    and files for review.
+  tags:
+  - design
+  - investigation
+  - PolicyGPT
+  - system
+  last_updated: '2025-05-22'
+  pod_owner: ResearchPod
