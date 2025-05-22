@@ -25,15 +25,16 @@ class Tool:
             raise ValueError("File contents are required")
 
     def run_tool(self, input_dict):
+        print("Running loadCorpus tool")
         self.validate(input_dict)
         file_contents = input_dict["file_contents"]
         file_name = input_dict.get("file_name")
         metadata = input_dict.get("metadata", {})
-
+        print("Splitting file contents into chunks")
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
         document = Document(page_content=file_contents)
         split_docs = text_splitter.split_documents([document])
-
+        print("Splitting done, embedding documents")
         for doc in split_docs:
             doc.metadata.update(metadata)
 
@@ -50,15 +51,17 @@ class Tool:
             )
             print("Added docs")
         else:
+            print("Using local Chroma directory:", CHROMA_DIR)
             from langchain_community.vectorstores import Chroma
             vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
             vectorstore.persist()
 
+        print("Documents embedded and stored successfully")
         summary = f"{file_name} with {len(split_docs)} chunks embedded."
 
         entry = structure_input(file_contents, file_name, tool_name="loadCorpus", metadata=metadata)
         out_path = write_trace(entry)
-
+        print("logging tool usage")
         log_tool_usage(
             entry["tool"],
             entry["input_summary"],
@@ -67,5 +70,5 @@ class Tool:
             user_id=entry.get("user_id"),
             metadata=entry.get("metadata")
         )
-
+        print("returning response")
         return {"status": "success", "path": out_path, "chunks": len(split_docs)}
