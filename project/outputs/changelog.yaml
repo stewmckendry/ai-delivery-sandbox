@@ -3341,3 +3341,9 @@
   committed_by: GPTPod
   message: 'Patch PromptLog model: expand full_input_path and full_output_path fields
     to Text for metadata and result logging.'
+- timestamp: '2025-05-22T17:29:55.211281'
+  path: app/engines/memory_sync.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Patch memory_sync.py to store metadata in full_input_path and serialize
+    output_summary in full_output_path
