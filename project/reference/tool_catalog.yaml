@@ -274,7 +274,6 @@ tools:
       required:
         - gate_id
         - artifact_id
-        - section_id
   inputChecker:
     description: Validate user inputs against required metadata and completeness
     module: app.tools.tool_wrappers.inputChecker
@@ -288,12 +287,7 @@ tools:
           type: string
         section_id:
           type: string
-        inputs:
-          type: array
-          items:
-            type: string
       required:
         - gate_id
         - artifact_id
         - section_id
-        - inputs
