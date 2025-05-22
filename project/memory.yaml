@@ -2302,3 +2302,15 @@
   - integration
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP17/WP17_prompt_patterns_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP17/WP17_prompt_patterns_definition.md
+  file_type: md
+  description: Document detailing the design and management of prompt templates and
+    slotting logic for GPT-driven drafting in PolicyGPT's tools and user flows.
+  tags:
+  - prompt
+  - templates
+  - design
+  - integration
+  last_updated: '2025-05-22'
+  pod_owner: ResearchPod
