@@ -156,20 +156,21 @@ tools:
       required:
         - text
   uploadFileInput:
-    description: Extract and ingest file contents into the memory system
+    description: Ingest file input into the memory system
     module: app.tools.tool_wrappers.uploadFileInput
     class: Tool
     schema:
       type: object
+      properties:
+        file_path:
+          type: string
+          description: Path to the file on the local filesystem
+        file_contents:
+          type: string
+          description: Raw contents of the file, used if path is not provided
       anyOf:
         - required: ["file_path"]
-          properties:
-            file_path:
-              type: string
-        - required: ["file_content"]
-          properties:
-            file_content:
-              type: string
+        - required: ["file_contents"]
   uploadLinkInput:
     description: Scrape and ingest webpage content into the memory system
     module: app.tools.tool_wrappers.uploadLinkInput
