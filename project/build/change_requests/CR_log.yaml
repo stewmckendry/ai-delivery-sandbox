@@ -15,3 +15,21 @@
     wp6: align with session memory design
   notes: >
     This is the first entry in the central change request log. Future pods should review this file for systemic changes or impacts.
+
+- cr_id: CR-WP16-002
+  wp_id: WP16
+  title: Input Mode Handling in Custom GPT UI
+  status: acknowledged
+  date: 2025-05-21
+  description: >
+    Introduce support for dual input modes ("Guided" and "Data Dump") in GPT interface, relying on system prompt guidance and session context tagging due to UI limitations.
+  linked_files:
+    - project/build/wps/WP16/WP16_input_mode_CR_message.md
+  impact:
+    wp3a: add input_mode to SessionSnapshot schema
+    wp4: ensure document assembly honors input_mode
+    wp6: ensure session context aligns with mode
+    gpt_config: set system prompt + starters
+    wp12: assess UI toggle metaphor for clarity
+  notes: >
+    This change affects how sessions are initiated and guided across the system. It relies on coordinated updates in memory, UI, and GPT config.
