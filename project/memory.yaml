@@ -259,3 +259,15 @@
   - implementation
   last_updated: '2025-05-20'
   pod_owner: DeliveryPod
+- path: project/build/change_requests/CR_log.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/change_requests/CR_log.yaml
+  file_type: yaml
+  description: Log of change requests for WP16, detailing enhancements and updates
+    to input handling and metadata capture in AI systems.
+  tags:
+  - change_requests
+  - metadata
+  - input_handling
+  - gpt
+  last_updated: '2025-05-22'
+  pod_owner: DevPod
