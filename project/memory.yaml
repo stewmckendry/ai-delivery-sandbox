@@ -2387,3 +2387,16 @@
   - traceability
   last_updated: '2025-05-22'
   pod_owner: DevPod
+- path: project/build/wps/WP16/loadCorpus_deploy_guide.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/loadCorpus_deploy_guide.md
+  file_type: md
+  description: Guide for deploying the `loadCorpus` tool with instructions on setting
+    up a vector store using FAISS, including authorization, directory layout, and
+    retrieval integration.
+  tags:
+  - deploy
+  - setup
+  - vector store
+  - FAISS
+  last_updated: '2025-05-22'
+  pod_owner: DeliveryPod
