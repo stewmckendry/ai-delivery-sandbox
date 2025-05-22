@@ -22,3 +22,18 @@ Tracks unfinished or deferred work from each WP.
 | Mode-aware logic in document assembly | WP16 | Requires mode detection | WP4/WP6 | Unassigned |
 | System prompt + starter wiring for modes | WP16 | Needs GPT config setup | GPT_Config | Unassigned |
 | UI toggle metaphor guidance | WP16 | Needs cross-pod UX clarity | WP12 | Unassigned |
+| `/tools/compose_and_cite.py` | WP12 | Assigned but not yet implemented | WP4 | Unassigned |
+| `/tools/revise_section.py` | WP12 | Assigned but not yet implemented | WP8 | Unassigned |
+| `/tools/get_token_usage.py` | WP12 | Assigned but not yet implemented | WP2 | Unassigned |
+| `/tools/validate_section.py` | WP12 | Assigned but not yet implemented | WP5 | Unassigned |
+| `/tasks/confirm_draft_start` | WP12 | Assigned but not yet implemented | WP6 | Unassigned |
+| `/ui/gpt_review_interface.md` | WP12 | Assigned but not yet implemented | WP16 | Unassigned |
+| `/planner/templates/planner_task_trace.yaml` | WP12 | Assigned but not yet implemented | WP3c | Unassigned |
+| `/db/schemas/prompt_log.sql` | WP12 | Assigned but not yet implemented | WP9 | Unassigned |
+| `/db/schemas/artifact_section.sql` | WP12 | Assigned but not yet implemented | WP6 | Unassigned |
+| `/db/schemas/reasoning_trace.sql` | WP12 | Assigned but not yet implemented | WP7 | Unassigned |
+| `/db/schemas/document_version_log.sql` | WP12 | Assigned but not yet implemented | WP6 | Unassigned |
+| `/yaml/validation_log.yaml` | WP12 | Assigned but not yet implemented | WP5 | Unassigned |
+| `/yaml/project_profile.yaml` | WP12 | Assigned but not yet implemented | WP1b | Unassigned |
+| `/yaml/gate_reference.yaml` | WP12 | Shared reference file | WP1a | Maintained |
+| `/system/docs/dense_artifact_generation.md` | WP12 | Design doc, no further action | WP12 | Maintained |
