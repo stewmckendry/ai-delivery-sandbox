@@ -2363,3 +2363,15 @@
   - tool
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP16/PromptLog_metadata_patch.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/PromptLog_metadata_patch.md
+  file_type: md
+  description: Design document for enhancing PromptLog with structured metadata capture
+    to support downstream processing and document generation.
+  tags:
+  - prompt
+  - metadata
+  - logging
+  - design
+  last_updated: '2025-05-22'
+  pod_owner: DevPod
