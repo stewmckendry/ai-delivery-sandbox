@@ -3335,3 +3335,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Recommit updated WP16 task list with missing steps and patch plan status
+- timestamp: '2025-05-22T17:28:58.231235'
+  path: app/db/models/PromptLog.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Patch PromptLog model: expand full_input_path and full_output_path fields
+    to Text for metadata and result logging.'
