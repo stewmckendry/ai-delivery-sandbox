@@ -24,6 +24,8 @@ if not USE_REMOTE_CHROMA:
     os.makedirs(CHROMA_DIR, exist_ok=True)
 
 class Tool:
+    print("✅ loadCorpus Tool loaded at import time")
+    
     def validate(self, input_dict):
         if not input_dict.get("file_contents"):
             raise ValueError("File contents are required")

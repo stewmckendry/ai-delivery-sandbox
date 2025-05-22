@@ -19,4 +19,5 @@ async def run_tool(tool_id: str, request: Request):
     try:
         return tool.run_tool(input_data)
     except ValueError as ve:
+        print(f"Validation error in tool {tool_id}: {ve}")
         return {"error": str(ve)}

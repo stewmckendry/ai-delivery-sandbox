@@ -231,6 +231,7 @@ tools:
           type: string
         metadata:
           type: object
+          additionalProperties: true # Allow any metadata structure
           properties:
             gate_id:
               type: integer
