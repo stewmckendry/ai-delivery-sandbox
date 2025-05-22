@@ -1,31 +1,32 @@
-- [x] T1a – Design input prompt UX layer and metadata schema
-- [x] T1b – Build inputPromptGenerator tool
-- [x] T1c – Build inputChecker tool (Phase 1: Static Evaluation)
-- [x] T1d – Patch upload input tools to pass structured metadata
-- [x] T1e – Patch log_tool_usage to write metadata
-- [ ] T2 – Build inputChecker tool (Phase 2: LLM Evaluation)
-- [ ] T3 – Build `loadCorpus` tool for loading and embedding documents
+# WP16 – Input Prompt UX Layer
+
+## ✅ Core Build Tasks
+
+- [x] T1a – Design prompt schema for inputs (section-by-section structure)
+- [x] T1b – Build inputPromptGenerator tool (guided UX flow)
+- [x] T1c – Add metadata capture in upload tools (mode, gate, artifact, section, intent)
+- [x] T2 – Build inputChecker tool to validate user inputs against reference
+- [x] T2b – Add Phase 1 evaluation logic (exact match, rule-based)
+- [x] T3a – Design vector memory store and deploy strategy
+- [x] T3b – Commit vector DB deploy guide and local setup
+- [ ] T3c – Build `loadCorpus` tool for loading and embedding documents
+- [ ] T3d – Migrate vector DB to cloud (post-PoC) and update deploy guide
 - [ ] T4 – Generate UX messages, tool metadata, and starter messages for GPT
 - [ ] T5 – Commit and push tool catalog updates, prompt schema reference, and integration notes
 - [ ] T6 – Final test run and snapshot export of a sample session
 - [ ] T7 – Design GPT Review UX Interface (Input Summary + Confirm to Draft)
 - [ ] T8 – Completion note and lead pod update
 
-💡 CR Scope Additions (Handled in T1c):
+## 🧩 Patches + Extensions
+- [x] Patch upload tools (TextInput, LinkInput, FileInput) to accept and log metadata
+- [x] Add support for metadata in structured_input_ingestor and memory_sync
+- [x] Patch PromptLog to store metadata blob in `full_input_path` (P5)
+- [ ] Add test coverage for ingestion + logging behavior (P6)
+
+## 📣 CR Scope Additions (Handled in T1c)
 - Strategy to capture input mode using GPT conversation and memory
 - Documentation for GPT config team to implement starter messages + system prompt
 - Spillover coordination flagged to Pod Lead
 
-💡 New Deliverable (Handled in T7):
+## 🆕 New Deliverable (Handled in T7)
 - GPT review interface spec to preview user input before draft generation, per `dense_artifact_generation.md`
-
----
-
-🔧 Patch Plan
-- P1. Add optional metadata dict to structured_input_ingestor.py
-- P2. Patch all upload tools to accept + pass metadata
-- P3. Patch inputChecker to write metadata to PromptLog
-- P4. Patch memory_sync.py log_tool_usage with metadata support
-- P5. [PENDING] Populate PromptLog full_input_path / full_output_path with JSON metadata blob
-- P6. [PENDING] Add tests for tool ingestion and trace logging validation
-- P7. [DONE] Send CR cascade message to Pod Lead
