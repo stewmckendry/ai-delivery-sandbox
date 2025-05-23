@@ -20,21 +20,15 @@ This file defines the long-term storage model for PolicyGPT. It captures core en
 ### 🧩 Schema Definitions (Core Entities)
 
 #### `ArtifactSection`
-
 ```sql
-artifact_section_id TEXT PRIMARY KEY
-artifact_name TEXT
-section_name TEXT
-gate INT
-content TEXT               -- working draft
-validated BOOLEAN
-template_id TEXT
-example_id TEXT
-google_doc_url TEXT        -- optional pointer to Drive-editable section
-last_updated TIMESTAMP
-draft_mode TEXT DEFAULT 'in_progress'  -- or 'confirmed', 'final'
-autopilot_enabled BOOLEAN DEFAULT false
-reasoning_trace_id TEXT  -- Foreign key
+section_id VARCHAR(255) PRIMARY KEY,
+artifact_id VARCHAR(255),
+gate_id VARCHAR(255),
+text TEXT,                   -- working draft content
+sources TEXT,                -- optional: list of citations/sources (JSON string)
+status VARCHAR(50) DEFAULT 'draft',
+generated_by VARCHAR(255),
+timestamp DATETIME
 ```
 
 #### `PromptLog`
@@ -63,16 +57,15 @@ Expected JSON structure inside full_input_path and full_output_path:
   }
 }
 ```
-
 #### `ReasoningTrace`
 
 ```sql
-trace_id TEXT PRIMARY KEY
-section_id TEXT
-steps JSONB  -- ordered list of reasoning steps
-created_by TEXT
-created_at TIMESTAMP
-draft_chunks JSONB  -- Optional: store each draft section separately
+trace_id VARCHAR(255) PRIMARY KEY,
+section_id VARCHAR(255),
+steps NVARCHAR(MAX),         -- ordered list of reasoning steps (JSON string)
+created_by VARCHAR(255),
+created_at DATETIME,
+draft_chunks NVARCHAR(MAX)   -- Optional: store each draft section separately (JSON string)
 ```
 
 #### `DocumentVersionLog`
