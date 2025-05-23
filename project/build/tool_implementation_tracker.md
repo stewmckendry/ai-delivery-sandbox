@@ -13,7 +13,7 @@
 | translateDocument      | WP10      | ⏳ Not started| Markdown translation tool.                                                      |
 | queryAirtable          | WP15      | ⏳ Not started| Needs Airtable API token + lookup logic.                                        |
 | parseTranscript        | WP11      | ⏳ Not started| NLP parser from transcript to YAML.                                             |
-| loadCorpus             | WP16      | ⏳ Not started| Embeds document into KB. Corpus indexing.                                       |
+| loadCorpus             | WP16      | ✅ Complete  | Embeds document into KB. Corpus indexing.                                       |
 | doc_feedback_to_task   | WP8       | ⏳ Not started| Converts feedback into planner retry task.                                      |
 | diff_and_summarize_sections | WP5  | ⏳ Not started| Compare section versions. Output changelog.                                     |
 | submitDocumentFeedback | WP8       | ⏳ Not started| User feedback collector.                                                        |
@@ -22,3 +22,5 @@
 | uploadFileInput        | WP9       | ✅ Complete  | Extracts content from file. YAML + DB logs. See WP9 + text_extractor.py.        |
 | uploadLinkInput        | WP9       | ✅ Complete  | Pulls and logs content from URL.                                                |
 | createSessionSnapshot  | WP9       | ✅ Complete  | Captures memory snapshot into DB.                                               |
+| inputPromptGenerator   | WP16      | ✅ Complete  | Generates prompts based on gate + artifact context. See WP16 schema.            |
+| inputChecker           | WP16      | ✅ Complete  | Validates prompt inputs for completeness and clarity. See WP16 test plan.       |
