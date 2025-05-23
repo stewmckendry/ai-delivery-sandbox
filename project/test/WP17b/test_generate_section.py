@@ -19,7 +19,7 @@ if __name__ == "__main__":
     )
 
     print("✅ Final Output:\n")
-    print(output["final_output"]["refined_draft"])
+    print(output["final_output"]["raw_draft"])
 
     print("\n📜 Trace:\n")
     for step in output["trace"]:
