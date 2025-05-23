@@ -26,6 +26,64 @@ Extend the capabilities of PolicyGPT to generate structured draft content for ea
 | `app/tools/tool_wrappers/compose_and_cite.py` | Drafts a single section using context and inputs |
 | `project/prompts/section_drafting_prompt.md` | LLM template for drafting a section based on intent |
 
+### Supporting Documentation to Create
+
+To ensure full coverage and reproducibility, WP17b should generate the following artifacts:
+
+- **Design Plan**
+  - Path: `project/build/wps/WP17b/WP17b_design_plan.md`
+  - Describes tool behavior, flow from PromptLog to ArtifactSection, planner logic, and UX trigger points
+
+- **Task List**
+  - Path: `project/build/wps/WP17b/WP17b_task_list.md`
+  - Checklist format with owners, estimated durations, and status for each task
+
+- **Test Plan**
+  - Path: `project/test/WP17b/WP17b_test_cases.md`
+  - Defines input cases, expected outputs, and CLI or API usage steps to validate
+
+- **Deploy Steps**
+  - Path: `project/deploy/WP17b/WP17b_deploy_steps.md`
+  - Describes CLI, DB model, or config setup needed to run tools
+
+- **Tool + Prompt Docs**
+  - Path: `project/build/wps/WP17b/compose_and_cite.md`
+  - Describes interface, input/output schema, and example use of the tool
+
+---
+
+### (2) Task Breakdown
+
+1. **Design + Planning**
+   - Read WP definition and all referenced specs
+   - Draft and commit the design plan
+   - Write task list with deliverables, phases, and owners
+
+2. **Implement `compose_and_cite` Tool**
+   - Use PromptLog entries and planner input
+   - Incorporate embedded snippets from corpus
+   - Write to `ArtifactSection`, log to `ReasoningTrace`
+
+3. **Create Section Draft Prompt**
+   - Commit prompt template aligned to input tags and content goals
+
+4. **Integrate with Planner**
+   - Confirm trigger flow (confirm-to-draft)
+   - Register tool in planner YAML trace
+
+5. **Generate Test Cases**
+   - Include input examples from PromptLog + corpus
+   - Verify YAML or Markdown output
+   - Confirm retry and partial completion support
+
+6. **Document + Deploy**
+   - Write deploy steps and tool documentation
+   - Validate with Human Lead
+
+7. **Submit Final Update**
+   - Confirm outputs meet acceptance criteria
+   - Link to all deliverables and status update
+
 ### ✅ Acceptance Criteria
 - [ ] Tool generates structured content (YAML or markdown)
 - [ ] Section content aligns with metadata intent and evidence
