@@ -463,6 +463,7 @@ tasks:
     - project/build/wps/WP12/code_orchestration_mcp_insights.md
     - app/engines/toolchains/generate_section_chain.py
     - app/tools/tool_wrappers/section_synthesizer.py
+    - app/tools/tool_wrappers/section_refiner.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
