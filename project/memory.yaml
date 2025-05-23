@@ -352,3 +352,16 @@
   - logging
   last_updated: '2025-05-22'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
+  file_type: md
+  description: Document discussing the architecture of a drafting system in PolicyGPT,
+    comparing the advocate and critic perspectives on backend vs. frontend content
+    generation.
+  tags:
+  - architecture
+  - drafting
+  - backend
+  - frontend
+  last_updated: '2025-05-23'
+  pod_owner: ResearchPod
