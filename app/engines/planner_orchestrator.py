@@ -25,7 +25,7 @@ class PlannerOrchestrator:
 
             tool_input = self.prepare_input(tool_name, inputs, session_state)
             if self.mode == "live":
-                output = tool.run(tool_input)
+                output = tool.run_tool(tool_input)
             else:
                 output = self.load_from_log(tool_name, step)
 
@@ -47,15 +47,12 @@ class PlannerOrchestrator:
         return {"final_output": output, "trace": self.trace}
 
     def select_tool_chain(self, intent: str):
-        # Simple rule-based selection
         if intent == "generate_section":
-            return ["intent_classifier", "schema_loader", "section_writer"]
+            return ["memory_retrieve", "section_synthesizer", "section_refiner"]
         raise ValueError(f"No toolchain defined for intent: {intent}")
 
     def prepare_input(self, tool_name: str, inputs: Dict[str, Any], state: Dict[str, Any]):
-        # Customize per tool if needed
         return inputs
 
     def load_from_log(self, tool_name: str, step: int):
-        # Placeholder for replay mode logic
         return f"[REPLAYED_OUTPUT for {tool_name} at step {step}]"
