@@ -8,8 +8,8 @@ class PromptLog(Base):
 
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     tool = Column(String(255))
-    input_summary = Column(String)
-    output_summary = Column(String)
+    input_summary = Column(Text)
+    output_summary = Column(Text)
     full_input_path = Column(Text)  # Store full input metadata or JSON blob
     full_output_path = Column(Text)  # Store full output result or JSON blob
     session_id = Column(String(255))
