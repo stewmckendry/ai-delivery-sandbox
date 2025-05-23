@@ -4248,3 +4248,9 @@
   committed_by: ProductPod
   message: Integrated log_tool_usage and save_artifact_and_trace into generate_section_chain
     toolchain steps.
+- timestamp: '2025-05-23T17:18:27.019059'
+  path: app/engines/memory_sync.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Fixed log_tool_usage to stringify output_summary and serialize dicts for
+    PromptLog compatibility.
