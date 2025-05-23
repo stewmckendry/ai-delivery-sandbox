@@ -4117,3 +4117,9 @@
   committed_by: ProductPod
   message: Updated planner_orchestrator to delegate 'generate_section' to GenerateSectionChain
     class.
+- timestamp: '2025-05-23T15:44:46.385890'
+  path: project/build/wps/WP17b/toolchain_registration_guide.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Updated WP17b toolchain guide to reflect class-based modular chaining and
+    planner delegation.
