@@ -2655,3 +2655,15 @@
   - toolchain
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP20/WP20_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP20/WP20_pod_activation_message.md
+  file_type: md
+  description: Instructions and context for activating the Google Drive Storage Integration
+    work package, including deliverables and reference materials.
+  tags:
+  - integration
+  - storage
+  - deliverables
+  - instructions
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
