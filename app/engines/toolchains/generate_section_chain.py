@@ -11,12 +11,16 @@ class GenerateSectionChain:
         trace = []
 
         memory = self.memory_tool.run_tool(inputs)
-        trace.append({"tool": "memory_retrieve", "output": memory})
+        memory_wrapped = {"memory": memory}
+        trace.append({"tool": "memory_retrieve", "output": memory_wrapped})
+        print("[Step 1] memory_retrieve complete")
 
-        draft = self.synth_tool.run_tool({**inputs, "memory": memory})
+        draft = self.synth_tool.run_tool({**inputs, **memory_wrapped})
         trace.append({"tool": "section_synthesizer", "output": draft})
+        print("[Step 2] section_synthesizer complete")
 
         refined = self.refine_tool.run_tool({**inputs, "raw_draft": draft["raw_draft"]})
         trace.append({"tool": "section_refiner", "output": refined})
+        print("[Step 3] section_refiner complete")
 
         return {"final_output": refined, "trace": trace}
