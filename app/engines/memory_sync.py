@@ -39,13 +39,14 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
 def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id=None, metadata=None):
     db: Session = get_session()
 
+    output_summary_str = json.dumps(output_summary) if isinstance(output_summary, (dict, list)) else str(output_summary)
     full_input = json.dumps(metadata, indent=2) if metadata else None
-    full_output = json.dumps(output_summary, indent=2) if isinstance(output_summary, (dict, list)) else output_summary
+    full_output = json.dumps(output_summary, indent=2) if isinstance(output_summary, (dict, list)) else str(output_summary)
 
     prompt_log = PromptLog(
         tool=tool_name,
-        input_summary=input_summary,
-        output_summary=output_summary,
+        input_summary=str(input_summary),
+        output_summary=output_summary_str,
         full_input_path=full_input,
         full_output_path=full_output,
         session_id=session_id,
