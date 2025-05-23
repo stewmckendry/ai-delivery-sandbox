@@ -2770,3 +2770,14 @@
   - memory
   last_updated: '2025-05-23'
   pod_owner: ResearchPod
+- path: app/tools/tool_wrappers/memory_retrieve.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/memory_retrieve.py
+  file_type: py
+  description: Function to retrieve relevant PromptLog entries based on artifact and
+    section identifiers.
+  tags:
+  - database
+  - retrieval
+  - logging
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
