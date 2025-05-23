@@ -2631,3 +2631,15 @@
   - integration
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP17b/WP17b_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP17b/WP17b_pod_activation_message.md
+  file_type: md
+  description: Instructions and context for activating Work Package 17b, focusing
+    on section draft generation from user inputs using specific tools and logic.
+  tags:
+  - activation
+  - workflow
+  - drafting
+  - tools
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
