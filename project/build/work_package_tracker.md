@@ -20,4 +20,4 @@
 | WP13 | Google Drive Integration | Defined | Pod-DriveLink | None | File storage + fetch | Phase 2 |
 | WP14 | External Source Integration | Defined | Pod-Apollo | None | Integrate web sources | Phase 3 |
 | WP15 | GitHub Integration | Defined | Pod-Octopus | None | Sync to/from GitHub | Phase 3 |
-| WP16 | Input Prompt UX Layer | In Progress | Pod-Navigator | None | Pod activated and kicking off. Will handle GPT manifest integration. | Phase 1 |
+| WP16 | Input Prompt UX Layer | ✅ Complete | Pod-Navigator | None | Prompt tools, ingestion, vector DB, schema docs and review interface delivered. GPT-ready. | Phase 1 |
