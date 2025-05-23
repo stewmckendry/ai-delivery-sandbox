@@ -47,26 +47,40 @@ PolicyGPT already exhibits several design patterns aligned with the article:
 
 ---
 
-## 💡 Recommendations
+## 💡 Recommendations (with Detail)
 
-1. **Extract Orchestration Logic to Code**
-   - Use `planner_orchestrator.py` to encode orchestration as first-class pipeline, not GPT reasoning.
+### 1. Extract Orchestration Logic to Code
+- Move tool sequencing from GPT to Python (`section_plan_runner.py`)
+- Keeps planner logic consistent, testable, and error-resistant
 
-2. **Define Explicit Output Schemas**
-   - Formalize contracts for: `composeDraft`, `validateSection`, `commitSection`
-   - Use JSONSchema or Pydantic to validate outputs before DB insert
+### 2. Define Explicit Output Schemas
+- Create schemas for `compose_and_cite`, `validate_section`, etc.
+- Use tools like JSONSchema or Pydantic to check outputs before saving
 
-3. **Batch + Retry + Stream Draft Generation**
-   - Use generator functions or async workers to chunk and retry parts
-   - Especially useful for large artifacts or limited tokens
+### 3. Batch + Retry + Stream Draft Generation
+- Generate one section (or chunk) at a time with retry logic
+- Reduces token usage, isolates errors, enables partial caching
 
-4. **Log Contracts in ReasoningTrace**
-   - Append versioned tool specs to each trace
-   - Enables reproducibility and testable planning
+### 4. Log Contracts in ReasoningTrace
+- Each tool run should log version of the tool and schema used
+- Enables traceability and audit
 
-5. **Clarify GPT Role in UI vs Backend**
-   - GPT should propose, not execute toolchains
-   - UI should call composite services (Planner Phase Services)
+### 5. Clarify GPT Role in UI vs Backend
+- GPT proposes the next step, but code (or composite endpoint) executes it
+- Prevents hallucination and keeps GPT focused on assisting users
+
+---
+
+## ✋ User Interaction Flow (E2E)
+
+| Phase | User Action | GPT Action | Tool Calls |
+|-------|-------------|------------|------------|
+| Start | Uploads inputs | Summarizes inputs | `describe_file`, `index_memory` |
+| Setup | Confirms draft target | Asks to start draft plan | `prepare_drafting_context` |
+| Plan | - | Narrates plan | `propose_draft_plan` |
+| Draft | Waits or watches | Proposes to run draft | `execute_draft_phase` |
+| Review | Provides feedback | Revises or re-runs step | `execute_draft_phase` (revised) |
+| Approve | Says “looks good” | Triggers validate + save | `validate_and_commit` |
 
 ---
 
@@ -74,13 +88,13 @@ PolicyGPT already exhibits several design patterns aligned with the article:
 
 | Deliverable | Function | Notes |
 |------------|----------|-------|
-| `/orchestrator/section_plan_runner.py` | Code wrapper for compose + validate + commit | Replaces GPT-driven sequences |
-| `/schemas/section_draft.schema.json` | JSON schema for section output | Used by all drafting tools |
-| Update `planner_task_trace.yaml` | Include output contract refs | Toolchain doc clarity |
-| Patch `ReasoningTrace` writer | Add schema version + contract log | Improves auditability |
-| UI-GPT behavior spec | Define GPT role as proposer only | Aligns with orchestrator usage |
+| `/orchestrator/section_plan_runner.py` | Encodes draft plan logic | Replaces GPT prompt chains |
+| `/schemas/section_draft.schema.json` | Draft output schema | Used by `compose_and_cite` |
+| `planner_task_trace.yaml` patch | Logs contracts used | Adds traceability |
+| ReasoningTrace patch | Includes schema + tool version | Improves audit trails |
+| UI behavior spec | Clarifies GPT is helper not executor | Supports Planner Phase Services |
 
 ---
 
 ## 📘 Summary
-PolicyGPT is well-aligned with many MCP design principles, but can benefit from stronger code orchestration boundaries, output validation, and LLM-role clarity. These changes improve scaling, testability, and governance for high-value document pipelines.
+PolicyGPT is well-aligned with many MCP design principles, but needs to strengthen its orchestration model by extracting logic into code, enforcing output schemas, and cleanly separating GPT’s UI role from tool execution. This improves resilience, scalability, and audit readiness.
