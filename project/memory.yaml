@@ -2691,3 +2691,14 @@
   - coordination
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
+  file_type: md
+  description: Reference to a canvas document discussing the design approach of advocate
+    versus critic in architecture.
+  tags:
+  - architecture
+  - design
+  - strategy
+  last_updated: '2025-05-23'
+  pod_owner: ResearchPod
