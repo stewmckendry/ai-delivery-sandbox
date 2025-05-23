@@ -1,6 +1,6 @@
 | Tool                   | Owning WP | Status       | Notes / Pointers                                                                 |
 |------------------------|-----------|--------------|----------------------------------------------------------------------------------|
-| compose_and_cite       | TBD       | ⏳ Unassigned | Chained logic: search, synth, draft, validate. Recommend splitting WP.          |
+| compose_and_cite       | WP17b     | ⏳ Not started| Uses PromptLog + embeddings to draft sections. Planned in WP17b.                |
 | searchKnowledgeBase    | WP4       | 🚫 Deferred  | Needs memory embedding + recall logic. See WP3b, WP9 for context.               |
 | externalWebSearch      | WP13      | ⏳ Not started| Planning + citation fallback logic needed.                                       |
 | composeDraft           | WP4       | ⏳ Not started| GPT YAML to Markdown generation. Stub exists.                                   |
@@ -24,3 +24,10 @@
 | createSessionSnapshot  | WP9       | ✅ Complete  | Captures memory snapshot into DB.                                               |
 | inputPromptGenerator   | WP16      | ✅ Complete  | Generates prompts based on gate + artifact context. See WP16 schema.            |
 | inputChecker           | WP16      | ✅ Complete  | Validates prompt inputs for completeness and clarity. See WP16 test plan.       |
+| assembleDraft          | WP18      | ⏳ Not started| Combines `ArtifactSection` into full doc. Validates structure.                  |
+| commitArtifact         | WP18      | ⏳ Not started| Finalize and log full draft.                                                    |
+| storeToDrive           | WP20      | ⏳ Not started| Uploads artifacts to Google Drive under structured folders                      |
+| fetchFromDrive         | WP20      | ⏳ Not started| Retrieve Drive documents for review/feedback                                    |
+| queryCorpus            | WP21      | ⏳ Not started| Search Chroma vector DB for relevant snippets                                   |
+| showProfile            | WP7       | ⏳ Not started| Inspect current project profile (dynamic + persisted)                           |
+| project_profile_updater | WP7      | ⏳ Not started| Dynamically update ProjectProfile in session and DB                             |
