@@ -4054,3 +4054,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-23T15:00:02.007946'
+  path: app/tools/tool_wrappers/memory_retrieve.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Refactored memory_retrieve as a registered tool class using get_session,
+    added tool filtering and optional session/user filters.
