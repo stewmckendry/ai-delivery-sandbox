@@ -25,9 +25,10 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
     trace = ReasoningTrace(
         trace_id=str(uuid.uuid4()),
         section_id=section_id,
-        steps=tool_outputs,
+        steps=json.dumps(tool_outputs),  # JSON encode the list of steps
         created_by=user_id,
-        created_at=datetime.datetime.utcnow()
+        created_at=datetime.datetime.utcnow(),
+        draft_chunks=None  # can be set later if needed
     )
 
     session.add(artifact)
