@@ -11,6 +11,17 @@ from sqlalchemy.orm import Session
 def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id):
     session = get_session()
 
+    draft_chunks = None
+    for step in tool_outputs:
+        output = step.get("output", {})
+        if isinstance(output, dict) and output.get("draft_chunks"):
+            draft_chunks = output["draft_chunks"]
+            break
+
+    for step in tool_outputs:
+        step["tool_version"] = output.get("tool_version", "v1")
+        step["schema_version"] = output.get("schema_version", "1.0")
+
     artifact = ArtifactSection(
         section_id=section_id,
         artifact_id=artifact_id,
@@ -25,10 +36,10 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
     trace = ReasoningTrace(
         trace_id=str(uuid.uuid4()),
         section_id=section_id,
-        steps=json.dumps(tool_outputs),  # JSON encode the list of steps
+        steps=json.dumps(tool_outputs),
         created_by=user_id,
         created_at=datetime.datetime.utcnow(),
-        draft_chunks=None  # can be set later if needed
+        draft_chunks=json.dumps(draft_chunks) if draft_chunks else None
     )
 
     session.add(artifact)
