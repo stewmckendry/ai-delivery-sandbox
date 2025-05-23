@@ -2838,3 +2838,15 @@
   - tool
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/test/WP17b/test_generate_section.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP17b/test_generate_section.md
+  file_type: md
+  description: Test plan and script for validating the generate_section toolchain
+    flow, including setup, execution, and expected results.
+  tags:
+  - test
+  - toolchain
+  - flow
+  - OpenAI
+  last_updated: '2025-05-23'
+  pod_owner: QAPod
