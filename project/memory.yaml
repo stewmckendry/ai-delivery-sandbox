@@ -2933,3 +2933,16 @@
   - pydantic
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: project/build/WPs/WP17b/WP17b_chunking_and_schema_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/WP17b/WP17b_chunking_and_schema_notes.md
+  file_type: md
+  description: Documentation on enhancements to the generate_section toolchain, focusing
+    on output schema validation using Pydantic and chunking of draft text for traceability
+    and processing.
+  tags:
+  - schema
+  - validation
+  - chunking
+  - toolchain
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
