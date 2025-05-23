@@ -458,6 +458,7 @@ tasks:
     - app/db/models/ArtifactSection.py
     - app/db/models/ReasoningTrace.py
     - app/tools/tool_chains/compose_and_cite.py
+    - app/tools/tool_wrappers/memory_retrieve.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
