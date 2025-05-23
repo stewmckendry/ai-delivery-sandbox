@@ -40,7 +40,7 @@ class GenerateSectionChain:
             section_id=section_id,
             artifact_id=artifact_id,
             gate_id=gate_id,
-            text=refined["refined_draft"],
+            text=refined["raw_draft"],
             sources=draft.get("prompt_used"),
             tool_outputs=trace,
             user_id=user_id
