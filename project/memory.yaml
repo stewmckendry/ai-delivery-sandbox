@@ -2702,3 +2702,14 @@
   - strategy
   last_updated: '2025-05-23'
   pod_owner: ResearchPod
+- path: project/build/wps/WP12/planner_phase_services_spec.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP12/planner_phase_services_spec.md
+  file_type: md
+  description: Reference to the Planner Phase Services Specification document in the
+    canvas.
+  tags:
+  - specification
+  - planner
+  - services
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
