@@ -4260,3 +4260,9 @@
   committed_by: ProductPod
   message: Updated PromptLog model to use Text for input_summary and output_summary
     for large GPT outputs.
+- timestamp: '2025-05-23T17:28:05.218665'
+  path: app/engines/memory_sync.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Patched save_artifact_and_trace to serialize tool_outputs into JSON for
+    ReasoningTrace.steps.
