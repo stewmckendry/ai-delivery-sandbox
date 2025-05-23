@@ -2759,3 +2759,14 @@
   - reasoning
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: app/tools/tool_chains/compose_and_cite.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_chains/compose_and_cite.py
+  file_type: py
+  description: Toolchain for composing and refining text sections with memory retrieval
+    and synthesis capabilities.
+  tags:
+  - toolchain
+  - synthesis
+  - memory
+  last_updated: '2025-05-23'
+  pod_owner: ResearchPod
