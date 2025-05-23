@@ -1,0 +1,1 @@
+See canvas document titled "Drafting Design Advocate Vs Critic" for full content.
