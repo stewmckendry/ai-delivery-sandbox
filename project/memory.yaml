@@ -2748,3 +2748,14 @@
   - schema
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: app/db/models/ReasoningTrace.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/ReasoningTrace.py
+  file_type: py
+  description: Database model for storing reasoning trace information including steps
+    and draft chunks.
+  tags:
+  - database
+  - model
+  - reasoning
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
