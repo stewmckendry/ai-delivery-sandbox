@@ -443,6 +443,7 @@ tasks:
     - project/retrospectives/WP16_retrospective.md
     - project/status/phase1_exit_report.md
     - project/build/wps/WP18/WP18_definition.md
+    - project/build/wps/WP20/WP20_definition.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
