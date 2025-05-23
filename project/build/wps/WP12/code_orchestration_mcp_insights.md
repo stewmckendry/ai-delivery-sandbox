@@ -98,3 +98,118 @@ PolicyGPT already exhibits several design patterns aligned with the article:
 
 ## 📘 Summary
 PolicyGPT is well-aligned with many MCP design principles, but needs to strengthen its orchestration model by extracting logic into code, enforcing output schemas, and cleanly separating GPT’s UI role from tool execution. This improves resilience, scalability, and audit readiness.
+
+---
+
+## Appendix: Recommendation Details
+
+### 1. Extract Orchestration Logic to Code
+
+**What it means:**  
+Right now, GPT sometimes decides the tool order (e.g., “let’s search, then compose, then validate”). This logic lives in prompts or system messages. Instead, we should move this decision-making into a Python file — like a recipe.
+
+**Example:**  
+A file like `section_plan_runner.py` would say:  
+“If the user wants a Risk Management section, first call `searchKnowledgeBase`, then `compose_and_cite`, then `validate_section`, and finally `commit_section`.”
+
+**Why it matters:**
+- Easier to test  
+- Consistent results  
+- Less chance for GPT to forget steps or go off-script
+
+**Change needed:**
+- Add a module `/orchestrator/section_plan_runner.py`
+- Update WP17b scope to delegate planning to this code file instead of having GPT figure it out in chat
+
+---
+
+### 2. Define Explicit Output Schemas
+
+**What it means:**  
+Right now, tools return markdown or JSON but there’s no strong enforcement of format. We should define a standard schema — like a blueprint — for what every tool output must include.
+
+**Example:**  
+A JSON schema for a drafted section might look like:
+```json
+{
+  "section_type": "string",
+  "content": "markdown",
+  "citations": ["url"],
+  "validation_status": "valid" or "needs_review"
+}
+```
+
+**Why it matters:**
+- Catch errors early  
+- Enforce consistency across tools  
+- Prevent invalid data going into the database or Drive
+
+**Change needed:**
+- Create `/schemas/section_draft.schema.json`  
+- Patch `compose_and_cite` and `validate_section` to output this schema  
+- Add schema check step before `commit_section` is called
+
+---
+
+### 3. Batch + Retry + Stream Draft Generation
+
+**What it means:**  
+Break up long drafts into smaller parts (sections, subsections), generate each separately, and retry any that fail.
+
+**Example:**  
+If the Program Plan has 8 sections, the planner should:
+- Plan and run each section separately  
+- Retry a section if it hits an OpenAI error  
+- Cache completed sections to avoid rework
+
+**Why it matters:**
+- Reduces token use  
+- Handles failures more gracefully  
+- Enables parallelism and future scaling
+
+**Change needed:**
+- Update `planner_task_trace.yaml` to chunk work  
+- Add retry logic to `section_plan_runner.py`  
+- Extend WP17b to handle draft status per section or chunk
+
+---
+
+### 4. Log Contracts in ReasoningTrace
+
+**What it means:**  
+Every time a tool runs, we should log which version of schema or contract it used, so we can trace how a section was created.
+
+**Example:**  
+A `ReasoningTrace` might say:  
+“Used `compose_and_cite` v3.2 with output schema v1.0. Draft passed validation and was committed.”
+
+**Why it matters:**
+- Traceability for audits  
+- Easier debugging  
+- Confidence in draft quality
+
+**Change needed:**
+- Patch `logReasoningTrace` to include contract version metadata  
+- Update WP17b to include contract logging as part of draft pipeline
+
+---
+
+### 5. Clarify GPT Role in UI vs Backend
+
+**What it means:**  
+GPT (the chat assistant) should help the user understand what’s happening and gather inputs — not be the one deciding or executing tool sequences.
+
+**Example:**  
+Instead of GPT saying:  
+“I’m now generating your Risk Management section...”  
+GPT should say:  
+“I’ve prepared your inputs. Should I ask the planner to start drafting the Risk Management section?”
+
+**Why it matters:**
+- Keeps GPT sessions lighter and safer  
+- Makes the backend responsible for orchestration  
+- Makes system easier to test and maintain
+
+**Change needed:**
+- Update GPT system prompt and handoff logic  
+- Update WP16 and WP17b to use Planner Phase Services or composite endpoints, not individual tool calls from GPT
