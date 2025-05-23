@@ -2816,3 +2816,14 @@
   - generation
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/section_synthesizer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/section_synthesizer.py
+  file_type: py
+  description: Script to generate a coherent and concise section draft using OpenAI's
+    GPT-4 model based on user-provided input summaries.
+  tags:
+  - prompt
+  - model
+  - tool
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
