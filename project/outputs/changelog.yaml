@@ -4254,3 +4254,9 @@
   committed_by: ProductPod
   message: Fixed log_tool_usage to stringify output_summary and serialize dicts for
     PromptLog compatibility.
+- timestamp: '2025-05-23T17:21:54.055043'
+  path: app/db/models/PromptLog.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Updated PromptLog model to use Text for input_summary and output_summary
+    for large GPT outputs.
