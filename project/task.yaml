@@ -468,6 +468,7 @@ tasks:
     - project/test/WP17b/test_generate_section_results.md
     - project/test/WP17b/test_generate_section_results_v2.md
     - project/build/WPs/WP17b/commit_test_dummy.md
+    - project/build/wps/WP12/generate_section_toolchain_review.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
