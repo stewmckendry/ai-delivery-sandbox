@@ -2605,3 +2605,16 @@
   - draft
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP21/WP21_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP21/WP21_definition.md
+  file_type: md
+  description: Document outlining the scope, deliverables, and dependencies for WP21,
+    focusing on spillover tools and memory enhancements including query tools, schema
+    wiring, and prompt logging improvements.
+  tags:
+  - tools
+  - schema
+  - prompt
+  - memory
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
