@@ -4418,3 +4418,14 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Added output schema validation and paragraph chunking to section_refiner.py
+- timestamp: '2025-05-23T20:49:30.515465'
+  path: project/build/WPs/WP17b/WP17b_prompt_chunking_note.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added WP17b note on prompt-level chunking for future WP scope with implementation
+    guidance and context.
+- timestamp: '2025-05-23T20:49:30.515465'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/WPs/WP17b/WP17b_prompt_chunking_note.md
