@@ -4237,3 +4237,8 @@
   committed_by: ProductPod
   message: Added save_artifact_and_trace utility to persist ArtifactSection and ReasoningTrace
     in DB.
+- timestamp: '2025-05-23T17:12:08.424685'
+  path: app/engines/memory_sync.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Re-added log_tool_usage to memory_sync.py alongside save_artifact_and_trace.
