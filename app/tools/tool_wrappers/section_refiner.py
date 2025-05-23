@@ -1,6 +1,8 @@
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
+import re
+from app.schemas.section_draft_output import SectionDraftOutput
 
 load_dotenv()
 
@@ -14,25 +16,28 @@ class Tool:
         raw_draft = input_dict["raw_draft"]
 
         prompt = f"""
-        Refine the following draft to ensure clear structure, concise language, and professional tone. Fix grammar, eliminate repetition, and improve readability.
+        Please refine the following draft for clarity, tone, and grammar.
+        Keep the structure and meaning, but improve readability and polish.
 
         Draft:
         {raw_draft}
-
-        Refined Version:
         """
 
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         response = client.chat.completions.create(
             model="gpt-4",
             messages=[
-                {"role": "system", "content": "You are an expert editor for government documents."},
+                {"role": "system", "content": "You are a writing assistant."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.6
         )
 
-        return {
-            "prompt_used": prompt,
-            "refined_draft": response.choices[0].message.content.strip()
-        }
+        refined_draft = response.choices[0].message.content.strip()
+        draft_chunks = re.split(r'\n\n+', refined_draft)
+
+        return SectionDraftOutput(
+            prompt_used=prompt,
+            raw_draft=refined_draft,
+            draft_chunks=draft_chunks
+        ).dict()
