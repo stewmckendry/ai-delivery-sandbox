@@ -2569,3 +2569,15 @@
   - prompt
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP18/WP18_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP18/WP18_definition.md
+  file_type: md
+  description: Document detailing the process for assembling and routing drafted sections
+    into complete artifacts, including validation, sequencing, and formatting.
+  tags:
+  - artifact
+  - assembly
+  - routing
+  - tools
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
