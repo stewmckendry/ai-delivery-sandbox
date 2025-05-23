@@ -2910,3 +2910,15 @@
   - improvement
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/WPs/WP17b/WP17b_mcp_patch_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/WP17b/WP17b_mcp_patch_plan.md
+  file_type: md
+  description: Plan for implementing enhancements to the `generate_section` toolchain,
+    including schema validation, version logging, chunking support, and GPT role delegation.
+  tags:
+  - plan
+  - enhancement
+  - schema
+  - logging
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
