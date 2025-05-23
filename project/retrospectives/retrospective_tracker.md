@@ -4,3 +4,4 @@
 | WP3a | ✅ Complete  | Trace/replay mode aids debugging; schema reuse works          | Standardize YAML trace; early DB scaffold                 | [WP3a Retrospective](./WP3a_retrospective.md)     |
 | WP3b | ✅ Complete  | Modular tool registry works; schema validation very useful    | Validate stubs early; add doc/gate/section fields early   | [WP3b Retrospective](./WP3b_retrospective.md)     |
 | WP9  | ✅ Complete  | Unified ingestion works; DB logging + memory snapshot stable  | Separate runners from tools; align schema early           | [WP9 Retrospective](./WP9_retrospective.md)       |
+| WP16 | ✅ Complete  | Consistent metadata schema key to toolchain reuse; log trace via PromptLog; vector DB setup non-trivial in cloud | Validate schema fields in test payloads; switch from print to logger early | [WP16 Retrospective](./WP16_retrospective.md)     |
