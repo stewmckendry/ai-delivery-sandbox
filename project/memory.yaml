@@ -2737,3 +2737,14 @@
   - testing
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: app/db/models/ArtifactSection.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/ArtifactSection.py
+  file_type: py
+  description: Database model for the ArtifactSection table, defining its schema and
+    attributes.
+  tags:
+  - model
+  - database
+  - schema
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
