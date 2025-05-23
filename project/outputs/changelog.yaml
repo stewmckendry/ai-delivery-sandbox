@@ -4182,3 +4182,8 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Updated section_synthesizer to use OpenAI v1 SDK with client.chat.completions.create().
+- timestamp: '2025-05-23T16:34:14.037235'
+  path: app/tools/tool_wrappers/section_refiner.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Updated section_refiner to use OpenAI v1 SDK with client.chat.completions.create().
