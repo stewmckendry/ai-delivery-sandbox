@@ -2958,3 +2958,14 @@
   - utility
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: project/test/WP17b/test_generate_section_v2_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP17b/test_generate_section_v2_plan.md
+  file_type: md
+  description: Test plan for validating the enhanced `generate_section` toolchain,
+    including schema validation, paragraph chunking, and metadata storage.
+  tags:
+  - test
+  - validation
+  - toolchain
+  last_updated: '2025-05-23'
+  pod_owner: QAPod
