@@ -457,6 +457,7 @@ tasks:
     - project/build/wps/WP17b/WP17b_task_list.md
     - app/db/models/ArtifactSection.py
     - app/db/models/ReasoningTrace.py
+    - app/tools/tool_chains/compose_and_cite.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
