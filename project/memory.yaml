@@ -2506,3 +2506,15 @@
   - issues
   last_updated: '2025-05-23'
   pod_owner: QAPod
+- path: project/build/wps/WP16/gpt_review_interface.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP16/gpt_review_interface.md
+  file_type: md
+  description: Specification document for the GPT Review Interface in PolicyGPT, detailing
+    user pathways, tools, and custom configurations for drafting policy artifacts.
+  tags:
+  - interface
+  - prompt
+  - input
+  - validation
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
