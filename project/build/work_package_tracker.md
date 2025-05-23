@@ -21,7 +21,7 @@
 | WP14 | External Source Integration | Defined | Pod-Apollo | None | Integrate web sources | Phase 3 |
 | WP15 | GitHub Integration | Defined | Pod-Octopus | None | Sync to/from GitHub | Phase 3 |
 | WP16 | Input Prompt UX Layer | ✅ Complete | Pod-Navigator | None | Prompt tools, ingestion, vector DB, schema docs and review interface delivered. GPT-ready. | Phase 1 |
-| WP17b | Section Draft Generation from Inputs | Defined | Pod-Scribe | None | Converts inputs into draft sections using planner and compose tools | Phase 2 |
+| WP17b | Section Draft Generation from Inputs | ✅ Complete | Pod-Scribe | None | Toolchain from PromptLog to ArtifactSection with logging and GPT-driven refinement complete. | Phase 2 |
 | WP18 | Artifact Assembly and Routing | Defined | Pod-Assembler | None | Assembles drafted sections and routes final artifacts | Phase 2 |
 | WP20 | Google Drive Storage Integration | Defined | Pod-DriveSync | None | Uploads final artifacts to Drive with folder structuring | Phase 2 |
 | WP21 | Spillover Tools and Memory Enhancements | Defined | Pod-Patchwork | None | Implements spillover tools, metadata enhancements, and GPT manifest wiring | Phase 2 |
