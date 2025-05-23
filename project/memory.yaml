@@ -2805,3 +2805,14 @@
   - PolicyGPT
   last_updated: '2025-05-23'
   pod_owner: ResearchPod
+- path: app/engines/toolchains/generate_section_chain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/generate_section_chain.py
+  file_type: py
+  description: Script to generate and refine document sections using a chain of tools
+    from the tool registry
+  tags:
+  - toolchain
+  - flow
+  - generation
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
