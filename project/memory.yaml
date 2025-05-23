@@ -2543,3 +2543,16 @@
   - schema
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/retrospectives/WP16_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/retrospectives/WP16_retrospective.md
+  file_type: md
+  description: Retrospective analysis of the WP16 project focused on building the
+    user experience layer for input prompts in PolicyGPT, highlighting successes,
+    lessons learned, areas for improvement, and future ideas.
+  tags:
+  - retrospective
+  - UX
+  - prompt
+  - schema
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
