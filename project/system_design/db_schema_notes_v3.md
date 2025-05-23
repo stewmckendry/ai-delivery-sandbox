@@ -21,14 +21,16 @@ This file defines the long-term storage model for PolicyGPT. It captures core en
 
 #### `ArtifactSection`
 ```sql
-section_id VARCHAR(255) PRIMARY KEY,
+artifact_section_id VARCHAR(36) PRIMARY KEY,
+section_id VARCHAR(255),                     -- compound key artifact + section name
 artifact_id VARCHAR(255),
 gate_id VARCHAR(255),
-text TEXT,                   -- working draft content
-sources TEXT,                -- optional: list of citations/sources (JSON string)
+text TEXT,                                   -- working draft content
+sources TEXT,                                -- optional: list of citations/sources (JSON string)
 status VARCHAR(50) DEFAULT 'draft',
 generated_by VARCHAR(255),
-timestamp DATETIME
+timestamp DATETIME,
+version VARCHAR(10) DEFAULT 'v1'
 ```
 
 #### `PromptLog`
@@ -60,12 +62,12 @@ Expected JSON structure inside full_input_path and full_output_path:
 #### `ReasoningTrace`
 
 ```sql
-trace_id VARCHAR(255) PRIMARY KEY,
+trace_id VARCHAR(36) PRIMARY KEY,
 section_id VARCHAR(255),
-steps NVARCHAR(MAX),         -- ordered list of reasoning steps (JSON string)
+steps NVARCHAR(MAX),                         -- ordered list of reasoning steps (JSON string)
 created_by VARCHAR(255),
 created_at DATETIME,
-draft_chunks NVARCHAR(MAX)   -- Optional: store each draft section separately (JSON string)
+draft_chunks NVARCHAR(MAX)                   -- optional: store each draft section separately
 ```
 
 #### `DocumentVersionLog`
