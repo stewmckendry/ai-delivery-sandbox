@@ -3980,3 +3980,9 @@
   committed_by: ProductPod
   message: Updated design plan with Human Lead feedback, including model creation
     and PromptLog filter strategy.
+- timestamp: '2025-05-23T14:23:46.398815'
+  path: project/build/wps/WP17b/WP17b_task_list.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Updated WP17b task list post-feedback, now includes model creation and
+    PromptLog filter logic.
