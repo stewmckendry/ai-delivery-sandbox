@@ -319,6 +319,7 @@ tasks:
     - project/retrospectives/WP12_draft_generation_patch_retro.md
     - project/build/wps/WP16/WP16_trace_metadata_patch_plan.md
     - project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
+    - project/build/wps/WP12/planner_phase_services_spec.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
