@@ -414,3 +414,16 @@
   - automation
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/retrospectives/WP17b_retrospective.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/retrospectives/WP17b_retrospective.md
+  file_type: md
+  description: Retrospective analysis of the WP17b project focusing on section draft
+    generation, highlighting successes, areas for improvement, lessons learned, and
+    artifacts produced.
+  tags:
+  - retrospective
+  - architecture
+  - integration
+  - documentation
+  last_updated: '2025-05-23'
+  pod_owner: DeliveryPod
