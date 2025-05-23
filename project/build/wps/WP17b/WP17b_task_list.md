@@ -3,26 +3,27 @@
 ## 📅 Status Tracker
 
 ### ✅ Planner & Toolchain
-- [ ] Extend planner toolchain: `generate_section → compose_and_cite`
-- [ ] Add `compose_and_cite` toolchain definition
-- [ ] Register tools in tool_registry
+- [x] Extend planner toolchain: `generate_section → GenerateSectionChain`
+- [x] Add `GenerateSectionChain` class definition
+- [x] Register tools in tool_registry + manifest
 
 ### 🧠 Tool Creation
-- [ ] Implement `memory_retrieve`
-- [ ] Implement `section_synthesizer` (OpenAI Chat API)
-- [ ] Implement `section_refiner` (OpenAI Chat API)
+- [x] Implement `memory_retrieve`
+- [x] Implement `section_synthesizer` (OpenAI Chat API)
+- [x] Implement `section_refiner` (OpenAI Chat API)
 
 ### 🗄️ Models + DB
-- [ ] Create `ArtifactSection` model + SQL table
-- [ ] Create `ReasoningTrace` model + SQL table
+- [x] Create `ArtifactSection` model + SQL table
+- [x] Create `ReasoningTrace` model + SQL table
 - [ ] Add save logic for both
 
 ### 🔍 Log + Trace
 - [ ] `log_tool_usage` in each tool
-- [ ] Implement PromptLog filter for input logs
+- [x] Implement PromptLog filter for input logs
 
 ### 🧪 Testing
-- [ ] Create CLI to invoke pipeline (using sample input logs)
+- [x] Create CLI to invoke pipeline (using sample input logs)
+- [x] Validate toolchain end-to-end execution
 - [ ] Validate DB writes to `ArtifactSection`, `ReasoningTrace`
 - [ ] Verify logs in PromptLog
 
@@ -33,4 +34,4 @@
 
 ---
 
-_Last updated: Revisions after HL feedback_
+_Last updated: Post test success_
