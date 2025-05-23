@@ -4123,3 +4123,9 @@
   committed_by: ProductPod
   message: Updated WP17b toolchain guide to reflect class-based modular chaining and
     planner delegation.
+- timestamp: '2025-05-23T15:58:36.641675'
+  path: project/build/wps/WP12/code_orchestration_mcp_insights.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Recommit updated MCP insights report with detailed recommendations and
+    user interaction flow to sandbox-curious-falcon.
