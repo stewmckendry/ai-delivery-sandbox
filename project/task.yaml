@@ -321,6 +321,7 @@ tasks:
     - project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
     - project/build/wps/WP12/planner_phase_services_spec.md
     - project/build/wps/WP17b/WP17b_design_plan.md
+    - project/build/wps/WP12/code_orchestration_mcp_insights.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
