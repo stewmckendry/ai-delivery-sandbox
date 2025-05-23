@@ -365,3 +365,15 @@
   - frontend
   last_updated: '2025-05-23'
   pod_owner: ResearchPod
+- path: project/build/wps/WP12/planner_phase_services_spec.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/WP12/planner_phase_services_spec.md
+  file_type: md
+  description: Proposal for evolving the document generation pipeline by introducing
+    phase-based services, enabling interaction and traceability through GPT-led dialog.
+  tags:
+  - pipeline
+  - services
+  - GPT
+  - integration
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
