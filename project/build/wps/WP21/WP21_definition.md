@@ -8,7 +8,9 @@ Capture spillover scope from WP16 and other Phase 1 WPs to complete foundational
 - Build `queryCorpus` tool to search vector DB
 - Enhance `inputChecker` to support LLM-based completeness checks
 - Wire tools into GPT manifest and tool catalog
-- Add metadata structure enforcement in PromptLog
+- Extend input pipeline to link with project profile fields
+- Update PromptLog model for richer session tracking
+- Auto-snapshot and session summary tools
 
 **Out of Scope:**
 - New UX or frontend features (Phase 3)
@@ -30,6 +32,9 @@ Capture spillover scope from WP16 and other Phase 1 WPs to complete foundational
 ### 🔗 Dependencies
 - WP16 (tool wrappers, PromptLog)
 - WP18 (tool call orchestration)
+
+**Links:**
+- DB schema: `PromptLog`, `ArtifactSection`, `ProjectProfile`
 
 ### 📥 Inputs
 - Structured metadata (gate, artifact, section, intent)

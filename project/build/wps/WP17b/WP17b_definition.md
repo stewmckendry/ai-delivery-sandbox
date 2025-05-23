@@ -5,11 +5,16 @@ Extend the capabilities of PolicyGPT to generate structured draft content for ea
 
 ### 📦 Scope of Work
 **In Scope:**
-- Use PromptLog and memory embeddings to ground generation
-- Generate YAML or markdown for individual sections
-- Validate against intent and acceptance criteria
+- Implement planner-triggered flow to convert user inputs (from `PromptLog`) and memory enbeddings into structured drafts for `ArtifactSection`.
+- Leverage `compose_and_cite` and `searchKnowledgeBase` tools.
+- Align to `dense_artifact_generation.md` design patch.
+- Track outputs in `ReasoningTrace` and `ArtifactSection` tables.
 - Wire into planner and confirm-to-draft UX
-- Build `composeSectionDraft` tool
+
+**Includes:**
+- Tool: `compose_and_cite`
+- Input source: PromptLog (user inputs tagged by section + intent)
+- Planner logic to detect readiness and generate draft.
 
 **Out of Scope:**
 - Full artifact assembly (handled in WP18)
@@ -18,7 +23,7 @@ Extend the capabilities of PolicyGPT to generate structured draft content for ea
 ### 🚀 Deliverables
 | File Path | Description |
 |-----------|-------------|
-| `app/tools/tool_wrappers/composeSectionDraft.py` | Drafts a single section using context and inputs |
+| `app/tools/tool_wrappers/compose_and_cite.py` | Drafts a single section using context and inputs |
 | `project/prompts/section_drafting_prompt.md` | LLM template for drafting a section based on intent |
 
 ### ✅ Acceptance Criteria
@@ -31,6 +36,10 @@ Extend the capabilities of PolicyGPT to generate structured draft content for ea
 - WP16 (input capture)
 - WP9 (PromptLog memory)
 - WP18 (assembly after draft)
+
+**Links:**
+- DB schema: `ArtifactSection`, `ReasoningTrace`
+- Design: `dense_artifact_generation.md`
 
 ### 📥 Inputs
 - metadata: gate, artifact, section, intent

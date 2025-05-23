@@ -5,10 +5,11 @@ Enable the system to assemble drafted sections into complete artifacts and route
 
 ### 📦 Scope of Work
 **In Scope:**
-- Assemble section-level content from memory into full artifact drafts
+- Stitch individual `ArtifactSection` entries into full artifacts.
+- Log to `DocumentVersionLog`.
 - Validate artifact completeness against gate_reference_v2.yaml
 - Format output as structured markdown or PDF
-- Route outputs to next tools or stages (e.g., feedback, storage)
+- Route outputs to next tools or stages (e.g., feedback, Google Drive storage)
 - Build `commitArtifact` and `assembleDraft` tools
 
 **Out of Scope:**
@@ -31,6 +32,10 @@ Enable the system to assemble drafted sections into complete artifacts and route
 ### 🔗 Dependencies
 - WP16 (Prompt UX, input gathering)
 - WP9 (Memory ingestion and structure)
+
+**Links:**
+- DB schema: `DocumentVersionLog`, `AuditTrail`
+- Design: `dense_artifact_generation.md`
 
 ### 📥 Inputs
 - PromptLog and session memory

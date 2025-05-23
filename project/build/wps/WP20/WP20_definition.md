@@ -9,6 +9,10 @@ Build tools and workflow to export final drafts and key session files to a struc
 - Folder structure by project, gate, and artifact
 - Upload and overwrite detection
 - `storeToDrive` and `fetchFromDrive` tool implementations
+- Store and maintain URLs in `google_doc_url`.
+- Section-level export
+- Version tracking in `DocumentVersionLog`
+
 
 **Out of Scope:**
 - Google Docs real-time editing (future UI enhancement)
@@ -30,6 +34,9 @@ Build tools and workflow to export final drafts and key session files to a struc
 ### 🔗 Dependencies
 - WP18 (assembled artifacts to upload)
 - WP1a (feedback and review tools)
+
+**Links:**
+- Design: `dense_artifact_generation.md`
 
 ### 📥 Inputs
 - Final document YAML or markdown
