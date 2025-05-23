@@ -447,6 +447,7 @@ tasks:
     - project/build/wps/WP17b/WP17b_definition.md
     - project/build/wps/WP21/WP21_definition.md
     - project/build/wps/WP17b/WP17b_pod_activation_message.md
+    - project/build/wps/WP18/WP18_pod_activation_message.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
