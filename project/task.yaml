@@ -437,6 +437,7 @@ tasks:
     - project/build/wps/WP16/integration_notes.md
     - project/reference/prompt_block_schema.json
     - project/reference/triage_map_policygpt.yaml
+    - project/build/wps/WP16/gpt_review_interface.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
