@@ -37,3 +37,8 @@ Tracks unfinished or deferred work from each WP.
 | `/yaml/project_profile.yaml` | WP12 | Assigned but not yet implemented | WP1b | Unassigned |
 | `/yaml/gate_reference.yaml` | WP12 | Shared reference file | WP1a | Maintained |
 | `/system/docs/dense_artifact_generation.md` | WP12 | Design doc, no further action | WP12 | Maintained |
+| `queryCorpus` for semantic doc search | WP16 | Not in original scope | WP10 or new WP | Unassigned |
+| Enhance `inputChecker` with LLM mode | WP16 | LLM-based mode proposed in CR | WP4 or follow-on WP | Unassigned |
+| GPT config + UI wiring for starter prompts | WP16 | Config not finalized | GPT_Config | Unassigned |
+| Add section metadata chunking to `loadCorpus` | WP16 | Feature incomplete | WP16 or WP9 | Unassigned |
+| Implement `compose_and_cite` from PromptLog | WP16 | Draft generator not started | WP4 or WP6 | Unassigned |
