@@ -332,6 +332,52 @@
         },
         "required": ["file_contents"]
       }
+    },
+    {
+      "tool_id": "memory_retrieve",
+      "description": "Retrieves relevant PromptLog entries for a given artifact and section",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "artifact": { "type": "string" },
+          "section": { "type": "string" },
+          "session_id": { "type": "string" },
+          "user_id": { "type": "string" }
+        },
+        "required": ["artifact", "section"]
+      }
+    },
+    {
+      "tool_id": "section_synthesizer",
+      "description": "Drafts a section using OpenAI from retrieved memory entries",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "memory": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "input_summary": { "type": "string" },
+                "full_input_path": { "type": "string" },
+                "timestamp": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["memory"]
+      }
+    },
+    {
+      "tool_id": "section_refiner",
+      "description": "Refines section draft for tone, clarity, grammar using OpenAI",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "raw_draft": { "type": "string" }
+        },
+        "required": ["raw_draft"]
+      }
     }
   ]
 }

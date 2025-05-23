@@ -291,3 +291,52 @@ tools:
         - gate_id
         - artifact_id
         - section_id
+  memory_retrieve:
+    module: app.tools.tool_wrappers.memory_retrieve
+    class: Tool
+    description: Retrieves relevant PromptLog entries for a given artifact and section
+    schema:
+      type: object
+      properties:
+        artifact:
+          type: string
+        section:
+          type: string
+        session_id:
+          type: string
+        user_id:
+          type: string
+      required:
+        - artifact
+        - section
+  section_synthesizer:
+    module: app.tools.tool_wrappers.section_synthesizer
+    class: Tool
+    description: Drafts a section using OpenAI from retrieved memory entries
+    schema:
+      type: object
+      properties:
+        memory:
+          type: array
+          items:
+            type: object
+            properties:
+              input_summary:
+                type: string
+              full_input_path:
+                type: string
+              timestamp:
+                type: string
+      required:
+        - memory
+  section_refiner:
+    module: app.tools.tool_wrappers.section_refiner
+    class: Tool
+    description: Refines section draft for tone, clarity, grammar using OpenAI
+    schema:
+      type: object
+      properties:
+        raw_draft:
+          type: string
+      required:
+        - raw_draft
