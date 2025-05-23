@@ -11,7 +11,7 @@
 | WP4 | Gating Doc Quality | Defined | Pod-Zeus | None | Owns `compose_and_cite`. | Phase 2 |
 | WP5 | Harmonization + Docs | Defined | Pod-Muse | None | Supports `compose_and_cite` and formatting. | Always Active |
 | WP6 | Review Routing | Defined | Pod-Cirrus | None | Participates in `compose_and_cite` finalization. | Phase 3 |
-| WP7 | Project Profile | Defined | Pod-Lyra | None | Tracks project state | Phase 3 |
+| WP7 | Project Profile | Defined | Pod-Lyra | None | Tracks project state. Builds and manages live project profile. | Phase 2 |
 | WP8 | Citation Tool | Defined | Pod-Atlas | None | Citation and evidence logging | Phase 2 |
 | WP9 | Input Ingestion | ✅ Complete | Pod-Kronos | None | Ingests text, file, URL; stores inputs + snapshots. Created new tools + schemas. See WP9 guide + schema. Spillover: Feedback classification deferred. | Phase 1 |
 | WP10 | Export + Translate | Defined | Pod-Lumen | None | Export gate packages | Phase 3 |
@@ -21,3 +21,7 @@
 | WP14 | External Source Integration | Defined | Pod-Apollo | None | Integrate web sources | Phase 3 |
 | WP15 | GitHub Integration | Defined | Pod-Octopus | None | Sync to/from GitHub | Phase 3 |
 | WP16 | Input Prompt UX Layer | ✅ Complete | Pod-Navigator | None | Prompt tools, ingestion, vector DB, schema docs and review interface delivered. GPT-ready. | Phase 1 |
+| WP17b | Section Draft Generation from Inputs | Defined | Pod-Scribe | None | Converts inputs into draft sections using planner and compose tools | Phase 2 |
+| WP18 | Artifact Assembly and Routing | Defined | Pod-Assembler | None | Assembles drafted sections and routes final artifacts | Phase 2 |
+| WP20 | Google Drive Storage Integration | Defined | Pod-DriveSync | None | Uploads final artifacts to Drive with folder structuring | Phase 2 |
+| WP21 | Spillover Tools and Memory Enhancements | Defined | Pod-Patchwork | None | Implements spillover tools, metadata enhancements, and GPT manifest wiring | Phase 2 |
