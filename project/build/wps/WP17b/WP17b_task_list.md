@@ -2,27 +2,35 @@
 
 ## 📅 Status Tracker
 
-### Core Pipeline
+### ✅ Planner & Toolchain
 - [ ] Extend planner toolchain: `generate_section → compose_and_cite`
-- [ ] Implement `memory_retrieve` tool
-- [ ] Implement `section_synthesizer` tool
-- [ ] Implement `section_refiner` tool
-- [ ] Add `ArtifactSection` write logic
+- [ ] Add `compose_and_cite` toolchain definition
+- [ ] Register tools in tool_registry
 
-### Traceability + Logging
-- [ ] Ensure `log_tool_usage` is invoked for each step
-- [ ] Save session snapshot + reasoning trace (YAML format)
+### 🧠 Tool Creation
+- [ ] Implement `memory_retrieve`
+- [ ] Implement `section_synthesizer` (OpenAI Chat API)
+- [ ] Implement `section_refiner` (OpenAI Chat API)
 
-### Testing
-- [ ] Create CLI to trigger pipeline from inputs
-- [ ] Create minimal test set with PromptLogs and memory entries
-- [ ] Validate database writes for `ArtifactSection`
+### 🗄️ Models + DB
+- [ ] Create `ArtifactSection` model + SQL table
+- [ ] Create `ReasoningTrace` model + SQL table
+- [ ] Add save logic for both
 
-### Coordination
-- [x] Submit design plan for Human Lead review
-- [ ] Confirm assumptions (embedding availability, model schema)
-- [ ] Request mid-point review with Lead Pod
+### 🔍 Log + Trace
+- [ ] `log_tool_usage` in each tool
+- [ ] Implement PromptLog filter for input logs
+
+### 🧪 Testing
+- [ ] Create CLI to invoke pipeline (using sample input logs)
+- [ ] Validate DB writes to `ArtifactSection`, `ReasoningTrace`
+- [ ] Verify logs in PromptLog
+
+### 🧾 Coordination
+- [x] Submit plan to Human Lead ✅
+- [ ] Provide midpoint update to Pod Lead
+- [ ] Tag `queryCorpus` and embedding search as spillover
 
 ---
 
-Last updated: _initial commit_
+_Last updated: Revisions after HL feedback_
