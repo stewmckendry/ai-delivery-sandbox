@@ -2922,3 +2922,14 @@
   - logging
   last_updated: '2025-05-23'
   pod_owner: DevPod
+- path: app/schemas/section_draft_output.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/schemas/section_draft_output.py
+  file_type: py
+  description: Defines the schema for section draft outputs including prompts and
+    draft chunks
+  tags:
+  - schema
+  - draft
+  - pydantic
+  last_updated: '2025-05-23'
+  pod_owner: DevPod
