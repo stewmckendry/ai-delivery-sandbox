@@ -2793,3 +2793,15 @@
   - orchestration
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP12/code_orchestration_mcp_insights.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP12/code_orchestration_mcp_insights.md
+  file_type: md
+  description: Analysis of code orchestration benefits for PolicyGPT, highlighting
+    insights from MCP model and recommendations for improving system design.
+  tags:
+  - orchestration
+  - insights
+  - schema
+  - PolicyGPT
+  last_updated: '2025-05-23'
+  pod_owner: ResearchPod
