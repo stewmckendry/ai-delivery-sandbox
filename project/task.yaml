@@ -452,6 +452,7 @@ tasks:
     - project/build/wps/WP21/WP21_pod_activation_message.md
     - project/build/wps/WP7/WP7_pod_activation_message.md
     - project/build/wps/WP12/drafting_architecture_advocate_vs_critic.md
+    - project/build/wps/WP12/planner_phase_services_spec.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
