@@ -1,5 +1,5 @@
 import os
-import openai
+from openai import OpenAI
 
 class Tool:
     def validate(self, input_dict):
@@ -19,8 +19,8 @@ class Tool:
         Refined Version:
         """
 
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        response = openai.ChatCompletion.create(
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        response = client.chat.completions.create(
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are an expert editor for government documents."},
@@ -31,5 +31,5 @@ class Tool:
 
         return {
             "prompt_used": prompt,
-            "refined_draft": response.choices[0].message["content"].strip()
+            "refined_draft": response.choices[0].message.content.strip()
         }
