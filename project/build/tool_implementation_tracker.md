@@ -31,3 +31,7 @@
 | queryCorpus            | WP21      | ⏳ Not started| Search Chroma vector DB for relevant snippets                                   |
 | showProfile            | WP7       | ⏳ Not started| Inspect current project profile (dynamic + persisted)                           |
 | project_profile_updater | WP7      | ⏳ Not started| Dynamically update ProjectProfile in session and DB                             |
+| prepare_drafting_context | TBD     | ⏳ Not started| Gathers inputs for drafting including PromptLog, KB, and project profile        |
+| propose_draft_plan     | TBD       | ⏳ Not started| Generates YAML-based planner task trace per section                             |
+| execute_draft_phase    | TBD       | ⏳ Not started| Executes one phase of the draft plan and logs output                            |
+| validate_and_commit    | TBD       | ⏳ Not started| Validates and stores the final section content                                  |
