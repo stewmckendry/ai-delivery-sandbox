@@ -375,3 +375,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-23T15:55:03.302705'
+  path: project/build/wps/WP12/code_orchestration_mcp_insights.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update MCP insights report with expanded recommendation detail and E2E
+    user-GPT-tool interaction flow for PolicyGPT.
