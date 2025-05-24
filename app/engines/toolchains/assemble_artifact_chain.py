@@ -1,9 +1,7 @@
 import logging
 import uuid
 from app.tools.tool_registry import ToolRegistry
-from app.engines.memory_sync import log_tool_usage, append_reasoning_trace
-from app.db.database import get_session
-from app.db.models.DocumentVersionLog import DocumentVersionLog
+from app.engines.memory_sync import log_tool_usage, save_document_and_trace
 
 logger = logging.getLogger(__name__)
 
@@ -22,19 +20,18 @@ class AssembleArtifactChain:
         artifact_id = inputs["artifact_id"]
         gate_id = inputs["gate_id"]
         version = inputs.get("version", "v0.1")
-        title = inputs.get("title", f"Assembled Artifact for {artifact_id}")
-
-        session = get_session()
 
         # Step 1: Load
         loaded = self.loader.run_tool({"artifact_id": artifact_id, "gate_id": gate_id})
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
 
+        title = loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
+
         # Step 2: Format
         formatted_sections = []
         for sec in loaded["ordered_sections"]:
-            template_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/artifact_templates/investment_proposal_concept.md"
+            template_url = f"https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/artifact_templates/{artifact_id}.md"
             formatted = self.formatter.run_tool({
                 "section_id": sec["section_id"],
                 "section_text": sec["text"],
@@ -71,20 +68,16 @@ class AssembleArtifactChain:
         log_tool_usage("commitArtifact", "committed", committed, session_id, None, inputs)
         trace.append({"tool": "commitArtifact", "output": committed})
 
-        doc_log = DocumentVersionLog(
+        # Save logs
+        save_document_and_trace(
+            session_id=session_id,
             artifact_id=artifact_id,
             gate_id=gate_id,
             version=version,
-            storage_url=committed["drive_url"] or committed["local_path"]
-        )
-        session.add(doc_log)
-        session.commit()
-
-        append_reasoning_trace(
-            session_id=session_id,
+            storage_url=committed.get("drive_url") or committed.get("local_path"),
             summary=f"Assembled artifact {artifact_id} gate {gate_id}",
             inputs=inputs,
-            output_path=committed["local_path"]
+            output_path=committed.get("local_path")
         )
 
         return {"final_output": committed, "trace": trace}
