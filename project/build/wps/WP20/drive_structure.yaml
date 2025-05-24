@@ -1,0 +1,15 @@
+folders:
+  base_path: "PolicyGPT"
+  structure:
+    - key: project
+      source: metadata
+      field: project_name
+    - key: gate
+      source: metadata
+      field: gate_id
+    - key: artifact
+      source: metadata
+      field: artifact_id
+  filename_pattern: "{artifact_id}_v{version}_{timestamp}.pdf"
+  allow_overwrite: false
+  timestamp_format: "%Y%m%dT%H%M%S"
