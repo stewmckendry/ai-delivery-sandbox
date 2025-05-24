@@ -49,3 +49,5 @@ Tracks unfinished or deferred work from each WP.
 | Define GPT-to-planner trigger mappings (e.g. from user intent to toolchain) | WP17b | User input mappings not yet built for planner mode selection | WP12 or WP16 | Unassigned |
 | Add validation layers + templating system for each section type | WP17b | Section types vary; no validation/template logic implemented | WP5 | Unassigned |
 | Support document-level workflows: confirmation, approval, versioning | WP17b | Trigger logic and status models not yet implemented | WP6 | Unassigned |
+| Token-aware chunking utility (Tiktoken-based) | WP17b | Current chunking is line-based, not token-optimized | WP5 or WP2 | Unassigned |
+| Add `chunk_id`, `position` for fine-grained traceability | WP17b | Needed for per-chunk edits and audit logs | WP6 or WP5 | Unassigned |
