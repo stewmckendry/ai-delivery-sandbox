@@ -5,6 +5,7 @@ from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
 from app.db.models.ReasoningTrace import ReasoningTrace
 from app.db.models.PromptLog import PromptLog
+from app.db.models.DocumentVersionLog import DocumentVersionLog
 from sqlalchemy.orm import Session
 
 
@@ -71,3 +72,29 @@ def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id
     db.refresh(prompt_log)
 
     return prompt_log.id
+
+
+def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_url, summary, inputs, output_path):
+    session = get_session()
+
+    doc_log = DocumentVersionLog(
+        artifact_id=artifact_id,
+        gate_id=gate_id,
+        version=version,
+        storage_url=storage_url
+    )
+    session.add(doc_log)
+
+    trace = ReasoningTrace(
+        trace_id=session_id,
+        artifact_id=artifact_id,
+        gate_id=gate_id,
+        steps=json.dumps([]),  # Step-wise trace can be added here if needed
+        created_by="assemble_artifact",
+        created_at=datetime.datetime.utcnow(),
+        summary=summary,
+        inputs=json.dumps(inputs),
+        output_path=output_path
+    )
+    session.add(trace)
+    session.commit()
