@@ -3062,3 +3062,14 @@
   - schema
   last_updated: '2025-05-24'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/finalizeDocument.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/finalizeDocument.py
+  file_type: py
+  description: Script to generate a finalized markdown document with metadata and
+    table of contents from input data
+  tags:
+  - document
+  - markdown
+  - tool
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
