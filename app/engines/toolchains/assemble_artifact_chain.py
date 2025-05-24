@@ -32,11 +32,10 @@ class AssembleArtifactChain:
         # Step 2: Format
         formatted_sections = []
         for sec in loaded["ordered_sections"]:
-            template_url = f"https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/artifact_templates/{artifact_id}.md"
             formatted = self.formatter.run_tool({
                 "section_id": sec["section_id"],
                 "section_text": sec["text"],
-                "template_url": template_url,
+                "section_title": sec["section_title"],
                 "artifact_id": artifact_id
             })
             log_tool_usage("formatSection", "formatted section", formatted, session_id, None, inputs)
