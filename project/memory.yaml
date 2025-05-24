@@ -439,3 +439,15 @@
   - SDK
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP20/WP20_task_list.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/WP20/WP20_task_list.md
+  file_type: md
+  description: Task list for integrating Drive functionality, including completed,
+    in-progress, and upcoming tasks with noted blockers.
+  tags:
+  - integration
+  - task
+  - drive
+  - config
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
