@@ -4597,3 +4597,14 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-24T02:18:15.407730'
+  path: app/tools/tool_wrappers/finalizeDocument.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: "Add finalizeDocument tool for WP18 \u2013 adds title, metadata, and Table\
+    \ of Contents"
+- timestamp: '2025-05-24T02:18:15.407730'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Memory update related to app/tools/tool_wrappers/finalizeDocument.py
