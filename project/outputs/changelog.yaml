@@ -5047,3 +5047,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-24T16:05:10.230658'
+  path: app/engines/toolchains/assemble_artifact_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Patch assemble_artifact_chain to use storeToDrive instead of commitArtifact
