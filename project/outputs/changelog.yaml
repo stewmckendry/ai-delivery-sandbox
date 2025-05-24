@@ -5092,3 +5092,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add load_dotenv to storeToDrive for local .env variable support
+- timestamp: '2025-05-24T16:28:15.257992'
+  path: app/tools/tool_wrappers/storeToDrive.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Patch storeToDrive to use shared PolicyGPT folder ID and auto-share files
+    with specific users
