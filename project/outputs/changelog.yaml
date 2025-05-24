@@ -4836,3 +4836,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Update formatter call to use section_title and remove template_url
+- timestamp: '2025-05-24T05:00:37.113382'
+  path: app/tools/tool_wrappers/formatSection.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix escaping in Jinja template to properly render section text
