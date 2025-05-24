@@ -427,3 +427,15 @@
   - documentation
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP20/WP20_design_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/WP20/WP20_design_plan.md
+  file_type: md
+  description: Design plan for integrating Google Drive with secure upload and retrieval
+    of artifacts using OAuth and Python SDK.
+  tags:
+  - design
+  - integration
+  - Google Drive
+  - SDK
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
