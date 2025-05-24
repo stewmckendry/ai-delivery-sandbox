@@ -2,6 +2,8 @@
 
 ### 🎯 Objective
 Build tools and workflow to export final drafts and key session files to a structured Google Drive folder system. This allows downstream users to access and collaborate on generated outputs.
+- This work builds on `WP18`, which assemble drafted sections into complete artifacts.  It has a placeholder toolchain step for storage called `commitArtifact`.
+
 
 ### 📦 Scope of Work
 **In Scope:**
