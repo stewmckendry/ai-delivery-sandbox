@@ -1,5 +1,5 @@
 from typing import Dict
-from pydantic import BaseModel
+from pydantic import BaseModel, parse_obj_as
 import os
 from datetime import datetime
 
@@ -15,11 +15,8 @@ class OutputSchema(BaseModel):
     drive_url: str  # placeholder
 
 class Tool:
-    def validate(self, input_dict: Dict) -> InputSchema:
-        return InputSchema(**input_dict)
-
     def run_tool(self, input_dict: Dict) -> Dict:
-        data = self.validate(input_dict)
+        data = parse_obj_as(InputSchema, input_dict)
         filename = f"{data.artifact_id}_gate{data.gate_id}_v{data.version}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.md"
         out_path = os.path.join("output", filename)
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
