@@ -5017,3 +5017,13 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add note to include project_id in folder routing when schema supports it
+- timestamp: '2025-05-24T15:42:31.353170'
+  path: project/build/wps/WP20/google_api_primer.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add developer primer on Google Drive API client + auth library usage
+- timestamp: '2025-05-24T15:42:31.353170'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP20/google_api_primer.md
