@@ -479,6 +479,7 @@ tasks:
     - project/build/WPs/WP17b/WP17b_exit_report_part2.md
     - project/build/wps/WP18/WP18_design_plan.md
     - project/build/wps/WP18/WP18_task_list.md
+    - app/tools/tool_wrappers/loadSectionMetadata.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
