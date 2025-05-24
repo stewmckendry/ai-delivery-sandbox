@@ -1,0 +1,7 @@
+# Example .env setup for local testing of Google Drive integration
+GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH=./secrets/service_account.json
+GOOGLE_DRIVE_SCOPES=https://www.googleapis.com/auth/drive.file
+
+# Optional fallback if JSON path is not used directly
+GOOGLE_DRIVE_CLIENT_EMAIL=your-service-account@project-id.iam.gserviceaccount.com
+GOOGLE_DRIVE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nABC...XYZ\n-----END PRIVATE KEY-----\n
