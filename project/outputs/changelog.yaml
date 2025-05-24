@@ -4727,3 +4727,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-24T03:48:17.867909'
+  path: app/tools/tool_wrappers/loadSectionMetadata.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Update loadSectionMetadata to select latest draft per section based on
+    timestamp
