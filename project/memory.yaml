@@ -3084,3 +3084,15 @@
   - tool
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: app/engines/toolchains/assemble_artifact_chain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/assemble_artifact_chain.py
+  file_type: py
+  description: Script to assemble, format, merge, and finalize document artifacts
+    using a series of toolchain operations.
+  tags:
+  - artifact
+  - toolchain
+  - document
+  - assembly
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
