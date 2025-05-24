@@ -1,5 +1,5 @@
 from typing import List
-from pydantic import BaseModel, ValidationError, parse_obj_as
+from pydantic import BaseModel, parse_obj_as
 from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
 import yaml
@@ -42,6 +42,7 @@ class Tool:
 
         artifact_name = ""
         section_ids = []
+        section_titles = {}
         logger.info(f"Parsing gates for artifact_id={input_data.artifact_id} and gate_id={input_data.gate_id}")
         for gate in gates:
             logger.debug(f"Gate found: {gate.get('gate_id')}")
@@ -50,7 +51,9 @@ class Tool:
                     logger.debug(f"Checking artifact_id={artifact.get('artifact_id')}")
                     if artifact.get("artifact_id") == input_data.artifact_id:
                         artifact_name = artifact.get("name")
-                        section_ids = [s.get("section_id") for s in artifact.get("sections", [])]
+                        for s in artifact.get("sections", []):
+                            section_ids.append(s.get("section_id"))
+                            section_titles[s.get("section_id")] = s.get("title")
                         break
 
         section_map = {}
@@ -70,6 +73,7 @@ class Tool:
             if section:
                 ordered_sections.append({
                     "section_id": section.section_id,
+                    "section_title": section_titles.get(sid, section.section_id),
                     "text": section.text,
                     "status": section.status,
                     "timestamp": section.timestamp.isoformat()
