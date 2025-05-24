@@ -38,6 +38,7 @@ class Tool:
             raise ValueError(f"Invalid input: {e}")
 
     def run_tool(self, input_dict):
+        logger.info(f"Running tool with input: {input_dict}")
         input_data = self.validate(input_dict)
         logger.info(f"Validated input_data: {input_data}")
         logger.info(f"Type of input_data: {type(input_data)}")
