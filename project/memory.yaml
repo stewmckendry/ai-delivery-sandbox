@@ -3271,3 +3271,15 @@
   - storage
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP20/google_api_primer.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP20/google_api_primer.md
+  file_type: md
+  description: Guide on using Google API Client and OAuth Library for Google Drive
+    integration in WP20, including authentication and file upload processes.
+  tags:
+  - google_api
+  - oauth
+  - integration
+  - guide
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
