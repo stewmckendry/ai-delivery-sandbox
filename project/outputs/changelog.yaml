@@ -5140,3 +5140,8 @@
   committed_by: GPTPod
   message: Patch assemble_artifact_chain.py to set file_path = drive_url to satisfy
     DB constraint
+- timestamp: '2025-05-24T17:00:59.682921'
+  path: project/test/WP20/test_results.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add v3 regression test results for WP20 PDF upload via assemble_artifact_chain
