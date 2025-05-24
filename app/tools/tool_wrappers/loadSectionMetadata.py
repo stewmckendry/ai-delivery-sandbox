@@ -4,6 +4,7 @@ from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
 import yaml
 import requests
+from sqlalchemy import desc
 
 GATE_REF_URL = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
 
@@ -22,6 +23,7 @@ class InputSchema(BaseModel):
     gate_id: str
 
 class OutputSchema(BaseModel):
+    artifact_name: str
     ordered_sections: List[dict]
 
 class Tool:
@@ -32,16 +34,34 @@ class Tool:
     def run_tool(self, input_dict):
         input_data = self.validate(input_dict)
         session = get_session()
-        sections = session.query(ArtifactSection).filter_by(
-            artifact_id=input_data.artifact_id,
-            gate_id=input_data.gate_id
-        ).all()
 
-        section_map = {s.section_id: s for s in sections}
-        ordered_ids = get_gate_section_order(input_data.gate_id, input_data.artifact_id)
+        # fetch gate reference metadata to use name and section ordering
+        response = requests.get(GATE_REF_URL)
+        gates = yaml.safe_load(response.text)
+
+        artifact_name = ""
+        section_ids = []
+        for gate in gates:
+            if str(gate.get("gate_id")) == input_data.gate_id:
+                for artifact in gate.get("artifacts", []):
+                    if artifact.get("artifact_id") == input_data.artifact_id:
+                        artifact_name = artifact.get("name")
+                        section_ids = [s.get("section_id") for s in artifact.get("sections", [])]
+                        break
+
+        section_map = {}
+        for sid in section_ids:
+            latest = session.query(ArtifactSection).filter_by(
+                artifact_id=input_data.artifact_id,
+                gate_id=input_data.gate_id,
+                section_id=sid,
+                status='draft'
+            ).order_by(desc(ArtifactSection.timestamp)).first()
+            if latest:
+                section_map[sid] = latest
 
         ordered_sections = []
-        for sid in ordered_ids:
+        for sid in section_ids:
             section = section_map.get(sid)
             if section:
                 ordered_sections.append({
@@ -51,4 +71,4 @@ class Tool:
                     "timestamp": section.timestamp.isoformat()
                 })
 
-        return OutputSchema(ordered_sections=ordered_sections).dict()
+        return OutputSchema(artifact_name=artifact_name, ordered_sections=ordered_sections).dict()
