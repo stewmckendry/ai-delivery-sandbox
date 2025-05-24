@@ -82,7 +82,7 @@ class AssembleArtifactChain:
             storage_url=committed.get("drive_url"),
             summary=f"Assembled artifact {artifact_id} gate {gate_id}",
             inputs=inputs,
-            output_path=None,
+            output_path=committed.get("drive_url"),  # workaround: use URL as file_path
             tool_outputs=trace
         )
         logger.info("[Step 6] Saved to Artifact and ReasoningTrace")
