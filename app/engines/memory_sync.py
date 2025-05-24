@@ -78,23 +78,25 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
     session = get_session()
 
     doc_log = DocumentVersionLog(
-        artifact_id=artifact_id,
-        gate_id=gate_id,
-        version=version,
-        storage_url=storage_url
+        doc_version_id=session_id,
+        artifact_name=artifact_id,
+        gate=int(gate_id),
+        version_tag=version,
+        submitted_by="assemble_artifact",
+        file_path=output_path,
+        google_doc_url=storage_url,
+        doc_format="markdown",
+        submitted_at=datetime.datetime.utcnow()
     )
     session.add(doc_log)
 
     trace = ReasoningTrace(
         trace_id=session_id,
-        artifact_id=artifact_id,
-        gate_id=gate_id,
-        steps=json.dumps([]),  # Step-wise trace can be added here if needed
+        section_id=f"{artifact_id}:{gate_id}",
+        steps=json.dumps([]),
         created_by="assemble_artifact",
         created_at=datetime.datetime.utcnow(),
-        summary=summary,
-        inputs=json.dumps(inputs),
-        output_path=output_path
+        draft_chunks=None
     )
     session.add(trace)
     session.commit()
