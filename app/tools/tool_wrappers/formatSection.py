@@ -1,15 +1,12 @@
 from typing import Dict
 from pydantic import BaseModel
 from jinja2 import Template
-import os
-import yaml
-
-TEMPLATE_DIR = "project/reference/artifact_templates/"
+import requests
 
 class InputSchema(BaseModel):
     section_id: str
     section_text: str
-    template_file: str  # relative to TEMPLATE_DIR
+    template_url: str  # GitHub raw URL to template
 
 class OutputSchema(BaseModel):
     formatted_section: str
@@ -20,14 +17,10 @@ class Tool:
 
     def run_tool(self, input_dict: Dict) -> Dict:
         data = self.validate(input_dict)
-        template_path = os.path.join(TEMPLATE_DIR, data.template_file)
+        response = requests.get(data.template_url)
+        if response.status_code != 200:
+            raise FileNotFoundError(f"Template not found at: {data.template_url}")
 
-        if not os.path.exists(template_path):
-            raise FileNotFoundError(f"Template not found: {template_path}")
-
-        with open(template_path, "r") as f:
-            template_str = f.read()
-        template = Template(template_str)
-
+        template = Template(response.text)
         output = template.render(text=data.section_text, section_id=data.section_id)
         return OutputSchema(formatted_section=output).dict()
