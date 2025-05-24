@@ -488,6 +488,7 @@ tasks:
     - app/engines/toolchains/assemble_artifact_chain.py
     - app/db/models/DocumentVersionLog.py
     - app/utils/generate_artifact_template.py
+    - project/test/WP18/test_plan_assemble_artifact.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
