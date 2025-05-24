@@ -2994,3 +2994,15 @@
   - documentation
   last_updated: '2025-05-23'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP18/WP18_design_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP18/WP18_design_plan.md
+  file_type: md
+  description: Design plan for assembling and routing artifacts using a modular toolchain,
+    integrating section drafts into a complete document with validation and formatting.
+  tags:
+  - design
+  - toolchain
+  - integration
+  - artifact
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
