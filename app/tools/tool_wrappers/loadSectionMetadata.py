@@ -1,5 +1,5 @@
 from typing import List
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
 import yaml
@@ -28,8 +28,10 @@ class OutputSchema(BaseModel):
 
 class Tool:
     def validate(self, input_dict):
-        input_data = InputSchema(**input_dict)  # Validates via Pydantic
-        return input_data
+        try:
+            return InputSchema(**input_dict)
+        except ValidationError as e:
+            raise ValueError(f"Invalid input: {e}")
 
     def run_tool(self, input_dict):
         input_data = self.validate(input_dict)
