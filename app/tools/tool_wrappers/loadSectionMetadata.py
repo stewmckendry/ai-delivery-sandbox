@@ -1,5 +1,5 @@
 from typing import List
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, ValidationError, parse_obj_as
 from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
 import yaml
@@ -29,17 +29,8 @@ class OutputSchema(BaseModel):
     ordered_sections: List[dict]
 
 class Tool:
-    def validate(self, input_dict):
-        logger.info(f"Validating input: {input_dict}")
-        try:
-            return InputSchema(**input_dict)
-        except ValidationError as e:
-            logger.error(f"Input validation failed: {e}")
-            raise ValueError(f"Invalid input: {e}")
-
     def run_tool(self, input_dict):
-        logger.info(f"Running tool with input: {input_dict}")
-        input_data = self.validate(input_dict)
+        input_data = parse_obj_as(InputSchema, input_dict)
         logger.info(f"Validated input_data: {input_data}")
         logger.info(f"Type of input_data: {type(input_data)}")
         session = get_session()
