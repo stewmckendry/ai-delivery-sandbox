@@ -21,7 +21,7 @@ def generate_template_for_artifact(artifact_id: str) -> Optional[str]:
                 for section in artifact.get("sections", []):
                     section_title = section.get("title", section.get("section_id"))
                     template_lines.append(f"\n## {section_title}\n")
-                    template_lines.append("\nTODO: Fill in this section.\n")
+                    template_lines.append("\n{{ text }}\n")
                 return "\n".join(template_lines)
     return None
 
