@@ -498,6 +498,7 @@ tasks:
     - project/build/wps/WP20/WP20_design_plan.md
     - project/build/wps/WP20/WP20_task_list.md
     - project/build/wps/WP20/drive_structure.yaml
+    - project/build/wps/WP20/example_env_drive_oauth.yaml
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
