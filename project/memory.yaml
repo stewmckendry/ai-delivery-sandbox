@@ -3096,3 +3096,13 @@
   - assembly
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: app/db/models/DocumentVersionLog.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/DocumentVersionLog.py
+  file_type: py
+  description: SQLAlchemy model for logging document version details in a database
+  tags:
+  - database
+  - model
+  - sqlalchemy
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
