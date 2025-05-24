@@ -15,3 +15,5 @@ chromadb>=0.5.0
 openai
 faiss-cpu
 langchain-community
+Jinja2>=3.0
+
