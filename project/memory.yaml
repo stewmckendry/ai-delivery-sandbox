@@ -3129,3 +3129,14 @@
   - error-handling
   last_updated: '2025-05-24'
   pod_owner: QAPod
+- path: project/test/WP18/test_runner_assemble_artifact.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP18/test_runner_assemble_artifact.py
+  file_type: py
+  description: Script to test the artifact assembly process using PlannerOrchestrator
+    with both valid and invalid inputs
+  tags:
+  - test
+  - artifact
+  - flow
+  last_updated: '2025-05-24'
+  pod_owner: QAPod
