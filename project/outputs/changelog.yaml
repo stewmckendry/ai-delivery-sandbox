@@ -5118,3 +5118,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add Google Drive and PDF export dependencies for WP20
+- timestamp: '2025-05-24T16:38:23.774390'
+  path: app/tools/tool_wrappers/storeToDrive.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update storeToDrive.py to export and upload PDF instead of markdown using
+    WeasyPrint
