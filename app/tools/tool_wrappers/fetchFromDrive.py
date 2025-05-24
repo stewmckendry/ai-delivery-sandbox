@@ -1,61 +1,65 @@
+from typing import Dict
+from pydantic import BaseModel, parse_obj_as
 import os
 import logging
-from dotenv import load_dotenv
-from datetime import datetime
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from app.tools.tool_wrappers.base_tool import BaseTool
+from dotenv import load_dotenv
 
-logger = logging.getLogger(__name__)
+# Load environment variables
 load_dotenv()
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
-class Tool(BaseTool):
-    def run(self, input_data: dict) -> dict:
-        gate_id = input_data["gate_id"]
-        artifact_id = input_data["artifact_id"]
-        version = input_data["version"]
+SCOPES = ["https://www.googleapis.com/auth/drive"]
+
+class InputSchema(BaseModel):
+    artifact_id: str
+    gate_id: str
+    version: str
+
+class OutputSchema(BaseModel):
+    file_name: str
+    webViewLink: str
+
+class Tool:
+    def run_tool(self, input_dict: Dict) -> Dict:
+        data = parse_obj_as(InputSchema, input_dict)
 
         creds_path = os.getenv("GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH")
         if not creds_path:
-            raise ValueError("Missing GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH in environment.")
+            raise EnvironmentError("Missing GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH in environment.")
 
-        creds = service_account.Credentials.from_service_account_file(creds_path, scopes=["https://www.googleapis.com/auth/drive"])
+        logger.info("Authenticating with Google Drive using service account JSON at: %s", creds_path)
+        creds = service_account.Credentials.from_service_account_file(creds_path, scopes=SCOPES)
         drive_service = build("drive", "v3", credentials=creds)
 
         try:
-            parent_query = f"name='gate_{gate_id}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
-            parent_resp = drive_service.files().list(q=parent_query, fields="files(id, name)").execute()
-            gate_folders = parent_resp.get("files", [])
+            gate_query = f"name='gate_{data.gate_id}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
+            gate_resp = drive_service.files().list(q=gate_query, fields="files(id, name)").execute()
+            gate_folders = gate_resp.get("files", [])
             if not gate_folders:
-                raise FileNotFoundError(f"No folder found for gate_{gate_id}")
-
+                raise FileNotFoundError(f"No folder found for gate_{data.gate_id}")
             gate_folder_id = gate_folders[0]["id"]
-            sub_query = f"'{gate_folder_id}' in parents and name contains '{artifact_id}_v{version}' and mimeType='application/pdf' and trashed=false"
-            file_resp = drive_service.files().list(q=sub_query, fields="files(id, name, webViewLink)").execute()
-            matches = file_resp.get("files", [])
+
+            artifact_query = f"'{gate_folder_id}' in parents and name='{data.artifact_id}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
+            artifact_resp = drive_service.files().list(q=artifact_query, fields="files(id, name)").execute()
+            artifact_folders = artifact_resp.get("files", [])
+            if not artifact_folders:
+                raise FileNotFoundError(f"No folder for artifact_id {data.artifact_id} in gate_{data.gate_id}")
+            artifact_folder_id = artifact_folders[0]["id"]
+
+            pdf_query = f"'{artifact_folder_id}' in parents and name contains '{data.artifact_id}_v{data.version}' and mimeType='application/pdf' and trashed=false"
+            pdf_resp = drive_service.files().list(q=pdf_query, fields="files(id, name, webViewLink)").execute()
+            matches = pdf_resp.get("files", [])
 
             if not matches:
-                raise FileNotFoundError(f"No PDF found for artifact_id={artifact_id} v={version} in gate_{gate_id}")
+                raise FileNotFoundError(f"No PDF found for artifact_id={data.artifact_id} v={data.version}")
 
-            best_match = matches[0]
-            return {
-                "file_name": best_match["name"],
-                "webViewLink": best_match["webViewLink"]
-            }
+            match = matches[0]
+            return OutputSchema(file_name=match["name"], webViewLink=match["webViewLink"]).dict()
 
         except HttpError as error:
             logger.error(f"Drive API error: {error}")
             raise RuntimeError(f"Drive API failed: {error}")
-
-    @classmethod
-    def schema(cls) -> dict:
-        return {
-            "type": "object",
-            "properties": {
-                "gate_id": {"type": "string"},
-                "artifact_id": {"type": "string"},
-                "version": {"type": "string"}
-            },
-            "required": ["gate_id", "artifact_id", "version"]
-        }
