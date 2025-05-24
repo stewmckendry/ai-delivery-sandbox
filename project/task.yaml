@@ -500,6 +500,7 @@ tasks:
     - project/build/wps/WP20/drive_structure.yaml
     - project/build/wps/WP20/example_env_drive_oauth.yaml
     - project/build/wps/WP20/drive_auth_setup_guide.md
+    - app/tools/tool_wrappers/storeToDrive.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
