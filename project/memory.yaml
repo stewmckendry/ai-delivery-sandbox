@@ -3283,3 +3283,15 @@
   - guide
   last_updated: '2025-05-24'
   pod_owner: DevPod
+- path: project/build/wps/WP20/gdrive_multitenancy_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP20/gdrive_multitenancy_design.md
+  file_type: md
+  description: Design document for implementing multi-user, multi-project Google Drive
+    integration with isolated and traceable uploads.
+  tags:
+  - design
+  - integration
+  - config
+  - metadata
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
