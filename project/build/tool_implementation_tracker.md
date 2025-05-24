@@ -24,8 +24,8 @@
 | createSessionSnapshot  | WP9       | ✅ Complete  | Captures memory snapshot into DB.                                               |
 | inputPromptGenerator   | WP16      | ✅ Complete  | Generates prompts based on gate + artifact context. See WP16 schema.            |
 | inputChecker           | WP16      | ✅ Complete  | Validates prompt inputs for completeness and clarity. See WP16 test plan.       |
-| assembleDraft          | WP18      | ⏳ Not started| Combines `ArtifactSection` into full doc. Validates structure.                  |
-| commitArtifact         | WP18      | ⏳ Not started| Finalize and log full draft.                                                    |
+| assembleDraft          | WP18      | ✅ Complete  | Combines `ArtifactSection` into full doc. Validates structure.                  |
+| commitArtifact         | WP18      | ✅ Complete  | Finalize and log full draft.                                                    |
 | storeToDrive           | WP20      | ⏳ Not started| Uploads artifacts to Google Drive under structured folders                      |
 | fetchFromDrive         | WP20      | ⏳ Not started| Retrieve Drive documents for review/feedback                                    |
 | queryCorpus            | WP21      | ⏳ Not started| Search Chroma vector DB for relevant snippets                                   |
