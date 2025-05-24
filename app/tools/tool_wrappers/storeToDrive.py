@@ -18,7 +18,8 @@ logger.setLevel(logging.INFO)
 
 SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH")
-FOLDER_NAME = "PolicyGPT"
+FOLDER_ID = "1XFwEEEArV_sXcN8TXxd4VUnSOdKuQdnr"  # Explicitly use shared PolicyGPT folder
+SHARE_WITH = ["stewart.mckendry@gmail.com"]
 
 class InputSchema(BaseModel):
     final_markdown: str
@@ -43,8 +44,8 @@ class Tool:
         )
         service = build("drive", "v3", credentials=creds)
 
-        logger.info("Building folder structure under root: %s", FOLDER_NAME)
-        folder_id = self._get_or_create_folder_structure(service, data)
+        # Build subfolder structure under shared folder ID
+        folder_id = self._get_or_create_subfolders(service, FOLDER_ID, data)
 
         filename = f"{data.artifact_id}_v{data.version}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.md"
         logger.info("Uploading file: %s", filename)
@@ -55,25 +56,29 @@ class Tool:
         }
         file = service.files().create(body=file_metadata, media_body=media, fields="id, webViewLink").execute()
 
+        # Share file with configured emails
+        for email in SHARE_WITH:
+            permission = {
+                'type': 'user',
+                'role': 'reader',
+                'emailAddress': email
+            }
+            service.permissions().create(fileId=file["id"], body=permission, sendNotificationEmail=False).execute()
+
         logger.info("File uploaded successfully with webViewLink: %s", file["webViewLink"])
         return OutputSchema(drive_url=file["webViewLink"]).dict()
 
-    def _get_or_create_folder_structure(self, service, data):
-        def find_or_create(name, parent=None):
-            query = f"name='{name}' and mimeType='application/vnd.google-apps.folder'"
-            if parent:
-                query += f" and '{parent}' in parents"
+    def _get_or_create_subfolders(self, service, root_id, data):
+        def find_or_create(name, parent):
+            query = f"name='{name}' and mimeType='application/vnd.google-apps.folder' and '{parent}' in parents"
             results = service.files().list(q=query, fields="files(id, name)").execute()
             files = results.get("files", [])
             if files:
                 return files[0]["id"]
-            metadata = {"name": name, "mimeType": "application/vnd.google-apps.folder"}
-            if parent:
-                metadata["parents"] = [parent]
+            metadata = {"name": name, "mimeType": "application/vnd.google-apps.folder", "parents": [parent]}
             file = service.files().create(body=metadata, fields="id").execute()
             return file["id"]
 
-        root_id = find_or_create(FOLDER_NAME)
-        gate_folder = find_or_create(f"gate_{data.gate_id}", parent=root_id)
-        artifact_folder = find_or_create(data.artifact_id, parent=gate_folder)
+        gate_folder = find_or_create(f"gate_{data.gate_id}", root_id)
+        artifact_folder = find_or_create(data.artifact_id, gate_folder)
         return artifact_folder
