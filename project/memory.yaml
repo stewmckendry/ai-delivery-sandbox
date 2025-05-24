@@ -3106,3 +3106,14 @@
   - sqlalchemy
   last_updated: '2025-05-24'
   pod_owner: DevPod
+- path: app/utils/generate_artifact_template.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/utils/generate_artifact_template.py
+  file_type: py
+  description: Script to generate a markdown template for an artifact using a gate
+    reference YAML file.
+  tags:
+  - template
+  - artifact
+  - yaml
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
