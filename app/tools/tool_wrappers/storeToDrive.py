@@ -2,8 +2,9 @@ from typing import Dict
 from pydantic import BaseModel, parse_obj_as
 import os
 from datetime import datetime
-import json
 import logging
+import markdown2
+from weasyprint import HTML
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaInMemoryUpload
@@ -47,9 +48,14 @@ class Tool:
         # Build subfolder structure under shared folder ID
         folder_id = self._get_or_create_subfolders(service, FOLDER_ID, data)
 
-        filename = f"{data.artifact_id}_v{data.version}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.md"
-        logger.info("Uploading file: %s", filename)
-        media = MediaInMemoryUpload(data.final_markdown.encode("utf-8"), mimetype="text/markdown")
+        filename = f"{data.artifact_id}_v{data.version}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.pdf"
+        logger.info("Rendering markdown to PDF: %s", filename)
+
+        # Convert markdown to PDF
+        html_content = markdown2.markdown(data.final_markdown)
+        pdf_bytes = HTML(string=html_content).write_pdf()
+
+        media = MediaInMemoryUpload(pdf_bytes, mimetype="application/pdf")
         file_metadata = {
             "name": filename,
             "parents": [folder_id],
