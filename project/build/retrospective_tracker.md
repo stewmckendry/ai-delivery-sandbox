@@ -46,3 +46,21 @@
 - Adopt snapshot-based unit testing for each tool.
 - Auto-validate tool registry and manifest vs. implemented wrappers.
 - Expand artifact schema documentation for easier onboarding.
+
+## WP20 – Google Drive Integration
+
+### ✅ What Went Well
+- Drive API integration was successful with both upload and fetch.
+- Folder schema and routing now support structured storage.
+- Integrated UX to download or view generated outputs.
+
+### 🤯 Challenges
+- PDF-only view may limit document editing/preview use cases.
+- TOC link resolution caused display issues in some PDFs.
+- Multiple permissions and routing issues emerged during QA.
+
+### 💡 Lessons & Recommendations
+- Use folder naming schema with `project_id` for organization.
+- Include traceability in upload logs (gate, session, artifact).
+- Consider adding preview endpoint or viewer UI.
+- Drive permission logic needs alignment with session/user access controls.
