@@ -3029,3 +3029,14 @@
   - config
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/formatSection.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/formatSection.py
+  file_type: py
+  description: Script to format sections using Jinja2 templates based on input schema
+    validation.
+  tags:
+  - formatting
+  - template
+  - schema
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
