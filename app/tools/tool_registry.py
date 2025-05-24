@@ -51,6 +51,7 @@ class ToolRegistry:
         try:
             logger.info(f"Validating input: {input_dict} against schema: {schema}")
             validate(instance=input_dict, schema=schema)
+            logger.info("Validation successful")
         except ValidationError as e:
             logger.error(f"Validation error: {e.message}")
             raise ValueError(f"Input validation error: {e.message}")
