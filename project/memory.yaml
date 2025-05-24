@@ -3006,3 +3006,15 @@
   - artifact
   last_updated: '2025-05-24'
   pod_owner: DevPod
+- path: project/build/wps/WP18/WP18_task_list.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP18/WP18_task_list.md
+  file_type: md
+  description: Task list for developing and integrating tools in WP18, including tool
+    development, registration, schema validation, logging, testing, and documentation.
+  tags:
+  - development
+  - toolchain
+  - validation
+  - documentation
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
