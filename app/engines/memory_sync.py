@@ -74,8 +74,13 @@ def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id
     return prompt_log.id
 
 
-def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_url, summary, inputs, output_path):
+def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_url, summary, inputs, output_path, tool_outputs):
     session = get_session()
+
+    for step in tool_outputs:
+        output = step.get("output", {})
+        step["tool_version"] = output.get("tool_version", "v1")
+        step["schema_version"] = output.get("schema_version", "1.0")
 
     doc_log = DocumentVersionLog(
         doc_version_id=session_id,
@@ -93,7 +98,7 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
     trace = ReasoningTrace(
         trace_id=session_id,
         section_id=f"{artifact_id}:{gate_id}",
-        steps=json.dumps([]),
+        steps=json.dumps(tool_outputs),
         created_by="assemble_artifact",
         created_at=datetime.datetime.utcnow(),
         draft_chunks=None
