@@ -1,0 +1,302 @@
+- gate_id: 0
+  name: Gate 0 – Verify Business Problem or Opportunity (Pre-Project)
+  - artifact_id: investment_proposal_concept
+    name: Investment Proposal (Concept Case)
+    - section_id: problem_statement
+      title: Problem Statement
+    - section_id: background
+      title: Background/Context
+    - section_id: desired_outcomes
+      title: Desired Outcomes
+    - section_id: preliminary_benefits
+      title: Preliminary Benefits
+    - section_id: strategic_alignment
+      title: Strategic Alignment
+- gate_id: 1
+  name: Gate 1 – Validate Business Justification and Select Short List of Options
+  - artifact_id: business_case_preliminary
+    name: Business Case (Preliminary)
+    - section_id: exec_summary
+      title: Executive Summary
+    - section_id: business_need
+      title: Business Need/Opportunity
+    - section_id: strategic_alignment
+      title: Strategic Alignment
+    - section_id: options_considered
+      title: Options Considered (Long List)
+    - section_id: options_analysis
+      title: Preliminary Options Analysis (Short List)
+    - section_id: prelim_costs_benefits
+      title: Preliminary Costs and Benefits
+    - section_id: initial_risks
+      title: Initial Risks
+  - artifact_id: project_charter_preliminary
+    name: Project Charter (Preliminary)
+    - section_id: approvals
+      title: Document Control & Approvals
+    - section_id: exec_summary
+      title: Executive Summary
+    - section_id: project_scope
+      title: Project Objectives and Scope
+    - section_id: deliverables
+      title: Major Deliverables & Milestones
+    - section_id: timeline
+      title: High-Level Timeline
+    - section_id: budget
+      title: Preliminary Budget Estimate
+    - section_id: stakeholders
+      title: Key Stakeholders
+    - section_id: governance
+      title: Governance and Roles/Responsibilities
+- gate_id: 2
+  name: Gate 2 – Approve Preferred Option and Approach
+  - artifact_id: business_case_detailed
+    name: Business Case (Detailed)
+    - section_id: exec_summary
+      title: Executive Summary
+    - section_id: strategic_context
+      title: Strategic Context
+    - section_id: problem_definition
+      title: Problem/Opportunity Definition
+    - section_id: options_analysis
+      title: Options Analysis
+    - section_id: preferred_option
+      title: Preferred Option Description
+    - section_id: cost_benefit
+      title: Cost and Benefit Analysis
+    - section_id: risk_mitigation
+      title: Risk Assessment and Mitigation Plan
+    - section_id: implementation
+      title: Implementation Approach
+    - section_id: performance
+      title: Performance Measurement / Benefits Realization
+    - section_id: conclusion
+      title: Conclusion and Recommendation
+  - artifact_id: benefits_plan_initial
+    name: Benefits Realization Plan (Initial)
+    - section_id: outcome_defs
+      title: Outcome Definitions
+    - section_id: performance_metrics
+      title: Performance Indicators / Targets
+    - section_id: benefit_owners
+      title: Benefit Owners
+    - section_id: measurement_method
+      title: Measurement Method and Frequency
+    - section_id: schedule
+      title: Benefit Realization Schedule
+  - artifact_id: project_charter_final
+    name: Project Charter (Final Draft)
+    - section_id: scope
+      title: Updated Scope Definition
+    - section_id: budget
+      title: Updated Budget and Schedule
+    - section_id: governance
+      title: Governance and Approvals
+  - artifact_id: gating_plan
+    name: Project Gating Plan
+    - section_id: schedule
+      title: Gate Schedule
+    - section_id: decisions
+      title: Key Decision at Each Gate
+    - section_id: artifacts_per_gate
+      title: Required Artifacts per Gate
+    - section_id: independent_reviews
+      title: Planned Independent Reviews
+  - artifact_id: pmp_high_level
+    name: Project Management Plan (High-Level)
+    - section_id: scope
+      title: Project Scope Statement
+    - section_id: wbs
+      title: Work Breakdown Structure
+    - section_id: milestones
+      title: Milestone Schedule
+    - section_id: staffing
+      title: Organization and Staffing Plan
+    - section_id: resources
+      title: Initial Resource and Cost Estimates
+    - section_id: risks
+      title: Risk Management Strategy
+    - section_id: procurement
+      title: Procurement Strategy
+    - section_id: communications
+      title: Communication Plan
+  - artifact_id: procurement_plan_prelim
+    name: Procurement Plan (Preliminary)
+    - section_id: items
+      title: Items/Services to Procure
+    - section_id: strategy
+      title: Procurement Strategy
+    - section_id: milestones
+      title: Major Contracting Milestones
+    - section_id: dependencies
+      title: Dependencies and Lead Times
+    - section_id: contract_mgmt
+      title: Contract Management Approach
+  - artifact_id: pcra_prelim
+    name: Project Complexity and Risk Assessment (PCRA) – Preliminary
+    - section_id: summary
+      title: PCRA Summary
+    - section_id: scoring
+      title: Scoring by Dimension
+    - section_id: risks
+      title: Key Risk Drivers
+    - section_id: implications
+      title: Implications for Oversight
+- gate_id: 3
+  name: Gate 3 – Fund Project Deliverables (Project Approval)
+  - artifact_id: business_case_updated
+    name: Business Case (Updated)
+    - section_id: exec_summary
+      title: Executive Summary
+    - section_id: updated_costs
+      title: Updated Costs and Benefits
+    - section_id: changes_to_scope
+      title: Scope and Approach Changes
+    - section_id: updated_risks
+      title: Updated Risk Profile
+  - artifact_id: benefits_plan_updated
+    name: Benefits Realization Plan (Updated)
+    - section_id: updated_targets
+      title: Finalized Targets and Indicators
+    - section_id: benefit_owner
+      title: Accountabilities for Realization
+    - section_id: review_schedule
+      title: Post-Implementation Review Schedule
+  - artifact_id: gating_plan_final
+    name: Project Gating Plan (Final)
+    - section_id: updated_milestones
+      title: Updated Milestones and Gate Dates
+    - section_id: oversight_controls
+      title: Independent Review Points and Controls
+  - artifact_id: pmp_detailed
+    name: Project Management Plan (Detailed PMP)
+    - section_id: scope_plan
+      title: Scope Management Plan
+    - section_id: schedule
+      title: Detailed Timeline and Milestones
+    - section_id: cost_plan
+      title: Cost Baseline and Funding Profile
+    - section_id: resourcing
+      title: Resource Assignments and Governance
+    - section_id: risks
+      title: Risk Register and Mitigation Plan
+    - section_id: communications
+      title: Stakeholder Communications Plan
+    - section_id: change_control
+      title: Change Control Procedures
+  - artifact_id: transition_plan_preliminary
+    name: Transition Plan (Preliminary)
+    - section_id: deployment
+      title: Deployment Strategy
+    - section_id: support
+      title: Support and Maintenance Setup
+    - section_id: fallback
+      title: Fallback/Contingency Plans
+  - artifact_id: procurement_plan_updated
+    name: Procurement Plan (Updated)
+    - section_id: contracts
+      title: Procurement Vehicles and Timelines
+    - section_id: vendor
+      title: Selected Vendors (if known)
+  - artifact_id: pcra_updated
+    name: Project Complexity and Risk Assessment (PCRA) – Updated
+    - section_id: risk_summary
+      title: Final Risk Assessment Summary
+    - section_id: oversight_measures
+      title: Oversight Adjustments if Risk Changed
+- gate_id: 4
+  name: Gate 4 – Confirm Readiness for Service (Pre-Implementation)
+  - artifact_id: business_case_validated
+    name: Business Case (Updated/Validated)
+    - section_id: updated_benefits
+      title: Updated Benefits and Value Confirmation
+    - section_id: interim_metrics
+      title: Interim Performance Metrics (if applicable)
+    - section_id: change_log
+      title: Changes or Conditions Since Gate 3
+  - artifact_id: project_charter_updated
+    name: Project Charter (Updated)
+    - section_id: summary
+      title: Updated Executive Summary
+    - section_id: scope_reconciliation
+      title: Final Scope Delivered vs. Original Scope
+    - section_id: budget_reconciliation
+      title: Final Schedule and Cost vs. Baseline
+    - section_id: acceptance
+      title: Acceptance by Operations/Business Owner
+    - section_id: ops_roles
+      title: Roles and Responsibilities for Operations
+  - artifact_id: benefits_plan_final
+    name: Benefits Realization Plan (Revised/Final Pre-Launch)
+    - section_id: benefits_realized
+      title: Benefits Realized To Date (if any)
+    - section_id: post_launch_tracking
+      title: Post-Implementation Review Schedule
+    - section_id: updated_owners
+      title: Ongoing Accountability
+  - artifact_id: transition_plan_detailed
+    name: Transition Plan (Detailed)
+    - section_id: readiness_checklist
+      title: Go-Live Readiness Checklist
+    - section_id: testing_results
+      title: Testing Summary and Results
+    - section_id: training
+      title: Training Completed
+    - section_id: support_setup
+      title: Operational Support Arrangements
+    - section_id: communications
+      title: Launch Communications Plan
+    - section_id: rollback
+      title: Roll-back Plan or Contingencies
+    - section_id: decommissioning
+      title: Decommissioning Plan for Legacy
+  - artifact_id: risk_plan_current
+    name: Risk Management Plan (Current)
+    - section_id: open_risks
+      title: Open Risks Summary
+    - section_id: completed_mitigations
+      title: Mitigation Actions Completed
+    - section_id: new_risks
+      title: New Risks for Transition/Operations
+    - section_id: contingencies
+      title: Contingency Plans and Triggers
+- gate_id: 5
+  name: Gate 5 – Complete Project and Post-Implementation Review (Close-Out)
+  - artifact_id: benefits_plan_post
+    name: Benefits Realization Plan (Updated Post-Implementation)
+    - section_id: benefits_achieved
+      title: Summary of Benefits Achieved to Date
+    - section_id: outstanding_benefits
+      title: Outstanding Benefits and Timeline to Realize
+    - section_id: owner_assignment
+      title: Responsible Owner for Each Benefit
+    - section_id: measurement_plan
+      title: Measurement & Reporting Plan
+  - artifact_id: project_closeout_report
+    name: Project Close-Out Report
+    - section_id: summary
+      title: Project Summary
+    - section_id: delivery_status
+      title: Final Delivery Status
+    - section_id: final_metrics
+      title: Final Schedule and Cost Summary
+    - section_id: quality
+      title: Quality and Acceptance Status
+    - section_id: transition
+      title: Transition to Operations
+    - section_id: outstanding
+      title: Outstanding Items
+    - section_id: lessons
+      title: Lessons Learned
+    - section_id: pir_plan
+      title: Post-Implementation Review Plan
+    - section_id: signoff
+      title: Sign-off (Sponsor/Committee Approval)
+  - artifact_id: operational_documents
+    name: Operational Documents (if applicable)
+    - section_id: docs_summary
+      title: List of Operational Documents Provided
+    - section_id: decommissioning
+      title: Legacy System Decommissioning Plan
+    - section_id: archival
+      title: Data Archival / Transfer Procedures

@@ -25,6 +25,7 @@ class AssembleArtifactChain:
         loaded = self.loader.run_tool({"artifact_id": artifact_id, "gate_id": gate_id})
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
+        logger.info("[Step 1] loadSectionMetadata complete")
 
         title = loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
 
@@ -40,11 +41,13 @@ class AssembleArtifactChain:
             log_tool_usage("formatSection", "formatted section", formatted, session_id, None, inputs)
             trace.append({"tool": "formatSection", "output": formatted})
             formatted_sections.append(formatted["formatted_section"])
+        logger.info("[Step 2] formatSection complete")
 
         # Step 3: Merge
         merged = self.merger.run_tool({"sections": formatted_sections})
         log_tool_usage("mergeSections", "merged body", merged, session_id, None, inputs)
         trace.append({"tool": "mergeSections", "output": merged})
+        logger.info("[Step 3] mergeSections complete")
 
         # Step 4: Finalize
         finalized = self.finalizer.run_tool({
@@ -56,6 +59,7 @@ class AssembleArtifactChain:
         })
         log_tool_usage("finalizeDocument", "finalized output", finalized, session_id, None, inputs)
         trace.append({"tool": "finalizeDocument", "output": finalized})
+        logger.info("[Step 4] finalizeDocument complete")
 
         # Step 5: Commit
         committed = self.committer.run_tool({
@@ -67,6 +71,7 @@ class AssembleArtifactChain:
         })
         log_tool_usage("commitArtifact", "committed", committed, session_id, None, inputs)
         trace.append({"tool": "commitArtifact", "output": committed})
+        logger.info("[Step 5] commitArtifact complete")
 
         # Save logs
         save_document_and_trace(
@@ -80,5 +85,6 @@ class AssembleArtifactChain:
             output_path=committed.get("local_path"),
             tool_outputs=trace
         )
+        logger.info("[Step 6] Saved to Artifact and ReasoningTrace")
 
         return {"final_output": committed, "trace": trace}
