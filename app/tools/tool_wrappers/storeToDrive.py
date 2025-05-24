@@ -7,6 +7,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaInMemoryUpload
 
+# Define OAuth scope and credentials location
 SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH")
 FOLDER_NAME = "PolicyGPT"
@@ -31,21 +32,24 @@ class Tool:
         )
         service = build("drive", "v3", credentials=creds)
 
-        # Create or find target folder structure
+        # Create or find target folder structure (NOTE: project_id is not yet implemented in schema)
         folder_id = self._get_or_create_folder_structure(service, data)
 
-        # Create file in memory
+        # Prepare filename with versioning timestamp
         filename = f"{data.artifact_id}_v{data.version}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.md"
         media = MediaInMemoryUpload(data.final_markdown.encode("utf-8"), mimetype="text/markdown")
+
+        # Upload the file to Google Drive
         file_metadata = {
             "name": filename,
             "parents": [folder_id],
         }
         file = service.files().create(body=file_metadata, media_body=media, fields="id, webViewLink").execute()
+
         return OutputSchema(drive_url=file["webViewLink"]).dict()
 
     def _get_or_create_folder_structure(self, service, data):
-        # Simplified: find or create /PolicyGPT/<gate>/<artifact>
+        # Helper to find or create folder in Drive
         def find_or_create(name, parent=None):
             query = f"name='{name}' and mimeType='application/vnd.google-apps.folder'"
             if parent:
@@ -60,6 +64,8 @@ class Tool:
             file = service.files().create(body=metadata, fields="id").execute()
             return file["id"]
 
+        # Folder path logic: PolicyGPT/gate_<gate_id>/<artifact_id>
+        # Future: Add project_id at higher level once schema supports it
         root_id = find_or_create(FOLDER_NAME)
         gate_folder = find_or_create(f"gate_{data.gate_id}", parent=root_id)
         artifact_folder = find_or_create(data.artifact_id, parent=gate_folder)
