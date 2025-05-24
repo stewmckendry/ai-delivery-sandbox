@@ -1,9 +1,9 @@
 folders:
   base_path: "PolicyGPT"
   structure:
-    - key: project
+    - key: project  # NOTE: Not yet supported in schema — to be added in future
       source: metadata
-      field: project_name
+      field: project_id
     - key: gate
       source: metadata
       field: gate_id
