@@ -484,6 +484,7 @@ tasks:
     - project/reference/artifact_templates/investment_proposal_concept.md
     - app/tools/tool_wrappers/mergeSections.py
     - app/tools/tool_wrappers/finalizeDocument.py
+    - app/tools/tool_wrappers/commitArtifact.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
