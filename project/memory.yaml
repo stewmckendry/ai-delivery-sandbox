@@ -3375,3 +3375,15 @@
   - integration
   last_updated: '2025-05-24'
   pod_owner: QAPod
+- path: project/build/wps/WP20/WP20_implementation_notes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP20/WP20_implementation_notes.md
+  file_type: md
+  description: Documentation of the implementation details for Google Drive integration
+    in WP20, including tools, design decisions, and testing notes.
+  tags:
+  - integration
+  - implementation
+  - design
+  - testing
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
