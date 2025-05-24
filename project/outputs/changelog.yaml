@@ -5286,3 +5286,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Mark WP20 as complete in work_package_tracker
+- timestamp: '2025-05-24T19:20:05.667949'
+  path: project/build/spillover_tracker.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Appended WP20-related items to spillover_tracker
