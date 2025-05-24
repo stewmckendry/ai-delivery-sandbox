@@ -17,3 +17,8 @@ faiss-cpu
 langchain-community
 Jinja2>=3.0
 
+# WP20 additions:
+google-api-python-client
+google-auth
+weasyprint
+markdown2
