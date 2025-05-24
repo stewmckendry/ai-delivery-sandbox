@@ -11,7 +11,7 @@
 ### 🔍 Context
 We are activating `WP18 – Artifact Assembly and Routing`, part of the document generation pipeline. You will build the toolchain to combine drafted sections into complete gate artifacts, validate their completeness, and prepare them for routing to Drive and other destinations.
 
-You own the tools that assemble and commit the final artifact, aligned to `gate_reference.yaml` and `dense_artifact_generation.md`.
+You own the tools that assemble and commit the final artifact, aligned to `gate_reference_v2.yaml` and `dense_artifact_generation.md`.
 
 What is PolicyGPT?
 - PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
@@ -53,16 +53,17 @@ Break the files into groups to avoid size limits.
 #### Your Work Assignment (WP18)
 project/build/wps/WP18/WP18_definition.md
 
-#### Other Work Packages
-project/build/wps/work_package_overview.md
+#### Other Work Packages & Tools
+project/build/work_package_tracker.md
+project/build/tool_implementation_tracker.md
 
 #### System Design + Reference Files
+project/system_design/dense_artifact_generation.md
 project/build/wps/WP17b/toolchain_registration_guide.md
 project/build/wps/WP17b/WP17b_exit_report.md
 project/build/wps/WP17b/WP17b_exit_report_part2.md
 project/build/wps/WP17b/WP17b_chunking_and_schema_notes.md
 project/system_design/db_schema_notes_v3.md
-project/system_design/dense_artifact_generation.md
 project/system_design/system_architecture_v2.md
 project/system_design/tool_catalog_v3.md
 project/system_design/session_memory_model_v2.md
