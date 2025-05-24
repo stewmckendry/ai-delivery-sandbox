@@ -481,6 +481,7 @@ tasks:
     - project/build/wps/WP18/WP18_task_list.md
     - app/tools/tool_wrappers/loadSectionMetadata.py
     - app/tools/tool_wrappers/formatSection.py
+    - project/reference/artifact_templates/investment_proposal_concept.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
