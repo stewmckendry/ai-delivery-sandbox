@@ -324,6 +324,7 @@ tasks:
     - project/build/wps/WP12/code_orchestration_mcp_insights.md
     - project/build/wps/WP17b/WP17b_exit_report.md
     - project/build/wps/WP20/WP20_design_plan.md
+    - project/build/wps/WP20/WP20_task_list.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
