@@ -15,7 +15,7 @@ def run_fetch_test():
         "version": "v0.1"
     }
     try:
-        result = Tool().run(input_data)
+        result = Tool().run_tool(input_data)
         logger.info("✅ Fetch succeeded: %s", result)
     except Exception as e:
         logger.error("❌ Fetch failed: %s", str(e))
