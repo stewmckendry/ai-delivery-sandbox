@@ -4,23 +4,22 @@
 - [x] Read WP20, WP18, Planner context
 - [x] Retrieved system architecture, gate schema, user journeys
 - [x] Created initial plan and committed to Git
+- [x] Define routing logic and metadata fields
+- [x] Set up OAuth config (local + Railway env)
+- [x] Build `storeToDrive.py`
+- [x] Write `drive_structure.yaml`
+- [x] Patch `assemble_artifact_chain.py`
+- [x] Write and run test CLI: `test_drive_storage.py`
+- [x] Log outcomes in `test_results.md`
 
 ### 🛠️ In Progress
-- [ ] Define routing logic and metadata fields
-- [ ] Set up OAuth config (local + Railway env)
 
 ### 🧩 Next Up
-- [ ] Build `storeToDrive.py`
 - [ ] Build `fetchFromDrive.py`
-- [ ] Write `drive_structure.yaml`
-- [ ] Patch `assemble_artifact_chain.py`
 - [ ] Update `DocumentVersionLog`
-- [ ] Write and run test CLI: `test_drive_storage.py`
-- [ ] Log outcomes in `test_results.md`
+- [ ] Run regression test on assemble_artifacts_chain.py
 - [ ] Write `WP20_implementation_notes.md`
 - [ ] Draft `gpt_user_flow_with_drive.md`
+- [ ] Exit report
 
-### 🚧 Blockers / Pending
-- ⏳ `tool_catalog.yaml` missing (404)
-
-_This file will be updated as progress continues._
+_This file reflects the authoritative WP20 tracking status as of PDF upload and integration success._
