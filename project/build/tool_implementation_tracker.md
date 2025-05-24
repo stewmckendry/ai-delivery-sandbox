@@ -1,9 +1,9 @@
 | Tool                   | Owning WP | Status       | Notes / Pointers                                                                 |
 |------------------------|-----------|--------------|----------------------------------------------------------------------------------|
-| compose_and_cite       | WP17b     | Deprecated| Replaced by generate_section toolchain                                          |
+| compose_and_cite       | WP17b     | Deprecated   | Replaced by generate_section toolchain                                          |
 | searchKnowledgeBase    | WP4       | 🚫 Deferred  | Needs memory embedding + recall logic. See WP3b, WP9 for context.               |
 | externalWebSearch      | WP13      | ⏳ Not started| Planning + citation fallback logic needed.                                       |
-| composeDraft           | WP4       | Deprecated   | Replaced by generate_section toolchain exists.                                   |
+| composeDraft           | WP4       | Deprecated   | Replaced by generate_section toolchain                                          |
 | validateSection        | WP5       | ⏳ Not started| Markdown schema checker. Pre-validation needed.                                 |
 | logReasoningTrace      | WP7       | ⏳ Not started| Trace writer exists. Needs Planner integration.                                 |
 | commitSection          | WP6       | ⏳ Not started| Store to DB + Drive. Requires validated section.                                |
@@ -26,8 +26,8 @@
 | inputChecker           | WP16      | ✅ Complete  | Validates prompt inputs for completeness and clarity. See WP16 test plan.       |
 | assembleDraft          | WP18      | ✅ Complete  | Combines `ArtifactSection` into full doc. Validates structure.                  |
 | commitArtifact         | WP18      | ✅ Complete  | Finalize and log full draft.                                                    |
-| storeToDrive           | WP20      | ⏳ Not started| Uploads artifacts to Google Drive under structured folders                      |
-| fetchFromDrive         | WP20      | ⏳ Not started| Retrieve Drive documents for review/feedback                                    |
+| storeToDrive           | WP20      | ✅ Complete  | Uploads artifacts to Google Drive under structured folders                      |
+| fetchFromDrive         | WP20      | ✅ Complete  | Retrieve Drive documents for review/feedback                                    |
 | queryCorpus            | WP21      | ⏳ Not started| Search Chroma vector DB for relevant snippets                                   |
 | showProfile            | WP7       | ⏳ Not started| Inspect current project profile (dynamic + persisted)                           |
 | project_profile_updater | WP7      | ⏳ Not started| Dynamically update ProjectProfile in session and DB                             |
