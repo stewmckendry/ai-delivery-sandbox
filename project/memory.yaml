@@ -3188,3 +3188,16 @@
   - template
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP20/WP20_definition_v2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP20/WP20_definition_v2.md
+  file_type: md
+  description: Document outlining the integration of Google Drive for secure storage
+    and retrieval of project artifacts, including OAuth setup, folder routing, and
+    tool development for file management.
+  tags:
+  - integration
+  - storage
+  - config
+  - tools
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
