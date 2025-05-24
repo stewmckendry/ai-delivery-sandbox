@@ -509,6 +509,7 @@ tasks:
     - app/tools/tool_wrappers/fetchFromDrive.py
     - project/test/WP20/test_plan_fetch_from_drive.md
     - project/test/WP20/test_runner_fetch_from_drive.py
+    - project/test/WP20/test_result_fetch_file.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
