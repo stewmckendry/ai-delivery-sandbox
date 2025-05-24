@@ -14,7 +14,7 @@ class OutputSchema(BaseModel):
 class Tool:
     def run_tool(self, input_dict: Dict) -> Dict:
         data = parse_obj_as(InputSchema, input_dict)
-        template_text = f"## {{ section_title }}\n\n{{{{ text }}}}"
+        template_text = "## {{ section_title }}\n\n{{ text }}"
         template = Template(template_text)
         output = template.render(text=data.section_text, section_title=data.section_title)
         return OutputSchema(formatted_section=output).dict()
