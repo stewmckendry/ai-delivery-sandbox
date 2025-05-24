@@ -4763,3 +4763,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add debug logging for validated input_data in loadSectionMetadata
+- timestamp: '2025-05-24T04:08:21.190699'
+  path: app/engines/toolchains/assemble_artifact_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Cast artifact_id and gate_id to string in loadSectionMetadata call
