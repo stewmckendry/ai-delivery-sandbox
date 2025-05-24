@@ -5087,3 +5087,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add logger and validation to storeToDrive for debugging upload errors
+- timestamp: '2025-05-24T16:19:18.397544'
+  path: app/tools/tool_wrappers/storeToDrive.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add load_dotenv to storeToDrive for local .env variable support
