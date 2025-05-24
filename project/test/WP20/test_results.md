@@ -5,6 +5,7 @@ Final test of `storeToDrive.py` completed successfully.
 - File was uploaded to correct folder structure in shared Google Drive.
 - URL was returned and accessible.
 - User (`stewart.mckendry@gmail.com`) was auto-shared and verified access.
+- Output format was updated to `.pdf` and verified with successful visual rendering.
 
 ---
 
@@ -17,20 +18,19 @@ Final test of `storeToDrive.py` completed successfully.
 ```
 PolicyGPT/
   └── gate_gate1/
-      └── demo-artifact_vv0.1-test_<timestamp>.md
+      └── demo-artifact_vv0.1-test_<timestamp>.pdf
 ```
 
 ### 🔍 Manual Verifications
 - ✔️ File appeared under expected nested folder path
 - ✔️ Link was accessible from Gmail account
-- ✔️ File preview displayed plain markdown content
+- ✔️ File rendered correctly in Google Drive preview as PDF
 
 ---
 
 ### 📎 Observations
-- Markdown renders in plain text in Google Drive preview
-  - Can be addressed in future by uploading `.pdf` version or converting to `.docx`
-  - Consider post-upload transformer if visual rendering is important
+- Markdown converted cleanly to PDF using `markdown2` and `weasyprint`
+- PDF improves user readability and sharing compared to raw `.md`
 
 ---
 
@@ -38,4 +38,4 @@ PolicyGPT/
 - Test script: `test_runner_store_to_drive.py`
 - Test plan: `test_plan_store_to_drive.md`
 
-Test complete and system validated for Drive uploads.
+Test complete and system validated for PDF-based Drive uploads.
