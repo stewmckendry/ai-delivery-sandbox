@@ -36,7 +36,8 @@ class AssembleArtifactChain:
             formatted = self.formatter.run_tool({
                 "section_id": sec["section_id"],
                 "section_text": sec["text"],
-                "template_url": template_url
+                "template_url": template_url,
+                "artifact_id": artifact_id
             })
             log_tool_usage("formatSection", "formatted section", formatted, session_id, None, inputs)
             trace.append({"tool": "formatSection", "output": formatted})
