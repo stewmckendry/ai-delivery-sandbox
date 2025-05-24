@@ -1,5 +1,5 @@
 from typing import Dict
-from pydantic import BaseModel
+from pydantic import BaseModel, parse_obj_as
 from datetime import datetime
 
 class InputSchema(BaseModel):
@@ -13,11 +13,8 @@ class OutputSchema(BaseModel):
     final_markdown: str
 
 class Tool:
-    def validate(self, input_dict: Dict) -> InputSchema:
-        return InputSchema(**input_dict)
-
     def run_tool(self, input_dict: Dict) -> Dict:
-        data = self.validate(input_dict)
+        data = parse_obj_as(InputSchema, input_dict)
         header = f"# {data.title}\n\n**Version:** {data.version}  \\\n**Artifact ID:** {data.artifact_id}  \\\n**Gate ID:** {data.gate_id}  \\\n**Generated On:** {datetime.utcnow().isoformat()}\n\n---\n"
 
         toc = "## Table of Contents\n" + "\n".join([
