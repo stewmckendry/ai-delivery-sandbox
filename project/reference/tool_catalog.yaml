@@ -435,3 +435,27 @@ tools:
         - gate_id
         - version
         - title
+
+  storeToDrive:
+    module: app.tools.tool_wrappers.storeToDrive
+    class: Tool
+    description: Uploads finalized document as PDF to Google Drive and logs the output link
+    schema:
+      type: object
+      properties:
+        final_markdown:
+          type: string
+        artifact_id:
+          type: string
+        gate_id:
+          type: string
+        version:
+          type: string
+        title:
+          type: string
+      required:
+        - final_markdown
+        - artifact_id
+        - gate_id
+        - version
+        - title
