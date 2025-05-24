@@ -22,7 +22,7 @@ class AssembleArtifactChain:
         version = inputs.get("version", "v0.1")
 
         # Step 1: Load
-        loaded = self.loader.run_tool({"artifact_id": artifact_id, "gate_id": gate_id})
+        loaded = self.loader.run_tool({"artifact_id": str(artifact_id), "gate_id": str(gate_id)})
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
         logger.info("[Step 1] loadSectionMetadata complete")
