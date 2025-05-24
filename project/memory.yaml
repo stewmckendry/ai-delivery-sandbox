@@ -3051,3 +3051,14 @@
   - artifact
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/mergeSections.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/mergeSections.py
+  file_type: py
+  description: Script to merge multiple text sections into a single document body
+    using a structured input and output schema.
+  tags:
+  - tool
+  - merge
+  - schema
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
