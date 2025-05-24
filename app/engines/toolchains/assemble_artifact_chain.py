@@ -77,7 +77,8 @@ class AssembleArtifactChain:
             storage_url=committed.get("drive_url") or committed.get("local_path"),
             summary=f"Assembled artifact {artifact_id} gate {gate_id}",
             inputs=inputs,
-            output_path=committed.get("local_path")
+            output_path=committed.get("local_path"),
+            tool_outputs=trace
         )
 
         return {"final_output": committed, "trace": trace}
