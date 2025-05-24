@@ -1,41 +1,50 @@
-## WP20 Test Results – Google Drive Integration
+## WP20 Test Results – Google Drive Integration (v3)
 
 ### ✅ Summary
-Final test of `storeToDrive.py` completed successfully.
-- File was uploaded to correct folder structure in shared Google Drive.
-- URL was returned and accessible.
-- User (`stewart.mckendry@gmail.com`) was auto-shared and verified access.
-- Output format was updated to `.pdf` and verified with successful visual rendering.
+Regression test of `assemble_artifact_chain.py` with `storeToDrive` was successful.
+- Assembled document uploaded to correct nested folder in Drive.
+- URL returned and viewable.
+- PDF rendered successfully with formatted content.
 
 ---
 
 ### 🧪 Test Run Output
 ```
-✅ Upload successful! Drive URL: https://drive.google.com/file/d/1_16Yk6kVUcaY9N8GTd1_dGPC8n1FEsTC/view?usp=drivesdk
+SUCCESSFUL TEST RESULT:
+Drive URL: https://drive.google.com/file/d/1oRm_K59DNp2Iqou1DVJutrCE_Aiu709S/view?usp=drivesdk
 ```
 
 ### 📂 Folder Path Created
 ```
 PolicyGPT/
-  └── gate_gate1/
-      └── demo-artifact_vv0.1-test_<timestamp>.pdf
+  └── gate_0/
+      └── investment_proposal_concept/
+          └── investment_proposal_concept_vv0.1_<timestamp>.pdf
 ```
 
 ### 🔍 Manual Verifications
-- ✔️ File appeared under expected nested folder path
-- ✔️ Link was accessible from Gmail account
-- ✔️ File rendered correctly in Google Drive preview as PDF
+- ✔️ File rendered correctly in Google Drive PDF viewer
+- ✔️ Located in expected folder structure
+- ✔️ TOC and headings styled appropriately
+
+---
+
+### ⚠️ Warnings
+- PDF generation logs anchor reference errors due to internal markdown links.
+  _Fix optional — link anchors not required for PDF preview usability._
 
 ---
 
 ### 📎 Observations
-- Markdown converted cleanly to PDF using `markdown2` and `weasyprint`
-- PDF improves user readability and sharing compared to raw `.md`
+- All toolchain steps executed as expected (`loadSectionMetadata`, `formatSection`, `mergeSections`, `finalizeDocument`, `storeToDrive`)
+- SQL error resolved by using Drive URL as fallback for `file_path`
 
 ---
 
 ### 🧱 Artifacts
-- Test script: `test_runner_store_to_drive.py`
-- Test plan: `test_plan_store_to_drive.md`
+- Source: `test_runner_assemble_artifact.py`
+- Tool: `storeToDrive.py`
+- Output: Google Drive folder and PDF
 
-Test complete and system validated for PDF-based Drive uploads.
+✅ System ready for production PDF uploads via Planner.
+Test complete.
