@@ -103,10 +103,15 @@ Enable secure, structured upload and retrieval of final artifacts via Google Dri
 
 ---
 
-## 🚧 Risks
-- OAuth misconfiguration blocks file access
-- API quota/limits could impact large runs
-- Folder naming collisions if schema not enforced
+## 🚧 Risks + Mitigations
+- **OAuth misconfiguration blocks file access**  
+  _Mitigation_: Use env-var-based credentials + local `.env` fallback; validate at init with test token exchange
+
+- **API quota/limits could impact large runs**  
+  _Mitigation_: Implement exponential backoff and log quota status; allow manual retry in CLI and future UI
+
+- **Folder naming collisions if schema not enforced**  
+  _Mitigation_: Use structured folder paths and filename timestamps; add uniqueness validators before upload
 
 ---
 
