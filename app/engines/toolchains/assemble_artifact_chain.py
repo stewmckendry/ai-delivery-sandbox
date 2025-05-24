@@ -12,7 +12,7 @@ class AssembleArtifactChain:
         self.formatter = registry.get_tool("formatSection")
         self.merger = registry.get_tool("mergeSections")
         self.finalizer = registry.get_tool("finalizeDocument")
-        self.committer = registry.get_tool("commitArtifact")
+        self.committer = registry.get_tool("storeToDrive")  # Replaces commitArtifact
 
     def run(self, inputs):
         trace = []
@@ -61,7 +61,7 @@ class AssembleArtifactChain:
         trace.append({"tool": "finalizeDocument", "output": finalized})
         logger.info("[Step 4] finalizeDocument complete")
 
-        # Step 5: Commit
+        # Step 5: Commit to Drive
         committed = self.committer.run_tool({
             "final_markdown": finalized["final_markdown"],
             "artifact_id": artifact_id,
@@ -69,9 +69,9 @@ class AssembleArtifactChain:
             "version": version,
             "title": title
         })
-        log_tool_usage("commitArtifact", "committed", committed, session_id, None, inputs)
-        trace.append({"tool": "commitArtifact", "output": committed})
-        logger.info("[Step 5] commitArtifact complete")
+        log_tool_usage("storeToDrive", "committed", committed, session_id, None, inputs)
+        trace.append({"tool": "storeToDrive", "output": committed})
+        logger.info("[Step 5] storeToDrive complete")
 
         # Save logs
         save_document_and_trace(
@@ -79,10 +79,10 @@ class AssembleArtifactChain:
             artifact_id=artifact_id,
             gate_id=gate_id,
             version=version,
-            storage_url=committed.get("drive_url") or committed.get("local_path"),
+            storage_url=committed.get("drive_url"),
             summary=f"Assembled artifact {artifact_id} gate {gate_id}",
             inputs=inputs,
-            output_path=committed.get("local_path"),
+            output_path=None,
             tool_outputs=trace
         )
         logger.info("[Step 6] Saved to Artifact and ReasoningTrace")
