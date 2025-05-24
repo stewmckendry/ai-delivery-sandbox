@@ -3236,3 +3236,14 @@
   - metadata
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP20/example_env_drive_oauth.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP20/example_env_drive_oauth.yaml
+  file_type: yaml
+  description: Configuration file for setting up local testing of Google Drive integration
+    using OAuth.
+  tags:
+  - config
+  - oauth
+  - integration
+  last_updated: '2025-05-24'
+  pod_owner: DevPod
