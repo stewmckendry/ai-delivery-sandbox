@@ -3331,3 +3331,14 @@
   - Google Drive
   last_updated: '2025-05-24'
   pod_owner: QAPod
+- path: app/tools/tool_wrappers/fetchFromDrive.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/fetchFromDrive.py
+  file_type: py
+  description: Script to fetch specific PDF files from Google Drive based on gate,
+    artifact, and version identifiers.
+  tags:
+  - tool
+  - drive
+  - integration
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
