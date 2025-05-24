@@ -39,6 +39,8 @@ class Tool:
 
     def run_tool(self, input_dict):
         input_data = self.validate(input_dict)
+        logger.info(f"Validated input_data: {input_data}")
+        logger.info(f"Type of input_data: {type(input_data)}")
         session = get_session()
 
         logger.info(f"Fetching gate reference from {GATE_REF_URL}")
