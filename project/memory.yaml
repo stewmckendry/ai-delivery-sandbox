@@ -3117,3 +3117,15 @@
   - yaml
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/test/WP18/test_plan_assemble_artifact.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP18/test_plan_assemble_artifact.md
+  file_type: md
+  description: Test plan to validate the functionality and error handling of the `assemble_artifact`
+    toolchain, including setup, execution, and verification steps.
+  tags:
+  - test
+  - validation
+  - toolchain
+  - error-handling
+  last_updated: '2025-05-24'
+  pod_owner: QAPod
