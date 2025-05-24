@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Set path to project root so imports work
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+
 from app.engines.planner_orchestrator import PlannerOrchestrator
 
 def run_successful_test():
