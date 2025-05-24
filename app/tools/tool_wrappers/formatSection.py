@@ -1,5 +1,5 @@
 from typing import Dict
-from pydantic import BaseModel
+from pydantic import BaseModel, parse_obj_as
 from jinja2 import Template
 import requests
 from app.utils.generate_artifact_template import generate_template_for_artifact
@@ -14,11 +14,8 @@ class OutputSchema(BaseModel):
     formatted_section: str
 
 class Tool:
-    def validate(self, input_dict: Dict) -> InputSchema:
-        return InputSchema(**input_dict)
-
     def run_tool(self, input_dict: Dict) -> Dict:
-        data = self.validate(input_dict)
+        data = parse_obj_as(InputSchema, input_dict)
         template_text = None
 
         response = requests.get(data.template_url)
