@@ -78,14 +78,39 @@ app/db/models/ReasoningTrace.py
 app/db/models/PromptLog.py
 
 Web: Google Drive API Python SDK docs – for auth + upload
-
+https://developers.google.com/drive/api/guides
 
 ---
 
-### 🧠 Lessons Learned (from Phase 1)
-- Use service account auth securely
-- Add file overwrite detection to avoid version confusion
-- Store Drive URLs in DB for downstream tools
+## 📚 Lessons Learned for WP20 (from WP18)
+
+### 🔄 System Design Alignment
+- Build directly on the `assemble_artifact` pipeline using consistent toolchain and validation patterns.
+- Ensure tools are modular and use schemas for input/output validation (via Pydantic).
+
+### 🔑 Authentication & Access
+- Managing OAuth credentials securely is critical; use environment configs and limit permissions.
+- Test token refresh and error handling early to avoid blocking runtime failures.
+
+### 📁 File Management
+- Structure folder paths clearly by project, gate, and artifact to ensure traceability.
+- Handle overwrite scenarios carefully — include timestamped versions if needed.
+
+### 🧠 Toolchain Logging
+- Use `log_tool_usage()` and `save_document_and_trace()` for every tool step to maintain traceability.
+- Capture Drive upload outcomes and errors in structured logs.
+
+### 📄 Document Usability
+- Users expect clean document formats — maintain markdown/PDF clarity during upload.
+- Support section-level fetch to avoid token/API limits in GPT integration.
+
+### 🚧 Testing & Fail-Safes
+- Validate integration with Drive sandbox before production scope.
+- Build CLI scripts for test uploads, fetches, and error simulations.
+
+### 🧩 Future-Proofing
+- Maintain backward compatibility with WP18’s `commitArtifact` for local runs.
+- Design folder schema and metadata mapping with scaling in mind (multi-project, multi-org).
 
 ---
 
@@ -93,15 +118,15 @@ Web: Google Drive API Python SDK docs – for auth + upload
 - Follow SOP in: `project/build/build_pods_sop.md`  
 - Coordinate at plan, build, test, and final review checkpoints.
 - Read message, WP definition, and reference files to get up to speed. Ask the Human Lead questions if anything is unclear.
-- Generate a plan and design for WP deliverables. Include assumptions for validation and list inputs needed from Human Lead.  Create a task list to track progress.  Commit the files to `project/build/wps/<wp_id>/` using the commit_and_log tool.
+- Generate a plan and design for WP deliverables. Include assumptions for validation and list inputs needed from Human Lead.  Create a task list to track progress.  Commit the files to `project/build/wps/WP20/` using the commit_and_log tool.
 - Await Human Lead approval to begin building deliverables.
 - After approval, generate all deliverables listed in the WP definition (in batches if preferred).  
 - Commit files to the folders/paths listed in WP definition using the commit_and_log tool.
 - Share GitHub file links in chat: `https://github.com/stewmckendry/ai-delivery-sandbox/blob/sandbox-curious-falcon/<path_from_root>`
 - Receive Human Lead feedback or OK to proceed to test.
-- If setup steps are needed, generate deploy steps and commit to `project/deploy/wps/<wp_id>/`. Share the link.
+- If setup steps are needed, generate deploy steps and commit to `project/deploy/wps/WP20/`. Share the link.
 - Human Lead runs deploy steps and reports back.
-- Generate test package (plan, data, CLI scripts or GPT config). Commit to `project/test/<wp_id>/`.
+- Generate test package (plan, data, CLI scripts or GPT config). Commit to `project/test/WP20/`.
 - Human Lead runs tests and reports back results.
 - Generate status update for Lead Pod. Include blockers, change requests, or highlights.
 
