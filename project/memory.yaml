@@ -3342,3 +3342,14 @@
   - integration
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/test/WP20/test_plan_fetch_from_drive.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP20/test_plan_fetch_from_drive.md
+  file_type: md
+  description: Test plan to validate the fetchFromDrive tool's ability to retrieve
+    a PDF from Google Drive using specific identifiers.
+  tags:
+  - test
+  - validation
+  - drive
+  last_updated: '2025-05-24'
+  pod_owner: QAPod
