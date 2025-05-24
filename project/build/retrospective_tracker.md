@@ -20,3 +20,29 @@
 - Log everything with trace IDs and outputs
 - Document planner-toolchain maps clearly
 - Design DB for extensibility – avoid singleton PKs
+
+## WP18 – Artifact Assembly and Routing
+
+### ✅ What Went Well
+- Strong modular architecture using toolchains and registries.
+- Effective schema validation and logging throughout.
+- Collaboration was smooth; feedback loop quickly applied to resolve issues.
+- Test coverage was practical and caught meaningful edge cases.
+- Final output quality is production-ready (clean format, ToC, markdown).
+
+### 🤯 Challenges
+- Escaping bugs in Jinja templates took time to trace.
+- Early static templates interfered with dynamic rendering.
+- Coordination of DB schema vs. doc fields required adjustments.
+- Input validation improvements mid-way required refactoring.
+
+### 💡 Lessons & Recommendations
+- Dynamic over static templates reduces maintenance.
+- Validate early using `parse_obj_as()` for consistent input models.
+- Breakpoint logging helps diagnose pipeline bugs quickly.
+- Use ordered trace to trace step-by-step logic and failures.
+
+### 🔁 Improvement Areas
+- Adopt snapshot-based unit testing for each tool.
+- Auto-validate tool registry and manifest vs. implemented wrappers.
+- Expand artifact schema documentation for easier onboarding.
