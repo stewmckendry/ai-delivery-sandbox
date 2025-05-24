@@ -378,6 +378,75 @@
         },
         "required": ["raw_draft"]
       }
+    },
+    {
+      "tool_id": "loadSectionMetadata",
+      "description": "Loads and sorts drafted artifact sections for a given gate and artifact",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "artifact_id": { "type": "string" },
+          "gate_id": { "type": "string" }
+        },
+        "required": ["artifact_id", "gate_id"]
+      }
+    },
+    {
+      "tool_id": "formatSection",
+      "description": "Formats a section using a Jinja Markdown template",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "section_id": { "type": "string" },
+          "section_text": { "type": "string" },
+          "template_url": { "type": "string" }
+        },
+        "required": ["section_id", "section_text", "template_url"]
+      }
+    },
+    {
+      "tool_id": "mergeSections",
+      "description": "Merges formatted sections into a complete markdown body",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "sections": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["sections"]
+      }
+    },
+    {
+      "tool_id": "finalizeDocument",
+      "description": "Adds title, metadata, and table of contents to a markdown document",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "document_body": { "type": "string" },
+          "version": { "type": "string" },
+          "artifact_id": { "type": "string" },
+          "gate_id": { "type": "string" }
+        },
+        "required": ["title", "document_body", "version", "artifact_id", "gate_id"]
+      }
+    },
+    {
+      "tool_id": "commitArtifact",
+      "description": "Saves finalized document locally and logs output location",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "final_markdown": { "type": "string" },
+          "artifact_id": { "type": "string" },
+          "gate_id": { "type": "string" },
+          "version": { "type": "string" },
+          "title": { "type": "string" }
+        },
+        "required": ["final_markdown", "artifact_id", "gate_id", "version", "title"]
+      }
     }
   ]
 }

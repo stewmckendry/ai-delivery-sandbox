@@ -73,15 +73,15 @@ draft_chunks NVARCHAR(MAX)                   -- optional: store each draft secti
 #### `DocumentVersionLog`
 
 ```sql
-doc_version_id TEXT PRIMARY KEY
-artifact_name TEXT
-gate INT
-version_tag TEXT
-submitted_by TEXT
-file_path TEXT
+doc_version_id VARCHAR(255) PRIMARY KEY
+artifact_name TEXT NOT NULL
+gate INT NOT NULL
+version_tag VARCHAR(255) NOT NULL
+submitted_by VARCHAR(255)
+file_path TEXT NOT NULL
 google_doc_url TEXT  -- optional Drive link to finalized artifact
-doc_format TEXT       -- pdf/html/md
-submitted_at TIMESTAMP
+doc_format VARCHAR(50) DEFAULT 'markdown'  -- pdf/html/md (default: markdown)
+submitted_at DATETIME DEFAULT GETDATE()  -- default: now()
 ```
 
 #### `AuditTrail`
