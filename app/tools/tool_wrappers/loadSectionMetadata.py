@@ -5,7 +5,9 @@ from app.db.models.ArtifactSection import ArtifactSection
 import yaml
 import requests
 from sqlalchemy import desc
+import logging
 
+logger = logging.getLogger(__name__)
 GATE_REF_URL = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
 
 def get_gate_section_order(gate_id: str, artifact_id: str) -> List[str]:
@@ -28,24 +30,30 @@ class OutputSchema(BaseModel):
 
 class Tool:
     def validate(self, input_dict):
+        logger.info(f"Validating input: {input_dict}")
         try:
             return InputSchema(**input_dict)
         except ValidationError as e:
+            logger.error(f"Input validation failed: {e}")
             raise ValueError(f"Invalid input: {e}")
 
     def run_tool(self, input_dict):
         input_data = self.validate(input_dict)
         session = get_session()
 
-        # fetch gate reference metadata to use name and section ordering
+        logger.info(f"Fetching gate reference from {GATE_REF_URL}")
         response = requests.get(GATE_REF_URL)
+        logger.info(f"Gate reference status: {response.status_code}")
         gates = yaml.safe_load(response.text)
 
         artifact_name = ""
         section_ids = []
+        logger.info(f"Parsing gates for artifact_id={input_data.artifact_id} and gate_id={input_data.gate_id}")
         for gate in gates:
+            logger.debug(f"Gate found: {gate.get('gate_id')}")
             if str(gate.get("gate_id")) == input_data.gate_id:
                 for artifact in gate.get("artifacts", []):
+                    logger.debug(f"Checking artifact_id={artifact.get('artifact_id')}")
                     if artifact.get("artifact_id") == input_data.artifact_id:
                         artifact_name = artifact.get("name")
                         section_ids = [s.get("section_id") for s in artifact.get("sections", [])]
