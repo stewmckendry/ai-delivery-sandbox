@@ -5012,3 +5012,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add inline comments and note project_id schema gap
+- timestamp: '2025-05-24T15:41:45.477294'
+  path: project/build/wps/WP20/drive_structure.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add note to include project_id in folder routing when schema supports it
