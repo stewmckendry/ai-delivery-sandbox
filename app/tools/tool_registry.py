@@ -49,7 +49,7 @@ class ToolRegistry:
 
     def _validate(self, input_dict, schema):
         try:
-            logger.info(f"Validating input against schema: {schema}")
+            logger.info(f"Validating input: {input_dict} against schema: {schema}")
             validate(instance=input_dict, schema=schema)
         except ValidationError as e:
             logger.error(f"Validation error: {e.message}")
