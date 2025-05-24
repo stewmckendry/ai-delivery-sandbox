@@ -8,8 +8,8 @@ Enable secure export of final artifacts and key files to Google Drive for downst
 - OAuth integration (via service account)
 - Drive folder routing by project, gate, artifact
 - Upload + overwrite detection
-- Replace `commitArtifact` logic from WP18
-- Add `storeToDrive` + `fetchFromDrive` tools
+- Replace `commitArtifact` logic from WP18 that stores artifact to disk as part of the 'assemble_artifact' toolchain - to be replaced by `storeToDrive`
+- Add `storeToDrive` + `fetchFromDrive` tools (following the Tool class pattern like 'commitArtifact')
 - Populate and persist Drive URL to `DocumentVersionLog`
 - Support markdown and PDF format upload
 
@@ -28,10 +28,37 @@ Enable secure export of final artifacts and key files to Google Drive for downst
 |-----------|-------------|
 | `app/tools/tool_wrappers/storeToDrive.py` | Uploads files to Drive under structured folder |
 | `app/tools/tool_wrappers/fetchFromDrive.py` | Retrieves and previews files from Drive |
-| `project/config/drive_structure.yaml` | Metadata → folder path mapping |
+| `project/reference/drive_structure.yaml` | Metadata → folder path mapping |
 | `project/test/WP20/test_drive_storage.py` | Toolchain tests |
 | `project/test/WP20/test_results.md` | Logs of outcomes |
-| `project/docs/WP20_implementation_notes.md` | Drive API, OAuth, structure design |
+| `project/build/wps/WP20/WP20_implementation_notes.md` | Drive API, OAuth, structure design |
+| `project/build/wps/WP20/gpt_user_flow_with_drive.md` | GPT user flow with Drive integration |
+
+### ✅ WP20 Task List
+
+#### 🎨 Design
+- Define folder naming logic
+- Identify metadata schema for Drive routing
+
+#### 🔐 OAuth Setup
+- Create and configure service account
+- Setup credentials in secure config
+
+#### 🛠️ Build Tools
+- `storeToDrive.py`: upload logic + overwrite detection
+- `fetchFromDrive.py`: retrieval and URL return
+
+#### 🔧 Patch Integration
+- Replace WP18 commit logic
+- Log Drive URL to `DocumentVersionLog`
+
+#### 🧪 Testing
+- Upload test artifacts and validate fetch
+- Handle errors (auth fail, quota, duplicates)
+
+#### 📄 Docs + Review
+- Write implementation spec and results
+- Final review and handoff
 
 ### ✅ Acceptance Criteria
 - [ ] Files upload to correct folders
