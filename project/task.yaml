@@ -511,6 +511,7 @@ tasks:
     - project/test/WP20/test_runner_fetch_from_drive.py
     - project/test/WP20/test_result_fetch_file.md
     - project/build/wps/WP20/WP20_implementation_notes.md
+    - project/build/wps/WP20/gpt_user_flow_with_drive.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
