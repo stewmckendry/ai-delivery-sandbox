@@ -6,3 +6,7 @@
 | WP9  | ✅ Complete  | Unified ingestion works; DB logging + memory snapshot stable  | Separate runners from tools; align schema early           | [WP9 Retrospective](./WP9_retrospective.md)       |
 | WP16 | ✅ Complete  | Consistent metadata schema key to toolchain reuse; log trace via PromptLog; vector DB setup non-trivial in cloud | Validate schema fields in test payloads; switch from print to logger early | [WP16 Retrospective](./WP16_retrospective.md)     |
 | WP17b | ✅ Complete  | End-to-end toolchain validation; GPT wrapper design matters     | Inject auth context early; simplify tool registration       | [WP17b Retrospective](./WP17b_generate_section_retrospective.md) |
+| Improve input validation with `parse_obj_as()` | WP18 | Validation upgrades introduced mid-build | WP5 | Unassigned |
+| Auto-validate registry and manifest alignment | WP18 | Tool registry drifted from implementation | WP3b | Unassigned |
+| Expand artifact schema documentation | WP18 | Onboarding for new devs was hindered by unclear schema | WP1b or WP12 | Unassigned |
+| Adopt snapshot-based unit testing | WP18 | Existing tests missed regressions in rendering output | WP5 | Unassigned |

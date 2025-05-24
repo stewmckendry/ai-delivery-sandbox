@@ -51,3 +51,8 @@ Tracks unfinished or deferred work from each WP.
 | Support document-level workflows: confirmation, approval, versioning | WP17b | Trigger logic and status models not yet implemented | WP6 | Unassigned |
 | Token-aware chunking utility (Tiktoken-based) | WP17b | Current chunking is line-based, not token-optimized | WP5 or WP2 | Unassigned |
 | Add `chunk_id`, `position` for fine-grained traceability | WP17b | Needed for per-chunk edits and audit logs | WP6 or WP5 | Unassigned |
+| Drive upload integration | WP18 | Placeholder only; actual Drive service not wired | WP20 | Unassigned |
+| GPT interface toolchain invocation + chunk-safe rendering | WP18 | Not integrated with GPT UX layer; chunk limits need handling | WP16 or WP12 | Unassigned |
+| View/download final docs via UX and CLI | WP18 | No UI or CLI endpoint yet for output access | WP6 or WP16 | Unassigned |
+| CI test suite for full toolchain validation | WP18 | Tests are local/manual; CI workflow missing | WP3c or WP5 | Unassigned |
+
