@@ -3040,3 +3040,14 @@
   - schema
   last_updated: '2025-05-24'
   pod_owner: DeliveryPod
+- path: project/reference/artifact_templates/investment_proposal_concept.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/artifact_templates/investment_proposal_concept.md
+  file_type: md
+  description: Template for creating investment proposals with placeholders for dynamic
+    content
+  tags:
+  - template
+  - proposal
+  - artifact
+  last_updated: '2025-05-24'
+  pod_owner: DeliveryPod
