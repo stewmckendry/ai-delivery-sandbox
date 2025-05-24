@@ -4831,3 +4831,8 @@
   committed_by: GPTPod
   message: Refactor formatSection to render per-section snippet using section_title
     and text
+- timestamp: '2025-05-24T04:55:23.231310'
+  path: app/engines/toolchains/assemble_artifact_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update formatter call to use section_title and remove template_url
