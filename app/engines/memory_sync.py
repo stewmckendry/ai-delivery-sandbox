@@ -10,7 +10,7 @@ from app.engines.project_profile_engine import ProjectProfileEngine
 from sqlalchemy.orm import Session
 
 
-def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id):
+def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id, project_id=None):
     session = get_session()
 
     draft_chunks = None
@@ -32,7 +32,8 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
         sources=sources,
         status="draft",
         generated_by="generate_section",
-        timestamp=datetime.datetime.utcnow()
+        timestamp=datetime.datetime.utcnow(),
+        project_id=project_id
     )
 
     trace = ReasoningTrace(
@@ -41,7 +42,8 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
         steps=json.dumps(tool_outputs),
         created_by=user_id,
         created_at=datetime.datetime.utcnow(),
-        draft_chunks=json.dumps(draft_chunks) if draft_chunks else None
+        draft_chunks=json.dumps(draft_chunks) if draft_chunks else None,
+        project_id=project_id
     )
 
     session.add(artifact)
@@ -57,6 +59,10 @@ def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id
     full_input = json.dumps(metadata, indent=2) if metadata else None
     full_output = json.dumps(output_summary, indent=2) if isinstance(output_summary, (dict, list)) else str(output_summary)
 
+    project_id = None
+    if metadata:
+        project_id = metadata.get("project_id") or metadata.get("project_profile", {}).get("project_id")
+
     prompt_log = PromptLog(
         tool=tool_name,
         input_summary=str(input_summary),
@@ -66,6 +72,7 @@ def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id
         session_id=session_id,
         user_id=user_id,
         timestamp=datetime.datetime.utcnow(),
+        project_id=project_id
     )
 
     db.add(prompt_log)
@@ -83,6 +90,8 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
         step["tool_version"] = output.get("tool_version", "v1")
         step["schema_version"] = output.get("schema_version", "1.0")
 
+    project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
+
     doc_log = DocumentVersionLog(
         doc_version_id=session_id,
         artifact_name=artifact_id,
@@ -92,7 +101,8 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
         file_path=output_path,
         google_doc_url=storage_url,
         doc_format="markdown",
-        submitted_at=datetime.datetime.utcnow()
+        submitted_at=datetime.datetime.utcnow(),
+        project_id=project_id
     )
     session.add(doc_log)
 
@@ -102,7 +112,8 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
         steps=json.dumps(tool_outputs),
         created_by="assemble_artifact",
         created_at=datetime.datetime.utcnow(),
-        draft_chunks=None
+        draft_chunks=None,
+        project_id=project_id
     )
     session.add(trace)
     session.commit()
