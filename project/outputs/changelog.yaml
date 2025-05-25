@@ -5487,3 +5487,9 @@
   committed_by: GPTPod
   message: Add project_id support to artifact, trace, prompt log, and document version
     DB writes
+- timestamp: '2025-05-25T21:49:22.486015'
+  path: app/engines/memory_sync.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add project_id support to all relevant DB write paths in memory_sync.py
+    (ORM version)
