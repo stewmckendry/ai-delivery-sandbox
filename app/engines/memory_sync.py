@@ -6,6 +6,7 @@ from app.db.models.ArtifactSection import ArtifactSection
 from app.db.models.ReasoningTrace import ReasoningTrace
 from app.db.models.PromptLog import PromptLog
 from app.db.models.DocumentVersionLog import DocumentVersionLog
+from app.engines.project_profile_engine import ProjectProfileEngine
 from sqlalchemy.orm import Session
 
 
@@ -105,3 +106,11 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
     )
     session.add(trace)
     session.commit()
+
+
+def save_project_profile(profile_dict):
+    return ProjectProfileEngine().save_profile(profile_dict)
+
+
+def load_project_profile(project_id):
+    return ProjectProfileEngine().load_profile(project_id)
