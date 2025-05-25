@@ -5408,3 +5408,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Inject project_profile context into section_synthesizer prompt
+- timestamp: '2025-05-25T20:51:05.451038'
+  path: app/tools/tool_wrappers/storeToDrive.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add project_id-aware subfolder routing to storeToDrive
