@@ -43,12 +43,13 @@ What is PolicyGPT?
 Call /system/fetchFiles in batch mode to retrieve the following files (use the above repo_name and branch):
 Break the files into groups to avoid size limits.
 
-#### Your Work Assignment (WP18)
-project/build/wps/WP18/WP18_definition.md
+#### Your Work Assignment (WP7)
+project/build/wps/WP7/WP7_definition.md
 
 #### Other Work Packages & Tools
 project/build/work_package_tracker.md
 project/build/tool_implementation_tracker.md
+project/build/retrospective_tracker.md
 
 #### System Design + Reference Files
 project/system_design/dense_artifact_generation.md
@@ -56,6 +57,8 @@ project/build/wps/WP17b/toolchain_registration_guide.md
 project/build/wps/WP17b/WP17b_exit_report.md
 project/build/wps/WP17b/WP17b_exit_report_part2.md
 project/build/wps/WP17b/WP17b_chunking_and_schema_notes.md
+project/build/wps/WP20/WP20_implementation_notes.md
+project/build/wps/WP20/WP20_exit_report.md
 project/system_design/db_schema_notes_v3.md
 project/system_design/system_architecture_v2.md
 project/system_design/tool_catalog_v3.md
@@ -70,6 +73,10 @@ app/engines/toolchains/generate_section_chain.py
 app/tools/tool_wrappers/memory_retrieve.py
 app/tools/tool_wrappers/section_synthesizer.py
 app/tools/tool_wrappers/section_refiner.py
+app/engines/toolchains/assemble_artifact_chain.py
+app/tools/tool_wrappers/storeToDrive.py
+app/tools/tool_wrappers/fetchFromDrive.py
+project/reference/drive_structure.yaml
 app/tools/tool_wrappers/uploadTextInput.py
 app/tools/tool_registry.py
 app/engines/api_router.py
@@ -79,14 +86,8 @@ app/db/database.py
 app/db/models/ArtifactSection.py
 app/db/models/ReasoningTrace.py
 app/db/models/PromptLog.py
-
-
----
-
-### 🧠 Lessons Learned (from Phase 1)
-- Profile should evolve over session, not be static
-- Use memory + database for persistence
-- Ensure tools can update and read profile mid-session
+app/db/models/DocumentVersionLog.py
+project/build/wps/WP12/code_orchestration_mcp_insights.md 
 
 ---
 

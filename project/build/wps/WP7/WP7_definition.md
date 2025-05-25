@@ -22,6 +22,12 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Validate that multiple active projects can coexist and be correctly switched within a session.
 - Dynamically extract `project_id`, `project_type`, or sector metadata from early WP9 tool logs (e.g. `uploadTextInput`, `uploadFileInput`) and use it to seed or update the `ProjectProfile`.
 - Include fallback logic to initialize minimal profile from any WP9 ingestion input that does not contain `project_id` explicitly but may imply it through sector or title keywords.
+- Expand `ProjectProfile` to support nested or linked references (e.g., `related_projects`, `stakeholders`, `prior_decisions`, `risk_registry`).
+- Enable graph-style queries or views for related metadata (e.g., “what is linked to this project by funding stream or geography?”).
+- Persist relationships using `foreign keys` or YAML paths.
+- Profile should grow over time as new artifacts are created or new tools contribute metadata.
+- Each `ArtifactSection` can contribute fields (e.g., “community engagement method”) back to profile.
+- Define how `ProjectProfile` dynamically affects toolchain selection or behavior (e.g., skip risk planning for < $1M projects).
 
 
 **Out of Scope:**
@@ -44,7 +50,13 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 | `project/build/wps/WP7/WP7_multisession_test_plan.md` | Test cases for switching profiles across sessions and toolchains |
 | `app/tools/project_profile_initializer.py`    | New utility that auto-creates or updates a `ProjectProfile` from PromptLog entries |
 | `project/reference/ingestion_profile_mapping.md` | Document describing how WP9 tools can provide data to initialize/update WP7 profile fields |
-
+| `project/reference/project_profile_relations.md` | Defines supported entity relationships in the project graph. |
+| `app/tools/project_profile_merger.py` | Utility for mapping outputs from tools into profile fields using field map logic. |
+| `project/reference/project_profile_field_classification.md` | Categorizes profile fields as:
+    - `static` (e.g., project_id, sector)
+    - `evolving` (e.g., approval status, funding amount)
+    - `derived` (e.g., current gate status, draft completeness) |
+| `project/reference/profile_toolchain_adaptation_rules.md` | Logic or examples for profile-driven toolchain customization. |
 
 
 ### 📄 Supporting Documentation (to generate)
@@ -117,6 +129,9 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - [ ] Planner injects project context from `ProjectProfile` into every tool in the chain
 - [ ] `project_id` is passed to and logged in `DocumentVersionLog`, ReasoningTrace, and any generated artifacts.
 - [ ] Switching between project profiles during active sessions behaves correctly and cleanly reloads context.
+- [ ] Ensure that multiple artifacts (e.g., Risk Plan, Funding Plan) can reference and contribute to the same active profile.
+- [ ] Support profile-aware view of “what’s done and what’s pending” across gates.
+
 
 
 ### 💪 Tasks
