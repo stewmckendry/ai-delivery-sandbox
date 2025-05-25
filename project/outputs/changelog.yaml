@@ -5413,3 +5413,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add project_id-aware subfolder routing to storeToDrive
+- timestamp: '2025-05-25T20:54:19.807389'
+  path: app/engines/toolchains/assemble_artifact_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Pass project_id to storeToDrive from project_profile context
