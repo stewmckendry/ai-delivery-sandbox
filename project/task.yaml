@@ -515,6 +515,7 @@ tasks:
     - project/build/wps/WP20/WP20_exit_report.md
     - project/build/wps/WP20/WP20_retrospective.md
     - project/build/wps/WP7/WP7_design_plan.md
+    - project/build/wps/WP7/WP7_task_list.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
