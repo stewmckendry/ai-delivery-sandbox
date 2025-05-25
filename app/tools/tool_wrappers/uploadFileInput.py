@@ -15,7 +15,8 @@ class Tool:
 
     def run_tool(self, input_dict):
         self.validate(input_dict)
-        metadata = input_dict.get("metadata")
+        metadata = input_dict.get("metadata") or {}
+        project_id = metadata.get("project_id")
 
         if "file_path" in input_dict:
             file_path = input_dict["file_path"]
@@ -40,4 +41,10 @@ class Tool:
             metadata=entry.get("metadata")
         )
 
-        return {"status": "success", "path": out_path}
+        return {
+            "status": "success",
+            "path": out_path,
+            "text": raw,
+            "metadata": metadata,
+            "project_id": project_id
+        }
