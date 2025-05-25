@@ -3,6 +3,7 @@ from typing import Dict, Any
 
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.engines.toolchains.assemble_artifact_chain import AssembleArtifactChain
+from app.engines.toolchains.IngestInputChain import IngestInputChain
 from app.engines.memory_sync import load_project_profile
 
 logger = logging.getLogger(__name__)
@@ -26,4 +27,7 @@ class PlannerOrchestrator:
             return GenerateSectionChain().run(inputs)
         elif intent == "assemble_artifact":
             return AssembleArtifactChain().run(inputs)
+        elif intent == "ingest_input":
+            return IngestInputChain().run(inputs)
+
         raise ValueError(f"No toolchain defined for intent: {intent}")
