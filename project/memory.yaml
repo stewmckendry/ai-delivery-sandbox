@@ -3471,3 +3471,14 @@
   - schema
   last_updated: '2025-05-25'
   pod_owner: DevPod
+- path: app/engines/project_profile_engine.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/project_profile_engine.py
+  file_type: py
+  description: Module for managing project profiles, including saving, loading, and
+    validating profile data.
+  tags:
+  - database
+  - model
+  - validation
+  last_updated: '2025-05-25'
+  pod_owner: DevPod
