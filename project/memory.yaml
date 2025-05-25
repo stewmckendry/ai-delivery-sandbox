@@ -3494,3 +3494,14 @@
   - processing
   last_updated: '2025-05-25'
   pod_owner: DeliveryPod
+- path: project/reference/project_profile_schema.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/project_profile_schema.yaml
+  file_type: yaml
+  description: Schema definition for project profiles, detailing structure and data
+    types for project attributes.
+  tags:
+  - schema
+  - config
+  - project
+  last_updated: '2025-05-25'
+  pod_owner: DeliveryPod
