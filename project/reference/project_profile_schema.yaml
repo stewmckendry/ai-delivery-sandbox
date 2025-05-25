@@ -1,0 +1,15 @@
+project_profile:
+  project_id: string
+  title: string
+  sponsor: string
+  project_type: string
+  total_budget: number
+  start_date: string  # ISO format yyyy-mm-dd
+  end_date: string    # ISO format yyyy-mm-dd
+  strategic_alignment: string
+  current_gate: integer
+  scope_summary: string
+  key_stakeholders: string  # Comma-separated or JSON list
+  major_risks: string
+  resource_summary: string
+  last_updated: string  # ISO timestamp format
