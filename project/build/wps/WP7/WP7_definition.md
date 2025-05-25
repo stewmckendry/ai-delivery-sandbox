@@ -14,6 +14,10 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Automatically updating profile as part of the background tool chaining process
 - **Drive folder routing enhancement**: Embed `project_id` from ProjectProfile into Drive pathing logic to support structured output organization (e.g., `/Drive/Projects/<project_id>/`)
 - **Toolchain context injection**: Ensure `project_id`, `project_type`, and other profile fields are passed to downstream tools for contextual drafting, validation, and logging
+- Provide `project_id`, `project_type`, and other fields to `generate_section` and related toolchains via planner injection.
+- Ensure `ArtifactSection` saves and references the `project_id` for multi-project environments.
+- Extend `ReasoningTrace` logging to include active `project_profile` snapshot or hash.
+- Support project profile scaffolding from early PromptLog inputs (e.g., project name or sector captured during user setup).
 
 
 **Out of Scope:**
@@ -29,6 +33,9 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 | `app/tools/project_profile_updater.py` | Background logic to update the project profile dynamically during tool execution |
 | `project/reference/drive_folder_schema.md` | Describes how `project_id` and related profile fields should map to Drive folders |
 | `app/utils/project_context.py` | Utility for injecting project context from the live profile into toolchain requests and logs |
+| `app/utils/profile_initializer.py` | Detects and initializes new profiles from early session inputs |
+| `project/reference/project_injection_schema.md` | Defines which fields are injected where: tool, planner, logs, or DB |
+
 
 
 ### 📄 Supporting Documentation (to generate)
@@ -44,6 +51,9 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 | `project/reference/drive_folder_schema.md` | Mapping rules from `project_id` to structured Google Drive paths |
 | `project/docs/tools/showProfile.md` | User-facing documentation for how to invoke and interpret profile inspection |
 | `project/docs/tools/projectProfileUpdater.md` | Developer guide to profile updater logic and integration points |
+| `project/build/wps/WP7/WP7_integration_map.md` | Diagrams where project profile connects to WP17b (ArtifactSection, ReasoningTrace, PromptLog) |
+| `project/docs/guides/project_context_handling.md` | Guidance for developers on reading and writing to the profile in toolchains |
+
 
 ### 🔨 Task Breakdown for WP7
 
@@ -110,7 +120,13 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Treat the profile as an evolving state: not static YAML, but a live config context.
 - Must persist between sessions and reload on reconnect.
 
-### 🧠 Clarifications
-- 🧠 The profile is updated as part of the **toolchain planner execution** – tools can write metadata back to the profile.
+### 🧠 Clarifications 
+- 🧠 The profile is updated as part of the **toolchain planner execution** – tools can write metadata back to the profile. Ensure the planner supports:
+    - Injecting the current `project_profile` into each tool’s `input_dict`
+    - Logging active `project_id` and metadata into each tool’s PromptLog and ReasoningTrace step
+    - Switching profiles on session resume or user change
 - 🔄 While the YAML file seeds the profile, live updates occur in memory and in the DB.
 - 👁 Users can inspect it at any time via the `showProfile` tool.
+- Keep project context isolated and injectable – never assume global state.
+- Model `project_profile` as both memory and persisted config to support dynamic use and versioning.
+- Include project metadata in every downstream action – it’s the basis for traceability and reuse.

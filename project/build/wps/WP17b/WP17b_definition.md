@@ -10,6 +10,11 @@ Extend the capabilities of PolicyGPT to generate structured draft content for ea
 - Align to `dense_artifact_generation.md` design patch.
 - Track outputs in `ReasoningTrace` and `ArtifactSection` tables.
 - Wire into planner and confirm-to-draft UX
+- Provide `project_id`, `project_type`, and other fields to `generate_section` and related toolchains via planner injection.
+- Ensure `ArtifactSection` saves and references the `project_id` for multi-project environments.
+- Extend `ReasoningTrace` logging to include active `project_profile` snapshot or hash.
+- Support project profile scaffolding from early PromptLog inputs (e.g., project name or sector captured during user setup).
+
 
 **Includes:**
 - Tool: `compose_and_cite`
