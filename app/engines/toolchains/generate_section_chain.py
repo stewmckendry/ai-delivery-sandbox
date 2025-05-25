@@ -19,6 +19,7 @@ class GenerateSectionChain:
         artifact_id = inputs.get("artifact")
         section_id = f"{artifact_id}_{inputs.get('section')}"
         gate_id = inputs.get("gate_id", "0")
+        project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
         memory_input = {**inputs}
         if "project_profile" in inputs:
@@ -47,7 +48,8 @@ class GenerateSectionChain:
             text=refined["raw_draft"],
             sources=draft.get("prompt_used"),
             tool_outputs=trace,
-            user_id=user_id
+            user_id=user_id,
+            project_id=project_id
         )
         logger.info("[Step 4] Saved to ArtifactSection and ReasoningTrace")
 
