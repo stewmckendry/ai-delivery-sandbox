@@ -20,7 +20,11 @@ class GenerateSectionChain:
         section_id = f"{artifact_id}_{inputs.get('section')}"
         gate_id = inputs.get("gate_id", "0")
 
-        memory = self.memory_tool.run_tool(inputs)
+        memory_input = {**inputs}
+        if "project_profile" in inputs:
+            memory_input["project_profile"] = inputs["project_profile"]
+
+        memory = self.memory_tool.run_tool(memory_input)
         memory_wrapped = {"memory": memory}
         log_tool_usage("memory_retrieve", "retrieved memory", memory, session_id, user_id, inputs)
         trace.append({"tool": "memory_retrieve", "output": memory_wrapped})
