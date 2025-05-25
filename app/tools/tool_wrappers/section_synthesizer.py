@@ -22,15 +22,30 @@ class Tool:
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
 
+        profile = input_dict.get("project_profile", {})
+        profile_context = ""
+        if profile:
+            profile_context = f"""
+Project Title: {profile.get('title', 'N/A')}
+Scope Summary: {profile.get('scope_summary', '')}
+Strategic Alignment: {profile.get('strategic_alignment', '')}
+Stakeholders: {profile.get('key_stakeholders', '')}
+Project Type: {profile.get('project_type', '')}
+            """
+
         prompt = f"""
-        Based on the following user-provided inputs, draft a coherent and concise section draft. Keep it focused, factual, and well-structured.
+Based on the following user-provided inputs, draft a coherent and concise section draft. Keep it focused, factual, and well-structured.
 
-        Artifact: {artifact}
-        Section: {section}
-        Context:
-        {context_str}
+Artifact: {artifact}
+Section: {section}
 
-        Begin the draft below:
+Project Context:
+{profile_context}
+
+User Memory:
+{context_str}
+
+Begin the draft below:
         """
 
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
