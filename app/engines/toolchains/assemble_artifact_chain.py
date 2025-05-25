@@ -68,7 +68,8 @@ class AssembleArtifactChain:
             "artifact_id": artifact_id,
             "gate_id": gate_id,
             "version": version,
-            "title": title
+            "title": title,
+            "project_id": profile.get("project_id")
         })
         log_tool_usage("storeToDrive", "committed", committed, session_id, None, inputs)
         trace.append({"tool": "storeToDrive", "output": committed})
