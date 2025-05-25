@@ -5398,3 +5398,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Inject project_profile into memory step in generate_section_chain
+- timestamp: '2025-05-25T20:41:24.124565'
+  path: app/engines/toolchains/assemble_artifact_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Patch assemble_artifact_chain to use project_profile title if available
