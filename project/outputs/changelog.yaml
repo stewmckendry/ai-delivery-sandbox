@@ -5403,3 +5403,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Patch assemble_artifact_chain to use project_profile title if available
+- timestamp: '2025-05-25T20:48:57.852056'
+  path: app/tools/tool_wrappers/section_synthesizer.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Inject project_profile context into section_synthesizer prompt
