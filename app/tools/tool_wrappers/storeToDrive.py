@@ -28,6 +28,7 @@ class InputSchema(BaseModel):
     gate_id: str
     version: str
     title: str
+    project_id: str = None
 
 class OutputSchema(BaseModel):
     drive_url: str
@@ -45,13 +46,11 @@ class Tool:
         )
         service = build("drive", "v3", credentials=creds)
 
-        # Build subfolder structure under shared folder ID
         folder_id = self._get_or_create_subfolders(service, FOLDER_ID, data)
 
         filename = f"{data.artifact_id}_v{data.version}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.pdf"
         logger.info("Rendering markdown to PDF: %s", filename)
 
-        # Convert markdown to PDF
         html_content = markdown2.markdown(data.final_markdown)
         pdf_bytes = HTML(string=html_content).write_pdf()
 
@@ -62,7 +61,6 @@ class Tool:
         }
         file = service.files().create(body=file_metadata, media_body=media, fields="id, webViewLink").execute()
 
-        # Share file with configured emails
         for email in SHARE_WITH:
             permission = {
                 'type': 'user',
@@ -85,6 +83,9 @@ class Tool:
             file = service.files().create(body=metadata, fields="id").execute()
             return file["id"]
 
-        gate_folder = find_or_create(f"gate_{data.gate_id}", root_id)
+        current = root_id
+        if data.project_id:
+            current = find_or_create(data.project_id, current)
+        gate_folder = find_or_create(f"gate_{data.gate_id}", current)
         artifact_folder = find_or_create(data.artifact_id, gate_folder)
         return artifact_folder
