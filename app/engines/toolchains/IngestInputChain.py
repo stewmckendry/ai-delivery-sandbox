@@ -2,14 +2,28 @@ import os
 from openai import OpenAI
 from datetime import datetime
 from app.engines.project_profile_engine import ProjectProfileEngine
+from app.tools.tool_registry import ToolRegistry
 
 class IngestInputChain:
     def __init__(self):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.registry = ToolRegistry()
 
     def run(self, inputs: dict):
-        raw_text = inputs.get("text")
-        metadata = inputs.get("metadata", {})
+        method = inputs.get("input_method")
+        if method not in ["text", "file", "link"]:
+            raise ValueError("input_method must be one of: text, file, link")
+
+        tool_map = {
+            "text": "uploadTextInput",
+            "file": "uploadFileInput",
+            "link": "uploadLinkInput"
+        }
+        upload_tool = self.registry.get_tool(tool_map[method])
+        upload_result = upload_tool.run_tool(inputs)
+
+        raw_text = upload_result.get("text")
+        metadata = upload_result.get("metadata", {})
         user_id = inputs.get("user_id")
 
         project_profile = self.generate_project_profile(raw_text, metadata)
@@ -21,13 +35,19 @@ class IngestInputChain:
 
         try:
             existing = ProjectProfileEngine().load_profile(project_id)
-            existing.update(project_profile)
+            existing.update({k: v for k, v in project_profile.items() if v})
             project_profile = existing
         except:
             pass
 
         ProjectProfileEngine().save_profile(project_profile)
-        return {"status": "profile_saved", "project_id": project_id, "project_profile": project_profile}
+        return {
+            "status": "profile_saved",
+            "project_id": project_id,
+            "project_profile": project_profile,
+            "text": raw_text,
+            "metadata": metadata
+        }
 
     def generate_project_profile(self, text: str, metadata: dict) -> dict:
         schema = """
