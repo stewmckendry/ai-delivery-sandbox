@@ -3460,3 +3460,14 @@
   - config
   last_updated: '2025-05-25'
   pod_owner: DevPod
+- path: migrations/versions/wp7_create_project_profile_table.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/migrations/versions/wp7_create_project_profile_table.py
+  file_type: py
+  description: Migration script to create the project_profile table and add project_id
+    columns to related tables.
+  tags:
+  - migration
+  - database
+  - schema
+  last_updated: '2025-05-25'
+  pod_owner: DevPod
