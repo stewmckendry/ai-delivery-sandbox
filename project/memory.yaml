@@ -3505,3 +3505,13 @@
   - project
   last_updated: '2025-05-25'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/confirmProjectProfile.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/confirmProjectProfile.py
+  file_type: py
+  description: Script to load and confirm project profiles using a defined schema
+  tags:
+  - schema
+  - flow
+  - logging
+  last_updated: '2025-05-25'
+  pod_owner: DeliveryPod
