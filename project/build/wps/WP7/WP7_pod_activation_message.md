@@ -11,6 +11,10 @@
 ### 🔍 Context
 PolicyGPT now supports dynamic project profiles that adjust drafting and validation logic based on the context of a public infrastructure initiative. WP7 implements the engine that stores, updates, and exposes this live configuration state.
 
+What is PolicyGPT?
+- PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
+- Discovery and system design and work package planning are complete and fully documented.  Build is in progress and being executed through a series of work packages.
+
 ---
 
 ### 🗿 Instructions
