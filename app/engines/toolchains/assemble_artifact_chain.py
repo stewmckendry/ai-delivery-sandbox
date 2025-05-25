@@ -27,7 +27,8 @@ class AssembleArtifactChain:
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
         logger.info("[Step 1] loadSectionMetadata complete")
 
-        title = loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
+        profile = inputs.get("project_profile", {})
+        title = profile.get("title") or loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
 
         # Step 2: Format
         formatted_sections = []
