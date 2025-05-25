@@ -5493,3 +5493,9 @@
   committed_by: GPTPod
   message: Add project_id support to all relevant DB write paths in memory_sync.py
     (ORM version)
+- timestamp: '2025-05-25T21:54:02.781023'
+  path: app/tools/tool_wrappers/uploadTextInput.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Propagate project_id from metadata in uploadTextInput and return it in
+    output
