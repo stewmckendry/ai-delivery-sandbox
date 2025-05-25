@@ -5504,3 +5504,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add project_id propagation and return to uploadFileInput tool
+- timestamp: '2025-05-25T22:42:09.052288'
+  path: app/tools/tool_wrappers/uploadLinkInput.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Propagate and return project_id in uploadLinkInput
