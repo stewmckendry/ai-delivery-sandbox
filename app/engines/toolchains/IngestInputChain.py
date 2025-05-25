@@ -26,7 +26,13 @@ class IngestInputChain:
         metadata = upload_result.get("metadata", {})
         user_id = inputs.get("user_id")
 
-        project_profile = self.generate_project_profile(raw_text, metadata)
+        try:
+            project_id = metadata.get("project_id")
+            existing = ProjectProfileEngine().load_profile(project_id)
+        except:
+            existing = {}
+
+        project_profile = self.generate_project_profile(raw_text, metadata, existing)
         project_profile["last_updated"] = datetime.utcnow().isoformat()
 
         project_id = project_profile.get("project_id")
@@ -34,9 +40,9 @@ class IngestInputChain:
             raise ValueError("Missing project_id in generated profile")
 
         try:
-            existing = ProjectProfileEngine().load_profile(project_id)
-            existing.update({k: v for k, v in project_profile.items() if v})
-            project_profile = existing
+            old = ProjectProfileEngine().load_profile(project_id)
+            old.update({k: v for k, v in project_profile.items() if v})
+            project_profile = old
         except:
             pass
 
@@ -49,7 +55,7 @@ class IngestInputChain:
             "metadata": metadata
         }
 
-    def generate_project_profile(self, text: str, metadata: dict) -> dict:
+    def generate_project_profile(self, text: str, metadata: dict, existing: dict = None) -> dict:
         schema = """
 project_profile:
   project_id: string
@@ -68,11 +74,15 @@ project_profile:
   last_updated: string
         """
 
+        prior = "".join([f"{k}: {v}\n" for k, v in existing.items()]) if existing else ""
+        prior_text = f"\nExisting profile:\n{prior}" if prior else ""
+
         prompt = f"""
 You are a project analyst. From the following text, extract a structured project profile in this format:
 {schema}
 
 Only include data present in the input. Leave missing fields blank.
+{prior_text}
 
 INPUT TEXT:
 {text}
