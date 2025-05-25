@@ -18,6 +18,10 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Ensure `ArtifactSection` saves and references the `project_id` for multi-project environments.
 - Extend `ReasoningTrace` logging to include active `project_profile` snapshot or hash.
 - Support project profile scaffolding from early PromptLog inputs (e.g., project name or sector captured during user setup).
+- Ensure `project_id` is captured and passed to `assemble_artifact` and other toolchains, and logged in `DocumentVersionLog` and Drive outputs (WP18/WP20 compatibility).
+- Validate that multiple active projects can coexist and be correctly switched within a session.
+- Dynamically extract `project_id`, `project_type`, or sector metadata from early WP9 tool logs (e.g. `uploadTextInput`, `uploadFileInput`) and use it to seed or update the `ProjectProfile`.
+- Include fallback logic to initialize minimal profile from any WP9 ingestion input that does not contain `project_id` explicitly but may imply it through sector or title keywords.
 
 
 **Out of Scope:**
@@ -35,6 +39,11 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 | `app/utils/project_context.py` | Utility for injecting project context from the live profile into toolchain requests and logs |
 | `app/utils/profile_initializer.py` | Detects and initializes new profiles from early session inputs |
 | `project/reference/project_injection_schema.md` | Defines which fields are injected where: tool, planner, logs, or DB |
+| `project/reference/sample_project_profiles/` | Sample YAMLs by sector, project type, and size for test and bootstrapping |
+| `project/docs/tools/project_context_log_debug.md` | Debugging tips and log samples for tracing project profile usage |
+| `project/build/wps/WP7/WP7_multisession_test_plan.md` | Test cases for switching profiles across sessions and toolchains |
+| `app/tools/project_profile_initializer.py`    | New utility that auto-creates or updates a `ProjectProfile` from PromptLog entries |
+| `project/reference/ingestion_profile_mapping.md` | Document describing how WP9 tools can provide data to initialize/update WP7 profile fields |
 
 
 
@@ -73,16 +82,26 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
    - Define folder schema using `project_id` as root path component
    - Create mapping logic or helper utility
 
-5. **Validation + Testing**
+5. **📦 Toolchain Wiring (with WP9 Tools)**
+    - **Enhance Toolchain Context Injection:**
+        - Automatically attach active `project_profile` fields to every tool call in the WP9 ingestion chain (including `uploadTextInput`, `uploadLinkInput`, etc).
+        - Update WP7 task T5 to explicitly include wiring for `upload*` tools in addition to planner-executed tasks.
+    - **Update ReasoningTrace Logging Logic:**
+        - When WP9 tools write `PromptLog`, ensure the active `project_id` and profile snapshot/hash is logged alongside.
+
+6. **Validation + Testing**
    - Write unit tests for all profile tools
    - Simulate live session with updates to ensure planner + tool updates are reflected
    - Test Drive routing with different profiles
+   - Add multi-project switching test scenarios.
+   - Test full toolchain (e.g., `assemble_artifact`) with injected project context and verify logging and output correctness.
 
-6. **Documentation**
+
+7. **Documentation**
    - Document all tools and config formats
    - Update dev onboarding guide to include profile update examples
 
-7. **Deploy + Monitor**
+8. **Deploy + Monitor**
    - Include deploy steps for DB + default YAML
    - Add logs for update events with profile trace output
 
@@ -96,6 +115,8 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - [ ] Drive folder paths dynamically reflect the `project_id`
 - [ ] Tools receive and log `project_id` as part of input context
 - [ ] Planner injects project context from `ProjectProfile` into every tool in the chain
+- [ ] `project_id` is passed to and logged in `DocumentVersionLog`, ReasoningTrace, and any generated artifacts.
+- [ ] Switching between project profiles during active sessions behaves correctly and cleanly reloads context.
 
 
 ### 💪 Tasks
@@ -119,6 +140,9 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Profile values will influence gate detection, document generation, and quality checks.
 - Treat the profile as an evolving state: not static YAML, but a live config context.
 - Must persist between sessions and reload on reconnect.
+- The `project_id` must be included in all downstream logs, documents, and filenames to ensure traceability and enable Drive routing.
+- All toolchains (e.g., `assemble_artifact`) must receive the correct project context via planner injection.
+- Test session restoration with multiple profiles to ensure profile state isolation.
 
 ### 🧠 Clarifications 
 - 🧠 The profile is updated as part of the **toolchain planner execution** – tools can write metadata back to the profile. Ensure the planner supports:
@@ -130,3 +154,7 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Keep project context isolated and injectable – never assume global state.
 - Model `project_profile` as both memory and persisted config to support dynamic use and versioning.
 - Include project metadata in every downstream action – it’s the basis for traceability and reuse.
+- **🔄 Coordination with WP9 Ingestion Tools**: WP9 introduces ingestion utilities (text, file, and link inputs) that often serve as the entry point into a PolicyGPT session. WP7 should extend its logic to:
+    - Detect early PromptLog entries from WP9 tools and use them to seed or update the ProjectProfile
+    - Attach project context (from active ProjectProfile) into WP9 tool logs and reasoning traces
+    - Ensure ingestion tools can receive injected profile fields (e.g., sector, project_id) for contextual tagging or folder pathing
