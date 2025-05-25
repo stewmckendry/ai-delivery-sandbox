@@ -16,7 +16,9 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         url = input_dict["url"]
-        metadata = input_dict.get("metadata")
+        metadata = input_dict.get("metadata") or {}
+        project_id = metadata.get("project_id")
+
         try:
             response = requests.get(url, timeout=10)
             response.raise_for_status()
@@ -36,4 +38,10 @@ class Tool:
             metadata=entry.get("metadata")
         )
 
-        return {"status": "success", "path": out_path}
+        return {
+            "status": "success",
+            "path": out_path,
+            "text": text,
+            "metadata": metadata,
+            "project_id": project_id
+        }
