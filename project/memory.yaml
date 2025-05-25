@@ -3482,3 +3482,15 @@
   - validation
   last_updated: '2025-05-25'
   pod_owner: DevPod
+- path: app/engines/toolchains/IngestInputChain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/IngestInputChain.py
+  file_type: py
+  description: Class to process input data and generate a structured project profile
+    using OpenAI's API.
+  tags:
+  - ingestion
+  - profile
+  - openai
+  - processing
+  last_updated: '2025-05-25'
+  pod_owner: DeliveryPod
