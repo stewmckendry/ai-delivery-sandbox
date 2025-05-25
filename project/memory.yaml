@@ -3449,3 +3449,14 @@
   - documentation
   last_updated: '2025-05-25'
   pod_owner: DevPod
+- path: app/db/models/ProjectProfile.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/ProjectProfile.py
+  file_type: py
+  description: Database model definition for project profiles, including fields for
+    project details and metadata.
+  tags:
+  - model
+  - database
+  - config
+  last_updated: '2025-05-25'
+  pod_owner: DevPod
