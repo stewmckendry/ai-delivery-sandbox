@@ -517,6 +517,7 @@ tasks:
     - project/build/wps/WP7/WP7_design_plan.md
     - project/build/wps/WP7/WP7_task_list.md
     - app/db/models/ProjectProfile.py
+    - migrations/versions/wp7_create_project_profile_table.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
