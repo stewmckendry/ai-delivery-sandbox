@@ -12,8 +12,7 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Using profile fields to guide generation and validation logic
 - Exposing the profile to users via a `showProfile` tool
 - Automatically updating profile as part of the background tool chaining process
-- **Drive folder routing enhancement**: Embed `project_id` from ProjectProfile into Drive pathing logic to support structured output organization (e.g., `/Drive/Projects/<project_id>/`)
-- **Toolchain context injection**: Ensure `project_id`, `project_type`, and other profile fields are passed to downstream tools for contextual drafting, validation, and logging
+- **Drive folder routing enhancement**: Embed `project_id` from ProjectProfile into Drive pathing logic to support structured output organization (e.g., `/PolicyGPT/<project_id>/<gate_id>/<artifact_id>/`).
 - Provide `project_id`, `project_type`, and other fields to `generate_section` and related toolchains via planner injection.
 - Ensure `ArtifactSection` saves and references the `project_id` for multi-project environments.
 - Extend `ReasoningTrace` logging to include active `project_profile` snapshot or hash.
@@ -28,7 +27,6 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 - Profile should grow over time as new artifacts are created or new tools contribute metadata.
 - Each `ArtifactSection` can contribute fields (e.g., “community engagement method”) back to profile.
 - Define how `ProjectProfile` dynamically affects toolchain selection or behavior (e.g., skip risk planning for < $1M projects).
-
 
 **Out of Scope:**
 - User-facing UI to edit the profile (covered in future UI WPs)
@@ -46,16 +44,10 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 | `app/utils/profile_initializer.py` | Detects and initializes new profiles from early session inputs |
 | `project/reference/project_injection_schema.md` | Defines which fields are injected where: tool, planner, logs, or DB |
 | `project/reference/sample_project_profiles/` | Sample YAMLs by sector, project type, and size for test and bootstrapping |
-| `project/docs/tools/project_context_log_debug.md` | Debugging tips and log samples for tracing project profile usage |
-| `project/build/wps/WP7/WP7_multisession_test_plan.md` | Test cases for switching profiles across sessions and toolchains |
 | `app/tools/project_profile_initializer.py`    | New utility that auto-creates or updates a `ProjectProfile` from PromptLog entries |
 | `project/reference/ingestion_profile_mapping.md` | Document describing how WP9 tools can provide data to initialize/update WP7 profile fields |
 | `project/reference/project_profile_relations.md` | Defines supported entity relationships in the project graph. |
 | `app/tools/project_profile_merger.py` | Utility for mapping outputs from tools into profile fields using field map logic. |
-| `project/reference/project_profile_field_classification.md` | Categorizes profile fields as:
-    - `static` (e.g., project_id, sector)
-    - `evolving` (e.g., approval status, funding amount)
-    - `derived` (e.g., current gate status, draft completeness) |
 | `project/reference/profile_toolchain_adaptation_rules.md` | Logic or examples for profile-driven toolchain customization. |
 
 
@@ -143,13 +135,6 @@ By the end of this WP, as a **policy drafter or approver**, I will be able to de
 | T4 | Implement `show_profile.py` tool for user access |
 | T5 | Add hooks in planner to update profile during tool chaining |
 | T6 | Validate profile values are being consumed by key tools |
-
-### 📚 Reference Documentation
-| File Path | Usage |
-|-----------|--------|
-| `policygpt_user_journeys.md` | Identifies key user-configurable items |
-| `acceptance_criteria_v2.md` | References to dynamic fields and scaffolding needs |
-| `system_architecture_v2.md` | Shows planner/memory profile injection points |
 
 ### 📝 Notes to Development Team
 - Profile values will influence gate detection, document generation, and quality checks.
