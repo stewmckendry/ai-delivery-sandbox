@@ -475,6 +475,17 @@
         },
         "required": ["artifact_id", "gate_id", "version"]
       }
+    },
+    {
+      "tool_id": "confirmProjectProfile",
+      "description": "Loads and returns a saved project profile by project ID for GPT or human confirmation",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_id": { "type": "string" }
+        },
+        "required": ["project_id"]
+      }
     }
   ]
 }
