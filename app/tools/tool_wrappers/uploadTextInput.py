@@ -14,7 +14,9 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         text = input_dict["text"]
-        metadata = input_dict.get("metadata")
+        metadata = input_dict.get("metadata") or {}
+        project_id = metadata.get("project_id")
+
         entry = structure_input(text, source="direct_input", tool_name="uploadTextInput", metadata=metadata)
         out_path = write_trace(entry)
         log_tool_usage(
@@ -26,4 +28,10 @@ class Tool:
             metadata=entry.get("metadata")
         )
 
-        return {"status": "success", "path": out_path}
+        return {
+            "status": "success",
+            "path": out_path,
+            "text": text,
+            "metadata": metadata,
+            "project_id": project_id
+        }
