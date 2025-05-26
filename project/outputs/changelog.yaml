@@ -6128,3 +6128,8 @@
   committed_by: GPTPod
   message: Fix LLM output parsing and logging; re-enable structured debug and raise
     parsed profile
+- timestamp: '2025-05-26T04:33:10.875031'
+  path: app/tools/tool_utils/search_api_utils.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Build query string manually to avoid 404 from RapidAPI Bing Search endpoint
