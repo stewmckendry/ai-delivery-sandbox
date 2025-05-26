@@ -6711,3 +6711,8 @@
   task_id: Wp7
   committed_by: GPTPod
   message: Append output file to Wp7
+- timestamp: '2025-05-26T17:53:47.406962'
+  path: project/test/wps/WP22/test_queryCorpus_remote_http.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Simplify test script to read local PDF file directly for remote API test
