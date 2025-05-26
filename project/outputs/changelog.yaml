@@ -436,3 +436,14 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Recommit WP20 task list to sandbox-curious-falcon
+- timestamp: '2025-05-26T13:47:08.700543'
+  path: app/db/models/ProjectProfile.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Make all project_profile fields optional except project_id, title, and
+    last_updated
+- timestamp: '2025-05-26T13:47:08.700543'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to app/db/models/ProjectProfile.py
