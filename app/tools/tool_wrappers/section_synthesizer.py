@@ -13,16 +13,29 @@ class Tool:
 
     def run_tool(self, input_dict):
         self.validate(input_dict)
-        memory = input_dict["memory"]
+        memory = input_dict.get("memory", [])
+        corpus_chunks = input_dict.get("corpus_chunks", [])
+        alignment_results = input_dict.get("alignment_results", [])
+        web_search = input_dict.get("web_search", [])
 
-        context_lines = []
-        for entry in memory:
-            if "input_summary" in entry and "full_input_path" in entry:
-                context_lines.append(f"- {entry['input_summary']}: {entry['full_input_path']}")
-            elif "title" in entry and "url" in entry:
-                context_lines.append(f"- {entry['title']}: {entry['url']}")
+        def format_sources(label, entries):
+            lines = []
+            for entry in entries:
+                if isinstance(entry, dict):
+                    if "input_summary" in entry and "full_input_path" in entry:
+                        lines.append(f"- {entry['input_summary']}: {entry['full_input_path']}")
+                    elif "title" in entry and "url" in entry:
+                        lines.append(f"- {entry['title']}: {entry['url']}")
+                    elif "content" in entry:
+                        lines.append(f"- {entry['content'][:200]}...")
+                    elif "text" in entry:
+                        lines.append(f"- {entry['text'][:200]}...")
+            return f"\n{label}:\n" + "\n".join(lines) if lines else ""
 
-        context_str = "\n".join(context_lines)
+        memory_str = format_sources("Memory", memory)
+        corpus_str = format_sources("Embedded Corpus", corpus_chunks)
+        alignment_str = format_sources("GoC Alignment", alignment_results)
+        web_str = format_sources("Web Search", web_search)
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
@@ -39,7 +52,10 @@ Project Type: {profile.get('project_type', '')}
             """
 
         prompt = f"""
-Based on the following user-provided inputs, draft a coherent and concise section draft. Keep it focused, factual, and well-structured.
+You are a policy analyst drafting high-quality, evidence-based documents.
+
+Draft a well-structured and dense draft section using all the following inputs.
+Focus on clarity, accuracy, and strategic alignment.
 
 Artifact: {artifact}
 Section: {section}
@@ -47,8 +63,10 @@ Section: {section}
 Project Context:
 {profile_context}
 
-User Memory:
-{context_str}
+{memory_str}
+{corpus_str}
+{alignment_str}
+{web_str}
 
 Begin the draft below:
         """
