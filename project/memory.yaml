@@ -486,3 +486,14 @@
   - toolchain
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/test/WP7/test_runner.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/test/WP7/test_runner.py
+  file_type: py
+  description: Script to test the ingestion, section generation, and artifact assembly
+    processes in the project workflow
+  tags:
+  - test
+  - workflow
+  - toolchain
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
