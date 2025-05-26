@@ -1,6 +1,10 @@
 import os
 import requests
+import sys
 import pdfplumber
+
+# Add project root to sys.path so 'app.tools...' can be imported
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../..")))
 from app.tools.tool_wrappers.loadCorpus import Tool as LoadTool
 from app.tools.tool_wrappers.queryCorpus import Tool as QueryTool
 

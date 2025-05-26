@@ -18,7 +18,7 @@ class GenerateSectionChain:
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
         artifact_id = inputs.get("artifact")
-        section_id = f"{artifact_id}_{inputs.get('section')}"
+        section_id = inputs.get('section')   # replaced: f"{artifact_id}_{inputs.get('section')}"
         gate_id = inputs.get("gate_id", "0")
         project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
