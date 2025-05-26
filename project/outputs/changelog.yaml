@@ -5988,3 +5988,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Enhance jurisdiction search with location context and domain-scoped query
+- timestamp: '2025-05-26T03:39:03.291786'
+  path: app/tools/search_handlers/market.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Enhance market search with industry context and commercial keyword tuning
