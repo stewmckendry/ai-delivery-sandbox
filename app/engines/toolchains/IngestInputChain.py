@@ -53,6 +53,26 @@ class IngestInputChain:
 
         project_profile["last_updated"] = datetime.utcnow().isoformat()
 
+        def clean(field, expected_type):
+            val = project_profile.get(field)
+            if val == "" or val is None:
+                project_profile[field] = None
+            elif expected_type == "date":
+                try:
+                    datetime.strptime(val, "%Y-%m-%d")
+                except:
+                    logger.warning(f"Invalid date format for {field}: {val}, setting to None")
+                    project_profile[field] = None
+
+        for field in ["start_date", "end_date"]:
+            clean(field, "date")
+        for field in ["total_budget"]:
+            if project_profile.get(field) == "":
+                project_profile[field] = None
+        for field in ["current_gate"]:
+            if isinstance(project_profile.get(field), str) and not project_profile[field].isdigit():
+                project_profile[field] = None
+
         project_id = project_profile.get("project_id")
         if not project_id:
             logger.error("Final project_profile missing project_id")
@@ -93,16 +113,16 @@ project_profile:
   title: string
   sponsor: string
   project_type: string
-  total_budget: number
-  start_date: string
-  end_date: string
+  total_budget: number (use null if missing)
+  start_date: date (YYYY-MM-DD, use null if missing)
+  end_date: date (YYYY-MM-DD, use null if missing)
   strategic_alignment: string
-  current_gate: integer
+  current_gate: integer (use null if missing)
   scope_summary: string
   key_stakeholders: string
   major_risks: string
   resource_summary: string
-  last_updated: string
+  last_updated: datetime (use null if missing)
         """
 
         prior = "".join([f"{k}: {v}\n" for k, v in existing.items()]) if existing else ""
@@ -112,7 +132,7 @@ project_profile:
 You are a project analyst. From the following text, extract a structured project profile in this format:
 {schema}
 
-Only include data present in the input. Leave missing fields blank.
+Only include data present in the input. Leave missing fields blank or use null.
 {prior_text}
 
 INPUT TEXT:
