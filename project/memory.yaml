@@ -4046,3 +4046,15 @@
   - ChromaDB
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: project/build/wps/WP22/WP22_async_loadCorpus_design_note.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP22/WP22_async_loadCorpus_design_note.md
+  file_type: md
+  description: Design note for implementing asynchronous processing in the `loadCorpus`
+    tool to prevent timeouts and improve performance in cloud environments.
+  tags:
+  - design
+  - async
+  - tool
+  - cloud
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
