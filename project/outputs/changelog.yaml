@@ -6438,3 +6438,8 @@
   task_id: WP14
   committed_by: ProductPod
   message: Append output file to WP14
+- timestamp: '2025-05-26T16:15:58.844491'
+  path: project/build/wps/WP22/load_opengov2023_corpus.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Fix load script: add headers and PDF format validation'
