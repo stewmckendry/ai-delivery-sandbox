@@ -541,6 +541,7 @@ tasks:
     - project/build/WPs/WP22/WP22_design_note.md
     - project/build/WPs/WP22/WP22_definition.md
     - project/build/WPs/WP22/WP22_pod_activation_message.md
+    - project/build/wps/WP14/WP14_toolchain_integration_note.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
