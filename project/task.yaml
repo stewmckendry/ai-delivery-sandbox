@@ -326,6 +326,7 @@ tasks:
     - project/build/wps/WP20/WP20_design_plan.md
     - project/build/wps/WP20/WP20_task_list.md
     - app/db/models/ProjectProfile.py
+    - project/build/wps/WP17/project_profile_versioning.md
     feedback_file: .logs/feedback/2.2_build_and_patch.md
     depends_on:
     - 2.1_design_feature_and_tech_spec
