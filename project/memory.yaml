@@ -451,3 +451,14 @@
   - config
   last_updated: '2025-05-24'
   pod_owner: DevPod
+- path: app/db/models/ProjectProfile.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/app/db/models/ProjectProfile.py
+  file_type: py
+  description: Defines the ProjectProfile model for the database, including project
+    details and metadata.
+  tags:
+  - model
+  - database
+  - project
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
