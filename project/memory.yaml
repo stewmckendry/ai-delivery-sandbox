@@ -474,3 +474,15 @@
   - implementation
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/engines/toolchains/IngestInputChain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/app/engines/toolchains/IngestInputChain.py
+  file_type: py
+  description: Class to process and ingest various input methods for project profiling
+    using OpenAI and tool registry.
+  tags:
+  - ingest
+  - input
+  - project
+  - toolchain
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
