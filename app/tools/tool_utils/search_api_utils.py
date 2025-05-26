@@ -6,18 +6,16 @@ def bing_web_search(query: str, count: int = 5) -> list:
     if not api_key:
         raise ValueError("Missing BING_API_KEY in environment")
 
-    url = "https://bing-web-search1.p.rapidapi.com/search"
+    url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI"
     headers = {
         "X-RapidAPI-Key": api_key,
-        "X-RapidAPI-Host": "bing-web-search1.p.rapidapi.com"
+        "X-RapidAPI-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
     }
     params = {
         "q": query,
-        "mkt": "en-us",
-        "safeSearch": "Off",
-        "textFormat": "Raw",
-        "freshness": "Day",
-        "count": count
+        "pageNumber": 1,
+        "pageSize": count,
+        "autoCorrect": True
     }
 
     response = requests.get(url, headers=headers, params=params)
@@ -27,10 +25,10 @@ def bing_web_search(query: str, count: int = 5) -> list:
     results = []
     for item in data.get("value", []):
         results.append({
-            "title": item.get("name"),
+            "title": item.get("title", item.get("name")),
             "snippet": item.get("snippet"),
-            "source": item.get("displayUrl"),
+            "source": item.get("url"),
             "url": item.get("url"),
-            "date": item.get("dateLastCrawled")
+            "date": item.get("datePublished")
         })
     return results
