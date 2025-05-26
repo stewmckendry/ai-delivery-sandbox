@@ -1,5 +1,8 @@
 import os
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def bing_web_search(query: str, count: int = 5) -> list:
     api_key = os.getenv("SERPAPI_KEY")
