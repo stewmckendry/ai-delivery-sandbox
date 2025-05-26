@@ -3972,3 +3972,15 @@
   - validation
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/test/wps/WP22/test_queryCorpus_tool.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/test_queryCorpus_tool.py
+  file_type: py
+  description: Script to test the queryCorpus tool with predefined test cases related
+    to government policies and strategies.
+  tags:
+  - test
+  - tool
+  - query
+  - corpus
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
