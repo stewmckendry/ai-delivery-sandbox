@@ -1,43 +1,37 @@
-## Setting Up Bing Web Search API for WP14
+## Setting Up Bing Web Search API for WP14 (via RapidAPI)
 
-This guide walks you through registering for a Bing Web Search API key and configuring your environment.
+This guide walks you through using Bing Web Search with [RapidAPI](https://rapidapi.com), since Azure no longer supports new deployments.
 
-### Step 1: Register on Microsoft Azure or Bing Search Services
-1. Go to the [Bing Search API documentation](https://learn.microsoft.com/en-us/bing/search-apis/)
-2. Follow the latest setup guidance under "Get Started" > "Bing Web Search"
-3. Create or log in to a Microsoft Azure account
-4. Register a **Bing Search v7** resource (under Cognitive Services or new Bing Services)
-5. Choose pricing tier (Free tier includes 3K/month)
+### Step 1: Create a RapidAPI Account
+1. Visit [https://rapidapi.com](https://rapidapi.com)
+2. Create an account or log in
 
-### Step 2: Get Your API Key
-1. Navigate to your Bing resource in the Azure portal
-2. Go to **Keys and Endpoint** section
-3. Copy an API key and the endpoint URL (e.g. `https://api.bing.microsoft.com/v7.0/search`)
+### Step 2: Subscribe to Bing Search API
+1. Search for "Bing Web Search" or go to:
+   [https://rapidapi.com/contextualwebsearch/api/web-search](https://rapidapi.com/contextualwebsearch/api/web-search)
+2. Click **Subscribe to Test** (choose Free plan)
+3. After subscribing, go to the **Endpoints** tab
+4. Copy the `X-RapidAPI-Key`
 
-### Step 3: Configure Your Environment
+### Step 3: Configure `.env`
 Create or update your local `.env` file:
 
 ```env
-BING_API_KEY=your_copied_key_here
+BING_API_KEY=your_rapidapi_key_here
 ```
 
-This enables WP14’s real-time search handler to access Bing.
-
-### Step 4 (Optional): Test Your Key
+### Step 4: Verify API Works
 ```bash
-curl -H "Ocp-Apim-Subscription-Key: $BING_API_KEY" \
-     "https://api.bing.microsoft.com/v7.0/search?q=example+policy"
+curl --request GET \
+  --url 'https://bing-web-search1.p.rapidapi.com/search?mkt=en-us&safeSearch=Off&textFormat=Raw&freshness=Day&q=test' \
+  --header 'X-RapidAPI-Key: your_rapidapi_key_here' \
+  --header 'X-RapidAPI-Host: bing-web-search1.p.rapidapi.com'
 ```
 
 ---
 
-For devs: If using dotenv, this key will load automatically.
+This enables real-time web search in WP14 across handlers: `general`, `jurisdiction`, `market`.
 
-> Tip: Use Free tier for development. Upgrade only if doing heavy usage or integration testing.
+> Tip: Use the Free plan for development. Upgrade if more volume is needed.
 
----
-
-If using RapidAPI:
-- Visit [https://rapidapi.com](https://rapidapi.com)
-- Search for "Bing Web Search"
-- Subscribe and use their endpoint + API key in the same `.env` variable
+Let the searching begin 🔍
