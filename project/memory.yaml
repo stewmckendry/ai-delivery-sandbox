@@ -462,3 +462,15 @@
   - project
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/build/wps/WP17/project_profile_versioning.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/build/wps/WP17/project_profile_versioning.md
+  file_type: md
+  description: Design note for implementing versioning in project profiles, detailing
+    schema changes and implementation strategy.
+  tags:
+  - versioning
+  - design
+  - schema
+  - implementation
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
