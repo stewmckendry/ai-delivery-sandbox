@@ -2,7 +2,7 @@ from app.tools.search_handlers.general import handle_general_search
 from app.tools.search_handlers.jurisdiction import handle_jurisdiction_search
 from app.tools.search_handlers.market import handle_market_search
 from app.tools.tool_utils.web_search_logger import log_web_search
-from app.db.session import get_db
+from app.db.database import get_session
 
 class Tool:
     def __init__(self):
@@ -31,7 +31,7 @@ class Tool:
             raise ValueError(f"Unsupported search_type: {search_type}")
 
         # Log the search
-        db = next(get_db())
+        db = get_session()
         log_web_search(
             db,
             search_type=search_type,
