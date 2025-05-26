@@ -566,6 +566,7 @@ tasks:
     - project/build/wps/WP22/WP22_queryCorpus_remote_addendum.md
     - project/build/wps/WP22/WP22_async_loadCorpus_design_note.md
     - project/test/wps/WP22/test_queryCorpus_remote_results.md
+    - app/tools/search_handlers/goc_alignment.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
