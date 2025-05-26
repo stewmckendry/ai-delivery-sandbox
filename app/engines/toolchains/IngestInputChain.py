@@ -89,7 +89,9 @@ class IngestInputChain:
 
         try:
             old = ProjectProfileEngine().load_profile(project_id)
-            old.update({k: v for k, v in project_profile.items() if v is not None})
+            for k, v in project_profile.items():
+                if v is not None or old.get(k) in ("", None):
+                    old[k] = v
             project_profile = old
             logger.info(f"Merged with existing profile for ID: {project_id}")
         except:
