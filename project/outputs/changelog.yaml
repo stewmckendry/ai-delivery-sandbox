@@ -5578,3 +5578,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add project_id field to PromptLog model
+- timestamp: '2025-05-26T00:58:46.425482'
+  path: app/tools/tool_wrappers/uploadFileInput.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add log_usage flag to uploadFileInput to optionally defer logging
