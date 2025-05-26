@@ -6230,3 +6230,8 @@
   committed_by: GPTPod
   message: Remove formatter reference and directly return results from bing_web_search
     in general.py
+- timestamp: '2025-05-26T13:55:29.710933'
+  path: app/tools/search_handlers/jurisdiction.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Remove formatter reference and return SerpAPI results directly in jurisdiction.py
