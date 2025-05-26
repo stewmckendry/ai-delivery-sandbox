@@ -6117,3 +6117,8 @@
   committed_by: GPTPod
   message: Fix log block and parsing inspection; patch JSON output parse with structured
     logging
+- timestamp: '2025-05-26T04:26:25.962084'
+  path: app/tools/tool_utils/search_api_utils.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix endpoint and response parsing for bing-web-search1.p.rapidapi.com
