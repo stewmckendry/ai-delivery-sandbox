@@ -91,16 +91,20 @@ project_id VARCHAR(255)                      -- FK to project_profile(project_id
 #### `ProjectProfile`
 
 ```sql
-doc_version_id VARCHAR(255) PRIMARY KEY,
-artifact_name TEXT NOT NULL,
-gate INT NOT NULL,
-version_tag VARCHAR(255) NOT NULL,
-submitted_by VARCHAR(255),
-file_path TEXT NOT NULL,
-google_doc_url TEXT,                         -- optional Drive link to finalized artifact
-doc_format VARCHAR(50) DEFAULT 'markdown',   -- pdf/html/md (default: markdown)
-submitted_at DATETIME DEFAULT GETDATE(),     -- default: now()
-project_id VARCHAR(255)                      -- FK to project_profile(project_id)
+project_id VARCHAR(255) PRIMARY KEY,
+title TEXT NOT NULL,
+sponsor TEXT NULL,
+project_type VARCHAR(255) NULL,
+total_budget NUMERIC NULL,
+start_date DATE NULL,
+end_date DATE NULL,
+strategic_alignment TEXT NULL,
+current_gate INT NULL,
+scope_summary TEXT NULL,
+key_stakeholders TEXT NULL,
+major_risks TEXT NULL,
+resource_summary TEXT NULL,
+last_updated DATETIME NOT NULL DEFAULT GETDATE()
 ```
 
 #### `WebSearchLog`
