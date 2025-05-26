@@ -54,7 +54,7 @@ class IngestInputChain:
             logger.info("LLM output missing project_id, using metadata project_id")
             project_profile["project_id"] = metadata_project_id
 
-        project_profile["last_updated"] = datetime.utcnow().isoformat()
+        project_profile["last_updated"] = datetime.utcnow()
         logger.debug("Added last_updated field")
 
         def clean(field, expected_type):
@@ -100,7 +100,7 @@ class IngestInputChain:
         except:
             logger.info(f"No merge needed for new project_id: {project_id}")
 
-        logger.info(f"Saving cleaned project profile: {json.dumps(project_profile, indent=2)}")
+        logger.info(f"Saving cleaned project profile: {json.dumps(project_profile, indent=2, default=str)}")
         for key, value in project_profile.items():
             logger.debug(f"Before DB save: {key} type: {type(value)} value: {value}")
 
