@@ -6746,3 +6746,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Make loadCorpus tool asynchronous for long-running vector embedding
+- timestamp: '2025-05-26T19:17:26.379817'
+  path: app/tools/tool_wrappers/loadCorpus.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Restore full logging, text splitting, and tracing to async loadCorpus tool
