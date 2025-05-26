@@ -6659,3 +6659,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-26T17:29:30.721152'
+  path: app/engines/memory_sync.py
+  task_id: WP7
+  committed_by: GPTPod
+  message: Fix JSON serialization error in memory_sync.py by using safe_json for Decimal
+    and datetime objects
