@@ -36,6 +36,7 @@ Develop a modular external search tool integrated with the PolicyGPT planner and
   - `results_summary`
   - `tool_invoked_by`
   - `user_id`, `session_id`
+  - `project_id`
   - `timestamp`
 
 #### 6. `search_prompts.yaml`
@@ -45,7 +46,7 @@ Develop a modular external search tool integrated with the PolicyGPT planner and
 #### 7. Integration
 - Tool registered in `tool_catalog.yaml`
 - Planner route added in `planner_orchestrator.py` under `external_web_search` intent
-- Invocation from `generate_section_chain.py` as fallback after KB search
+- Invoked by planner explicitly for external research needs
 
 #### 8. Logging
 - All search runs log to `PromptLog`
@@ -53,5 +54,18 @@ Develop a modular external search tool integrated with the PolicyGPT planner and
 
 ### Design Principles
 - **Extensibility**: Add new `search_type` handlers without changing core logic
-- **Reliability**: Rate limit API usage and handle failures gracefully
+- **Reliability**: Rate limit API usage and handle failures gracefully (optionally implement in later WP)
 - **Traceability**: Full log of every search and its context
+- **Security**: Open access allowed for PoC; future enhancement may restrict via a domain whitelist
+
+### Search APIs & Planner Context
+- We'll explore APIs like Bing, SerpAPI, or Google Programmable Search depending on availability and licensing
+- Planner context (artifact/section/project profile) will be passed in summary form to support precise query generation
+
+### Evidence-Oriented Search Types (Initial + Future Ideas)
+- `general`: broad web sources
+- `jurisdiction`: country/province/department examples
+- `market`: commercial/industry examples
+- Future: `academic`, `case_law`, `gov_policy`, `press`, `regulatory`, `statistics`
+
+---
