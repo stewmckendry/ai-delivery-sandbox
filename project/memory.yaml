@@ -3961,3 +3961,14 @@
   - corpus
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: project/test/wps/WP22/WP22_queryCorpus_testplan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/WP22_queryCorpus_testplan.md
+  file_type: md
+  description: Test plan for verifying the `queryCorpus` tool's ability to retrieve
+    relevant content from the Open Government Guidebook corpus.
+  tags:
+  - test
+  - query
+  - validation
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
