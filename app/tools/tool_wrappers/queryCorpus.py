@@ -2,8 +2,9 @@ import logging
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
-from langchain.chains import RetrievalQA
+from langchain.chains import RetrievalQA, LLMChain
 from langchain.chat_models import ChatOpenAI
+from langchain.prompts import PromptTemplate
 from chromadb import HttpClient
 
 logger = logging.getLogger(__name__)
@@ -32,7 +33,13 @@ class Tool:
             client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
             collection = client.get_or_create_collection("policygpt")
             results = collection.query(query_texts=[query], n_results=5)
-            return {"results": results}
+            docs = results.get("documents", [[]])[0]
+            context = "\n\n".join(docs)
+            template = "Based on the following documents:\n\n{context}\n\nAnswer the query: {query}"
+            prompt = PromptTemplate.from_template(template)
+            llm_chain = LLMChain(llm=ChatOpenAI(temperature=0), prompt=prompt)
+            answer = llm_chain.run({"context": context, "query": query})
+            return {"answer": answer, "documents": docs}
         else:
             vectordb = Chroma(persist_directory=CHROMA_DIR, embedding_function=OpenAIEmbeddings())
             retriever = vectordb.as_retriever()
