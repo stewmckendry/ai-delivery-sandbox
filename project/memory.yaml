@@ -3562,3 +3562,16 @@
   - search_tool
   last_updated: '2025-05-26'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP14/design_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP14/design_plan.md
+  file_type: md
+  description: Design plan for developing an external search tool integrated with
+    PolicyGPT, detailing components, architecture, and logging for evidence gathering
+    from public sources.
+  tags:
+  - design
+  - tool
+  - integration
+  - logging
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
