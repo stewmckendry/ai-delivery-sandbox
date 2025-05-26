@@ -524,6 +524,7 @@ tasks:
     - app/tools/tool_wrappers/confirmProjectProfile.py
     - project/test/WP7/test_plan.md
     - project/test/WP7/test_runner.py
+    - project/build/WPs/WP14/WP14_definition_searchTypes.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
