@@ -5588,3 +5588,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add log_usage flag to uploadTextInput to optionally defer logging
+- timestamp: '2025-05-26T00:59:20.832991'
+  path: app/tools/tool_wrappers/uploadLinkInput.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add log_usage flag to uploadLinkInput to optionally defer logging
