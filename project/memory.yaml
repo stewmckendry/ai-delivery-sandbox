@@ -4021,3 +4021,15 @@
   - corpus
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/test/wps/WP22/test_queryCorpus_remote_http.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/test_queryCorpus_remote_http.py
+  file_type: py
+  description: Script to load and query a PDF document on a remote server using HTTP
+    endpoints for testing purposes.
+  tags:
+  - test
+  - http
+  - pdf
+  - remote
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
