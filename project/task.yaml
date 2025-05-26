@@ -528,6 +528,7 @@ tasks:
     - project/build/WPs/WP14/WP14_pod_activation_message.md
     - project/build/wps/WP14/design_plan.md
     - project/build/wps/WP14/task_list.md
+    - app/tools/tool_wrappers/web_search.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
