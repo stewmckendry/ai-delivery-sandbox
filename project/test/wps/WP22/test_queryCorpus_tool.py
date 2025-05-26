@@ -1,4 +1,17 @@
+import sys
+import os
 import pprint
+
+# Set path to project root so imports work
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, "../../../.."))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+# Confirm project_root and sys.path for debugging
+# print("Project root:", project_root)
+# print("sys.path:", sys.path)
+
 from app.tools.tool_wrappers.queryCorpus import Tool
 
 # Setup test cases
