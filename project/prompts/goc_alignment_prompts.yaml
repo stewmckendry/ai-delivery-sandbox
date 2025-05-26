@@ -1,0 +1,19 @@
+# 🔍 GoC Alignment Prompt Templates
+
+summarize_alignment:
+  description: Summarizes alignment between query and retrieved GoC sources
+  prompt: |
+    Given the following excerpts retrieved from official Canadian government sources (.gc.ca), analyze how they align with the topic:
+
+    ---
+    Query: "{{ query }}"
+    
+    Results:
+    {% for r in results %}
+    - Title: {{ r.title }}
+      Snippet: {{ r.snippet }}
+      Link: {{ r.link }}
+    {% endfor %}
+
+    ---
+    Provide a concise summary (1–2 paragraphs) describing how the query aligns with GoC strategies or priorities. Mention specific policies, plans, or goals if referenced.
