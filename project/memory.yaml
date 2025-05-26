@@ -4104,3 +4104,15 @@
   - template
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: project/build/wps/WP22/generate_section_chain_upgrade.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP22/generate_section_chain_upgrade.md
+  file_type: md
+  description: Design note detailing the upgrade of `generate_section_chain` to enhance
+    policy alignment by incorporating multi-source evidence into section drafts.
+  tags:
+  - design
+  - upgrade
+  - policy
+  - synthesis
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
