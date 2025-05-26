@@ -47,12 +47,15 @@ class IngestInputChain:
 
         project_profile = self.generate_project_profile(raw_text, metadata, existing)
         logger.debug(f"Generated project profile: {project_profile}")
+        for k, v in project_profile.items():
+            logger.debug(f"Generated field {k}: {v} ({type(v)})")
 
         if not project_profile.get("project_id"):
             logger.info("LLM output missing project_id, using metadata project_id")
             project_profile["project_id"] = metadata_project_id
 
         project_profile["last_updated"] = datetime.utcnow().isoformat()
+        logger.debug("Added last_updated field")
 
         def clean(field, expected_type):
             val = project_profile.get(field)
@@ -99,7 +102,7 @@ class IngestInputChain:
 
         logger.info(f"Saving cleaned project profile: {json.dumps(project_profile, indent=2)}")
         for key, value in project_profile.items():
-            logger.debug(f"Field {key} type: {type(value)} value: {value}")
+            logger.debug(f"Before DB save: {key} type: {type(value)} value: {value}")
 
         ProjectProfileEngine().save_profile(project_profile)
         logger.info(f"Saved project profile for ID: {project_id}")
