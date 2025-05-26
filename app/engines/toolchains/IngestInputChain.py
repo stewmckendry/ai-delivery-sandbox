@@ -33,6 +33,10 @@ class IngestInputChain:
         logger.debug(f"Metadata: {metadata}")
 
         metadata_project_id = metadata.get("project_id")
+        if not metadata_project_id:
+            logger.error("Input metadata missing required project_id")
+            raise ValueError("Input metadata must include project_id")
+
         try:
             existing = ProjectProfileEngine().load_profile(metadata_project_id)
             logger.info(f"Loaded existing project profile for ID: {metadata_project_id}")
@@ -44,14 +48,14 @@ class IngestInputChain:
         logger.debug(f"Generated project profile: {project_profile}")
 
         if not project_profile.get("project_id"):
-            logger.warning("project_id missing from LLM output — using metadata project_id")
+            logger.info("LLM output missing project_id, using metadata project_id")
             project_profile["project_id"] = metadata_project_id
 
         project_profile["last_updated"] = datetime.utcnow().isoformat()
 
         project_id = project_profile.get("project_id")
         if not project_id:
-            logger.error("Project profile generation failed: missing project_id")
+            logger.error("Final project_profile missing project_id")
             raise ValueError("Missing project_id in generated profile")
 
         try:
