@@ -256,6 +256,17 @@ tools:
               type: string
       required:
         - file_contents  
+  queryCorpus:
+    module: app.tools.tool_wrappers.queryCorpus
+    class: Tool
+    description: Queries a vector-embedded document corpus for alignment
+    schema:
+      type: object
+      properties:
+        query:
+          type: string
+      required:
+        - query
   createSessionSnapshot:
     description: Generate a YAML snapshot of all PromptLog entries for a session, used by planner for grounding and replay.
     module: app.tools.tool_wrappers.createSessionSnapshot

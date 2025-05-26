@@ -337,6 +337,17 @@
       }
     },
     {
+      "tool_id": "queryCorpus",
+      "description": "Queries a vector-embedded document corpus for alignment",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
       "tool_id": "memory_retrieve",
       "description": "Retrieves relevant PromptLog entries for a given artifact and section",
       "input_schema": {
