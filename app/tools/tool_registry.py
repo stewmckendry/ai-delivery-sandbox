@@ -9,21 +9,28 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class ToolRegistry:
-    def __init__(self, source="local"):
+    def __init__(self, source="github"):
         self.source = source
         catalog_path = os.path.join("project", "reference", "tool_catalog.yaml")
-        logger.info(f"📦 Loading tool catalog from: {catalog_path}")
+        logger.info(f"📦 Loading tool catalog from: {catalog_path} (source: {source})")
 
-        if source == "github":
-            url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/tool_catalog.yaml"
-            r = requests.get(url)
-            self.catalog = yaml.safe_load(r.text)["tools"]
-        else:
-            with open(catalog_path, "r") as f:
-                catalog_raw = yaml.safe_load(f)
-                logger.info(f"📦 Raw catalog keys: {catalog_raw.keys()}")
-                self.catalog = catalog_raw.get("tools", catalog_raw)
-        logger.info(f"📦 Loaded tools: {list(self.catalog.keys())}")
+        try:
+            if source == "github":
+                url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/tool_catalog.yaml"
+                r = requests.get(url)
+                r.raise_for_status()
+                catalog_raw = yaml.safe_load(r.text)
+            else:
+                with open(catalog_path, "r") as f:
+                    catalog_raw = yaml.safe_load(f)
+
+            logger.info(f"📦 Raw catalog keys: {catalog_raw.keys()}")
+            self.catalog = catalog_raw.get("tools", catalog_raw)
+            logger.info(f"📦 Loaded tools: {list(self.catalog.keys())}")
+
+        except Exception as e:
+            logger.error(f"❌ Failed to load tool catalog: {e}")
+            self.catalog = {}
 
     def get_tool(self, tool_id):
         logger.info(f"📦 Loading tool: {tool_id}")
