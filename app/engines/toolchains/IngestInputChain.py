@@ -59,26 +59,21 @@ class IngestInputChain:
 
         def clean(field, expected_type):
             val = project_profile.get(field)
-            if val in ("", None):
+            if val == "":
+                val = None
+            if val is None:
                 project_profile[field] = None
-            elif expected_type == "date":
-                try:
+                return
+            try:
+                if expected_type == "date":
                     project_profile[field] = datetime.strptime(val, "%Y-%m-%d").date()
-                except:
-                    logger.warning(f"Invalid date format for {field}: {val}, setting to None")
-                    project_profile[field] = None
-            elif expected_type == "int":
-                try:
+                elif expected_type == "int":
                     project_profile[field] = int(val)
-                except:
-                    logger.warning(f"Invalid int format for {field}: {val}, setting to None")
-                    project_profile[field] = None
-            elif expected_type == "float":
-                try:
+                elif expected_type == "float":
                     project_profile[field] = float(val)
-                except:
-                    logger.warning(f"Invalid float format for {field}: {val}, setting to None")
-                    project_profile[field] = None
+            except Exception as e:
+                logger.warning(f"Invalid {expected_type} format for {field}: {val}, setting to None")
+                project_profile[field] = None
 
         for field in ["start_date", "end_date"]:
             clean(field, "date")
