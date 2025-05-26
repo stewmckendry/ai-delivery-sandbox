@@ -14,10 +14,15 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         memory = input_dict["memory"]
-        context_str = "\n".join([
-            f"- {entry['input_summary']}: {entry['full_input_path']}"
-            for entry in memory
-        ])
+
+        context_lines = []
+        for entry in memory:
+            if "input_summary" in entry and "full_input_path" in entry:
+                context_lines.append(f"- {entry['input_summary']}: {entry['full_input_path']}")
+            elif "title" in entry and "url" in entry:
+                context_lines.append(f"- {entry['title']}: {entry['url']}")
+
+        context_str = "\n".join(context_lines)
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
