@@ -1,6 +1,7 @@
 import json
 import uuid
 import datetime
+from decimal import Decimal
 from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
 from app.db.models.ReasoningTrace import ReasoningTrace
@@ -55,9 +56,16 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
 def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id=None, metadata=None):
     db: Session = get_session()
 
-    output_summary_str = json.dumps(output_summary) if isinstance(output_summary, (dict, list)) else str(output_summary)
-    full_input = json.dumps(metadata, indent=2) if metadata else None
-    full_output = json.dumps(output_summary, indent=2) if isinstance(output_summary, (dict, list)) else str(output_summary)
+    def convert(obj):
+        if isinstance(obj, (datetime.datetime, datetime.date)):
+            return obj.isoformat()
+        if isinstance(obj, Decimal):
+            return float(obj)
+        raise TypeError(f"Type {type(obj)} not serializable")
+
+    output_summary_str = json.dumps(output_summary, default=convert) if isinstance(output_summary, (dict, list)) else str(output_summary)
+    full_input = json.dumps(metadata, indent=2, default=convert) if metadata else None
+    full_output = json.dumps(output_summary, indent=2, default=convert) if isinstance(output_summary, (dict, list)) else str(output_summary)
 
     project_id = None
     if metadata:
