@@ -1,38 +1,34 @@
 import os
 import requests
-from urllib.parse import urlencode
 
 def bing_web_search(query: str, count: int = 5) -> list:
     api_key = os.getenv("BING_API_KEY")
     if not api_key:
         raise ValueError("Missing BING_API_KEY in environment")
 
-    base_url = "https://bing-web-search1.p.rapidapi.com/search"
+    url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI"
     headers = {
         "X-RapidAPI-Key": api_key,
-        "X-RapidAPI-Host": "bing-web-search1.p.rapidapi.com"
+        "X-RapidAPI-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
     }
-    # Build query string manually
-    query_string = urlencode({
+    params = {
         "q": query,
-        "mkt": "en-us",
-        "safeSearch": "Off",
-        "textFormat": "Raw",
-        "freshness": "Day"
-    })
-    full_url = f"{base_url}?{query_string}"
+        "pageNumber": 1,
+        "pageSize": count,
+        "autoCorrect": True
+    }
 
-    response = requests.get(full_url, headers=headers)
+    response = requests.get(url, headers=headers, params=params)
     response.raise_for_status()
     data = response.json()
 
     results = []
-    for item in data.get("webPages", {}).get("value", []):
+    for item in data.get("value", []):
         results.append({
-            "title": item.get("name"),
-            "snippet": item.get("snippet"),
-            "source": item.get("displayUrl"),
+            "title": item.get("title"),
+            "snippet": item.get("description"),
+            "source": item.get("url"),
             "url": item.get("url"),
-            "date": item.get("dateLastCrawled")
+            "date": item.get("datePublished")
         })
     return results
