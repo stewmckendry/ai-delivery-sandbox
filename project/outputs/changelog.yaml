@@ -6290,3 +6290,9 @@
   committed_by: GPTPod
   message: Add deeper debug logging to ToolRegistry to inspect catalog loading and
     tool entries
+- timestamp: '2025-05-26T14:58:37.450363'
+  path: app/tools/tool_registry.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Default ToolRegistry to use GitHub as source and add error handling + debug
+    logging
