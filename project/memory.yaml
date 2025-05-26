@@ -3538,3 +3538,15 @@
   - toolchain
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/build/WPs/WP14/WP14_definition_searchTypes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/WP14/WP14_definition_searchTypes.md
+  file_type: md
+  description: Design document for enhancing the `web_search` tool to support various
+    specialized search types with a unified interface and internal specialization.
+  tags:
+  - design
+  - search
+  - prompt
+  - integration
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
