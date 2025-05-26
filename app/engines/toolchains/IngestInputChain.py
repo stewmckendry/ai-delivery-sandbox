@@ -130,7 +130,11 @@ INPUT TEXT:
         raw_output = response.choices[0].message.content.strip()
         logger.debug(f"Raw LLM output: {raw_output}")
         try:
-            return eval(raw_output)
+            parsed = eval(raw_output)
+            if "project_profile" in parsed:
+                parsed = parsed["project_profile"]
+                logger.debug("Unwrapped nested 'project_profile' key from LLM output")
+            return parsed
         except Exception as e:
             logger.error(f"Failed to parse output: {e}\nRaw output: {raw_output}")
             raise ValueError(f"Failed to parse output: {e}\nRaw output: {raw_output}")
