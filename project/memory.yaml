@@ -3746,3 +3746,15 @@
   - logging
   last_updated: '2025-05-26'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP14/WP14_search_tool_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP14/WP14_search_tool_flow.md
+  file_type: md
+  description: Document detailing the logic, handlers, and query formulation strategy
+    for the webSearch tool, including handler strategies and extensibility options.
+  tags:
+  - flow
+  - search
+  - handler
+  - extensibility
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
