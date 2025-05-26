@@ -3709,3 +3709,16 @@
   - integration
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: project/build/WPs/WP22/WP22_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/WP22/WP22_definition.md
+  file_type: md
+  description: Document outlining the design and implementation of the GoC Alignment
+    Search Tool, including objectives, deliverables, integration, testing, and future
+    extensions.
+  tags:
+  - design
+  - toolchain
+  - integration
+  - testing
+  last_updated: '2025-05-26'
+  pod_owner: DeliveryPod
