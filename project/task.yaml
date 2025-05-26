@@ -572,6 +572,7 @@ tasks:
     - project/build/wps/WP22/generate_section_chain_upgrade.md
     - app/tools/tool_wrappers/query_prompt_generator.py
     - project/test/wps/WP22/test_generate_section_chain_plan.md
+    - project/test/wps/WP22/test_generate_section_chain_run.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
