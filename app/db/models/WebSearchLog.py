@@ -14,5 +14,5 @@ class WebSearchLog(Base):
     tool_invoked_by = Column(String)
     user_id = Column(String)
     session_id = Column(String)
-    project_id = Column(Integer, ForeignKey('project_profiles.id'))
+    project_id = Column(String, ForeignKey('project_profile.project_id'))
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
