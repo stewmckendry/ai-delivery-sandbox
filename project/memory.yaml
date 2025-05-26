@@ -4116,3 +4116,15 @@
   - synthesis
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/query_prompt_generator.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/query_prompt_generator.py
+  file_type: py
+  description: Script to generate search queries using project context and memory
+    extracts with OpenAI's GPT-4 model.
+  tags:
+  - prompt
+  - query
+  - OpenAI
+  - tool
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
