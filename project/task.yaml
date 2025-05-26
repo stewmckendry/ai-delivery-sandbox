@@ -533,6 +533,7 @@ tasks:
     - app/tools/search_handlers/jurisdiction.py
     - app/tools/search_handlers/market.py
     - app/tools/tool_utils/web_search_formatter.py
+    - project/prompts/search_prompts.yaml
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
