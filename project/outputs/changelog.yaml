@@ -5780,3 +5780,13 @@
   committed_by: GPTPod
   message: Refactor web_search.py to use Tool class pattern for consistency with system
     tools
+- timestamp: '2025-05-26T02:33:32.526237'
+  path: app/tools/tool_utils/web_search_formatter.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add formatter utility to normalize web search result structure
+- timestamp: '2025-05-26T02:33:32.526237'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to app/tools/tool_utils/web_search_formatter.py
