@@ -1,5 +1,6 @@
 import os
 import logging
+import json
 from openai import OpenAI
 from datetime import datetime
 from app.engines.project_profile_engine import ProjectProfileEngine
@@ -150,7 +151,7 @@ INPUT TEXT:
         raw_output = response.choices[0].message.content.strip()
         logger.debug(f"Raw LLM output: {raw_output}")
         try:
-            parsed = eval(raw_output)
+            parsed = json.loads(raw_output)
             if "project_profile" in parsed:
                 parsed = parsed["project_profile"]
                 logger.debug("Unwrapped nested 'project_profile' key from LLM output")
