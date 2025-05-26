@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, JSON
+from sqlalchemy import Column, String, Integer, DateTime, JSON
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
 
@@ -14,5 +14,5 @@ class WebSearchLog(Base):
     tool_invoked_by = Column(String)
     user_id = Column(String)
     session_id = Column(String)
-    project_id = Column(String, ForeignKey('project_profile.project_id'))
+    project_id = Column(String)  # Foreign key temporarily removed
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
