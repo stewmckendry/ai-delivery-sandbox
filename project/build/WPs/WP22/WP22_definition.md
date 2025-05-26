@@ -16,6 +16,7 @@ Build a `goc_alignment_search` tool to:
 |-----------|-------------|
 | `app/tools/tool_wrappers/goc_alignment_search.py` | Entry point for planner and GPT |
 | `app/tools/tool_wrappers/queryCorpus.py` | Queries embedded documents loaded by `loadCorpus` |
+| `app/tools/search_handlers/goc_alignment.py` | Specialized handler for alignment corpus/web sources |
 | `project/prompts/goc_alignment_prompts.yaml` | Prompt templates for summarization |
 | `project/build/WPs/WP22/WP22_toolchain_integration_note.md` | Registration guide and planner flow |
 
@@ -32,7 +33,14 @@ Build a `goc_alignment_search` tool to:
 ## 🔁 Toolchain Integration
 - Optional step in `generate_section_chain`
 - Outputs included as `alignment_support` in `section_synthesizer`
-- Logs results in PromptLog and ReasoningTrace
+- Logs results in PromptLog, ReasoningTrace, and optionally `WebSearchLog`
+
+---
+
+## ♻️ Reuse from WP14
+- Follow `web_search.py` routing pattern
+- Use formatter + logger utilities from `web_search_logger.py` and `web_search_formatter.py`
+- Log to `WebSearchLog`
 
 ---
 
