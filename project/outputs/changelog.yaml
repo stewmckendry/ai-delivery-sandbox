@@ -6122,3 +6122,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Fix endpoint and response parsing for bing-web-search1.p.rapidapi.com
+- timestamp: '2025-05-26T04:31:16.027759'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix LLM output parsing and logging; re-enable structured debug and raise
+    parsed profile
