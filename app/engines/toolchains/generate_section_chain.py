@@ -9,6 +9,8 @@ class GenerateSectionChain:
     def __init__(self):
         registry = ToolRegistry()
         self.memory_tool = registry.get_tool("memory_retrieve")
+        self.corpus_tool = registry.get_tool("queryCorpus")
+        self.alignment_tool = registry.get_tool("goc_alignment_search")
         self.synth_tool = registry.get_tool("section_synthesizer")
         self.refine_tool = registry.get_tool("section_refiner")
         self.web_search_tool = registry.get_tool("webSearch")
@@ -18,7 +20,7 @@ class GenerateSectionChain:
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
         artifact_id = inputs.get("artifact")
-        section_id = inputs.get('section')   # replaced: f"{artifact_id}_{inputs.get('section')}"
+        section_id = inputs.get('section')
         gate_id = inputs.get("gate_id", "0")
         project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
@@ -40,17 +42,40 @@ class GenerateSectionChain:
         trace.append({"tool": "web_search", "output": search_results})
         logger.info("[Step 2] web_search complete")
 
-        memory_wrapped = {"memory": memory + search_results}
+        corpus_results = self.corpus_tool.run_tool({
+            "query": inputs.get("section"),
+            "context": inputs,
+            "memory": memory
+        })
+        log_tool_usage("queryCorpus", "embedded corpus scan", corpus_results, session_id, user_id, inputs)
+        trace.append({"tool": "queryCorpus", "output": corpus_results})
+        logger.info("[Step 3] queryCorpus complete")
 
-        draft = self.synth_tool.run_tool({**inputs, **memory_wrapped})
+        alignment_results = self.alignment_tool.run_tool({
+            "query": inputs.get("section"),
+            "context": inputs,
+            "memory": memory
+        })
+        log_tool_usage("goc_alignment_search", "gc.ca alignment", alignment_results, session_id, user_id, inputs)
+        trace.append({"tool": "goc_alignment_search", "output": alignment_results})
+        logger.info("[Step 4] goc_alignment_search complete")
+
+        structured_inputs = {
+            "memory": memory,
+            "web_search": search_results,
+            "corpus_chunks": corpus_results,
+            "alignment_results": alignment_results
+        }
+
+        draft = self.synth_tool.run_tool({**inputs, **structured_inputs})
         log_tool_usage("section_synthesizer", "generated draft", draft, session_id, user_id, inputs)
         trace.append({"tool": "section_synthesizer", "output": draft})
-        logger.info("[Step 3] section_synthesizer complete")
+        logger.info("[Step 5] section_synthesizer complete")
 
         refined = self.refine_tool.run_tool({**inputs, "raw_draft": draft["raw_draft"]})
         log_tool_usage("section_refiner", "refined draft", refined, session_id, user_id, inputs)
         trace.append({"tool": "section_refiner", "output": refined})
-        logger.info("[Step 4] section_refiner complete")
+        logger.info("[Step 6] section_refiner complete")
 
         save_result = save_artifact_and_trace(
             section_id=section_id,
@@ -62,6 +87,6 @@ class GenerateSectionChain:
             user_id=user_id,
             project_id=project_id
         )
-        logger.info("[Step 5] Saved to ArtifactSection and ReasoningTrace")
+        logger.info("[Step 7] Saved to ArtifactSection and ReasoningTrace")
 
         return {"final_output": refined, "trace": trace, "save_result": save_result}
