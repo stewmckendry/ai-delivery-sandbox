@@ -6741,3 +6741,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Fix Railway test endpoints to use /tools/{tool_id} paths
+- timestamp: '2025-05-26T19:13:25.197046'
+  path: app/tools/tool_wrappers/loadCorpus.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Make loadCorpus tool asynchronous for long-running vector embedding
