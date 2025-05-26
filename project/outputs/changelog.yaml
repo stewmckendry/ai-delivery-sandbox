@@ -6139,3 +6139,9 @@
   committed_by: GPTPod
   message: Restore full IngestInputChain.py file with full structured LLM response
     logging and intermediate inspection.
+- timestamp: '2025-05-26T04:36:38.263358'
+  path: app/tools/tool_utils/search_api_utils.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Revert to ContextualWebSearch endpoint and response structure for working
+    API
