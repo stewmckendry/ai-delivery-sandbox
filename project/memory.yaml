@@ -4071,3 +4071,14 @@
   - results
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: app/tools/search_handlers/goc_alignment.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/search_handlers/goc_alignment.py
+  file_type: py
+  description: Function to perform government-aligned web searches restricted to Canadian
+    government domains.
+  tags:
+  - search
+  - tool
+  - api
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
