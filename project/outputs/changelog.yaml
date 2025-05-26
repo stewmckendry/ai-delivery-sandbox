@@ -5877,3 +5877,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: "Add T13\u2013T15 for real search API and handler enhancements in WP14"
+- timestamp: '2025-05-26T03:03:45.415840'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Fix: parse date fields into datetime.date objects for DB compatibility'
