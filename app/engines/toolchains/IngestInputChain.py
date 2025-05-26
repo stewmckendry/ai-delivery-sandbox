@@ -63,25 +63,19 @@ class IngestInputChain:
                 project_profile[field] = None
             elif expected_type == "date":
                 try:
-                    logger.debug(f"Parsing date for field {field}: {val}")
-                    datetime.strptime(val, "%Y-%m-%d")
-                    logger.debug(f"Parsed date for field {field}: {val}")
+                    project_profile[field] = datetime.strptime(val, "%Y-%m-%d").date()
                 except:
                     logger.warning(f"Invalid date format for {field}: {val}, setting to None")
                     project_profile[field] = None
             elif expected_type == "int":
                 try:
-                    logger.debug(f"Parsing int for field {field}: {val}")
                     project_profile[field] = int(val)
-                    logger.debug(f"Parsed int for field {field}: {val}")
                 except:
                     logger.warning(f"Invalid int format for {field}: {val}, setting to None")
                     project_profile[field] = None
             elif expected_type == "float":
                 try:
-                    logger.debug(f"Parsing float for field {field}: {val}")
                     project_profile[field] = float(val)
-                    logger.debug(f"Parsed float for field {field}: {val}")
                 except:
                     logger.warning(f"Invalid float format for {field}: {val}, setting to None")
                     project_profile[field] = None
