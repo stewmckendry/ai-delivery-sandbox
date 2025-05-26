@@ -116,7 +116,7 @@ results_summary JSON,
 tool_invoked_by VARCHAR,
 user_id VARCHAR,
 session_id VARCHAR,
-project_id VARCHAR,                           -- FK to project_profile(project_id)
+project_id VARCHAR,                           -- disabled FK to project_profile(project_id) 
 timestamp DATETIME
 ```
 
