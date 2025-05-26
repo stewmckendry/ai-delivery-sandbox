@@ -15,6 +15,7 @@ class PromptLog(Base):
     session_id = Column(String(255))
     user_id = Column(String(255))
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
+    project_id = Column(String(255), nullable=True)
 
     def to_dict(self):
         return {
@@ -26,5 +27,6 @@ class PromptLog(Base):
             "full_output_path": self.full_output_path,
             "session_id": self.session_id,
             "user_id": self.user_id,
-            "timestamp": self.timestamp.isoformat() if self.timestamp else None
+            "timestamp": self.timestamp.isoformat() if self.timestamp else None,
+            "project_id": self.project_id
         }
