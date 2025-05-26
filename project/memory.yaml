@@ -3619,3 +3619,14 @@
   - format
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/tools/search_handlers/market.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/search_handlers/market.py
+  file_type: py
+  description: Function to handle market search queries and format search results
+    based on industry context
+  tags:
+  - search
+  - market
+  - formatting
+  last_updated: '2025-05-26'
+  pod_owner: DeliveryPod
