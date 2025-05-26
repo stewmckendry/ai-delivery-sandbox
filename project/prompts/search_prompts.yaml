@@ -1,0 +1,16 @@
+general:
+  template: |
+    Conduct a broad web search to gather relevant, recent information about:
+    "{{ query }}"
+
+jurisdiction:
+  template: |
+    Search for public sector examples or case studies from jurisdictions relevant to:
+    "{{ query }}"
+    Include national, state/provincial, and municipal sources.
+
+market:
+  template: |
+    Look for commercial or industry examples related to:
+    "{{ query }}"
+    Focus on vendor practices, private sector innovations, and implementation details.
