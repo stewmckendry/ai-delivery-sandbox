@@ -103,7 +103,7 @@ class IngestInputChain:
         logger.info(f"Saved project profile for ID: {project_id}")
 
         log_tool_usage(
-            tool=tool_map[method],
+            tool_name=tool_map[method],
             input_summary=f"{inputs.get(method) or inputs.get('file_path')} | {tool_map[method]}",
             output_summary=raw_text[:200],
             session_id=metadata.get("session_id"),
