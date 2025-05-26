@@ -6675,3 +6675,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Update test script to load PDF from GitHub raw content URL
+- timestamp: '2025-05-26T17:41:47.612764'
+  path: app/engines/memory_sync.py
+  task_id: Wp7
+  committed_by: GPTPod
+  message: Fix serialization bug by adding datetime and decimal conversion for logging
