@@ -1,6 +1,6 @@
 # ✅ WP7 Test Plan: Project Profile Engine Integration
 
-## 🎯 Objectives
+## 🌟 Objectives
 - Verify IngestInputChain successfully triggers input upload and project profile generation.
 - Confirm `project_id` flows into DB via memory_sync from GenerateSectionChain.
 - Confirm project metadata is saved and reflected in DocumentVersionLog via AssembleArtifactChain.
@@ -13,7 +13,7 @@
    Project Pegasus is sponsored by the Ministry of Transport. Estimated budget is $100M...
    ```
 
-## 🧪 Test Steps
+## 📊 Test Steps
 ### 1. Ingest File Input
 - **Input:**
   ```json
@@ -21,23 +21,24 @@
     "input_method": "file",
     "file_path": "test_upload.txt",
     "metadata": {
-      "artifact_id": "pegasus_charter",
+      "artifact_id": "investment_proposal_concept",
       "gate_id": 1,
       "user_id": "test_user",
-      "session_id": "s1"
+      "session_id": "s1",
+      "project_id": "pegasus"
     }
   }
   ```
 - **Expected Output:**
   - status: `profile_saved`
-  - non-null `project_id`
+  - project_id: `pegasus`
   - project profile dict with extracted values
 
 ### 2. Generate Section
 - **Input:**
   ```json
   {
-    "artifact": "pegasus_charter",
+    "artifact": "investment_proposal_concept",
     "section": "problem_statement",
     "gate_id": "1",
     "user_id": "test_user",
@@ -52,7 +53,7 @@
 - **Input:**
   ```json
   {
-    "artifact_id": "pegasus_charter",
+    "artifact_id": "investment_proposal_concept",
     "gate_id": "1",
     "version": "v1",
     "project_id": "pegasus"
