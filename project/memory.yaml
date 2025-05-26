@@ -3515,3 +3515,15 @@
   - logging
   last_updated: '2025-05-25'
   pod_owner: DeliveryPod
+- path: project/test/WP7/test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP7/test_plan.md
+  file_type: md
+  description: Test plan for verifying the integration of the Project Profile Engine,
+    including input ingestion, section generation, and artifact assembly processes.
+  tags:
+  - test
+  - integration
+  - flow
+  - database
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
