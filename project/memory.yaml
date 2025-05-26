@@ -3984,3 +3984,16 @@
   - corpus
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/test/wps/WP22/WP22_queryCorpus_results.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/WP22_queryCorpus_results.md
+  file_type: md
+  description: Document detailing the results of tests conducted using `queryCorpus.py`
+    on the Open Government Guidebook 2023, including summaries of government policy
+    objectives, digital services, and Canada's open data strategy.
+  tags:
+  - test
+  - results
+  - query
+  - corpus
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
