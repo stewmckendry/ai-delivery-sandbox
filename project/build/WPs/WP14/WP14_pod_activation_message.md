@@ -9,7 +9,7 @@
 ---
 
 ### 🔍 Context
-We are kicking off `WP14 – External Search Tool for Artifact Drafting`, part of the Phase 2 pipeline to integrate external research inputs into section and artifact generation. This work supports enhanced evidence-gathering for gate documents, aligned with the `generate_section` toolchain and `dense_artifact_generation.md` architecture.
+We are kicking off `WP14 – External Search Tool for Artifact Drafting`, part of the Phase 2 pipeline to integrate external research inputs into section and artifact generation as part of PolicyGPT. This work supports enhanced evidence-gathering for gate documents, aligned with the `generate_section` toolchain and `dense_artifact_generation.md` architecture.
 
 You are responsible for building a modular search tool and integrating it into planner logic that:
 - Performs targeted web or academic search
@@ -17,6 +17,11 @@ You are responsible for building a modular search tool and integrating it into p
 - Normalizes and summarizes the results
 - Returns them in a format usable by downstream tools (e.g., `section_synthesizer`)
 - Logs all search operations
+
+What is PolicyGPT?
+- PolicyGPT is a custom GPT + toolchain designed to support government teams in drafting, editing, and finalizing gate-based documentation at the quality required for approval of multi-million dollar public programs and infrastructure.
+- Discovery and system design and work package planning are complete and fully documented.  Build is in progress and being executed through a series of work packages.
+
 
 ---
 
@@ -54,8 +59,10 @@ Call /system/fetchFiles in batch mode to retrieve:
 - app/engines/planner_orchestrator.py
 - app/db/models/PromptLog.py
 - app/db/models/ReasoningTrace.py
+- app/db/models/ArtifactSection.py
 - project/reference/gpt_tools_manifest.json
 - project/reference/tool_catalog.yaml
+- project/reference/gate_reference_v2.yaml
 
 ---
 
@@ -78,7 +85,7 @@ Call /system/fetchFiles in batch mode to retrieve:
 ### 🚀 Working With the Human Lead
 - Follow SOP in: `project/build/build_pods_sop.md`
 - Coordinate at plan, build, test, and final review checkpoints.
-- Generate a plan and design for WP deliverables. Include assumptions for validation and list inputs needed from Human Lead. Commit files to `project/build/wps/<wp_id>/`
+- Generate a plan and design for WP deliverables. Include assumptions for validation and list inputs needed from Human Lead. Commit files to `project/build/wps/WP14/`
 - Await approval to begin building deliverables
 - Commit deliverables to listed paths
 - Share GitHub file links in chat

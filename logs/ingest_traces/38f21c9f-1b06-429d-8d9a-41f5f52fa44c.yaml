@@ -1,0 +1,16 @@
+- id: 38f21c9f-1b06-429d-8d9a-41f5f52fa44c
+  tool: uploadFileInput
+  input_summary: test_upload.txt | uploadFileInput
+  output_summary: Project Pegasus is sponsored by the Ministry of Transport. Estimated
+    budget is $100M...
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-26 02:58:59.377350
+  metadata:
+    artifact_id: investment_proposal_concept
+    gate_id: 0
+    user_id: test_user
+    session_id: s1
+    project_id: pegasus
