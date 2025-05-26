@@ -1,11 +1,6 @@
-def format_search_results(raw_results: list) -> list:
-    formatted = []
-    for r in raw_results:
-        formatted.append({
-            "title": r.get("title", ""),
-            "snippet": r.get("snippet", ""),
-            "source": r.get("source", ""),
-            "date": r.get("date", ""),
-            "url": r.get("url", "")
-        })
-    return formatted
+# No-op formatter for now – fields already normalized by API utils
+
+def format_results(results: list) -> list:
+    # Passthrough – already normalized to:
+    # title, snippet, url, source, date
+    return results
