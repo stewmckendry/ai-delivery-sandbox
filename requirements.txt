@@ -22,3 +22,6 @@ google-api-python-client
 google-auth
 weasyprint
 markdown2
+
+# WP14 addition:
+requests  # used by Bing Web Search API
