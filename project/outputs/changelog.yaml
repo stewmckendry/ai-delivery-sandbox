@@ -5635,3 +5635,14 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Use json.loads instead of eval to parse LLM output with null values
+- timestamp: '2025-05-26T01:53:31.006828'
+  path: project/build/WPs/WP14/WP14_definition_searchTypes.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added WP14 design note for supporting multiple external search types via
+    unified handler model.
+- timestamp: '2025-05-26T01:53:31.006828'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/WPs/WP14/WP14_definition_searchTypes.md
