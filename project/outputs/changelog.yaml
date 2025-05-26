@@ -6393,3 +6393,13 @@
   task_id: WP14
   committed_by: ProductPod
   message: Append output file to WP14
+- timestamp: '2025-05-26T16:10:15.327471'
+  path: project/build/wps/WP22/load_opengov2023_corpus.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add automation script to ingest Open Government Guidebook into corpus
+- timestamp: '2025-05-26T16:10:15.327471'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP22/load_opengov2023_corpus.py
