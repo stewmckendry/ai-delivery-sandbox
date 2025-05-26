@@ -3722,3 +3722,15 @@
   - testing
   last_updated: '2025-05-26'
   pod_owner: DeliveryPod
+- path: project/build/WPs/WP22/WP22_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/WP22/WP22_pod_activation_message.md
+  file_type: md
+  description: Activation message for WP22, detailing the kick-off and instructions
+    for developing the GoC Alignment Search Tool.
+  tags:
+  - activation
+  - workflow
+  - alignment
+  - integration
+  last_updated: '2025-05-26'
+  pod_owner: DeliveryPod
