@@ -5998,3 +5998,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Fix broken Azure link and update Bing API instructions for WP14
+- timestamp: '2025-05-26T03:56:09.126813'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add detailed debug logging around LLM response and field validation to
+    diagnose parse and project_id issues
