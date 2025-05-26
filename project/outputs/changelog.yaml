@@ -6157,3 +6157,9 @@
   committed_by: GPTPod
   message: Allow missing title in parsed project_profile, log warning only (do not
     raise error)
+- timestamp: '2025-05-26T04:45:53.818041'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Fix project_profile save error: coerce last_updated to datetime object
+    for DB compatibility'
