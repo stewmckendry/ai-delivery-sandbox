@@ -6,8 +6,13 @@ RAILWAY_BASE = "https://robust-adventure-production.up.railway.app"
 LOAD_ENDPOINT = f"{RAILWAY_BASE}/tool/loadCorpus"
 QUERY_ENDPOINT = f"{RAILWAY_BASE}/tool/queryCorpus"
 
-# Read local PDF file already present in repo
+# Download PDF from GitHub
+pdf_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/opengov2023.pdf"
 pdf_path = "opengov2023.pdf"
+headers = {"User-Agent": "Mozilla/5.0"}
+response = requests.get(pdf_url, headers=headers)
+with open(pdf_path, "wb") as f:
+    f.write(response.content)
 
 # Extract PDF text
 with pdfplumber.open(pdf_path) as pdf:
