@@ -3817,3 +3817,15 @@
   - api
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/build/wps/WP17/project_profile_versioning.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP17/project_profile_versioning.md
+  file_type: md
+  description: Document outlining the design and implementation of project profile
+    versioning for PolicyGPT, including strategies for retrieval and saving.
+  tags:
+  - versioning
+  - design
+  - project_profile
+  - PolicyGPT
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
