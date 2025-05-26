@@ -569,6 +569,7 @@ tasks:
     - app/tools/search_handlers/goc_alignment.py
     - app/tools/tool_wrappers/goc_alignment_search.py
     - project/prompts/goc_alignment_prompts.yaml
+    - project/build/wps/WP22/generate_section_chain_upgrade.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
