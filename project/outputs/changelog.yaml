@@ -6145,3 +6145,9 @@
   committed_by: GPTPod
   message: Revert to ContextualWebSearch endpoint and response structure for working
     API
+- timestamp: '2025-05-26T04:38:09.273247'
+  path: app/tools/tool_utils/search_api_utils.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix endpoint casing for ContextualWebSearch (capitalize /API/) to resolve
+    404
