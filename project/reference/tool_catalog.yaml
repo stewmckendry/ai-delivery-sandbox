@@ -583,6 +583,20 @@ tools:
       required:
         - query
         - search_type
+  queryPromptGenerator:
+    module: app.tools.tool_wrappers.query_prompt_generator
+    class: Tool
+    description: Generates a semantically rich natural language query from project profile and memory
+    schema:
+      type: object
+      properties:
+        project_profile:
+          type: object
+        memory:
+          type: array
+      required:
+        - project_profile
+        - memory
   goc_alignment_search:
     module: app.tools.tool_wrappers.goc_alignment_search
     class: Tool

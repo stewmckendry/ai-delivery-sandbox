@@ -593,6 +593,18 @@
         },
         "required": ["query"]
       }
+    },
+    {
+      "tool_id": "queryPromptGenerator",
+      "description": "Generates a semantically rich natural language query from project profile and memory",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_profile": { "type": "object" },
+          "memory": { "type": "array" }
+        },
+        "required": ["project_profile", "memory"]
+      }
     }
   ]
 }
