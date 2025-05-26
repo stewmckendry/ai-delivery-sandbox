@@ -1,0 +1,42 @@
+- id: 303c51b6-9668-4604-bdc0-7fe7dd76a02d
+  tool: loadCorpus
+  input_summary: Open Government Guidebook 2023 | loadCorpus
+  output_summary: 'The Open Government
+
+    Guidebook 2023
+
+    A guide to releasing open government
+
+    data and information on open.canada.ca
+
+    1
+
+    Table of contents
+
+    1. Background ................................................................................................................................4
+
+    1.1. Purpose .........................................................................................................................................
+    4
+
+    1.2. Context ..........................................................................................................................................
+    6
+
+    2. How to release and publish open data and information on the Open Government
+    Portal ........... 14
+
+    2.1. Understand what should be released ........................................................................................
+    15
+
+    2.2. Prioritize identified assets for release ........................................................................................
+    17
+
+    2.3. Prepare the assets for release ...........'
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-26 16:26:40.929368
+  metadata:
+    source: GoC
+    document_type: Guidebook
+    year: 2023
