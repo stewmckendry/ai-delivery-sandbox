@@ -3608,3 +3608,14 @@
   - mock
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/tools/search_handlers/jurisdiction.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/search_handlers/jurisdiction.py
+  file_type: py
+  description: Function to handle jurisdiction-based search queries and format the
+    results.
+  tags:
+  - search
+  - handler
+  - format
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
