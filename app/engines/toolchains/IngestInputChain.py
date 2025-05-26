@@ -168,8 +168,11 @@ INPUT TEXT:
         raw_output = response.choices[0].message.content.strip()
         logger.debug(f"Raw LLM output: {raw_output}")
         try:
+            logger.debug(f"Attempting to parse LLM raw output: {raw_output}")
             parsed = json.loads(raw_output)
-            if "project_profile" in parsed:
+            if not parsed:
+                logger.warning("Parsed output is empty")
+            elif "project_profile" in parsed:
                 parsed = parsed["project_profile"]
                 logger.debug("Unwrapped nested 'project_profile' key from LLM output")
             return parsed
