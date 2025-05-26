@@ -30,12 +30,12 @@ class Tool:
                         lines.append(f"- {entry['content'][:200]}...")
                     elif "text" in entry:
                         lines.append(f"- {entry['text'][:200]}...")
-            return f"\n{label}:\n" + "\n".join(lines) if lines else ""
+            return f"\n{label} Sources:\n" + "\n".join(lines) if lines else ""
 
-        memory_str = format_sources("Memory", memory)
-        corpus_str = format_sources("Embedded Corpus", corpus_chunks)
-        alignment_str = format_sources("GoC Alignment", alignment_results)
-        web_str = format_sources("Web Search", web_search)
+        memory_str = format_sources("Project Documentation and Historical Inputs", memory)
+        corpus_str = format_sources("Embedded Government Reports and Policies", corpus_chunks)
+        alignment_str = format_sources("Government of Canada Strategic Alignment", alignment_results)
+        web_str = format_sources("External Web Sources", web_search)
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
@@ -44,11 +44,20 @@ class Tool:
         profile_context = ""
         if profile:
             profile_context = f"""
-Project Title: {profile.get('title', 'N/A')}
-Scope Summary: {profile.get('scope_summary', '')}
-Strategic Alignment: {profile.get('strategic_alignment', '')}
-Stakeholders: {profile.get('key_stakeholders', '')}
-Project Type: {profile.get('project_type', '')}
+[Project Title]
+{profile.get('title', 'N/A')}
+
+[Scope Summary]
+{profile.get('scope_summary', '')}
+
+[Strategic Alignment]
+{profile.get('strategic_alignment', '')}
+
+[Stakeholders]
+{profile.get('key_stakeholders', '')}
+
+[Project Type]
+{profile.get('project_type', '')}
             """
 
         prompt = f"""
@@ -60,7 +69,7 @@ Focus on clarity, accuracy, and strategic alignment.
 Artifact: {artifact}
 Section: {section}
 
-Project Context:
+[Project Context]
 {profile_context}
 
 {memory_str}
