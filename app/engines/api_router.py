@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, BackgroundTasks
 from app.tools.tool_registry import ToolRegistry
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +16,7 @@ def list_tools():
     return registry.list_tools()
 
 @router.post("/tools/{tool_id}")
-async def run_tool(tool_id: str, request: Request):
+async def run_tool(tool_id: str, request: Request, background_tasks: BackgroundTasks):
     logger.info(f"Running tool: {tool_id}")
     input_data = await request.json()
     logger.info(f"Input data: {input_data}")
@@ -24,7 +24,10 @@ async def run_tool(tool_id: str, request: Request):
     logger.info(f"Tool instance: {tool}")
     try:
         logger.info("Running tool with input data")
-        return tool.run_tool(input_data)
+        if getattr(tool, "async_tool", False):
+            return tool.run_tool(input_data, background_tasks=background_tasks)
+        else:
+            return tool.run_tool(input_data)
     except ValueError as ve:
         logger.error(f"Validation error in tool {tool_id}: {ve}")
         return {"error": str(ve)}
