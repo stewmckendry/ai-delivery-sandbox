@@ -6716,3 +6716,13 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Simplify test script to read local PDF file directly for remote API test
+- timestamp: '2025-05-26T17:57:32.424459'
+  path: project/build/wps/WP22/WP22_queryCorpus_remote_addendum.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add remote-mode design addendum for WP22 queryCorpus logic and components
+- timestamp: '2025-05-26T17:57:32.424459'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP22/WP22_queryCorpus_remote_addendum.md
