@@ -3674,3 +3674,14 @@
   - utility
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/tools/tool_utils/search_api_utils.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_utils/search_api_utils.py
+  file_type: py
+  description: Utility functions for performing web searches using the Bing Search
+    API
+  tags:
+  - api
+  - search
+  - utility
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
