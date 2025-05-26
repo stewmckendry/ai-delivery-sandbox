@@ -38,21 +38,29 @@ This toolchain step will allow us to:
 ---
 
 ### Key Reference Files
-- project/build/wps/WP22/WP22_definition.md
-- project/build/wps/WP22/WP22_design_note.md
-- app/tools/tool_wrappers/loadCorpus.py
-- app/engines/toolchains/generate_section_chain.py
-- app/db/models/PromptLog.py
-- app/db/models/ReasoningTrace.py
-- project/reference/tool_catalog.yaml
-- project/reference/gpt_tools_manifest.json
-- project/system_design/dense_artifact_generation.md
+- `project/build/wps/WP22/WP22_definition.md`
+- `project/build/wps/WP22/WP22_design_note.md`
+- `app/tools/tool_wrappers/loadCorpus.py`
+- `app/tools/tool_wrappers/web_search.py`
+- `app/tools/search_handlers/general.py`
+- `app/tools/tool_utils/web_search_formatter.py`
+- `app/tools/tool_utils/web_search_logger.py`
+- `app/db/models/WebSearchLog.py`
+- `app/engines/toolchains/generate_section_chain.py`
+- `app/engines/planner_orchestrator.py`
+- `app/db/models/PromptLog.py`
+- `app/db/models/ReasoningTrace.py`
+- `project/reference/tool_catalog.yaml`
+- `project/reference/gpt_tools_manifest.json`
+- `project/prompts/search_prompts.yaml`
+- `project/system_design/dense_artifact_generation.md`
 
 ---
 
 ### Key Deliverables
 - `goc_alignment_search.py`
 - `queryCorpus.py`
+- `search_handlers/goc_alignment.py`
 - `goc_alignment_prompts.yaml`
 - Integration with planner + generate_section_chain
 
