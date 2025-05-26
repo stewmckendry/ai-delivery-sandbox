@@ -40,7 +40,7 @@ class Tool:
             tool_invoked_by="webSearch",
             user_id=context.get("user_id"),
             session_id=context.get("session_id"),
-            project_id=context.get("project_id")
+            project_id=context.get("project_profile", {}).get("project_id")
         )
 
         return results
