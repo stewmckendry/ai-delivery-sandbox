@@ -5851,3 +5851,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Fix FK in WebSearchLog to reference project_profile.project_id (String)
+- timestamp: '2025-05-26T02:45:54.569714'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Fix: preserve None and overwrite blank strings when merging old profile'
