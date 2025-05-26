@@ -5614,3 +5614,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Use metadata project_id as primary source if LLM omits it
+- timestamp: '2025-05-26T01:26:08.298434'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Enforce primary project_id from metadata and fallback only if LLM omits
+    it
