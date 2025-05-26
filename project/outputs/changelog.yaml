@@ -6151,3 +6151,9 @@
   committed_by: GPTPod
   message: Fix endpoint casing for ContextualWebSearch (capitalize /API/) to resolve
     404
+- timestamp: '2025-05-26T04:38:29.450654'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Allow missing title in parsed project_profile, log warning only (do not
+    raise error)
