@@ -6224,3 +6224,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Simplify web_search_formatter since SerpAPI results are pre-normalized
+- timestamp: '2025-05-26T13:55:12.499479'
+  path: app/tools/search_handlers/general.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Remove formatter reference and directly return results from bing_web_search
+    in general.py
