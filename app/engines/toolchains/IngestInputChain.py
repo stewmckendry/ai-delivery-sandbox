@@ -167,20 +167,6 @@ INPUT TEXT:
         )
         logger.debug("OpenAI chat completion call successful")
         raw_output = response.choices[0].message.content.strip()
-        logger.debug(f"Raw output received: {raw_output}")
-        try:
-            logger.debug("Parsing raw LLM output...")
-            parsed = json.loads(raw_output)
-            if not parsed:
-                logger.warning("Parsed output is empty")
-            elif "project_profile" in parsed:
-                parsed = parsed["project_profile"]
-                logger.debug("Unwrapped nested 'project_profile' key from LLM output")
-            if not parsed.get("project_id"):
-                logger.warning("Parsed output missing project_id")
-            if not parsed.get("title"):
-                logger.warning("Parsed output missing title")
-            return parsed
-        except Exception as e:
-            logger.error(f"Failed to parse output: {e}\nRaw output: {raw_output}")
-            raise ValueError(f"Failed to parse output: {e}\nRaw output: {raw_output}")
+        logger.error(f"Stopping execution to inspect LLM raw output:\n{raw_output}")
+        raise ValueError("Halting test to inspect LLM output")
+        # parsed = json.loads(raw_output)
