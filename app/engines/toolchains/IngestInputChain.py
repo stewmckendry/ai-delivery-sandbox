@@ -56,7 +56,7 @@ class IngestInputChain:
 
         def clean(field, expected_type):
             val = project_profile.get(field)
-            if val == "" or val is None:
+            if val in ("", None):
                 project_profile[field] = None
             elif expected_type == "date":
                 try:
@@ -64,15 +64,23 @@ class IngestInputChain:
                 except:
                     logger.warning(f"Invalid date format for {field}: {val}, setting to None")
                     project_profile[field] = None
+            elif expected_type == "int":
+                try:
+                    project_profile[field] = int(val)
+                except:
+                    logger.warning(f"Invalid int format for {field}: {val}, setting to None")
+                    project_profile[field] = None
+            elif expected_type == "float":
+                try:
+                    project_profile[field] = float(val)
+                except:
+                    logger.warning(f"Invalid float format for {field}: {val}, setting to None")
+                    project_profile[field] = None
 
         for field in ["start_date", "end_date"]:
             clean(field, "date")
-        for field in ["total_budget"]:
-            if project_profile.get(field) == "":
-                project_profile[field] = None
-        for field in ["current_gate"]:
-            if isinstance(project_profile.get(field), str) and not project_profile[field].isdigit():
-                project_profile[field] = None
+        clean("total_budget", "float")
+        clean("current_gate", "int")
 
         project_id = project_profile.get("project_id")
         if not project_id:
@@ -87,6 +95,7 @@ class IngestInputChain:
         except:
             logger.info(f"No merge needed for new project_id: {project_id}")
 
+        logger.info(f"Saving cleaned project profile: {json.dumps(project_profile, indent=2)}")
         ProjectProfileEngine().save_profile(project_profile)
         logger.info(f"Saved project profile for ID: {project_id}")
 
