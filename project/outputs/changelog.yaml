@@ -5593,3 +5593,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add log_usage flag to uploadLinkInput to optionally defer logging
+- timestamp: '2025-05-26T01:01:30.340540'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Defer tool usage logging in IngestInputChain until after project profile
+    is saved
