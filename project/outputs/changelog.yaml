@@ -6306,3 +6306,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Switch to get_session from database.py for DB logging in web_search.py
+- timestamp: '2025-05-26T15:27:42.547661'
+  path: app/db/models/WebSearchLog.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Temporarily remove foreign key constraint on project_id in WebSearchLog
+    to unblock WP14
