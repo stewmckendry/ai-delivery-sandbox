@@ -3794,3 +3794,15 @@
   - user_journey
   last_updated: '2025-05-26'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP14/WP14_serpapi_migration_impact.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP14/WP14_serpapi_migration_impact.md
+  file_type: md
+  description: Document outlining the impact and required changes for migrating from
+    RapidAPI to SerpAPI for external web search.
+  tags:
+  - migration
+  - api
+  - impact
+  - documentation
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
