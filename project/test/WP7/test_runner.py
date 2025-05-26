@@ -1,11 +1,14 @@
 import os
 import sys
 import json
+from datetime import datetime
+
+def default_serializer(obj):
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    raise TypeError(f"Type {type(obj)} not serializable")
 
 # Add project root to sys.path so imports work
-import os
-import sys
-
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
@@ -13,7 +16,6 @@ if project_root not in sys.path:
 from app.engines.toolchains.IngestInputChain import IngestInputChain
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.engines.toolchains.assemble_artifact_chain import AssembleArtifactChain
-
 
 # Test Step 1: Ingest input and generate project profile
 print("\n== Test 1: IngestInputChain ==")
@@ -29,7 +31,7 @@ ingest_input = {
     }
 }
 ingest_output = IngestInputChain().run(ingest_input)
-print(json.dumps(ingest_output, indent=2))
+print(json.dumps(ingest_output, indent=2, default=default_serializer))
 project_id = ingest_output.get("project_id")
 
 # Test Step 2: Generate section using that project_id
@@ -43,7 +45,7 @@ generate_input = {
     "project_id": project_id
 }
 generate_output = GenerateSectionChain().run(generate_input)
-print(json.dumps(generate_output["save_result"], indent=2))
+print(json.dumps(generate_output["save_result"], indent=2, default=default_serializer))
 
 # Test Step 3: Assemble artifact
 print("\n== Test 3: AssembleArtifactChain ==")
@@ -54,4 +56,4 @@ assemble_input = {
     "project_id": project_id
 }
 assemble_output = AssembleArtifactChain().run(assemble_input)
-print(json.dumps(assemble_output, indent=2))
+print(json.dumps(assemble_output, indent=2, default=default_serializer))
