@@ -16,3 +16,4 @@ class ArtifactSection(Base):
     generated_by = Column(String, nullable=True)
     timestamp = Column(TIMESTAMP, default=datetime.datetime.utcnow)
     version = Column(String, default="v1")
+    project_id = Column(String(255), nullable=True)
