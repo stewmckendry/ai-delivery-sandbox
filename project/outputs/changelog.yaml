@@ -5573,3 +5573,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add project_id field to DocumentVersionLog model
+- timestamp: '2025-05-26T00:51:36.662823'
+  path: app/db/models/PromptLog.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add project_id field to PromptLog model
