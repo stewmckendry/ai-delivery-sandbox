@@ -12,3 +12,4 @@ class ReasoningTrace(Base):
     created_by = Column(String(255), nullable=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     draft_chunks = Column(NVARCHAR(None), nullable=True)  # optional: store each draft section separately as JSON string
+    project_id = Column(String(255), nullable=True)
