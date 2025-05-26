@@ -3,8 +3,8 @@ import pdfplumber
 
 # Remote endpoints
 RAILWAY_BASE = "https://robust-adventure-production.up.railway.app"
-LOAD_ENDPOINT = f"{RAILWAY_BASE}/tool/loadCorpus"
-QUERY_ENDPOINT = f"{RAILWAY_BASE}/tool/queryCorpus"
+LOAD_ENDPOINT = f"{RAILWAY_BASE}/tools/loadCorpus"
+QUERY_ENDPOINT = f"{RAILWAY_BASE}/tools/queryCorpus"
 
 # Download PDF from GitHub
 pdf_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/opengov2023.pdf"
