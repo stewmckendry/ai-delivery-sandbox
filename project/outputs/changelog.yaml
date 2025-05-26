@@ -5882,3 +5882,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: 'Fix: parse date fields into datetime.date objects for DB compatibility'
+- timestamp: '2025-05-26T03:19:48.548390'
+  path: app/engines/planner_orchestrator.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add external_web_search intent to planner orchestrator
