@@ -5768,3 +5768,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-26T02:28:02.916055'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Fix merge to preserve None values (replace old.update({k: v for ... if
+    v}) with is not None)'
