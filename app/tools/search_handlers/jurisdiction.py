@@ -1,15 +1,12 @@
 from app.tools.tool_utils.web_search_formatter import format_search_results
+from app.tools.tool_utils.search_api_utils import bing_web_search
 
 def handle_jurisdiction_search(query: str, context: dict) -> list:
-    # This would eventually parse for jurisdiction or location cues
-    location = context.get("location", "Canada")
-    raw_results = [
-        {
-            "title": f"How {location} regulates digital identity",
-            "snippet": f"{location} has adopted a national strategy for digital identity...",
-            "source": "GovTech",
-            "url": f"https://govtech.example.com/digital-id-{location.lower()}",
-            "date": "2024-08-15"
-        }
-    ]
+    location = context.get("location") or context.get("project_profile", {}).get("region")
+    if location:
+        query = f"{location} {query}"
+    
+    # Focus on government/policy keywords
+    scoped_query = f"{query} site:.gov OR site:.gc.ca OR site:.gov.uk"
+    raw_results = bing_web_search(scoped_query)
     return format_search_results(raw_results)
