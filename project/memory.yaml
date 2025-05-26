@@ -3938,3 +3938,14 @@
   - tool
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: project/retrospectives/index.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/retrospectives/index.md
+  file_type: md
+  description: Index of retrospective documents for various work packages, detailing
+    summaries and file paths.
+  tags:
+  - retrospective
+  - index
+  - documentation
+  last_updated: '2025-05-26'
+  pod_owner: DeliveryPod
