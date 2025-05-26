@@ -3758,3 +3758,16 @@
   - extensibility
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/test/WP14/WP14_test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP14/WP14_test_plan.md
+  file_type: md
+  description: Test plan for verifying the functionality of the external web search
+    tool, including setup instructions, test cases for different search types, and
+    expected outcomes.
+  tags:
+  - test
+  - validation
+  - api
+  - logs
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
