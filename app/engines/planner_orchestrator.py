@@ -29,5 +29,8 @@ class PlannerOrchestrator:
             return AssembleArtifactChain().run(inputs)
         elif intent == "ingest_input":
             return IngestInputChain().run(inputs)
+        elif intent == "external_web_search":
+            from app.tools.tool_wrappers.web_search import Tool
+            return Tool().run_tool(inputs)
 
         raise ValueError(f"No toolchain defined for intent: {intent}")
