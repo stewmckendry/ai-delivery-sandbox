@@ -1,9 +1,12 @@
 import os
+import logging
 from openai import OpenAI
 from datetime import datetime
 from app.engines.project_profile_engine import ProjectProfileEngine
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage
+
+logger = logging.getLogger(__name__)
 
 class IngestInputChain:
     def __init__(self):
@@ -12,6 +15,7 @@ class IngestInputChain:
 
     def run(self, inputs: dict):
         method = inputs.get("input_method")
+        logger.info(f"Running IngestInputChain with method: {method}")
         if method not in ["text", "file", "link"]:
             raise ValueError("input_method must be one of: text, file, link")
 
@@ -25,31 +29,37 @@ class IngestInputChain:
 
         raw_text = upload_result.get("text")
         metadata = upload_result.get("metadata", {})
-        user_id = inputs.get("user_id")
+        logger.debug(f"Raw text extracted: {raw_text[:100]}")
+        logger.debug(f"Metadata: {metadata}")
 
         try:
             project_id = metadata.get("project_id")
             existing = ProjectProfileEngine().load_profile(project_id)
-        except:
+            logger.info(f"Loaded existing project profile for ID: {project_id}")
+        except Exception as e:
+            logger.warning(f"No existing profile found or load failed: {e}")
             existing = {}
 
         project_profile = self.generate_project_profile(raw_text, metadata, existing)
+        logger.debug(f"Generated project profile: {project_profile}")
         project_profile["last_updated"] = datetime.utcnow().isoformat()
 
         project_id = project_profile.get("project_id")
         if not project_id:
+            logger.error("Project profile generation failed: missing project_id")
             raise ValueError("Missing project_id in generated profile")
 
         try:
             old = ProjectProfileEngine().load_profile(project_id)
             old.update({k: v for k, v in project_profile.items() if v})
             project_profile = old
+            logger.info(f"Merged with existing profile for ID: {project_id}")
         except:
-            pass
+            logger.info(f"No merge needed for new project_id: {project_id}")
 
         ProjectProfileEngine().save_profile(project_profile)
+        logger.info(f"Saved project profile for ID: {project_id}")
 
-        # Now safe to log tool usage
         log_tool_usage(
             tool=tool_map[method],
             input_summary=f"{inputs.get(method) or inputs.get('file_path')} | {tool_map[method]}",
@@ -109,7 +119,9 @@ INPUT TEXT:
             temperature=0.3
         )
         raw_output = response.choices[0].message.content.strip()
+        logger.debug(f"Raw LLM output: {raw_output}")
         try:
             return eval(raw_output)
         except Exception as e:
+            logger.error(f"Failed to parse output: {e}\nRaw output: {raw_output}")
             raise ValueError(f"Failed to parse output: {e}\nRaw output: {raw_output}")
