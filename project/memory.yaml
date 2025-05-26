@@ -3997,3 +3997,15 @@
   - corpus
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/test/wps/WP22/WP22_queryCorpus_remote_testplan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/WP22_queryCorpus_remote_testplan.md
+  file_type: md
+  description: Test plan for validating the `queryCorpus.py` tool's ability to return
+    synthesized answers from a remote Chroma vector database.
+  tags:
+  - test
+  - remote
+  - vector DB
+  - synthesis
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
