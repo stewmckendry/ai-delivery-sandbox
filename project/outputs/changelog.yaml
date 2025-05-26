@@ -6312,3 +6312,9 @@
   committed_by: GPTPod
   message: Temporarily remove foreign key constraint on project_id in WebSearchLog
     to unblock WP14
+- timestamp: '2025-05-26T15:28:56.791429'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: WP7
+  committed_by: GPTPod
+  message: 'Fix tool usage logging call: rename ''tool'' to ''tool_name'' to match
+    log_tool_usage interface'
