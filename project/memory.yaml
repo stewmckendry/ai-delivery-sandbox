@@ -3926,3 +3926,15 @@
   - logging
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: app/tools/tool_wrappers/queryCorpus.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/queryCorpus.py
+  file_type: py
+  description: Script to query a corpus using vector stores and embeddings, providing
+    retrieval-based QA functionality.
+  tags:
+  - query
+  - retrieval
+  - embeddings
+  - tool
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
