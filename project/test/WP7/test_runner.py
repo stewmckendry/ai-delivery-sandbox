@@ -10,7 +10,7 @@ ingest_input = {
     "file_path": "test_upload.txt",
     "metadata": {
         "artifact_id": "investment_proposal_concept",
-        "gate_id": 1,
+        "gate_id": 0,
         "user_id": "test_user",
         "session_id": "s1",
         "project_id": "pegasus"
@@ -25,7 +25,7 @@ print("\n== Test 2: GenerateSectionChain ==")
 generate_input = {
     "artifact": "investment_proposal_concept",
     "section": "problem_statement",
-    "gate_id": "1",
+    "gate_id": "0",
     "user_id": "test_user",
     "session_id": "s2",
     "project_id": project_id
@@ -37,7 +37,7 @@ print(json.dumps(generate_output["save_result"], indent=2))
 print("\n== Test 3: AssembleArtifactChain ==")
 assemble_input = {
     "artifact_id": "investment_proposal_concept",
-    "gate_id": "1",
+    "gate_id": "0",
     "version": "v1",
     "project_id": project_id
 }
