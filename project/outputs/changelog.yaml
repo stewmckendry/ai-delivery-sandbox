@@ -6771,3 +6771,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-26T19:26:41.707961'
+  path: project/test/wps/WP22/test_queryCorpus_remote_http.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add 30-second delay after async loadCorpus call before querying
