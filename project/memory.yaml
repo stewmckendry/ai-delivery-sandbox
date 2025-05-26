@@ -4092,3 +4092,15 @@
   - tool
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/prompts/goc_alignment_prompts.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/prompts/goc_alignment_prompts.yaml
+  file_type: yaml
+  description: Templates for generating prompts to summarize the alignment between
+    queries and Canadian government sources.
+  tags:
+  - prompt
+  - alignment
+  - GoC
+  - template
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
