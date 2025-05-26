@@ -486,6 +486,74 @@
         },
         "required": ["project_id"]
       }
+    },
+    {
+      "tool_id": "ingestInput",
+      "description": "Ingests content from user text, file, or URL and generates or updates the associated project profile.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "input_method": {
+            "type": "string",
+            "enum": ["text", "file", "link"],
+            "description": "Indicates which upload method to use"
+          },
+          "text": { "type": "string" },
+          "file_path": { "type": "string" },
+          "file_content": { "type": "string" },
+          "url": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "gate_id": { "type": "integer" },
+              "artifact_id": { "type": "string" },
+              "section_id": { "type": "string" },
+              "intent": { "type": "string" },
+              "session_id": { "type": "string" },
+              "user_id": { "type": "string" },
+              "project_id": { "type": "string" }
+            },
+            "required": ["artifact_id"]
+          }
+        },
+        "required": ["input_method", "metadata"],
+        "oneOf": [
+          { "required": ["text"] },
+          { "required": ["file_path"] },
+          { "required": ["file_content"] },
+          { "required": ["url"] }
+        ]
+      }
+    },
+    {
+      "tool_id": "generateSectionChain",
+      "description": "Generates a draft section by retrieving memory, synthesizing, and refining text.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "artifact": { "type": "string" },
+          "section": { "type": "string" },
+          "gate_id": { "type": "string" },
+          "session_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "project_id": { "type": "string" }
+        },
+        "required": ["artifact", "section"]
+      }
+    },
+    {
+      "tool_id": "assembleArtifactChain",
+      "description": "Loads section metadata, formats and merges content, finalizes a document, and saves it to Drive.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "artifact_id": { "type": "string" },
+          "gate_id": { "type": "string" },
+          "version": { "type": "string" },
+          "project_id": { "type": "string" }
+        },
+        "required": ["artifact_id", "gate_id"]
+      }
     }
   ]
 }
