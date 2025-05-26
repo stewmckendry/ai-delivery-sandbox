@@ -3663,3 +3663,14 @@
   - logging
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/tools/tool_utils/web_search_logger.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_utils/web_search_logger.py
+  file_type: py
+  description: Utility for logging web search activities into the database with relevant
+    metadata.
+  tags:
+  - logging
+  - database
+  - utility
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
