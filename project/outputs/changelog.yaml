@@ -6235,3 +6235,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Remove formatter reference and return SerpAPI results directly in jurisdiction.py
+- timestamp: '2025-05-26T13:55:45.332706'
+  path: app/tools/search_handlers/market.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Remove formatter reference and return raw results from bing_web_search
+    in market.py
