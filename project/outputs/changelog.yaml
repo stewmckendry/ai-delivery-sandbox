@@ -6133,3 +6133,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Build query string manually to avoid 404 from RapidAPI Bing Search endpoint
+- timestamp: '2025-05-26T04:34:53.981757'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Restore full IngestInputChain.py file with full structured LLM response
+    logging and intermediate inspection.
