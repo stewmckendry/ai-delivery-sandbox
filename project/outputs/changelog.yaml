@@ -6751,3 +6751,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Restore full logging, text splitting, and tracing to async loadCorpus tool
+- timestamp: '2025-05-26T19:20:30.800856'
+  path: app/engines/api_router.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Enable async_tool execution via BackgroundTasks in API router
