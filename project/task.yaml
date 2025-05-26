@@ -531,6 +531,7 @@ tasks:
     - app/tools/tool_wrappers/web_search.py
     - app/tools/search_handlers/general.py
     - app/tools/search_handlers/jurisdiction.py
+    - app/tools/search_handlers/market.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
