@@ -583,6 +583,19 @@ tools:
       required:
         - query
         - search_type
+  goc_alignment_search:
+    module: app.tools.tool_wrappers.goc_alignment_search
+    class: Tool
+    description: Performs government policy alignment search scoped to .gc.ca domains and returns structured results
+    schema:
+      type: object
+      properties:
+        query:
+          type: string
+        context:
+          type: object
+      required:
+        - query
   assembleArtifactChain:
     description: Loads section metadata, formats and merges content, finalizes a document, and saves it to Drive.
     module: app.engines.toolchains.assemble_artifact_chain

@@ -581,6 +581,18 @@
         },
         "required": ["query", "search_type"]
       }
+    },
+        {
+      "tool_id": "goc_alignment_search",
+      "description": "Performs government policy alignment search scoped to .gc.ca domains and returns structured results",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "context": { "type": "object" }
+        },
+        "required": ["query"]
+      }
     }
   ]
 }
