@@ -30,21 +30,23 @@ sources TEXT,                                -- optional: list of citations/sour
 status VARCHAR(50) DEFAULT 'draft',
 generated_by VARCHAR(255),
 timestamp DATETIME,
-version VARCHAR(10) DEFAULT 'v1'
+version VARCHAR(10) DEFAULT 'v1',
+project_id VARCHAR(255)                      -- FK to project_profile(project_id)
 ```
 
 #### `PromptLog`
 
 ```sql
-id TEXT PRIMARY KEY
-tool TEXT -- Name of the tool used (e.g. inputPromptGenerator)
-input_summary TEXT -- Short summary of the input
-output_summary TEXT -- Short summary of the output
-full_input_path TEXT -- JSON path or blob storing full input data
-full_output_path TEXT -- JSON path or blob storing full output data
-session_id TEXT -- Optional: session ID for tracking
-user_id TEXT   -- Optional: user ID for tracking
-timestamp TIMESTAMP
+id TEXT PRIMARY KEY,
+tool TEXT,                                   -- Name of the tool used (e.g. inputPromptGenerator)
+input_summary TEXT,                          -- Short summary of the input
+output_summary TEXT,                         -- Short summary of the output
+full_input_path TEXT,                        -- JSON path or blob storing full input data
+full_output_path TEXT,                       -- JSON path or blob storing full output data
+session_id TEXT,                             -- Optional: session ID for tracking
+user_id TEXT,                                -- Optional: user ID for tracking
+timestamp TIMESTAMP,
+project_id VARCHAR(255)                      -- FK to project_profile(project_id)
 ```
 
 Expected JSON structure inside full_input_path and full_output_path:
@@ -67,25 +69,43 @@ section_id VARCHAR(255),
 steps NVARCHAR(MAX),                         -- ordered list of reasoning steps (JSON string)
 created_by VARCHAR(255),
 created_at DATETIME,
-draft_chunks NVARCHAR(MAX)                   -- optional: store each draft section separately
+draft_chunks NVARCHAR(MAX),                  -- optional: store each draft section separately
+project_id VARCHAR(255)                      -- FK to project_profile(project_id)
 ```
 
 #### `DocumentVersionLog`
 
 ```sql
-doc_version_id VARCHAR(255) PRIMARY KEY
-artifact_name TEXT NOT NULL
-gate INT NOT NULL
-version_tag VARCHAR(255) NOT NULL
-submitted_by VARCHAR(255)
-file_path TEXT NOT NULL
-google_doc_url TEXT  -- optional Drive link to finalized artifact
-doc_format VARCHAR(50) DEFAULT 'markdown'  -- pdf/html/md (default: markdown)
-submitted_at DATETIME DEFAULT GETDATE()  -- default: now()
+doc_version_id VARCHAR(255) PRIMARY KEY,
+artifact_name TEXT NOT NULL,
+gate INT NOT NULL,
+version_tag VARCHAR(255) NOT NULL,
+submitted_by VARCHAR(255),
+file_path TEXT NOT NULL,
+google_doc_url TEXT,                         -- optional Drive link to finalized artifact
+doc_format VARCHAR(50) DEFAULT 'markdown',   -- pdf/html/md (default: markdown)
+submitted_at DATETIME DEFAULT GETDATE(),     -- default: now()
+project_id VARCHAR(255)                      -- FK to project_profile(project_id)
 ```
 
-#### `AuditTrail`
+#### `ProjectProfile`
 
+```sql
+doc_version_id VARCHAR(255) PRIMARY KEY,
+artifact_name TEXT NOT NULL,
+gate INT NOT NULL,
+version_tag VARCHAR(255) NOT NULL,
+submitted_by VARCHAR(255),
+file_path TEXT NOT NULL,
+google_doc_url TEXT,                         -- optional Drive link to finalized artifact
+doc_format VARCHAR(50) DEFAULT 'markdown',   -- pdf/html/md (default: markdown)
+submitted_at DATETIME DEFAULT GETDATE(),     -- default: now()
+project_id VARCHAR(255)                      -- FK to project_profile(project_id)
+```
+
+
+#### `AuditTrail`
+(Not implemented)
 ```sql
 audit_id TEXT PRIMARY KEY
 user_id TEXT
@@ -97,6 +117,7 @@ timestamp TIMESTAMP
 ```
 
 #### `TaskMetadata`
+(Not implemented)
 
 ```sql
 task_id TEXT PRIMARY KEY
@@ -113,6 +134,7 @@ completed_at TIMESTAMP
 ## 🔧 Patch: Add DB Schema Entities for Document Feedback and Project-Level Logging
 
 ### 📌 Add New Table: `DocumentFeedback`
+(Not implemented)
 
 ```sql
 document_feedback_id TEXT PRIMARY KEY
@@ -127,6 +149,7 @@ resolved_at TIMESTAMP
 ```
 
 ### 📌 Add New Table: DocumentDiff
+(Not implemented)
 ```sql
 diff_id TEXT PRIMARY KEY
 document_id TEXT                      -- Target document version ID
@@ -138,6 +161,7 @@ created_at TIMESTAMP
 ```
 
 ### 📌 Add New Table: ApprovalLog
+(Not implemented)
 ```sql
 approval_id TEXT PRIMARY KEY
 document_id TEXT
@@ -147,19 +171,6 @@ comments TEXT
 signed_at TIMESTAMP
 ```
 
-### 📌 Add New Table: ProjectProfile
-```sql
-project_id TEXT PRIMARY KEY
-title TEXT
-sponsor TEXT
-project_type TEXT
-total_budget NUMERIC
-start_date DATE
-end_date DATE
-strategic_alignment TEXT
-current_gate INT
-last_updated TIMESTAMP
-```
 
 ---
 
