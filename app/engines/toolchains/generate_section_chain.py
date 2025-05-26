@@ -31,6 +31,17 @@ class GenerateSectionChain:
         trace.append({"tool": "memory_retrieve", "output": memory_wrapped})
         logger.info("[Step 1] memory_retrieve complete")
 
+        if not memory:
+            logger.info("[Fallback] Triggering external_web_search")
+            from app.tools.tool_wrappers.web_search import Tool as WebSearchTool
+            search_results = WebSearchTool().run_tool({
+                "query": f"{inputs.get('artifact')} - {inputs.get('section')}",
+                "search_type": "general",
+                "context": {"project_profile": inputs.get("project_profile", {})}
+            })
+            trace.append({"tool": "web_search", "output": search_results})
+            memory_wrapped = {"memory": search_results}
+
         draft = self.synth_tool.run_tool({**inputs, **memory_wrapped})
         log_tool_usage("section_synthesizer", "generated draft", draft, session_id, user_id, inputs)
         trace.append({"tool": "section_synthesizer", "output": draft})
