@@ -6363,3 +6363,13 @@
   task_id: WP7
   committed_by: GPTPod
   message: Append output file to WP7
+- timestamp: '2025-05-26T16:01:57.671700'
+  path: project/build/wps/WP22/WP22_loadCorpus_steps.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add step-by-step ingestion guide for sample GoC corpus using loadCorpus
+- timestamp: '2025-05-26T16:01:57.671700'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP22/WP22_loadCorpus_steps.md
