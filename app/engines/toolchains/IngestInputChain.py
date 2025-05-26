@@ -96,6 +96,9 @@ class IngestInputChain:
             logger.info(f"No merge needed for new project_id: {project_id}")
 
         logger.info(f"Saving cleaned project profile: {json.dumps(project_profile, indent=2)}")
+        for key, value in project_profile.items():
+            logger.debug(f"Field {key} type: {type(value)} value: {value}")
+
         ProjectProfileEngine().save_profile(project_profile)
         logger.info(f"Saved project profile for ID: {project_id}")
 
