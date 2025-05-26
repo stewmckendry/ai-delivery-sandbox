@@ -6,7 +6,7 @@ def bing_web_search(query: str, count: int = 5) -> list:
     if not api_key:
         raise ValueError("Missing BING_API_KEY in environment")
 
-    url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI"
+    url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/API/Search/WebSearchAPI"
     headers = {
         "X-RapidAPI-Key": api_key,
         "X-RapidAPI-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
