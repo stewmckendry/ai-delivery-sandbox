@@ -3630,3 +3630,14 @@
   - formatting
   last_updated: '2025-05-26'
   pod_owner: DeliveryPod
+- path: app/tools/tool_utils/web_search_formatter.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_utils/web_search_formatter.py
+  file_type: py
+  description: Utility function to format raw web search results into a structured
+    list of dictionaries
+  tags:
+  - utility
+  - web
+  - format
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
