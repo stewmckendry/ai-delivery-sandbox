@@ -5625,3 +5625,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Fix error when LLM wraps output in 'project_profile' field
+- timestamp: '2025-05-26T01:40:10.656103'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Sanitize date, number, and int fields in project profile before saving
