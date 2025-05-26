@@ -257,7 +257,8 @@
               "session_id": { "type": "string" },
               "user_id": { "type": "string" }
             }
-          }
+          },
+          "log_usage": { "type": "boolean", "description": "Optional. Skip logging if chained." }
         },
         "required": ["text"]
       }
@@ -280,7 +281,8 @@
               "session_id": { "type": "string" },
               "user_id": { "type": "string" }
             }
-          }
+          },
+          "log_usage": { "type": "boolean", "description": "Optional. Skip logging if chained." }
         },
         "anyOf": [
           { "required": ["file_path"] },
@@ -305,7 +307,8 @@
               "session_id": { "type": "string" },
               "user_id": { "type": "string" }
             }
-          }
+          },
+          "log_usage": { "type": "boolean", "description": "Optional. Skip logging if chained." }
         },
         "required": ["url"]
       }

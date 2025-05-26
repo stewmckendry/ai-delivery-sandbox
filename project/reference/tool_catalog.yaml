@@ -161,6 +161,9 @@ tools:
               type: string
             user_id:
               type: string
+        log_usage:
+          type: boolean
+          description: Optional. If false, tool usage logging will be skipped (used when chained).
       required:
         - text
   uploadFileInput:
@@ -189,6 +192,9 @@ tools:
               type: string
             user_id:
               type: string
+        log_usage:
+          type: boolean
+          description: Optional. If false, tool usage logging will be skipped (used when chained).
       anyOf:
         - required: ["file_path"]
         - required: ["file_content"]
@@ -216,6 +222,9 @@ tools:
               type: string
             user_id:
               type: string
+        log_usage:
+          type: boolean
+          description: Optional. If false, tool usage logging will be skipped (used when chained).
       required:
         - url
   loadCorpus:
