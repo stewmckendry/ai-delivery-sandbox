@@ -3587,3 +3587,14 @@
   - documentation
   last_updated: '2025-05-26'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/web_search.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/web_search.py
+  file_type: py
+  description: Module for routing and executing different types of web searches based
+    on search type.
+  tags:
+  - search
+  - routing
+  - handler
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
