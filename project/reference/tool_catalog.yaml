@@ -349,7 +349,6 @@ tools:
           type: string
       required:
         - raw_draft
-
   loadSectionMetadata:
     module: app.tools.tool_wrappers.loadSectionMetadata
     class: Tool
