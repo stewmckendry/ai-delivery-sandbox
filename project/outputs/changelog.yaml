@@ -6296,3 +6296,8 @@
   committed_by: GPTPod
   message: Default ToolRegistry to use GitHub as source and add error handling + debug
     logging
+- timestamp: '2025-05-26T15:19:37.763347'
+  path: app/tools/tool_wrappers/web_search.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Wire up WebSearchLog logging in web_search.py using get_db and log_web_search
