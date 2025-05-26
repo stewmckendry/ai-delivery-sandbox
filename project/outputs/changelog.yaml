@@ -5867,3 +5867,8 @@
   committed_by: GPTPod
   message: Add step-by-step diagnostics before saving project profile (field logs,
     sanitization, DB prep)
+- timestamp: '2025-05-26T02:56:39.205003'
+  path: app/engines/project_profile_engine.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add step-by-step debug logging during DB save of project profile
