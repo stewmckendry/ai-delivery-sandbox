@@ -1,6 +1,11 @@
 import os
+import sys
 import json
 from dotenv import load_dotenv
+
+# Set path to project root so imports work
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+
 from app.engines.planner_orchestrator import PlannerOrchestrator
 
 load_dotenv()
