@@ -1,5 +1,6 @@
 import requests
 import pdfplumber
+import time
 
 # Remote endpoints
 RAILWAY_BASE = "https://robust-adventure-production.up.railway.app"
@@ -27,6 +28,10 @@ payload = {
 load_response = requests.post(LOAD_ENDPOINT, json=payload)
 print("\n📥 loadCorpus response:")
 print(load_response.json())
+
+# Allow time for async corpus load
+print("\n⏳ Waiting 30s for background embedding to complete...")
+time.sleep(30)
 
 # Run test queries
 queries = [
