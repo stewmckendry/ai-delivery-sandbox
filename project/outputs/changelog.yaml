@@ -6670,3 +6670,8 @@
   task_id: WP7
   committed_by: GPTPod
   message: Append output file to WP7
+- timestamp: '2025-05-26T17:35:55.314177'
+  path: project/test/wps/WP22/test_queryCorpus_remote_tool.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update test script to load PDF from GitHub raw content URL
