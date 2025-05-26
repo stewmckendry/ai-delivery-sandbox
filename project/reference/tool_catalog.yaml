@@ -581,3 +581,20 @@ ingestInput:
       required:
         - artifact_id
         - gate_id
+
+    webSearch:
+      module: app.tools.tool_wrappers.web_search
+      class: Tool
+      description: Performs external web or domain-specific search and returns formatted summaries
+      schema:
+        type: object
+        properties:
+          query:
+            type: string
+          search_type:
+            type: string
+          context:
+            type: object
+        required:
+          - query
+          - search_type

@@ -103,6 +103,19 @@ submitted_at DATETIME DEFAULT GETDATE(),     -- default: now()
 project_id VARCHAR(255)                      -- FK to project_profile(project_id)
 ```
 
+#### `WebSearchLog`
+```sql
+id INTEGER PRIMARY KEY,
+search_type VARCHAR,
+query VARCHAR,
+results_summary JSON,
+tool_invoked_by VARCHAR,
+user_id VARCHAR,
+session_id VARCHAR,
+project_id VARCHAR,                           -- FK to project_profile(project_id)
+timestamp DATETIME
+```
+
 
 #### `AuditTrail`
 (Not implemented)

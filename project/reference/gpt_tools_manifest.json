@@ -557,6 +557,19 @@
         },
         "required": ["artifact_id", "gate_id"]
       }
+    },
+    {
+      "tool_id": "webSearch",
+      "description": "Performs external web or domain-specific search and returns formatted summaries",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "search_type": { "type": "string" },
+          "context": { "type": "object" }
+        },
+        "required": ["query", "search_type"]
+      }
     }
   ]
 }
