@@ -5568,3 +5568,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add project_id field to ReasoningTrace model
+- timestamp: '2025-05-26T00:51:26.701872'
+  path: app/db/models/DocumentVersionLog.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add project_id field to DocumentVersionLog model
