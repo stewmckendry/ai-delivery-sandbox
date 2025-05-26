@@ -9,11 +9,11 @@ os.environ["CHROMA_SERVER_HOST"] = "your-remote-host"
 os.environ["CHROMA_SERVER_HTTP_PORT"] = "8000"
 os.environ["OPENAI_API_KEY"] = "your-api-key"
 
-# Load corpus into remote Chroma if needed
-doc_url = "https://publications.gc.ca/collections/collection_2024/sct-tbs/BT22-278-2023-eng.pdf"
+# Load corpus into remote Chroma using GitHub-hosted PDF
+raw_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/opengov2023.pdf"
 pdf_path = "opengov2023.pdf"
 headers = {"User-Agent": "Mozilla/5.0"}
-response = requests.get(doc_url, headers=headers)
+response = requests.get(raw_url, headers=headers)
 with open(pdf_path, "wb") as f:
     f.write(response.content)
 
