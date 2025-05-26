@@ -5774,3 +5774,9 @@
   committed_by: GPTPod
   message: 'Fix merge to preserve None values (replace old.update({k: v for ... if
     v}) with is not None)'
+- timestamp: '2025-05-26T02:31:45.038973'
+  path: app/tools/tool_wrappers/web_search.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Refactor web_search.py to use Tool class pattern for consistency with system
+    tools
