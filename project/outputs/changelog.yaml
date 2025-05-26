@@ -5546,3 +5546,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-26T00:44:54.868078'
+  path: project/test/WP7/test_plan.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update test_plan.md to include project_id in ingest and align artifact_id
+    with gate_reference_v2
