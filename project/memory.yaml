@@ -3806,3 +3806,14 @@
   - documentation
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/build/wps/WP14/serpapi_setup.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP14/serpapi_setup.md
+  file_type: md
+  description: Guide for configuring SerpAPI for use in the PolicyGPT external search
+    tool, including account setup and API key integration.
+  tags:
+  - setup
+  - config
+  - api
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
