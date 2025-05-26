@@ -6301,3 +6301,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Wire up WebSearchLog logging in web_search.py using get_db and log_web_search
+- timestamp: '2025-05-26T15:24:08.328843'
+  path: app/tools/tool_wrappers/web_search.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Switch to get_session from database.py for DB logging in web_search.py
