@@ -3,6 +3,7 @@ from openai import OpenAI
 from datetime import datetime
 from app.engines.project_profile_engine import ProjectProfileEngine
 from app.tools.tool_registry import ToolRegistry
+from app.engines.memory_sync import log_tool_usage
 
 class IngestInputChain:
     def __init__(self):
@@ -20,7 +21,7 @@ class IngestInputChain:
             "link": "uploadLinkInput"
         }
         upload_tool = self.registry.get_tool(tool_map[method])
-        upload_result = upload_tool.run_tool(inputs)
+        upload_result = upload_tool.run_tool(inputs, log_usage=False)
 
         raw_text = upload_result.get("text")
         metadata = upload_result.get("metadata", {})
@@ -47,6 +48,17 @@ class IngestInputChain:
             pass
 
         ProjectProfileEngine().save_profile(project_profile)
+
+        # Now safe to log tool usage
+        log_tool_usage(
+            tool=tool_map[method],
+            input_summary=f"{inputs.get(method) or inputs.get('file_path')} | {tool_map[method]}",
+            output_summary=raw_text[:200],
+            session_id=metadata.get("session_id"),
+            user_id=metadata.get("user_id"),
+            metadata=metadata
+        )
+
         return {
             "status": "profile_saved",
             "project_id": project_id,
