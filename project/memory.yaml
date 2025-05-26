@@ -3877,3 +3877,15 @@
   - coverage
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/build/wps/WP22/load_opengov2023_corpus.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP22/load_opengov2023_corpus.py
+  file_type: py
+  description: Script to download, extract text from a PDF, and load it into a corpus
+    using a tool wrapper.
+  tags:
+  - corpus
+  - extraction
+  - pdf
+  - tool
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
