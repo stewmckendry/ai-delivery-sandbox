@@ -3697,3 +3697,15 @@
   - environment
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: project/build/WPs/WP22/WP22_design_note.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/WPs/WP22/WP22_design_note.md
+  file_type: md
+  description: Design notes for developing a tool to align drafted sections with Government
+    of Canada priorities using semantic search and toolchain integration.
+  tags:
+  - design
+  - toolchain
+  - alignment
+  - integration
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
