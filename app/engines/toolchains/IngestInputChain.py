@@ -147,10 +147,12 @@ project_profile:
         prior_text = f"\nExisting profile:\n{prior}" if prior else ""
 
         prompt = f"""
-You are a project analyst. From the following text, extract a structured project profile in this format:
-{schema}
+You are a project analyst. Your task is to build a structured project profile.
+The project ID is: {metadata.get('project_id')}
 
-Only include data present in the input. Leave missing fields blank or use null.
+Extract fields only if they are supported by the text. Use null where missing.
+
+{schema}
 {prior_text}
 
 INPUT TEXT:
@@ -167,6 +169,12 @@ INPUT TEXT:
         )
         logger.debug("OpenAI chat completion call successful")
         raw_output = response.choices[0].message.content.strip()
-        logger.error(f"Stopping execution to inspect LLM raw output:\n{raw_output}")
-        raise ValueError("Halting test to inspect LLM output")
-        # parsed = json.loads(raw_output)
+        if not raw_output:
+            raise ValueError("Empty LLM output")
+
+        parsed = json.loads(raw_output)
+        logger.debug("Parsed output from LLM")
+        if "project_profile" in parsed:
+            parsed = parsed["project_profile"]
+            logger.debug("Unwrapped 'project_profile' from response")
+        raise ValueError(f"Parsed result: {parsed}")
