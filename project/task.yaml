@@ -538,6 +538,7 @@ tasks:
     - app/tools/tool_utils/web_search_logger.py
     - app/tools/tool_utils/search_api_utils.py
     - project/build/wps/WP14/bing_api_setup.md
+    - project/build/WPs/WP22/WP22_design_note.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
