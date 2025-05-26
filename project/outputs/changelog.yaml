@@ -5620,3 +5620,8 @@
   committed_by: GPTPod
   message: Enforce primary project_id from metadata and fallback only if LLM omits
     it
+- timestamp: '2025-05-26T01:34:07.600861'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix error when LLM wraps output in 'project_profile' field
