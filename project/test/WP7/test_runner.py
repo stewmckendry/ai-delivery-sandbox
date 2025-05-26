@@ -15,7 +15,7 @@ if project_root not in sys.path:
 
 from app.engines.toolchains.IngestInputChain import IngestInputChain
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
-from app.engines.toolchains.assemble_artifact_chain import AssembleArtifactChain
+from app.engines.planner_orchestrator import PlannerOrchestrator
 
 # Test Step 1: Ingest input and generate project profile
 print("\n== Test 1: IngestInputChain ==")
@@ -47,7 +47,7 @@ generate_input = {
 generate_output = GenerateSectionChain().run(generate_input)
 print(json.dumps(generate_output["save_result"], indent=2, default=default_serializer))
 
-# Test Step 3: Assemble artifact
+# Test Step 3: Assemble artifact via PlannerOrchestrator to inject project_profile
 print("\n== Test 3: AssembleArtifactChain ==")
 assemble_input = {
     "artifact_id": "investment_proposal_concept",
@@ -55,5 +55,5 @@ assemble_input = {
     "version": "v1",
     "project_id": project_id
 }
-assemble_output = AssembleArtifactChain().run(assemble_input)
+assemble_output = PlannerOrchestrator().run("assemble_artifact", assemble_input)
 print(json.dumps(assemble_output, indent=2, default=default_serializer))
