@@ -548,6 +548,7 @@ tasks:
     - project/build/wps/WP12/WP12_ux_design_review.md
     - project/build/wps/WP14/WP14_serpapi_migration_impact.md
     - project/build/wps/WP14/serpapi_setup.md
+    - project/build/wps/WP17/project_profile_versioning.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
