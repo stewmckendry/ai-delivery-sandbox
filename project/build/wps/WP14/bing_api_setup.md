@@ -2,20 +2,17 @@
 
 This guide walks you through registering for a Bing Web Search API key and configuring your environment.
 
-### Step 1: Register on Azure Marketplace
-1. Visit [https://portal.azure.com](https://portal.azure.com)
-2. Log in or create a Microsoft account.
-3. In the portal, search for "Bing Search v7" or go directly to: [https://portal.azure.com/#create/Microsoft.CognitiveServicesBingSearch-v7](https://portal.azure.com/#create/Microsoft.CognitiveServicesBingSearch-v7)
-4. Click **Create** and follow the steps:
-   - Choose your subscription
-   - Create a resource group or use an existing one
-   - Set the pricing tier (Free available with 3K requests/month)
-   - Create the resource
+### Step 1: Register on Microsoft Azure or Bing Search Services
+1. Go to the [Bing Search API documentation](https://learn.microsoft.com/en-us/bing/search-apis/)
+2. Follow the latest setup guidance under "Get Started" > "Bing Web Search"
+3. Create or log in to a Microsoft Azure account
+4. Register a **Bing Search v7** resource (under Cognitive Services or new Bing Services)
+5. Choose pricing tier (Free tier includes 3K/month)
 
 ### Step 2: Get Your API Key
-1. After creation, navigate to the new Bing Search resource.
-2. Under the **Keys and Endpoint** section, copy one of the available keys.
-3. Note the endpoint URL (typically `https://api.bing.microsoft.com/v7.0/search`)
+1. Navigate to your Bing resource in the Azure portal
+2. Go to **Keys and Endpoint** section
+3. Copy an API key and the endpoint URL (e.g. `https://api.bing.microsoft.com/v7.0/search`)
 
 ### Step 3: Configure Your Environment
 Create or update your local `.env` file:
@@ -24,24 +21,23 @@ Create or update your local `.env` file:
 BING_API_KEY=your_copied_key_here
 ```
 
-This will be used by WP14's `general.py` handler to perform real-time web search via Bing.
+This enables WP14’s real-time search handler to access Bing.
 
 ### Step 4 (Optional): Test Your Key
-You can run a quick test using curl or Python:
-
 ```bash
 curl -H "Ocp-Apim-Subscription-Key: $BING_API_KEY" \
-     "https://api.bing.microsoft.com/v7.0/search?q=infrastructure+funding"
+     "https://api.bing.microsoft.com/v7.0/search?q=example+policy"
 ```
 
 ---
 
-For development, make sure `BING_API_KEY` is loaded in your environment. If using VSCode or running via script, the `dotenv` loader will pick it up.
+For devs: If using dotenv, this key will load automatically.
 
-> Note: Free tier is sufficient for WP14 testing.
+> Tip: Use Free tier for development. Upgrade only if doing heavy usage or integration testing.
 
 ---
 
-If you're using RapidAPI instead of Azure:
-- Search for "Bing Web Search" on [https://rapidapi.com](https://rapidapi.com)
-- Subscribe and follow similar steps to get a key and update the API call endpoint.
+If using RapidAPI:
+- Visit [https://rapidapi.com](https://rapidapi.com)
+- Search for "Bing Web Search"
+- Subscribe and use their endpoint + API key in the same `.env` variable
