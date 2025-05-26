@@ -184,7 +184,7 @@ INPUT TEXT:
                 logger.warning("Parsed output missing project_id")
             if not parsed.get("title"):
                 logger.warning("Parsed output missing title")
-            raise ValueError(f"Parsed result: {parsed}")
+            return parsed
         except Exception as e:
             logger.error(f"Failed to parse output: {e}\nRaw output: {raw_output}")
             raise ValueError(f"Failed to parse output: {e}\nRaw output: {raw_output}")
