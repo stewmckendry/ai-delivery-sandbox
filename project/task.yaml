@@ -540,6 +540,7 @@ tasks:
     - project/build/wps/WP14/bing_api_setup.md
     - project/build/WPs/WP22/WP22_design_note.md
     - project/build/WPs/WP22/WP22_definition.md
+    - project/build/WPs/WP22/WP22_pod_activation_message.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
