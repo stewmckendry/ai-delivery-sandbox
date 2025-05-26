@@ -3652,3 +3652,14 @@
   - template
   last_updated: '2025-05-26'
   pod_owner: ResearchPod
+- path: app/db/models/WebSearchLog.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/WebSearchLog.py
+  file_type: py
+  description: Database model for logging web search activities and their associated
+    metadata.
+  tags:
+  - database
+  - model
+  - logging
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
