@@ -32,16 +32,21 @@ class IngestInputChain:
         logger.debug(f"Raw text extracted: {raw_text[:100]}")
         logger.debug(f"Metadata: {metadata}")
 
+        metadata_project_id = metadata.get("project_id")
         try:
-            project_id = metadata.get("project_id")
-            existing = ProjectProfileEngine().load_profile(project_id)
-            logger.info(f"Loaded existing project profile for ID: {project_id}")
+            existing = ProjectProfileEngine().load_profile(metadata_project_id)
+            logger.info(f"Loaded existing project profile for ID: {metadata_project_id}")
         except Exception as e:
             logger.warning(f"No existing profile found or load failed: {e}")
             existing = {}
 
         project_profile = self.generate_project_profile(raw_text, metadata, existing)
         logger.debug(f"Generated project profile: {project_profile}")
+
+        if not project_profile.get("project_id"):
+            logger.warning("project_id missing from LLM output — using metadata project_id")
+            project_profile["project_id"] = metadata_project_id
+
         project_profile["last_updated"] = datetime.utcnow().isoformat()
 
         project_id = project_profile.get("project_id")
