@@ -6736,3 +6736,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Update test script to download PDF from GitHub for remote execution compatibility
+- timestamp: '2025-05-26T18:55:05.604547'
+  path: project/test/wps/WP22/test_queryCorpus_remote_http.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix Railway test endpoints to use /tools/{tool_id} paths
