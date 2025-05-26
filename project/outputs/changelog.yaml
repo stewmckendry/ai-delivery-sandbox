@@ -5599,3 +5599,8 @@
   committed_by: GPTPod
   message: Defer tool usage logging in IngestInputChain until after project profile
     is saved
+- timestamp: '2025-05-26T01:06:47.823318'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Add diagnostic logging to IngestInputChain and ProjectProfileEngine
