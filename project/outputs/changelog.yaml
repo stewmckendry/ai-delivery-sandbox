@@ -5993,3 +5993,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Enhance market search with industry context and commercial keyword tuning
+- timestamp: '2025-05-26T03:45:57.982177'
+  path: project/build/wps/WP14/bing_api_setup.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fix broken Azure link and update Bing API instructions for WP14
