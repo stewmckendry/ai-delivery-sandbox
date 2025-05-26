@@ -4009,3 +4009,15 @@
   - synthesis
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/test/wps/WP22/test_queryCorpus_remote_tool.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/test_queryCorpus_remote_tool.py
+  file_type: py
+  description: Script to test remote querying of a corpus using a PDF document and
+    validate responses against predefined queries.
+  tags:
+  - test
+  - remote
+  - query
+  - corpus
+  last_updated: '2025-05-26'
+  pod_owner: QAPod
