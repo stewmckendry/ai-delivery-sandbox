@@ -10,12 +10,15 @@ class ProjectProfileEngine:
     def save_profile(self, profile_data: dict):
         session = get_session()
         logger.debug(f"Saving project profile: {profile_data}")
+        for k, v in profile_data.items():
+            logger.debug(f"DB save field {k}: {v} ({type(v)})")
         profile = session.query(ProjectProfile).get(profile_data['project_id'])
         if not profile:
             profile = ProjectProfile(**profile_data)
             session.add(profile)
         else:
             for key, value in profile_data.items():
+                logger.debug(f"Updating {key} to {value} ({type(value)})")
                 setattr(profile, key, value)
             profile.last_updated = datetime.utcnow()
         session.commit()
