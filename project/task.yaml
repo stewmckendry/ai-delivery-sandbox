@@ -546,6 +546,7 @@ tasks:
     - project/test/WP14/WP14_test_plan.md
     - project/test/WP14/run_wp14_tests.py
     - project/build/wps/WP12/WP12_ux_design_review.md
+    - project/build/wps/WP14/WP14_serpapi_migration_impact.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
