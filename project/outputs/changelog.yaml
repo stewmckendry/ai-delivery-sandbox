@@ -5609,3 +5609,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add logging to ProjectProfileEngine for diagnostics
+- timestamp: '2025-05-26T01:23:39.651056'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Use metadata project_id as primary source if LLM omits it
