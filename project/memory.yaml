@@ -4082,3 +4082,13 @@
   - api
   last_updated: '2025-05-26'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/goc_alignment_search.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/goc_alignment_search.py
+  file_type: py
+  description: Script to execute and log GOC alignment searches based on user queries
+  tags:
+  - search
+  - logging
+  - tool
+  last_updated: '2025-05-26'
+  pod_owner: DevPod
