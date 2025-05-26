@@ -5630,3 +5630,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Sanitize date, number, and int fields in project profile before saving
+- timestamp: '2025-05-26T01:53:26.084316'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Use json.loads instead of eval to parse LLM output with null values
