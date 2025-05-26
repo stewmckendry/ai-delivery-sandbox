@@ -4033,3 +4033,16 @@
   - remote
   last_updated: '2025-05-26'
   pod_owner: QAPod
+- path: project/build/wps/WP22/WP22_queryCorpus_remote_addendum.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP22/WP22_queryCorpus_remote_addendum.md
+  file_type: md
+  description: Documentation for remote semantic querying logic in WP22, detailing
+    the use of ChromaDB and GPT for generating summaries from vector-embedded policy
+    corpora.
+  tags:
+  - query
+  - remote
+  - GPT
+  - ChromaDB
+  last_updated: '2025-05-26'
+  pod_owner: ResearchPod
