@@ -6009,3 +6009,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Patch Bing web search to use RapidAPI endpoint and headers
+- timestamp: '2025-05-26T03:57:11.168403'
+  path: project/build/wps/WP14/bing_api_setup.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Replace Azure setup instructions with RapidAPI version for Bing in WP14
+    setup doc
