@@ -11,7 +11,7 @@ class Tool:
         # placeholder for validation logic
         pass
 
-    def run_tool(self, input_dict):
+    def run_tool(self, input_dict, log_usage=True):
         self.validate(input_dict)
         text = input_dict["text"]
         metadata = input_dict.get("metadata") or {}
@@ -19,14 +19,15 @@ class Tool:
 
         entry = structure_input(text, source="direct_input", tool_name="uploadTextInput", metadata=metadata)
         out_path = write_trace(entry)
-        log_tool_usage(
-            entry["tool"],
-            entry["input_summary"],
-            entry["output_summary"],
-            session_id=entry.get("session_id"),
-            user_id=entry.get("user_id"),
-            metadata=entry.get("metadata")
-        )
+        if log_usage:
+            log_tool_usage(
+                entry["tool"],
+                entry["input_summary"],
+                entry["output_summary"],
+                session_id=entry.get("session_id"),
+                user_id=entry.get("user_id"),
+                metadata=entry.get("metadata")
+            )
 
         return {
             "status": "success",
