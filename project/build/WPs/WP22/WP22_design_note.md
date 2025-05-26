@@ -47,18 +47,27 @@ Develop a tool that helps identify alignment between drafted artifact sections a
 
 ---
 
+## ♻️ Reuse from WP14
+- Follow routing pattern in `web_search.py`
+- Implement handler `search_handlers/goc_alignment.py`
+- Use formatter: `tool_utils/web_search_formatter.py`
+- Log via: `tool_utils/web_search_logger.py` → `WebSearchLog`
+- Extend: `search_prompts.yaml` for alignment-specific prompt
+
+---
+
 ## 📂 Suggested Files
 - `app/tools/tool_wrappers/goc_alignment_search.py`
 - `app/tools/tool_wrappers/queryCorpus.py`
+- `app/tools/search_handlers/goc_alignment.py`
 - `project/prompts/goc_alignment_prompts.yaml`
 
 ---
 
-## 📘 Reference
-- `loadCorpus.py`
-- `generate_section_chain.py`
-- `section_synthesizer.py`
-- `memory_sync.py`, `PromptLog.py`, `ReasoningTrace.py`
+## 📘 Reference Files
+- `loadCorpus.py`, `generate_section_chain.py`, `planner_orchestrator.py`
+- `web_search.py`, `web_search_logger.py`, `web_search_formatter.py`
+- `search_handlers/general.py`, `search_prompts.yaml`
 
 ---
 
