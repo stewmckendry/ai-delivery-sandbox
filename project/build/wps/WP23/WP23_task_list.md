@@ -16,6 +16,7 @@
 - [x] Add save logic for `verbatim` flow
 - [x] Fix section override logic and skip feedback_mapper if provided
 - [x] Add optional `additional_suggestions` return in `section_rewriter`
+- [x] Return `additional_suggestions` at top level of `revise_section_chain`
 
 ## 🧪 Testing
 - [ ] Scaffold `test_revise_section_chain.py`
