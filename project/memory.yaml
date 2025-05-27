@@ -4440,3 +4440,15 @@
   - artifact
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/section_rewriter.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/section_rewriter.py
+  file_type: py
+  description: A tool for rewriting document sections using feedback and revision
+    types, leveraging LLMs and prompt templates.
+  tags:
+  - tool
+  - prompt
+  - llm
+  - revision
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
