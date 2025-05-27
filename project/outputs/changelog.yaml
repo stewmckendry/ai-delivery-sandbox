@@ -7966,3 +7966,9 @@
   task_id: wp24.section_toolchain_refactor
   committed_by: GPTPod
   message: Append output file to wp24.section_toolchain_refactor
+- timestamp: '2025-05-27T21:02:30.957562'
+  path: app/prompts/revision_prompts.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Patch revision_prompts.yaml to reflect section summaries instead of full
+    text
