@@ -823,3 +823,14 @@
   - frontend
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/frontend/tests/setup.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/frontend/tests/setup.ts
+  file_type: ts
+  description: Setup script for initializing Jest DOM testing utilities in the frontend
+    test environment
+  tags:
+  - setup
+  - testing
+  - frontend
+  last_updated: '2025-05-27'
+  pod_owner: QAPod
