@@ -4309,3 +4309,15 @@
   - integration
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP26/WP26_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP26/WP26_definition.md
+  file_type: md
+  description: Definition and design document for a user-configurable planner that
+    allows users or GPT to configure document generation workflows.
+  tags:
+  - planner
+  - config
+  - workflow
+  - UI
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
