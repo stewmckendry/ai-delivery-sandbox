@@ -78,3 +78,22 @@ revision_check:
     {{revised_text}}
 
     Did the edit respect the instruction? Reply YES or NO and explain briefly.
+
+feedback_preprocess:
+  system: "You help clean and structure messy or multi-part user feedback."
+  user: |
+    Analyze the following user feedback:
+    ---
+    {{feedback_text}}
+    ---
+
+    1. Normalize tone and phrasing.
+    2. If multiple requests are included, split them.
+    3. Identify the dominant revision intent.
+
+    Respond in JSON format:
+    {
+      "cleaned_text": "...",
+      "split_feedback": [...],
+      "inferred_type": "rewrite | polish | append | clarify | targeted_edit | unspecified"
+    }
