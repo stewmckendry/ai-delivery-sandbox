@@ -7314,3 +7314,8 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Updated task list to include feedback logging and data model additions.
+- timestamp: '2025-05-27T14:05:31.536538'
+  path: app/db/models/DocumentFeedback.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Added project_id to DocumentFeedback model.
