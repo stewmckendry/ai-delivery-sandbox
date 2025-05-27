@@ -4428,3 +4428,15 @@
   - generation
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP24/WP24_task_list.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP24/WP24_task_list.md
+  file_type: md
+  description: Task list for implementing and reviewing components of the WP24 Autopilot
+    Full Artifact Generator project.
+  tags:
+  - task
+  - implementation
+  - review
+  - artifact
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
