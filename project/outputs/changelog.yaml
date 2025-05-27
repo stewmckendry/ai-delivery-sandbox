@@ -7691,3 +7691,9 @@
   committed_by: GPTPod
   message: Update assemble_artifact_chain to use get_tool for refineDocumentChain
     as registry-compliant tool
+- timestamp: '2025-05-27T18:20:10.761939'
+  path: app/engines/toolchains/revise_section_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Fixed missing save on verbatim edits and added per-item revision_type support
+    in split_feedback handling.
