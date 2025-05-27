@@ -17,6 +17,7 @@ class Tool:
         alignment_results = input_dict.get("alignment_results", [])
         web_summary = input_dict.get("web_search", "")
         corpus_answer = input_dict.get("corpus_answer", {})
+        context_summary = input_dict.get("context_summary", "")
 
         def format_sources(label, entries):
             lines = []
@@ -76,6 +77,8 @@ Section: {section}
 {corpus_answer_str}
 {alignment_str}
 {web_str}
+
+{f'[Previous Context Summary]\n{context_summary}' if context_summary else ''}
 
 Begin the draft below:
         """
