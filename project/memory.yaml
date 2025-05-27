@@ -683,3 +683,13 @@
   - backend
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/routes/index.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/routes/index.ts
+  file_type: ts
+  description: Express router setup with a simple ping endpoint
+  tags:
+  - backend
+  - routes
+  - express
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
