@@ -1,6 +1,7 @@
 import os
-from openai import OpenAI
 from dotenv import load_dotenv
+from jinja2 import Template
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 
 load_dotenv()
 
@@ -13,19 +14,13 @@ class Tool:
         self.validate(input_dict)
         raw_draft = input_dict.get("raw_draft")
 
-        prompt = f"""
-You are a policy analyst. Polish the following draft for clarity, coherence, and professional tone. Do not change the core content or structure unless clarity demands it.
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "section_refinement")
+        system_prompt_template = Template(prompt_templates["system"])
+        user_prompt_template = Template(prompt_templates["user"])
 
-Draft:
-{raw_draft}
-        """
+        system_prompt = system_prompt_template.render()
+        user_prompt = user_prompt_template.render(raw_draft=raw_draft)
 
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.5
-        )
+        refined = chat_completion_request(system_prompt, user_prompt, temperature=0.5)
 
-        refined = response.choices[0].message.content.strip()
-        return {"raw_draft": refined, "prompt_used": prompt}
+        return {"raw_draft": refined, "prompt_used": user_prompt}
