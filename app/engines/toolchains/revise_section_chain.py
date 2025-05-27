@@ -3,6 +3,7 @@ from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage, save_feedback
 from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
+from app.tools.llm.gpt import chat_completion_request
 
 logger = logging.getLogger(__name__)
 
@@ -15,12 +16,18 @@ class ReviseSectionChain:
         self.section_rewriter = registry.get_tool("section_rewriter")
         self.manual_edit_tool = registry.get_tool("manualEditSync")
 
+    def summarize_text(self, text):
+        if not text or len(text.split()) < 100:
+            return text
+        prompt = f"Summarize the following artifact section in one paragraph:\n\n{text}"
+        return chat_completion_request(prompt)
+
     def run(self, inputs):
         trace = []
         artifact = inputs.get("artifact")
         section = inputs.get("section")
         raw_feedback = inputs.get("feedback_text")
-        mode = inputs.get("mode")  # rewrite, polish, append, verbatim
+        mode = inputs.get("mode")
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
         project_id = inputs.get("project_id")
@@ -47,6 +54,18 @@ class ReviseSectionChain:
 
         # Step 4: feedback logging
         save_feedback(document_id=artifact, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
+
+        # Fetch and summarize all artifact sections
+        section_records = db.query(ArtifactSection).filter_by(artifact_id=artifact).order_by(ArtifactSection.timestamp.desc()).all()
+        summarized_sections = []
+        seen_sections = set()
+        for sec in section_records:
+            if sec.section_id not in seen_sections:
+                summarized_sections.append({
+                    "section_id": sec.section_id,
+                    "text": self.summarize_text(sec.text)
+                })
+                seen_sections.add(sec.section_id)
 
         suggestions = []
 
@@ -79,7 +98,7 @@ class ReviseSectionChain:
 
                 section_ids = [section] if section else []
                 if not section:
-                    map_result = self.feedback_mapper.run_tool({"feedback_text": fb, **inputs})
+                    map_result = self.feedback_mapper.run_tool({"feedback_text": fb, "sections": summarized_sections, **inputs})
                     section_ids = map_result.get("section_ids", [])
                     trace.append({"tool": "feedback_mapper", "output": map_result})
                     logger.info("[Step 3] feedback_mapper complete")
