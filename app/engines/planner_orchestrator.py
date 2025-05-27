@@ -4,6 +4,7 @@ from typing import Dict, Any
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.engines.toolchains.assemble_artifact_chain import AssembleArtifactChain
 from app.engines.toolchains.IngestInputChain import IngestInputChain
+from app.engines.toolchains.revise_section_chain import ReviseSectionChain
 from app.engines.memory_sync import load_project_profile
 
 logger = logging.getLogger(__name__)
@@ -29,6 +30,8 @@ class PlannerOrchestrator:
             return AssembleArtifactChain().run(inputs)
         elif intent == "ingest_input":
             return IngestInputChain().run(inputs)
+        elif intent == "revise_section":
+            return ReviseSectionChain().run(inputs)
         elif intent == "external_web_search":
             from app.tools.tool_wrappers.web_search import Tool
             return Tool().run_tool(inputs)
