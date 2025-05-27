@@ -7555,3 +7555,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Add tiktoken dependency to requirements.txt for WP24 token counting utilities
+- timestamp: '2025-05-27T15:56:05.473526'
+  path: app/tools/utils/section_helpers.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Update section_helpers.py to support nested gate/artifact/section YAML
+    structure
