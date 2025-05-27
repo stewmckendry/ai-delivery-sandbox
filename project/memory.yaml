@@ -537,8 +537,12 @@
 - path: docs/module1-technical-spec.md
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/docs/module1-technical-spec.md
   file_type: md
-  description: Fallback summary for docs/module1-technical-spec.md
+  description: Technical specification for Module 1 detailing data models and API
+    design for user, child profiles, lessons, missions, and progress tracking.
   tags:
-  - auto
+  - data models
+  - API
+  - user management
+  - progress tracking
   last_updated: '2025-05-27'
-  pod_owner: ''
+  pod_owner: DevPod
