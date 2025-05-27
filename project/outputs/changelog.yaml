@@ -7888,3 +7888,9 @@
   task_id: wp24_full_artifact_generator
   committed_by: ProductPod
   message: Append output file to wp24_full_artifact_generator
+- timestamp: '2025-05-27T20:05:46.600466'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: wp24-section-refactor
+  committed_by: ProductPod
+  message: Revert memory context construction in query_prompt_generator.py to original
+    logic using input_summary and text
