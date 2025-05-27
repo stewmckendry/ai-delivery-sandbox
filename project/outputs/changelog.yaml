@@ -7396,3 +7396,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Refactored feedback_mapper to use shared LLM helper and prompt from revision_prompts.yaml
+- timestamp: '2025-05-27T15:03:22.728553'
+  path: app/tools/tool_wrappers/feedback_mapper.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Updated feedback_mapper to load prompt template from GitHub revision_prompts.yaml
