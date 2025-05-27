@@ -148,22 +148,24 @@ started_at TIMESTAMP
 completed_at TIMESTAMP
 ```
 
-## 🔧 Patch: Add DB Schema Entities for Document Feedback and Project-Level Logging
-
-### 📌 Add New Table: `DocumentFeedback`
-(Not implemented)
+#### `DocumentFeedback`
 
 ```sql
-document_feedback_id TEXT PRIMARY KEY
-document_id TEXT                      -- Foreign key to full document (e.g., artifact version or section group)
-submitted_by TEXT
-feedback_text TEXT
-feedback_type TEXT                    -- e.g., 'usability', 'clarity', 'alignment', 'recommendation'
-status TEXT                           -- e.g., 'open', 'in_progress', 'resolved'
-linked_task_id TEXT                   -- Optional reference to auto-generated TaskMetadata
-created_at TIMESTAMP
-resolved_at TIMESTAMP
+document_feedback_id = Column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
+document_id = Column(String, nullable=False)
+submitted_by = Column(String, nullable=True)
+feedback_text = Column(Text, nullable=False)
+feedback_type = Column(String, default="general")
+status = Column(String, default="open")
+linked_task_id = Column(String, nullable=True)
+created_at = Column(DateTime, default=datetime.datetime.utcnow)
+resolved_at = Column(DateTime, nullable=True)
+project_id = Column(String, nullable=True)
 ```
+
+
+## 🔧 Patch: Add DB Schema Entities for Document Feedback and Project-Level Logging
+
 
 ### 📌 Add New Table: DocumentDiff
 (Not implemented)
