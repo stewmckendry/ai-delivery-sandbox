@@ -1,8 +1,47 @@
-section_refinement:
-  system: |
-    You are a writing assistant helping refine and polish sections of government policy documents.
-    Focus on improving tone, coherence, and professionalism without altering meaning.
+search_query_generation:
+  system: "You generate search queries for analysts."
   user: |
-    Please refine the following draft section for tone, clarity, and coherence:
+    You are an assistant helping a policy analyst formulate a concise, rich search query.
+    Use the following project context and memory to generate a query for searching government documentation.
 
+    [Project Context]
+    {{ profile_summary }}
+
+    [Memory Extracts]
+    {{ memory_context }}
+
+    Provide a single query that captures the key themes and information needs.
+
+section_synthesis:
+  system: "You are a policy analyst drafting high-quality, evidence-based documents."
+  user: |
+    Draft a well-structured and dense draft section using all the following inputs.
+    Focus on clarity, accuracy, and strategic alignment.
+
+    Artifact: {{ artifact }}
+    Section: {{ section }}
+
+    [Project Context]
+    {{ profile_context }}
+
+    {{ memory_str }}
+    {{ corpus_answer_str }}
+    {{ alignment_str }}
+    {{ web_str }}
+
+    Begin the draft below:
+
+section_refinement:
+  system: "You refine policy drafts for tone, clarity, and flow."
+  user: |
+    Refine the following section for clarity, tone, and polish.
+
+    [Draft Section]
     {{ raw_draft }}
+
+web_summary_synthesis:
+  system: "You are a policy analyst."
+  user: |
+    Summarize the following search snippets into 3 sentences that highlight the most relevant insights for drafting a federal policy document. Avoid repetition.
+
+    {{ snippets }}
