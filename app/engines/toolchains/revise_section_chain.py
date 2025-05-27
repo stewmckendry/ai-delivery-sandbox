@@ -35,7 +35,7 @@ class ReviseSectionChain:
         # Step 2: feedback preprocessing
         preprocessed = self.feedback_preprocessor.run_tool({"feedback_text": raw_feedback})
         cleaned_feedback = preprocessed.get("cleaned_text", raw_feedback)
-        split_feedback = preprocessed.get("split_feedback", [cleaned_feedback])
+        raw_split = preprocessed.get("split_feedback", [cleaned_feedback])
         revision_type = preprocessed.get("inferred_type", mode)
         trace.append({"tool": "feedback_preprocessor", "output": preprocessed})
         logger.info("[Step 2] feedback_preprocessor complete")
@@ -54,8 +54,27 @@ class ReviseSectionChain:
             log_tool_usage("manualEditSync", "accepted user override", output, session_id, user_id, inputs)
             trace.append({"tool": "manualEditSync", "output": output})
             logger.info("[Step 3] manualEditSync complete")
+
+            save_result = save_artifact_and_trace(
+                section_id=section,
+                artifact_id=artifact,
+                gate_id=inputs.get("gate_id", "0"),
+                text=raw_feedback,
+                sources="manual user input",
+                tool_outputs=trace,
+                user_id=user_id,
+                project_id=project_id
+            )
+            logger.info("[Step 5] Saved verbatim input to ArtifactSection and ReasoningTrace")
         else:
-            for fb in split_feedback:
+            for item in raw_split:
+                if isinstance(item, dict):
+                    fb = item.get("text")
+                    fb_type = item.get("type", revision_type)
+                else:
+                    fb = item
+                    fb_type = revision_type
+
                 section_ids = [section]
                 if not section:
                     map_result = self.feedback_mapper.run_tool({"feedback_text": fb, **inputs})
@@ -68,7 +87,7 @@ class ReviseSectionChain:
                         "section_id": sec_id,
                         "memory": memory,
                         "feedback": fb,
-                        "revision_type": revision_type,
+                        "revision_type": fb_type,
                         "current_text": current_text,
                         **inputs
                     })
