@@ -7512,3 +7512,9 @@
   committed_by: GPTPod
   message: Refactor generate_full_artifact_chain to align with section planning, context
     summary, and logging using memory_sync
+- timestamp: '2025-05-27T15:49:17.678410'
+  path: project/build/wps/WP23/WP23_task_list.md
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added revision_checker.py to task list for compliance + hallucination detection
+    post-edit.
