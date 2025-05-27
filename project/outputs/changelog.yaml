@@ -7335,3 +7335,8 @@
   committed_by: ProductPod
   message: Fixed schema conflict by converting resolved_at to DateTime instead of
     TIMESTAMP.
+- timestamp: '2025-05-27T14:16:22.247261'
+  path: app/db/models/DocumentFeedback.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Expanded key column document_feedback_id to String(64) for SQL compatibility.
