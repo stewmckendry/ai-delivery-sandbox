@@ -7910,3 +7910,9 @@
   committed_by: GPTPod
   message: Enhance revise_section_chain.py to summarize section content before passing
     to feedback_mapper.
+- timestamp: '2025-05-27T20:34:07.342928'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: wp24_toolchain
+  committed_by: GPTPod
+  message: 'Fix: Update query_prompt_generator to load prompts via get_prompt helper
+    from generate_section_prompts.yaml'
