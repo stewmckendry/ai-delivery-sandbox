@@ -54,7 +54,7 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
     return {"section_id": section_id, "trace_id": trace.trace_id}
 
 
-def save_feedback(document_id, feedback_text, submitted_by, feedback_type="general"):
+def save_feedback(document_id, feedback_text, submitted_by, feedback_type="general", project_id=None):
     session = get_session()
     feedback_entry = DocumentFeedback(
         document_id=document_id,
@@ -62,7 +62,8 @@ def save_feedback(document_id, feedback_text, submitted_by, feedback_type="gener
         submitted_by=submitted_by,
         feedback_type=feedback_type,
         status="open",
-        created_at=datetime.datetime.utcnow()
+        created_at=datetime.datetime.utcnow(),
+        project_id=project_id
     )
     session.add(feedback_entry)
     session.commit()
