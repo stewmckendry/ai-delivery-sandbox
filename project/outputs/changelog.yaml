@@ -7955,3 +7955,9 @@
   committed_by: GPTPod
   message: 'Patch: fetch and summarize only the latest section version per section_id
     before passing to feedback_mapper'
+- timestamp: '2025-05-27T20:58:52.685383'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: wp24.section_toolchain_refactor
+  committed_by: GPTPod
+  message: Refactor query_prompt_generator.py to align with llm_helpers interface
+    and fetch prompts from YAML.
