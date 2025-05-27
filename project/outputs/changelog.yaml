@@ -7938,3 +7938,9 @@
   committed_by: GPTPod
   message: 'Patch: summarize all current sections and pass to feedback_mapper for
     accurate mapping'
+- timestamp: '2025-05-27T20:54:28.046422'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: T16
+  committed_by: ProductPod
+  message: Fix prompt retrieval and rendering in query_prompt_generator to match live
+    sandbox branch and feedback_mapper pattern
