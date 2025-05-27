@@ -1,9 +1,10 @@
 import logging
 import uuid
 import os
-from openai import OpenAI
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+from jinja2 import Template
 
 logger = logging.getLogger(__name__)
 
@@ -22,19 +23,14 @@ class GenerateSectionChain:
         if not search_results:
             return ""
 
-        snippets = "\n".join([f"{entry['title']}: {entry['snippet']}" for entry in search_results if 'title' in entry and 'snippet' in entry])
-        prompt = f"""
-You are a policy analyst. Summarize the following search snippets into 3 sentences that highlight the most relevant insights for drafting a federal policy document. Avoid repetition.
-
-{snippets}
-        """
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.3
-        )
-        return response.choices[0].message.content.strip()
+        snippets = "\n".join([
+            f"{entry['title']}: {entry['snippet']}"
+            for entry in search_results if 'title' in entry and 'snippet' in entry
+        ])
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "web_summary_synthesis")
+        system_prompt = Template(prompt_templates["system"]).render()
+        user_prompt = Template(prompt_templates["user"]).render(snippets=snippets)
+        return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
 
     def run(self, inputs):
         trace = []
@@ -45,7 +41,7 @@ You are a policy analyst. Summarize the following search snippets into 3 sentenc
         gate_id = inputs.get("gate_id", "0")
         project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
-        context_summary = inputs.get("context_summary", "")  # <-- New input usage
+        context_summary = inputs.get("context_summary", "")
         log_tool_usage("context_summary", "context summary input", context_summary, session_id, user_id, inputs)
 
         memory_input = {**inputs}
@@ -71,7 +67,6 @@ You are a policy analyst. Summarize the following search snippets into 3 sentenc
         query = self.query_tool.run_tool({
             "project_profile": inputs.get("project_profile", {}),
             "memory": memory
-            # TODO: use context_summary in query prompt refinement
         })
         log_tool_usage("queryPromptGenerator", "generated search query", query, session_id, user_id, inputs)
         trace.append({"tool": "queryPromptGenerator", "output": query})
@@ -99,8 +94,8 @@ You are a policy analyst. Summarize the following search snippets into 3 sentenc
             "memory": memory,
             "web_search": web_summary,
             "corpus_answer": corpus_results,
-            "alignment_results": alignment_results
-            # TODO: optionally include context_summary here
+            "alignment_results": alignment_results,
+            "context_summary": context_summary
         }
 
         draft = self.synth_tool.run_tool({**inputs, **structured_inputs})
