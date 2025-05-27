@@ -7772,3 +7772,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Refactor query_prompt_generator to use generate_section_prompts and llm_helpers
+- timestamp: '2025-05-27T19:09:24.372335'
+  path: app/engines/toolchains/generate_section_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Refactor generate_section_chain to use get_tool registry pattern for all
+    tools
