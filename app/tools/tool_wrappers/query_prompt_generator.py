@@ -1,26 +1,60 @@
-from typing import Dict
-from pydantic import BaseModel, parse_obj_as
-from jinja2 import Template
-import yaml, os
-from app.tools.utils.llm_helpers import call_llm_chat
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
 
-class QueryPromptInput(BaseModel):
-    section_title: str
-    section_text: str
-    project_profile: str
-    artifact_purpose: str
-    context_summary: str = ""
-
-class QueryPromptOutput(BaseModel):
-    questions: str
+load_dotenv()
 
 class Tool:
-    def __init__(self):
-        with open("app/prompts/generate_section_prompts.yaml", "r") as f:
-            self.prompts = yaml.safe_load(f)["query_prompt"]
+    def validate(self, input_dict):
+        if "project_profile" not in input_dict:
+            raise ValueError("Missing required field: project_profile")
+        if "memory" not in input_dict:
+            raise ValueError("Missing required field: memory")
 
-    def run_tool(self, input_dict: Dict) -> Dict:
-        data = parse_obj_as(QueryPromptInput, input_dict)
-        user_prompt = Template(self.prompts["user"]).render(**data.dict())
-        response = call_llm_chat(system=self.prompts["system"], user=user_prompt, model="gpt-4", temperature=0.5)
-        return QueryPromptOutput(questions=response.strip()).dict()
+    def run_tool(self, input_dict):
+        self.validate(input_dict)
+        profile = input_dict.get("project_profile", {})
+        memory = input_dict.get("memory", [])
+
+        profile_summary = "\n".join([
+            f"Project Title: {profile.get('title', 'N/A')}",
+            f"Scope Summary: {profile.get('scope_summary', '')}",
+            f"Strategic Alignment: {profile.get('strategic_alignment', '')}",
+            f"Stakeholders: {profile.get('key_stakeholders', '')}",
+            f"Project Type: {profile.get('project_type', '')}"
+        ])
+
+        memory_lines = []
+        for entry in memory:
+            if isinstance(entry, dict):
+                if "input_summary" in entry:
+                    memory_lines.append(entry["input_summary"])
+                elif "text" in entry:
+                    memory_lines.append(entry["text"][:200])
+
+        memory_context = "\n".join(memory_lines[:10])
+
+        prompt = f"""
+You are an assistant helping a policy analyst formulate a concise, rich search query.
+Use the following project context and memory to generate a query for searching government documentation.
+
+[Project Context]
+{profile_summary}
+
+[Memory Extracts]
+{memory_context}
+
+Provide a single query that captures the key themes and information needs.
+"""
+
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You generate search queries for analysts."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.5
+        )
+
+        return {"query": response.choices[0].message.content.strip()}

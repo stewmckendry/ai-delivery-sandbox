@@ -1,23 +1,43 @@
-from typing import Dict
-from pydantic import BaseModel, parse_obj_as
-from jinja2 import Template
-import yaml, os
-from app.tools.utils.llm_helpers import call_llm_chat
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+import re
+from app.schemas.section_draft_output import SectionDraftOutput
 
-class SectionRefineInput(BaseModel):
-    section_text: str
-    prior_summary: str = ""
-
-class SectionRefineOutput(BaseModel):
-    polished_text: str
+load_dotenv()
 
 class Tool:
-    def __init__(self):
-        with open("app/prompts/generate_section_prompts.yaml", "r") as f:
-            self.prompts = yaml.safe_load(f)["section_refinement"]
+    def validate(self, input_dict):
+        if "raw_draft" not in input_dict:
+            raise ValueError("Missing required field: raw_draft")
 
-    def run_tool(self, input_dict: Dict) -> Dict:
-        data = parse_obj_as(SectionRefineInput, input_dict)
-        user_prompt = Template(self.prompts["polish"]).render(**data.dict())
-        response = call_llm_chat(system="You are a government document editor.", user=user_prompt, model="gpt-4", temperature=0.3)
-        return SectionRefineOutput(polished_text=response.strip()).dict()
+    def run_tool(self, input_dict):
+        self.validate(input_dict)
+        raw_draft = input_dict["raw_draft"]
+
+        prompt = f"""
+        Please refine the following draft for clarity, tone, and grammar.
+        Keep the structure and meaning, but improve readability and polish.
+
+        Draft:
+        {raw_draft}
+        """
+
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a writing assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.6
+        )
+
+        refined_draft = response.choices[0].message.content.strip()
+        draft_chunks = re.split(r'\n\n+', refined_draft)
+
+        return SectionDraftOutput(
+            prompt_used=prompt,
+            raw_draft=refined_draft,
+            draft_chunks=draft_chunks
+        ).dict()
