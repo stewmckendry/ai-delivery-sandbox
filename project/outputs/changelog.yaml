@@ -7949,3 +7949,9 @@
   task_id: T16
   committed_by: ProductPod
   message: Append output file to T16
+- timestamp: '2025-05-27T20:57:28.780940'
+  path: app/engines/toolchains/revise_section_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Patch: fetch and summarize only the latest section version per section_id
+    before passing to feedback_mapper'
