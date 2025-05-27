@@ -845,3 +845,16 @@
   - component
   last_updated: '2025-05-27'
   pod_owner: QAPod
+- path: public/assets/media/mediaAssets.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/public/assets/media/mediaAssets.json
+  file_type: json
+  description: JSON file listing various media assets categorized by type, including
+    alphabet videos, instructional content, word videos, video intros, and feedback
+    sounds.
+  tags:
+  - media
+  - assets
+  - video
+  - audio
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
