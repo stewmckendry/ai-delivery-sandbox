@@ -577,3 +577,13 @@
   - Express
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/docs/README.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/docs/README.md
+  file_type: md
+  description: Specifications and planning documents for Module 1
+  tags:
+  - documentation
+  - planning
+  - specifications
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
