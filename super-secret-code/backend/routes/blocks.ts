@@ -7,9 +7,17 @@ const mockBlocks = [
     id: 'block-001',
     blockNumber: 1,
     language: 'english',
-    letterSet: ['a', 'e', 'm', 's', 't', 'b', 'c', 'l'],
+    letterSet: ['a', 'e', 'm', 's', 't'],
     storyId: 'story-001',
     worksheetURL: '/pdfs/worksheet-block-1-en.pdf'
+  },
+  {
+    id: 'block-002',
+    blockNumber: 1,
+    language: 'french',
+    letterSet: ['a', 'e', 'm', 's', 't'],
+    storyId: 'story-002',
+    worksheetURL: '/pdfs/worksheet-block-1-fr.pdf'
   }
 ];
 
