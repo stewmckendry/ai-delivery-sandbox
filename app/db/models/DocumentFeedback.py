@@ -6,7 +6,7 @@ import uuid
 class DocumentFeedback(Base):
     __tablename__ = "document_feedback"
 
-    document_feedback_id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    document_feedback_id = Column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
     document_id = Column(String, nullable=False)
     submitted_by = Column(String, nullable=True)
     feedback_text = Column(Text, nullable=False)
