@@ -4580,3 +4580,15 @@
   - revision
   last_updated: '2025-05-27'
   pod_owner: QAPod
+- path: project/test/WP24/WP24_test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP24/WP24_test_plan.md
+  file_type: md
+  description: Test plan for verifying the functionality and regression of the WP24
+    toolchain, including unit tests for individual tools and end-to-end chain tests.
+  tags:
+  - test
+  - toolchain
+  - regression
+  - unit
+  last_updated: '2025-05-27'
+  pod_owner: QAPod
