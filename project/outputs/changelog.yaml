@@ -7878,3 +7878,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-27T20:00:48.750422'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: wp24_full_artifact_generator
+  committed_by: ProductPod
+  message: 'Fix: Match original memory formatting for query prompt generation'
