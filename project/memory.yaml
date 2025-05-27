@@ -546,3 +546,14 @@
   - progress tracking
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/README.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/README.md
+  file_type: md
+  description: Top-level repository for managing frontend, backend, and documentation
+    components of Module 1
+  tags:
+  - frontend
+  - backend
+  - documentation
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
