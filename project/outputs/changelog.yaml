@@ -7474,3 +7474,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-27T15:33:02.797031'
+  path: app/tools/tool_wrappers/feedback_mapper.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added support for 'targeted_edit' revision type in feedback_mapper.
