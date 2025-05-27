@@ -4370,3 +4370,13 @@
   - memory
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: app/db/models/DocumentFeedback.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/db/models/DocumentFeedback.py
+  file_type: py
+  description: ORM model for storing feedback related to documents in the database
+  tags:
+  - model
+  - database
+  - feedback
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
