@@ -45,6 +45,9 @@ You are a policy analyst. Summarize the following search snippets into 3 sentenc
         gate_id = inputs.get("gate_id", "0")
         project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
+        context_summary = inputs.get("context_summary", "")  # <-- New input usage
+        log_tool_usage("context_summary", "context summary input", context_summary, session_id, user_id, inputs)
+
         memory_input = {**inputs}
         if "project_profile" in inputs:
             memory_input["project_profile"] = inputs["project_profile"]
@@ -68,6 +71,7 @@ You are a policy analyst. Summarize the following search snippets into 3 sentenc
         query = self.query_tool.run_tool({
             "project_profile": inputs.get("project_profile", {}),
             "memory": memory
+            # TODO: use context_summary in query prompt refinement
         })
         log_tool_usage("queryPromptGenerator", "generated search query", query, session_id, user_id, inputs)
         trace.append({"tool": "queryPromptGenerator", "output": query})
@@ -96,6 +100,7 @@ You are a policy analyst. Summarize the following search snippets into 3 sentenc
             "web_search": web_summary,
             "corpus_answer": corpus_results,
             "alignment_results": alignment_results
+            # TODO: optionally include context_summary here
         }
 
         draft = self.synth_tool.run_tool({**inputs, **structured_inputs})
