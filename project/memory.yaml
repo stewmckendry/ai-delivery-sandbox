@@ -791,3 +791,14 @@
   - express
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/vitest.config.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/vitest.config.ts
+  file_type: ts
+  description: Configuration file for setting up Vitest testing environment with global
+    variables and coverage reporting.
+  tags:
+  - config
+  - testing
+  - vitest
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
