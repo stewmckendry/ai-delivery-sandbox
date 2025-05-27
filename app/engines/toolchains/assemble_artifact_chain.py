@@ -1,7 +1,8 @@
 import logging
 import uuid
+import re
 from app.tools.tool_registry import ToolRegistry
-from app.engines.memory_sync import log_tool_usage, save_document_and_trace
+from app.engines.memory_sync import log_tool_usage, save_document_and_trace, save_artifact_and_trace
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +53,27 @@ class AssembleArtifactChain:
         log_tool_usage("refineDocumentChain", "refined body", refined, session_id, None, inputs)
         trace.append({"tool": "refineDocumentChain", "output": refined})
         logger.info("[Step 3.5] refineDocumentChain complete")
+
+        # Save parsed refined body into ArtifactSection
+        refined_text = refined["refined_body"]
+        section_map = {s["section_title"].strip(): s["section_id"] for s in loaded["ordered_sections"]}
+        parts = re.split(r"^##\s+(.+)$", refined_text, flags=re.MULTILINE)
+        for i in range(1, len(parts), 2):
+            title = parts[i].strip()
+            body = parts[i + 1].strip()
+            section_id = section_map.get(title)
+            if section_id:
+                save_artifact_and_trace(
+                    session_id=session_id,
+                    artifact_id=artifact_id,
+                    gate_id=gate_id,
+                    section_id=section_id,
+                    text=body,
+                    sources=[],
+                    generated_by="refine_document",
+                    project_id=profile.get("project_id")
+                )
+        logger.info("[Step 3.75] Updated ArtifactSection with refined content")
 
         finalized = self.finalizer.run_tool({
             "title": title,
