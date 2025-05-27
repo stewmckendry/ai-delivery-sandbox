@@ -1,5 +1,7 @@
 import logging
 import uuid
+import os
+from openai import OpenAI
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
 
@@ -15,6 +17,24 @@ class GenerateSectionChain:
         self.synth_tool = registry.get_tool("section_synthesizer")
         self.refine_tool = registry.get_tool("section_refiner")
         self.web_search_tool = registry.get_tool("webSearch")
+
+    def summarize_web_results(self, search_results):
+        if not search_results:
+            return ""
+
+        snippets = "\n".join([f"{entry['title']}: {entry['snippet']}" for entry in search_results if 'title' in entry and 'snippet' in entry])
+        prompt = f"""
+You are a policy analyst. Summarize the following search snippets into 3 sentences that highlight the most relevant insights for drafting a federal policy document. Avoid repetition.
+
+{snippets}
+        """
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+        return response.choices[0].message.content.strip()
 
     def run(self, inputs):
         trace = []
@@ -42,6 +62,8 @@ class GenerateSectionChain:
         log_tool_usage("web_search", "external scan", search_results, session_id, user_id, inputs)
         trace.append({"tool": "web_search", "output": search_results})
         logger.info("[Step 2] web_search complete")
+
+        web_summary = self.summarize_web_results(search_results)
 
         query = self.query_tool.run_tool({
             "project_profile": inputs.get("project_profile", {}),
@@ -71,8 +93,8 @@ class GenerateSectionChain:
 
         structured_inputs = {
             "memory": memory,
-            "web_search": search_results,
-            "corpus_chunks": corpus_results,
+            "web_search": web_summary,
+            "corpus_answer": corpus_results,
             "alignment_results": alignment_results
         }
 
