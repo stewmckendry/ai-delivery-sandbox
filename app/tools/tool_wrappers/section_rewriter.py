@@ -3,6 +3,7 @@ import requests
 from jinja2 import Template
 import yaml
 from app.tools.utils.llm_helpers import chat_completion_request
+from app.tools.tool_wrappers.revision_checker import Tool as RevisionChecker
 
 logger = logging.getLogger(__name__)
 
@@ -37,4 +38,17 @@ class Tool:
         response = chat_completion_request(messages, temperature=0.4)
         draft = response.strip()
 
-        return {"section_id": section_id, "draft": draft, "prompt_used": user_prompt}
+        # Run revision checker on the result
+        checker = RevisionChecker()
+        check_result = checker.run_tool({
+            "original_text": current_text,
+            "revised_text": draft,
+            "revision_type": revision_type
+        })
+
+        return {
+            "section_id": section_id,
+            "draft": draft,
+            "prompt_used": user_prompt,
+            "revision_check": check_result
+        }
