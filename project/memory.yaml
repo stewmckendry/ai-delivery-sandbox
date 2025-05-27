@@ -640,3 +640,14 @@
   - frontend
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/frontend/package.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/frontend/package.json
+  file_type: json
+  description: Configuration file for managing frontend dependencies and build scripts
+    using Vite for a React application.
+  tags:
+  - config
+  - frontend
+  - build
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
