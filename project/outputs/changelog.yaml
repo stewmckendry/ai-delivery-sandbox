@@ -8021,3 +8021,9 @@
   task_id: wp24
   committed_by: ProductPod
   message: Append output file to wp24
+- timestamp: '2025-05-27T21:37:00.883007'
+  path: app/prompts/generate_section_prompts.yaml
+  task_id: wp24
+  committed_by: ProductPod
+  message: Add web_summary_synthesis prompt to generate_section_prompts.yaml for summarizing
+    web search results
