@@ -7789,3 +7789,9 @@
   committed_by: GPTPod
   message: Revert section_synthesizer.py to stable version; isolate changes to prompt
     injection only
+- timestamp: '2025-05-27T19:30:31.595523'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Refactored query_prompt_generator.py to align prompt template with system
+    standard.
