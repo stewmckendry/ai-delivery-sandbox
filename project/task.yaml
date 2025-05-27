@@ -576,6 +576,7 @@ tasks:
     - project/test/wps/WP22/test_generate_section_chain_results.md
     - project/build/wps/WP22/WP22_exit_report.md
     - project/retrospectives/WP22_retrospective.md
+    - project/build/wps/WP23/WP23_definition.md
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
