@@ -7807,3 +7807,9 @@
   committed_by: GPTPod
   message: 'Scoped update to section_refiner.py: clarified prompt and used standard
     LLM call without altering input/output.'
+- timestamp: '2025-05-27T19:34:55.191885'
+  path: app/prompts/generate_section_prompts.yaml
+  task_id: wp24_full_artifact_chain
+  committed_by: GPTPod
+  message: Add search_query_generation prompt template for query_prompt_generator
+    tool
