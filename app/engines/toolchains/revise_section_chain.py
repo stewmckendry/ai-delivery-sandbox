@@ -48,6 +48,8 @@ class ReviseSectionChain:
         # Step 4: feedback logging
         save_feedback(document_id=artifact, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
 
+        suggestions = []
+
         # Step 5: Manual edit path
         if revision_type == "verbatim":
             output = self.manual_edit_tool.run_tool({**inputs, "current_text": current_text})
@@ -75,7 +77,7 @@ class ReviseSectionChain:
                     fb = item
                     fb_type = revision_type
 
-                section_ids = [section]
+                section_ids = [section] if section else []
                 if not section:
                     map_result = self.feedback_mapper.run_tool({"feedback_text": fb, **inputs})
                     section_ids = map_result.get("section_ids", [])
@@ -107,4 +109,7 @@ class ReviseSectionChain:
                     )
                     logger.info("[Step 5] Saved to ArtifactSection and ReasoningTrace")
 
-        return {"trace": trace, "status": "complete"}
+                    if "additional_suggestions" in rewritten:
+                        suggestions.append(rewritten["additional_suggestions"])
+
+        return {"trace": trace, "status": "complete", "additional_suggestions": suggestions}
