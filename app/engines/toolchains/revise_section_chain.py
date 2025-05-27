@@ -55,17 +55,17 @@ class ReviseSectionChain:
         # Step 4: feedback logging
         save_feedback(document_id=artifact, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
 
-        # Fetch and summarize all artifact sections
-        section_records = db.query(ArtifactSection).filter_by(artifact_id=artifact).order_by(ArtifactSection.timestamp.desc()).all()
-        summarized_sections = []
-        seen_sections = set()
-        for sec in section_records:
-            if sec.section_id not in seen_sections:
-                summarized_sections.append({
-                    "section_id": sec.section_id,
-                    "text": self.summarize_text(sec.text)
-                })
-                seen_sections.add(sec.section_id)
+        # Fetch latest version per section_id
+        all_records = db.query(ArtifactSection).filter_by(artifact_id=artifact).order_by(ArtifactSection.timestamp.desc()).all()
+        latest_sections = {}
+        for sec in all_records:
+            if sec.section_id not in latest_sections:
+                latest_sections[sec.section_id] = sec
+
+        summarized_sections = [
+            {"section_id": sid, "text": self.summarize_text(sec.text)}
+            for sid, sec in latest_sections.items()
+        ]
 
         suggestions = []
 
