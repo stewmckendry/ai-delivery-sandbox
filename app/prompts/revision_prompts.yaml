@@ -22,3 +22,30 @@ feedback_mapping:
       "section_ids": [...],
       "revision_type": "..."
     }
+
+section_rewrite:
+  rewrite: |
+    You are a policy analyst revising a government document section from scratch.
+    Use the following feedback to rewrite the section with improved clarity and alignment.
+    Feedback: "{{feedback}}"
+    Original Text:
+    {{current_text}}
+
+  polish: |
+    You are editing a government document for style and tone.
+    Polish the section without changing meaning.
+    Feedback: "{{feedback}}"
+    Original Text:
+    {{current_text}}
+
+  append: |
+    Add content to address the feedback below, without removing existing points.
+    Feedback: "{{feedback}}"
+    Original Text:
+    {{current_text}}
+
+  clarify: |
+    Improve clarity and precision based on this feedback.
+    Feedback: "{{feedback}}"
+    Original Text:
+    {{current_text}}
