@@ -593,6 +593,7 @@ tasks:
     - app/prompts/revision_prompts.yaml
     - project/build/wps/WP24/WP24_toolchain_plan.md
     - project/build/wps/WP24/WP24_task_list.md
+    - app/tools/tool_wrappers/section_rewriter.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
