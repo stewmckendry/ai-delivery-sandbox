@@ -362,38 +362,6 @@
       }
     },
     {
-      "tool_id": "section_synthesizer",
-      "description": "Drafts a section using OpenAI from retrieved memory entries",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "memory": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "input_summary": { "type": "string" },
-                "full_input_path": { "type": "string" },
-                "timestamp": { "type": "string" }
-              }
-            }
-          }
-        },
-        "required": ["memory"]
-      }
-    },
-    {
-      "tool_id": "section_refiner",
-      "description": "Refines section draft for tone, clarity, grammar using OpenAI",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "raw_draft": { "type": "string" }
-        },
-        "required": ["raw_draft"]
-      }
-    },
-    {
       "tool_id": "loadSectionMetadata",
       "description": "Loads and sorts drafted artifact sections for a given gate and artifact",
       "input_schema": {
@@ -686,6 +654,86 @@
           "revision_type": { "type": "string" }
         },
         "required": ["original_text", "revised_text", "revision_type"]
+      }
+    },
+    {
+      "tool_id": "refine_document_chain",
+      "description": "Refines and polishes an assembled document using LLM with token-aware strategies and trace persistence.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "document_text": { "type": "string" },
+          "artifact_id": { "type": "string" },
+          "project_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "section_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["document_text", "artifact_id", "project_id", "user_id", "section_ids"]
+      }
+    },
+    {
+      "tool_id": "generate_full_artifact_chain",
+      "description": "Generates a complete artifact by running all section-level tools and applying full document refinement.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "artifact_id": { "type": "string" },
+          "project_id": { "type": "string" },
+          "user_id": { "type": "string" }
+        },
+        "required": ["artifact_id", "project_id", "user_id"]
+      }
+    },
+    {
+      "tool_id": "query_prompt_generator",
+      "description": "Creates rich search queries from memory and project profile to guide document generation.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_profile": { "type": "object" },
+          "memory": {
+            "type": "array",
+            "items": { "type": "object" }
+          }
+        },
+        "required": ["project_profile", "memory"]
+      }
+    },
+    {
+      "tool_id": "section_synthesizer",
+      "description": "Generates an initial draft of a policy section using inputs such as memory and alignment results.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "memory": {
+            "type": "array",
+            "items": { "type": "object" }
+          },
+          "alignment_results": {
+            "type": "array",
+            "items": { "type": "object" }
+          },
+          "web_search": { "type": "string" },
+          "corpus_answer": { "type": "object" },
+          "project_profile": { "type": "object" },
+          "artifact": { "type": "string" },
+          "section": { "type": "string" }
+        },
+        "required": ["memory", "artifact", "section"]
+      }
+    },
+    {
+      "tool_id": "section_refiner",
+      "description": "Improves tone and polish of a policy draft section.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "raw_draft": { "type": "string" }
+        },
+        "required": ["raw_draft"]
       }
     }
   ]

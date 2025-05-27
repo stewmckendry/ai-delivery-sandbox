@@ -329,37 +329,6 @@ tools:
       required:
         - artifact
         - section
-  section_synthesizer:
-    module: app.tools.tool_wrappers.section_synthesizer
-    class: Tool
-    description: Drafts a section using OpenAI from retrieved memory entries
-    schema:
-      type: object
-      properties:
-        memory:
-          type: array
-          items:
-            type: object
-            properties:
-              input_summary:
-                type: string
-              full_input_path:
-                type: string
-              timestamp:
-                type: string
-      required:
-        - memory
-  section_refiner:
-    module: app.tools.tool_wrappers.section_refiner
-    class: Tool
-    description: Refines section draft for tone, clarity, grammar using OpenAI
-    schema:
-      type: object
-      properties:
-        raw_draft:
-          type: string
-      required:
-        - raw_draft
   loadSectionMetadata:
     module: app.tools.tool_wrappers.loadSectionMetadata
     class: Tool
@@ -583,20 +552,6 @@ tools:
       required:
         - query
         - search_type
-  queryPromptGenerator:
-    module: app.tools.tool_wrappers.query_prompt_generator
-    class: Tool
-    description: Generates a semantically rich natural language query from project profile and memory
-    schema:
-      type: object
-      properties:
-        project_profile:
-          type: object
-        memory:
-          type: array
-      required:
-        - project_profile
-        - memory
   goc_alignment_search:
     module: app.tools.tool_wrappers.goc_alignment_search
     class: Tool
@@ -624,7 +579,7 @@ tools:
       required:
         - artifact_id
         - gate_id
-        
+
 revise_section:
   description: Applies user feedback to revise document sections, including mapping, rewriting, compliance checking, and saving.
   module: app.engines.toolchains.revise_section_chain
@@ -715,3 +670,88 @@ revision_checker:
       - original_text
       - revised_text
       - revision_type
+
+refine_document_chain:
+  description: Refines and polishes a full assembled document using LLM-based strategies, preserving quality and fidelity while respecting token limits.
+  module: app.tools.tool_wrappers.refine_document_chain
+  class: Tool
+  schema:
+    type: object
+    properties:
+      document_text: { type: string }
+      artifact_id: { type: string }
+      project_id: { type: string }
+      user_id: { type: string }
+      section_ids: 
+        type: array
+        items: { type: string }
+    required:
+      - document_text
+      - artifact_id
+      - project_id
+      - user_id
+      - section_ids
+
+generate_full_artifact_chain:
+  description: Generates an entire artifact by sequentially executing section-level generation and final document refinement.
+  module: app.engines.toolchains.generate_full_artifact_chain
+  class: GenerateFullArtifactChain
+  schema:
+    type: object
+    properties:
+      artifact_id: { type: string }
+      project_id: { type: string }
+      user_id: { type: string }
+    required:
+      - artifact_id
+      - project_id
+      - user_id
+
+query_prompt_generator:
+  description: Generates concise, rich search queries from project context and memory to guide retrieval from corpuses and external data.
+  module: app.tools.tool_wrappers.query_prompt_generator
+  class: Tool
+  schema:
+    type: object
+    properties:
+      project_profile: { type: object }
+      memory:
+        type: array
+        items: { type: object }
+    required:
+      - project_profile
+      - memory
+
+section_synthesizer:
+  description: Synthesizes a first draft of a policy section using memory, profile, web insights, and strategic alignments.
+  module: app.tools.tool_wrappers.section_synthesizer
+  class: Tool
+  schema:
+    type: object
+    properties:
+      memory: 
+        type: array
+        items: { type: object }
+      alignment_results:
+        type: array
+        items: { type: object }
+      web_search: { type: string }
+      corpus_answer: { type: object }
+      project_profile: { type: object }
+      artifact: { type: string }
+      section: { type: string }
+    required:
+      - memory
+      - artifact
+      - section
+
+section_refiner:
+  description: Refines a drafted policy section for tone, clarity, and professionalism using LLM-based polishing.
+  module: app.tools.tool_wrappers.section_refiner
+  class: Tool
+  schema:
+    type: object
+    properties:
+      raw_draft: { type: string }
+    required:
+      - raw_draft
