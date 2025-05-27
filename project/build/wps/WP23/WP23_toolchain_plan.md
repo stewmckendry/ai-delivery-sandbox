@@ -1,4 +1,4 @@
-# WP23 Toolchain Plan: revise_section_chain
+# WP23 Toolchain Plan: revise_section_chain (v2)
 
 ## 🧠 Objective
 Implement `revise_section_chain`, a toolchain that ingests user feedback, maps it to relevant artifact sections, regenerates updated content, and logs all outputs for traceability.
@@ -16,25 +16,29 @@ Implement `revise_section_chain`, a toolchain that ingests user feedback, maps i
 **Purpose:** Identify impacted section(s) and classify feedback type (tone, structure, content).
 - Input: feedback text or diff
 - Output: section_id(s), revision_type (e.g., rewrite, polish, append)
+- **Uses LLM** to perform mapping and classification.
 
 ### 3. `section_rewriter.py`
 **Purpose:** Generate revised content using the correct prompt from `revision_prompts.yaml`
 - Input: section_id, revision_type, memory, feedback
 - Output: rewritten draft
+- **LLM-powered** with scoped prompt templates to control drift.
 
 ### 4. `feedback_preprocessor.py`
 **Purpose:** Clean noisy inputs, e.g., pasted comments or edits with markup.
 - Optional step before mapping.
+- **LLM-powered** normalization.
 
 ### 5. `manualEditSync.py`
 **Purpose:** If feedback is a direct edit (e.g., user pasted new version), accept it verbatim and log edit reason.
+- Supports verbatim overrides.
 
 ---
 
 ## 🔁 Flow Logic
 1. **Detect input type**: user comment, upload, or direct draft edit.
 2. **(Optional) Preprocess**: use `feedback_preprocessor` to clean or tag noisy input.
-3. **Map to section**: via `feedback_mapper`
+3. **Map to section(s)**: via `feedback_mapper`
 4. **Decide edit mode**:
    - Rewrite via GPT: `section_rewriter`
    - Save as-is (verbatim): `manualEditSync`
@@ -66,14 +70,14 @@ Implement `revise_section_chain`, a toolchain that ingests user feedback, maps i
 ---
 
 ## 🧪 Tests
-- Feedback → correct section
+- Feedback → correct section(s)
 - Comment triggers correct prompt type
 - Output preserves schema (text, sources)
 - ReasoningTrace contains full tool path
 
 ---
 
-## 🔄 DB Usage
+## 🗃️ DB Usage
 | Table | Use |
 |-------|-----|
 | `ArtifactSection` | Read/Write: Update section text |
@@ -81,14 +85,20 @@ Implement `revise_section_chain`, a toolchain that ingests user feedback, maps i
 | `ReasoningTrace` | Log revision chain of thought |
 | `DocumentVersionLog` | (if full artifact is rebuilt) |
 
+Past versions are preserved by version tag or prior entry archival in `ArtifactSection`. Change provenance is traceable via `ReasoningTrace.steps`.
+
 ---
 
-## 🧭 UX Touchpoints
-- Triggered from:
-  - GPT chat revisions
-  - Uploaded feedback (Google Doc, email, Slack)
-  - Corpus re-ingestion
-- May run autonomously or prompt confirmation before commit.
+## 🧭 UX Integration & GPT Routing Logic
+
+### GPT should call `revise_section_chain` when:
+- Revision is triggered by feedback, uploads, or chat edits
+
+### GPT should call `IngestInputChain` when:
+- New, untagged user content is uploaded (raw notes, transcripts, files)
+
+### GPT should call `generate_section_chain` when:
+- There is no existing draft for a section and initial generation is required
 
 ---
 
@@ -96,3 +106,7 @@ Implement `revise_section_chain`, a toolchain that ingests user feedback, maps i
 - Implement tool wrappers (`feedback_mapper`, `section_rewriter`)
 - Build orchestrator logic in `revise_section_chain.py`
 - Add logging + test file scaffolds
+
+---
+
+*Updated to reflect feedback mapping and routing logic clarity.*
