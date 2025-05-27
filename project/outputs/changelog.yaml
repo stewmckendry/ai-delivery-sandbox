@@ -7561,3 +7561,9 @@
   committed_by: GPTPod
   message: Update section_helpers.py to support nested gate/artifact/section YAML
     structure
+- timestamp: '2025-05-27T16:01:00.327493'
+  path: app/engines/toolchains/generate_full_artifact_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Patch generate_full_artifact_chain.py to pass both gate_id and artifact_id
+    to plan_sections
