@@ -7340,3 +7340,8 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Expanded key column document_feedback_id to String(64) for SQL compatibility.
+- timestamp: '2025-05-27T14:17:48.508888'
+  path: app/db/models/DocumentFeedback.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Switched created_at to DateTime to fix SQL Server default constraint error.
