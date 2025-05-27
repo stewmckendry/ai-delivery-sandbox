@@ -7567,3 +7567,8 @@
   committed_by: GPTPod
   message: Patch generate_full_artifact_chain.py to pass both gate_id and artifact_id
     to plan_sections
+- timestamp: '2025-05-27T16:01:28.650552'
+  path: app/tools/tool_wrappers/revision_checker.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Moved LLM prompt in revision_checker to revision_prompts.yaml for consistency.
