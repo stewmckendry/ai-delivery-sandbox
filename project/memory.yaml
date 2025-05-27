@@ -629,3 +629,14 @@
   - UI
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/frontend/tsconfig.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/frontend/tsconfig.json
+  file_type: json
+  description: Configuration file for TypeScript compiler settings in the frontend
+    project
+  tags:
+  - config
+  - typescript
+  - frontend
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
