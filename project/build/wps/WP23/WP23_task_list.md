@@ -7,10 +7,11 @@
 
 ## 🚧 Build Tasks
 - [x] Create `revise_section_chain.py` orchestrator
-- [ ] Build `feedback_mapper.py` for section targeting + change classification
-- [ ] Build `section_rewriter.py` using prompt variants from `revision_prompts.yaml`
+- [x] Build `feedback_mapper.py` for section targeting + change classification
+- [x] Build `section_rewriter.py` using prompt variants from `revision_prompts.yaml`
+- [x] Implement `manualEditSync.py` for pasted revisions
 - [ ] Optional: implement `feedback_preprocessor.py` for noisy inputs
-- [ ] Implement `manualEditSync.py` for pasted revisions
+- [ ] NEW: Add `revision_checker.py` to flag hallucinations or excessive edits
 
 ## 🧪 Testing
 - [ ] Scaffold `test_revise_section_chain.py`
