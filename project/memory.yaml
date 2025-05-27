@@ -4321,3 +4321,16 @@
   - UI
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: project/build/wps/WP26/WP26_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP26/WP26_pod_activation_message.md
+  file_type: md
+  description: Activation message for Work Package 26, detailing the objectives and
+    instructions for developing a user-configurable chain builder in the AI delivery
+    project.
+  tags:
+  - activation
+  - planner
+  - configuration
+  - workflow
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
