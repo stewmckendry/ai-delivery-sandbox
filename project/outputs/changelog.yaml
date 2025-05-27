@@ -584,3 +584,9 @@
   task_id: wp24_toolchain
   committed_by: ProductPod
   message: Append output file to wp24_toolchain
+- timestamp: '2025-05-27T20:53:06.913834'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: T16
+  committed_by: ProductPod
+  message: Refactor query_prompt_generator to use remote YAML prompt with Jinja2 rendering
+    pattern like feedback_mapper.py
