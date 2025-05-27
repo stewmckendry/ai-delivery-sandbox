@@ -7741,3 +7741,14 @@
   committed_by: GPTPod
   message: Update WP24 task list to reflect completed work on refine_document_chain
     and persistence logic
+- timestamp: '2025-05-27T19:08:05.790319'
+  path: app/prompts/generate_section_prompts.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: 'Add unified prompt config: generate_section_prompts.yaml for section synthesis,
+    refinement, and query tools'
+- timestamp: '2025-05-27T19:08:05.790319'
+  path: project/memory.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Memory update related to app/prompts/generate_section_prompts.yaml
