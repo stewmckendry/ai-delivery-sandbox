@@ -7921,3 +7921,9 @@
   task_id: wp24_toolchain
   committed_by: GPTPod
   message: Append output file to wp24_toolchain
+- timestamp: '2025-05-27T20:45:07.198095'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: WP24
+  committed_by: GPTPod
+  message: Fix prompt loader in query_prompt_generator to include YAML filename for
+    get_prompt
