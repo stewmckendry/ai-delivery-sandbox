@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Text, TIMESTAMP, DateTime
+from sqlalchemy import Column, String, Text, DateTime
 from app.db.database import Base
 import datetime
 import uuid
@@ -13,6 +13,6 @@ class DocumentFeedback(Base):
     feedback_type = Column(String, default="general")
     status = Column(String, default="open")
     linked_task_id = Column(String, nullable=True)
-    created_at = Column(TIMESTAMP, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
     resolved_at = Column(DateTime, nullable=True)
     project_id = Column(String, nullable=True)
