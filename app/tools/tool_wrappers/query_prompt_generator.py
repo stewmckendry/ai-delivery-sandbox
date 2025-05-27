@@ -31,7 +31,7 @@ class Tool:
 
         memory_context = "\n".join(memory_lines[:10])
 
-        prompt_templates = get_prompt("search_query_generation")
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "search_query_generation")
         user_prompt_template = prompt_templates["user"]
         system_prompt_template = prompt_templates["system"]
 
