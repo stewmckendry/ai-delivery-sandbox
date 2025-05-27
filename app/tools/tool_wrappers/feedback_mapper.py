@@ -37,6 +37,11 @@ class Tool:
         try:
             parsed = eval(response)
             logger.info(f"Parsed feedback map: {parsed}")
+
+            if parsed["revision_type"] not in ["rewrite", "polish", "append", "clarify", "targeted_edit"]:
+                logger.warning("Unexpected revision_type. Defaulting to 'rewrite'")
+                parsed["revision_type"] = "rewrite"
+
             return parsed
         except Exception as e:
             logger.error("Failed to parse LLM response", exc_info=e)
