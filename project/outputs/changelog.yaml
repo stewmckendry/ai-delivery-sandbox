@@ -7262,3 +7262,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Added output and user journey exit paths to WP23 design plan.
+- timestamp: '2025-05-27T13:23:25.427419'
+  path: project/build/wps/WP23/WP23_task_list.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Updated task list to reflect new planning outputs and sync paths from v2
+    and v3 of the plan.
