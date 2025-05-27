@@ -703,3 +703,15 @@
   - routes
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/routes/profiles.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/routes/profiles.ts
+  file_type: ts
+  description: Express.js routes for managing profile data with create, read, update,
+    and delete operations.
+  tags:
+  - backend
+  - routes
+  - profiles
+  - CRUD
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
