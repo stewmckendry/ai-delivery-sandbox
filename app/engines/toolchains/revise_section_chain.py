@@ -35,6 +35,7 @@ class ReviseSectionChain:
         # Step 2: feedback preprocessing
         preprocessed = self.feedback_preprocessor.run_tool({"feedback_text": raw_feedback})
         cleaned_feedback = preprocessed.get("cleaned_text", raw_feedback)
+        split_feedback = preprocessed.get("split_feedback", [cleaned_feedback])
         revision_type = preprocessed.get("inferred_type", mode)
         trace.append({"tool": "feedback_preprocessor", "output": preprocessed})
         logger.info("[Step 2] feedback_preprocessor complete")
@@ -54,36 +55,37 @@ class ReviseSectionChain:
             trace.append({"tool": "manualEditSync", "output": output})
             logger.info("[Step 3] manualEditSync complete")
         else:
-            section_ids = [section]
-            if not section:
-                map_result = self.feedback_mapper.run_tool({"feedback_text": cleaned_feedback, **inputs})
-                section_ids = map_result.get("section_ids", [])
-                trace.append({"tool": "feedback_mapper", "output": map_result})
-                logger.info("[Step 3] feedback_mapper complete")
+            for fb in split_feedback:
+                section_ids = [section]
+                if not section:
+                    map_result = self.feedback_mapper.run_tool({"feedback_text": fb, **inputs})
+                    section_ids = map_result.get("section_ids", [])
+                    trace.append({"tool": "feedback_mapper", "output": map_result})
+                    logger.info("[Step 3] feedback_mapper complete")
 
-            for sec_id in section_ids:
-                rewritten = self.section_rewriter.run_tool({
-                    "section_id": sec_id,
-                    "memory": memory,
-                    "feedback": cleaned_feedback,
-                    "revision_type": revision_type,
-                    "current_text": current_text,
-                    **inputs
-                })
-                log_tool_usage("section_rewriter", "revised section", rewritten, session_id, user_id, inputs)
-                trace.append({"tool": "section_rewriter", "output": rewritten})
-                logger.info(f"[Step 4] section_rewriter complete for {sec_id}")
+                for sec_id in section_ids:
+                    rewritten = self.section_rewriter.run_tool({
+                        "section_id": sec_id,
+                        "memory": memory,
+                        "feedback": fb,
+                        "revision_type": revision_type,
+                        "current_text": current_text,
+                        **inputs
+                    })
+                    log_tool_usage("section_rewriter", "revised section", rewritten, session_id, user_id, inputs)
+                    trace.append({"tool": "section_rewriter", "output": rewritten})
+                    logger.info(f"[Step 4] section_rewriter complete for {sec_id}")
 
-                save_result = save_artifact_and_trace(
-                    section_id=sec_id,
-                    artifact_id=artifact,
-                    gate_id=inputs.get("gate_id", "0"),
-                    text=rewritten["draft"],
-                    sources=rewritten.get("prompt_used"),
-                    tool_outputs=trace,
-                    user_id=user_id,
-                    project_id=project_id
-                )
-                logger.info("[Step 5] Saved to ArtifactSection and ReasoningTrace")
+                    save_result = save_artifact_and_trace(
+                        section_id=sec_id,
+                        artifact_id=artifact,
+                        gate_id=inputs.get("gate_id", "0"),
+                        text=rewritten["draft"],
+                        sources=rewritten.get("prompt_used"),
+                        tool_outputs=trace,
+                        user_id=user_id,
+                        project_id=project_id
+                    )
+                    logger.info("[Step 5] Saved to ArtifactSection and ReasoningTrace")
 
         return {"trace": trace, "status": "complete"}
