@@ -1,0 +1,56 @@
+{
+  "alphabet": [
+    "Alphabet.mp4",
+    "a like alligator.mp4",
+    "Apple.mp4",
+    "Avocado.mp4",
+    "Athlete.mp4",
+    "Echo.mp4",
+    "Edge.mp4",
+    "Elephant.mp4",
+    "Envelope.mp4",
+    "e like explore.mp4"
+  ],
+  "instructions": [
+    "Audio instruction beginning sound .mp4",
+    "Audio instruction beginning sound FR.mp4",
+    "Block 1 A vs E Isolation 1 instruction.mp4",
+    "Block 1 A vs E Isolation 1 instruction FR.mp4",
+    "Instructions sound in the middle.mp4",
+    "Instructions sound in the middle FR.mp4",
+    "Train explanation + Beginning.mp4",
+    "Train explanation + Beginning FR.mp4",
+    "Train explanation + Middle.mp4",
+    "Train explanation + Middle FR.mp4"
+  ],
+  "words": [
+    "bat.mp4",
+    "cat.mp4",
+    "lab.mp4",
+    "let.mp4",
+    "mat.mp4",
+    "met.mp4",
+    "pet.mp4",
+    "set.mp4"
+  ],
+  "video_intros": [
+    "Block 1 EN A vs E.mp4",
+    "Block 1 EN Lowercase A.mp4",
+    "Block 1 EN Lowercase E.mp4",
+    "Block 1 EN Uppercase A.mp4",
+    "Block 1 EN Uppercase E.mp4",
+    "Block 1 EN intro with captions.mp4"
+  ],
+  "feedback": [
+    "Celebrate 1.mp4",
+    "Celebrate 1 FR.mp4",
+    "correct bell.mp4",
+    "incorrect thump.mp4",
+    "Decorate Backpack.mp4",
+    "Decorate Backpack FR.mp4",
+    "thump + a for alligator.mp4",
+    "thump + e for explore.mp4",
+    "thump + A initial medial.mp4",
+    "thump + E initial medial.mp4"
+  ]
+}
