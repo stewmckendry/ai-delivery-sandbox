@@ -7319,3 +7319,8 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Added project_id to DocumentFeedback model.
+- timestamp: '2025-05-27T14:07:32.367500'
+  path: app/engines/memory_sync.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Updated save_feedback to include project_id.
