@@ -31,17 +31,13 @@ class Tool:
 
         memory_context = "\n".join(memory_lines[:10])
 
-        prompt_data = get_prompt("generate_section_prompts.yaml", "query_prompt_generator")
-        user_prompt_template = prompt_data["user"]
+        prompt_templates = get_prompt("search_query_generation")
+        user_prompt_template = prompt_templates["user"]
+        system_prompt_template = prompt_templates["system"]
 
         user_prompt = user_prompt_template.render(profile_summary=profile_summary, memory_context=memory_context)
+        system_prompt = system_prompt_template.render()
 
-        response = chat_completion_request(
-            messages=[
-                {"role": "system", "content": "You generate search queries for analysts."},
-                {"role": "user", "content": user_prompt}
-            ],
-            temperature=0.5
-        )
+        response = chat_completion_request(system_prompt, user_prompt, model="gpt-4", temperature=0.5)
 
-        return {"query": response.choices[0].message.content.strip()}
+        return {"query": response.strip()}
