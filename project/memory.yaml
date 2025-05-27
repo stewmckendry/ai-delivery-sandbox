@@ -546,3 +546,15 @@
   - openai
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/query_prompt_generator.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/app/tools/tool_wrappers/query_prompt_generator.py
+  file_type: py
+  description: A tool for generating search query prompts based on project profiles
+    and memory context using LLM helpers.
+  tags:
+  - prompt
+  - query
+  - tool
+  - LLM
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
