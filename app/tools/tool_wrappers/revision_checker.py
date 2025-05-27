@@ -1,5 +1,8 @@
 import logging
+import requests
 from difflib import SequenceMatcher
+import yaml
+from jinja2 import Template
 from app.tools.utils.llm_helpers import chat_completion_request
 
 logger = logging.getLogger(__name__)
@@ -17,7 +20,6 @@ class Tool:
         revised = input_dict["revised_text"]
         revision_type = input_dict["revision_type"]
 
-        # Heuristic: compute change ratio
         matcher = SequenceMatcher(None, orig.strip(), revised.strip())
         similarity = matcher.ratio()
         change_ratio = 1 - similarity
@@ -26,19 +28,17 @@ class Tool:
         if revision_type in ["polish", "targeted_edit"] and change_ratio > 0.3:
             flags.append("high_diff_for_minor_edit")
 
-        # Optional: LLM check for compliance
+        # Load LLM validation prompt from GitHub
+        prompt_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/revision_prompts.yaml"
+        response = requests.get(prompt_url)
+        prompts = yaml.safe_load(response.text)
+        template = Template(prompts["revision_check"]["user"])
+
+        user_prompt = template.render(revision_type=revision_type, original_text=orig, revised_text=revised)
         messages = [
-            {"role": "system", "content": "You evaluate whether an edit followed its instruction."},
-            {"role": "user", "content": f"""
-Instruction: {revision_type}
-Original Text:
-{orig}
-
-Revised Text:
-{revised}
-
-Did the edit respect the instruction? Reply YES or NO and explain briefly.
-"""}]
+            {"role": "system", "content": prompts["revision_check"]["system"]},
+            {"role": "user", "content": user_prompt}
+        ]
 
         response = chat_completion_request(messages, temperature=0.2)
 
