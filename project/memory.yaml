@@ -4487,3 +4487,14 @@
   - reference
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/revision_checker.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/revision_checker.py
+  file_type: py
+  description: A tool for checking text revisions by comparing original and revised
+    texts, calculating change ratios, and optionally using LLMs for compliance evaluation.
+  tags:
+  - revision
+  - validation
+  - llm
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
