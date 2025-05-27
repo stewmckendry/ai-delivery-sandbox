@@ -1,12 +1,8 @@
-search_query_generation:
-  system: "You are an assistant helping a policy analyst formulate a concise, rich search query."
+section_refinement:
+  system: |
+    You are a writing assistant helping refine and polish sections of government policy documents.
+    Focus on improving tone, coherence, and professionalism without altering meaning.
   user: |
-    Use the following project context and memory to generate a query for searching government documentation.
+    Please refine the following draft section for tone, clarity, and coherence:
 
-    [Project Context]
-    {{profile_summary}}
-
-    [Memory Extracts]
-    {{memory_context}}
-
-    Provide a single query that captures the key themes and information needs.
+    {{ raw_draft }}
