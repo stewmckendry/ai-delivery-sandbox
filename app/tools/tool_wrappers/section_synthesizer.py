@@ -1,8 +1,9 @@
 import os
-from openai import OpenAI
-from dotenv import load_dotenv
 import re
+from string import Template
+from dotenv import load_dotenv
 from app.schemas.section_draft_output import SectionDraftOutput
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 
 load_dotenv()
 
@@ -61,43 +62,26 @@ class Tool:
 {profile.get('project_type', '')}
             """
 
-        prompt = f"""
-You are a policy analyst drafting high-quality, evidence-based documents.
-
-Draft a well-structured and dense draft section using all the following inputs.
-Focus on clarity, accuracy, and strategic alignment.
-
-Artifact: {artifact}
-Section: {section}
-
-[Project Context]
-{profile_context}
-
-{memory_str}
-{corpus_answer_str}
-{alignment_str}
-{web_str}
-
-{f'[Previous Context Summary]\n{context_summary}' if context_summary else ''}
-
-Begin the draft below:
-        """
-
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a policy analyst drafting high-quality documents."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "section_synthesis")
+        user_template = Template(prompt_templates["user"])
+        user_prompt = user_template.substitute(
+            artifact=artifact,
+            section=section,
+            profile_context=profile_context,
+            context_summary=context_summary,
+            memory_str=memory_str,
+            corpus_answer_str=corpus_answer_str,
+            alignment_str=alignment_str,
+            web_str=web_str
         )
 
-        raw_draft = response.choices[0].message.content.strip()
+        system_prompt = prompt_templates["system"]
+
+        raw_draft = chat_completion_request(system_prompt, user_prompt, temperature=0.7)
         draft_chunks = re.split(r'\n\n+', raw_draft)
 
         return SectionDraftOutput(
-            prompt_used=prompt,
+            prompt_used=user_prompt,
             raw_draft=raw_draft,
             draft_chunks=draft_chunks
         ).dict()
