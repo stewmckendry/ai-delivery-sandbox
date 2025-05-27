@@ -2,6 +2,7 @@ import logging
 import uuid
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage, save_document_and_trace
+from app.engines.toolchains.refine_document_chain import RefineDocumentChain
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,8 @@ class AssembleArtifactChain:
         self.formatter = registry.get_tool("formatSection")
         self.merger = registry.get_tool("mergeSections")
         self.finalizer = registry.get_tool("finalizeDocument")
-        self.committer = registry.get_tool("storeToDrive")  # Replaces commitArtifact
+        self.committer = registry.get_tool("storeToDrive")
+        self.refiner = RefineDocumentChain()
 
     def run(self, inputs):
         trace = []
@@ -21,7 +23,6 @@ class AssembleArtifactChain:
         gate_id = inputs["gate_id"]
         version = inputs.get("version", "v0.1")
 
-        # Step 1: Load
         loaded = self.loader.run_tool({"artifact_id": str(artifact_id), "gate_id": str(gate_id)})
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
@@ -30,7 +31,6 @@ class AssembleArtifactChain:
         profile = inputs.get("project_profile", {})
         title = profile.get("title") or loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
 
-        # Step 2: Format
         formatted_sections = []
         for sec in loaded["ordered_sections"]:
             formatted = self.formatter.run_tool({
@@ -44,16 +44,19 @@ class AssembleArtifactChain:
             formatted_sections.append(formatted["formatted_section"])
         logger.info("[Step 2] formatSection complete")
 
-        # Step 3: Merge
         merged = self.merger.run_tool({"sections": formatted_sections})
         log_tool_usage("mergeSections", "merged body", merged, session_id, None, inputs)
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
 
-        # Step 4: Finalize
+        refined = self.refiner.run(document_body=merged["document_body"], title=title, project_id=profile.get("project_id"))
+        log_tool_usage("refineDocumentChain", "refined body", refined, session_id, None, inputs)
+        trace.append({"tool": "refineDocumentChain", "output": refined})
+        logger.info("[Step 3.5] refineDocumentChain complete")
+
         finalized = self.finalizer.run_tool({
             "title": title,
-            "document_body": merged["document_body"],
+            "document_body": refined["refined_body"],
             "artifact_id": artifact_id,
             "gate_id": gate_id,
             "version": version
@@ -62,7 +65,6 @@ class AssembleArtifactChain:
         trace.append({"tool": "finalizeDocument", "output": finalized})
         logger.info("[Step 4] finalizeDocument complete")
 
-        # Step 5: Commit to Drive
         committed = self.committer.run_tool({
             "final_markdown": finalized["final_markdown"],
             "artifact_id": artifact_id,
@@ -75,7 +77,6 @@ class AssembleArtifactChain:
         trace.append({"tool": "storeToDrive", "output": committed})
         logger.info("[Step 5] storeToDrive complete")
 
-        # Save logs
         save_document_and_trace(
             session_id=session_id,
             artifact_id=artifact_id,
@@ -84,7 +85,7 @@ class AssembleArtifactChain:
             storage_url=committed.get("drive_url"),
             summary=f"Assembled artifact {artifact_id} gate {gate_id}",
             inputs=inputs,
-            output_path=committed.get("drive_url"),  # workaround: use URL as file_path
+            output_path=committed.get("drive_url"),
             tool_outputs=trace
         )
         logger.info("[Step 6] Saved to Artifact and ReasoningTrace")
