@@ -651,3 +651,14 @@
   - build
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/index.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/index.ts
+  file_type: ts
+  description: Express server setup for the Super Secret Code Backend with CORS and
+    JSON support
+  tags:
+  - server
+  - backend
+  - express
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
