@@ -16,23 +16,11 @@ class Tool:
         profile = input_dict.get("project_profile", {})
         memory = input_dict.get("memory", [])
 
-        profile_summary = "\n".join([
-            f"Project Title: {profile.get('title', 'N/A')}",
-            f"Scope Summary: {profile.get('scope_summary', '')}",
-            f"Strategic Alignment: {profile.get('strategic_alignment', '')}",
-            f"Stakeholders: {profile.get('key_stakeholders', '')}",
-            f"Project Type: {profile.get('project_type', '')}"
+        profile_summary = f"Title: {profile.get('title', '')}\nScope: {profile.get('scope_summary', '')}\nAlignment: {profile.get('strategic_alignment', '')}"
+
+        memory_context = "\n".join([
+            f"- {entry.get('input_summary', '')}: {entry.get('full_input_path', '')}" for entry in memory if entry.get('input_summary') and entry.get('full_input_path')
         ])
-
-        memory_lines = []
-        for entry in memory:
-            if isinstance(entry, dict):
-                if "input_summary" in entry:
-                    memory_lines.append(entry["input_summary"])
-                elif "text" in entry:
-                    memory_lines.append(entry["text"][:200])
-
-        memory_context = "\n".join(memory_lines[:10])
 
         prompt = f"""
 You are an assistant helping a policy analyst formulate a concise, rich search query.
@@ -45,16 +33,13 @@ Use the following project context and memory to generate a query for searching g
 {memory_context}
 
 Provide a single query that captures the key themes and information needs.
-"""
+        """
 
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         response = client.chat.completions.create(
             model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You generate search queries for analysts."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.5
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
         )
 
-        return {"query": response.choices[0].message.content.strip()}
+        return {"query": response.choices[0].message.content.strip(), "prompt_used": prompt}
