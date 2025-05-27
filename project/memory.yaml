@@ -4522,3 +4522,14 @@
   - flow
   last_updated: '2025-05-27'
   pod_owner: ResearchPod
+- path: app/prompts/refine_document_prompts.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/refine_document_prompts.yaml
+  file_type: yaml
+  description: Configuration for prompts used to refine and enhance documents for
+    tone, structure, and clarity.
+  tags:
+  - prompt
+  - config
+  - document
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
