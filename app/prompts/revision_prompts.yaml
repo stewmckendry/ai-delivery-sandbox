@@ -5,7 +5,7 @@ feedback_mapping:
 
     Analyze the following feedback and return:
     - A list of section IDs affected (if specified, prioritize that section)
-    - The type of revision required: rewrite, polish, append, or clarify
+    - The type of revision required: rewrite, polish, append, clarify, or targeted_edit
 
     Feedback:
     ---
@@ -31,6 +31,8 @@ section_rewrite:
     Original Text:
     {{current_text}}
 
+    Expected Output: Revised section text only. Do not include explanations.
+
   polish: |
     You are editing a government document for style and tone.
     Polish the section without changing meaning.
@@ -38,14 +40,29 @@ section_rewrite:
     Original Text:
     {{current_text}}
 
+    Expected Output: Revised section text only. Do not include explanations.
+
   append: |
     Add content to address the feedback below, without removing existing points.
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}
 
+    Expected Output: Revised section text only. Do not include explanations.
+
   clarify: |
     Improve clarity and precision based on this feedback.
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}
+
+    Expected Output: Revised section text only. Do not include explanations.
+
+  targeted_edit: |
+    Apply focused revisions to address the specific change(s) described in the feedback.
+    Only modify the part(s) of the section affected. Keep the rest unchanged.
+    Feedback: "{{feedback}}"
+    Original Text:
+    {{current_text}}
+
+    Expected Output: Revised section text only. Do not include explanations.
