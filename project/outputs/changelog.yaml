@@ -8000,3 +8000,8 @@
   task_id: wp24_toolchains
   committed_by: GPTPod
   message: Append output file to wp24_toolchains
+- timestamp: '2025-05-27T21:22:50.671664'
+  path: app/prompts/generate_section_prompts.yaml
+  task_id: wp24_toolchains
+  committed_by: GPTPod
+  message: Add section_refinement prompt template for section_refiner tool
