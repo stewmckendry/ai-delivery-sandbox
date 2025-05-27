@@ -1,24 +1,33 @@
 from app.tools.search_handlers.goc_alignment import handle_goc_alignment_search
 from app.tools.tool_utils.web_search_logger import log_web_search
 
-def run_tool(input_dict):
-    query = input_dict.get("query")
-    user_id = input_dict.get("user_id")
-    session_id = input_dict.get("session_id")
-    project_id = input_dict.get("project_id")
+class Tool:
+    def __init__(self):
+        self.schema = {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string"},
+                "context": {"type": "object"}
+            },
+            "required": ["query"]
+        }
 
-    if not query:
-        return {"error": "Missing required field: query"}
+    def run_tool(self, inputs):
+        query = inputs.get("query")
+        context = inputs.get("context", {})
 
-    results = handle_goc_alignment_search(query)
+        if not query:
+            raise ValueError("Missing required field: query")
 
-    log_web_search(
-        query=query,
-        search_type="goc_alignment",
-        results=results,
-        user_id=user_id,
-        session_id=session_id,
-        project_id=project_id,
-    )
+        results = handle_goc_alignment_search(query)
 
-    return {"results": results}
+        log_web_search(
+            query=query,
+            search_type="goc_alignment",
+            results=results,
+            user_id=context.get("user_id"),
+            session_id=context.get("session_id"),
+            project_id=context.get("project_id") or context.get("project_profile", {}).get("project_id")
+        )
+
+        return {"results": results}
