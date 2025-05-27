@@ -10,8 +10,8 @@
 - [x] Build `feedback_mapper.py` for section targeting + change classification
 - [x] Build `section_rewriter.py` using prompt variants from `revision_prompts.yaml`
 - [x] Implement `manualEditSync.py` for pasted revisions
-- [ ] Optional: implement `feedback_preprocessor.py` for noisy inputs
-- [ ] NEW: Add `revision_checker.py` to flag hallucinations or excessive edits
+- [x] Build `feedback_preprocessor.py` to normalize and classify feedback
+- [x] Add `revision_checker.py` to flag hallucinations or excessive edits
 
 ## 🧪 Testing
 - [ ] Scaffold `test_revise_section_chain.py`
