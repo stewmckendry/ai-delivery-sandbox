@@ -22,11 +22,11 @@ Enable GPT to:
 ---
 
 ### 🗿 Instructions
-1. Review scope and deliverables: `WP25_definition.md`
-2. Draft metadata model plan: `WP25_metadata_plan.md`
-3. Build and test: `tool_index_builder.py`
-4. Sync manifest + catalog formats and validate for GPT use
-
+1. Review your WP scope and deliverables (system/fetchFile: `project/build/wps/WP25/WP25_definition.md`)
+2. Fetch reference files (see below)
+3. Draft design plan and task list. Commit to: `project/build/wps/WP25/`
+4. Build and test deliverables
+5. Request Human Lead review and provide midpoint + final updates to Pod Lead
 ---
 
 ### 📂 Repo + Branch Info
@@ -42,6 +42,14 @@ Enable GPT to:
 - `project/reference/gpt_tools_manifest.json`
 - `project/system_design/dense_artifact_generation.md`
 - `project/build/wps/WP12/WP12_ux_design_review.md`
+- `app/engines/planner_orchestrator.py`
+- `app/engines/toolchains/assemble_artifact_chain.py`
+- `app/engines/toolchains/generate_section_chain.py`
+- `app/engines/toolchains/IngestInputChain.py`
+- `app/tools/tool_wrappers/uploadTextInput.py`
+- `app/engines/memory_sync.py`
+- `project/system_design/db_schema_notes_v3.md`
+
 
 ---
 

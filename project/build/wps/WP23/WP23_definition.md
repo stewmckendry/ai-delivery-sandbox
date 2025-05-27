@@ -22,6 +22,9 @@ Build a `revise_section_chain` toolchain that:
 | `project/prompts/revision_prompts.yaml` | Prompt templates for edit types |
 | `project/test/wps/WP23/test_revise_section_chain.py` | Test plan for E2E refinement flow |
 | `project/build/wps/WP23/WP23_toolchain_plan.md` | Design + integration notes |
+| `app/tools/tool_wrappers/manualEditSync.py` | Detect, parse, and sync user-submitted text |
+| `project/prompts/edit_trace_templates.yaml` | Prompts to describe manual or verbatim edit intent |
+| `project/build/wps/WP23/WP23_edit_modes.md` | Mode reference: GPT revise vs user edit vs upload |
 
 ---
 
@@ -38,6 +41,41 @@ This toolchain will support artifact refinement through multiple entry points:
 | Corpus expansion | `queryCorpus` or re-indexing | Refine section based on newly loaded evidence base |
 
 ---
+
+---
+
+## 🔁 Post-Revision Handling Scenarios
+
+After a section is revised, downstream workflows vary based on how and where the edits occurred.
+
+### Scenario A: Revise + Re-Assemble Full Artifact
+
+| Trigger | Action |
+|--------|--------|
+| One or more sections revised | Run `assemble_artifact_chain` to merge updated sections |
+| Outcome | Creates new version in `DocumentVersionLog`, exports to Drive |
+
+### Scenario B: GPT-In-Chat Section Edits (Verbatim Save)
+
+| Trigger | User and GPT co-edit section in chat |
+| Action | GPT directly writes final user-reviewed content to `ArtifactSection.text` |
+| Trace | Logs prompt summary and decision path in `ReasoningTrace` |
+| Optional | User may annotate reason or source of change via `AuditTrail` or `PromptLog` metadata |
+
+### Scenario C: Manual Edit + Upload
+
+| Trigger | User updates Google Doc, re-uploads or pastes |
+| Action | GPT detects change (e.g., via comparison or direct mapping) |
+| Options | 
+  - Update `ArtifactSection.text` verbatim
+  - Archive previous version
+  - Optionally re-run `validateSection` tool |
+| Provenance | Log edit origin as “manual” in `generated_by`, tag update source in `ReasoningTrace` |
+| Drive Sync | New Drive URL committed to `DocumentVersionLog.google_doc_url` if replaced
+
+
+---
+
 
 ## 🗃️ Database Tables: Read/Write Scope for WP23
 

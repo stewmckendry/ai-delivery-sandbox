@@ -25,10 +25,11 @@ Implement the `generate_full_artifact_chain` toolchain that:
 ---
 
 ### 🗿 Instructions
-1. Review `WP24_definition.md`
-2. Draft plan in: `project/build/wps/WP24/WP24_toolchain_plan.md`
-3. Build orchestration toolchain + tests
-4. Validate end-to-end outputs, including DB and Drive
+1. Review your WP scope and deliverables (system/fetchFile: `project/build/wps/WP24/WP24_definition.md`)
+2. Fetch reference files (see below)
+3. Draft design plan and task list. Commit to: `project/build/wps/WP24/`
+4. Build and test deliverables
+5. Request Human Lead review and provide midpoint + final updates to Pod Lead
 
 ---
 
@@ -41,11 +42,30 @@ Implement the `generate_full_artifact_chain` toolchain that:
 ---
 
 ### Key Files to Reference
+- `project/build/wps/WP24/WP24_definition.md`
 - `project/system_design/dense_artifact_generation.md`
 - `project/build/wps/WP12/WP12_ux_design_review.md`
-- `app/engines/toolchains/generate_section_chain.py`
+- `app/engines/planner_orchestrator.py`
 - `app/engines/toolchains/assemble_artifact_chain.py`
-- `project/reference/gate_reference.yaml`
+- `app/engines/toolchains/generate_section_chain.py`
+- `app/engines/toolchains/IngestInputChain.py`
+- `app/tools/tool_wrappers/memory_retrieve.py`
+- `app/tools/tool_wrappers/section_synthesizer.py`
+- `app/tools/tool_wrappers/section_refiner.py`
+- `app/tools/tool_wrappers/uploadTextInput.py`
+- `app/tools/tool_wrappers/loadSectionMetadata.py`
+- `app/tools/tool_wrappers/formatSection.py`
+- `app/tools/tool_wrappers/mergeSections.py`
+- `app/tools/tool_wrappers/finalizeDocument.py`
+- `app/tools/tool_wrappers/storeToDrive.py`
+- `app/engines/memory_sync.py`
+- `app/db/models/ReasoningTrace.py`
+- `app/db/models/DocumentVersionLog.py`
+- `app/db/models/ArtifactSection.py`
+- `app/db/models/WebSearchLog.py`
+- `app/db/models/ProjectProfile.py`
+- `app/db/models/PromptLog.py`
+- `project/reference/tool_catalog.yaml`
 
 ---
 
