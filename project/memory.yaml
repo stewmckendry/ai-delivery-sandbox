@@ -4510,3 +4510,15 @@
   - llm
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: app/engines/toolchains/refine_document_chain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/refine_document_chain.py
+  file_type: py
+  description: Class to refine and polish draft documents using a language model,
+    ensuring consistency and clarity while preserving content.
+  tags:
+  - refinement
+  - document
+  - model
+  - flow
+  last_updated: '2025-05-27'
+  pod_owner: ResearchPod
