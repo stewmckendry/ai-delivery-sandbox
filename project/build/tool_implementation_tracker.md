@@ -43,4 +43,8 @@
 | confirmProjectProfile  | WP7       | ✅ Complete  | Prompts user to confirm project profile details; feeds planner + DB |
 | IngestInputChain       | WP7       | ✅ Complete  | Parses uploads and builds or updates `project_profile` |
 | ProjectProfileEngine   | WP7       | ✅ Complete  | Core logic to load, merge, and persist project profile |
+| goc_alignment_search   | WP22      | ✅ Complete  | Live GoC search tool for mandate and strategy alignment |
+| queryCorpus            | WP22      | ✅ Complete  | Embedding DB search tool using Chroma and labeled chunks |
+| queryPromptGenerator   | WP22      | ✅ Complete  | Generates structured search prompts using memory and project profile |
+| loadCorpus (async)     | WP22      | ✅ Complete  | Enhanced with async support to embed corpora without timeouts |
 

@@ -81,3 +81,22 @@
 - Cast and clean profile fields before logging
 - Build mocks and regression tests for all chains
 - Introduce `project_profile` versioning + audit trail
+
+## WP22 – GoC Alignment Search Tool
+
+### ✅ What Went Well
+- Strong cross-tool integration and clean modular structure
+- Asynchronous corpus embedding prevented timeouts
+- Tools reusable in both planner chains and standalone prompts
+- Test automation validated all modes of use
+
+### 🤯 Challenges
+- First version of tools didn't follow class structure — refactoring needed
+- Default queries lacked context — needed synthesized input
+- Corpus loading UX requires improvement for cloud deployment
+
+### 💡 Lessons & Recommendations
+- Structure inputs with labels to manage prompt size
+- Async loaders need status/polling support in prod
+- Consider confidence scoring + filtering for corpus results
+- Enable multilingual queries and corpus segmentation
