@@ -25,3 +25,6 @@ markdown2
 
 # WP14 addition:
 requests  # used by Bing Web Search API
+
+# WP24 addition:
+tiktoken
