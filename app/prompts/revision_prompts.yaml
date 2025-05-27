@@ -1,0 +1,24 @@
+feedback_mapping:
+  system: "You help map feedback to document revisions."
+  user: |
+    You are a policy document editor. A user has submitted feedback on a public sector program artifact.
+
+    Analyze the following feedback and return:
+    - A list of section IDs affected (if specified, prioritize that section)
+    - The type of revision required: rewrite, polish, append, or clarify
+
+    Feedback:
+    ---
+    {{feedback_text}}
+    ---
+
+    Sections:
+    {% for s in sections %}
+    - ID: {{s.section_id}}\nText: {{s.text}}
+    {% endfor %}
+
+    Respond in JSON format:
+    {
+      "section_ids": [...],
+      "revision_type": "..."
+    }
