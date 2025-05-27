@@ -49,29 +49,28 @@ This toolchain will support artifact refinement through multiple entry points:
 After a section is revised, downstream workflows vary based on how and where the edits occurred.
 
 ### Scenario A: Revise + Re-Assemble Full Artifact
-
-| Trigger | Action |
-|--------|--------|
-| One or more sections revised | Run `assemble_artifact_chain` to merge updated sections |
-| Outcome | Creates new version in `DocumentVersionLog`, exports to Drive |
+| Trigger                       | Action                                                        |
+|-------------------------------|---------------------------------------------------------------|
+| One or more sections revised  | Run `assemble_artifact_chain` to merge updated sections       |
+| Outcome                       | Creates new version in `DocumentVersionLog`, exports to Drive |
 
 ### Scenario B: GPT-In-Chat Section Edits (Verbatim Save)
 
-| Trigger | User and GPT co-edit section in chat |
-| Action | GPT directly writes final user-reviewed content to `ArtifactSection.text` |
-| Trace | Logs prompt summary and decision path in `ReasoningTrace` |
+| Trigger  | User and GPT co-edit section in chat |
+|----------|--------------------------------------|
+| Action   | GPT directly writes final user-reviewed content to `ArtifactSection.text` |
+| Trace    | Logs prompt summary and decision path in `ReasoningTrace` |
 | Optional | User may annotate reason or source of change via `AuditTrail` or `PromptLog` metadata |
+
 
 ### Scenario C: Manual Edit + Upload
 
-| Trigger | User updates Google Doc, re-uploads or pastes |
-| Action | GPT detects change (e.g., via comparison or direct mapping) |
-| Options | 
-  - Update `ArtifactSection.text` verbatim
-  - Archive previous version
-  - Optionally re-run `validateSection` tool |
-| Provenance | Log edit origin as “manual” in `generated_by`, tag update source in `ReasoningTrace` |
-| Drive Sync | New Drive URL committed to `DocumentVersionLog.google_doc_url` if replaced
+| Trigger   | User updates Google Doc, re-uploads or pastes |
+|-----------|-----------------------------------------------|
+| Action    | GPT detects change (e.g., via comparison or direct mapping) |
+| Options   | - Update `ArtifactSection.text` verbatim<br>- Archive previous version<br>- Optionally re-run `validateSection` tool |
+| Provenance| Log edit origin as “manual” in `generated_by`, tag update source in `ReasoningTrace` |
+| Drive Sync| New Drive URL committed to `DocumentVersionLog.google_doc_url` if replaced |
 
 
 ---
