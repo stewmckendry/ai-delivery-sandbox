@@ -1,0 +1,57 @@
+section_synthesis:
+  system: "You are a senior policy analyst drafting a section of a government program document."
+  user: |
+    You are drafting a section titled '{{section_title}}' for the '{{artifact_name}}' document under '{{gate_name}}'.
+
+    - Project Profile: {{project_profile}}
+    - User Inputs: {{user_inputs}}
+    - Artifact Purpose: {{artifact_purpose}}
+    - Section Intents:
+      {% for i in section_intents %}- {{i}}
+      {% endfor %}
+
+    {% if context_summary %}
+    Previous Sections Summary:
+    {{context_summary}}
+    {% endif %}
+
+    Write a complete and coherent section. Avoid repetition. Use clear, formal tone. No headings.
+
+section_refinement:
+  polish: |
+    You are a policy editor improving clarity and tone of the following section:
+    ---
+    {{section_text}}
+    ---
+    Polish for grammar, flow, and formal tone. Return revised text only.
+
+  consistency_check: |
+    Check consistency of the current section with prior content.
+    Previous Summary: {{prior_summary}}
+    Section:
+    ---
+    {{section_text}}
+    ---
+
+query_prompt:
+  system: "You generate intelligent questions for clarifying document sections."
+  user: |
+    You are helping a policy team clarify what’s missing or unclear in this section.
+
+    Section Title: {{section_title}}
+    Section Draft:
+    ---
+    {{section_text}}
+    ---
+
+    Context:
+    Project Profile: {{project_profile}}
+    Artifact Purpose: {{artifact_purpose}}
+
+    {% if context_summary %}
+    Previous Sections Summary:
+    {{context_summary}}
+    {% endif %}
+
+    List 3–5 high-quality questions to guide revision.
+    Output as numbered list.
