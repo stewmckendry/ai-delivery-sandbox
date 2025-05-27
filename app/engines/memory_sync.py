@@ -7,6 +7,7 @@ from app.db.models.ArtifactSection import ArtifactSection
 from app.db.models.ReasoningTrace import ReasoningTrace
 from app.db.models.PromptLog import PromptLog
 from app.db.models.DocumentVersionLog import DocumentVersionLog
+from app.db.models.DocumentFeedback import DocumentFeedback
 from app.engines.project_profile_engine import ProjectProfileEngine
 from sqlalchemy.orm import Session
 
@@ -51,6 +52,21 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
     session.add(trace)
     session.commit()
     return {"section_id": section_id, "trace_id": trace.trace_id}
+
+
+def save_feedback(document_id, feedback_text, submitted_by, feedback_type="general"):
+    session = get_session()
+    feedback_entry = DocumentFeedback(
+        document_id=document_id,
+        feedback_text=feedback_text,
+        submitted_by=submitted_by,
+        feedback_type=feedback_type,
+        status="open",
+        created_at=datetime.datetime.utcnow()
+    )
+    session.add(feedback_entry)
+    session.commit()
+    return feedback_entry.document_feedback_id
 
 
 def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id=None, metadata=None):
