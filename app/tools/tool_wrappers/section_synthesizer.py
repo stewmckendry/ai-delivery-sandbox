@@ -14,9 +14,8 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         memory = input_dict.get("memory", [])
-        corpus_chunks = input_dict.get("corpus_chunks", [])
         alignment_results = input_dict.get("alignment_results", [])
-        web_search = input_dict.get("web_search", [])
+        web_summary = input_dict.get("web_search", "")
         corpus_answer = input_dict.get("corpus_answer", {})
 
         def format_sources(label, entries):
@@ -34,10 +33,9 @@ class Tool:
             return f"\n{label} Sources:\n" + "\n".join(lines) if lines else ""
 
         memory_str = format_sources("Project Documentation and Historical Inputs", memory)
-        corpus_str = format_sources("Embedded Government Reports and Policies", corpus_chunks)
         alignment_str = format_sources("Government of Canada Strategic Alignment", alignment_results)
-        web_str = format_sources("External Web Sources", web_search)
-        corpus_answer_str = "\nCorpus-Derived Insight:\n" + corpus_answer.get("answer", "") if corpus_answer else ""
+        corpus_answer_str = "\nEmbedded Government Reports and Policies:\n" + corpus_answer.get("answer", "") if corpus_answer else ""
+        web_str = f"\nExternal Web Insights:\n{web_summary}" if web_summary else ""
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
@@ -75,7 +73,6 @@ Section: {section}
 {profile_context}
 
 {memory_str}
-{corpus_str}
 {corpus_answer_str}
 {alignment_str}
 {web_str}
