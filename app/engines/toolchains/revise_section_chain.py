@@ -36,7 +36,7 @@ class ReviseSectionChain:
         current_text = section_record.text if section_record else ""
 
         # Save feedback to FeedbackLog (via handler)
-        save_feedback(document_id=artifact, feedback_text=feedback, submitted_by=user_id, feedback_type="revision")
+        save_feedback(document_id=artifact, feedback_text=feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
 
         if mode == "verbatim":
             output = self.manual_edit_tool.run_tool({**inputs, "current_text": current_text})
