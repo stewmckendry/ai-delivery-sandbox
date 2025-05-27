@@ -573,3 +573,9 @@
   task_id: wp24
   committed_by: GPTPod
   message: Append output file to wp24
+- timestamp: '2025-05-27T20:09:47.495226'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: wp24_toolchain
+  committed_by: ProductPod
+  message: Patch query_prompt_generator to load both system and user prompts from
+    YAML using key 'search_query_generation'
