@@ -14,7 +14,7 @@ feedback_mapping:
 
     Sections:
     {% for s in sections %}
-    - ID: {{s.section_id}}\nText: {{s.text}}
+    - ID: {{s.section_id}}\nSummary: {{s.text}}
     {% endfor %}
 
     Respond in JSON format:
