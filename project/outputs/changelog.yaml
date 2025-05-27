@@ -7257,3 +7257,8 @@
   committed_by: ProductPod
   message: Updated toolchain design plan to address feedback mapping logic, edit scope,
     GPT routing rules, and version handling.
+- timestamp: '2025-05-27T13:21:41.188306'
+  path: project/build/wps/WP23/WP23_toolchain_plan.md
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Added output and user journey exit paths to WP23 design plan.
