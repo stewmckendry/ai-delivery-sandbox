@@ -4464,3 +4464,15 @@
   - storage
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/manualEditSync.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/manualEditSync.py
+  file_type: py
+  description: Script to validate and save manual edits to artifacts, logging the
+    process and results.
+  tags:
+  - tool
+  - validation
+  - logging
+  - sync
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
