@@ -7329,3 +7329,9 @@
   task_id: 2.2_build_and_patch
   committed_by: ProductPod
   message: Patched revise_section_chain to pass project_id to save_feedback.
+- timestamp: '2025-05-27T14:14:30.167021'
+  path: app/db/models/DocumentFeedback.py
+  task_id: 2.2_build_and_patch
+  committed_by: ProductPod
+  message: Fixed schema conflict by converting resolved_at to DateTime instead of
+    TIMESTAMP.
