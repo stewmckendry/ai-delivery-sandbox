@@ -607,20 +607,85 @@
       }
     },
     {
-      "tool_id": "reviseSectionChain",
-      "description": "Revises existing artifact section(s) based on user feedback or direct edits.",
+      "tool_id": "revise_section",
+      "description": "Applies user feedback to revise document sections, including mapping, rewriting, compliance checking, and saving.",
       "input_schema": {
         "type": "object",
         "properties": {
           "artifact": { "type": "string" },
           "section": { "type": "string" },
           "feedback_text": { "type": "string" },
-          "mode": { "type": "string", "enum": ["rewrite", "polish", "append", "verbatim"] },
+          "mode": { "type": "string" },
           "session_id": { "type": "string" },
           "user_id": { "type": "string" },
           "project_id": { "type": "string" }
         },
-        "required": ["artifact", "section", "feedback_text", "mode"]
+        "required": ["artifact", "feedback_text", "user_id", "project_id"]
+      }
+    },
+    {
+      "tool_id": "feedback_mapper",
+      "description": "Maps feedback text to the most relevant document section IDs and determines the type of revision required.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "feedback_text": { "type": "string" },
+          "artifact": { "type": "string" },
+          "project_id": { "type": "string" }
+        },
+        "required": ["feedback_text"]
+      }
+    },
+    {
+      "tool_id": "section_rewriter",
+      "description": "Rewrites a section based on the revision type and feedback using prompt templates and LLM output.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "section_id": { "type": "string" },
+          "feedback": { "type": "string" },
+          "revision_type": { "type": "string" },
+          "current_text": { "type": "string" }
+        },
+        "required": ["section_id", "feedback", "revision_type", "current_text"]
+      }
+    },
+    {
+      "tool_id": "manualEditSync",
+      "description": "Saves a section that was edited manually or pasted by a user, without transformation.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "section_id": { "type": "string" },
+          "artifact": { "type": "string" },
+          "gate_id": { "type": "string" },
+          "text": { "type": "string" }
+        },
+        "required": ["section_id", "text"]
+      }
+    },
+    {
+      "tool_id": "feedback_preprocessor",
+      "description": "Cleans and normalizes feedback text, and optionally splits into smaller actionable feedback items.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "feedback_text": { "type": "string" }
+        },
+        "required": ["feedback_text"]
+      }
+    },
+    {
+      "tool_id": "revision_checker",
+      "description": "Compares original and revised section content to detect excessive or unintended changes based on revision type.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "original_text": { "type": "string" },
+          "revised_text": { "type": "string" },
+          "revision_type": { "type": "string" }
+        },
+        "required": ["original_text", "revised_text", "revision_type"]
       }
     }
   ]
