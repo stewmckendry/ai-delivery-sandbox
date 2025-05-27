@@ -608,3 +608,13 @@
   - vite
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/frontend/src/main.tsx
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/frontend/src/main.tsx
+  file_type: tsx
+  description: Entry point for rendering the main React application component
+  tags:
+  - frontend
+  - React
+  - entry-point
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
