@@ -1,4 +1,8 @@
+import os
+from dotenv import load_dotenv
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+
+load_dotenv()
 
 class Tool:
     def validate(self, input_dict):
@@ -30,11 +34,10 @@ class Tool:
 
         memory_context = "\n".join(memory_lines[:10])
 
-        prompt_block = get_prompt("generate_section_prompts.yaml", "search_query_generation")
+        prompts = get_prompt("generate_section_prompts.yaml", "search_query_generation")
+        user_prompt_template = prompts["user"]
+        user_prompt = user_prompt_template.render(profile_summary=profile_summary, memory_context=memory_context)
+        system_prompt = prompts["system"]
 
-        system_prompt = prompt_block["system"]
-        user_prompt = prompt_block["user"].replace("{{profile_summary}}", profile_summary).replace("{{memory_context}}", memory_context)
-
-        query = chat_completion_request(system_prompt, user_prompt, temperature=0.5)
-
-        return {"query": query}
+        response = chat_completion_request(system_prompt, user_prompt)
+        return {"query": response.strip()}
