@@ -38,3 +38,17 @@ Build a "composable" planner framework that:
 - GUI visual chain builder
 - Planner preview and dry-run mode
 - Embedding plan metadata in ReasoningTrace
+
+---
+
+## 🧭 Example User Flow
+
+### Step-by-Step
+| Step | Actor | Action | Input | Output |
+|------|-------|--------|-------|--------|
+| 1 | GPT | Prompts: “Which steps do you want in your workflow?” | Chat | Plan config scaffold |
+| 2 | User | Replies: “Retrieve memory, then generate, refine, validate, commit” | List of steps | Plan YAML |
+| 3 | GPT | Generates YAML plan using defaults | Tool list | `planner_templates/<artifact>.yaml` |
+| 4 | Planner | Loads YAML and validates | Template | Executable plan |
+| 5 | GPT | Narrates each step as it runs | Plan YAML | Real-time status in chat |
+| 6 | Planner | Executes chain and logs trace | Inputs | Trace, outputs, Drive file |
