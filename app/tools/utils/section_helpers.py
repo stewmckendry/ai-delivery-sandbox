@@ -1,24 +1,29 @@
 import requests
 import tiktoken
+import yaml
 import logging
 
 logger = logging.getLogger(__name__)
 
-def plan_sections(gate_id):
+def plan_sections(gate_id, artifact_id):
     url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
     response = requests.get(url)
     if not response.ok:
         logger.error(f"Failed to fetch gate reference: {response.status_code}")
         return []
 
-    import yaml
     gates = yaml.safe_load(response.text)
-    gate = next((g for g in gates if g['gate_id'] == gate_id), None)
+    gate = next((g for g in gates if str(g['gate_id']) == str(gate_id)), None)
     if not gate:
         logger.warning(f"Gate ID {gate_id} not found in reference")
         return []
 
-    return gate.get("sections", [])
+    artifact = next((a for a in gate.get('artifacts', []) if a['artifact_id'] == artifact_id), None)
+    if not artifact:
+        logger.warning(f"Artifact ID {artifact_id} not found in gate {gate_id}")
+        return []
+
+    return artifact.get("sections", [])
 
 def summarize_previous(sections):
     all_texts = "\n\n".join([s.get("text", "") for s in sections if s.get("text")])
