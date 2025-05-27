@@ -595,6 +595,7 @@ tasks:
     - project/build/wps/WP24/WP24_task_list.md
     - app/tools/tool_wrappers/section_rewriter.py
     - app/engines/toolchains/generate_full_artifact_chain.py
+    - app/tools/tool_wrappers/manualEditSync.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
