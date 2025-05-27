@@ -1,100 +1,31 @@
-import os
-from openai import OpenAI
-from dotenv import load_dotenv
-import re
-from app.schemas.section_draft_output import SectionDraftOutput
+from typing import Dict
+from pydantic import BaseModel, parse_obj_as
+import yaml, os
+from jinja2 import Template
+from app.tools.utils.llm_helpers import call_llm_chat
 
-load_dotenv()
+class SectionDraftInput(BaseModel):
+    section_title: str
+    artifact_name: str
+    gate_name: str
+    project_profile: str
+    user_inputs: str
+    artifact_purpose: str
+    section_intents: list
+    context_summary: str = ""
+
+class SectionDraftOutput(BaseModel):
+    section_text: str
 
 class Tool:
-    def validate(self, input_dict):
-        if "memory" not in input_dict:
-            raise ValueError("Missing required field: memory")
+    def __init__(self):
+        prompt_path = os.path.join("app", "prompts", "generate_section_prompts.yaml")
+        with open(prompt_path, "r") as f:
+            self.prompts = yaml.safe_load(f)["section_synthesis"]
 
-    def run_tool(self, input_dict):
-        self.validate(input_dict)
-        memory = input_dict.get("memory", [])
-        alignment_results = input_dict.get("alignment_results", [])
-        web_summary = input_dict.get("web_search", "")
-        corpus_answer = input_dict.get("corpus_answer", {})
-
-        def format_sources(label, entries):
-            lines = []
-            for entry in entries:
-                if isinstance(entry, dict):
-                    if "input_summary" in entry and "full_input_path" in entry:
-                        lines.append(f"- {entry['input_summary']}: {entry['full_input_path']}")
-                    elif "title" in entry and "url" in entry:
-                        lines.append(f"- {entry['title']}: {entry['url']}")
-                    elif "content" in entry:
-                        lines.append(f"- {entry['content'][:200]}...")
-                    elif "text" in entry:
-                        lines.append(f"- {entry['text'][:200]}...")
-            return f"\n{label} Sources:\n" + "\n".join(lines) if lines else ""
-
-        memory_str = format_sources("Project Documentation and Historical Inputs", memory)
-        alignment_str = format_sources("Government of Canada Strategic Alignment", alignment_results)
-        corpus_answer_str = "\nEmbedded Government Reports and Policies:\n" + corpus_answer.get("answer", "") if corpus_answer else ""
-        web_str = f"\nExternal Web Insights:\n{web_summary}" if web_summary else ""
-
-        artifact = input_dict.get("artifact")
-        section = input_dict.get("section")
-
-        profile = input_dict.get("project_profile", {})
-        profile_context = ""
-        if profile:
-            profile_context = f"""
-[Project Title]
-{profile.get('title', 'N/A')}
-
-[Scope Summary]
-{profile.get('scope_summary', '')}
-
-[Strategic Alignment]
-{profile.get('strategic_alignment', '')}
-
-[Stakeholders]
-{profile.get('key_stakeholders', '')}
-
-[Project Type]
-{profile.get('project_type', '')}
-            """
-
-        prompt = f"""
-You are a policy analyst drafting high-quality, evidence-based documents.
-
-Draft a well-structured and dense draft section using all the following inputs.
-Focus on clarity, accuracy, and strategic alignment.
-
-Artifact: {artifact}
-Section: {section}
-
-[Project Context]
-{profile_context}
-
-{memory_str}
-{corpus_answer_str}
-{alignment_str}
-{web_str}
-
-Begin the draft below:
-        """
-
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a policy analyst drafting high-quality documents."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7
-        )
-
-        raw_draft = response.choices[0].message.content.strip()
-        draft_chunks = re.split(r'\n\n+', raw_draft)
-
-        return SectionDraftOutput(
-            prompt_used=prompt,
-            raw_draft=raw_draft,
-            draft_chunks=draft_chunks
-        ).dict()
+    def run_tool(self, input_dict: Dict) -> Dict:
+        data = parse_obj_as(SectionDraftInput, input_dict)
+        user_prompt = Template(self.prompts["user"]).render(**data.dict())
+        system_prompt = self.prompts["system"]
+        response = call_llm_chat(system=system_prompt, user=user_prompt, model="gpt-4", temperature=0.3)
+        return SectionDraftOutput(section_text=response.strip()).dict()
