@@ -3,6 +3,7 @@
 ## ✅ Setup and Planning
 - [x] Fetch WP definition and reference files
 - [x] Draft and commit `WP23_toolchain_plan.md`
+- [x] Update design plan with feedback handling, routing logic, Drive sync logic
 
 ## 🚧 Build Tasks
 - [ ] Create `revise_section_chain.py` orchestrator
