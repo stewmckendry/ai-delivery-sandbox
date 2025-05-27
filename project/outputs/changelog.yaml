@@ -7017,3 +7017,9 @@
   committed_by: GPTPod
   message: Patch generate_section_chain to drop corpus_chunks and summarize web_search
     before sending to section_synthesizer
+- timestamp: '2025-05-27T01:55:42.854777'
+  path: app/tools/tool_wrappers/section_synthesizer.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Remove corpus_chunks, retitle corpus_answer section, and switch web_search
+    to use summarized text
