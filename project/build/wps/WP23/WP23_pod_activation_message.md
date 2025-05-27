@@ -23,11 +23,11 @@ Implement a feedback-to-revision toolchain (`revise_section_chain`) that:
 ---
 
 ### 🗿 Instructions
-1. Review scope and deliverables: `WP23_definition.md`
-2. Draft plan in: `project/build/wps/WP23/WP23_toolchain_plan.md`
-3. Build new tools: `feedback_mapper.py`, `section_rewriter.py`
-4. Patch Planner to trigger revision chain when prompted
-5. Validate integration with PromptLog, ReasoningTrace, ArtifactSection
+1. Review your WP scope and deliverables (system/fetchFile: `project/build/wps/WP23/WP23_definition.md`)
+2. Fetch reference files (see below)
+3. Draft design plan and task list. Commit to: `project/build/wps/WP23/`
+4. Build and test deliverables
+5. Request Human Lead review and provide midpoint + final updates to Pod Lead
 
 ---
 
@@ -38,13 +38,27 @@ Implement a feedback-to-revision toolchain (`revise_section_chain`) that:
 - **Task ID:** `2.2_build_and_patch`
 
 ---
-
 ### Key Files to Reference
+- `project/build/wps/WP23/WP23_definition.md`
 - `project/system_design/dense_artifact_generation.md`
 - `project/build/wps/WP12/WP12_ux_design_review.md`
+- `app/engines/planner_orchestrator.py`
+- `app/engines/toolchains/assemble_artifact_chain.py`
+- `app/engines/toolchains/generate_section_chain.py`
+- `app/engines/toolchains/IngestInputChain.py`
+- `app/tools/tool_wrappers/memory_retrieve.py`
+- `app/tools/tool_wrappers/section_synthesizer.py`
+- `app/tools/tool_wrappers/section_refiner.py`
+- `app/tools/tool_wrappers/uploadTextInput.py`
+- `app/engines/memory_sync.py`
+- `app/db/models/ReasoningTrace.py`
+- `app/db/models/DocumentVersionLog.py`
+- `app/db/models/ArtifactSection.py`
+- `app/db/models/WebSearchLog.py`
+- `app/db/models/ProjectProfile.py`
+- `app/db/models/PromptLog.py`
 - `project/reference/tool_catalog.yaml`
-- `project/reference/gpt_tools_manifest.json`
-- `app/db/models/ArtifactSection.py`, `ReasoningTrace.py`
+
 
 ---
 
