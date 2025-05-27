@@ -4265,3 +4265,15 @@
   - revision
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP24/WP24_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP24/WP24_definition.md
+  file_type: md
+  description: Document detailing the design and implementation of a planner-driven
+    toolchain for automating the full generation of a gate artifact from project inputs.
+  tags:
+  - toolchain
+  - automation
+  - artifact
+  - design
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
