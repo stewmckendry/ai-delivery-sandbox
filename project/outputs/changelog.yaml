@@ -7452,3 +7452,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Added section_rewrite prompt templates for multiple revision types
+- timestamp: '2025-05-27T15:16:43.593656'
+  path: app/prompts/revision_prompts.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added targeted_edit revision type and expected output instructions to all
+    prompts.
