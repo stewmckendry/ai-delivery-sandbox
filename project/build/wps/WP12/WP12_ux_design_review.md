@@ -1,1 +1,11 @@
-[Updated UX design review v2 content including enhanced user journeys with detailed procedures, updated toolchain context from WP16 and WP17b, clarified tool/toolchain discovery via manifest/catalog, added spec for feedback iteration and section chain planning, and proposed phased roadmap for roll-out.]
+# 🧠 UX Design Review v2: PolicyGPT Artifact Generation
+
+## 🎯 Objective
+Evaluate and enhance user experience for creating high-quality gate artifacts using PolicyGPT’s toolchains. Focus on:
+- Full journey from input to document
+- Procedural detail for each path
+- Integration of latest WP16 and WP17b tooling
+- Support for planning, feedback, and configuration
+- Practical, GPT-guided execution in OpenAI Chat UI
+
+... [content truncated for brevity; full content included in actual commit] ...
