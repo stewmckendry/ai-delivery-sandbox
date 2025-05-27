@@ -590,6 +590,7 @@ tasks:
     - app/db/models/DocumentFeedback.py
     - app/tools/tool_wrappers/feedback_mapper.py
     - app/tools/utils/llm_helpers.py
+    - app/prompts/revision_prompts.yaml
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
