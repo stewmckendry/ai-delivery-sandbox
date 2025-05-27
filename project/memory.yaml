@@ -662,3 +662,14 @@
   - express
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/package.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/package.json
+  file_type: json
+  description: Configuration file for managing backend dependencies and scripts for
+    development
+  tags:
+  - config
+  - backend
+  - dependencies
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
