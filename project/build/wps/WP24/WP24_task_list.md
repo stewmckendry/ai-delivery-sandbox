@@ -1,0 +1,21 @@
+- [x] **T1:** Design WP24
+- [x] **T2:** Build `generate_full_artifact_chain.py`
+- [x] **T3:** Build `refine_document_chain.py`
+- [ ] **T4:** Add toolchain metadata (YAML)
+- [ ] **T5:** Add unit tests
+- [ ] **T6:** Add integration test cases
+- [x] **T7:** Refactor `section_synthesizer.py`
+- [x] **T8:** Refactor `query_prompt_generator.py`
+- [x] **T9:** Refactor `section_refiner.py`
+- [x] **T10:** Create `generate_section_prompts.yaml` and integrate across tools
+- [x] **T11:** Build `llm_helpers.py`
+- [x] **T12:** Migrate tool prompt handling to helpers + Jinja
+- [x] **T13:** Implement persistence in `refine_document_chain` using memory_sync
+- [x] **T14:** Implement batching logic for `refine_document_chain`
+- [x] **T15:** Refactor prompt handling in `generate_section_chain.py`
+- [x] **T16:** Summarize web results using prompt templates and helper
+- [ ] **T17:** Integrate `context_summary` into query_prompt_generator
+- [ ] **T18:** Integrate `context_summary` into section_synthesizer
+- [x] **R1:** Review WP24 chain implementation
+- [ ] **R2:** Final review and polish
+- [ ] **R3:** Run end-to-end test and validation
