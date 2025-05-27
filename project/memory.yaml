@@ -534,3 +534,11 @@
   - pipeline
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: docs/module1-technical-spec.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/docs/module1-technical-spec.md
+  file_type: md
+  description: Fallback summary for docs/module1-technical-spec.md
+  tags:
+  - auto
+  last_updated: '2025-05-27'
+  pod_owner: ''
