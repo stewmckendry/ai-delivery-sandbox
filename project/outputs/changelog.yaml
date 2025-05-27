@@ -7989,3 +7989,9 @@
   task_id: WP24_T16
   committed_by: ProductPod
   message: Append output file to WP24_T16
+- timestamp: '2025-05-27T21:22:39.892199'
+  path: app/tools/tool_wrappers/section_refiner.py
+  task_id: wp24_toolchains
+  committed_by: GPTPod
+  message: Refactor section_refiner.py to use shared llm_helpers and template-based
+    prompting
