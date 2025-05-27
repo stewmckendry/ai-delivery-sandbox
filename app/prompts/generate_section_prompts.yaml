@@ -1,0 +1,38 @@
+search_query_generation:
+  system: "You are an assistant helping a policy analyst formulate a concise, rich search query."
+  user: |
+    Use the following project context and memory to generate a query for searching government documentation.
+
+    [Project Context]
+    {{profile_summary}}
+
+    [Memory Extracts]
+    {{memory_context}}
+
+    Provide a single query that captures the key themes and information needs.
+
+section_synthesis:
+  system: "You are a policy analyst drafting high-quality documents."
+  user: |
+    You are a policy analyst drafting high-quality, evidence-based documents.
+
+    Draft a well-structured and dense draft section using all the following inputs.
+    Focus on clarity, accuracy, and strategic alignment.
+
+    Artifact: {{artifact}}
+    Section: {{section}}
+
+    [Project Context]
+    {{project_context}}
+
+    {{memory}}
+    {{corpus}}
+    {{alignment}}
+    {{web}}
+
+    {% if context_summary %}
+    [Summary of Previous Sections]
+    {{context_summary}}
+    {% endif %}
+
+    Begin the draft below:
