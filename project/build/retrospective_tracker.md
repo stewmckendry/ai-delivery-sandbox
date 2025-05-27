@@ -100,3 +100,92 @@
 - Async loaders need status/polling support in prod
 - Consider confidence scoring + filtering for corpus results
 - Enable multilingual queries and corpus segmentation
+
+## WP1a – Scaffolding + Assembly
+
+### ✅ What Went Well
+- Strong system design alignment and modular tool structure
+- Early CLI validation enabled fast iteration
+- Generalizable pipeline structure
+
+### 🤯 Challenges
+- Schema mismatches and unclear section metadata handling
+- Output writing logic missing initially
+
+### 💡 Lessons & Recommendations
+- Include real YAML tests early
+- Use CLI `--ref_path` override
+- Output both `.md` and `.json` samples
+
+---
+
+## WP3a – Planner + Memory Layer
+
+### ✅ What Went Well
+- CLI-first build made test-driven progress smooth
+- Replay and logging features were valuable
+- Trace YAML and schemas reused in multiple WPs
+
+### 🤯 Challenges
+- Toolchain wiring and DB setup came late
+- YAML planner task trace should be standard
+
+### 💡 Lessons & Recommendations
+- Add end-to-end CLI test runner
+- Use hash-based filenames for trace logs
+
+---
+
+## WP3b – Tool Wrapping + API
+
+### ✅ What Went Well
+- Modular and schema-driven registry built with full CLI/API/GPT support
+- Git-based loading was robust and error handling worked
+- Clear documentation helped future pods
+
+### 🤯 Challenges
+- Schema and tool stubs needed earlier alignment
+- Tool registry merge and validation workflows caused drift
+
+### 💡 Lessons & Recommendations
+- Use WP3b’s tool registry as system of record
+- Add metadata fields (`doc_id`, `section_id`) early
+- Output Markdown and JSON consistently
+
+---
+
+## WP9 – Input Ingestion
+
+### ✅ What Went Well
+- Unified ingestion flow across file, link, and text inputs
+- Reliable trace + snapshot logging for memory layer
+- Tool structure supported consistent input handling
+
+### 🤯 Challenges
+- Runner vs. tool duplication created bugs
+- DB schema drift delayed integration
+- PyODBC error logs unclear
+
+### 💡 Lessons & Recommendations
+- Use runners for `structure_input` logic
+- Align schema across code, YAML, and DB
+- Test ingestion tools via CLI early
+
+---
+
+## WP16 – Input Prompt UX Layer
+
+### ✅ What Went Well
+- Input UX built to spec with clean vector DB integration
+- All prompt tools validated and tested
+- GPT- and planner-ready schemas confirmed
+
+### 🤯 Challenges
+- Vector DB setup issues delayed cloud testing
+- Prompt record logging lacked session view UI
+- Schema validation errors not surfaced clearly
+
+### 💡 Lessons & Recommendations
+- Build prompt-to-draft trace viewer
+- Integrate highlighter with corpus search
+- Suggest prompts via intent tagging
