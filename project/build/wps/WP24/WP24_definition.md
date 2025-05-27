@@ -6,9 +6,9 @@ Design and implement a planner-driven toolchain that automates the full generati
 ## 🎯 Objective
 Build a `generate_full_artifact_chain` toolchain that:
 - Enumerates sections from gate template
-- Iterates calls to `generate_section_chain`
-- Stores ReasoningTrace and validates each section
-- Assembles and commits full document
+- Synthesizes each section using `generate_section_chain`
+- Summarizes and commits ReasoningTrace for transparency
+- Assembles and commits full document draft
 
 ---
 
@@ -18,24 +18,28 @@ Build a `generate_full_artifact_chain` toolchain that:
 | `app/engines/toolchains/generate_full_artifact_chain.py` | Main orchestration toolchain |
 | `project/prompts/full_artifact_generation.yaml` | Planner prompt logic |
 | `project/build/wps/WP24/WP24_toolchain_plan.md` | Design overview and call map |
+| `project/test/wps/WP24/test_generate_full_artifact.py` | E2E test: validate full artifact from inputs |
 
 ---
 
 ## 🔁 Toolchain Integration
-- Triggers `generate_section_chain` per artifact section
-- Stores all outputs in ArtifactSection + trace
-- Assembles with `assemble_artifact_chain`
+- Drives section generation via `generate_section_chain`
+- Leverages ReasoningTrace + PromptLog for auditability
+- Finalizes with `assemble_artifact_chain`
+- Optional: use `createSessionSnapshot` to support resume or rollback
 
 ---
 
 ## 🧪 Testing
 | File Path | Description |
 |-----------|-------------|
-| `test_generate_full_artifact.py` | Runs full end-to-end test with 3+ sections |
+| `project/test/wps/WP24/test_generate_full_artifact.py` | Runs full test with sample gate + 3+ sections |
 
 ---
 
 ## 🔮 Future Extensions
-- Allow section parallelization (queue-based)
-- Visual display of section status
-- Support abort + resume generation
+- Allow async section generation with queue-based dispatch
+- Enable user preview/review per section before commit
+- Add artifact-level summary metrics (completeness, confidence)
+- Visual display of generation status for UI pods
+- Use planner profile (e.g., tone, review role) to guide formatting
