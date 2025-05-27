@@ -8010,3 +8010,9 @@
   task_id: wp24_toolchains
   committed_by: GPTPod
   message: Append output file to wp24_toolchains
+- timestamp: '2025-05-27T21:36:46.232805'
+  path: app/engines/toolchains/generate_section_chain.py
+  task_id: wp24
+  committed_by: ProductPod
+  message: Patch generate_section_chain.py to use get_prompt for web summary synthesis
+    and include context_summary in section inputs
