@@ -7767,3 +7767,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Refactor section_refiner to use generate_section_prompts and llm_helpers
+- timestamp: '2025-05-27T19:08:41.278630'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Refactor query_prompt_generator to use generate_section_prompts and llm_helpers
