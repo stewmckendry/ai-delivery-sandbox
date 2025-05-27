@@ -673,3 +673,13 @@
   - dependencies
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/tsconfig.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/tsconfig.json
+  file_type: json
+  description: Configuration file for TypeScript compiler options in the backend project
+  tags:
+  - config
+  - typescript
+  - backend
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
