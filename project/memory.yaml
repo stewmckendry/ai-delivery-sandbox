@@ -4380,3 +4380,15 @@
   - feedback
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/feedback_mapper.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/feedback_mapper.py
+  file_type: py
+  description: Script to map user feedback to document revisions using an LLM, returning
+    affected sections and revision type.
+  tags:
+  - feedback
+  - llm
+  - document
+  - tool
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
