@@ -2,7 +2,6 @@ import logging
 import uuid
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage, save_document_and_trace
-from app.engines.toolchains.refine_document_chain import RefineDocumentChain
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +13,7 @@ class AssembleArtifactChain:
         self.merger = registry.get_tool("mergeSections")
         self.finalizer = registry.get_tool("finalizeDocument")
         self.committer = registry.get_tool("storeToDrive")
-        self.refiner = RefineDocumentChain()
+        self.refiner = registry.get_tool("refineDocumentChain")
 
     def run(self, inputs):
         trace = []
@@ -49,7 +48,7 @@ class AssembleArtifactChain:
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
 
-        refined = self.refiner.run(document_body=merged["document_body"], title=title, project_id=profile.get("project_id"))
+        refined = self.refiner.run_tool({"document_body": merged["document_body"], "title": title, "project_id": profile.get("project_id")})
         log_tool_usage("refineDocumentChain", "refined body", refined, session_id, None, inputs)
         trace.append({"tool": "refineDocumentChain", "output": refined})
         logger.info("[Step 3.5] refineDocumentChain complete")
