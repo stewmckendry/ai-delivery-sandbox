@@ -12,6 +12,10 @@
 - [x] Implement `manualEditSync.py` for pasted revisions
 - [x] Build `feedback_preprocessor.py` to normalize and classify feedback
 - [x] Add `revision_checker.py` to flag hallucinations or excessive edits
+- [x] Enhance `revise_section_chain.py` to support split_feedback and type per item
+- [x] Add save logic for `verbatim` flow
+- [x] Fix section override logic and skip feedback_mapper if provided
+- [x] Add optional `additional_suggestions` return in `section_rewriter`
 
 ## 🧪 Testing
 - [ ] Scaffold `test_revise_section_chain.py`
@@ -34,6 +38,11 @@
 - [x] Add SQL schema for `document_feedback`
 - [ ] Update `db_schema_v3.md`
 - [x] Implement `save_feedback` handler in `memory_sync.py`
+
+## 🔍 Enhancements
+- [x] Add compliance validator via `revision_checker`
+- [x] Add `feedback_preprocessor` output support for list with individual revision types
+- [x] Return suggestions on other edits in `section_rewriter`
 
 ## 🔚 Finalization
 - [ ] Request Pod Lead review
