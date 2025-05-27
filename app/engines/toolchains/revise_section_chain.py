@@ -1,6 +1,8 @@
 import logging
 from app.tools.tool_registry import ToolRegistry
-from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
+from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage, save_feedback
+from app.db.database import get_session
+from app.db.models.ArtifactSection import ArtifactSection
 
 logger = logging.getLogger(__name__)
 
@@ -28,8 +30,16 @@ class ReviseSectionChain:
         trace.append({"tool": "memory_retrieve", "output": memory})
         logger.info("[Step 1] memory_retrieve complete")
 
+        # Fetch current section text
+        db = get_session()
+        section_record = db.query(ArtifactSection).filter_by(artifact_id=artifact, section_id=section).order_by(ArtifactSection.timestamp.desc()).first()
+        current_text = section_record.text if section_record else ""
+
+        # Save feedback to FeedbackLog (via handler)
+        save_feedback(document_id=artifact, feedback_text=feedback, submitted_by=user_id, feedback_type="revision")
+
         if mode == "verbatim":
-            output = self.manual_edit_tool.run_tool({**inputs})
+            output = self.manual_edit_tool.run_tool({**inputs, "current_text": current_text})
             log_tool_usage("manualEditSync", "accepted user override", output, session_id, user_id, inputs)
             trace.append({"tool": "manualEditSync", "output": output})
             logger.info("[Step 2] manualEditSync complete")
@@ -47,6 +57,7 @@ class ReviseSectionChain:
                     "memory": memory,
                     "feedback": feedback,
                     "revision_type": mode,
+                    "current_text": current_text,
                     **inputs
                 })
                 log_tool_usage("section_rewriter", "revised section", rewritten, session_id, user_id, inputs)
