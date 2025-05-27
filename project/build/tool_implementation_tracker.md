@@ -40,3 +40,7 @@
 | section_refiner        | WP17b     | ✅ Complete  | Refines raw draft using LLM for clarity and tone.                               |
 | generate_section       | WP17b     | ✅ Complete  | Planner-registered toolchain combining retrieve → synthesize → refine.         |
 | externalWebSearch   | WP14      | ✅ Complete  | Fetches data from external web sources. Includes validation hooks. Registered in planner and GPT manifest. |
+| confirmProjectProfile  | WP7       | ✅ Complete  | Prompts user to confirm project profile details; feeds planner + DB |
+| IngestInputChain       | WP7       | ✅ Complete  | Parses uploads and builds or updates `project_profile` |
+| ProjectProfileEngine   | WP7       | ✅ Complete  | Core logic to load, merge, and persist project profile |
+

@@ -11,7 +11,7 @@
 | WP4 | Gating Doc Quality | Defined | Pod-Zeus | None | Owns `compose_and_cite`. | Phase 2 |
 | WP5 | Harmonization + Docs | Defined | Pod-Muse | None | Supports `compose_and_cite` and formatting. | Always Active |
 | WP6 | Review Routing | Defined | Pod-Cirrus | None | Participates in `compose_and_cite` finalization. | Phase 3 |
-| WP7 | Project Profile | Defined | Pod-Lyra | None | Tracks project state. Builds and manages live project profile. | Phase 2 |
+| WP7 | Project Profile | ✅ Complete | Pod-Lyra | None | `project_profile` built and propagated through Planner, generateSectionChain, and assembleArtifactChain. DB + toolchains integrated. | Phase 2 |
 | WP8 | Citation Tool | Defined | Pod-Atlas | None | Citation and evidence logging | Phase 2 |
 | WP9 | Input Ingestion | ✅ Complete | Pod-Kronos | None | Ingests text, file, URL; stores inputs + snapshots. Created new tools + schemas. See WP9 guide + schema. Spillover: Feedback classification deferred. | Phase 1 |
 | WP10 | Export + Translate | Defined | Pod-Lumen | None | Export gate packages | Phase 3 |

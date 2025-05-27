@@ -62,3 +62,22 @@
 - Limit query scope to reduce token overhead and API costs
 - Always include fallback plan when no results are returned
 - Use whitelist or scoring system to vet trusted sources
+
+## WP7 – Project Profile Integration
+
+### ✅ What Went Well
+- End-to-end flow tested across ingestion, drafting, and final assembly
+- Planner integration worked smoothly across chains
+- Graceful fallbacks and null-safe schema
+- Unit test script reflected real user behavior
+
+### 🤯 Challenges
+- Schema enforcement required multiple patch rounds
+- Serialization issues with nested/logged fields (`Decimal`, `datetime`)
+- Confusion between tool vs. toolchain caused rerouting
+
+### 💡 Lessons & Recommendations
+- Always orchestrate through `PlannerOrchestrator`
+- Cast and clean profile fields before logging
+- Build mocks and regression tests for all chains
+- Introduce `project_profile` versioning + audit trail

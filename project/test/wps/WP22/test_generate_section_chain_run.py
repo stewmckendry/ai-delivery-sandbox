@@ -1,4 +1,9 @@
+import sys
+import os
 import json
+
+# Set the root path so imports like app.tools... work
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../..")))
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 
 inputs = {
