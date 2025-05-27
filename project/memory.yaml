@@ -4498,3 +4498,15 @@
   - llm
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/feedback_preprocessor.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/feedback_preprocessor.py
+  file_type: py
+  description: Script to preprocess feedback using prompts and LLM, including validation
+    and error handling.
+  tags:
+  - feedback
+  - preprocess
+  - prompt
+  - llm
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
