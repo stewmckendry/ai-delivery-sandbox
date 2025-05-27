@@ -7610,3 +7610,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Added prompt template for feedback_preprocessor to revision_prompts.yaml
+- timestamp: '2025-05-27T17:39:10.185278'
+  path: app/engines/toolchains/revise_section_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added feedback_preprocessor step to revise_section_chain with support for
+    cleaned feedback and inferred type.
