@@ -1,4 +1,5 @@
 import logging
+import requests
 from jinja2 import Template
 import yaml
 from app.tools.utils.llm_helpers import chat_completion_request
@@ -17,9 +18,11 @@ class Tool:
         feedback = input_dict["feedback_text"]
         sections = input_dict["sections"]
 
-        # Load template from prompts file
-        with open("app/prompts/revision_prompts.yaml") as f:
-            prompts = yaml.safe_load(f)
+        # Load prompt YAML from GitHub raw URL
+        prompt_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/revision_prompts.yaml"
+        response = requests.get(prompt_url)
+        prompts = yaml.safe_load(response.text)
+
         user_template = Template(prompts["feedback_mapping"]["user"])
         user_prompt = user_template.render(feedback_text=feedback, sections=sections)
         system_prompt = prompts["feedback_mapping"]["system"]
