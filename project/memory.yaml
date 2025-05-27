@@ -725,3 +725,14 @@
   - express
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/routes/blocks.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/routes/blocks.ts
+  file_type: ts
+  description: Express.js routes for retrieving block data, including list and individual
+    block details
+  tags:
+  - backend
+  - routes
+  - api
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
