@@ -46,9 +46,15 @@ class Tool:
             "revision_type": revision_type
         })
 
+        # Ask the LLM if there are other suggested edits
+        suggestions_prompt = f"Are there any other improvements you recommend for this section? Just list them if any.\n\nSection:\n{draft}"
+        messages.append({"role": "user", "content": suggestions_prompt})
+        suggestions_response = chat_completion_request(messages, temperature=0.4)
+
         return {
             "section_id": section_id,
             "draft": draft,
             "prompt_used": user_prompt,
-            "revision_check": check_result
+            "revision_check": check_result,
+            "additional_suggestions": suggestions_response.strip()
         }
