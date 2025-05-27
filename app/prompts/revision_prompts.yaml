@@ -66,3 +66,15 @@ section_rewrite:
     {{current_text}}
 
     Expected Output: Revised section text only. Do not include explanations.
+
+revision_check:
+  system: "You evaluate whether an edit followed its instruction."
+  user: |
+    Instruction: {{revision_type}}
+    Original Text:
+    {{original_text}}
+
+    Revised Text:
+    {{revised_text}}
+
+    Did the edit respect the instruction? Reply YES or NO and explain briefly.
