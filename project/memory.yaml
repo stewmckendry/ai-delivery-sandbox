@@ -4285,3 +4285,15 @@
   - auto
   last_updated: '2025-05-27'
   pod_owner: ''
+- path: project/build/wps/WP25/WP25_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP25/WP25_definition.md
+  file_type: md
+  description: Document detailing the definition and objectives for improving GPT
+    tool discoverability and description, including deliverables and integration points.
+  tags:
+  - documentation
+  - integration
+  - tools
+  - GPT
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
