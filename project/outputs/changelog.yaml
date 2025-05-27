@@ -7697,3 +7697,9 @@
   committed_by: GPTPod
   message: Fixed missing save on verbatim edits and added per-item revision_type support
     in split_feedback handling.
+- timestamp: '2025-05-27T18:32:59.320941'
+  path: app/tools/tool_wrappers/refine_document_chain.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Refactor refine_document_chain.py to use Tool class format with pydantic
+    schemas
