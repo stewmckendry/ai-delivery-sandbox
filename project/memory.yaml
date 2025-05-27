@@ -594,3 +594,14 @@
   - regression
   last_updated: '2025-05-27'
   pod_owner: QAPod
+- path: project/test/WP24/test_script.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/project/test/WP24/test_script.py
+  file_type: py
+  description: Script to test various toolchain processes for generating and assembling
+    artifacts in a project.
+  tags:
+  - test
+  - toolchain
+  - artifact
+  last_updated: '2025-05-27'
+  pod_owner: QAPod
