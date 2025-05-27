@@ -624,3 +624,26 @@ tools:
       required:
         - artifact_id
         - gate_id
+  reviseSectionChain:
+    description: Revises existing artifact section(s) based on user feedback or direct edits.
+    module: app.engines.toolchains.revise_section_chain
+    class: ReviseSectionChain
+    schema:
+      type: object
+      properties:
+        artifact:
+          type: string
+        section:
+          type: string
+        feedback_text:
+          type: string
+        mode:
+          type: string
+          enum: [rewrite, polish, append, verbatim]
+        session_id:
+          type: string
+        user_id:
+          type: string
+        project_id:
+          type: string
+      required: [artifact, section, feedback_text, mode]
