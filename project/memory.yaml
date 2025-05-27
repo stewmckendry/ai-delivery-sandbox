@@ -587,3 +587,14 @@
   - specifications
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/frontend/index.html
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/frontend/index.html
+  file_type: html
+  description: Main HTML entry point for the frontend application, linking to the
+    main TypeScript module.
+  tags:
+  - frontend
+  - entry-point
+  - html
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
