@@ -26,7 +26,7 @@
 - [x] Hook up logging to `PromptLog`, `ArtifactSection`, and `ReasoningTrace`
 - [x] Retrieve current section from `ArtifactSection`
 - [x] Log `feedback_text` using new `DocumentFeedback` model
-- [ ] Add to `planner_orchestrator.py`
+- [x] Add to `planner_orchestrator.py`
 - [ ] Add to `tool_catalog.yaml`
 - [ ] Add to `manifest.json`
 
