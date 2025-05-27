@@ -21,7 +21,7 @@ def base_inputs():
         "project_id": "P001",
         "gate_id": "G1",
         "session_id": "testsession",
-        "sections": ["S1"]
+        "sections": [{"section_id": "S1", "text": "This is a test summary of the section text."}]
     }
 
 def print_tool_run(tool_name, inputs, output):
