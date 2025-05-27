@@ -4452,3 +4452,15 @@
   - revision
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: app/engines/toolchains/generate_full_artifact_chain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/generate_full_artifact_chain.py
+  file_type: py
+  description: Script to generate a complete artifact chain by assembling and storing
+    document sections, with logging and trace capabilities.
+  tags:
+  - artifact
+  - chain
+  - logging
+  - storage
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
