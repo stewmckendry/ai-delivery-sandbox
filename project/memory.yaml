@@ -4476,3 +4476,14 @@
   - sync
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: app/tools/utils/section_helpers.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/utils/section_helpers.py
+  file_type: py
+  description: Utility functions for planning and summarizing sections based on gate
+    references.
+  tags:
+  - utils
+  - sections
+  - reference
+  last_updated: '2025-05-27'
+  pod_owner: DeliveryPod
