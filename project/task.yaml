@@ -604,6 +604,7 @@ tasks:
     - app/tools/tool_wrappers/refine_document_chain.py
     - app/prompts/generate_section_prompts.yaml
     - project/test/WP23/WP23_test_plan.md
+    - project/test/WP23/test_revise_section_chain.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
