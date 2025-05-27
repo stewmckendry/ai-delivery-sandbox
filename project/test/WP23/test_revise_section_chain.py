@@ -1,6 +1,8 @@
 import os
 import pytest
 from pprint import pprint
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
 from app.engines.toolchains.revise_section_chain import ReviseSectionChain
 from app.tools.tool_wrappers.feedback_mapper import Tool as FeedbackMapper
 from app.tools.tool_wrappers.feedback_preprocessor import Tool as FeedbackPreprocessor

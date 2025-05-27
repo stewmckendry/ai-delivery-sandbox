@@ -1,101 +1,115 @@
-from app.engines.toolchains.base import BaseToolchain
-from app.tools.tool_wrappers.feedback_mapper import Tool as FeedbackMapper
-from app.tools.tool_wrappers.feedback_preprocessor import Tool as FeedbackPreprocessor
-from app.tools.tool_wrappers.section_rewriter import Tool as SectionRewriter
-from app.tools.tool_wrappers.revision_checker import Tool as RevisionChecker
-from app.tools.tool_wrappers.manualEditSync import Tool as ManualEdit
-from app.engines.memory_sync import save_artifact_and_trace, save_feedback
+import logging
+from app.tools.tool_registry import ToolRegistry
+from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage, save_feedback
+from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
-from app.db.database import SessionLocal
-from openai import OpenAI
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+logger = logging.getLogger(__name__)
 
-class ReviseSectionChain(BaseToolchain):
-    def run(self, input_dict):
-        session = SessionLocal()
+class ReviseSectionChain:
+    def __init__(self):
+        registry = ToolRegistry()
+        self.memory_tool = registry.get_tool("memory_retrieve")
+        self.feedback_preprocessor = registry.get_tool("feedback_preprocessor")
+        self.feedback_mapper = registry.get_tool("feedback_mapper")
+        self.section_rewriter = registry.get_tool("section_rewriter")
+        self.manual_edit_tool = registry.get_tool("manualEditSync")
+
+    def run(self, inputs):
         trace = []
-        feedback = input_dict.get("feedback_text")
-        section = input_dict.get("section")
-        sections = input_dict.get("sections", [])
+        artifact = inputs.get("artifact")
+        section = inputs.get("section")
+        raw_feedback = inputs.get("feedback_text")
+        mode = inputs.get("mode")  # rewrite, polish, append, verbatim
+        session_id = inputs.get("session_id")
+        user_id = inputs.get("user_id")
+        project_id = inputs.get("project_id")
 
-        # Step 1: Preprocess feedback
-        pre_result = FeedbackPreprocessor().run_tool({"feedback_text": feedback})
-        split_feedback = pre_result.get("split_feedback", [])
-        revision_type = pre_result.get("inferred_type")
-        trace.append({"tool": "feedback_preprocessor", "output": pre_result})
+        # Step 1: memory
+        memory_input = {**inputs}
+        memory = self.memory_tool.run_tool(memory_input)
+        log_tool_usage("memory_retrieve", "retrieved memory", memory, session_id, user_id, inputs)
+        trace.append({"tool": "memory_retrieve", "output": memory})
+        logger.info("[Step 1] memory_retrieve complete")
 
-        # Prepare summarized sections
-        db_sections = session.query(ArtifactSection).filter(
-            ArtifactSection.section_id.in_(sections),
-            ArtifactSection.artifact_id == input_dict["artifact"]
-        ).all()
+        # Step 2: feedback preprocessing
+        preprocessed = self.feedback_preprocessor.run_tool({"feedback_text": raw_feedback})
+        cleaned_feedback = preprocessed.get("cleaned_text", raw_feedback)
+        raw_split = preprocessed.get("split_feedback", [cleaned_feedback])
+        revision_type = preprocessed.get("inferred_type", mode)
+        trace.append({"tool": "feedback_preprocessor", "output": preprocessed})
+        logger.info("[Step 2] feedback_preprocessor complete")
 
-        summarized_sections = []
-        for sec in db_sections:
-            summary = sec.text[:400] + "..." if len(sec.text) > 400 else sec.text
-            summarized_sections.append({"section_id": sec.section_id, "summary": summary})
+        # Step 3: retrieve current section
+        db = get_session()
+        section_record = db.query(ArtifactSection).filter_by(artifact_id=artifact, section_id=section).order_by(ArtifactSection.timestamp.desc()).first()
+        current_text = section_record.text if section_record else ""
 
-        input_dict["sections"] = summarized_sections
+        # Step 4: feedback logging
+        save_feedback(document_id=artifact, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
 
-        all_suggestions = []
-        for fb in split_feedback:
-            input_dict["feedback_text"] = fb
-            section_ids = [section]
-            if not section:
-                map_result = FeedbackMapper().run_tool({"feedback_text": fb, **input_dict})
-                section_ids = map_result.get("section_ids", [])
-                trace.append({"tool": "feedback_mapper", "output": map_result})
+        suggestions = []
 
-            for sid in section_ids:
-                if sid == "not_specified":
-                    continue
+        # Step 5: Manual edit path
+        if revision_type == "verbatim":
+            output = self.manual_edit_tool.run_tool({**inputs, "current_text": current_text})
+            log_tool_usage("manualEditSync", "accepted user override", output, session_id, user_id, inputs)
+            trace.append({"tool": "manualEditSync", "output": output})
+            logger.info("[Step 3] manualEditSync complete")
 
-                artifact_section = session.query(ArtifactSection).filter_by(section_id=sid, artifact_id=input_dict["artifact"]).first()
-                if not artifact_section:
-                    continue
-
-                current_text = artifact_section.text
-
-                if revision_type == "verbatim":
-                    status = ManualEdit().run_tool({"section": sid, **input_dict})
-                    trace.append({"tool": "manual_edit_sync", "output": status})
+            save_result = save_artifact_and_trace(
+                section_id=section,
+                artifact_id=artifact,
+                gate_id=inputs.get("gate_id", "0"),
+                text=raw_feedback,
+                sources="manual user input",
+                tool_outputs=trace,
+                user_id=user_id,
+                project_id=project_id
+            )
+            logger.info("[Step 5] Saved verbatim input to ArtifactSection and ReasoningTrace")
+        else:
+            for item in raw_split:
+                if isinstance(item, dict):
+                    fb = item.get("text")
+                    fb_type = item.get("type", revision_type)
                 else:
-                    rewrite = SectionRewriter().run_tool({
-                        "section_id": sid,
+                    fb = item
+                    fb_type = revision_type
+
+                section_ids = [section] if section else []
+                if not section:
+                    map_result = self.feedback_mapper.run_tool({"feedback_text": fb, **inputs})
+                    section_ids = map_result.get("section_ids", [])
+                    trace.append({"tool": "feedback_mapper", "output": map_result})
+                    logger.info("[Step 3] feedback_mapper complete")
+
+                for sec_id in section_ids:
+                    rewritten = self.section_rewriter.run_tool({
+                        "section_id": sec_id,
+                        "memory": memory,
                         "feedback": fb,
-                        "revision_type": revision_type,
-                        "current_text": current_text
+                        "revision_type": fb_type,
+                        "current_text": current_text,
+                        **inputs
                     })
-                    trace.append({"tool": "section_rewriter", "output": rewrite})
+                    log_tool_usage("section_rewriter", "revised section", rewritten, session_id, user_id, inputs)
+                    trace.append({"tool": "section_rewriter", "output": rewritten})
+                    logger.info(f"[Step 4] section_rewriter complete for {sec_id}")
 
-                    check = RevisionChecker().run_tool({
-                        "original_text": current_text,
-                        "revised_text": rewrite["draft"],
-                        "revision_type": revision_type
-                    })
-                    trace.append({"tool": "revision_checker", "output": check})
-
-                    save_artifact_and_trace(
-                        section_id=sid,
-                        new_text=rewrite["draft"],
-                        trace_log=trace,
-                        input_dict=input_dict
+                    save_result = save_artifact_and_trace(
+                        section_id=sec_id,
+                        artifact_id=artifact,
+                        gate_id=inputs.get("gate_id", "0"),
+                        text=rewritten["draft"],
+                        sources=rewritten.get("prompt_used"),
+                        tool_outputs=trace,
+                        user_id=user_id,
+                        project_id=project_id
                     )
+                    logger.info("[Step 5] Saved to ArtifactSection and ReasoningTrace")
 
-                    if rewrite.get("additional_suggestions"):
-                        all_suggestions.extend(rewrite["additional_suggestions"])
+                    if "additional_suggestions" in rewritten:
+                        suggestions.append(rewritten["additional_suggestions"])
 
-                save_feedback(
-                    artifact=input_dict.get("artifact"),
-                    section_id=sid,
-                    user_id=input_dict.get("user_id"),
-                    feedback_text=fb,
-                    project_id=input_dict.get("project_id"),
-                    session_id=input_dict.get("session_id")
-                )
-
-        return {"status": "complete", "additional_suggestions": all_suggestions}
+        return {"trace": trace, "status": "complete", "additional_suggestions": suggestions}
