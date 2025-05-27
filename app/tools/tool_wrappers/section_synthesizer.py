@@ -17,6 +17,7 @@ class Tool:
         corpus_chunks = input_dict.get("corpus_chunks", [])
         alignment_results = input_dict.get("alignment_results", [])
         web_search = input_dict.get("web_search", [])
+        corpus_answer = input_dict.get("corpus_answer", {})
 
         def format_sources(label, entries):
             lines = []
@@ -36,6 +37,7 @@ class Tool:
         corpus_str = format_sources("Embedded Government Reports and Policies", corpus_chunks)
         alignment_str = format_sources("Government of Canada Strategic Alignment", alignment_results)
         web_str = format_sources("External Web Sources", web_search)
+        corpus_answer_str = "\nCorpus-Derived Insight:\n" + corpus_answer.get("answer", "") if corpus_answer else ""
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
@@ -74,6 +76,7 @@ Section: {section}
 
 {memory_str}
 {corpus_str}
+{corpus_answer_str}
 {alignment_str}
 {web_str}
 
