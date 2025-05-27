@@ -4202,3 +4202,16 @@
   - orchestration
   last_updated: '2025-05-27'
   pod_owner: DeliveryPod
+- path: project/test/wps/WP22/test_generate_section_chain_results.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/wps/WP22/test_generate_section_chain_results.md
+  file_type: md
+  description: Test report for the generate_section_chain pipeline, detailing integration
+    with queryPromptGenerator, queryCorpus, and goc_alignment_search, and highlighting
+    issues with queryCorpus integration.
+  tags:
+  - test
+  - integration
+  - pipeline
+  - issue
+  last_updated: '2025-05-27'
+  pod_owner: QAPod
