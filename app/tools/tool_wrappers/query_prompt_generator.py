@@ -36,19 +36,12 @@ class Tool:
 
         memory_context = "\n".join(memory_lines[:10])
 
-        # Fetch prompt template from GitHub
         prompt_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/generate_section_prompts.yaml"
         response = requests.get(prompt_url)
         prompt_data = yaml.safe_load(response.text)
 
-        system_prompt = prompt_data["search_query_generation"]["system"]
-        user_prompt_template = Template(prompt_data["search_query_generation"]["user"])
-        user_prompt = user_prompt_template.render(profile_summary=profile_summary, memory_context=memory_context)
+        prompt = prompt_data["search_query_generation"]
+        user_prompt = Template(prompt["user"]).render(profile_summary=profile_summary, memory_context=memory_context)
+        system_prompt = prompt["system"]
 
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
-
-        response = chat_completion_request(messages, temperature=0.5)
-        return {"query": response.strip()}
+        return {"query": chat_completion_request(system_prompt, user_prompt, temperature=0.5).strip()}
