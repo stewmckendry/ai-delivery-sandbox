@@ -758,3 +758,14 @@
   - mock-data
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/routes/library.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/routes/library.ts
+  file_type: ts
+  description: Express.js route handler for retrieving story data based on profile
+    ID
+  tags:
+  - backend
+  - route
+  - express
+  last_updated: '2025-05-27'
+  pod_owner: DevPod
