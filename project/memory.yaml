@@ -802,3 +802,13 @@
   - vitest
   last_updated: '2025-05-27'
   pod_owner: DevPod
+- path: super-secret-code/backend/tests/routes.ping.test.ts
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/super-secret-code/backend/tests/routes.ping.test.ts
+  file_type: ts
+  description: Test script for verifying the /ping route responds correctly
+  tags:
+  - test
+  - route
+  - backend
+  last_updated: '2025-05-27'
+  pod_owner: QAPod
