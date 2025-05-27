@@ -7572,3 +7572,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Moved LLM prompt in revision_checker to revision_prompts.yaml for consistency.
+- timestamp: '2025-05-27T16:02:54.109875'
+  path: app/prompts/revision_prompts.yaml
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Added revision_check prompt to revision_prompts.yaml for LLM-based compliance
+    audit.
