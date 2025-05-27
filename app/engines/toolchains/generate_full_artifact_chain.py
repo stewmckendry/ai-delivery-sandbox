@@ -16,8 +16,8 @@ class GenerateFullArtifactChain:
         session_id = str(uuid.uuid4())
         logger.info(f"[START] Full artifact chain for {artifact_id} - gate {gate_id}")
 
-        sections = plan_sections(gate_id)
-        log_tool_usage("plan_sections", "planned section list", sections, session_id, user_id, {"gate_id": gate_id})
+        sections = plan_sections(gate_id, artifact_id)
+        log_tool_usage("plan_sections", "planned section list", sections, session_id, user_id, {"gate_id": gate_id, "artifact_id": artifact_id})
 
         for i, section in enumerate(sections):
             context_summary = summarize_previous(sections[:i])
