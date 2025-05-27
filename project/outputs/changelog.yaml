@@ -558,3 +558,13 @@
   task_id: wp24
   committed_by: GPTPod
   message: Append output file to wp24
+- timestamp: '2025-05-27T19:52:45.357371'
+  path: app/tools/tool_wrappers/query_prompt_generator.py
+  task_id: wp24
+  committed_by: GPTPod
+  message: Refactor query_prompt_generator.py to use get_prompt and chat_completion_request
+- timestamp: '2025-05-27T19:52:45.357371'
+  path: project/memory.yaml
+  task_id: wp24
+  committed_by: GPTPod
+  message: Memory update related to app/tools/tool_wrappers/query_prompt_generator.py
