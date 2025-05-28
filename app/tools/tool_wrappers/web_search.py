@@ -3,6 +3,8 @@ from app.tools.search_handlers.jurisdiction import handle_jurisdiction_search
 from app.tools.search_handlers.market import handle_market_search
 from app.tools.tool_utils.web_search_logger import log_web_search
 from app.db.database import get_session
+import logging
+logger = logging.getLogger(__name__)
 
 class Tool:
     def __init__(self):
@@ -17,6 +19,7 @@ class Tool:
         }
 
     def run_tool(self, inputs):
+        logger.info("[Tool] web_search started")
         query = inputs["query"]
         search_type = inputs["search_type"]
         context = inputs.get("context", {})
@@ -42,5 +45,5 @@ class Tool:
             session_id=context.get("session_id"),
             project_id=context.get("project_profile", {}).get("project_id")
         )
-
+        logger.info("[Tool] web_search completed")
         return results

@@ -1,6 +1,8 @@
 from app.tools.search_handlers.goc_alignment import handle_goc_alignment_search
 from app.tools.tool_utils.web_search_logger import log_web_search
 from app.db.database import get_session
+import logging
+logger = logging.getLogger(__name__)
 
 class Tool:
     def __init__(self):
@@ -14,6 +16,7 @@ class Tool:
         }
 
     def run_tool(self, inputs):
+        logger.info("[Tool] goc_alignment_search started")
         query = inputs.get("query")
         context = inputs.get("context", {})
 
@@ -33,5 +36,5 @@ class Tool:
             session_id=context.get("session_id"),
             project_id=context.get("project_id") or context.get("project_profile", {}).get("project_id")
         )
-
+        logger.info("[Tool] goc_alignment_search completed")
         return {"results": results}

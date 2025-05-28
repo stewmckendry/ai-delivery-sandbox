@@ -16,7 +16,6 @@ from chromadb import HttpClient
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
-logger.info("✅ loadCorpus Tool loaded at import time")
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
@@ -34,6 +33,7 @@ class Tool:
             raise ValueError("Missing file_contents")
 
     def run_tool(self, input_dict, background_tasks: BackgroundTasks = None):
+        logger.info("Running loadCorpus tool")
         self.validate(input_dict)
         job_id = str(uuid.uuid4())
 
@@ -43,16 +43,11 @@ class Tool:
             file_name = input_dict.get("file_name", "Unnamed Document")
             metadata = input_dict.get("metadata", {})
 
-            logger.info("✅ File format validated: PDF")
-            logger.info("Running loadCorpus tool")
-
-            logger.info("Splitting file contents into chunks")
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
             document = Document(page_content=file_contents)
             split_docs = text_splitter.split_documents([document])
             for doc in split_docs:
                 doc.metadata.update(metadata)
-            logger.info("Splitting done, embedding documents")
 
             if USE_REMOTE_CHROMA:
                 client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
@@ -63,10 +58,8 @@ class Tool:
                 vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
                 vectorstore.persist()
 
-            logger.info("Documents embedded and stored successfully")
             entry = structure_input(file_contents, file_name, tool_name="loadCorpus", metadata=metadata)
             out_path = write_trace(entry)
-            logger.info("logging tool usage")
             log_tool_usage(
                 entry["tool"],
                 entry["input_summary"],
@@ -75,11 +68,12 @@ class Tool:
                 user_id=entry.get("user_id"),
                 metadata=entry.get("metadata")
             )
-            logger.info("returning response")
 
         if background_tasks:
             background_tasks.add_task(process)
+            logger.info("🚀 Job %s accepted for background processing", job_id)
             return {"status": "accepted", "job_id": job_id}
         else:
             process()
+            logger.info("🚀 Job %s processed synchronously", job_id)
             return {"status": "success", "chunks": len(split_docs)}

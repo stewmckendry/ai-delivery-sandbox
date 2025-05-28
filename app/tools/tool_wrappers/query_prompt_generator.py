@@ -14,6 +14,7 @@ class Tool:
             raise ValueError("Missing required field: memory")
 
     def run_tool(self, input_dict):
+        logger.info("[Tool] query_prompt_generator started")
         self.validate(input_dict)
         profile = input_dict.get("project_profile", {})
         memory = input_dict.get("memory", [])
@@ -43,5 +44,6 @@ class Tool:
         prompt = prompt_data["search_query_generation"]
         user_prompt = Template(prompt["user"]).render(profile_summary=profile_summary, memory_context=memory_context)
         system_prompt = prompt["system"]
-
-        return {"query": chat_completion_request(system_prompt, user_prompt, temperature=0.5).strip()}
+        query = chat_completion_request(system_prompt, user_prompt).strip()
+        logger.info(f"[Tool] prompt: {query.strip()[:100]}...")
+        return {"query": query}

@@ -1,6 +1,8 @@
 from app.db.models.PromptLog import PromptLog
 from app.db.database import get_session
 from datetime import datetime
+import logging
+logger = logging.getLogger(__name__)
 
 class Tool:
     def validate(self, input_dict):
@@ -8,6 +10,7 @@ class Tool:
             raise ValueError("artifact and section are required")
 
     def run_tool(self, input_dict):
+        logger.info("[Tool] memory_retrieve started")
         self.validate(input_dict)
         artifact = input_dict["artifact"]
         section = input_dict["section"]
@@ -28,7 +31,7 @@ class Tool:
             query = query.filter(PromptLog.user_id == user_id)
 
         entries = query.order_by(PromptLog.timestamp.asc()).all()
-
+        logger.info(f"Found {len(entries)} entries for artifact={artifact}, section={section}, session_id={session_id}, user_id={user_id}")
         return [{
             "input_summary": e.input_summary,
             "output_summary": e.output_summary,

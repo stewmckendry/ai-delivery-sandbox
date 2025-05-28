@@ -14,9 +14,9 @@ CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")
 USE_REMOTE_CHROMA = CHROMA_HOST is not None
-logger.info("USE_REMOTE_CHROMA: %s", USE_REMOTE_CHROMA)
-logger.info("CHROMA_HOST: %s", CHROMA_HOST)
-logger.info("CHROMA_PORT: %s", CHROMA_PORT)
+logger.debug("USE_REMOTE_CHROMA: %s", USE_REMOTE_CHROMA)
+logger.debug("CHROMA_HOST: %s", CHROMA_HOST)
+logger.debug("CHROMA_PORT: %s", CHROMA_PORT)
 
 class Tool:
     def validate(self, input_dict):
@@ -26,10 +26,10 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         query = input_dict["query"]
-        logger.info(f"🔍 Querying corpus with: {query}")
+        logger.debug(f"🔍 Querying corpus with: {query[:100]}")
 
         if USE_REMOTE_CHROMA:
-            logger.info("Connecting to Chroma host: %s", CHROMA_HOST)
+            logger.debug("Connecting to Chroma host: %s", CHROMA_HOST)
             client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
             collection = client.get_or_create_collection("policygpt")
             results = collection.query(query_texts=[query], n_results=5)

@@ -25,14 +25,12 @@ class IngestInputChain:
             "file": "uploadFileInput",
             "link": "uploadLinkInput"
         }
+        logger.info(f"Running tool: {tool_map[method]} for method: {method}")
         upload_tool = self.registry.get_tool(tool_map[method])
         upload_result = upload_tool.run_tool(inputs, log_usage=False)
 
         raw_text = upload_result.get("text")
         metadata = upload_result.get("metadata", {})
-        logger.debug(f"Raw text extracted: {raw_text[:100]}")
-        logger.debug(f"Metadata: {metadata}")
-
         metadata_project_id = inputs.get("project_id")
         if not metadata_project_id:
             logger.error("Input metadata missing required project_id")
@@ -47,8 +45,7 @@ class IngestInputChain:
 
         project_profile = ProjectProfileEngine().generate_and_save(text=raw_text, metadata=metadata, existing=existing)
         project_id = project_profile.get("project_id", metadata_project_id)
-        logger.debug(f"Generated project profile: {project_profile}")
-        logger.info(f"Project profile finalized for ID: {project_id}")
+        logger.info(f"Generated and saved project profile: {project_id}")
 
         log_tool_usage(
             tool_name=tool_map[method],
@@ -58,7 +55,7 @@ class IngestInputChain:
             user_id=metadata.get("user_id"),
             metadata=metadata
         )
-
+        logger.info("IngestInputChain completed successfully")
         return {
             "status": "profile_saved",
             "project_id": project_id,

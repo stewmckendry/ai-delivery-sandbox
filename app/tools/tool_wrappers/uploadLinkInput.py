@@ -8,6 +8,8 @@ from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from app.engines.memory_sync import log_tool_usage
 from app.utils.trace_utils import write_trace
 from app.engines.project_profile_engine import ProjectProfileEngine
+import logging
+logger = logging.getLogger(__name__)
 
 class Tool:
     def validate(self, input_dict):
@@ -15,6 +17,7 @@ class Tool:
         pass
 
     def run_tool(self, input_dict, log_usage=True):
+        logger.info("Running uploadLinkInput tool")
         self.validate(input_dict)
         url = input_dict["url"]
         metadata = input_dict.get("metadata") or {}
@@ -41,8 +44,8 @@ class Tool:
             )
 
         if input_dict.get("save_profile", False):
-            ProjectProfileEngine().generate_and_save(link, metadata)
-
+            ProjectProfileEngine().generate_and_save(text, metadata)
+        logger.info("uploadLinkInput tool completed successfully")
         return {
             "status": "success",
             "path": out_path,

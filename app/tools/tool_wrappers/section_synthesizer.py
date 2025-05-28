@@ -4,6 +4,8 @@ from string import Template
 from dotenv import load_dotenv
 from app.schemas.section_draft_output import SectionDraftOutput
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+import logging
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -13,6 +15,7 @@ class Tool:
             raise ValueError("Missing required field: memory")
 
     def run_tool(self, input_dict):
+        logger.info("[Tool] section_synthesizer started")
         self.validate(input_dict)
         memory = input_dict.get("memory", [])
         alignment_results = input_dict.get("alignment_results", [])
@@ -79,7 +82,7 @@ class Tool:
 
         raw_draft = chat_completion_request(system_prompt, user_prompt, temperature=0.7)
         draft_chunks = re.split(r'\n\n+', raw_draft)
-
+        logger.info("[Tool] section_synthesizer completed")
         return SectionDraftOutput(
             prompt_used=user_prompt,
             raw_draft=raw_draft,

@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 from jinja2 import Template
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+import logging
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -11,6 +13,7 @@ class Tool:
             raise ValueError("Missing required field: raw_draft")
 
     def run_tool(self, input_dict):
+        logger.info("[Tool] section_refiner started")
         self.validate(input_dict)
         raw_draft = input_dict.get("raw_draft")
 
@@ -22,5 +25,5 @@ class Tool:
         user_prompt = user_prompt_template.render(raw_draft=raw_draft)
 
         refined = chat_completion_request(system_prompt, user_prompt, temperature=0.5)
-
+        logger.info(f"[Tool] section_refiner output: {refined[:100]}...")
         return {"raw_draft": refined, "prompt_used": user_prompt}
