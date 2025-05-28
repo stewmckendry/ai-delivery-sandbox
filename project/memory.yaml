@@ -4903,3 +4903,16 @@
   - test
   last_updated: '2025-05-28'
   pod_owner: ResearchPod
+- path: project/build/wps/WP27/dry_run_section_generation.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/dry_run_section_generation.md
+  file_type: md
+  description: Document detailing a dry run for generating sections of an investment
+    proposal, focusing on problem statement and desired outcomes for AI-driven public
+    service enhancements.
+  tags:
+  - proposal
+  - section-generation
+  - AI
+  - public-service
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
