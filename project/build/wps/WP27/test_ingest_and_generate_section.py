@@ -7,31 +7,29 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Debug: print sys.path to verify project_root is included
 print("sys.path:", sys.path)
 print("project_root:", project_root)
 
 from app.tools.tool_wrappers.uploadTextInput import Tool as UploadTool
 from app.tools.tool_wrappers.inputChecker import Tool as InputCheckerTool
-from app.tools.tool_wrappers.confirmProjectProfile import Tool as ProjectProfileTool
+# from app.tools.tool_wrappers.confirmProjectProfile import Tool as ProjectProfileTool
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 
 """
 Script: test_ingest_and_generate_section.py
-Purpose: Validates the end-to-end flow for uploading user input, validating metadata, confirming project profile,
-         and generating a draft for a selected section of a policy artifact.
+Purpose: Validates the end-to-end flow for uploading user input, validating metadata, and generating a draft
+         for a selected section of a policy artifact. ProjectProfile step skipped for now.
 
 Test Flow:
 1. Upload sample input text for a given section.
 2. Validate that all required inputs and intents are present.
-3. Load project profile to provide contextual grounding.
-4. Generate a draft section using the configured toolchain.
+3. Generate a draft section using the configured toolchain (with a stub profile).
 
 Usage:
 python project/build/wps/WP27/test_ingest_and_generate_section.py \
-  --project_id "test_project_1" \
-  --session_id "test_session_1" \
-  --user_id "test_user_1" \
+  --project_id <project_id> \
+  --session_id <session_id> \
+  --user_id <user_id> \
   --text_file project/build/wps/WP27/sample_input_text.txt
 
 Defaults:
@@ -67,11 +65,13 @@ def main(project_id, session_id, user_id, gate_id, artifact, section, text_file)
     })
     print("Missing Intents:", checker_result)
 
-    print("[3] Loading project profile...")
-    profile_result = ProjectProfileTool().run_tool({"project_id": project_id})
-    print("Project Name:", profile_result["project_profile"].get("name"))
+    print("[3] Generating section draft (stub profile)...")
+    stub_profile = {
+        "name": "Digital Identity Modernization",
+        "description": "Unifying digital identity efforts across departments.",
+        "program_context": "Cross-government initiative targeting trust and usability."
+    }
 
-    print("[4] Generating section draft...")
     chain = GenerateSectionChain()
     section_result = chain.run({
         "session_id": session_id,
@@ -80,7 +80,7 @@ def main(project_id, session_id, user_id, gate_id, artifact, section, text_file)
         "artifact": artifact,
         "section": section,
         "project_id": project_id,
-        "project_profile": profile_result["project_profile"]
+        "project_profile": stub_profile
     })
     print("\n=== Draft Output ===")
     print(section_result["final_output"]["raw_draft"])
