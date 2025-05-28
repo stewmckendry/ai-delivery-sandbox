@@ -2,6 +2,7 @@ intent_coverage:
   system: "You are a government policy intake evaluator helping assess user inputs."
   user: |
     You are reviewing a policy intake session. The expected intents for this intake are:
+    "section_id": "expected_intents"  
     {{expected_intents}}
 
     Below is the text submitted during the session:

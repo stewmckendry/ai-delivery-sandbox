@@ -3,13 +3,27 @@ import requests
 import yaml
 import json
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+import logging
+logger = logging.getLogger(__name__)
 
 def get_logged_intents(session_id: str) -> List[str]:
     from app.db.models.PromptLog import PromptLog
     from app.db.database import SessionLocal
     with SessionLocal() as session:
-        logs = session.query(PromptLog).filter(PromptLog.session_id == session_id).all()
-        return [log.input_summary or "" for log in logs if log.input_summary]
+        logs = session.query(PromptLog).filter(
+            PromptLog.session_id == session_id,
+            PromptLog.tool.contains("upload")
+        ).all()
+        # Remove duplicates in log.output_summary while preserving order
+        seen = set()
+        unique_logs = []
+        for log in logs:
+            summary = log.output_summary
+            if summary and summary not in seen:
+                seen.add(summary)
+                unique_logs.append(summary)
+        logs = unique_logs
+        return [summary for summary in logs if summary]
 
 def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str, section_id: str) -> Dict:
     with open("project/reference/gate_reference_v2.yaml") as f:
@@ -17,16 +31,23 @@ def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str, se
 
     gate = next(g for g in gate_reference if g["gate_id"] == int(gate_id))
     artifact = next(a for a in gate["artifacts"] if a["artifact_id"] == artifact_id)
-    section = next(s for s in artifact["sections"] if s["section_id"] == section_id)
-    expected_intents = section["intents"]
+    # Collect intents from all sections matching the given section_id
+    expected_intents = []
+    for section in artifact["sections"]:
+        if section["section_id"] == section_id:
+            expected_intents.extend(section.get("intents", []))
 
     prompt_data = {
         "intents": expected_intents,
         "logged_texts": get_logged_intents(session_id)
     }
     prompt = get_prompt("input_checker_prompts.yaml", "intent_coverage")
+    logger.info(f"📄 Logged texts for session {session_id}: {prompt_data['logged_texts']}")
     user_prompt = prompt["user"].replace("{{expected_intents}}", json.dumps(expected_intents)).replace("{{logged_texts}}", "\n".join(prompt_data["logged_texts"]))
-    return json.loads(chat_completion_request(prompt["system"], user_prompt))
+    logger.info(f"Input checker user prompt: {user_prompt}")
+    response = chat_completion_request(prompt["system"], user_prompt)
+    logger.info(f"Input checker response from LLM: {response}")
+    return json.loads(response)
 
 class Tool:
     def validate(self, input_dict):

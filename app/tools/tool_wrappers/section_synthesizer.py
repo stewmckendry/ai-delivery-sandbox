@@ -4,6 +4,7 @@ from string import Template
 from dotenv import load_dotenv
 from app.schemas.section_draft_output import SectionDraftOutput
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+from jinja2 import Template
 import logging
 logger = logging.getLogger(__name__)
 
@@ -67,7 +68,7 @@ class Tool:
 
         prompt_templates = get_prompt("generate_section_prompts.yaml", "section_synthesis")
         user_template = Template(prompt_templates["user"])
-        user_prompt = user_template.substitute(
+        user_prompt = user_template.render(
             artifact=artifact,
             section=section,
             profile_context=profile_context,
@@ -79,10 +80,11 @@ class Tool:
         )
 
         system_prompt = prompt_templates["system"]
+        logger.info(f"[Tool] section_synthesizer user prompt: {user_prompt[:250]}...")
 
         raw_draft = chat_completion_request(system_prompt, user_prompt, temperature=0.7)
         draft_chunks = re.split(r'\n\n+', raw_draft)
-        logger.info("[Tool] section_synthesizer completed")
+        logger.info(f"[Tool] section_synthesizer completed with raw draft: {raw_draft[:250]}...")
         return SectionDraftOutput(
             prompt_used=user_prompt,
             raw_draft=raw_draft,

@@ -1,0 +1,24 @@
+- id: 39c809d6-97be-4751-bcba-c1ec80a1174e
+  tool: uploadTextInput
+  input_summary: direct_input | uploadTextInput
+  output_summary: Over the past decade, digital identity has emerged as a key enabler
+    of public service modernization. Yet despite years of investment, many jurisdictions
+    still struggle with low adoption, fragmented platforms, and lack of user trust.
+    In our province, several programs have launched identity solutions independently,
+    leading to duplication, policy misalignment, and a confusing experience for citizens.
+    There is now a strategic opportunity to unify these efforts under a common digital
+    identity trust framework. This proposal aims to articulate the problem context
+    and rationale for coordinated action.
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-28 19:38:27.245942
+  metadata:
+    project_id: test_project_id_iteration2
+    artifact_id: investment_proposal_concept
+    gate_id: 0
+    section_id: problem_statement
+    session_id: test_session_id_iteration2
+    user_id: test_user_id_iteration2
+    intent: problem_context

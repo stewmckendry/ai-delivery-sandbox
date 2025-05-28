@@ -26,7 +26,7 @@ class Tool:
     def run_tool(self, input_dict):
         self.validate(input_dict)
         query = input_dict["query"]
-        logger.debug(f"🔍 Querying corpus with: {query[:100]}")
+        logger.info(f"🔍 Querying corpus with: {query[:100]}")
 
         if USE_REMOTE_CHROMA:
             logger.debug("Connecting to Chroma host: %s", CHROMA_HOST)
@@ -35,15 +35,17 @@ class Tool:
             results = collection.query(query_texts=[query], n_results=5)
             docs = results.get("documents", [[]])[0]
             context = "\n\n".join(docs)
+            logger.info(f"✅ Retrieved {len(docs)} documents from remote Chroma")
             template = "Based on the following documents:\n\n{context}\n\nAnswer the query: {query}"
             prompt = PromptTemplate.from_template(template)
             llm_chain = LLMChain(llm=ChatOpenAI(temperature=0), prompt=prompt)
             answer = llm_chain.run({"context": context, "query": query})
+            logger.info(f"✅ Query result ready: {answer[:100]}")
             return {"answer": answer, "documents": docs}
         else:
             vectordb = Chroma(persist_directory=CHROMA_DIR, embedding_function=OpenAIEmbeddings())
             retriever = vectordb.as_retriever()
             qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(temperature=0), retriever=retriever)
             result = qa.run(query)
-            logger.info("✅ Query result ready")
+            logger.info(f"✅ Query result ready: {result[:100]}")
             return {"answer": result}

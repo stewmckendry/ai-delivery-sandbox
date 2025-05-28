@@ -23,7 +23,7 @@ class Tool:
         query = inputs["query"]
         search_type = inputs["search_type"]
         context = inputs.get("context", {})
-
+        logger.info(f"[Tool] web_search received query: {query}, search_type: {search_type}, context: {context}")
         if search_type == "general":
             results = handle_general_search(query=query, context=context)
         elif search_type == "jurisdiction":
@@ -32,7 +32,7 @@ class Tool:
             results = handle_market_search(query=query, context=context)
         else:
             raise ValueError(f"Unsupported search_type: {search_type}")
-
+        logger.info(f"[Tool] web_search results: {len(results)} entries found")
         # Log the search
         db = get_session()
         log_web_search(

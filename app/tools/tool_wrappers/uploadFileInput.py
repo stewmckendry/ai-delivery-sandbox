@@ -41,13 +41,13 @@ class Tool:
                 entry["tool"],
                 entry["input_summary"],
                 entry["output_summary"],
-                session_id=entry.get("session_id"),
+                session_id=metadata.get("session_id"),
                 user_id=entry.get("user_id"),
                 metadata=entry.get("metadata")
             )
 
         if input_dict.get("save_profile", False):
-            ProjectProfileEngine().generate_and_save(raw, metadata)
+            ProjectProfileEngine().generate_and_save(raw, metadatax)
         logger.info("uploadFileInput tool completed successfully")
         return {
             "status": "success",

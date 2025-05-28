@@ -36,5 +36,5 @@ class Tool:
             session_id=context.get("session_id"),
             project_id=context.get("project_id") or context.get("project_profile", {}).get("project_id")
         )
-        logger.info("[Tool] goc_alignment_search completed")
+        logger.info(f"[Tool] goc_alignment_search results: {len(results)} entries found")
         return {"results": results}

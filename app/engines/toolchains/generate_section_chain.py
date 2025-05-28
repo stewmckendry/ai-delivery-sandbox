@@ -56,7 +56,10 @@ class GenerateSectionChain:
         search_results = self.web_search_tool.run_tool({
             "query": f"{inputs.get('artifact')} - {inputs.get('section')}",
             "search_type": "general",
-            "context": {"project_profile": inputs.get("project_profile", {})}
+            "context": {
+                "project_profile": inputs.get("project_profile", {}),
+                "memory": memory
+            }
         })
         log_tool_usage("web_search", "external scan", search_results, session_id, user_id, inputs)
         trace.append({"tool": "web_search", "output": search_results})

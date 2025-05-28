@@ -61,7 +61,8 @@ def main(project_id, session_id, user_id, gate_id, artifact, section, text_file)
     checker_result = InputCheckerTool().run_tool({
         "session_id": session_id,
         "gate_id": int(gate_id),
-        "artifact_id": artifact
+        "artifact_id": artifact,
+        "section_id": section
     })
     print("Intent Coverage Report:")
     print("  ✅ Covered:")

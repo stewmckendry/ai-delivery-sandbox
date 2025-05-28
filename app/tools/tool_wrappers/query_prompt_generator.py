@@ -19,6 +19,9 @@ class Tool:
         profile = input_dict.get("project_profile", {})
         memory = input_dict.get("memory", [])
 
+        logger.info(f"profile: {profile}")
+        logger.info(f"memory: {memory[:10]}...")  # Log first 10 entries for brevity
+
         profile_summary = "\n".join([
             f"Project Title: {profile.get('title', 'N/A')}",
             f"Scope Summary: {profile.get('scope_summary', '')}",
@@ -29,11 +32,7 @@ class Tool:
 
         memory_lines = []
         for entry in memory:
-            if isinstance(entry, dict):
-                if "input_summary" in entry:
-                    memory_lines.append(entry["input_summary"])
-                elif "text" in entry:
-                    memory_lines.append(entry["text"][:200])
+            memory_lines.append(entry["input_summary"])
 
         memory_context = "\n".join(memory_lines[:10])
 

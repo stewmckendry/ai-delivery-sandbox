@@ -23,7 +23,8 @@ class Tool:
 
         system_prompt = system_prompt_template.render()
         user_prompt = user_prompt_template.render(raw_draft=raw_draft)
+        logger.info(f"[Tool] section_refiner user prompt: {user_prompt[:100]}...")
 
         refined = chat_completion_request(system_prompt, user_prompt, temperature=0.5)
-        logger.info(f"[Tool] section_refiner output: {refined[:100]}...")
+        logger.info(f"[Tool] section_refiner output of final draft: {refined[:100]}...")
         return {"raw_draft": refined, "prompt_used": user_prompt}

@@ -16,21 +16,30 @@ class Tool:
         section = input_dict["section"]
         session_id = input_dict.get("session_id")
         user_id = input_dict.get("user_id")
+        project_id = input_dict.get("project_id")
 
         tool_names = ["uploadTextInput", "uploadFileInput", "uploadLinkInput"]
 
         session = get_session()
+        logger.info(f"Retrieving entries for artifact={artifact}, section_={section}, project_id={project_id}")
         query = session.query(PromptLog).filter(
             PromptLog.tool.in_(tool_names),
-            PromptLog.full_input_path.like(f'%"artifact": "{artifact}"%'),
-            PromptLog.full_input_path.like(f'%"section": "{section}"%')
+            PromptLog.full_input_path.contains(f'"artifact_id": "{artifact}"'),
+            PromptLog.full_input_path.contains(f'"section_id": "{section}"'),
+            PromptLog.project_id == project_id
         )
         if session_id:
             query = query.filter(PromptLog.session_id == session_id)
-        if user_id:
-            query = query.filter(PromptLog.user_id == user_id)
 
         entries = query.order_by(PromptLog.timestamp.asc()).all()
+        # Remove entries with duplicate output_summary, keeping the first occurrence
+        seen_summaries = set()
+        unique_entries = []
+        for entry in entries:
+            if entry.output_summary not in seen_summaries:
+                unique_entries.append(entry)
+                seen_summaries.add(entry.output_summary)
+        entries = unique_entries
         logger.info(f"Found {len(entries)} entries for artifact={artifact}, section={section}, session_id={session_id}, user_id={user_id}")
         return [{
             "input_summary": e.input_summary,
