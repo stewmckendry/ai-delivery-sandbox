@@ -15,7 +15,7 @@ def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str) ->
     with open("project/reference/gate_reference_v2.yaml") as f:
         gate_reference = yaml.safe_load(f)
 
-    expected_intents = gate_reference[str(gate_id)]["artifacts"][artifact_id]["sections"]
+    expected_intents = gate_reference[int(gate_id)]["artifacts"][artifact_id]["sections"]
 
     prompt_data = {
         "intents": expected_intents,
