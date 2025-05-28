@@ -4832,3 +4832,14 @@
   - LLM
   last_updated: '2025-05-28'
   pod_owner: DevPod
+- path: app/prompts/input_checker_prompts.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/input_checker_prompts.yaml
+  file_type: yaml
+  description: Prompts for evaluating user input coverage against expected intents
+    in policy intake sessions.
+  tags:
+  - prompt
+  - input
+  - evaluation
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
