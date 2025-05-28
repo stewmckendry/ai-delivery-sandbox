@@ -1,5 +1,5 @@
 import logging
-from app.tools.utils.llm_helpers import call_llm
+from app.tools.utils.llm_helpers import chat_completion_request
 from app.tools.utils.section_helpers import get_token_count
 
 logger = logging.getLogger(__name__)
@@ -27,11 +27,9 @@ Title: {title or "Policy Document"}
 {document_body}
 """
 
-        response = call_llm(
+        response = chat_completion_request(
             system=system_prompt.strip(),
-            user=user_prompt.strip(),
-            temperature=0.3,
-            model="gpt-4"
+            user=user_prompt.strip()
         )
 
         return {"refined_body": response.strip(), "skipped": False}

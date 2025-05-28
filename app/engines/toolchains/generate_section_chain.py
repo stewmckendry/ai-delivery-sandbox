@@ -12,7 +12,7 @@ class GenerateSectionChain:
     def __init__(self):
         registry = ToolRegistry()
         self.memory_tool = registry.get_tool("memory_retrieve")
-        self.query_tool = registry.get_tool("queryPromptGenerator")
+        self.query_tool = registry.get_tool("query_prompt_generator")
         self.corpus_tool = registry.get_tool("queryCorpus")
         self.alignment_tool = registry.get_tool("goc_alignment_search")
         self.synth_tool = registry.get_tool("section_synthesizer")

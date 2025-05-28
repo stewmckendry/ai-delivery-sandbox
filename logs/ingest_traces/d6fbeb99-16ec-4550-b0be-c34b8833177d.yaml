@@ -1,0 +1,11 @@
+- id: d6fbeb99-16ec-4550-b0be-c34b8833177d
+  tool: uploadFileInput
+  input_summary: ' project/test/WP23/test_data/demo_input.txt | uploadFileInput'
+  output_summary: '[ERROR parsing  project/test/WP23/test_data/demo_input.txt]: [Errno
+    2] No such file or directory: ''/Users/liammckendry/policyGPT/ project/test/WP23/test_data/demo_input.txt'''
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-28 02:50:00.055683
+  metadata: {}

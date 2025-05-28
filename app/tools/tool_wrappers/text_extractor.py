@@ -6,6 +6,7 @@ from PyPDF2 import PdfReader
 
 
 def extract_text(file_path):
+    file_path = file_path.strip()
     ext = os.path.splitext(file_path)[1].lower()
     try:
         if ext == ".pdf":

@@ -1,0 +1,11 @@
+- id: 4be02a13-8ba2-4966-a370-75543112e946
+  tool: uploadFileInput
+  input_summary: test_data/demo_input.txt | uploadFileInput
+  output_summary: '[ERROR parsing test_data/demo_input.txt]: [Errno 2] No such file
+    or directory: ''test_data/demo_input.txt'''
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-28 02:44:20.973353
+  metadata: {}

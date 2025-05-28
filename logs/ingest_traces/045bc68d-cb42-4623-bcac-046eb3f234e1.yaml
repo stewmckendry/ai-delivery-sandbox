@@ -1,0 +1,12 @@
+- id: 045bc68d-cb42-4623-bcac-046eb3f234e1
+  tool: uploadFileInput
+  input_summary: project/test/WP23/test_data/demo_input.txt | uploadFileInput
+  output_summary: Government of Canada is implementing a new initiative to support
+    youth mental health. The program aims to provide resources, increase access to
+    services, and build awareness through schools and communities.
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-28 03:01:58.948402
+  metadata: {}

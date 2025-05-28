@@ -33,7 +33,7 @@ class IngestInputChain:
         logger.debug(f"Raw text extracted: {raw_text[:100]}")
         logger.debug(f"Metadata: {metadata}")
 
-        metadata_project_id = metadata.get("project_id")
+        metadata_project_id = inputs.get("project_id")
         if not metadata_project_id:
             logger.error("Input metadata missing required project_id")
             raise ValueError("Input metadata must include project_id")

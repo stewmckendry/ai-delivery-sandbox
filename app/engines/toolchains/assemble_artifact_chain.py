@@ -14,13 +14,13 @@ class AssembleArtifactChain:
         self.merger = registry.get_tool("mergeSections")
         self.finalizer = registry.get_tool("finalizeDocument")
         self.committer = registry.get_tool("storeToDrive")
-        self.refiner = registry.get_tool("refineDocumentChain")
+        self.refiner = registry.get_tool("refine_document_chain")
 
     def run(self, inputs):
         trace = []
         session_id = str(uuid.uuid4())
-        artifact_id = inputs["artifact_id"]
-        gate_id = inputs["gate_id"]
+        artifact_id = inputs.get("artifact_id")
+        gate_id = inputs.get("gate_id")
         version = inputs.get("version", "v0.1")
 
         loaded = self.loader.run_tool({"artifact_id": str(artifact_id), "gate_id": str(gate_id)})
@@ -49,7 +49,7 @@ class AssembleArtifactChain:
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
 
-        refined = self.refiner.run_tool({"document_body": merged["document_body"], "title": title, "project_id": profile.get("project_id")})
+        refined = self.refiner.run_tool({"document_body": merged["document_body"], "title": title, "project_id": profile.get("project_id") or inputs.get("project_id")})
         log_tool_usage("refineDocumentChain", "refined body", refined, session_id, None, inputs)
         trace.append({"tool": "refineDocumentChain", "output": refined})
         logger.info("[Step 3.5] refineDocumentChain complete")

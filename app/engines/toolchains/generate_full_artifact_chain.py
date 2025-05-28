@@ -12,8 +12,12 @@ class GenerateFullArtifactChain:
         self.section_chain = GenerateSectionChain()
         self.assembler = AssembleArtifactChain()
 
-    def run(self, artifact_id, gate_id, project_id, user_id=None):
+    def run(self, input_dict):
         session_id = str(uuid.uuid4())
+        artifact_id = input_dict.get("artifact_id")
+        gate_id = input_dict.get("gate_id")
+        project_id = input_dict.get("project_id")
+        user_id = input_dict.get("user_id") or ""
         logger.info(f"[START] Full artifact chain for {artifact_id} - gate {gate_id}")
 
         sections = plan_sections(gate_id, artifact_id)
