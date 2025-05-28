@@ -4688,3 +4688,15 @@
   - prompt
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/test/WP24/test_e2e_generate_artifact.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/test/WP24/test_e2e_generate_artifact.py
+  file_type: py
+  description: End-to-end test script for generating artifacts using input ingestion
+    and artifact generation chains.
+  tags:
+  - e2e
+  - test
+  - artifact
+  - toolchain
+  last_updated: '2025-05-28'
+  pod_owner: QAPod
