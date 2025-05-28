@@ -4,6 +4,10 @@ from app.db.database import db
 from app.tools.utils.llm_helpers import run_llm_prompt
 import yaml
 from jinja2 import Template
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+import json
+import logging
+logger = logging.getLogger(__name__)
 
 class ProjectProfileEngine:
     def load_profile(self, project_id: str) -> dict:
@@ -21,25 +25,32 @@ class ProjectProfileEngine:
         db.commit()
         return profile.to_dict()
 
-    def generate_and_save(self, text: str, metadata: dict, existing: dict = None) -> dict:
-        project_id = metadata.get("project_id")
-        if not project_id:
-            raise ValueError("Missing project_id")
+    def generate_and_save(self, text, metadata, existing=None):
+        try:
+            prior = "\n".join([f"{k}: {v}" for k, v in existing.items()]) if existing else ""
+            prompt_vars = {
+                "project_id": metadata.get("project_id", ""),
+                "input_text": text,
+                "prior": prior
+            }
 
-        existing = existing or {}
-        prior = "".join([f"{k}: {v}\n" for k, v in existing.items()]) if existing else ""
+            template = get_prompt("project_profile_prompts.yaml", "generate_project_profile")
+            system_prompt = template.get("system", "")
+            user_template = template.get("user", "")
+            user_prompt = user_template.format(**prompt_vars)
 
-        with open("app/prompts/project_profile_prompts.yaml") as f:
-            prompt_config = yaml.safe_load(f)
+            output = chat_completion_request(system_prompt, user_prompt)
 
-        system_msg = prompt_config["prompts"]["generate_project_profile"]["system"]
-        user_template = Template(prompt_config["prompts"]["generate_project_profile"]["user"])
-        user_msg = user_template.render(project_id=project_id, input_text=text, prior=prior)
+            logger.info(f"LLM output: {output}")
 
-        response = run_llm_prompt(system_msg, user_msg)
-        output = response.get("project_profile", response)
+            if isinstance(output, str):
+                output = json.loads(output)
 
-        output["project_id"] = output.get("project_id") or project_id
-        output["last_updated"] = datetime.utcnow()
+            profile_data = output.get("project_profile", {})
+            profile_data["project_id"] = metadata.get("project_id")
 
-        return self.save_profile(output)
+            return self.save_profile(profile_data)
+
+        except Exception as e:
+            logger.error(f"Failed to generate project profile: {e}")
+            return None
