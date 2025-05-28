@@ -74,7 +74,7 @@ def test_manual_edit():
         "artifact": "A123",
         "user_id": "U001",
         "project_id": "P001",
-        "feedback_text": "This is a test section.",
+        "feedback_text": "This is a test section. Revised text should be copied verbatim.",
         "session_id": "testsession"
     }
     result = tool.run_tool(inputs)

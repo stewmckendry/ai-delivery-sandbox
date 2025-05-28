@@ -32,12 +32,7 @@ class Tool:
             log_tool_usage("manualEditSync", "no change", revised_text, session_id, user_id, input_dict)
             return {"status": "no_change", "section_id": section_id}
 
-        log = {
-            "tool": "manualEditSync",
-            "input": input_dict,
-            "output": revised_text,
-            "note": "Manual override saved directly."
-        }
+        log = {"tool": "section_refiner", "output": revised_text}
 
         result = save_artifact_and_trace(
             section_id=section_id,
@@ -45,7 +40,7 @@ class Tool:
             gate_id=gate_id,
             text=revised_text,
             sources="manual user input",
-            tool_outputs=[log],
+            tool_outputs=log,
             user_id=user_id,
             project_id=project_id
         )
