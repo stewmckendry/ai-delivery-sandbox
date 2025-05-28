@@ -8527,3 +8527,8 @@
   task_id: wps-WP27
   committed_by: ProductPod
   message: Append output file to wps-WP27
+- timestamp: '2025-05-28T18:13:55.901967'
+  path: app/tools/tool_wrappers/uploadTextInput.py
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Add optional project profile generation to uploadTextInput tool
