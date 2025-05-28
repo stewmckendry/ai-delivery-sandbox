@@ -82,4 +82,23 @@ Enhancements:
 
 ---
 
-Ready to begin planning files + test structure for iteration 3.
+### ⚠ Confidence Assessment & De-risking Plan
+
+#### 🟡 Section Loop & Context Passing
+- Risk: Prompt overload, repetition, weak coherence
+- Plan:
+  - Design prompt contract for sections
+  - Dry run 2-3 section generations
+  - Add summarization utility for prior sections
+  - Enforce scoped global context injection
+
+#### 🟡 GPT Checkpoints for Feedback
+- Risk: User fatigue, unclear response capture
+- Plan:
+  - Simulate review dialog manually
+  - Define interaction and feedback schema
+  - Option to skip/collapse reviews
+
+---
+
+These de-risking steps will ensure robust design before implementation.
