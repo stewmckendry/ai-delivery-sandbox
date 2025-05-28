@@ -50,7 +50,7 @@ def test_section_rewriter(base_inputs):
         "section_id": "S1",
         "feedback": "Make this section more concise.",
         "revision_type": "polish",
-        "current_text": "This is a test section that needs improvement."
+        "current_text": "This is a test section that needs improvement. Its test text that is about to be rewritten. It should be more concise and clear.",
     }
     result = tool.run_tool(inputs)
     print_tool_run("section_rewriter", inputs, result)

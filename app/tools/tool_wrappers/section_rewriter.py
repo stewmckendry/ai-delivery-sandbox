@@ -29,13 +29,9 @@ class Tool:
         prompt_template = Template(prompts["section_rewrite"][revision_type])
 
         user_prompt = prompt_template.render(section_id=section_id, feedback=feedback, current_text=current_text)
+        system_prompt = "You are a policy analyst editing a government document section."
 
-        messages = [
-            {"role": "system", "content": "You are a policy analyst editing a government document section."},
-            {"role": "user", "content": user_prompt}
-        ]
-
-        response = chat_completion_request(messages, temperature=0.4)
+        response = chat_completion_request(system=system_prompt, user=user_prompt)
         draft = response.strip()
 
         # Run revision checker on the result
@@ -48,8 +44,7 @@ class Tool:
 
         # Ask the LLM if there are other suggested edits
         suggestions_prompt = f"Are there any other improvements you recommend for this section? Just list them if any.\n\nSection:\n{draft}"
-        messages.append({"role": "user", "content": suggestions_prompt})
-        suggestions_response = chat_completion_request(messages, temperature=0.4)
+        suggestions_response = chat_completion_request(system=system_prompt, user=suggestions_prompt, temperature=0.4)
 
         return {
             "section_id": section_id,
