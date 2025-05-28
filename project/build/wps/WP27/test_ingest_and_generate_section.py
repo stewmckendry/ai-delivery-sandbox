@@ -68,7 +68,7 @@ def main(project_id, session_id, user_id, gate_id, artifact, section, text_file)
     print("Missing Intents:", checker_result)
 
     print("[3] Loading project profile...")
-    profile_result = ProjectProfile Tool().run_tool({"project_id": project_id})
+    profile_result = ProjectProfileTool().run_tool({"project_id": project_id})
     print("Project Name:", profile_result["project_profile"].get("name"))
 
     print("[4] Generating section draft...")
