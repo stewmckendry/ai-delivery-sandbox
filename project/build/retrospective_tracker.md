@@ -212,3 +212,22 @@
 - Add UX layer for multi-feedback aggregation and selection
 - Implement a unified validation + QA harness
 
+---
+
+## WP24 – Generate Full Artifact
+
+### ✅ What Went Well
+- Strong modularization of tools and LLM usage.
+- Standardized prompt templates improved reusability.
+- Schema enforcement via tool registry prevented runtime errors.
+- Testing framework ensured reliability and regression control.
+
+### 🤔 What Could Be Improved
+- Initial commits caused regressions due to unscoped changes—need stricter scope discipline.
+- More frequent integration testing would have surfaced interface mismatches earlier.
+- Better tracking of which tools have updated schemas to streamline tool_catalog maintenance.
+
+### 💡 Lessons & Recommendations
+- Enforce stricter change isolation in complex toolchains.
+- Add test cases for each prompt YAML key during validation.
+- Auto-generate tool_catalog/manifest entries from schemas.

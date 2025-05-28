@@ -54,4 +54,10 @@
 | manual_edit_sync       | WP23      | ✅ Built   | Stores and syncs direct user edits to the section.                              |
 | revise_section_chain   | WP23      | ✅ Built   | Toolchain coordinating the entire revision flow.                                |
 | llm_helper             | WP23      | ✅ Built   | Abstraction for standardized GPT call and prompt construction.                  |
+| refine_document_chain.py                     | WP24      | ✅ Complete  | New toolchain to polish entire draft artifact                                 |
+| generate_section_chain.py                    | WP24      | ✅ Updated   | Modularized with shared prompts and helpers                                   |
+| generate_full_artifact_chain.py              | WP24      | ✅ Updated   | Final toolchain combining section generation and refinement                   |
+| generate_section_prompts.yaml                | WP24      | ✅ Complete  | YAML-based prompt templates used across tools                                 |
+| llm_helpers.py                               | WP24      | ✅ Updated   | Shared LLM caller and wrapper for consistent API use                          |
+| test_wp24_toolchain.py                       | WP24      | ✅ Complete  | Test suite for WP24’s implementation                                          |
 

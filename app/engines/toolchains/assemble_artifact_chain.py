@@ -71,7 +71,7 @@ class AssembleArtifactChain:
                     text=body,
                     tool_outputs=trace,
                     sources="refined_document",
-                    generated_by="refine_document",
+                    user_id=inputs.get("user_id"),
                     project_id=project_id
                 )
         logger.info("[Step 3.75] Updated ArtifactSection with refined content")
