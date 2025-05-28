@@ -1,29 +1,4 @@
 tools:
-  compose_and_cite:
-    module: app.tools.tool_wrappers.compose_and_cite
-    class: Tool
-    description: Orchestrates evidence search → synthesis → draft → validate
-    schema:
-      prompt:
-        type: string
-      gate_id:
-        type: integer
-  searchKnowledgeBase:
-    module: app.tools.tool_wrappers.searchKnowledgeBase
-    class: Tool
-    description: Retrieves semantic matches from embedded documents
-    schema:
-      query:
-        type: string
-  fetchDocument:
-    module: app.tools.tool_wrappers.fetchDocument
-    class: Tool
-    description: Retrieves section or full document
-    schema:
-      doc_id:
-        type: string
-      section_id:
-        type: string
   uploadTextInput:
     description: Ingest freeform text input into the memory system
     module: app.tools.tool_wrappers.uploadTextInput
