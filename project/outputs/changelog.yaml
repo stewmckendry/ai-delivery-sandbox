@@ -8497,3 +8497,8 @@
   task_id: wps-WP27
   committed_by: ProductPod
   message: Append output file to wps-WP27
+- timestamp: '2025-05-28T17:55:05.958586'
+  path: app/engines/toolchains/IngestInputChain.py
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Disable save_profile inside IngestInputChain to avoid double-write
