@@ -4748,3 +4748,15 @@
   - flow
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/WP27_pod_activation_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/WP27_pod_activation_message.md
+  file_type: md
+  description: Documentation for integrating toolchains with GPT in WP27, focusing
+    on E2E generation flows and enhancements.
+  tags:
+  - integration
+  - toolchain
+  - E2E
+  - GPT
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
