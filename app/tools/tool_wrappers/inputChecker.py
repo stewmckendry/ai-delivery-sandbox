@@ -24,3 +24,17 @@ def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str) ->
     prompt = get_prompt("input_checker_prompts.yaml", "intent_coverage")
     user_prompt = prompt["user"].replace("{{expected_intents}}", json.dumps(expected_intents)).replace("{{logged_texts}}", "\n".join(prompt_data["logged_texts"]))
     return json.loads(chat_completion_request(prompt["system"], user_prompt))
+
+class Tool:
+    def validate(self, input_dict):
+        if "session_id" not in input_dict or "gate_id" not in input_dict or "artifact_id" not in input_dict:
+            raise ValueError("'session_id', 'gate_id' and 'artifact_id' are required.")
+
+    def run_tool(self, input_dict):
+        self.validate(input_dict)
+        return identify_missing_intents(
+            session_id=input_dict["session_id"],
+            gate_id=input_dict["gate_id"],
+            artifact_id=input_dict["artifact_id"]
+        )
+

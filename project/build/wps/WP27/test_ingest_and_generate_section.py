@@ -27,9 +27,9 @@ Test Flow:
 
 Usage:
 python project/build/wps/WP27/test_ingest_and_generate_section.py \
-  --project_id <project_id> \
-  --session_id <session_id> \
-  --user_id <user_id> \
+  --project_id "test_project_id_iteration2" \
+  --session_id "test_session_id_iteration2" \
+  --user_id "test_user_id_iteration2" \
   --text_file project/build/wps/WP27/sample_input_text.txt
 
 Defaults:
