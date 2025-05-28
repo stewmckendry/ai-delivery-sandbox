@@ -3,7 +3,7 @@ from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage, save_feedback
 from app.db.database import get_session
 from app.db.models.ArtifactSection import ArtifactSection
-from app.tools.llm.gpt import chat_completion_request
+from app.tools.utils.llm_helpers import chat_completion_request
 
 logger = logging.getLogger(__name__)
 
