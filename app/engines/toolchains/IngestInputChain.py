@@ -45,7 +45,8 @@ class IngestInputChain:
             logger.warning(f"No existing profile found or load failed: {e}")
             existing = {}
 
-        project_profile = self.generate_project_profile(raw_text, metadata, existing)
+        project_profile = ProjectProfileEngine().generate_and_save(text=raw_text, metadata=metadata, existing=existing)
+
         logger.debug(f"Generated project profile: {project_profile}")
         for k, v in project_profile.items():
             logger.debug(f"Generated field {k}: {v} ({type(v)})")
@@ -119,67 +120,3 @@ class IngestInputChain:
             "metadata": metadata
         }
 
-    def generate_project_profile(self, text: str, metadata: dict, existing: dict = None) -> dict:
-        schema = """
-project_profile:
-  project_id: string
-  title: string
-  sponsor: string
-  project_type: string
-  total_budget: number (use null if missing)
-  start_date: date (YYYY-MM-DD, use null if missing)
-  end_date: date (YYYY-MM-DD, use null if missing)
-  strategic_alignment: string
-  current_gate: integer (use null if missing)
-  scope_summary: string
-  key_stakeholders: string
-  major_risks: string
-  resource_summary: string
-  last_updated: datetime (use null if missing)
-        """
-
-        prior = "".join([f"{k}: {v}\n" for k, v in existing.items()]) if existing else ""
-        prior_text = f"\nExisting profile:\n{prior}" if prior else ""
-
-        prompt = f"""
-You are a project analyst. Your task is to build a structured project profile.
-The project ID is: {metadata.get('project_id')}
-
-Extract fields only if they are supported by the text. Use null where missing.
-
-{schema}
-{prior_text}
-
-INPUT TEXT:
-{text}
-        """
-
-        response = self.client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "Extract a JSON object that fits the project_profile schema."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.3
-        )
-        logger.debug("OpenAI chat completion call successful")
-        raw_output = response.choices[0].message.content.strip()
-        logger.debug(f"Raw output received: {raw_output}")
-
-        try:
-            logger.debug("Parsing raw LLM output...")
-            parsed = json.loads(raw_output)
-            logger.debug(f"Parsed object: {parsed}")
-            if not parsed:
-                logger.warning("Parsed output is empty")
-            elif "project_profile" in parsed:
-                parsed = parsed["project_profile"]
-                logger.debug("Unwrapped nested 'project_profile' key from LLM output")
-            if not parsed.get("project_id"):
-                logger.warning("Parsed output missing project_id")
-            if not parsed.get("title"):
-                logger.warning("Parsed output missing title")
-            return parsed
-        except Exception as e:
-            logger.error(f"Failed to parse output: {e}\nRaw output: {raw_output}")
-            raise ValueError(f"Failed to parse output: {e}\nRaw output: {raw_output}")
