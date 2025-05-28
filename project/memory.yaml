@@ -4760,3 +4760,15 @@
   - GPT
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/WP27_combined_definition.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/WP27_combined_definition.md
+  file_type: md
+  description: Document outlining the integration and iterative enhancement of user
+    experiences for generating policy artifacts using GPT and existing toolchains.
+  tags:
+  - integration
+  - UX
+  - toolchains
+  - GPT
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
