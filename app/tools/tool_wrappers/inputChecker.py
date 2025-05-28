@@ -11,11 +11,14 @@ def get_logged_intents(session_id: str) -> List[str]:
         logs = session.query(PromptLog).filter(PromptLog.session_id == session_id).all()
         return [log.input_summary or "" for log in logs if log.input_summary]
 
-def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str) -> Dict:
+def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str, section_id: str) -> Dict:
     with open("project/reference/gate_reference_v2.yaml") as f:
         gate_reference = yaml.safe_load(f)
 
-    expected_intents = gate_reference[int(gate_id)]["artifacts"][artifact_id]["sections"]
+    gate = next(g for g in gate_reference if g["gate_id"] == int(gate_id))
+    artifact = next(a for a in gate["artifacts"] if a["artifact_id"] == artifact_id)
+    section = next(s for s in artifact["sections"] if s["section_id"] == section_id)
+    expected_intents = section["intents"]
 
     prompt_data = {
         "intents": expected_intents,
@@ -35,6 +38,7 @@ class Tool:
         return identify_missing_intents(
             session_id=input_dict["session_id"],
             gate_id=input_dict["gate_id"],
-            artifact_id=input_dict["artifact_id"]
+            artifact_id=input_dict["artifact_id"],
+            section_id=input_dict["section_id"]
         )
 

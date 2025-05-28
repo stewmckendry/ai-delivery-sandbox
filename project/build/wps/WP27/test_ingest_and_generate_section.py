@@ -97,9 +97,9 @@ if __name__ == '__main__':
     parser.add_argument('--project_id', required=True)
     parser.add_argument('--session_id', required=True)
     parser.add_argument('--user_id', required=True)
-    parser.add_argument('--gate_id', default="0")
+    parser.add_argument('--gate_id', default=0, type=int, help="Gate ID for the project")
     parser.add_argument('--artifact', default="investment_proposal_concept")
-    parser.add_argument('--section', default="problem_context")
+    parser.add_argument('--section', default="problem_statement")
     parser.add_argument('--text_file', required=True)
 
     args = parser.parse_args()
