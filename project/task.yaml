@@ -606,6 +606,7 @@ tasks:
     - project/test/WP23/WP23_test_plan.md
     - project/test/WP23/test_revise_section_chain.py
     - project/build/wps/WP27/plan_phase1_iteration1.md
+    - project/build/wps/WP27/test_ingest_and_generate_section.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
