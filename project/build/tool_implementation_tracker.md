@@ -47,4 +47,11 @@
 | queryCorpus            | WP22      | ✅ Complete  | Embedding DB search tool using Chroma and labeled chunks |
 | queryPromptGenerator   | WP22      | ✅ Complete  | Generates structured search prompts using memory and project profile |
 | loadCorpus (async)     | WP22      | ✅ Complete  | Enhanced with async support to embed corpora without timeouts |
+| feedback_preprocessor  | WP23      | ✅ Built   | Classifies feedback into actionable types.                                       |
+| feedback_mapper        | WP23      | ✅ Built   | Maps user feedback to corresponding section(s) of the artifact.                 |
+| section_rewriter       | WP23      | ✅ Built   | Uses LLM to rewrite a section per feedback.                                     |
+| revision_checker       | WP23      | ✅ Built   | Compares original vs revised text to verify alignment with feedback.            |
+| manual_edit_sync       | WP23      | ✅ Built   | Stores and syncs direct user edits to the section.                              |
+| revise_section_chain   | WP23      | ✅ Built   | Toolchain coordinating the entire revision flow.                                |
+| llm_helper             | WP23      | ✅ Built   | Abstraction for standardized GPT call and prompt construction.                  |
 

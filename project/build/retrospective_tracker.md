@@ -189,3 +189,26 @@
 - Build prompt-to-draft trace viewer
 - Integrate highlighter with corpus search
 - Suggest prompts via intent tagging
+
+---
+
+## WP23 – Section Revision from Feedback
+
+### ✅ What Went Well
+- Modular architecture scaled well across tools
+- Summarizing section inputs improved LLM comprehension
+- CLI-first implementation enabled test-driven development
+- GPT wrappers supported composability and reuse
+
+### 🤔 What Could Be Improved
+- LLM responses not always compliant with feedback nuance
+- Manual edits required post-check to match tone/style
+- Feedback classification could misroute ambiguous input
+- Many tools involved → high coordination overhead
+
+### 💡 Lessons & Recommendations
+- Keep prompt design abstracted for updates
+- Consider prompt memory limits and minimize token bloat
+- Add UX layer for multi-feedback aggregation and selection
+- Implement a unified validation + QA harness
+

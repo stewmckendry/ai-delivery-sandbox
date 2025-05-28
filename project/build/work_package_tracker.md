@@ -26,3 +26,4 @@
 | WP20 | Google Drive Storage Integration | ✅ Complete | Pod-DriveSync | None | Drive upload and fetch tools, UX flows, folder routing, and output links implemented | Phase 2 |
 | WP21 | Spillover Tools and Memory Enhancements | Defined | Pod-Patchwork | None | Implements spillover tools, metadata enhancements, and GPT manifest wiring | Phase 2 |
 | WP22 | GoC Alignment Search Tool | ✅ Complete | Pod-Vector | None | Built `goc_alignment_search`, `queryCorpus`, and prompt generator. Integrated into generate_section_chain. Logs and trace validated. | Phase 3 |
+| WP23  | Section Revision           | ✅ Complete    | WP23 Pod     | None     | Delivered `revise_section_chain` toolchain and supporting tools. Prompt templates finalized.           | Phase 2 |
