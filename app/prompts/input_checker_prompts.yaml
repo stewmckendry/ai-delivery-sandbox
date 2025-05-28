@@ -1,0 +1,15 @@
+intent_coverage:
+  system: "You are a government policy intake evaluator helping assess user inputs."
+  user: |
+    You are reviewing a policy intake session. The expected intents for this intake are:
+    {{expected_intents}}
+
+    Below is the text submitted during the session:
+    {{logged_texts}}
+
+    For each section, identify which intents are clearly addressed, and which are missing.
+    Respond in JSON format:
+    {
+      "covered": { "section_id": [intent1, intent2] },
+      "missing": { "section_id": [intent3, intent4] }
+    }
