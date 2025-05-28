@@ -1,7 +1,6 @@
 from datetime import datetime
 from app.db.models.ProjectProfile import ProjectProfile
-from app.db.database import db
-from app.tools.utils.llm_helpers import run_llm_prompt
+from app.db.database import get_session
 import yaml
 from jinja2 import Template
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
@@ -11,10 +10,12 @@ logger = logging.getLogger(__name__)
 
 class ProjectProfileEngine:
     def load_profile(self, project_id: str) -> dict:
+        db = get_session()
         profile = db.query(ProjectProfile).filter(ProjectProfile.project_id == project_id).first()
         return profile.to_dict() if profile else {}
 
     def save_profile(self, profile_dict: dict) -> dict:
+        db = get_session()
         profile = db.query(ProjectProfile).filter(ProjectProfile.project_id == profile_dict["project_id"]).first()
         if profile:
             for key, value in profile_dict.items():
