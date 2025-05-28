@@ -1,7 +1,7 @@
 ### WP27 – Toolchain Integration + GPT Wiring
 
 **Objective:**
-Wire existing toolchains and tool wrappers into the GPT interface to enable seamless interaction, exploratory testing, and agile enhancement cycles. Ensure end-to-end flows work from user prompt through document generation, incorporating validation, memory lookup, and section logic.
+Wire existing toolchains and tool wrappers into the GPT interface to enable seamless interaction, exploratory testing, and agile enhancement cycles. Ensure end-to-end flows work from user prompt through document generation, incorporating validation, memory lookup, and section logic. Reference the `tool_catalog.yaml` to use the latest inventory of tools. Optimize the mix of individual tools and toolchains for a realistic, effective user experience.
 
 **Scope:**
 - Integrate all toolchains (`assemble_artifact_chain`, `generate_section_chain`, `IngestInputChain`, `generate_full_artifact_chain`, `revise_section_chain`) into GPT interface
@@ -18,7 +18,7 @@ Wire existing toolchains and tool wrappers into the GPT interface to enable seam
 - Documentation of toolchain-GPT mappings
 
 **Dependencies:**
-- Reference files: `gate_reference_v2.yaml`, tool wrappers, toolchains
+- Reference files: `gate_reference_v2.yaml`, `tool_catalog.yaml`, tool wrappers, toolchains
 - Design context from WP24, WP12
 
 **Owner:** TBD
