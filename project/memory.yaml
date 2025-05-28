@@ -4797,3 +4797,14 @@
   - tools
   last_updated: '2025-05-28'
   pod_owner: QAPod
+- path: project/build/wps/WP27/sample_input_text.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/sample_input_text.txt
+  file_type: txt
+  description: Proposal discussing the challenges and strategic opportunities for
+    unifying digital identity solutions under a common framework.
+  tags:
+  - digital identity
+  - proposal
+  - strategy
+  last_updated: '2025-05-28'
+  pod_owner: ResearchPod
