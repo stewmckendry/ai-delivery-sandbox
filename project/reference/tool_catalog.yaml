@@ -579,179 +579,178 @@ tools:
       required:
         - artifact_id
         - gate_id
+  revise_section:
+    description: Applies user feedback to revise document sections, including mapping, rewriting, compliance checking, and saving.
+    module: app.engines.toolchains.revise_section_chain
+    class: ReviseSectionChain
+    schema:
+      type: object
+      properties:
+        artifact: { type: string }
+        section: { type: string }
+        feedback_text: { type: string }
+        mode: { type: string }
+        session_id: { type: string }
+        user_id: { type: string }
+        project_id: { type: string }
+      required:
+        - artifact
+        - feedback_text
+        - user_id
+        - project_id
 
-revise_section:
-  description: Applies user feedback to revise document sections, including mapping, rewriting, compliance checking, and saving.
-  module: app.engines.toolchains.revise_section_chain
-  class: ReviseSectionChain
-  schema:
-    type: object
-    properties:
-      artifact: { type: string }
-      section: { type: string }
-      feedback_text: { type: string }
-      mode: { type: string }
-      session_id: { type: string }
-      user_id: { type: string }
-      project_id: { type: string }
-    required:
-      - artifact
-      - feedback_text
-      - user_id
-      - project_id
+  feedback_mapper:
+    description: Maps feedback text to the most relevant document section IDs and determines the type of revision required.
+    module: app.tools.tool_wrappers.feedback_mapper
+    class: Tool
+    schema:
+      type: object
+      properties:
+        feedback_text: { type: string }
+        artifact: { type: string }
+        project_id: { type: string }
+      required:
+        - feedback_text
 
-feedback_mapper:
-  description: Maps feedback text to the most relevant document section IDs and determines the type of revision required.
-  module: app.tools.tool_wrappers.feedback_mapper
-  class: Tool
-  schema:
-    type: object
-    properties:
-      feedback_text: { type: string }
-      artifact: { type: string }
-      project_id: { type: string }
-    required:
-      - feedback_text
+  section_rewriter:
+    description: Rewrites a section based on the revision type and feedback using prompt templates and LLM output.
+    module: app.tools.tool_wrappers.section_rewriter
+    class: Tool
+    schema:
+      type: object
+      properties:
+        section_id: { type: string }
+        feedback: { type: string }
+        revision_type: { type: string }
+        current_text: { type: string }
+      required:
+        - section_id
+        - feedback
+        - revision_type
+        - current_text
 
-section_rewriter:
-  description: Rewrites a section based on the revision type and feedback using prompt templates and LLM output.
-  module: app.tools.tool_wrappers.section_rewriter
-  class: Tool
-  schema:
-    type: object
-    properties:
-      section_id: { type: string }
-      feedback: { type: string }
-      revision_type: { type: string }
-      current_text: { type: string }
-    required:
-      - section_id
-      - feedback
-      - revision_type
-      - current_text
+  manualEditSync:
+    description: Saves a section that was edited manually or pasted by a user, without transformation.
+    module: app.tools.tool_wrappers.manualEditSync
+    class: Tool
+    schema:
+      type: object
+      properties:
+        section_id: { type: string }
+        artifact: { type: string }
+        gate_id: { type: string }
+        text: { type: string }
+      required:
+        - section_id
+        - text
 
-manualEditSync:
-  description: Saves a section that was edited manually or pasted by a user, without transformation.
-  module: app.tools.tool_wrappers.manualEditSync
-  class: Tool
-  schema:
-    type: object
-    properties:
-      section_id: { type: string }
-      artifact: { type: string }
-      gate_id: { type: string }
-      text: { type: string }
-    required:
-      - section_id
-      - text
+  feedback_preprocessor:
+    description: Cleans and normalizes feedback text, and optionally splits into smaller actionable feedback items.
+    module: app.tools.tool_wrappers.feedback_preprocessor
+    class: Tool
+    schema:
+      type: object
+      properties:
+        feedback_text: { type: string }
+      required:
+        - feedback_text
 
-feedback_preprocessor:
-  description: Cleans and normalizes feedback text, and optionally splits into smaller actionable feedback items.
-  module: app.tools.tool_wrappers.feedback_preprocessor
-  class: Tool
-  schema:
-    type: object
-    properties:
-      feedback_text: { type: string }
-    required:
-      - feedback_text
+  revision_checker:
+    description: Compares original and revised section content to detect excessive or unintended changes based on revision type.
+    module: app.tools.tool_wrappers.revision_checker
+    class: Tool
+    schema:
+      type: object
+      properties:
+        original_text: { type: string }
+        revised_text: { type: string }
+        revision_type: { type: string }
+      required:
+        - original_text
+        - revised_text
+        - revision_type
 
-revision_checker:
-  description: Compares original and revised section content to detect excessive or unintended changes based on revision type.
-  module: app.tools.tool_wrappers.revision_checker
-  class: Tool
-  schema:
-    type: object
-    properties:
-      original_text: { type: string }
-      revised_text: { type: string }
-      revision_type: { type: string }
-    required:
-      - original_text
-      - revised_text
-      - revision_type
+  refine_document_chain:
+    description: Refines and polishes a full assembled document using LLM-based strategies, preserving quality and fidelity while respecting token limits.
+    module: app.tools.tool_wrappers.refine_document_chain
+    class: Tool
+    schema:
+      type: object
+      properties:
+        document_text: { type: string }
+        artifact_id: { type: string }
+        project_id: { type: string }
+        user_id: { type: string }
+        section_ids: 
+          type: array
+          items: { type: string }
+      required:
+        - document_text
+        - artifact_id
+        - project_id
+        - user_id
+        - section_ids
 
-refine_document_chain:
-  description: Refines and polishes a full assembled document using LLM-based strategies, preserving quality and fidelity while respecting token limits.
-  module: app.tools.tool_wrappers.refine_document_chain
-  class: Tool
-  schema:
-    type: object
-    properties:
-      document_text: { type: string }
-      artifact_id: { type: string }
-      project_id: { type: string }
-      user_id: { type: string }
-      section_ids: 
-        type: array
-        items: { type: string }
-    required:
-      - document_text
-      - artifact_id
-      - project_id
-      - user_id
-      - section_ids
+  generate_full_artifact_chain:
+    description: Generates an entire artifact by sequentially executing section-level generation and final document refinement.
+    module: app.engines.toolchains.generate_full_artifact_chain
+    class: GenerateFullArtifactChain
+    schema:
+      type: object
+      properties:
+        artifact_id: { type: string }
+        project_id: { type: string }
+        user_id: { type: string }
+      required:
+        - artifact_id
+        - project_id
+        - user_id
 
-generate_full_artifact_chain:
-  description: Generates an entire artifact by sequentially executing section-level generation and final document refinement.
-  module: app.engines.toolchains.generate_full_artifact_chain
-  class: GenerateFullArtifactChain
-  schema:
-    type: object
-    properties:
-      artifact_id: { type: string }
-      project_id: { type: string }
-      user_id: { type: string }
-    required:
-      - artifact_id
-      - project_id
-      - user_id
+  query_prompt_generator:
+    description: Generates concise, rich search queries from project context and memory to guide retrieval from corpuses and external data.
+    module: app.tools.tool_wrappers.query_prompt_generator
+    class: Tool
+    schema:
+      type: object
+      properties:
+        project_profile: { type: object }
+        memory:
+          type: array
+          items: { type: object }
+      required:
+        - project_profile
+        - memory
 
-query_prompt_generator:
-  description: Generates concise, rich search queries from project context and memory to guide retrieval from corpuses and external data.
-  module: app.tools.tool_wrappers.query_prompt_generator
-  class: Tool
-  schema:
-    type: object
-    properties:
-      project_profile: { type: object }
-      memory:
-        type: array
-        items: { type: object }
-    required:
-      - project_profile
-      - memory
+  section_synthesizer:
+    description: Synthesizes a first draft of a policy section using memory, profile, web insights, and strategic alignments.
+    module: app.tools.tool_wrappers.section_synthesizer
+    class: Tool
+    schema:
+      type: object
+      properties:
+        memory: 
+          type: array
+          items: { type: object }
+        alignment_results:
+          type: array
+          items: { type: object }
+        web_search: { type: string }
+        corpus_answer: { type: object }
+        project_profile: { type: object }
+        artifact: { type: string }
+        section: { type: string }
+      required:
+        - memory
+        - artifact
+        - section
 
-section_synthesizer:
-  description: Synthesizes a first draft of a policy section using memory, profile, web insights, and strategic alignments.
-  module: app.tools.tool_wrappers.section_synthesizer
-  class: Tool
-  schema:
-    type: object
-    properties:
-      memory: 
-        type: array
-        items: { type: object }
-      alignment_results:
-        type: array
-        items: { type: object }
-      web_search: { type: string }
-      corpus_answer: { type: object }
-      project_profile: { type: object }
-      artifact: { type: string }
-      section: { type: string }
-    required:
-      - memory
-      - artifact
-      - section
-
-section_refiner:
-  description: Refines a drafted policy section for tone, clarity, and professionalism using LLM-based polishing.
-  module: app.tools.tool_wrappers.section_refiner
-  class: Tool
-  schema:
-    type: object
-    properties:
-      raw_draft: { type: string }
-    required:
-      - raw_draft
+  section_refiner:
+    description: Refines a drafted policy section for tone, clarity, and professionalism using LLM-based polishing.
+    module: app.tools.tool_wrappers.section_refiner
+    class: Tool
+    schema:
+      type: object
+      properties:
+        raw_draft: { type: string }
+      required:
+        - raw_draft

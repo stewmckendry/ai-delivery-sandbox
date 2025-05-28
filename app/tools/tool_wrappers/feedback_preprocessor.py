@@ -21,13 +21,9 @@ class Tool:
 
         template = Template(prompts["feedback_preprocess"]["user"])
         user_prompt = template.render(feedback_text=feedback_text)
+        system_prompt = prompts["feedback_preprocess"]["system"]
 
-        messages = [
-            {"role": "system", "content": prompts["feedback_preprocess"]["system"]},
-            {"role": "user", "content": user_prompt}
-        ]
-
-        response = chat_completion_request(messages, temperature=0.3)
+        response = chat_completion_request(system=system_prompt, user=user_prompt)
 
         try:
             parsed = eval(response)
