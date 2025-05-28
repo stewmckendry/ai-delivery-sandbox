@@ -4808,3 +4808,15 @@
   - strategy
   last_updated: '2025-05-28'
   pod_owner: ResearchPod
+- path: project/build/wps/WP27/test_results_iteration_1.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/test_results_iteration_1.md
+  file_type: md
+  description: Summary of test results and issues from the first iteration of WP27,
+    including successes, observed issues, recommendations, and metrics.
+  tags:
+  - test
+  - results
+  - debug
+  - iteration
+  last_updated: '2025-05-28'
+  pod_owner: QAPod
