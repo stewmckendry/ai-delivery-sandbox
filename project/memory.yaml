@@ -4867,3 +4867,15 @@
   - prompt
   last_updated: '2025-05-28'
   pod_owner: QAPod
+- path: project/build/wps/WP27/iteration_3_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/iteration_3_plan.md
+  file_type: md
+  description: Plan for Iteration 3 of WP27, focusing on enhancing document assembly
+    through section looping, global context integration, and human-in-the-loop checkpoints.
+  tags:
+  - iteration
+  - plan
+  - document assembly
+  - toolchain
+  last_updated: '2025-05-28'
+  pod_owner: DevPod
