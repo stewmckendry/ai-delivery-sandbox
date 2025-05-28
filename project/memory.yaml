@@ -4843,3 +4843,15 @@
   - evaluation
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: app/prompts/project_profile_prompts.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/project_profile_prompts.yaml
+  file_type: yaml
+  description: Prompts for generating structured project profiles from input text
+    and metadata.
+  tags:
+  - prompt
+  - project
+  - profile
+  - schema
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
