@@ -33,14 +33,10 @@ class Tool:
         response = requests.get(prompt_url)
         prompts = yaml.safe_load(response.text)
         template = Template(prompts["revision_check"]["user"])
-
         user_prompt = template.render(revision_type=revision_type, original_text=orig, revised_text=revised)
-        messages = [
-            {"role": "system", "content": prompts["revision_check"]["system"]},
-            {"role": "user", "content": user_prompt}
-        ]
+        system_prompt = prompts["revision_check"]["system"]
 
-        response = chat_completion_request(messages, temperature=0.2)
+        response = chat_completion_request(system=system_prompt, user=user_prompt)
 
         return {
             "change_ratio": round(change_ratio, 3),
