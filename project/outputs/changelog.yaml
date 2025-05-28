@@ -8358,3 +8358,9 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Patch script to include project root in sys.path to resolve import errors
+- timestamp: '2025-05-28T15:15:10.411792'
+  path: project/build/wps/WP27/test_ingest_and_generate_section.py
+  task_id: 2.2_build_and_patch
+  committed_by: GPTPod
+  message: Revert to stub project profile usage to unblock test flow as agreed in
+    Option C
