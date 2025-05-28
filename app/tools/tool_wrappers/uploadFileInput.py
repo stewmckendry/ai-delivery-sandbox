@@ -44,7 +44,7 @@ class Tool:
             )
 
         if input_dict.get("save_profile", False):
-            ProjectProfileEngine().generate_and_save(text, metadata)
+            ProjectProfileEngine().generate_and_save(raw, metadata)
 
         return {
             "status": "success",
