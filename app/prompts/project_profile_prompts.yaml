@@ -1,34 +1,31 @@
-generate_profile:
-  system: |
-    You are a project analyst. Your task is to build a structured project profile.
-    Extract fields only if they are supported by the text. Use null where missing.
-  user: |
-    Project ID: {{project_id}}
+prompts:
+  generate_project_profile:
+    system: "Extract a JSON object that fits the project_profile schema."
+    user: |
+      You are a project analyst. Your task is to build a structured project profile.
+      The project ID is: {{ project_id }}
 
-    INPUT TEXT:
-    {{text}}
+      Extract fields only if they are supported by the text. Use null where missing.
 
-    Existing Metadata:
-    {{metadata}}
+      project_profile:
+        project_id: string
+        title: string
+        sponsor: string
+        project_type: string
+        total_budget: number (use null if missing)
+        start_date: date (YYYY-MM-DD, use null if missing)
+        end_date: date (YYYY-MM-DD, use null if missing)
+        strategic_alignment: string
+        current_gate: integer (use null if missing)
+        scope_summary: string
+        key_stakeholders: string
+        major_risks: string
+        resource_summary: string
+        last_updated: datetime (use null if missing)
+      {% if prior %}
+      Existing profile:
+      {{ prior }}
+      {% endif %}
 
-    Existing Profile:
-    {{prior}}
-
-    Use the following schema:
-    project_profile:
-      project_id: string
-      title: string
-      sponsor: string
-      project_type: string
-      total_budget: number (use null if missing)
-      start_date: date (YYYY-MM-DD, use null if missing)
-      end_date: date (YYYY-MM-DD, use null if missing)
-      strategic_alignment: string
-      current_gate: integer (use null if missing)
-      scope_summary: string
-      key_stakeholders: string
-      major_risks: string
-      resource_summary: string
-      last_updated: datetime (use null if missing)
-
-    Return the result as a JSON object matching the schema.
+      INPUT TEXT:
+      {{ input_text }}
