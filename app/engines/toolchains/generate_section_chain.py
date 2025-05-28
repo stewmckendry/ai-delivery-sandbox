@@ -81,11 +81,12 @@ class GenerateSectionChain:
         trace.append({"tool": "queryCorpus", "output": corpus_results})
         logger.info("[Step 4] queryCorpus complete")
 
-        alignment_results = self.alignment_tool.run_tool({
+        alignment_data = self.alignment_tool.run_tool({
             "query": query["query"],
             "context": inputs,
             "memory": memory
         })
+        alignment_results = alignment_data.get("results", [])
         log_tool_usage("goc_alignment_search", "gc.ca alignment", alignment_results, session_id, user_id, inputs)
         trace.append({"tool": "goc_alignment_search", "output": alignment_results})
         logger.info("[Step 5] goc_alignment_search complete")

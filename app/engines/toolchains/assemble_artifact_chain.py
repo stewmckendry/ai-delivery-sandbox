@@ -22,6 +22,7 @@ class AssembleArtifactChain:
         artifact_id = inputs.get("artifact_id")
         gate_id = inputs.get("gate_id")
         version = inputs.get("version", "v0.1")
+        project_id = inputs.get("project_id")
 
         loaded = self.loader.run_tool({"artifact_id": str(artifact_id), "gate_id": str(gate_id)})
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
@@ -64,14 +65,14 @@ class AssembleArtifactChain:
             section_id = section_map.get(title)
             if section_id:
                 save_artifact_and_trace(
-                    session_id=session_id,
+                    section_id=section_id,
                     artifact_id=artifact_id,
                     gate_id=gate_id,
-                    section_id=section_id,
                     text=body,
-                    sources=[],
+                    tool_outputs=trace,
+                    sources="refined_document",
                     generated_by="refine_document",
-                    project_id=profile.get("project_id")
+                    project_id=project_id
                 )
         logger.info("[Step 3.75] Updated ArtifactSection with refined content")
 
@@ -92,7 +93,7 @@ class AssembleArtifactChain:
             "gate_id": gate_id,
             "version": version,
             "title": title,
-            "project_id": profile.get("project_id")
+            "project_id": project_id
         })
         log_tool_usage("storeToDrive", "committed", committed, session_id, None, inputs)
         trace.append({"tool": "storeToDrive", "output": committed})
