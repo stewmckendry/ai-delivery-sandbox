@@ -1,51 +1,20 @@
-import os
-import yaml
-import uuid
-import datetime
-from app.tools.tool_wrappers.text_extractor import extract_text
-from app.tools.tool_wrappers.structured_input_ingestor import structure_input
-from app.tools.tool_wrappers.retry_ingestion import retry_with_backoff
-from app.engines.memory_sync import log_tool_usage
-from app.utils.trace_utils import write_trace
+from app.utils.input_structuring import structure_input
+from app.db.models.ArtifactSection import ArtifactSection
 
 class Tool:
-    def validate(self, input_dict):
-        if "file_path" not in input_dict and "file_content" not in input_dict:
-            raise ValueError("Must provide either 'file_path' or 'file_contents'.")
-
-    def run_tool(self, input_dict, log_usage=True):
-        self.validate(input_dict)
+    def run_tool(self, input_dict, log_usage=True, save_profile=True):
+        file_name = input_dict["file_name"]
+        text = input_dict["text"]
         metadata = input_dict.get("metadata") or {}
-        project_id = metadata.get("project_id")
 
-        if "file_path" in input_dict:
-            file_path = input_dict["file_path"]
-            raw = retry_with_backoff(extract_text, file_path=file_path)
-            source = file_path
-        else:
-            raw = input_dict["file_content"]
-            source = "uploaded_file"
+        if save_profile:
+            from app.engines.project_profile_engine import ProjectProfileEngine
+            try:
+                existing = ProjectProfileEngine().load_profile(metadata["project_id"])
+            except:
+                existing = {}
+            profile = ProjectProfileEngine().generate_profile_from_text(text, metadata, existing)
+            ProjectProfileEngine().save_profile(profile)
 
-        if raw is None:
-            raise ValueError("Failed to extract or read text from file.")
-
-        entry = structure_input(raw, source, tool_name="uploadFileInput", metadata=metadata)
-        out_path = write_trace(entry)
-
-        if log_usage:
-            log_tool_usage(
-                entry["tool"],
-                entry["input_summary"],
-                entry["output_summary"],
-                session_id=entry.get("session_id"),
-                user_id=entry.get("user_id"),
-                metadata=entry.get("metadata")
-            )
-
-        return {
-            "status": "success",
-            "path": out_path,
-            "text": raw,
-            "metadata": metadata,
-            "project_id": project_id
-        }
+        entry = structure_input(text, source=file_name, tool_name="uploadFileInput", metadata=metadata)
+        return {"status": "success", "entry": entry}
