@@ -4,6 +4,29 @@ from app.tools.tool_wrappers.inputChecker import Tool as InputCheckerTool
 from app.tools.tool_wrappers.confirmProjectProfile import Tool as ProjectProfileTool
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 
+"""
+Script: test_ingest_and_generate_section.py
+Purpose: Validates the end-to-end flow for uploading user input, validating metadata, confirming project profile,
+         and generating a draft for a selected section of a policy artifact.
+
+Test Flow:
+1. Upload sample input text for a given section.
+2. Validate that all required inputs and intents are present.
+3. Load project profile to provide contextual grounding.
+4. Generate a draft section using the configured toolchain.
+
+Usage:
+python project/build/wps/WP27/test_ingest_and_generate_section.py \
+  --project_id <project_id> \
+  --session_id <session_id> \
+  --user_id <user_id> \
+  --text_file project/build/wps/WP27/sample_input_text.txt
+
+Defaults:
+  gate_id = 0
+  artifact = investment_proposal_concept
+  section = problem_context
+"""
 
 def main(project_id, session_id, user_id, gate_id, artifact, section, text_file):
     with open(text_file, 'r') as file:
