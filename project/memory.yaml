@@ -4855,3 +4855,15 @@
   - schema
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/test_results_iteration_2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/test_results_iteration_2.md
+  file_type: md
+  description: Summary of test results and debugging efforts for the second iteration
+    of WP27, including successes, issues, fixes, and next steps.
+  tags:
+  - test
+  - debug
+  - flow
+  - prompt
+  last_updated: '2025-05-28'
+  pod_owner: QAPod
