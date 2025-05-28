@@ -27,12 +27,7 @@ class Tool:
         user_prompt = user_template.render(feedback_text=feedback, sections=sections)
         system_prompt = prompts["feedback_mapping"]["system"]
 
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
-
-        response = chat_completion_request(messages, temperature=0.2)
+        response = chat_completion_request(user_prompt, system_prompt)
 
         try:
             parsed = eval(response)
