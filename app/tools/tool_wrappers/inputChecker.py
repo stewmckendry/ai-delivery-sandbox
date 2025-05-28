@@ -1,72 +1,26 @@
 from typing import Dict, List
-from sqlalchemy.orm import Session
-from app.db.database import get_session
-from app.db.models.PromptLog import PromptLog
-import yaml
 import requests
+import yaml
 import json
-
-GATE_REFERENCE_URL = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
-
-def load_gate_reference() -> List[Dict]:
-    response = requests.get(GATE_REFERENCE_URL)
-    response.raise_for_status()
-    return yaml.safe_load(response.text)
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 
 def get_logged_intents(session_id: str) -> List[str]:
-    db: Session = get_session()
-    logs = db.query(PromptLog).filter(PromptLog.session_id == session_id).all()
-    intents = []
-    for log in logs:
-        if log.full_input_path:
-            try:
-                payload = json.loads(log.full_input_path)
-                if isinstance(payload, dict):
-                    if "metadata" in payload and "intent" in payload["metadata"]:
-                        intents.append(payload["metadata"]["intent"])
-                    elif "intent" in payload:
-                        intents.append(payload["intent"])
-            except Exception:
-                continue
-    return intents
+    # Stubbed logs (replace with real DB fetch later)
+    return [
+        "We need to improve service delivery across departments.",
+        "This will enhance citizen trust in digital platforms."
+    ]
 
-def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str) -> Dict[str, List[str]]:
-    gate_ref = load_gate_reference()
-    gate = next((g for g in gate_ref if g["gate_id"] == gate_id), None)
-    if not gate:
-        return {}
+def identify_missing_intents(session_id: str, gate_id: int, artifact_id: str) -> Dict:
+    with open("project/reference/gate_reference_v2.yaml") as f:
+        gate_reference = yaml.safe_load(f)
 
-    artifact = next((a for a in gate.get("artifacts", []) if a["artifact_id"] == artifact_id), None)
-    if not artifact:
-        return {}
+    expected_intents = gate_reference[str(gate_id)]["expected_intents"]
 
-    expected_intents = {}
-    for section in artifact.get("sections", []):
-        section_id = section.get("section_id")
-        expected_intents[section_id] = section.get("intents", [])
-
-    logged_intents = get_logged_intents(session_id)
-
-    missing = {}
-    for section_id, intents in expected_intents.items():
-        missing_intents = [i for i in intents if i not in logged_intents]
-        if missing_intents:
-            missing[section_id] = missing_intents
-
-    return missing
-
-class Tool:
-    def validate(self, input_dict):
-        if "session_id" not in input_dict or "gate_id" not in input_dict or "artifact_id" not in input_dict:
-            raise ValueError("'session_id', 'gate_id' and 'artifact_id' are required.")
-
-    def run_tool(self, input_dict):
-        self.validate(input_dict)
-        return identify_missing_intents(
-            input_dict["session_id"],
-            input_dict["gate_id"],
-            input_dict["artifact_id"]
-        )
-
-if __name__ == "__main__":
-    print(identify_missing_intents("test_session", 0, "investment_proposal_concept"))
+    prompt_data = {
+        "intents": expected_intents,
+        "logged_texts": get_logged_intents(session_id)
+    }
+    prompt = get_prompt("input_checker_prompts.yaml", "intent_coverage")
+    user_prompt = prompt["user"].replace("{{expected_intents}}", json.dumps(expected_intents)).replace("{{logged_texts}}", "\n".join(prompt_data["logged_texts"]))
+    return json.loads(chat_completion_request(prompt["system"], user_prompt))
