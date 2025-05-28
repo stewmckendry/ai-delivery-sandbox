@@ -4785,3 +4785,15 @@
   - GPT
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/test_ingest_and_generate_section.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/test_ingest_and_generate_section.py
+  file_type: py
+  description: Script to test the ingestion of input text and the generation of section
+    drafts using various tools and chains.
+  tags:
+  - test
+  - ingestion
+  - generation
+  - tools
+  last_updated: '2025-05-28'
+  pod_owner: QAPod
