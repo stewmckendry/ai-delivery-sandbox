@@ -4891,3 +4891,15 @@
   - testing
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/section_prompt_contract.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/section_prompt_contract.md
+  file_type: md
+  description: Document outlining the structure and goals for generating a strategic
+    section draft using AI, including prompt variables and test plans.
+  tags:
+  - prompt
+  - structure
+  - contract
+  - test
+  last_updated: '2025-05-28'
+  pod_owner: ResearchPod
