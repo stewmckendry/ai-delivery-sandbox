@@ -4916,3 +4916,15 @@
   - public-service
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: app/engines/toolchains/generate_artifact_chain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/generate_artifact_chain.py
+  file_type: py
+  description: Script to generate and assemble artifact chains by processing sections
+    and integrating project profiles and memory retrieval.
+  tags:
+  - artifact
+  - generation
+  - toolchain
+  - project
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
