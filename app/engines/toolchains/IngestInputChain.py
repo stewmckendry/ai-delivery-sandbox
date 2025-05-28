@@ -46,62 +46,9 @@ class IngestInputChain:
             existing = {}
 
         project_profile = ProjectProfileEngine().generate_and_save(text=raw_text, metadata=metadata, existing=existing)
-
+        project_id = project_profile.get("project_id", metadata_project_id)
         logger.debug(f"Generated project profile: {project_profile}")
-        for k, v in project_profile.items():
-            logger.debug(f"Generated field {k}: {v} ({type(v)})")
-
-        if not project_profile.get("project_id"):
-            logger.info("LLM output missing project_id, using metadata project_id")
-            project_profile["project_id"] = metadata_project_id
-
-        project_profile["last_updated"] = datetime.utcnow()
-        logger.debug("Added last_updated field")
-
-        def clean(field, expected_type):
-            val = project_profile.get(field)
-            if val == "":
-                val = None
-            if val is None:
-                project_profile[field] = None
-                return
-            try:
-                if expected_type == "date":
-                    project_profile[field] = datetime.strptime(val, "%Y-%m-%d").date()
-                elif expected_type == "int":
-                    project_profile[field] = int(val)
-                elif expected_type == "float":
-                    project_profile[field] = float(val)
-            except Exception as e:
-                logger.warning(f"Invalid {expected_type} format for {field}: {val}, setting to None")
-                project_profile[field] = None
-
-        for field in ["start_date", "end_date"]:
-            clean(field, "date")
-        clean("total_budget", "float")
-        clean("current_gate", "int")
-
-        project_id = project_profile.get("project_id")
-        if not project_id:
-            logger.error("Final project_profile missing project_id")
-            raise ValueError("Missing project_id in generated profile")
-
-        try:
-            old = ProjectProfileEngine().load_profile(project_id)
-            for k, v in project_profile.items():
-                if v is not None or old.get(k) in ("", None):
-                    old[k] = v
-            project_profile = old
-            logger.info(f"Merged with existing profile for ID: {project_id}")
-        except:
-            logger.info(f"No merge needed for new project_id: {project_id}")
-
-        logger.info(f"Saving cleaned project profile: {json.dumps(project_profile, indent=2, default=str)}")
-        for key, value in project_profile.items():
-            logger.debug(f"Before DB save: {key} type: {type(value)} value: {value}")
-
-        ProjectProfileEngine().save_profile(project_profile)
-        logger.info(f"Saved project profile for ID: {project_id}")
+        logger.info(f"Project profile finalized for ID: {project_id}")
 
         log_tool_usage(
             tool_name=tool_map[method],
