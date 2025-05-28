@@ -4820,3 +4820,15 @@
   - iteration
   last_updated: '2025-05-28'
   pod_owner: QAPod
+- path: project/build/wps/WP27/plan_iteration_2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/plan_iteration_2.md
+  file_type: md
+  description: Plan for the second iteration of WP27 focusing on improving section
+    relevance, guidance, and observability in the toolchain.
+  tags:
+  - plan
+  - flow
+  - logging
+  - LLM
+  last_updated: '2025-05-28'
+  pod_owner: DevPod
