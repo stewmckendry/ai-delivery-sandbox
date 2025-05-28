@@ -15,7 +15,7 @@ def base_inputs():
     return {
         "artifact": "A123",
         "section": "S1",
-        "feedback_text": "This section should be more concise. Also clarify the acronym used in the second paragraph.",
+        "feedback_text": "I am hoping you complete re-write this section.  This is a test data to see if revise_section_chain works.",
         "mode": "rewrite",
         "user_id": "U001",
         "project_id": "P001",

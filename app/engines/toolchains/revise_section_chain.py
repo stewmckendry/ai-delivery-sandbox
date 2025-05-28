@@ -131,4 +131,4 @@ class ReviseSectionChain:
                     if "additional_suggestions" in rewritten:
                         suggestions.append(rewritten["additional_suggestions"])
 
-        return {"trace": trace, "status": "complete", "additional_suggestions": suggestions}
+        return {"trace": trace, "status": "complete", "save_result": save_result, "additional_suggestions": suggestions}
