@@ -8507,3 +8507,8 @@
   task_id: wps-WP27
   committed_by: ProductPod
   message: Append output file to wps-WP27
+- timestamp: '2025-05-28T18:09:52.101859'
+  path: app/prompts/project_profile_prompts.yaml
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Add prompt YAML for LLM-based project profile extraction
