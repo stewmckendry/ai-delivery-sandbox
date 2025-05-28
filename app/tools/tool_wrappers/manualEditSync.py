@@ -33,7 +33,8 @@ class Tool:
             return {"status": "no_change", "section_id": section_id}
 
         trace = []
-        trace.append({"tool": "section_refiner", "output": revised_text})
+        output = {"input": input_dict, "output": revised_text, "tool": "manualEditSync", "note": "User manually edited the section text."}  
+        trace.append({"tool": "section_refiner", "output": output})
 
         result = save_artifact_and_trace(
             section_id=section_id,
