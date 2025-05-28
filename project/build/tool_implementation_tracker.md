@@ -58,6 +58,4 @@
 | generate_section_chain.py                    | WP24      | ✅ Updated   | Modularized with shared prompts and helpers                                   |
 | generate_full_artifact_chain.py              | WP24      | ✅ Updated   | Final toolchain combining section generation and refinement                   |
 | generate_section_prompts.yaml                | WP24      | ✅ Complete  | YAML-based prompt templates used across tools                                 |
-| llm_helpers.py                               | WP24      | ✅ Updated   | Shared LLM caller and wrapper for consistent API use                          |
-| test_wp24_toolchain.py                       | WP24      | ✅ Complete  | Test suite for WP24’s implementation                                          |
 
