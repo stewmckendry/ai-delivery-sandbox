@@ -4772,3 +4772,16 @@
   - GPT
   last_updated: '2025-05-28'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/plan_phase1_iteration1.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/plan_phase1_iteration1.md
+  file_type: md
+  description: Plan for the first iteration of Phase 1 in WP27, focusing on creating
+    and testing a minimal end-to-end experience for generating a section of a Gate
+    0 artifact using CLI and custom GPT front-end.
+  tags:
+  - plan
+  - test
+  - CLI
+  - GPT
+  last_updated: '2025-05-28'
+  pod_owner: DeliveryPod
