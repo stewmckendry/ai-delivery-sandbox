@@ -63,7 +63,13 @@ def main(project_id, session_id, user_id, gate_id, artifact, section, text_file)
         "gate_id": int(gate_id),
         "artifact_id": artifact
     })
-    print("Missing Intents:", checker_result)
+    print("Intent Coverage Report:")
+    print("  ✅ Covered:")
+    for section_id, intents in checker_result.get("covered", {}).items():
+        print(f"    [{section_id}]: {', '.join(intents)}")
+    print("  ❌ Missing:")
+    for section_id, intents in checker_result.get("missing", {}).items():
+        print(f"    [{section_id}]: {', '.join(intents)}")
 
     print("[3] Generating section draft (stub profile)...")
     stub_profile = {
