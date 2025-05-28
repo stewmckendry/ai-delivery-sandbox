@@ -8449,3 +8449,13 @@
   task_id: wps-WP27
   committed_by: GPTPod
   message: Append output file to wps-WP27
+- timestamp: '2025-05-28T17:53:35.706126'
+  path: app/prompts/project_profile_prompts.yaml
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Add structured project profile prompt for LLM extraction
+- timestamp: '2025-05-28T17:53:35.706126'
+  path: project/memory.yaml
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Memory update related to app/prompts/project_profile_prompts.yaml
