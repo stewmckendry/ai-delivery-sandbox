@@ -1,7 +1,7 @@
 from typing import Dict, List
 from sqlalchemy.orm import Session
 from app.db.database import get_session
-from app.db.models import PromptLog
+from app.db.models.PromptLog import PromptLog
 import yaml
 import requests
 import json
