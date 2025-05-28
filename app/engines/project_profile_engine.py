@@ -1,44 +1,45 @@
-from app.db.database import get_session
-from app.db.models.ProjectProfile import ProjectProfile
-from sqlalchemy.exc import NoResultFound
 from datetime import datetime
-import logging
-
-logger = logging.getLogger(__name__)
+from app.db.models.ProjectProfile import ProjectProfile
+from app.db.database import db
+from app.tools.utils.llm_helpers import run_llm_prompt
+import yaml
+from jinja2 import Template
 
 class ProjectProfileEngine:
-    def save_profile(self, profile_data: dict):
-        session = get_session()
-        logger.debug(f"Saving project profile: {profile_data}")
-        for k, v in profile_data.items():
-            logger.debug(f"DB save field {k}: {v} ({type(v)})")
-        profile = session.query(ProjectProfile).get(profile_data['project_id'])
-        if not profile:
-            profile = ProjectProfile(**profile_data)
-            session.add(profile)
-        else:
-            for key, value in profile_data.items():
-                logger.debug(f"Updating {key} to {value} ({type(value)})")
-                setattr(profile, key, value)
-            profile.last_updated = datetime.utcnow()
-        session.commit()
-        logger.info(f"Project profile saved for ID: {profile.project_id}")
-        return profile.project_id
-
     def load_profile(self, project_id: str) -> dict:
-        session = get_session()
-        profile = session.query(ProjectProfile).get(project_id)
-        if not profile:
-            logger.warning(f"No profile found for project_id: {project_id}")
-            raise NoResultFound(f"No profile found for project_id: {project_id}")
-        profile_dict = {c.name: getattr(profile, c.name) for c in profile.__table__.columns}
-        logger.debug(f"Loaded project profile: {profile_dict}")
-        return profile_dict
+        profile = db.query(ProjectProfile).filter(ProjectProfile.project_id == project_id).first()
+        return profile.to_dict() if profile else {}
 
-    def validate_profile(self, profile_data: dict) -> bool:
-        required_fields = ["project_id", "title"]
-        for field in required_fields:
-            if field not in profile_data:
-                logger.error(f"Missing required field: {field}")
-                raise ValueError(f"Missing required field: {field}")
-        return True
+    def save_profile(self, profile_dict: dict) -> dict:
+        profile = db.query(ProjectProfile).filter(ProjectProfile.project_id == profile_dict["project_id"]).first()
+        if profile:
+            for key, value in profile_dict.items():
+                setattr(profile, key, value)
+        else:
+            profile = ProjectProfile(**profile_dict)
+            db.add(profile)
+        db.commit()
+        return profile.to_dict()
+
+    def generate_and_save(self, text: str, metadata: dict, existing: dict = None) -> dict:
+        project_id = metadata.get("project_id")
+        if not project_id:
+            raise ValueError("Missing project_id")
+
+        existing = existing or {}
+        prior = "".join([f"{k}: {v}\n" for k, v in existing.items()]) if existing else ""
+
+        with open("app/prompts/project_profile_prompts.yaml") as f:
+            prompt_config = yaml.safe_load(f)
+
+        system_msg = prompt_config["prompts"]["generate_project_profile"]["system"]
+        user_template = Template(prompt_config["prompts"]["generate_project_profile"]["user"])
+        user_msg = user_template.render(project_id=project_id, input_text=text, prior=prior)
+
+        response = run_llm_prompt(system_msg, user_msg)
+        output = response.get("project_profile", response)
+
+        output["project_id"] = output.get("project_id") or project_id
+        output["last_updated"] = datetime.utcnow()
+
+        return self.save_profile(output)
