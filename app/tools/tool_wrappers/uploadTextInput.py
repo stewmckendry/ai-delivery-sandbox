@@ -5,6 +5,7 @@ import datetime
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from app.engines.memory_sync import log_tool_usage
 from app.utils.trace_utils import write_trace
+from app.engines.project_profile_engine import ProjectProfileEngine
 
 class Tool:
     def validate(self, input_dict):
@@ -28,6 +29,9 @@ class Tool:
                 user_id=entry.get("user_id"),
                 metadata=entry.get("metadata")
             )
+
+        if input_dict.get("save_profile", False):
+            ProjectProfileEngine().generate_and_save(text, metadata)
 
         return {
             "status": "success",
