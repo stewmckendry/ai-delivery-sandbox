@@ -8419,3 +8419,8 @@
   task_id: wps-WP27
   committed_by: ProductPod
   message: Append output file to wps-WP27
+- timestamp: '2025-05-28T17:22:07.980727'
+  path: app/tools/tool_wrappers/inputChecker.py
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Hook up real DB + correct schema access for InputChecker LLM prompt
