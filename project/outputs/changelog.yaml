@@ -8394,3 +8394,8 @@
   task_id: 2.2_build_and_patch
   committed_by: GPTPod
   message: Append output file to 2.2_build_and_patch
+- timestamp: '2025-05-28T17:15:51.857035'
+  path: app/tools/tool_wrappers/inputChecker.py
+  task_id: wps-WP27
+  committed_by: ProductPod
+  message: Upgrade InputChecker to use LLM-backed assessment using YAML prompt
