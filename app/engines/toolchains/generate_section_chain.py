@@ -5,6 +5,7 @@ from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
+from app.engines.project_profile_engine import ProjectProfileEngine
 
 logger = logging.getLogger(__name__)
 
@@ -41,12 +42,19 @@ class GenerateSectionChain:
         gate_id = inputs.get("gate_id", "0")
         project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
+        #load project profile if available
+        if project_id:
+            profile_engine = ProjectProfileEngine()
+            project_profile = profile_engine.load_profile(project_id)
+        else:
+            project_profile = {}
+        inputs["project_profile"] = project_profile
+
         context_summary = inputs.get("context_summary", "")
         log_tool_usage("context_summary", "context summary input", context_summary, session_id, user_id, inputs)
 
         memory_input = {**inputs}
-        if "project_profile" in inputs:
-            memory_input["project_profile"] = inputs["project_profile"]
+        memory_input["project_profile"] = project_profile
 
         memory = self.memory_tool.run_tool(memory_input)
         log_tool_usage("memory_retrieve", "retrieved memory", memory, session_id, user_id, inputs)
@@ -68,7 +76,7 @@ class GenerateSectionChain:
         web_summary = self.summarize_web_results(search_results)
 
         query = self.query_tool.run_tool({
-            "project_profile": inputs.get("project_profile", {}),
+            "project_profile": project_profile,
             "memory": memory
         })
         log_tool_usage("queryPromptGenerator", "generated search query", query, session_id, user_id, inputs)

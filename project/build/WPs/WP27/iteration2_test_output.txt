@@ -1,0 +1,152 @@
+(spacy_env) liammckendry@MacBook-Pro policyGPT % python project/build/wps/WP27/test_ingest_and_generate_section.py \
+  --project_id "test_project_id_iteration2" \
+  --session_id "test_session_id_iteration2" \
+  --user_id "test_user_id_iteration2" \
+  --text_file project/build/wps/WP27/sample_input_text.txt
+sys.path: ['/Users/liammckendry/policyGPT', '/Users/liammckendry/policyGPT/project/build/wps/WP27', '/Users/liammckendry/.pyenv/versions/3.11.8/lib/python311.zip', '/Users/liammckendry/.pyenv/versions/3.11.8/lib/python3.11', '/Users/liammckendry/.pyenv/versions/3.11.8/lib/python3.11/lib-dynload', '/Users/liammckendry/spacy_env/lib/python3.11/site-packages']
+project_root: /Users/liammckendry/policyGPT
+[1] Uploading input text...
+INFO:app.tools.tool_wrappers.uploadTextInput:Running uploadTextInput tool
+INFO:app.tools.tool_wrappers.uploadTextInput:uploadTextInput tool completed successfully
+Uploaded: success
+[2] Validating input intents...
+INFO:app.tools.tool_wrappers.inputChecker:📄 Logged texts for session test_session_id_iteration2: ['Over the past decade, digital identity has emerged as a key enabler of public service modernization. Yet despite years of investment, many jurisdictions still struggle with low adoption, fragmented platforms, and lack of user trust. In our province, several programs have launched identity solutions independently, leading to duplication, policy misalignment, and a confusing experience for citizens. There is now a strategic opportunity to unify these efforts under a common digital identity trust framework. This proposal aims to articulate the problem context and rationale for coordinated action.']
+INFO:app.tools.tool_wrappers.inputChecker:Input checker user prompt: You are reviewing a policy intake session. The expected intents for this intake are:
+"section_id": "expected_intents"  
+["Describe the problem or opportunity.", "Explain why it is important to address this now."]
+
+Below is the text submitted during the session:
+Over the past decade, digital identity has emerged as a key enabler of public service modernization. Yet despite years of investment, many jurisdictions still struggle with low adoption, fragmented platforms, and lack of user trust. In our province, several programs have launched identity solutions independently, leading to duplication, policy misalignment, and a confusing experience for citizens. There is now a strategic opportunity to unify these efforts under a common digital identity trust framework. This proposal aims to articulate the problem context and rationale for coordinated action.
+
+For each section, identify which intents are clearly addressed, and which are missing.
+Respond in JSON format:
+{
+  "covered": { "section_id": [intent1, intent2] },
+  "missing": { "section_id": [intent3, intent4] }
+}
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:app.tools.tool_wrappers.inputChecker:Input checker response from LLM: {
+  "covered": { "section_id": ["Describe the problem or opportunity."] },
+  "missing": { "section_id": ["Explain why it is important to address this now."] }
+}
+Intent Coverage Report:
+  ✅ Covered:
+    [section_id]: Describe the problem or opportunity.
+  ❌ Missing:
+    [section_id]: Explain why it is important to address this now.
+[3] Generating section draft (stub profile)...
+INFO:app.tools.tool_registry:📦 Loaded 33 tools from catalog
+INFO:app.tools.tool_registry:📦 Loading tool: memory_retrieve
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_registry:📦 Loading tool: query_prompt_generator
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_registry:📦 Loading tool: queryCorpus
+/Users/liammckendry/spacy_env/lib/python3.11/site-packages/langchain/chat_models/__init__.py:33: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import ChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/Users/liammckendry/spacy_env/lib/python3.11/site-packages/langchain/chat_models/__init__.py:33: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import ChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+INFO:app.tools.tool_wrappers.queryCorpus:✅ queryCorpus Tool loaded
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_registry:📦 Loading tool: goc_alignment_search
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_registry:📦 Loading tool: section_synthesizer
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_registry:📦 Loading tool: section_refiner
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_registry:📦 Loading tool: webSearch
+INFO:app.tools.tool_registry:📦 Tool loaded
+INFO:app.tools.tool_wrappers.memory_retrieve:[Tool] memory_retrieve started
+INFO:app.tools.tool_registry:Schema validation successful
+INFO:app.tools.tool_wrappers.memory_retrieve:Retrieving entries for artifact=investment_proposal_concept, section_=problem_statement, project_id=test_project_id_iteration2
+INFO:app.tools.tool_wrappers.memory_retrieve:Found 1 entries for artifact=investment_proposal_concept, section=problem_statement, session_id=test_session_id_iteration2, user_id=test_user_id_iteration2
+INFO:app.engines.toolchains.generate_section_chain:[Step 1] memory_retrieve complete
+INFO:app.tools.tool_wrappers.web_search:[Tool] web_search started
+INFO:app.tools.tool_wrappers.web_search:[Tool] web_search received query: investment_proposal_concept - problem_statement, search_type: general, context: {'project_profile': {}, 'memory': [{'input_summary': 'direct_input | uploadTextInput', 'output_summary': 'Over the past decade, digital identity has emerged as a key enabler of public service modernization. Yet despite years of investment, many jurisdictions still struggle with low adoption, fragmented platforms, and lack of user trust. In our province, several programs have launched identity solutions independently, leading to duplication, policy misalignment, and a confusing experience for citizens. There is now a strategic opportunity to unify these efforts under a common digital identity trust framework. This proposal aims to articulate the problem context and rationale for coordinated action.', 'full_input_path': '{\n  "project_id": "test_project_id_iteration2",\n  "artifact_id": "investment_proposal_concept",\n  "gate_id": 0,\n  "section_id": "problem_statement",\n  "session_id": "test_session_id_iteration2",\n  "user_id": "test_user_id_iteration2",\n  "intent": "problem_context"\n}', 'timestamp': '2025-05-28T19:43:26.720000'}]}
+INFO:app.tools.tool_wrappers.web_search:[Tool] web_search results: 5 entries found
+INFO:app.tools.tool_wrappers.web_search:[Tool] web_search completed
+INFO:app.engines.toolchains.generate_section_chain:[Step 2] web_search complete
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:app.tools.tool_wrappers.query_prompt_generator:[Tool] query_prompt_generator started
+INFO:app.tools.tool_registry:Schema validation successful
+INFO:app.tools.tool_wrappers.query_prompt_generator:Profile Summary: Project profile is not available....
+INFO:app.tools.tool_wrappers.query_prompt_generator:Memory Context: Over the past decade, digital identity has emerged as a key enabler of public service modernization....
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:app.tools.tool_wrappers.query_prompt_generator:[Tool] prompt: "Digital identity public service modernization challenges, low adoption rates, fragmented platforms,...
+INFO:app.engines.toolchains.generate_section_chain:[Step 3] query_prompt_generator complete
+INFO:app.tools.tool_registry:Schema validation successful
+INFO:app.tools.tool_wrappers.queryCorpus:🔍 Querying corpus with: "Digital identity public service modernization challenges, low adoption rates, fragmented platforms,
+/Users/liammckendry/policyGPT/app/tools/tool_wrappers/queryCorpus.py:46: LangChainDeprecationWarning: The class `OpenAIEmbeddings` was deprecated in LangChain 0.0.9 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-openai package and should be used instead. To use it run `pip install -U :class:`~langchain-openai` and import as `from :class:`~langchain_openai import OpenAIEmbeddings``.
+  vectordb = Chroma(persist_directory=CHROMA_DIR, embedding_function=OpenAIEmbeddings())
+/Users/liammckendry/policyGPT/app/tools/tool_wrappers/queryCorpus.py:46: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-chroma package and should be used instead. To use it run `pip install -U :class:`~langchain-chroma` and import as `from :class:`~langchain_chroma import Chroma``.
+  vectordb = Chroma(persist_directory=CHROMA_DIR, embedding_function=OpenAIEmbeddings())
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+/Users/liammckendry/policyGPT/app/tools/tool_wrappers/queryCorpus.py:48: LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-openai package and should be used instead. To use it run `pip install -U :class:`~langchain-openai` and import as `from :class:`~langchain_openai import ChatOpenAI``.
+  qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(temperature=0), retriever=retriever)
+/Users/liammckendry/policyGPT/app/tools/tool_wrappers/queryCorpus.py:49: LangChainDeprecationWarning: The method `Chain.run` was deprecated in langchain 0.1.0 and will be removed in 1.0. Use :meth:`~invoke` instead.
+  result = qa.run(query)
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:app.tools.tool_wrappers.queryCorpus:✅ Query result ready: Based on the provided context, it seems that the government is focused on modernizing its digital se
+INFO:app.engines.toolchains.generate_section_chain:[Step 4] queryCorpus complete
+INFO:app.tools.tool_wrappers.goc_alignment_search:[Tool] goc_alignment_search started
+INFO:app.tools.tool_wrappers.goc_alignment_search:[Tool] goc_alignment_search results: 5 entries found
+INFO:app.engines.toolchains.generate_section_chain:[Step 5] goc_alignment_search complete
+INFO:app.tools.tool_wrappers.section_synthesizer:[Tool] section_synthesizer started
+INFO:app.tools.tool_registry:Schema validation successful
+INFO:app.tools.tool_wrappers.section_synthesizer:[Tool] section_synthesizer user prompt: Draft a well-structured and dense draft section using all the following inputs.
+Focus on clarity, accuracy, and strategic alignment.
+
+Artifact: investment_proposal_concept
+Section: problem_statement
+
+[Project Context]
+
+
+
+Project Documentation and His...
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:app.tools.tool_wrappers.section_synthesizer:[Tool] section_synthesizer completed with raw draft: [Problem Statement]
+
+The Government of Canada is presently facing significant challenges in its digital services modernization efforts. The issues include low adoption rates of digital services, fragmented digital platforms across different departmen...
+INFO:app.engines.toolchains.generate_section_chain:[Step 6] section_synthesizer complete
+INFO:app.tools.tool_wrappers.section_refiner:[Tool] section_refiner started
+INFO:app.tools.tool_registry:Schema validation successful
+INFO:app.tools.tool_wrappers.section_refiner:[Tool] section_refiner user prompt: Refine the following section for clarity, tone, and polish.
+
+[Draft Section]
+[Problem Statement]
+
+Th...
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:app.tools.tool_wrappers.section_refiner:[Tool] section_refiner output of final draft: [Refined Section]
+[Problem Statement]
+
+The Canadian Government is currently grappling with a series ...
+INFO:app.engines.toolchains.generate_section_chain:[Step 7] section_refiner complete
+INFO:app.engines.toolchains.generate_section_chain:[Step 8] Saved to ArtifactSection and ReasoningTrace
+
+=== Draft Output ===
+[Refined Section]
+[Problem Statement]
+
+The Canadian Government is currently grappling with a series of obstacles in modernizing its digital services. These include low user engagement, disjointed digital platforms, trust deficits among users, policy inconsistencies, and overlapping provincial programs. These hurdles significantly impede the government's strategic objective of establishing a unified digital identity trust framework, a crucial element for enhancing the quality and accessibility of public services for all citizens.
+
+The issues of low user engagement and disjointed platforms point towards the need for a more user-friendly interface and a unified digital strategy. Trust deficits among users are primarily due to perceived lack of transparency and potential security risks. Policy inconsistencies and redundancies in provincial programs underscore the need for improved coordination and collaboration across various departments and governmental levels.
+
+While the government's current efforts in modernizing digital services, including data strategies, open government policies, and public service modernization initiatives, are commendable, a more holistic and strategic approach is needed to effectively tackle these challenges.
+
+This investment proposal seeks to address these issues by offering a solution that aligns with the government's overarching policy direction and strategic goals. The proposal will outline a detailed plan to enhance policy consistency, boost interdepartmental coordination, build user trust, and eliminate redundancies in provincial programs.
+
+This approach will not only streamline digital services but also significantly boost their user engagement. The proposal assures that the solution will dovetail with the strategic alignment of the Canadian Government, a crucial factor for the success of this investment. The specific strategies and measures will be formulated based on in-depth insights gleaned from pertinent government documents and external sources.
+
+By tackling these challenges, this investment proposal will contribute to the government's goal of establishing a unified digital identity trust framework and enhancing the quality and accessibility of public services for all citizens.
+
+The proposal aligns with the government's emphasis on innovation in public services, as evidenced by recent policy documents and reports. Securing funding for this proposal will enable the government to expedite its digital services modernization initiative, delivering superior services to Canadians and bolstering user trust and confidence in the government's digital platforms.

@@ -1,8 +1,8 @@
 import logging
 import requests
 import yaml
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
-from app.tools.utils.llm_helpers import chat_completion_request
 
 logger = logging.getLogger(__name__)
 
@@ -19,30 +19,38 @@ class Tool:
         profile = input_dict.get("project_profile", {})
         memory = input_dict.get("memory", [])
 
-        logger.info(f"profile: {profile}")
-        logger.info(f"memory: {memory[:10]}...")  # Log first 10 entries for brevity
-
-        profile_summary = "\n".join([
-            f"Project Title: {profile.get('title', 'N/A')}",
-            f"Scope Summary: {profile.get('scope_summary', '')}",
-            f"Strategic Alignment: {profile.get('strategic_alignment', '')}",
-            f"Stakeholders: {profile.get('key_stakeholders', '')}",
-            f"Project Type: {profile.get('project_type', '')}"
-        ])
+        summary_lines = []
+        if profile.get('title'):
+            summary_lines.append(f"Project Title: {profile['title']}")
+        if profile.get('scope_summary'):
+            summary_lines.append(f"Scope Summary: {profile['scope_summary']}")
+        if profile.get('strategic_alignment'):
+            summary_lines.append(f"Strategic Alignment: {profile['strategic_alignment']}")
+        if profile.get('key_stakeholders'):
+            summary_lines.append(f"Stakeholders: {profile['key_stakeholders']}")
+        if profile.get('project_type'):
+            summary_lines.append(f"Project Type: {profile['project_type']}")
+        if summary_lines:
+            profile_summary = "\n".join(summary_lines)
+        else:
+            profile_summary = "Project profile is not available."
 
         memory_lines = []
         for entry in memory:
-            memory_lines.append(entry["input_summary"])
+            memory_lines.append(entry["output_summary"])
 
-        memory_context = "\n".join(memory_lines[:10])
+        memory_context = "\n".join(memory_lines)
 
-        prompt_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/generate_section_prompts.yaml"
-        response = requests.get(prompt_url)
-        prompt_data = yaml.safe_load(response.text)
+        logger.info(f"Profile Summary: {profile_summary[:100]}...")  # Log first 100 characters for brevity
+        logger.info(f"Memory Context: {memory_context[:100]}...")  # Log first 100 characters for brevity
 
-        prompt = prompt_data["search_query_generation"]
-        user_prompt = Template(prompt["user"]).render(profile_summary=profile_summary, memory_context=memory_context)
-        system_prompt = prompt["system"]
-        query = chat_completion_request(system_prompt, user_prompt).strip()
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "search_query_generation")
+        user_template = Template(prompt_templates["user"])
+        user_prompt = user_template.render(
+            profile_summary=profile_summary, memory_context=memory_context
+        )
+        system_prompt = prompt_templates["system"]        
+
+        query = chat_completion_request(system=system_prompt, user=user_prompt).strip()
         logger.info(f"[Tool] prompt: {query.strip()[:100]}...")
         return {"query": query}
