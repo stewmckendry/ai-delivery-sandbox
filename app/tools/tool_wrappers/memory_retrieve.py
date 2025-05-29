@@ -35,7 +35,7 @@ class Tool:
                 unique_entries.append(entry)
                 seen_summaries.add(entry.output_summary)
         entries = unique_entries
-        logger.info(f"Found {len(entries)} entries for artifact={artifact}, section={section}, session_id={session_id}, user_id={user_id}")
+        logger.info(f"Found {len(entries)} entries for artifact={artifact}, session_id={session_id}, user_id={user_id}")
         return [{
             "input_summary": e.input_summary,
             "output_summary": e.output_summary,
