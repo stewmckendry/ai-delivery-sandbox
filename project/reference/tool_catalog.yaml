@@ -182,8 +182,6 @@ tools:
       properties:
         artifact:
           type: string
-        section:
-          type: string
         session_id:
           type: string
         user_id:
