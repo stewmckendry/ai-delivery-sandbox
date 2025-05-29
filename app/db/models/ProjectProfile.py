@@ -19,3 +19,6 @@ class ProjectProfile(Base):
     major_risks = Column(Text)
     resource_summary = Column(Text)
     last_updated = Column(TIMESTAMP, default=datetime.datetime.utcnow)
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
