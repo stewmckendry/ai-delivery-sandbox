@@ -12,6 +12,7 @@ class ProjectProfileEngine:
     def load_profile(self, project_id: str) -> dict:
         db = get_session()
         profile = db.query(ProjectProfile).filter(ProjectProfile.project_id == project_id).first()
+        logger.info(f"Loaded project profile for ID: {project_id}")
         return profile.to_dict() if profile else {}
 
     def save_profile(self, profile_dict: dict) -> dict:
@@ -24,6 +25,7 @@ class ProjectProfileEngine:
             profile = ProjectProfile(**profile_dict)
             db.add(profile)
         db.commit()
+        logger.info(f"Saved project profile for ID: {profile_dict['project_id']}")
         return profile.to_dict()
 
     def generate_and_save(self, text, metadata, existing=None):
@@ -49,7 +51,7 @@ class ProjectProfileEngine:
 
             profile_data = output.get("project_profile", {})
             profile_data["project_id"] = metadata.get("project_id")
-
+            logger.info(f"Generated project profile: {profile_data}")
             return self.save_profile(profile_data)
 
         except Exception as e:
