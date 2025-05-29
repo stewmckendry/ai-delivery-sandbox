@@ -1,5 +1,4 @@
 import logging
-from redis import Redis
 import json
 from app.db.database import get_session
 import tiktoken
