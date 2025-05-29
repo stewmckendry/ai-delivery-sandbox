@@ -13,7 +13,7 @@ class Tool:
         logger.info("[Tool] memory_retrieve started")
         self.validate(input_dict)
         artifact = input_dict["artifact"]
-        section = input_dict["section"]
+        #section = input_dict["section"]  # commented out as inputs are global; tailoring is based on section intents
         session_id = input_dict.get("session_id")
         user_id = input_dict.get("user_id")
         project_id = input_dict.get("project_id")
@@ -25,11 +25,12 @@ class Tool:
         query = session.query(PromptLog).filter(
             PromptLog.tool.in_(tool_names),
             PromptLog.full_input_path.contains(f'"artifact_id": "{artifact}"'),
-            PromptLog.full_input_path.contains(f'"section_id": "{section}"'),
             PromptLog.project_id == project_id
         )
         if session_id:
             query = query.filter(PromptLog.session_id == session_id)
+
+        # commented out PromptLog.full_input_path.contains(f'"section_id": "{section}"') from query as inputs are global; tailoring is based on section intents    
 
         entries = query.order_by(PromptLog.timestamp.asc()).all()
         # Remove entries with duplicate output_summary, keeping the first occurrence
