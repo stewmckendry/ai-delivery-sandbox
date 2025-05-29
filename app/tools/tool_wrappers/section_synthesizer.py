@@ -11,10 +11,6 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 class Tool:
-    def validate(self, input_dict):
-        if "memory" not in input_dict:
-            raise ValueError("Missing required field: memory")
-
     def get_section_intents(gate_id, artifact_id, section_id):
         url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
         try:
@@ -36,7 +32,6 @@ class Tool:
         
     def run_tool(self, input_dict):
         logger.info("[Tool] section_synthesizer started")
-        self.validate(input_dict)
         memory_summary = input_dict.get("memory_summary", [])
         global_context_summary = input_dict.get("global_context_summary", [])
         context_summary = input_dict.get("context_summary", "")
