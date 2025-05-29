@@ -2,7 +2,8 @@ import logging
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage
 from app.engines.project_profile_engine import ProjectProfileEngine
-
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+from jinja2 import Template
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +15,19 @@ class GlobalContextChain:
         self.corpus_tool = registry.get_tool("queryCorpus")
         self.alignment_tool = registry.get_tool("goc_alignment_search")
         self.memory_tool = registry.get_tool("memory_retrieve")
+    
+    def summarize_web_results(self, search_results):
+        if not search_results:
+            return ""
+
+        snippets = "\n".join([
+            f"{entry['title']}: {entry['snippet']}"
+            for entry in search_results if 'title' in entry and 'snippet' in entry
+        ])
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "web_summary_synthesis")
+        system_prompt = Template(prompt_templates["system"]).render()
+        user_prompt = Template(prompt_templates["user"]).render(snippets=snippets)
+        return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
 
     def run(self, inputs):
         session_id = inputs.get("session_id")
@@ -47,6 +61,7 @@ class GlobalContextChain:
             "search_type": "general",
             "context": search_filter
         })
+        web_summary = self.summarize_web_results(web_results)
         log_tool_usage("webSearch", "global_context | webSearch", web_results, session_id, user_id, inputs)
 
         # Step 3: Embedded Corpus Search
@@ -59,7 +74,7 @@ class GlobalContextChain:
 
         return {
             "query": search_query,
-            "web_results": web_results,
+            "web_results": web_summary,
             "corpus_answer": corpus_output,
             "alignment_results": alignment_output.get("results", [])
         }

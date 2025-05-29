@@ -3,7 +3,6 @@ import uuid
 import os
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
-from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
 from app.engines.project_profile_engine import ProjectProfileEngine
 
@@ -13,65 +12,8 @@ class GenerateSectionChain:
     def __init__(self):
         registry = ToolRegistry()
         self.memory_tool = registry.get_tool("memory_retrieve")
-        self.query_tool = registry.get_tool("query_prompt_generator")
-        self.corpus_tool = registry.get_tool("queryCorpus")
-        self.alignment_tool = registry.get_tool("goc_alignment_search")
         self.synth_tool = registry.get_tool("section_synthesizer")
         self.refine_tool = registry.get_tool("section_refiner")
-        self.web_search_tool = registry.get_tool("webSearch")
-
-    def summarize_web_results(self, search_results):
-        if not search_results:
-            return ""
-
-        snippets = "\n".join([
-            f"{entry['title']}: {entry['snippet']}"
-            for entry in search_results if 'title' in entry and 'snippet' in entry
-        ])
-        prompt_templates = get_prompt("generate_section_prompts.yaml", "web_summary_synthesis")
-        system_prompt = Template(prompt_templates["system"]).render()
-        user_prompt = Template(prompt_templates["user"]).render(snippets=snippets)
-        return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
-
-    def generate_global_context(self, inputs, project_profile, memory, session_id, user_id):
-        search_results = self.web_search_tool.run_tool({
-            "query": f"{inputs.get('artifact')} - {inputs.get('section')}",
-            "search_type": "general",
-            "context": {
-                "project_profile": project_profile,
-                "memory": memory
-            }
-        })
-        log_tool_usage("web_search", "external scan", search_results, session_id, user_id, inputs)
-        web_summary = self.summarize_web_results(search_results)
-
-        query = self.query_tool.run_tool({
-            "project_profile": project_profile,
-            "memory": memory
-        })
-        log_tool_usage("queryPromptGenerator", "generated search query", query, session_id, user_id, inputs)
-
-        corpus_results = self.corpus_tool.run_tool({
-            "query": query["query"],
-            "context": inputs,
-            "memory": memory
-        })
-        log_tool_usage("queryCorpus", "embedded corpus scan", corpus_results, session_id, user_id, inputs)
-
-        alignment_data = self.alignment_tool.run_tool({
-            "query": query["query"],
-            "context": inputs,
-            "memory": memory
-        })
-        alignment_results = alignment_data.get("results", [])
-        log_tool_usage("goc_alignment_search", "gc.ca alignment", alignment_results, session_id, user_id, inputs)
-
-        return {
-            "web_search": web_summary,
-            "corpus_answer": corpus_results,
-            "alignment_results": alignment_results
-        }
-
 
     def run(self, inputs, global_context=None):
         trace = []

@@ -635,3 +635,23 @@ generate_artifact_chain:
       - session_id
       - user_id
       - project_id
+
+generate_global_context_chain:
+  description: Runs global research using corpus search, web search, and GoC alignment tools, logging results for downstream use.
+  module: app.engines.toolchains.generate_global_context_chain
+  class: GenerateGlobalContextChain
+  schema:
+    type: object
+    properties:
+      session_id: { type: string }
+      user_id: { type: string }
+      project_id: { type: string }
+      artifact_id: { type: string }
+      search_filter:
+        type: object
+        description: Optional filters for tailoring web search (e.g., jurisdiction, topics)
+    required:
+      - session_id
+      - user_id
+      - project_id
+      - artifact_id
