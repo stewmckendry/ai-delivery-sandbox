@@ -616,3 +616,22 @@ tools:
         raw_draft: { type: string }
       required:
         - raw_draft
+
+generate_artifact_chain:
+  description: Generates all sections for an artifact using shared global context, then assembles into a complete document.
+  module: app.engines.toolchains.generate_artifact_chain
+  class: GenerateArtifactChain
+  schema:
+    type: object
+    properties:
+      gate_id: { type: integer }
+      artifact: { type: string }
+      session_id: { type: string }
+      user_id: { type: string }
+      project_id: { type: string }
+    required:
+      - gate_id
+      - artifact
+      - session_id
+      - user_id
+      - project_id

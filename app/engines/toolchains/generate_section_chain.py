@@ -33,7 +33,47 @@ class GenerateSectionChain:
         user_prompt = Template(prompt_templates["user"]).render(snippets=snippets)
         return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
 
-    def run(self, inputs):
+    def generate_global_context(self, inputs, project_profile, memory, session_id, user_id):
+        search_results = self.web_search_tool.run_tool({
+            "query": f"{inputs.get('artifact')} - {inputs.get('section')}",
+            "search_type": "general",
+            "context": {
+                "project_profile": project_profile,
+                "memory": memory
+            }
+        })
+        log_tool_usage("web_search", "external scan", search_results, session_id, user_id, inputs)
+        web_summary = self.summarize_web_results(search_results)
+
+        query = self.query_tool.run_tool({
+            "project_profile": project_profile,
+            "memory": memory
+        })
+        log_tool_usage("queryPromptGenerator", "generated search query", query, session_id, user_id, inputs)
+
+        corpus_results = self.corpus_tool.run_tool({
+            "query": query["query"],
+            "context": inputs,
+            "memory": memory
+        })
+        log_tool_usage("queryCorpus", "embedded corpus scan", corpus_results, session_id, user_id, inputs)
+
+        alignment_data = self.alignment_tool.run_tool({
+            "query": query["query"],
+            "context": inputs,
+            "memory": memory
+        })
+        alignment_results = alignment_data.get("results", [])
+        log_tool_usage("goc_alignment_search", "gc.ca alignment", alignment_results, session_id, user_id, inputs)
+
+        return {
+            "web_search": web_summary,
+            "corpus_answer": corpus_results,
+            "alignment_results": alignment_results
+        }
+
+
+    def run(self, inputs, global_context=None):
         trace = []
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
@@ -61,52 +101,15 @@ class GenerateSectionChain:
         trace.append({"tool": "memory_retrieve", "output": memory})
         logger.info("[Step 1] memory_retrieve complete")
 
-        search_results = self.web_search_tool.run_tool({
-            "query": f"{inputs.get('artifact')} - {inputs.get('section')}",
-            "search_type": "general",
-            "context": {
-                "project_profile": inputs.get("project_profile", {}),
-                "memory": memory
-            }
-        })
-        log_tool_usage("web_search", "external scan", search_results, session_id, user_id, inputs)
-        trace.append({"tool": "web_search", "output": search_results})
-        logger.info("[Step 2] web_search complete")
-
-        web_summary = self.summarize_web_results(search_results)
-
-        query = self.query_tool.run_tool({
-            "project_profile": project_profile,
-            "memory": memory
-        })
-        log_tool_usage("queryPromptGenerator", "generated search query", query, session_id, user_id, inputs)
-        trace.append({"tool": "queryPromptGenerator", "output": query})
-        logger.info("[Step 3] query_prompt_generator complete")
-
-        corpus_results = self.corpus_tool.run_tool({
-            "query": query["query"],
-            "context": inputs,
-            "memory": memory
-        })
-        log_tool_usage("queryCorpus", "embedded corpus scan", corpus_results, session_id, user_id, inputs)
-        trace.append({"tool": "queryCorpus", "output": corpus_results})
-        logger.info("[Step 4] queryCorpus complete")
-
-        alignment_data = self.alignment_tool.run_tool({
-            "query": query["query"],
-            "context": inputs,
-            "memory": memory
-        })
-        alignment_results = alignment_data.get("results", [])
-        log_tool_usage("goc_alignment_search", "gc.ca alignment", alignment_results, session_id, user_id, inputs)
-        trace.append({"tool": "goc_alignment_search", "output": alignment_results})
-        logger.info("[Step 5] goc_alignment_search complete")
-
+        if global_context is None:
+            global_context = self.generate_global_context(inputs, project_profile, memory, session_id, user_id)
+            logger.info("[Optional Step] Generated global context from web search, corpus, and alignment")
+        
         structured_inputs = {
             "memory": memory,
-            "web_search": web_summary,
-            "corpus_answer": corpus_results,
-            "alignment_results": alignment_results,
+            "web_search": global_context["web_search"],
+            "corpus_answer": global_context["corpus_answer"],
+            "alignment_results": global_context["alignment_results"],
             "context_summary": context_summary
         }
 
