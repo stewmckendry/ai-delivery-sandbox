@@ -7,6 +7,8 @@ from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
 import logging
 logger = logging.getLogger(__name__)
+import requests
+import yaml
 
 load_dotenv()
 
