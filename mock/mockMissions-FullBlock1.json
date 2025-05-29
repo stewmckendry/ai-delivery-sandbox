@@ -1,0 +1,90 @@
+[
+  {
+    "id": "intro-a",
+    "lessonBlockId": "block-001",
+    "title": "Introduction to A",
+    "type": "video",
+    "content": {
+      "letter": "a",
+      "videoURL": "/videos/Block 1 EN Lowercase A.mp4"
+    },
+    "badgeId": "badge-001"
+  },
+  {
+    "id": "iso-a",
+    "lessonBlockId": "block-001",
+    "title": "Sound Isolation - A",
+    "type": "phoneme",
+    "content": {
+      "letter": "a",
+      "audioURL": "/audio/a like alligator.mp4"
+    },
+    "badgeId": "badge-002"
+  },
+  {
+    "id": "pos-a",
+    "lessonBlockId": "block-001",
+    "title": "Sound Positioning - A",
+    "type": "phoneme",
+    "content": {
+      "letter": "a",
+      "audioURL": "/audio/Train explanation + Beginning.mp4"
+    },
+    "badgeId": "badge-003"
+  },
+  {
+    "id": "blend-a",
+    "lessonBlockId": "block-001",
+    "title": "Word Blending - A",
+    "type": "blend",
+    "content": {
+      "letter": "a",
+      "audioURL": "/audio/Alphabet.mp4"
+    },
+    "badgeId": "badge-004"
+  },
+  {
+    "id": "arc-a",
+    "lessonBlockId": "block-001",
+    "title": "Alphabet Arc - A",
+    "type": "game",
+    "content": {
+      "letter": "a",
+      "audioURL": "/audio/Audio instruction beginning sound .mp4"
+    },
+    "badgeId": "badge-005"
+  },
+  {
+    "id": "vocab-a",
+    "lessonBlockId": "block-001",
+    "title": "Vocabulary Scene - A",
+    "type": "vocab",
+    "content": {
+      "stickers": ["apple", "ant", "ax"],
+      "sceneImage": "/images/kitchen.png"
+    },
+    "badgeId": "badge-006"
+  },
+  {
+    "id": "sight-a",
+    "lessonBlockId": "block-001",
+    "title": "Sight Word Match - A",
+    "type": "sight",
+    "content": {
+      "sightWord": "a",
+      "imageURL": "/images/sight-a.png"
+    },
+    "badgeId": "badge-007"
+  },
+  {
+    "id": "story-1a",
+    "lessonBlockId": "block-001",
+    "title": "Story - A Bat",
+    "type": "story",
+    "content": {
+      "storyId": "story-001",
+      "audioURL": "/audio/bat.mp4"
+    },
+    "badgeId": "badge-008"
+  }
+]
