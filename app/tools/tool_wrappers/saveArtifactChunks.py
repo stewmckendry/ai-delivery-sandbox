@@ -9,6 +9,7 @@ import requests
 from collections import defaultdict
 import yaml
 from app.redis.redis_client import redis_client
+from sqlalchemy import func, and_
 
 logger = logging.getLogger(__name__)
 
@@ -28,15 +29,37 @@ class Tool:
     def __init__(self):
         self.redis_client = redis_client
 
-    def chunk_sections(self, artifact_id: str, gate_id: str, max_token: int) -> List[Dict]:
+    def chunk_sections(self, project_id: str, artifact_id: str, gate_id: str, max_token: int) -> List[Dict]:
         session = get_session()
         
         # Step 1: Get latest ArtifactSection entries by section_id
-        all_entries = session.query(ArtifactSection).filter_by(
+        # Subquery to get the latest timestamp for each section_id
+        subquery = (
+            session.query(
+            ArtifactSection.section_id,
+            func.max(ArtifactSection.timestamp).label("max_timestamp")
+            )
+            .filter_by(
             artifact_id=artifact_id,
             gate_id=gate_id,
-            status="draft"
-        ).all()
+            project_id=project_id
+            )
+            .group_by(ArtifactSection.section_id)
+            .subquery()
+        )
+
+        # Join to get the full ArtifactSection rows with the latest timestamp per section_id
+        all_entries = (
+            session.query(ArtifactSection)
+            .join(
+            subquery,
+            and_(
+                ArtifactSection.section_id == subquery.c.section_id,
+                ArtifactSection.timestamp == subquery.c.max_timestamp
+            )
+            )
+            .all()
+        )
         
         latest_entries = {}
         for entry in sorted(all_entries, key=lambda e: e.timestamp, reverse=True):
@@ -94,6 +117,7 @@ class Tool:
         logger.info("[Tool] saveArtifactChunks started")
         session_id = input_dict.get("session_id")
         artifact_id = input_dict.get("artifact_id")
+        project_id = input_dict.get("project_id")
         gate_id = input_dict.get("gate_id")
         max_token = input_dict.get("max_token", 1500)
 
@@ -101,7 +125,7 @@ class Tool:
             raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id")
 
         try:
-            chunks = self.chunk_sections(artifact_id, gate_id, max_token)
+            chunks = self.chunk_sections(self, project_id, artifact_id, gate_id, max_token)
             logger.info(f"Chunked {len(chunks)} sections for artifact {artifact_id} under gate {gate_id}")
             key = f"artifact_chunks:{session_id}:{artifact_id}"
             self.redis_client.set(key, json.dumps(chunks))

@@ -82,6 +82,7 @@ def test_save_artifact_chunks():
         "session_id": session_id,
         "artifact_id": artifact_id,
         "gate_id": gate_id,
+        "project_id": project_id,
         "max_token": 1000
     })
     assert result["status"] == "success"
