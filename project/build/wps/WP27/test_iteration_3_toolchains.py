@@ -1,5 +1,10 @@
 import pytest
+import sys
+import os
 import uuid
+
+# Ensure the root of the project is in sys.path so imports like app.tools... work
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../..")))
 from app.engines.toolchains.IngestInputChain import IngestInputChain
 from app.engines.toolchains.global_context_chain import GlobalContextChain
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain

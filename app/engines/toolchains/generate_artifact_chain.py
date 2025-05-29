@@ -1,7 +1,7 @@
 import logging
 from app.tools.tool_registry import ToolRegistry
 from app.engines.project_profile_engine import ProjectProfileEngine
-from app.engines.toolchains.global_context_chain import GlobalContextEngine
+from app.engines.toolchains.global_context_chain import GlobalContextChain
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.tools.tool_wrappers.memory_retrieve import Tool as MemoryTool
 from app.tools.utils.section_helpers import plan_sections
