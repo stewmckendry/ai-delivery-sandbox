@@ -1,5 +1,4 @@
 import logging
-from redis import Redis
 import json
 from app.redis.redis_client import redis_client
 
