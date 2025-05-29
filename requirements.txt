@@ -28,3 +28,6 @@ requests  # used by Bing Web Search API
 
 # WP24 addition:
 tiktoken
+
+# WP27 addition:
+redis
