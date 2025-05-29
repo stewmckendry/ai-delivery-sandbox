@@ -4,6 +4,8 @@ from app.engines.memory_sync import log_tool_usage
 from app.engines.project_profile_engine import ProjectProfileEngine
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
+from app.db.models import PromptLog  # inline import to avoid circular dependency
+from app.db.database import SessionLocal
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +29,36 @@ class GlobalContextChain:
         prompt_templates = get_prompt("generate_section_prompts.yaml", "web_summary_synthesis")
         system_prompt = Template(prompt_templates["system"]).render()
         user_prompt = Template(prompt_templates["user"]).render(snippets=snippets)
+        return chat_completion_request(system_prompt, user_prompt)
+
+
+    def fetch_logged_global_context(self, project_id, session_id):
+        db = SessionLocal()
+        results = db.query(PromptLog).filter(
+            and_(
+                PromptLog.project_id == project_id,
+                PromptLog.session_id == session_id,
+                PromptLog.input_summary.like("global_context |%")
+            )
+        ).all()
+
+        grouped_context = {"webSearch": [], "queryCorpus": [], "goc_alignment_search": []}
+        for log in results:
+            label = log.input_summary.split(" | ")[1]
+            grouped_context.setdefault(label, []).append(log.output_summary)
+
+        return grouped_context
+
+
+    def summarize_global_context(self, grouped_context):
+        from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+        from jinja2 import Template
+
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "global_context_synthesis")
+        system_prompt = Template(prompt_templates["system"]).render()
+        user_prompt = Template(prompt_templates["user"]).render(contexts=grouped_context)
         return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
+
 
     def run(self, inputs):
         session_id = inputs.get("session_id")

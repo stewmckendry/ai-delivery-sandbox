@@ -45,3 +45,12 @@ web_summary_synthesis:
     Summarize the following search snippets into 3 sentences that highlight the most relevant insights for drafting a federal policy document. Avoid repetition.
 
     {{ snippets }}
+
+global_context_synthesis:
+  system: |
+    You are a policy analyst summarizing relevant external research and context.
+  user: |
+    Below is grouped research data from different tools:
+    {{ contexts }}
+
+    Summarize key themes and insights from each group, organized clearly.

@@ -5,6 +5,10 @@ from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
 from jinja2 import Template
 from app.engines.project_profile_engine import ProjectProfileEngine
+from app.engines.toolchains.global_context_chain import GlobalContextChain
+from app.db.models import ArtifactSection
+from app.db.database import SessionLocal
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +18,22 @@ class GenerateSectionChain:
         self.memory_tool = registry.get_tool("memory_retrieve")
         self.synth_tool = registry.get_tool("section_synthesizer")
         self.refine_tool = registry.get_tool("section_refiner")
+        self.global_context_engine = GlobalContextChain()
+    
+    def summarize_drafted_sections(self, artifact_id, session_id, project_id):
+        db = SessionLocal()
+        sections = db.query(ArtifactSection).filter_by(artifact_id=artifact_id, project_id=project_id).all()
+
+        if not sections:
+            return ""
+
+        text_blob = "\n\n".join([f"{s.section_id}: {s.text}" for s in sections])
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "drafted_sections_synthesis")
+        system_prompt = Template(prompt_templates["system"]).render()
+        user_prompt = Template(prompt_templates["user"]).render(text_blob=text_blob)
+
+        return chat_completion_request(system_prompt, user_prompt)
+
 
     def run(self, inputs, global_context=None):
         trace = []
@@ -32,8 +52,8 @@ class GenerateSectionChain:
             project_profile = {}
         inputs["project_profile"] = project_profile
 
-        context_summary = inputs.get("context_summary", "")
-        log_tool_usage("context_summary", "context summary input", context_summary, session_id, user_id, inputs)
+        context_summary = self.summarize_drafted_sections(artifact_id, session_id, project_id)
+        log_tool_usage("context_summary", "summarized prior sections", context_summary, session_id, user_id, inputs)
 
         memory_input = {**inputs}
         memory_input["project_profile"] = project_profile
@@ -44,9 +64,12 @@ class GenerateSectionChain:
         logger.info("[Step 1] memory_retrieve complete")
 
         if global_context is None:
-            global_context = self.generate_global_context(inputs, project_profile, memory, session_id, user_id)
-            logger.info("[Optional Step] Generated global context from web search, corpus, and alignment")
-        
+            context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
+            global_context = {
+                "summary": self.global_context_engine.summarize_global_context(context_data),
+                **context_data
+            }
+
         structured_inputs = {
             "memory": memory,
             "web_search": global_context["web_search"],
