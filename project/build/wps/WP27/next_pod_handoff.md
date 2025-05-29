@@ -66,7 +66,10 @@ You own Phase 4 onward:
 - Iteration 2 test plan + scripts + results to use as an example for Iteration 3+ testing:
   - project/build/wps/WP27/test_ingest_and_generate_section.py
   - project/build/wps/WP27/test_results_iteration_2.md
-
+- Exit report + retrospective from pod who worked on Iteration 3 so far:
+  - project/build/wps/WP27/wp27_interim_closeout.md
+  - project/retrospectives/wp27_retrospective_iteration_3.md
+  
 ---
 
 ### 🛠 Instructions to Get Started
