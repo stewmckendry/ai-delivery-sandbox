@@ -15,7 +15,7 @@ class Tool:
         tool_names = ["uploadTextInput", "uploadFileInput", "uploadLinkInput"]
 
         session = get_session()
-        logger.info(f"Retrieving entries for artifact={artifact}, section_={section}, project_id={project_id}")
+        logger.info(f"Retrieving entries for artifact={artifact}, project_id={project_id}")
         query = session.query(PromptLog).filter(
             PromptLog.tool.in_(tool_names),
             PromptLog.full_input_path.contains(f'"artifact_id": "{artifact}"'),
