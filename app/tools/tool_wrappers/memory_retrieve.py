@@ -6,8 +6,8 @@ logger = logging.getLogger(__name__)
 
 class Tool:
     def validate(self, input_dict):
-        if "artifact" not in input_dict or "section" not in input_dict:
-            raise ValueError("artifact and section are required")
+        if "artifact" not in input_dict:
+            raise ValueError("artifact is required")
 
     def run_tool(self, input_dict):
         logger.info("[Tool] memory_retrieve started")
