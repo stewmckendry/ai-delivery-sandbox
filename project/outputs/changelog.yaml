@@ -8755,3 +8755,13 @@
   task_id: project/build/wps/WP27
   committed_by: ProductPod
   message: Append output file to project/build/wps/WP27
+- timestamp: '2025-05-29T12:43:18.288454'
+  path: app/tools/tool_wrappers/fetchArtifactChunks.py
+  task_id: build/fetchArtifactChunks
+  committed_by: ProductPod
+  message: Add fetchArtifactChunks tool for conditional token-aware payload chunking
+- timestamp: '2025-05-29T12:43:18.288454'
+  path: project/memory.yaml
+  task_id: build/fetchArtifactChunks
+  committed_by: ProductPod
+  message: Memory update related to app/tools/tool_wrappers/fetchArtifactChunks.py
