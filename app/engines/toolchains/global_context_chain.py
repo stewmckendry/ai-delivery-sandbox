@@ -74,7 +74,7 @@ class GlobalContextChain:
         search_filter = inputs.get("search_filter", {}) # used in web_search for jurisdiction and market searches
 
         memory = self.memory_tool.run_tool({
-            "artifact": artifact_id,
+            "artifact_id": artifact_id,
             "project_id": project_id,
             "session_id": session_id,
             "user_id": user_id

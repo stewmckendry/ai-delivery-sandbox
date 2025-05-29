@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 class Tool:
     def run_tool(self, input_dict):
         logger.info("[Tool] memory_retrieve started")
-        artifact = input_dict["artifact"]
+        artifact_id = input_dict["artifact_id"]
         session_id = input_dict.get("session_id")
         user_id = input_dict.get("user_id")
         project_id = input_dict.get("project_id")
@@ -15,10 +15,10 @@ class Tool:
         tool_names = ["uploadTextInput", "uploadFileInput", "uploadLinkInput"]
 
         session = get_session()
-        logger.info(f"Retrieving entries for artifact={artifact}, project_id={project_id}")
+        logger.info(f"Retrieving entries for artifact={artifact_id}, project_id={project_id}")
         query = session.query(PromptLog).filter(
             PromptLog.tool.in_(tool_names),
-            PromptLog.full_input_path.contains(f'"artifact_id": "{artifact}"'),
+            PromptLog.full_input_path.contains(f'"artifact_id": "{artifact_id}"'),
             PromptLog.project_id == project_id
         )
         if session_id:
@@ -35,7 +35,7 @@ class Tool:
                 unique_entries.append(entry)
                 seen_summaries.add(entry.output_summary)
         entries = unique_entries
-        logger.info(f"Found {len(entries)} entries for artifact={artifact}, session_id={session_id}, user_id={user_id}")
+        logger.info(f"Found {len(entries)} entries for artifact={artifact_id}, session_id={session_id}, user_id={user_id}")
         return [{
             "input_summary": e.input_summary,
             "output_summary": e.output_summary,

@@ -157,12 +157,11 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "artifact": { "type": "string" },
-          "section": { "type": "string" },
+          "artifact_id": { "type": "string" },
           "session_id": { "type": "string" },
           "user_id": { "type": "string" }
         },
-        "required": ["artifact", "section"]
+        "required": ["artifact_id", "section_id"]
       }
     },
     {

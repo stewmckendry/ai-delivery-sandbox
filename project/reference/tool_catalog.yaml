@@ -180,14 +180,14 @@ tools:
     schema:
       type: object
       properties:
-        artifact:
+        artifact_id:
           type: string
         session_id:
           type: string
         user_id:
           type: string
       required:
-        - artifact
+        - artifact_id
   loadSectionMetadata:
     module: app.tools.tool_wrappers.loadSectionMetadata
     class: Tool
