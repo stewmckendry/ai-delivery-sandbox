@@ -5,7 +5,7 @@
 2. **Create global_context toolchain** to run corpus + web + GoC alignment searches
 3. **Refactor generate_section_chain** to:
    - Accept and use global_context
-   - Fetch logged research instead of internal calls
+   - Fetch logged research instead of internal calls (no longer runs the tools)
 4. **Validate section-by-section drafting mode** with end-to-end test
 
 ### Phase 1: Plan and De-risk
@@ -14,10 +14,11 @@
 7. Draft feedback schema + simulate GPT checkpoint dialogs [✓ Iteration 4]
 
 ### Phase 2: Refactor for Global Context
-8. Refactor generate_section_chain.py to isolate:
+8. Refactor generate_section_chain.py to remove direct calls to:
    - corpus search
    - web search
    - alignment search
+   Instead, query memory for global_context results
 9. Update section_synthesizer.py to accept:
    - prior_sections_summary
    - global_context
@@ -28,7 +29,7 @@
 ### Phase 3: New Chain Logic
 11. Create generate_artifact_chain.py:
    - Load section metadata
-   - Run global research
+   - Query memory for global_context
    - Loop through each section
    - Compose and call generate_section_chain
    - Call assemble_artifact_chain
