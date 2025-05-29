@@ -12,7 +12,9 @@ class Tool:
         logger.info("[Tool] query_prompt_generator started")
         profile = input_dict.get("project_profile", {})
         memory = input_dict.get("memory", [])
-
+        logger.info(f"[Tool] query_prompt_generator received profile: {profile}")
+        logger.info(f"[Tool] query_prompt_generator received memory entries: {len(memory)}")
+        
         summary_lines = []
         if profile.get('title'):
             summary_lines.append(f"Project Title: {profile['title']}")
