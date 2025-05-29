@@ -4964,3 +4964,15 @@
   - alignment
   last_updated: '2025-05-29'
   pod_owner: DevPod
+- path: project/build/wps/WP27/chunking_strategy.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/chunking_strategy.md
+  file_type: md
+  description: Documentation on the strategy for chunking large artifact payloads
+    to fit within GPT model token limits, including design and implementation details.
+  tags:
+  - chunking
+  - strategy
+  - implementation
+  - design
+  last_updated: '2025-05-29'
+  pod_owner: DevPod
