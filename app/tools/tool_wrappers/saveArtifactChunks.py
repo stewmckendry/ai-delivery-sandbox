@@ -97,7 +97,7 @@ class Tool:
         gate_id = input_dict.get("gate_id")
         max_token = input_dict.get("max_token", 1500)
 
-        if not all([session_id, artifact_id, gate_id]):
+        if session_id is None or artifact_id is None or gate_id is None:
             raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id")
 
         try:
