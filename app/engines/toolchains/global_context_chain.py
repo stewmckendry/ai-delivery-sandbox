@@ -4,7 +4,7 @@ from app.engines.memory_sync import log_tool_usage
 from app.engines.project_profile_engine import ProjectProfileEngine
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
-from app.db.models import PromptLog  # inline import to avoid circular dependency
+from app.db.models.PromptLog import PromptLog  # inline import to avoid circular dependency
 from app.db.database import SessionLocal
 from sqlalchemy import and_
 
