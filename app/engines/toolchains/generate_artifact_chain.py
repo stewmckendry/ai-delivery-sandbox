@@ -1,69 +1,57 @@
 import logging
 from app.tools.tool_registry import ToolRegistry
-from app.engines.toolchains.generate_section_chain import GenerateSectionChain
-from app.engines.toolchains.assemble_artifact_chain import AssembleArtifactChain
 from app.engines.project_profile_engine import ProjectProfileEngine
-from app.reference.gate_reference_v2 import gate_reference
+from app.engines.toolchains.global_context_chain import GlobalContextEngine
+from app.engines.toolchains.generate_section_chain import GenerateSectionChain
+from app.tools.tool_wrappers.memory_retrieve import Tool as MemoryTool
+from app.tools.utils.section_helpers import load_section_definitions
 
 logger = logging.getLogger(__name__)
 
 class GenerateArtifactChain:
     def __init__(self):
         registry = ToolRegistry()
+        self.memory_tool = MemoryTool()
         self.section_chain = GenerateSectionChain()
-        self.assembler = AssembleArtifactChain()
-        self.project_profile_engine = ProjectProfileEngine()
+        self.profile_engine = ProjectProfileEngine()
+        self.global_context_engine = GlobalContextEngine()
 
     def run(self, inputs):
-        gate_id = int(inputs["gate_id"])
-        artifact_id = inputs["artifact"]
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
+        artifact_id = inputs.get("artifact_id")
+        gate_id = inputs.get("gate_id")
         project_id = inputs.get("project_id")
 
-        # Load profile
-        profile = self.project_profile_engine.load_profile(project_id)
+        logger.info("[Step 1] Load project profile")
+        project_profile = self.profile_engine.load_profile(project_id)
+        inputs["project_profile"] = project_profile
 
-        # Prepare section metadata
-        artifact = next(a for a in gate_reference[gate_id]["artifacts"] if a["artifact_id"] == artifact_id)
-        sections = artifact["sections"]
+        logger.info("[Step 2] Retrieve memory")
+        memory = self.memory_tool.run_tool({**inputs, "project_profile": project_profile})
 
-        # Retrieve memory
-        memory = ToolRegistry().get_tool("memory_retrieve").run_tool({
-            "session_id": session_id,
-            "user_id": user_id,
-            "project_profile": profile,
-            "gate_id": gate_id,
-            "artifact": artifact_id,
-            "project_id": project_id
-        })
+        logger.info("[Step 3] Load section definitions")
+        section_definitions = load_section_definitions(gate_id, artifact_id)
 
-        # Generate global context
-        global_context = self.section_chain.generate_global_context(
-            inputs, profile, memory, session_id, user_id
-        )
+        logger.info("[Step 4] Fetch + summarize global context")
+        context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
+        global_context_summary = self.global_context_engine.summarize_global_context(context_data)
 
-        # Iterate through each section
-        section_outputs = []
-        prior_summaries = []
-        for section in sections:
+        logger.info("[Step 5] Generate each section")
+        all_sections_output = []
+
+        for section in section_definitions:
             section_id = section["section_id"]
             section_inputs = {
                 **inputs,
+                "artifact": artifact_id,
                 "section": section_id,
-                "project_profile": profile,
-                "prior_sections_summary": "\n\n".join(prior_summaries)
+                "memory": memory,
+                "context_summary": "",
+                "global_context_summary": global_context_summary,
             }
-            output = self.section_chain.run(section_inputs, global_context=global_context)
-            final_text = output["final_output"]["raw_draft"]
-            prior_summaries.append(final_text)
-            section_outputs.append({"section_id": section_id, "text": final_text})
+            result = self.section_chain.run(section_inputs, global_context=context_data)
+            draft = result["final_output"]["raw_draft"]
+            all_sections_output.append({"section_id": section_id, "draft": draft})
 
-        # Assemble full artifact
-        return self.assembler.run({
-            "artifact": artifact_id,
-            "gate_id": gate_id,
-            "project_id": project_id,
-            "user_id": user_id,
-            "sections": section_outputs
-        })
+        return {"sections": all_sections_output, "summary": global_context_summary}
