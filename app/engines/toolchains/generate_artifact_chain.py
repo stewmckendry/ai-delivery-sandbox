@@ -49,7 +49,7 @@ class GenerateArtifactChain:
             section_id = section["section_id"]
             inputs["section_id"] = section_id
             try:
-                result = self.section_chain.run(inputs=inputs, global_context=global_context_summary)
+                result = self.section_chain.run(inputs=inputs, global_context=global_context)
                 draft = result["final_output"]["raw_draft"]
                 all_sections_output.append({"section_id": section_id, "draft": draft})
                 logger.info(f"[Step 3.x] Generated section: {section_id} complete")
