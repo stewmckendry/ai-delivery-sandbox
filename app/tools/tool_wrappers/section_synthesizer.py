@@ -13,7 +13,7 @@ import yaml
 load_dotenv()
 
 class Tool:
-    def get_section_intents(gate_id, artifact_id, section_id):
+    def get_section_intents(self, gate_id, artifact_id, section_id):
         url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
         try:
             response = requests.get(url)
