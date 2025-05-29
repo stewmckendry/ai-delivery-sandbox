@@ -15,7 +15,7 @@ from app.tools.tool_wrappers.fetchArtifactChunk import Tool as FetchArtifactChun
 
 # Sample IDs
 project_id = "test_project"
-session_id = f"test_session_{uuid.uuid4()}"
+session_id = "test_session_8aeb34fe-bceb-401d-9c82-68848a89ff22"
 artifact_id = "investment_proposal_concept"
 gate_id = 0
 user_id = "test_user"
