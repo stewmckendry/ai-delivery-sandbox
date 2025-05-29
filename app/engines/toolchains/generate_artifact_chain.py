@@ -4,6 +4,7 @@ from app.engines.project_profile_engine import ProjectProfileEngine
 from app.engines.toolchains.global_context_chain import GlobalContextChain
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.tools.tool_wrappers.memory_retrieve import Tool as MemoryTool
+from app.tools.tool_wrappers.saveArtifactChunks import Tool as SaveArtifactChunks
 from app.tools.utils.section_helpers import plan_sections
 from app.engines.memory_sync import log_tool_usage
 import tiktoken
@@ -66,6 +67,7 @@ class GenerateArtifactChain:
         full_text = "\n\n".join(all_texts)
         tokenizer = tiktoken.get_encoding("cl100k_base")
         total_tokens = len(tokenizer.encode(full_text))
+        logger.info(f"[Step 4] Total tokens in document: {total_tokens}")
 
         # If the total tokens exceed the threshold, chunk the artifact
         if total_tokens > self.MAX_TOKENS:
@@ -73,11 +75,12 @@ class GenerateArtifactChain:
             chunk_inputs = {
                 "artifact_id": artifact_id,
                 "gate_id": gate_id,
+                "session_id": session_id,
                 "max_token": self.CHUNK_SIZE
             }
-            fetch_tool = FetchArtifactChunksTool()
-            chunks = fetch_tool.run_tool(chunk_inputs)
-            fetch_tool.save_chunks(chunks, artifact_id, gate_id, session_id, user_id)
+            chunk_tool = SaveArtifactChunks()
+            chunks = chunk_tool.run_tool(chunk_inputs)
+            chunk_tool.save_chunks(chunks, artifact_id, gate_id, session_id, user_id)
             return {
                 "summary": global_context_summary,
                 "chunks": chunks,
@@ -85,6 +88,7 @@ class GenerateArtifactChain:
             }
 
         # If the total tokens are within the limit, return the full sections output
+        logger.info("[Step 4] Document within token limit – returning full sections output")
         return {
             "sections": all_sections_output,
             "summary": global_context_summary,
