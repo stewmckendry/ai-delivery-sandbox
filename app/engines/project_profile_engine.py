@@ -38,8 +38,8 @@ class ProjectProfileEngine:
             }
 
             template = get_prompt("project_profile_prompts.yaml", "generate_project_profile")
-            system_prompt = template.get("system", "")
-            user_template = template.get("user", "")
+            system_prompt = template["prompts"]["generate_project_profile"].get("system", "")
+            user_template = template["prompts"]["generate_project_profile"].get("user", "")
             user_prompt = user_template.format(**prompt_vars)
 
             output = chat_completion_request(system_prompt, user_prompt)
