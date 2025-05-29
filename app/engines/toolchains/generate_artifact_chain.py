@@ -16,7 +16,7 @@ class GenerateArtifactChain:
         self.memory_tool = MemoryTool()
         self.section_chain = GenerateSectionChain()
         self.profile_engine = ProjectProfileEngine()
-        self.global_context_engine = GlobalContextEngine()
+        self.global_context_engine = GlobalContextChain()
         self.MAX_TOKENS = 12000
         self.CHUNK_SIZE = 3000
 
