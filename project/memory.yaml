@@ -5021,3 +5021,16 @@
   - deployment
   last_updated: '2025-05-29'
   pod_owner: DevPod
+- path: project/build/wps/WP27/next_pod_handoff.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/next_pod_handoff.md
+  file_type: md
+  description: Documentation for the handoff process of WP27, detailing the transition
+    from Iteration 3 to Phase 4+, including toolchains, key files, and instructions
+    for continuing the project.
+  tags:
+  - handoff
+  - UX
+  - toolchain
+  - iteration
+  last_updated: '2025-05-29'
+  pod_owner: DeliveryPod
