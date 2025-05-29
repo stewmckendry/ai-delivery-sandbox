@@ -88,8 +88,7 @@ class GlobalContextChain:
             "project_profile": project_profile,
             "memory": memory
         })
-        query_output = self.query_tool.run_tool(query_payload)
-        search_query = query_output.get("query")
+        search_query = query_payload.get("query")
         logger.info(f"[GlobalContextChain] Generated search query: {search_query}")
         log_tool_usage("queryPromptGenerator", "global_context | query_prompt_generator", query_output, session_id, user_id, inputs)
 
