@@ -38,11 +38,15 @@ class ProjectProfileEngine:
             }
 
             template = get_prompt("project_profile_prompts.yaml", "generate_project_profile")
-            system_prompt = template.get("system", "")
-            user_template = template.get("user", "")
-            user_prompt = user_template.format(**prompt_vars)
+            user_template = Template(template["user"])
+            user_prompt = user_template.render(
+                project_id=prompt_vars["project_id"],
+                input_text=prompt_vars["input_text"],
+                prior=prompt_vars["prior"]
+            )
+            system_prompt = template["system"]
 
-            output = chat_completion_request(system_prompt, user_prompt)
+            output = chat_completion_request(system=system_prompt, user=user_prompt)
 
             logger.info(f"LLM output: {output}")
 
