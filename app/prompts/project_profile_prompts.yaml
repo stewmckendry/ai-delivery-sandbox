@@ -6,6 +6,8 @@ generate_project_profile:
 
     Extract fields only if they are supported by the text. Use null where missing.
 
+    RESPONSE FORMAT: YAML of extracted fields in the below project_profile schema.  Don't include any explanations or additional text.
+
     project_profile:
       project_id: string
       title: string
@@ -21,6 +23,7 @@ generate_project_profile:
       major_risks: string
       resource_summary: string
       last_updated: datetime (use null if missing)
+
     {% if prior %}
     Existing profile:
     {{ prior }}

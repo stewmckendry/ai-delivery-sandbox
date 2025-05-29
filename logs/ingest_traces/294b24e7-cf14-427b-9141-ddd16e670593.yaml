@@ -1,0 +1,18 @@
+- id: 294b24e7-cf14-427b-9141-ddd16e670593
+  tool: uploadTextInput
+  input_summary: direct_input | uploadTextInput
+  output_summary: This is a sample input for a digital identity project aimed at improving
+    cross-department authentication systems.
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-29 17:44:19.876176
+  metadata:
+    project_id: test_project
+    artifact_id: investment_proposal_concept
+    gate_id: 0
+    section_id: problem_statement
+    session_id: test_session_4bd835b1-8637-4d38-b6a9-7bd7c8104e74
+    user_id: test_user
+    intent: problem_statement
