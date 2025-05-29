@@ -190,7 +190,6 @@ tools:
           type: string
       required:
         - artifact
-        - section
   loadSectionMetadata:
     module: app.tools.tool_wrappers.loadSectionMetadata
     class: Tool
