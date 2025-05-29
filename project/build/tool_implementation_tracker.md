@@ -58,4 +58,8 @@
 | generate_section_chain.py                    | WP24      | ✅ Updated   | Modularized with shared prompts and helpers                                   |
 | generate_full_artifact_chain.py              | WP24      | ✅ Updated   | Final toolchain combining section generation and refinement                   |
 | generate_section_prompts.yaml                | WP24      | ✅ Complete  | YAML-based prompt templates used across tools                                 |
+| fetchArtifactChunk     | WP27      | ✅ Complete  | Retrieves Redis-stored artifact chunks                                          |
+| saveArtifactChunks     | WP27      | ✅ Complete  | Token-aware chunker with Redis persistence                                      |
+| generate_artifact_chain | WP27     | ✅ Complete  | Full artifact generation with chunk fallback                                    |
+| global_context_chain   | WP27      | ✅ Complete  | Queries and summarizes logged research from memory                              |
 

@@ -231,3 +231,32 @@
 - Enforce stricter change isolation in complex toolchains.
 - Add test cases for each prompt YAML key during validation.
 - Auto-generate tool_catalog/manifest entries from schemas.
+
+## WP27 – E2E UX Testing & Enhancements
+
+### ✅ What Went Well
+- 🎯 Clear mission scope centered on realistic drafting flows
+- 🔁 Smooth iteration and toolchain chaining
+- 🧱 Effective chunking implementation using Redis
+- 🧠 Reuse of `plan_sections` helped enforce draft order
+- 🧪 All toolchain steps tested before orchestration
+
+### 🤔 What Was Surprising
+- Chunking required more design effort than expected
+- Redis plugin integration in dev environment took extra setup
+- Chunking proved essential due to token limits in end-to-end flow
+
+### 🚧 What Could Improve
+- Earlier storyboard of end-user flow to identify tool gaps
+- Enhanced UX trace during GPT execution
+- Clearer boundary between persistent and ephemeral memory
+
+### 💡 Key Learnings
+- Orchestration critical for context-aware drafting
+- Chunk-level orchestration improves memory and performance
+- Global context should be summarized once and reused
+
+### 🛣️ What’s Next
+- Build revision and feedback toolchain
+- Add checkpoints, scoring, and review mode
+- E2E flow test with simulated human feedback
