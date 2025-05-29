@@ -6,7 +6,7 @@ from app.engines.memory_sync import save_artifact_and_trace, log_tool_usage
 from jinja2 import Template
 from app.engines.project_profile_engine import ProjectProfileEngine
 from app.engines.toolchains.global_context_chain import GlobalContextChain
-from app.db.models import ArtifactSection
+from app.db.models.ArtifactSection import ArtifactSection
 from app.db.database import SessionLocal
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 import requests
