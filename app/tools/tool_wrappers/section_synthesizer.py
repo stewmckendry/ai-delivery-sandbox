@@ -36,8 +36,8 @@ class Tool:
         global_context_summary = input_dict.get("global_context_summary", [])
         context_summary = input_dict.get("context_summary", "")
 
-        artifact = input_dict.get("artifact")
-        section = input_dict.get("section")
+        artifact = input_dict.get("artifact_id")
+        section = input_dict.get("section_id")
         gate = input_dict.get("gate_id", "0")
 
         profile = input_dict.get("project_profile", {})
@@ -56,11 +56,7 @@ class Tool:
                 sections.append(f"[Project Type]\n{profile['project_type']}")
             profile_context = "\n\n".join(sections) if sections else ""
 
-        section_intents = self.get_section_intents(
-            gate,
-            artifact,
-            section
-        )
+        section_intents = self.get_section_intents(gate, artifact, section)
 
         prompt_templates = get_prompt("generate_section_prompts.yaml", "section_synthesis")
         user_template = Template(prompt_templates["user"])
