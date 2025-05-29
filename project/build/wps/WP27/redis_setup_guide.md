@@ -113,3 +113,85 @@ This guide enables robust, scalable token chunking with Redis as a session store
     - Name: `REDIS_URL`
     - Value: Paste the connection string
 3. Do the same locally in your `.env` file for local testing.
+
+#### Querying Redis Storage Data From VS Code or CLI
+
+### Querying Redis Storage Data from VS Code or CLI
+
+#### ✅ Option 1: Use the VS Code Redis Extension
+
+1. Open VS Code.
+2. Go to the Extensions sidebar (`⇧⌘X` or `Ctrl+Shift+X`).
+3. Search for "Redis" and install **Redis Explorer** or **Redis VSCode**.
+4. Once installed, open the Redis sidebar tab.
+5. Click **Add Connection** and paste your `REDIS_URL` from Railway (or your local `.env`).
+
+    **Example URL:**
+    ```
+    redis://default:<password>@<host>:<port>
+    ```
+
+6. You can now:
+    - Browse keys
+    - Inspect values
+    - Run Redis commands directly
+
+#### ✅ Option 2: Use Redis CLI from VS Code Terminal
+
+1. If you have `redis-cli` installed, connect using:
+    ```bash
+    redis-cli -u redis://default:<password>@<host>:<port>
+    ```
+2. Then you can run commands like:
+    ```bash
+    KEYS *
+    GET artifact_chunks:<session_id>:<artifact_id>
+    ```
+
+### Using `REDIS_URL` for Environment Variables (Locally and on Railway)
+
+> **Note:**  
+> While you may use `REDIS_PUBLIC_URL` to connect from local tools (like Redis GUI or VS Code), your application code—both locally and on Railway—should reference the `REDIS_URL` variable.
+
+#### Why?
+
+| Environment | Variable to Use    | Reason                                 |
+|-------------|-------------------|----------------------------------------|
+| Railway     | `REDIS_URL`       | Internal network – secure & fast       |
+| Local Dev   | `REDIS_URL`       | Code uses same env key; value points to `REDIS_PUBLIC_URL` |
+| Admin Tools | `REDIS_PUBLIC_URL`| Tools need access from outside         |
+
+---
+
+### Viewing Your Chunks
+
+- No need to manually add keys.
+- Once connected, expand your Redis instance in the side panel.
+- Look for keys like:  
+    ```
+    artifact_chunks:<session_id>:<artifact_id>
+    ```
+    These are created automatically by your code when `SaveArtifactChunks` is called.
+
+#### Testing
+
+1. Run `SaveArtifactChunks` from your toolchain to store a chunk.
+2. Refresh the Redis tree view.
+3. You should see the key appear.
+
+---
+
+### Manually Adding a Key (For Testing Only)
+
+If you want to add a test key:
+
+1. Right-click inside your Redis database in VS Code.
+2. Click **Add Key**.
+3. Use a format like:
+        ```
+        test:key
+        ```
+        with some string or JSON value.
+
+> **Note:**  
+> For GPT chunk storage, manual keys are **not** needed—let the tools manage it!
