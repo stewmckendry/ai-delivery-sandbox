@@ -5,6 +5,7 @@ from app.engines.toolchains.global_context_chain import GlobalContextEngine
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.tools.tool_wrappers.memory_retrieve import Tool as MemoryTool
 from app.tools.utils.section_helpers import plan_sections
+from app.engines.memory_sync import log_tool_usage
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +26,7 @@ class GenerateArtifactChain:
 
         logger.info("[Step 1] Load section definitions")
         section_definitions = plan_sections(gate_id, artifact_id)
+        log_tool_usage("section_helpers", "planned section definitions", section_definitions, session_id, user_id, inputs)
 
         logger.info("[Step 2] Fetch + summarize global context")
         context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
@@ -33,7 +35,9 @@ class GenerateArtifactChain:
             "global_context": context_data,
             "global_context_summary": global_context_summary,
         }
-
+        log_tool_usage("global_context_chain", "fetched global context", context_data, session_id, user_id, inputs)
+        log_tool_usage("global_context_chain", "summarized global context", global_context_summary, session_id, user_id, inputs)
+        
         logger.info("[Step 3] Generate each section")
         all_sections_output = []
 
@@ -45,6 +49,7 @@ class GenerateArtifactChain:
                 draft = result["final_output"]["raw_draft"]
                 all_sections_output.append({"section_id": section_id, "draft": draft})
                 logger.info(f"[Step 3.x] Generated section: {section_id} complete")
+                log_tool_usage("generate_section_chain", f"generated section draft for {section_id}", draft, session_id, user_id, inputs)
             except Exception as e:
                 logger.error(f"[Step 3.x] Error generating section {section_id}: {e}")
                 all_sections_output.append({
