@@ -18,6 +18,7 @@ class ProjectProfileEngine:
     def save_profile(self, profile_dict: dict) -> dict:
         db = get_session()
         profile = db.query(ProjectProfile).filter(ProjectProfile.project_id == profile_dict["project_id"]).first()
+        profile_dict["last_updated"] = datetime.utcnow()  # ✅ Ensure last_updated is set
         if profile:
             for key, value in profile_dict.items():
                 setattr(profile, key, value)
