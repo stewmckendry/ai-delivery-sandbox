@@ -572,6 +572,36 @@
         },
         "required": ["session_id", "user_id", "project_id", "artifact_id"]
       }
+    },
+    {
+      "tool_id": "fetch_artifact_chunk",
+      "description": "Fetch a specific chunk of an artifact from Redis storage for streaming to the user or GPT",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "chunk_id": { "type": "string" }
+        },
+        "required": ["session_id", "chunk_id"]
+      }
+    },
+    {
+      "tool_id": "save_artifact_chunks",
+      "description": "Chunk and save an artifact to Redis using token thresholds for LLM-safe streaming",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "artifact_id": { "type": "string" },
+          "gate_id": { "type": "string" },
+          "max_token": {
+            "type": "integer",
+            "default": 1500,
+            "description": "Optional override for max token size per chunk"
+          }
+        },
+        "required": ["session_id", "artifact_id", "gate_id"]
+      }
     }
   ]
 }

@@ -6,7 +6,7 @@ from app.redis.redis_client import redis_client
 
 logger = logging.getLogger(__name__)
 
-class FetchArtifactChunk:
+class Tool:
     def __init__(self):
         self.redis_client = redis_client
 

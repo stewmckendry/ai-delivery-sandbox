@@ -617,41 +617,73 @@ tools:
       required:
         - raw_draft
 
-generate_artifact_chain:
-  description: Generates all sections for an artifact using shared global context, then assembles into a complete document.
-  module: app.engines.toolchains.generate_artifact_chain
-  class: GenerateArtifactChain
-  schema:
-    type: object
-    properties:
-      gate_id: { type: integer }
-      artifact: { type: string }
-      session_id: { type: string }
-      user_id: { type: string }
-      project_id: { type: string }
-    required:
-      - gate_id
-      - artifact
-      - session_id
-      - user_id
-      - project_id
+  generate_artifact_chain:
+    description: Generates all sections for an artifact using shared global context, then assembles into a complete document.
+    module: app.engines.toolchains.generate_artifact_chain
+    class: GenerateArtifactChain
+    schema:
+      type: object
+      properties:
+        gate_id: { type: integer }
+        artifact: { type: string }
+        session_id: { type: string }
+        user_id: { type: string }
+        project_id: { type: string }
+      required:
+        - gate_id
+        - artifact
+        - session_id
+        - user_id
+        - project_id
 
-generate_global_context_chain:
-  description: Runs global research using corpus search, web search, and GoC alignment tools, logging results for downstream use.
-  module: app.engines.toolchains.generate_global_context_chain
-  class: GenerateGlobalContextChain
-  schema:
-    type: object
-    properties:
-      session_id: { type: string }
-      user_id: { type: string }
-      project_id: { type: string }
-      artifact_id: { type: string }
-      search_filter:
-        type: object
-        description: Optional filters for tailoring web search (e.g., jurisdiction, topics)
-    required:
-      - session_id
-      - user_id
-      - project_id
-      - artifact_id
+  generate_global_context_chain:
+    description: Runs global research using corpus search, web search, and GoC alignment tools, logging results for downstream use.
+    module: app.engines.toolchains.generate_global_context_chain
+    class: GenerateGlobalContextChain
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        user_id: { type: string }
+        project_id: { type: string }
+        artifact_id: { type: string }
+        search_filter:
+          type: object
+          description: Optional filters for tailoring web search (e.g., jurisdiction, topics)
+      required:
+        - session_id
+        - user_id
+        - project_id
+        - artifact_id
+
+  fetch_artifact_chunk:
+    description: Fetch a specific chunk of an artifact from Redis storage for streaming to the user or GPT.
+    module: app.tools.tool_wrappers.fetchArtifactChunk
+    class: Tool
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        chunk_id: { type: string }
+      required:
+        - session_id
+        - chunk_id
+
+  save_artifact_chunks:
+    description: Chunk and save a drafted artifact to Redis using token thresholds for LLM-safe streaming.
+    module: app.tools.tool_wrappers.saveArtifactChunks
+    class: Tool
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        artifact_id: { type: string }
+        gate_id: { type: string }
+        max_token:
+          type: integer
+          default: 1500
+          description: Optional override for the max token size per chunk.
+      required:
+        - session_id
+        - artifact_id
+        - gate_id
