@@ -4,7 +4,7 @@ from app.engines.project_profile_engine import ProjectProfileEngine
 from app.engines.toolchains.global_context_chain import GlobalContextEngine
 from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.tools.tool_wrappers.memory_retrieve import Tool as MemoryTool
-from app.tools.utils.section_helpers import load_section_definitions
+from app.tools.utils.section_helpers import plan_sections
 
 logger = logging.getLogger(__name__)
 
@@ -27,17 +27,14 @@ class GenerateArtifactChain:
         project_profile = self.profile_engine.load_profile(project_id)
         inputs["project_profile"] = project_profile
 
-        logger.info("[Step 2] Retrieve memory")
-        memory = self.memory_tool.run_tool({**inputs, "project_profile": project_profile})
+        logger.info("[Step 2] Load section definitions")
+        section_definitions = plan_sections(gate_id, artifact_id)
 
-        logger.info("[Step 3] Load section definitions")
-        section_definitions = load_section_definitions(gate_id, artifact_id)
-
-        logger.info("[Step 4] Fetch + summarize global context")
+        logger.info("[Step 3] Fetch + summarize global context")
         context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
         global_context_summary = self.global_context_engine.summarize_global_context(context_data)
 
-        logger.info("[Step 5] Generate each section")
+        logger.info("[Step 4] Generate each section")
         all_sections_output = []
 
         for section in section_definitions:
@@ -53,5 +50,6 @@ class GenerateArtifactChain:
             result = self.section_chain.run(section_inputs, global_context=context_data)
             draft = result["final_output"]["raw_draft"]
             all_sections_output.append({"section_id": section_id, "draft": draft})
+            logger.info(f"[Step 4.x] Generated section: {section_id} complete")
 
         return {"sections": all_sections_output, "summary": global_context_summary}
