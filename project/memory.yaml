@@ -5047,3 +5047,16 @@
   - chunking
   last_updated: '2025-05-29'
   pod_owner: QAPod
+- path: project/build/wps/WP27/wp27_interim_closeout.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/wp27_interim_closeout.md
+  file_type: md
+  description: Interim closeout report for WP27 detailing objectives, toolchains,
+    Redis integration, UX flow, and technical design for generating gating artifacts
+    using GPT and tools.
+  tags:
+  - UX
+  - toolchains
+  - Redis
+  - GPT
+  last_updated: '2025-05-29'
+  pod_owner: DeliveryPod
