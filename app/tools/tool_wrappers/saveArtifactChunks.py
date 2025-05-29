@@ -29,7 +29,7 @@ class Tool:
     def __init__(self):
         self.redis_client = redis_client
 
-    def chunk_sections(self, project_id: str, artifact_id: str, gate_id: str, max_token: int) -> List[Dict]:
+    def chunk_sections(self, project_id: str, artifact_id: str, gate_id: str, session_id: str, max_token: int) -> List[Dict]:
         session = get_session()
         
         # Step 1: Get latest ArtifactSection entries by section_id
@@ -42,14 +42,15 @@ class Tool:
             .filter(
                 ArtifactSection.artifact_id == artifact_id,
                 ArtifactSection.project_id == project_id,
-                func.cast(ArtifactSection.gate_id, String) == str(gate_id)
+                func.cast(ArtifactSection.gate_id, String) == str(gate_id),
+                ArtifactSection.session_id == session_id
             )
             .group_by(ArtifactSection.section_id)
             .subquery()
         )
 
         # Join to get the full ArtifactSection rows with the latest timestamp per section_id
-        all_entries = (
+        latest_entries_list = (
             session.query(ArtifactSection)
             .join(
             subquery,
@@ -60,12 +61,8 @@ class Tool:
             )
             .all()
         )
+        latest_entries = {entry.section_id: entry for entry in latest_entries_list}
         
-        latest_entries = {}
-        for entry in sorted(all_entries, key=lambda e: e.timestamp, reverse=True):
-            if entry.section_id not in latest_entries:
-                latest_entries[entry.section_id] = entry
-
         # Step 2: Fetch section order from GitHub reference
         yaml_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
         response = requests.get(yaml_url)
@@ -125,7 +122,7 @@ class Tool:
             raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id")
 
         try:
-            chunks = self.chunk_sections(project_id, artifact_id, gate_id, max_token)
+            chunks = self.chunk_sections(project_id, artifact_id, gate_id, session_id, max_token)
             logger.info(f"Chunked {len(chunks)} sections for artifact {artifact_id} under gate {gate_id}")
             key = f"artifact_chunks:{session_id}:{artifact_id}"
             self.redis_client.set(key, json.dumps(chunks))
