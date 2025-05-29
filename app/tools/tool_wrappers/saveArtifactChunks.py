@@ -9,7 +9,7 @@ import requests
 from collections import defaultdict
 import yaml
 from app.redis.redis_client import redis_client
-from sqlalchemy import func, and_
+from sqlalchemy import func, and_, String
 
 logger = logging.getLogger(__name__)
 
@@ -39,10 +39,10 @@ class Tool:
             ArtifactSection.section_id,
             func.max(ArtifactSection.timestamp).label("max_timestamp")
             )
-            .filter_by(
-            artifact_id=artifact_id,
-            gate_id=gate_id,
-            project_id=project_id
+            .filter(
+                ArtifactSection.artifact_id == artifact_id,
+                ArtifactSection.project_id == project_id,
+                func.cast(ArtifactSection.gate_id, String) == str(gate_id)
             )
             .group_by(ArtifactSection.section_id)
             .subquery()
