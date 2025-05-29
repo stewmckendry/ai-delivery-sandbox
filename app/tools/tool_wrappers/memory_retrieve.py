@@ -5,15 +5,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 class Tool:
-    def validate(self, input_dict):
-        if "artifact" not in input_dict:
-            raise ValueError("artifact is required")
-
     def run_tool(self, input_dict):
         logger.info("[Tool] memory_retrieve started")
-        self.validate(input_dict)
         artifact = input_dict["artifact"]
-        #section = input_dict["section"]  # commented out as inputs are global; tailoring is based on section intents
         session_id = input_dict.get("session_id")
         user_id = input_dict.get("user_id")
         project_id = input_dict.get("project_id")
