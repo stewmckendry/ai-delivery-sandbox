@@ -4941,3 +4941,14 @@
   - implementation
   last_updated: '2025-05-29'
   pod_owner: DeliveryPod
+- path: app/engines/toolchains/generate_global_context_chain.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/generate_global_context_chain.py
+  file_type: py
+  description: Script to generate a global context chain by querying multiple tools
+    and logging their usage.
+  tags:
+  - toolchain
+  - context
+  - logging
+  last_updated: '2025-05-29'
+  pod_owner: DevPod
