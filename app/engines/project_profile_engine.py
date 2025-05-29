@@ -52,7 +52,7 @@ class ProjectProfileEngine:
             logger.info(f"LLM output: {output}")
 
             if isinstance(output, str):
-                output = json.loads(output)
+                output = yaml.safe_load(output)
 
             profile_data = output.get("project_profile", {})
             profile_data["project_id"] = metadata.get("project_id")
