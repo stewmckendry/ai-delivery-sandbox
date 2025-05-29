@@ -125,7 +125,7 @@ class Tool:
             raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id")
 
         try:
-            chunks = self.chunk_sections(self, project_id, artifact_id, gate_id, max_token)
+            chunks = self.chunk_sections(project_id, artifact_id, gate_id, max_token)
             logger.info(f"Chunked {len(chunks)} sections for artifact {artifact_id} under gate {gate_id}")
             key = f"artifact_chunks:{session_id}:{artifact_id}"
             self.redis_client.set(key, json.dumps(chunks))
