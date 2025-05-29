@@ -35,6 +35,19 @@ class GenerateSectionChain:
         return chat_completion_request(system_prompt, user_prompt)
 
 
+    def summarize_memory(self, memory_entries):
+        content_blocks = [entry.get("output_summary", "") for entry in memory_entries if entry.get("output_summary")]
+        if not content_blocks:
+            return ""
+
+        combined_text = "\n\n".join(content_blocks)
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "memory_summary_synthesis")
+        system_prompt = Template(prompt_templates["system"]).render()
+        user_prompt = Template(prompt_templates["user"]).render(content=combined_text)
+
+        return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
+
+
     def run(self, inputs, global_context=None):
         trace = []
         session_id = inputs.get("session_id")
@@ -63,30 +76,35 @@ class GenerateSectionChain:
         trace.append({"tool": "memory_retrieve", "output": memory})
         logger.info("[Step 1] memory_retrieve complete")
 
+        memory_summary = self.summarize_memory(memory)
+        log_tool_usage("memory_summary", "summarized memory context", memory_summary, session_id, user_id, inputs)
+        logger.info("[Step 2] memory_summary complete")
+
         if global_context is None:
             context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
             global_context = {
                 "summary": self.global_context_engine.summarize_global_context(context_data),
                 **context_data
             }
+            log_tool_usage("global_context", "fetched global context", context_data, session_id, user_id, inputs)
+            log_tool_usage("global_context", "summarized global context", global_context["summary"], session_id, user_id, inputs)
+            logger.info("[Step 3] global_context complete")
 
         structured_inputs = {
-            "memory": memory,
-            "web_search": global_context["web_search"],
-            "corpus_answer": global_context["corpus_answer"],
-            "alignment_results": global_context["alignment_results"],
+            "memory_summary": memory_summary,
+            "global_context_summary": global_context["summary"],
             "context_summary": context_summary
         }
 
         draft = self.synth_tool.run_tool({**inputs, **structured_inputs})
         log_tool_usage("section_synthesizer", "generated draft", draft, session_id, user_id, inputs)
         trace.append({"tool": "section_synthesizer", "output": draft})
-        logger.info("[Step 6] section_synthesizer complete")
+        logger.info("[Step 4] section_synthesizer complete")
 
         refined = self.refine_tool.run_tool({**inputs, "raw_draft": draft["raw_draft"]})
         log_tool_usage("section_refiner", "refined draft", refined, session_id, user_id, inputs)
         trace.append({"tool": "section_refiner", "output": refined})
-        logger.info("[Step 7] section_refiner complete")
+        logger.info("[Step 5] section_refiner complete")
 
         save_result = save_artifact_and_trace(
             section_id=section_id,
@@ -98,6 +116,6 @@ class GenerateSectionChain:
             user_id=user_id,
             project_id=project_id
         )
-        logger.info("[Step 8] Saved to ArtifactSection and ReasoningTrace")
+        logger.info("[Step 6] Saved to ArtifactSection and ReasoningTrace")
 
         return {"final_output": refined, "trace": trace, "save_result": save_result}

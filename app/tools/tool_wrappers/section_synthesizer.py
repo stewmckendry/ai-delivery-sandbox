@@ -18,30 +18,9 @@ class Tool:
     def run_tool(self, input_dict):
         logger.info("[Tool] section_synthesizer started")
         self.validate(input_dict)
-        memory = input_dict.get("memory", [])
-        alignment_results = input_dict.get("alignment_results", [])
-        web_summary = input_dict.get("web_search", "")
-        corpus_answer = input_dict.get("corpus_answer", {})
+        memory_summary = input_dict.get("memory_summary", [])
+        global_context_summary = input_dict.get("global_context_summary", [])
         context_summary = input_dict.get("context_summary", "")
-
-        def format_sources(label, entries):
-            lines = []
-            for entry in entries:
-                if isinstance(entry, dict):
-                    if "input_summary" in entry and "full_input_path" in entry:
-                        lines.append(f"- {entry['input_summary']}: {entry['full_input_path']}")
-                    elif "title" in entry and "url" in entry:
-                        lines.append(f"- {entry['title']}: {entry['url']}")
-                    elif "content" in entry:
-                        lines.append(f"- {entry['content'][:200]}...")
-                    elif "text" in entry:
-                        lines.append(f"- {entry['text'][:200]}...")
-            return f"\n{label} Sources:\n" + "\n".join(lines) if lines else ""
-
-        memory_str = format_sources("Project Documentation and Historical Inputs", memory)
-        alignment_str = format_sources("Government of Canada Strategic Alignment", alignment_results)
-        corpus_answer_str = "\nEmbedded Government Reports and Policies:\n" + corpus_answer.get("answer", "") if corpus_answer else ""
-        web_str = f"\nExternal Web Insights:\n{web_summary}" if web_summary else ""
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
@@ -49,22 +28,18 @@ class Tool:
         profile = input_dict.get("project_profile", {})
         profile_context = ""
         if profile:
-            profile_context = f"""
-[Project Title]
-{profile.get('title', 'N/A')}
-
-[Scope Summary]
-{profile.get('scope_summary', '')}
-
-[Strategic Alignment]
-{profile.get('strategic_alignment', '')}
-
-[Stakeholders]
-{profile.get('key_stakeholders', '')}
-
-[Project Type]
-{profile.get('project_type', '')}
-            """
+            sections = []
+            if profile.get('title'):
+                sections.append(f"[Project Title]\n{profile['title']}")
+            if profile.get('scope_summary'):
+                sections.append(f"[Scope Summary]\n{profile['scope_summary']}")
+            if profile.get('strategic_alignment'):
+                sections.append(f"[Strategic Alignment]\n{profile['strategic_alignment']}")
+            if profile.get('key_stakeholders'):
+                sections.append(f"[Stakeholders]\n{profile['key_stakeholders']}")
+            if profile.get('project_type'):
+                sections.append(f"[Project Type]\n{profile['project_type']}")
+            profile_context = "\n\n".join(sections) if sections else ""
 
         prompt_templates = get_prompt("generate_section_prompts.yaml", "section_synthesis")
         user_template = Template(prompt_templates["user"])

@@ -54,3 +54,22 @@ global_context_synthesis:
     {{ contexts }}
 
     Summarize key themes and insights from each group, organized clearly.
+
+drafted_sections_synthesis:
+  system: |
+    You are a policy analyst summarizing drafted content so far.
+  user: |
+    Below is the content from completed sections of an artifact:
+    {{ text_blob }}
+
+    Summarize key insights or themes that should carry forward into the next section.
+
+memory_summary_synthesis:
+  system: |
+    You are a policy analyst preparing a brief summary of past documentation and historical inputs for a government policy artifact.
+  user: |
+    Review the following content and summarize the key points without losing rich detail or nuance. Present it as a concise narrative:
+    
+    {{ content }}
+
+
