@@ -1,29 +1,24 @@
-from app.db.database import get_session
-from app.db.models.ArtifactSection import ArtifactSection
-from pydantic import BaseModel
-from typing import List, Dict
+import json
+import logging
 import tiktoken
-from datetime import datetime
+from typing import List, Dict
+from app.db.models.ArtifactSection import ArtifactSection
+from app.tools.base_tool import BaseTool
+from app.tools.schemas.saveArtifactChunks import InputSchema, ChunkedSection
+from app.db.session import get_session
+from app.redis_client import redis_client
 
-class InputSchema(BaseModel):
-    artifact_id: str
-    gate_id: str
-    max_token: int
+logger = logging.getLogger(__name__)
 
-class ChunkedSection(BaseModel):
-    section_id: str
-    chunk_id: str
-    text: str
-    timestamp: str
+class SaveArtifactChunks(BaseTool):
+    def __init__(self):
+        self.redis_client = redis_client
 
-class Tool:
-    def run_tool(self, input_dict) -> List[Dict]:
-        validated = InputSchema(**input_dict)
+    def chunk_sections(self, artifact_id: str, gate_id: str, max_token: int) -> List[Dict]:
         session = get_session()
-
         entries = session.query(ArtifactSection).filter_by(
-            artifact_id=validated.artifact_id,
-            gate_id=validated.gate_id,
+            artifact_id=artifact_id,
+            gate_id=gate_id,
             status="draft"
         ).all()
 
@@ -33,8 +28,8 @@ class Tool:
         for e in entries:
             tokens = tokenizer.encode(e.text)
             chunked_texts = [
-                tokenizer.decode(tokens[i:i+validated.max_token])
-                for i in range(0, len(tokens), validated.max_token)
+                tokenizer.decode(tokens[i:i+max_token])
+                for i in range(0, len(tokens), max_token)
             ]
             for idx, text_chunk in enumerate(chunked_texts):
                 chunks.append(ChunkedSection(
@@ -45,3 +40,22 @@ class Tool:
                 ).dict())
 
         return chunks
+
+    def run_tool(self, input_dict):
+        session_id = input_dict.get("session_id")
+        artifact_id = input_dict.get("artifact_id")
+        gate_id = input_dict.get("gate_id")
+        max_token = input_dict.get("max_token", 1500)
+
+        if not all([session_id, artifact_id, gate_id]):
+            raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id")
+
+        try:
+            chunks = self.chunk_sections(artifact_id, gate_id, max_token)
+            key = f"artifact_chunks:{session_id}:{artifact_id}"
+            self.redis_client.set(key, json.dumps(chunks))
+            logger.info(f"Saved {len(chunks)} chunks to Redis under key {key}")
+            return {"status": "success", "message": f"Saved {len(chunks)} chunks."}
+        except Exception as e:
+            logger.error(f"Error saving chunks to Redis: {str(e)}")
+            return {"status": "error", "message": str(e)}

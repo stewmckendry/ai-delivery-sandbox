@@ -73,7 +73,7 @@ class GenerateArtifactChain:
             chunk_inputs = {
                 "artifact_id": artifact_id,
                 "gate_id": gate_id,
-                "max_token": 3000
+                "max_token": self.CHUNK_SIZE
             }
             fetch_tool = FetchArtifactChunksTool()
             chunks = fetch_tool.run_tool(chunk_inputs)

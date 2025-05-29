@@ -1,12 +1,14 @@
 import logging
 from redis import Redis
 import json
+from app.redis.redis_client import redis_client
+
 
 logger = logging.getLogger(__name__)
 
 class FetchArtifactChunk:
     def __init__(self):
-        self.redis_client = Redis(host='localhost', port=6379, db=0, decode_responses=True)
+        self.redis_client = redis_client
 
     def run_tool(self, input_dict):
         session_id = input_dict.get("session_id")

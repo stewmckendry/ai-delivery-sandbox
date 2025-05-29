@@ -9,6 +9,7 @@ from pydantic import BaseModel
 import requests
 from collections import defaultdict
 import yaml
+from app.redis.redis_client import redis_client
 
 logger = logging.getLogger(__name__)
 
