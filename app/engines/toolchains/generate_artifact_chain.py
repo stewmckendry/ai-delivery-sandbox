@@ -37,7 +37,7 @@ class GenerateArtifactChain:
         global_context_summary = self.global_context_engine.summarize_global_context(context_data)
         global_context = {
             "global_context": context_data,
-            "global_context_summary": global_context_summary,
+            "summary": global_context_summary,
         }
         log_tool_usage("global_context_chain", "fetched global context", context_data, session_id, user_id, inputs)
         log_tool_usage("global_context_chain", "summarized global context", global_context_summary, session_id, user_id, inputs)
@@ -49,7 +49,7 @@ class GenerateArtifactChain:
             section_id = section["section_id"]
             inputs["section_id"] = section_id
             try:
-                result = self.section_chain.run(inputs=inputs, global_context=context_data)
+                result = self.section_chain.run(inputs=inputs, global_context=global_context_summary)
                 draft = result["final_output"]["raw_draft"]
                 all_sections_output.append({"section_id": section_id, "draft": draft})
                 logger.info(f"[Step 3.x] Generated section: {section_id} complete")
