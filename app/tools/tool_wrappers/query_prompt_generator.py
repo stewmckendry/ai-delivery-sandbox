@@ -7,15 +7,9 @@ from jinja2 import Template
 logger = logging.getLogger(__name__)
 
 class Tool:
-    def validate(self, input_dict):
-        if "project_profile" not in input_dict:
-            raise ValueError("Missing required field: project_profile")
-        if "memory" not in input_dict:
-            raise ValueError("Missing required field: memory")
 
     def run_tool(self, input_dict):
         logger.info("[Tool] query_prompt_generator started")
-        self.validate(input_dict)
         profile = input_dict.get("project_profile", {})
         memory = input_dict.get("memory", [])
 
