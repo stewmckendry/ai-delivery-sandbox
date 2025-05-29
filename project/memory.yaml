@@ -617,3 +617,14 @@
   - toolchain
   last_updated: '2025-05-28'
   pod_owner: QAPod
+- path: mock/mockMissions-FullBlock1.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/main/mock/mockMissions-FullBlock1.json
+  file_type: json
+  description: Mock data for testing mission-related functionalities in full block
+    scenarios
+  tags:
+  - mock
+  - test
+  - data
+  last_updated: '2025-05-29'
+  pod_owner: QAPod
