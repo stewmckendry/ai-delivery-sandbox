@@ -6,6 +6,7 @@ from app.engines.toolchains.generate_section_chain import GenerateSectionChain
 from app.tools.tool_wrappers.memory_retrieve import Tool as MemoryTool
 from app.tools.utils.section_helpers import plan_sections
 from app.engines.memory_sync import log_tool_usage
+import tiktoken
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +17,8 @@ class GenerateArtifactChain:
         self.section_chain = GenerateSectionChain()
         self.profile_engine = ProjectProfileEngine()
         self.global_context_engine = GlobalContextEngine()
+        self.MAX_TOKENS = 12000
+        self.CHUNK_SIZE = 3000
 
     def run(self, inputs):
         session_id = inputs.get("session_id")
@@ -57,5 +60,35 @@ class GenerateArtifactChain:
                     "error": str(e),
                     "draft": ""
                 })
+
+        # Check total tokens and conditionally chunk
+        all_texts = [s["draft"] for s in all_sections_output]
+        full_text = "\n\n".join(all_texts)
+        tokenizer = tiktoken.get_encoding("cl100k_base")
+        total_tokens = len(tokenizer.encode(full_text))
+
+        # If the total tokens exceed the threshold, chunk the artifact
+        if total_tokens > self.MAX_TOKENS:
+            logger.info("[Step 4] Document exceeds token threshold – chunking required")
+            chunk_inputs = {
+                "artifact_id": artifact_id,
+                "gate_id": gate_id,
+                "max_token": 3000
+            }
+            fetch_tool = FetchArtifactChunksTool()
+            chunks = fetch_tool.run_tool(chunk_inputs)
+            fetch_tool.save_chunks(chunks, artifact_id, gate_id, session_id, user_id)
+            return {
+                "summary": global_context_summary,
+                "chunks": chunks,
+                "chunked": True
+            }
+
+        # If the total tokens are within the limit, return the full sections output
+        return {
+            "sections": all_sections_output,
+            "summary": global_context_summary,
+            "chunked": False
+        }
 
         return {"sections": all_sections_output, "summary": global_context_summary}
