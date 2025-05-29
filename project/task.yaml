@@ -610,6 +610,7 @@ tasks:
     - project/build/wps/WP27/sample_input_text.txt
     - project/build/wps/WP27/test_results_iteration_1.md
     - project/build/wps/WP27/plan_iteration_2.md
+    - app/engines/toolchains/generate_global_context_chain.py
   2.3_qa_review_feature:
     description: Perform QA review of the implemented feature, define test plan and
       cases, run tests, and document results aligned to acceptance criteria
