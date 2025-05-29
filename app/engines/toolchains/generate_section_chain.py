@@ -54,8 +54,8 @@ class GenerateSectionChain:
         trace = []
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
-        artifact_id = inputs.get("artifact")
-        section_id = inputs.get('section')
+        artifact_id = inputs.get("artifact_id")
+        section_id = inputs.get("section_id")
         gate_id = inputs.get("gate_id", "0")
         project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 

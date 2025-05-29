@@ -23,33 +23,34 @@ class GenerateArtifactChain:
         gate_id = inputs.get("gate_id")
         project_id = inputs.get("project_id")
 
-        logger.info("[Step 1] Load project profile")
-        project_profile = self.profile_engine.load_profile(project_id)
-        inputs["project_profile"] = project_profile
-
-        logger.info("[Step 2] Load section definitions")
+        logger.info("[Step 1] Load section definitions")
         section_definitions = plan_sections(gate_id, artifact_id)
 
-        logger.info("[Step 3] Fetch + summarize global context")
+        logger.info("[Step 2] Fetch + summarize global context")
         context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
         global_context_summary = self.global_context_engine.summarize_global_context(context_data)
+        global_context = {
+            "global_context": context_data,
+            "global_context_summary": global_context_summary,
+        }
 
-        logger.info("[Step 4] Generate each section")
+        logger.info("[Step 3] Generate each section")
         all_sections_output = []
 
         for section in section_definitions:
             section_id = section["section_id"]
-            section_inputs = {
-                **inputs,
-                "artifact": artifact_id,
-                "section": section_id,
-                "memory": memory,
-                "context_summary": "",
-                "global_context_summary": global_context_summary,
-            }
-            result = self.section_chain.run(section_inputs, global_context=context_data)
-            draft = result["final_output"]["raw_draft"]
-            all_sections_output.append({"section_id": section_id, "draft": draft})
-            logger.info(f"[Step 4.x] Generated section: {section_id} complete")
+            inputs["section_id"] = section_id
+            try:
+                result = self.section_chain.run(inputs=inputs, global_context=context_data)
+                draft = result["final_output"]["raw_draft"]
+                all_sections_output.append({"section_id": section_id, "draft": draft})
+                logger.info(f"[Step 3.x] Generated section: {section_id} complete")
+            except Exception as e:
+                logger.error(f"[Step 3.x] Error generating section {section_id}: {e}")
+                all_sections_output.append({
+                    "section_id": section_id,
+                    "error": str(e),
+                    "draft": ""
+                })
 
         return {"sections": all_sections_output, "summary": global_context_summary}
