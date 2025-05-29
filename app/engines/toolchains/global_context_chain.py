@@ -37,16 +37,20 @@ class GlobalContextChain:
         db = SessionLocal()
         results = db.query(PromptLog).filter(
             and_(
-                PromptLog.project_id == project_id,
-                PromptLog.session_id == session_id,
-                PromptLog.input_summary.like("global_context |%")
+            PromptLog.project_id == project_id,
+            PromptLog.session_id == session_id,
+            PromptLog.input_summary.like("global_context |%")
             )
         ).all()
 
         grouped_context = {"webSearch": [], "queryCorpus": [], "goc_alignment_search": []}
+        seen = {"webSearch": set(), "queryCorpus": set(), "goc_alignment_search": set()}
         for log in results:
             label = log.input_summary.split(" | ")[1]
-            grouped_context.setdefault(label, []).append(log.output_summary)
+            output = log.output_summary
+            if output not in seen.setdefault(label, set()):
+                grouped_context.setdefault(label, []).append(output)
+            seen[label].add(output)
 
         return grouped_context
 
