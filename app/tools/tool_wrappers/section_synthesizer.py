@@ -15,6 +15,25 @@ class Tool:
         if "memory" not in input_dict:
             raise ValueError("Missing required field: memory")
 
+    def get_section_intents(gate_id, artifact_id, section_id):
+        url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/reference/gate_reference_v2.yaml"
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            gate_data = yaml.safe_load(response.text)
+
+            for gate in gate_data:
+                if str(gate.get("gate_id")) == str(gate_id):
+                    for artifact in gate.get("artifacts", []):
+                        if artifact.get("artifact_id") == artifact_id:
+                            for section in artifact.get("sections", []):
+                                if section.get("section_id") == section_id:
+                                    return section.get("intents", [])
+            return []
+        except Exception as e:
+            print(f"Error fetching section intents: {e}")
+            return []
+        
     def run_tool(self, input_dict):
         logger.info("[Tool] section_synthesizer started")
         self.validate(input_dict)
@@ -24,6 +43,7 @@ class Tool:
 
         artifact = input_dict.get("artifact")
         section = input_dict.get("section")
+        gate = input_dict.get("gate_id", "0")
 
         profile = input_dict.get("project_profile", {})
         profile_context = ""
@@ -41,6 +61,12 @@ class Tool:
                 sections.append(f"[Project Type]\n{profile['project_type']}")
             profile_context = "\n\n".join(sections) if sections else ""
 
+        section_intents = self.get_section_intents(
+            gate,
+            artifact,
+            section
+        )
+
         prompt_templates = get_prompt("generate_section_prompts.yaml", "section_synthesis")
         user_template = Template(prompt_templates["user"])
         user_prompt = user_template.render(
@@ -48,12 +74,11 @@ class Tool:
             section=section,
             profile_context=profile_context,
             context_summary=context_summary,
-            memory_str=memory_str,
-            corpus_answer_str=corpus_answer_str,
-            alignment_str=alignment_str,
-            web_str=web_str
+            memory_str=memory_summary,
+            global_context_str=global_context_summary,
+            section_intents=section_intents
         )
-
+        
         system_prompt = prompt_templates["system"]
         logger.info(f"[Tool] section_synthesizer user prompt: {user_prompt[:250]}...")
 

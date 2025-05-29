@@ -6,6 +6,7 @@ from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 from jinja2 import Template
 from app.db.models import PromptLog  # inline import to avoid circular dependency
 from app.db.database import SessionLocal
+from sqlalchemy import and_
 
 logger = logging.getLogger(__name__)
 

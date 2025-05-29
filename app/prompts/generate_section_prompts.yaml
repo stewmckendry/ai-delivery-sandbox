@@ -18,16 +18,38 @@ section_synthesis:
     Draft a well-structured and dense draft section using all the following inputs.
     Focus on clarity, accuracy, and strategic alignment.
 
+    === Artifact Info ===
     Artifact: {{ artifact }}
     Section: {{ section }}
 
-    [Project Context]
+    === Section Requirements ===
+    {% if section_intents %}
+    Required Intents:
+    {% for intent in section_intents %}
+    - {{ intent }}
+    {% endfor %}
+    {% else %}
+    (No specific intents provided)
+    {% endif %}
+
+    === Project Context ===
     {{ profile_context }}
 
+    === Historical Documentation Summary ===
     {{ memory_str }}
-    {{ corpus_answer_str }}
-    {{ alignment_str }}
-    {{ web_str }}
+
+    === Research Context ===
+    {{ global_context_str }}
+
+    === Prior Sections Summary ===
+    {{ context_summary }}
+
+    === Instructions ===
+    - Address all required intents
+    - Use context, not repetition
+    - Integrate facts across research types
+    - Stay within 300-500 words unless otherwise specified
+    - Return clean Markdown content only
 
     Begin the draft below:
 
