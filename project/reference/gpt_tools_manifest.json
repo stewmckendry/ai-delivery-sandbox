@@ -348,7 +348,7 @@
         "properties": {
           "query": { "type": "string" },
           "search_type": { "type": "string" },
-          "context": { "type": "object" }
+          "search_filter": { "type": "object" }
         },
         "required": ["query", "search_type"]
       }

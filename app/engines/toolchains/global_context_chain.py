@@ -113,24 +113,27 @@ class GlobalContextChain:
         log_tool_usage("queryPromptGenerator", "query_prompt_generator", query_payload, session_id, user_id, inputs)
 
         # Step 2: Web Search
+        input_dict = {**inputs, **search_filter}
         web_results = self.web_search_tool.run_tool({
             "query": search_query,
             "search_type": "general",
-            "context": search_filter
+            "input_dict": input_dict
         })
         web_summary = self.summarize_web_results(web_results)
         logger.info(f"[GlobalContextChain] Retrieved web search results for query: {search_query}")
-        log_tool_usage("webSearch", "global_context | webSearch", web_results, session_id, user_id, inputs)
 
         # Step 3: Embedded Corpus Search
-        corpus_output = self.corpus_tool.run_tool({"query": search_query})
+        input_dict = {**inputs, "query": search_query}
+        corpus_output = self.corpus_tool.run_tool({
+            "input_dict": input_dict
+        })
         logger.info(f"[GlobalContextChain] Retrieved corpus search results for query: {search_query}")
-        log_tool_usage("queryCorpus", "global_context | queryCorpus", corpus_output, session_id, user_id, inputs)
 
         # Step 4: GoC Alignment
-        alignment_output = self.alignment_tool.run_tool({"query": search_query})
+        alignment_output = self.alignment_tool.run_tool({
+            "input_dict": input_dict
+        })
         logger.info(f"[GlobalContextChain] Retrieved alignment results: {alignment_output}")
-        log_tool_usage("goc_alignment_search", "global_context | goc_alignment_search", alignment_output, session_id, user_id, inputs)
 
         logger.info("[GlobalContextChain] Summarizing global context complete")
         return {

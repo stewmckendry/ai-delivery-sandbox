@@ -1,5 +1,6 @@
 import logging
 import os
+from app.engines.memory_sync import log_tool_usage
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.chains import RetrievalQA, LLMChain
@@ -19,12 +20,8 @@ logger.debug("CHROMA_HOST: %s", CHROMA_HOST)
 logger.debug("CHROMA_PORT: %s", CHROMA_PORT)
 
 class Tool:
-    def validate(self, input_dict):
-        if not input_dict.get("query"):
-            raise ValueError("Missing query string")
 
     def run_tool(self, input_dict):
-        self.validate(input_dict)
         query = input_dict["query"]
         logger.info(f"🔍 Querying corpus with: {query[:100]}")
 
@@ -67,10 +64,19 @@ class Tool:
             logger.info(f"✅ Query result ready: {answer[:100]}")
             # Local Chroma does not expose metadata, so include empty entries
             results_list = []
-
-        return {
+        
+        corpus_output = {
             "answer": answer,
             "documents": [r["text"] for r in results_list],
             "citations": [r["citation"] for r in results_list],
             "metadatas": results_list
         }
+        session_id = input_dict.get("session_id")
+        user_id = input_dict.get("user_id", "unknown")
+        inputs = input_dict.get("input_dict", {})
+        
+        # Log the corpus search to PromptLog for use in section generation
+        log_tool_usage("queryCorpus", "global_context | queryCorpus", corpus_output, session_id, user_id, inputs)
+        logger.info(f"🔍 queryCorpus completed for query: {query[:100]}"
+                    )
+        return corpus_output

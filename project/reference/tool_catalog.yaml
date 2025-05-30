@@ -404,7 +404,7 @@ tools:
           type: string
         search_type:
           type: string
-        context:
+        search_filter:
           type: object
       required:
         - query
