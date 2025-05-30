@@ -12,7 +12,7 @@ def store_section(session_id: str, project_id: str, artifact_id: str, section_id
     redis_client.hset(key, section_id, json.dumps(section_data))
 
 
-def get_section(session_id: str, project_id: str, artifact_id: str, section_id: str) -> Dict:
+def fetch_review_section(session_id: str, project_id: str, artifact_id: str, section_id: str) -> Dict:
     key = _key(session_id, project_id, artifact_id)
     data = redis_client.hget(key, section_id)
     return json.loads(data) if data else None
@@ -32,3 +32,7 @@ def delete_section(session_id: str, project_id: str, artifact_id: str, section_i
 def clear_all_sections(session_id: str, project_id: str, artifact_id: str):
     key = _key(session_id, project_id, artifact_id)
     redis_client.delete(key)
+
+def list_review_sections(session_id: str, project_id: str, artifact_id: str) -> List[str]:
+    key = _key(session_id, project_id, artifact_id)
+    return [k.decode() for k in redis_client.hkeys(key)]
