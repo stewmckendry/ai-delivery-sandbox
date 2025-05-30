@@ -1,0 +1,20 @@
+search_cleanup:
+  system: "You are a policy analyst helping extract useful content from public government web documents."
+  user: |
+    Review the raw text extracted from the following website:
+    ---
+    URL: {{ file_url }}
+    ---
+    Raw Text:
+    {{ raw_text }}
+
+    === Instructions ===
+    - Extract only the core policy content relevant for alignment, such as mandates, strategic goals, or official guidance.
+    - Ignore navigation menus, footers, and unrelated links.
+    - Organize the content into clear sections or paragraphs.
+    - Remove duplicate or boilerplate language.
+    - Do not summarize or paraphrase. Preserve original phrasing as much as possible.
+    - Provide clean, readable output as plain text. Avoid HTML.
+
+    Output:
+    <cleaned, structured text>
