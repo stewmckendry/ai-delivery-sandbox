@@ -5155,3 +5155,15 @@
   - tool
   last_updated: '2025-05-30'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/section_review_feedback.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/section_review_feedback.py
+  file_type: py
+  description: Script to handle section review feedback by rewriting sections, summarizing
+    differences, and updating Redis data.
+  tags:
+  - tool
+  - feedback
+  - redis
+  - revision
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
