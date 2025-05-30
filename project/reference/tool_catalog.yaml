@@ -436,23 +436,32 @@ tools:
       required:
         - artifact_id
         - gate_id
-  revise_section:
-    description: Applies user feedback to revise document sections, including mapping, rewriting, compliance checking, and saving.
+
+  revise_section_chain:
+    description: Revise one or more artifact sections based on user feedback, memory context, and structured feedback mapping.
     module: app.engines.toolchains.revise_section_chain
     class: ReviseSectionChain
     schema:
       type: object
       properties:
-        artifact: { type: string }
-        section: { type: string }
-        feedback_text: { type: string }
-        mode: { type: string }
         session_id: { type: string }
+        artifact: { type: string }
+        gate_id: { type: string }
         user_id: { type: string }
         project_id: { type: string }
+        feedback_entries:
+          type: array
+          description: Array of user feedback entries to revise sections
+          items:
+            type: object
+            properties:
+              text: { type: string }
+              section_id: { type: string }
+              type: { type: string }
       required:
+        - session_id
         - artifact
-        - feedback_text
+        - feedback_entries
         - user_id
         - project_id
 
@@ -684,3 +693,55 @@ tools:
         - session_id
         - artifact_id
         - gate_id
+
+  diff_summarizer:
+    description: Generate a natural language summary of the difference between an original and revised text.
+    module: app.tools.tool_wrappers.diff_summarizer
+    class: Tool
+    schema:
+      type: object
+      properties:
+        original: { type: string }
+        revised: { type: string }
+      required:
+        - original
+        - revised
+
+  section_review_fetcher:
+    description: Retrieve section revision text and diff summary from Redis for a specific section.
+    module: app.tools.tool_wrappers.section_review_fetcher
+    class: Tool
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        project_id: { type: string }
+        artifact_id: { type: string }
+        section_id: { type: string }
+      required:
+        - session_id
+        - project_id
+        - artifact_id
+        - section_id
+
+  feedback_structurer:
+    description: Structure and map multiple user feedback entries to appropriate sections and revision types.
+    module: app.tools.tool_wrappers.feedback_structurer
+    class: Tool
+    schema:
+      type: object
+      properties:
+        feedback_entries:
+          type: array
+          items:
+            type: string
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              section_id: { type: string }
+              text: { type: string }
+      required:
+        - feedback_entries
+        - sections
