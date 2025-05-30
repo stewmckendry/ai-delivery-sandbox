@@ -17,3 +17,4 @@ class DocumentVersionLog(Base):
     doc_format = Column(String(50), default="markdown")
     submitted_at = Column(DateTime, default=datetime.datetime.utcnow)
     project_id = Column(String(255), nullable=True)
+    session_id = Column(String, nullable=True)

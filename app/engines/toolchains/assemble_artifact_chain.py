@@ -3,6 +3,7 @@ import uuid
 import re
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage, save_document_and_trace, save_artifact_and_trace
+from app.engines.project_profile_engine import ProjectProfileEngine
 
 logger = logging.getLogger(__name__)
 
@@ -18,19 +19,25 @@ class AssembleArtifactChain:
 
     def run(self, inputs):
         trace = []
-        session_id = str(uuid.uuid4())
+        session_id = inputs.get("session_id")
         artifact_id = inputs.get("artifact_id")
         gate_id = inputs.get("gate_id")
         version = inputs.get("version", "v0.1")
         project_id = inputs.get("project_id")
 
-        loaded = self.loader.run_tool({"artifact_id": str(artifact_id), "gate_id": str(gate_id)})
+        loaded = self.loader.run_tool(inputs)
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
         logger.info("[Step 1] loadSectionMetadata complete")
 
-        profile = inputs.get("project_profile", {})
-        title = profile.get("title") or loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
+        #load project profile if available
+        if project_id:
+            profile_engine = ProjectProfileEngine()
+            project_profile = profile_engine.load_profile(project_id)
+        else:
+            project_profile = {}
+        inputs["project_profile"] = project_profile
+        title = project_profile.get("title") or loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
 
         formatted_sections = []
         for sec in loaded["ordered_sections"]:
@@ -50,36 +57,9 @@ class AssembleArtifactChain:
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
 
-        refined = self.refiner.run_tool({"document_body": merged["document_body"], "title": title, "project_id": profile.get("project_id") or inputs.get("project_id")})
-        log_tool_usage("refineDocumentChain", "refined body", refined, session_id, None, inputs)
-        trace.append({"tool": "refineDocumentChain", "output": refined})
-        logger.info("[Step 3.5] refineDocumentChain complete")
-
-        # Save parsed refined body into ArtifactSection
-        refined_text = refined["refined_body"]
-        section_map = {s["section_title"].strip(): s["section_id"] for s in loaded["ordered_sections"]}
-        parts = re.split(r"^##\s+(.+)$", refined_text, flags=re.MULTILINE)
-        for i in range(1, len(parts), 2):
-            title = parts[i].strip()
-            body = parts[i + 1].strip()
-            section_id = section_map.get(title)
-            if section_id:
-                save_artifact_and_trace(
-                    section_id=section_id,
-                    artifact_id=artifact_id,
-                    gate_id=gate_id,
-                    text=body,
-                    tool_outputs=trace,
-                    sources="refined_document",
-                    user_id=inputs.get("user_id"),
-                    project_id=project_id,
-                    session_id=session_id
-                )
-        logger.info("[Step 3.75] Updated ArtifactSection with refined content")
-
         finalized = self.finalizer.run_tool({
             "title": title,
-            "document_body": refined["refined_body"],
+            "document_body": merged["document_body"],
             "artifact_id": artifact_id,
             "gate_id": gate_id,
             "version": version

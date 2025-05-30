@@ -30,7 +30,10 @@ class OutputSchema(BaseModel):
 
 class Tool:
     def run_tool(self, input_dict):
-        input_data = parse_obj_as(InputSchema, input_dict)
+        artifact_id = input_dict.get("artifact_id")
+        gate_id = input_dict.get("gate_id")
+        project_id = input_dict.get("project_id")
+        session_id = input_dict.get("session_id")
         logger.info(f"Validated input_data: {input_data}")
         logger.info(f"Type of input_data: {type(input_data)}")
         session = get_session()
@@ -43,13 +46,13 @@ class Tool:
         artifact_name = ""
         section_ids = []
         section_titles = {}
-        logger.info(f"Parsing gates for artifact_id={input_data.artifact_id} and gate_id={input_data.gate_id}")
+        logger.info(f"Parsing gates for artifact_id={artifact_id} and gate_id={gate_id}")
         for gate in gates:
             logger.debug(f"Gate found: {gate.get('gate_id')}")
-            if str(gate.get("gate_id")) == input_data.gate_id:
+            if str(gate.get("gate_id")) == gate_id:
                 for artifact in gate.get("artifacts", []):
                     logger.debug(f"Checking artifact_id={artifact.get('artifact_id')}")
-                    if artifact.get("artifact_id") == input_data.artifact_id:
+                    if artifact.get("artifact_id") == artifact_id:
                         artifact_name = artifact.get("name")
                         for s in artifact.get("sections", []):
                             section_ids.append(s.get("section_id"))
@@ -59,11 +62,11 @@ class Tool:
         section_map = {}
         for sid in section_ids:
             latest = session.query(ArtifactSection).filter_by(
-                artifact_id=input_data.artifact_id,
-                gate_id=input_data.gate_id,
+                artifact_id=artifact_id,
+                gate_id=gate_id,
                 section_id=sid,
-                project_id=input_data.project_id,
-                session_id=input_data.session_id
+                project_id=project_id,
+                session_id=session_id
             ).order_by(desc(ArtifactSection.timestamp)).first()
             if latest:
                 section_map[sid] = latest

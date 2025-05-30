@@ -128,7 +128,8 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
         google_doc_url=storage_url,
         doc_format="markdown",
         submitted_at=datetime.datetime.utcnow(),
-        project_id=project_id
+        project_id=project_id,
+        session_id=session_id
     )
     session.add(doc_log)
 
