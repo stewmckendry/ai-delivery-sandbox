@@ -5144,3 +5144,14 @@
   - tool
   last_updated: '2025-05-30'
   pod_owner: DeliveryPod
+- path: app/tools/tool_wrappers/section_review_fetcher.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/section_review_fetcher.py
+  file_type: py
+  description: Script to fetch and parse section review data from Redis for a given
+    project and session.
+  tags:
+  - redis
+  - data_fetch
+  - tool
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
