@@ -180,3 +180,55 @@ Your approach to separate exploratory and structured research flows is sound, wh
 - [ ] Rename and implement `record_research` tool
 - [ ] Update `PromptLog` format if needed for shared research entries
 - [ ] Write README or working paper explaining the dual-path research strategy
+
+---
+
+# ✅ Updated Design for `record_research` Tool
+
+## 🧠 Who Processes the Research?
+
+ChatGPT (frontend GPT) handles the processing — it cleans, summarizes, and structures research before invoking `record_research`.
+
+**Example GPT prompt:**
+> “Please confirm or clean up these research notes and I’ll save them to your project research log. Try to include a title, source, date, and URL if known.”
+
+---
+
+## 📥 Input Schema for `record_research`
+
+GPT sends a structured payload, typically an array of entries:
+
+```json
+[
+    {
+        "text": "Cleaned summary or quote",
+        "title": "What is Policy Coherence?",
+        "source": "OECD Handbook",
+        "date": "2021",
+        "url": "https://oecd.org/policy-coherence-guide",
+        "citation": "\"What is Policy Coherence?\" OECD Handbook, 2021. https://oecd.org/policy-coherence-guide"
+    }
+    // ...more entries
+]
+```
+
+- GPT decides what and how many entries to log at once.
+
+---
+
+## 🪵 Backend: `record_research` Tool
+
+- Validate input is a list of entries.
+- For each entry:
+    - Log to `PromptLog` using `log_tool_usage(...)`.
+    - Use `input_summary = "global_context | record_research"`.
+    - Add fallback values if GPT omits fields.
+
+---
+
+## 💡 Benefits
+
+- No backend LLM calls — just storage and logging.
+- Leverages ChatGPT’s capabilities, reducing backend complexity.
+- Ensures structured metadata for citations.
+- Keeps logs discoverable by `generate_section_chain`.
