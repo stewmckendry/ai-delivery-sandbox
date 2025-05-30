@@ -17,7 +17,11 @@ class Tool:
     def run_tool(self, input_dict: Dict) -> Dict:
         logger.info("Running formatSection tool")
         data = parse_obj_as(InputSchema, input_dict)
-        template_text = "## {{ section_title }}\n\n{{ text }}"
+        template_text = "<a id=\"{{ section_id }}\"></a>\n## {{ section_title }}\n\n{{ text }}"
         template = Template(template_text)
-        output = template.render(text=data.section_text, section_title=data.section_title)
+        output = template.render(
+           text=data.section_text,
+           section_title=data.section_title,
+           section_id=data.section_id
+        )
         return OutputSchema(formatted_section=output).dict()

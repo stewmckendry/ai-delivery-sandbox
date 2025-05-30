@@ -59,7 +59,7 @@ section_refinement:
     [Draft Section]
     {{ raw_draft }}
 
-    EXPECTED RESPONSE: Revised section content in clean Markdown format.  Don't include any additional commentary or instructions.
+    Begin updated draft here.  Just include updated text.  Don't include any additional labels (eg REFINED SECTION), commentary or instructions.
 
 web_summary_synthesis:
   system: "You are a policy analyst."

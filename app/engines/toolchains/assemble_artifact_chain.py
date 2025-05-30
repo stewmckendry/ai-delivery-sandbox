@@ -44,6 +44,7 @@ class AssembleArtifactChain:
         logger.info(f"Using title: {title}")
 
         formatted_sections = []
+        section_metadata = []
         for sec in loaded["ordered_sections"]:
             formatted = self.formatter.run_tool({
                 "section_id": sec["section_id"],
@@ -54,6 +55,7 @@ class AssembleArtifactChain:
             log_tool_usage("formatSection", "formatted section", formatted, session_id, None, inputs)
             trace.append({"tool": "formatSection", "output": formatted})
             formatted_sections.append(formatted["formatted_section"])
+            section_metadata.append({"section_id": sec["section_id"], "section_title": sec["section_title"]})
         logger.info("[Step 2] formatSection complete")
         logger.info(f"Formatted {len(formatted_sections)} sections for artifact {artifact_id}")
 
@@ -62,13 +64,14 @@ class AssembleArtifactChain:
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
         logger.info(f"Merged document body for artifact {artifact_id}.  Body snippet: {merged['document_body'][:100]}...")
-    
+
         finalized = self.finalizer.run_tool({
             "title": title,
             "document_body": merged["document_body"],
             "artifact_id": artifact_id,
             "gate_id": str(gate_id),
-            "version": version
+            "version": version,
+            "sections": [{"section_id": s["section_id"], "title": s["section_title"]} for s in section_metadata]
         })
         log_tool_usage("finalizeDocument", "finalized output", finalized, session_id, None, inputs)
         trace.append({"tool": "finalizeDocument", "output": finalized})
