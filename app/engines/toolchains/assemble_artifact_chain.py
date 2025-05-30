@@ -24,6 +24,7 @@ class AssembleArtifactChain:
         version = inputs.get("version", "v0.1")
         project_id = inputs.get("project_id")
 
+        logger.info(f"Starting AssembleArtifactChain for artifact {artifact_id}, gate {gate_id}, session {session_id}, version {version}, project {project_id}")
         loaded = self.loader.run_tool(inputs)
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})

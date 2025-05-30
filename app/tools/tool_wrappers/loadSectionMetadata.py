@@ -60,6 +60,7 @@ class Tool:
 
         section_map = {}
         for sid in section_ids:
+            logger.info(f"Fetching latest section for section_id={sid}, artifact_id={artifact_id}, gate_id={gate_id}, project_id={project_id}, session_id={session_id}")
             latest = session.query(ArtifactSection).filter_by(
                 artifact_id=artifact_id,
                 gate_id=gate_id,
@@ -69,6 +70,7 @@ class Tool:
             ).order_by(desc(ArtifactSection.timestamp)).first()
             if latest:
                 section_map[sid] = latest
+                logger.info(f"Found section {sid} with status {latest.status} and timestamp {latest.timestamp}")
 
         ordered_sections = []
         for sid in section_ids:
