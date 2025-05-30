@@ -55,6 +55,14 @@ class Tool:
                     logger.info(f"[Tool] loadCorpus user prompt: {user_prompt[:100]}...")
                     cleaned = chat_completion_request(system_prompt, user_prompt, temperature=0.4)
                     file_contents = cleaned.strip()
+                    log_tool_usage(
+                        "loadCorpus",
+                        f"Fetched and cleaned content from {file_url}.  User prompt: {user_prompt[:100]}...",
+                        json.dumps({"status": "success", "length": len(file_contents)}, indent=2),
+                        session_id=input_dict.get("session_id"),
+                        user_id=input_dict.get("user_id"),
+                        metadata=input_dict.get("metadata", {})
+                    )
                 except Exception as e:
                     logger.error(f"Failed to fetch file from URL: {file_url}", exc_info=e)
                     raise ValueError(f"Error fetching file from {file_url}: {e}")
@@ -91,6 +99,7 @@ class Tool:
                 user_id=entry.get("user_id"),
                 metadata=entry.get("metadata")
             )
+            logger.info("🚀 loadCorpus tool completed successfully")
 
         if background_tasks:
             background_tasks.add_task(process)
