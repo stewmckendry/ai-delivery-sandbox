@@ -5279,3 +5279,15 @@
   - integration
   last_updated: '2025-05-30'
   pod_owner: QAPod
+- path: project/build/wps/WP27b/policygpt_custom_gpt_guide.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27b/policygpt_custom_gpt_guide.md
+  file_type: md
+  description: Guide for configuring a custom ChatGPT, PolicyGPT, to assist in generating
+    and revising government policy documents.
+  tags:
+  - config
+  - guide
+  - policy
+  - GPT
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
