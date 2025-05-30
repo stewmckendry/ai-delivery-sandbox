@@ -48,9 +48,9 @@ class IngestInputChain:
         logger.info(f"Generated and saved project profile: {project_id}")
 
         log_tool_usage(
-            tool_name=f"Ingest Chain - {tool_map[method]} - save_profile",
-            input_summary=f"Ingest Chain - {tool_map[method]} - save_profile",
-            output_summary=f"Input: {raw_text[:200]}, Project_Profile: {project_id}",
+            tool_name=tool_map[method],
+            input_summary=f"{inputs.get(method) or inputs.get('file_path')} | {tool_map[method]}",
+            output_summary=raw_text,
             session_id=metadata.get("session_id"),
             user_id=metadata.get("user_id"),
             metadata=metadata
