@@ -9008,3 +9008,13 @@
   task_id: WP27
   committed_by: GPTPod
   message: Append output file to WP27
+- timestamp: '2025-05-30T11:22:10.004177'
+  path: project/build/wps/WP27/revision_flow_guidance.md
+  task_id: WP27
+  committed_by: ProductPod
+  message: Add guidance doc clarifying when to call revise_section_chain vs. section_review_feedback
+- timestamp: '2025-05-30T11:22:10.004177'
+  path: project/memory.yaml
+  task_id: WP27
+  committed_by: ProductPod
+  message: Memory update related to project/build/wps/WP27/revision_flow_guidance.md
