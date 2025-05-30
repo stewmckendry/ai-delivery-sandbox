@@ -20,6 +20,7 @@ class ReviseSectionChain:
         self.section_rewriter = registry.get_tool("section_rewriter")
         self.manual_edit_tool = registry.get_tool("manualEditSync")
         self.structurer = registry.get_tool("feedback_structurer")
+        self.diff_summarizer = registry.get_tool("diff_summarizer")
 
 
     def summarize_text(self, text):
@@ -120,14 +121,16 @@ class ReviseSectionChain:
 
                 if "additional_suggestions" in rewritten:
                     suggestions.append(rewritten["additional_suggestions"])
-                
-                # Compose Redis payload and store
-                diff_prompts = get_prompt("revision_prompts.yaml", "revision_diff_summary")
-                system_prompt = diff_prompts["system"]
-                user_prompt = Template(diff_prompts["user"]).render(original=current_text, revised=rewritten["draft"])
-                diff_summary = chat_completion_request(system_prompt, user_prompt)
+
+                # Generate diff summary between original and revised text
+                diff_summary = self.diff_summarizer.run_tool({
+                    "original": current_text,
+                    "revised": rewritten["draft"]
+                })
+                trace.append({"tool": "diff_summarizer", "output": diff_summary})
                 logger.info(f"[Step 8.x] Generated diff summary for section {sec_id}")
 
+                # Compose Redis payload and store to cache revised section + diff summary + metadata
                 revision_data = {
                     "section_id": sec_id,
                     "original": current_text,
