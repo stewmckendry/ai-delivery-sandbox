@@ -14,8 +14,8 @@ from app.tools.tool_wrappers.saveArtifactChunks import Tool as SaveChunksTool
 from app.tools.tool_wrappers.fetchArtifactChunk import Tool as FetchArtifactChunk
 
 # Sample IDs
-project_id = "test_project_5"
-session_id = "test_session_qwerty"
+project_id = "test_project_6"
+session_id = "test_session_qwerty2"
 artifact_id = "investment_proposal_concept"
 gate_id = 0
 user_id = "test_user"

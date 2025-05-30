@@ -63,8 +63,8 @@ class Tool:
             vectordb = Chroma(persist_directory=CHROMA_DIR, embedding_function=OpenAIEmbeddings())
             retriever = vectordb.as_retriever()
             qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(temperature=0), retriever=retriever)
-            result = qa.run(query)
-            logger.info(f"✅ Query result ready: {result[:100]}")
+            answer = qa.run(query)
+            logger.info(f"✅ Query result ready: {answer[:100]}")
             # Local Chroma does not expose metadata, so include empty entries
             results_list = []
 

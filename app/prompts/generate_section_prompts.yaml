@@ -13,10 +13,12 @@ search_query_generation:
     Provide a single query that captures the key themes and information needs.
 
 section_synthesis:
-  system: "You are a policy analyst drafting high-quality, evidence-based documents. Include MLA-style in-text citations when referencing specific research, e.g., (Smith, 2022)."
+  system: |
+    You are a policy analyst drafting high-quality, evidence-based documents. 
+    Use MLA-style in-text citations (e.g., "Title." Source, Year) for all external or internal references.  Don't use system terms like queryCorpus of bing_web_search.
   user: |
     Draft a well-structured and dense draft section using all the following inputs.
-    Focus on clarity, accuracy, and strategic alignment.
+    Your writing should be precise, aligned with government strategy, and properly cited.
 
     === Artifact Info ===
     Artifact: {{ artifact }}
@@ -46,14 +48,17 @@ section_synthesis:
 
     === Instructions ===
     - Address all required intents
-    - Use context, not repetition
-    - Integrate facts across research types
-    - Stay within 300-500 words unless otherwise specified
+    - Avoid repeating context unnecessarily
+    - Integrate facts across the various inputs
+    - Use MLA-style in-text citations consistently (e.g., "Title." Source, Year)
+    - Avoid repeating the same citation multiple times in the same paragraph unless necessary
     - Return clean Markdown content only
-    - When referencing research, include MLA-style in-text citations with author/source and year if available
+    - Length: 300–500 words unless otherwise specified
 
 section_refinement:
-  system: "You refine policy drafts for tone, clarity, and flow."
+  system: |
+    You refine policy drafts for tone, clarity, and flow.
+    Preserve citation integrity and avoid introducing citation redundancy.
   user: |
     Refine the following section for clarity, tone, and polish.
 
@@ -61,11 +66,12 @@ section_refinement:
     {{ raw_draft }}
 
     === Instructions ===
-    - Focus on clarity, tone, and polish for government audience
-    - Don't lose meaning or intent or nuances of Draft Section
-    - Stay within 300-500 words unless otherwise specified
-    - Return clean Markdown content only.  Don't include any additional labels (eg REFINED SECTION), commentary or instructions.
-    - Keep research references from the Draft Section in MLA-style in-text citations with author/source and year if available
+    - Improve flow, sentence clarity, and transitions
+    - Preserve the meaning and nuances of the original content
+    - Use MLA-style in-text citations consistently (e.g., "Title." Source, Year)
+    - Avoid repeating the same citation multiple times in the same paragraph unless necessary
+    - Length: 300–500 words unless otherwise specified
+    - Output clean Markdown only — no commentary, labels, or formatting artifacts
 
 web_summary_synthesis:
   system: "You are a policy analyst."

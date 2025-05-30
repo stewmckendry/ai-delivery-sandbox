@@ -1,0 +1,29 @@
+- id: b5f30c2b-62b1-4bcf-9187-6aa2e327acfd
+  tool: uploadTextInput
+  input_summary: direct_input | uploadTextInput
+  output_summary: "Canadian cities are facing increasing climate risks such as heatwaves,\
+    \ flooding, and air pollution. Urban green infrastructure (UGI) \u2014 including\
+    \ parks, green roofs, rain gardens, and tree canopies \u2014 offers a resilient\
+    \ approach to mitigate these risks. Studies highlight how UGI enhances stormwater\
+    \ management, lowers urban temperatures, and improves public health (Toronto Environment\
+    \ Office, 2022; Green Cities Canada, 2023).\n\nJurisdictions like Vancouver and\
+    \ Montreal are investing heavily in UGI to meet climate targets and improve quality\
+    \ of life. Federal policies such as the Pan-Canadian Framework on Clean Growth\
+    \ and Climate Change encourage municipalities to integrate green infrastructure\
+    \ in long-term planning. Moreover, interdisciplinary research suggests that equitable\
+    \ access to UGI contributes to social resilience, particularly in low-income neighborhoods\
+    \ (McArthur & Stewart, 2021).\n\nInvestment in UGI should prioritize high-risk\
+    \ urban areas, align with community engagement strategie"
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-30 03:38:11.130705
+  metadata:
+    project_id: test_project_6
+    artifact_id: investment_proposal_concept
+    gate_id: 0
+    section_id: problem_statement
+    session_id: test_session_qwerty2
+    user_id: test_user
+    intent: problem_statement
