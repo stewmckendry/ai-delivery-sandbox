@@ -5204,3 +5204,15 @@
   - collaboration
   last_updated: '2025-05-30'
   pod_owner: DevPod
+- path: project/build/wps/WP27/policygpt_user_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/policygpt_user_flow.md
+  file_type: md
+  description: Guide detailing the end-to-end user journey with PolicyGPT, including
+    steps, interactions, and tools used for drafting and refining documents.
+  tags:
+  - user journey
+  - flow
+  - tools
+  - document drafting
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
