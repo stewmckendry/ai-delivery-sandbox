@@ -96,12 +96,12 @@ class GlobalContextChain:
             "user_id": user_id
         })
         logger.info(f"[GlobalContextChain] Retrieved memory for artifact {artifact_id} in project {project_id}")
-        log_tool_usage("memory_retrieve", "global_context | memory_retrieve", memory, session_id, user_id, inputs)
+        log_tool_usage("memory_retrieve", "memory_retrieve", memory, session_id, user_id, inputs)
 
         profile_engine = ProjectProfileEngine()
         project_profile = profile_engine.load_profile(project_id)
         logger.info(f"[GlobalContextChain] Loaded project profile for project {project_id}. Profile data: {project_profile}")
-        log_tool_usage("project_profile", "global_context | project_profile", project_profile, session_id, user_id, inputs)
+        log_tool_usage("project_profile", "project_profile", project_profile, session_id, user_id, inputs)
 
         # Step 1: Generate a smart search query
         query_payload = self.query_tool.run_tool({
@@ -110,7 +110,7 @@ class GlobalContextChain:
         })
         search_query = query_payload.get("query")
         logger.info(f"[GlobalContextChain] Generated search query: {search_query}")
-        log_tool_usage("queryPromptGenerator", "global_context | query_prompt_generator", query_payload, session_id, user_id, inputs)
+        log_tool_usage("queryPromptGenerator", "query_prompt_generator", query_payload, session_id, user_id, inputs)
 
         # Step 2: Web Search
         web_results = self.web_search_tool.run_tool({

@@ -14,14 +14,25 @@ from app.tools.tool_wrappers.saveArtifactChunks import Tool as SaveChunksTool
 from app.tools.tool_wrappers.fetchArtifactChunk import Tool as FetchArtifactChunk
 
 # Sample IDs
-project_id = "test_project_4"
-session_id = "test_session_xyz9876"
+project_id = "test_project_5"
+session_id = "test_session_qwerty"
 artifact_id = "investment_proposal_concept"
 gate_id = 0
 user_id = "test_user"
 section_id = "problem_statement"
 
-sample_text = "Investing in climate resilience initiatives will safeguard infrastructure, protect vulnerable communities, and strengthen long-term economic stability."
+sample_text = (
+    "Canadian cities are facing increasing climate risks such as heatwaves, flooding, and air pollution. "
+    "Urban green infrastructure (UGI) — including parks, green roofs, rain gardens, and tree canopies — "
+    "offers a resilient approach to mitigate these risks. Studies highlight how UGI enhances stormwater management, "
+    "lowers urban temperatures, and improves public health (Toronto Environment Office, 2022; Green Cities Canada, 2023).\n\n"
+    "Jurisdictions like Vancouver and Montreal are investing heavily in UGI to meet climate targets and improve quality of life. "
+    "Federal policies such as the Pan-Canadian Framework on Clean Growth and Climate Change encourage municipalities to integrate "
+    "green infrastructure in long-term planning. Moreover, interdisciplinary research suggests that equitable access to UGI contributes "
+    "to social resilience, particularly in low-income neighborhoods (McArthur & Stewart, 2021).\n\n"
+    "Investment in UGI should prioritize high-risk urban areas, align with community engagement strategies, and leverage both public and "
+    "private funding. As climate pressures intensify, embedding green infrastructure within urban planning is essential for sustainable and inclusive adaptation."
+)
 
 @pytest.mark.order(1)
 def test_ingest_input():
