@@ -1,0 +1,18 @@
+- id: 4cea2d03-b598-4658-a01b-d33a9176c114
+  tool: uploadTextInput
+  input_summary: direct_input | uploadTextInput
+  output_summary: Investing in climate resilience initiatives will safeguard infrastructure,
+    protect vulnerable communities, and strengthen long-term economic stability.
+  full_input_path: null
+  full_output_path: null
+  session_id: null
+  user_id: null
+  timestamp: 2025-05-30 00:26:07.924424
+  metadata:
+    project_id: test_project_3
+    artifact_id: investment_proposal_concept
+    gate_id: 0
+    section_id: problem_statement
+    session_id: test_session_abcd1234
+    user_id: test_user
+    intent: problem_statement

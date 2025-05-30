@@ -50,7 +50,7 @@ class IngestInputChain:
         log_tool_usage(
             tool_name=f"Ingest Chain - {tool_map[method]} - save_profile",
             input_summary=f"Ingest Chain - {tool_map[method]} - save_profile",
-            output_summary=f"Input: {raw_text[:200]}, Project_Profile: {json.dumps(project_profile)[:200]}",
+            output_summary=f"Input: {raw_text[:200]}, Project_Profile: {project_id}",
             session_id=metadata.get("session_id"),
             user_id=metadata.get("user_id"),
             metadata=metadata
