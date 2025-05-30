@@ -4,6 +4,7 @@ import re
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage, save_document_and_trace, save_artifact_and_trace
 from app.engines.project_profile_engine import ProjectProfileEngine
+from app.redis.section_review_store import fetch_review_section
 
 logger = logging.getLogger(__name__)
 
@@ -46,12 +47,19 @@ class AssembleArtifactChain:
         formatted_sections = []
         section_metadata = []
         for sec in loaded["ordered_sections"]:
+            section_id = sec["section_id"]
+            review_item = fetch_review_section(project_id, artifact_id, session_id, section_id)
+            section_text = review_item.get("raw_draft") if review_item and "raw_draft" in review_item else sec["text"]
+            logger.info(f"Fetched section text for section {section_id}: {section_text} from Redis cache" if review_item else f"Using original section text for section {section_id}")
+            log_tool_usage("fetchReviewSection", "fetched section text from Redis cache", section_text, session_id, None, inputs)
+  
             formatted = self.formatter.run_tool({
-                "section_id": sec["section_id"],
-                "section_text": sec["text"],
+                "section_id": section_id,
+                "section_text": section_text,
                 "section_title": sec["section_title"],
                 "artifact_id": artifact_id
             })
+            logger.info(f"Formatted section {section_id} with title '{sec['section_title']}'")
             log_tool_usage("formatSection", "formatted section", formatted, session_id, None, inputs)
             trace.append({"tool": "formatSection", "output": formatted})
             formatted_sections.append(formatted["formatted_section"])
