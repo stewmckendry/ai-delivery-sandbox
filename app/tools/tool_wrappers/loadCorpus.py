@@ -13,6 +13,7 @@ from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from chromadb import HttpClient
+import requests
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -28,18 +29,25 @@ logger.info("CHROMA_PORT: %s", CHROMA_PORT)
 class Tool:
     async_tool = True  # Enables async execution in api_router
 
-    def validate(self, input_dict):
-        if not input_dict.get("file_contents"):
-            raise ValueError("Missing file_contents")
-
     def run_tool(self, input_dict, background_tasks: BackgroundTasks = None):
         logger.info("Running loadCorpus tool")
-        self.validate(input_dict)
+
         job_id = str(uuid.uuid4())
 
         def process():
             logger.info("🚀 Starting async loadCorpus tool")
-            file_contents = input_dict["file_contents"]
+
+            file_contents = input_dict.get("file_contents")
+            file_url = input_dict.get("file_url")
+            if not file_contents and file_url:
+                try:
+                    response = requests.get(file_url)
+                    response.raise_for_status()
+                    file_contents = response.text
+                except Exception as e:
+                    logger.error(f"Failed to fetch file from URL: {file_url}", exc_info=e)
+                    raise ValueError(f"Error fetching file from {file_url}: {e}")
+
             file_name = input_dict.get("file_name", "Unnamed Document")
             metadata = input_dict.get("metadata", {})
 
