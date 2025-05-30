@@ -28,15 +28,19 @@ class AssembleArtifactChain:
         log_tool_usage("loadSectionMetadata", "loaded sections", loaded, session_id, None, inputs)
         trace.append({"tool": "loadSectionMetadata", "output": loaded})
         logger.info("[Step 1] loadSectionMetadata complete")
+        logger.info(f"Loaded sections for artifact {artifact_id} with {len(loaded['ordered_sections'])} sections")
 
         #load project profile if available
         if project_id:
             profile_engine = ProjectProfileEngine()
             project_profile = profile_engine.load_profile(project_id)
+            logger.info(f"Loaded project profile for project {project_id}: {project_profile}")
         else:
             project_profile = {}
+            logger.warning(f"No project profile found for project_id {project_id}")
         inputs["project_profile"] = project_profile
         title = project_profile.get("title") or loaded.get("artifact_name", f"Assembled Artifact for {artifact_id}")
+        logger.info(f"Using title: {title}")
 
         formatted_sections = []
         for sec in loaded["ordered_sections"]:
@@ -50,11 +54,13 @@ class AssembleArtifactChain:
             trace.append({"tool": "formatSection", "output": formatted})
             formatted_sections.append(formatted["formatted_section"])
         logger.info("[Step 2] formatSection complete")
+        logger.info(f"Formatted {len(formatted_sections)} sections for artifact {artifact_id}")
 
         merged = self.merger.run_tool({"sections": formatted_sections})
         log_tool_usage("mergeSections", "merged body", merged, session_id, None, inputs)
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
+        logger.info(f"Merged document body for artifact {artifact_id}.  Body snippet: {merged['document_body'][:100]}...")
 
         finalized = self.finalizer.run_tool({
             "title": title,
@@ -66,6 +72,7 @@ class AssembleArtifactChain:
         log_tool_usage("finalizeDocument", "finalized output", finalized, session_id, None, inputs)
         trace.append({"tool": "finalizeDocument", "output": finalized})
         logger.info("[Step 4] finalizeDocument complete")
+        logger.info(f"Finalized document for artifact {artifact_id}.  Final markdown snippet: {finalized['final_markdown'][:100]}...")
 
         committed = self.committer.run_tool({
             "final_markdown": finalized["final_markdown"],
