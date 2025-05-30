@@ -135,7 +135,7 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
     session.add(doc_log)
 
     trace = ReasoningTrace(
-        trace_id=session_id,
+        trace_id=f"{project_id}_{artifact_id}_{str(uuid4())[:5]}",
         section_id=f"{artifact_id}:{gate_id}",
         steps=json.dumps(tool_outputs),
         created_by="assemble_artifact",
