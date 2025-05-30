@@ -14,12 +14,13 @@ class SaveArtifactChunks(BaseTool):
     def __init__(self):
         self.redis_client = redis_client
 
-    def chunk_sections(self, artifact_id: str, gate_id: str, max_token: int) -> List[Dict]:
+    def chunk_sections(self, artifact_id: str, gate_id: str, project_id: str, session_id: str, max_token: int) -> List[Dict]:
         session = get_session()
         entries = session.query(ArtifactSection).filter_by(
             artifact_id=artifact_id,
             gate_id=gate_id,
-            status="draft"
+            project_id=project_id,
+            session_id=session_id
         ).all()
 
         tokenizer = tiktoken.get_encoding("cl100k_base")
@@ -45,13 +46,14 @@ class SaveArtifactChunks(BaseTool):
         session_id = input_dict.get("session_id")
         artifact_id = input_dict.get("artifact_id")
         gate_id = input_dict.get("gate_id")
+        project_id = input_dict.get("project_id")
         max_token = input_dict.get("max_token", 1500)
 
-        if not all([session_id, artifact_id, gate_id]):
-            raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id")
+        if not all([session_id, artifact_id, gate_id, project_id]):
+            raise ValueError("Missing one or more required parameters: session_id, artifact_id, gate_id, project_id")
 
         try:
-            chunks = self.chunk_sections(artifact_id, gate_id, max_token)
+            chunks = self.chunk_sections(artifact_id, gate_id, project_id, session_id, max_token)
             key = f"artifact_chunks:{session_id}:{artifact_id}"
             self.redis_client.set(key, json.dumps(chunks))
             logger.info(f"Saved {len(chunks)} chunks to Redis under key {key}")

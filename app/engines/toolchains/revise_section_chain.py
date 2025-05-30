@@ -49,14 +49,14 @@ class ReviseSectionChain:
 
         # Step 3: retrieve current section
         db = get_session()
-        section_record = db.query(ArtifactSection).filter_by(artifact_id=artifact, section_id=section).order_by(ArtifactSection.timestamp.desc()).first()
+        section_record = db.query(ArtifactSection).filter_by(artifact_id=artifact, section_id=section, project_id=project_id, session_id=session_id).order_by(ArtifactSection.timestamp.desc()).first()
         current_text = section_record.text if section_record else ""
 
         # Step 4: feedback logging
         save_feedback(document_id=artifact, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
 
         # Fetch latest version per section_id
-        all_records = db.query(ArtifactSection).filter_by(artifact_id=artifact).order_by(ArtifactSection.timestamp.desc()).all()
+        all_records = db.query(ArtifactSection).filter_by(artifact_id=artifact, project_id=project_id, session_id=session_id).order_by(ArtifactSection.timestamp.desc()).all()
         latest_sections = {}
         for sec in all_records:
             if sec.section_id not in latest_sections:

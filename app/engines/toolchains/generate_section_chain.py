@@ -24,7 +24,7 @@ class GenerateSectionChain:
     
     def summarize_drafted_sections(self, artifact_id, session_id, project_id):
         db = SessionLocal()
-        sections = db.query(ArtifactSection).filter_by(artifact_id=artifact_id, project_id=project_id).all()
+        sections = db.query(ArtifactSection).filter_by(artifact_id=artifact_id, project_id=project_id, session_id=session_id).all()
         # Remove duplicates based on section text
         unique_texts = set()
         unique_sections = []

@@ -12,7 +12,7 @@ from app.engines.project_profile_engine import ProjectProfileEngine
 from sqlalchemy.orm import Session
 
 
-def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id, project_id=None):
+def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id, project_id=None, session_id=None):
     session = get_session()
 
     draft_chunks = None
@@ -35,7 +35,8 @@ def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, too
         status="draft",
         generated_by="generate_section",
         timestamp=datetime.datetime.utcnow(),
-        project_id=project_id
+        project_id=project_id,
+        session_id=session_id
     )
 
     trace = ReasoningTrace(

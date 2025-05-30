@@ -25,7 +25,7 @@ class Tool:
 
         # Fetch current section text
         db = get_session()
-        section_record = db.query(ArtifactSection).filter_by(artifact_id=artifact_id, section_id=section_id).order_by(ArtifactSection.timestamp.desc()).first()
+        section_record = db.query(ArtifactSection).filter_by(artifact_id=artifact_id, section_id=section_id, project_id=project_id, session_id=session_id).order_by(ArtifactSection.timestamp.desc()).first()
         current_text = section_record.text if section_record else ""
 
         if revised_text.strip() == current_text.strip():

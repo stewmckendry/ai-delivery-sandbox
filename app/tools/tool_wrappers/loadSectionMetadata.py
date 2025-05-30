@@ -62,7 +62,8 @@ class Tool:
                 artifact_id=input_data.artifact_id,
                 gate_id=input_data.gate_id,
                 section_id=sid,
-                status='draft'
+                project_id=input_data.project_id,
+                session_id=input_data.session_id
             ).order_by(desc(ArtifactSection.timestamp)).first()
             if latest:
                 section_map[sid] = latest
