@@ -661,9 +661,11 @@ tools:
       type: object
       properties:
         session_id: { type: string }
+        artifact_id: { type: string }
         chunk_id: { type: string }
       required:
         - session_id
+        - artifact_id
         - chunk_id
 
   save_artifact_chunks:

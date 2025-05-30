@@ -124,7 +124,8 @@ class ReviseSectionChain:
                         sources=rewritten.get("prompt_used"),
                         tool_outputs=trace,
                         user_id=user_id,
-                        project_id=project_id
+                        project_id=project_id,
+                        session_id=session_id
                     )
                     logger.info("[Step 5] Saved to ArtifactSection and ReasoningTrace")
 
