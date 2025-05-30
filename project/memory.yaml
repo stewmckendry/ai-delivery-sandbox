@@ -5133,3 +5133,14 @@
   - data management
   last_updated: '2025-05-30'
   pod_owner: DevPod
+- path: app/tools/tool_wrappers/feedback_structurer.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/tools/tool_wrappers/feedback_structurer.py
+  file_type: py
+  description: Script to structure feedback using prompts and LLM assistance
+  tags:
+  - feedback
+  - prompt
+  - LLM
+  - tool
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
