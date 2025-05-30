@@ -5167,3 +5167,16 @@
   - revision
   last_updated: '2025-05-30'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/revision_flow_guidance.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/revision_flow_guidance.md
+  file_type: md
+  description: Guidance document detailing when to use specific tools for document
+    revision flows, focusing on bulk feedback ingestion versus interactive section
+    review.
+  tags:
+  - flow
+  - guidance
+  - revision
+  - feedback
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
