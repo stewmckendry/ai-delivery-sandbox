@@ -10,6 +10,7 @@ from app.db.models.DocumentVersionLog import DocumentVersionLog
 from app.db.models.DocumentFeedback import DocumentFeedback
 from app.engines.project_profile_engine import ProjectProfileEngine
 from sqlalchemy.orm import Session
+from uuid import uuid4
 
 
 def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id, project_id=None, session_id=None):
@@ -119,7 +120,7 @@ def save_document_and_trace(session_id, artifact_id, gate_id, version, storage_u
     project_id = inputs.get("project_id") or inputs.get("project_profile", {}).get("project_id")
 
     doc_log = DocumentVersionLog(
-        doc_version_id=session_id,
+        doc_version_id=f"{project_id}_{artifact_id}_{str(uuid4())[:5]}",
         artifact_name=artifact_id,
         gate=int(gate_id),
         version_tag=version,
