@@ -7,14 +7,9 @@ from app.tools.utils.llm_helpers import chat_completion_request
 logger = logging.getLogger(__name__)
 
 class Tool:
-    def validate(self, input_dict):
-        if "feedback_text" not in input_dict:
-            raise ValueError("feedback_text is required")
-        if "sections" not in input_dict:
-            raise ValueError("sections list is required")
 
     def run_tool(self, input_dict):
-        self.validate(input_dict)
+        logger.info("Running feedback mapper tool")
         feedback = input_dict["feedback_text"]
         sections = input_dict["sections"]
 
