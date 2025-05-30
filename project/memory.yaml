@@ -5216,3 +5216,16 @@
   - document drafting
   last_updated: '2025-05-30'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/handoff_next_pod_message.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/handoff_next_pod_message.md
+  file_type: md
+  description: Instructions and tasks for transitioning the PolicyGPT project from
+    the previous ProductPod, focusing on testing and enhancing the tools and user
+    experience for the next iteration.
+  tags:
+  - handoff
+  - testing
+  - ux
+  - tools
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
