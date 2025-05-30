@@ -5110,3 +5110,15 @@
   - toolchain
   last_updated: '2025-05-30'
   pod_owner: QAPod
+- path: project/build/wps/WP27/WP27_Iteration4_Plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/WP27_Iteration4_Plan.md
+  file_type: md
+  description: Plan document for Iteration 4 focusing on feedback review and section
+    rewriting flow, detailing objectives, roles, end-to-end process, and patch plans.
+  tags:
+  - plan
+  - flow
+  - toolchain
+  - feedback
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
