@@ -5180,3 +5180,15 @@
   - feedback
   last_updated: '2025-05-30'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/section_feedback_vs_revise_chain.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/section_feedback_vs_revise_chain.md
+  file_type: md
+  description: Documentation on using feedback and revision chains for section-based
+    content generation and revision in a GPT-driven chat interface.
+  tags:
+  - feedback
+  - revision
+  - flow
+  - GPT
+  last_updated: '2025-05-30'
+  pod_owner: DeliveryPod
