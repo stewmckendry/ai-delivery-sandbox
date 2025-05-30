@@ -51,8 +51,6 @@ section_synthesis:
     - Stay within 300-500 words unless otherwise specified
     - Return clean Markdown content only
 
-    Begin the draft below:
-
 section_refinement:
   system: "You refine policy drafts for tone, clarity, and flow."
   user: |
@@ -60,6 +58,8 @@ section_refinement:
 
     [Draft Section]
     {{ raw_draft }}
+
+    EXPECTED RESPONSE: Revised section content in clean Markdown format.  Don't include any additional commentary or instructions.
 
 web_summary_synthesis:
   system: "You are a policy analyst."
