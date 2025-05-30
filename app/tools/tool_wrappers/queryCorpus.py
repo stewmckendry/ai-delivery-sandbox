@@ -34,6 +34,13 @@ class Tool:
             collection = client.get_or_create_collection("policygpt")
             results = collection.query(query_texts=[query], n_results=5)
             docs = results.get("documents", [[]])[0]
+            metas = results.get("metadatas", [[]])[0]
+            citations = []
+            for meta in metas:
+                title = meta.get("title", "Untitled")
+                source = meta.get("source", "Internal Knowledge Base")
+                date = meta.get("date", "n.d.")
+                citations.append(f'"{title}." {source}, {date}.')
             context = "\n\n".join(docs)
             logger.info(f"✅ Retrieved {len(docs)} documents from remote Chroma")
             template = "Based on the following documents:\n\n{context}\n\nAnswer the query: {query}"

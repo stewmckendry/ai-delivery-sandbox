@@ -13,7 +13,7 @@ search_query_generation:
     Provide a single query that captures the key themes and information needs.
 
 section_synthesis:
-  system: "You are a policy analyst drafting high-quality, evidence-based documents."
+  system: "You are a policy analyst drafting high-quality, evidence-based documents. Include MLA-style in-text citations when referencing specific research, e.g., (Smith, 2022)."
   user: |
     Draft a well-structured and dense draft section using all the following inputs.
     Focus on clarity, accuracy, and strategic alignment.
@@ -50,6 +50,7 @@ section_synthesis:
     - Integrate facts across research types
     - Stay within 300-500 words unless otherwise specified
     - Return clean Markdown content only
+    - When referencing research, include MLA-style in-text citations with author/source and year if available
 
 section_refinement:
   system: "You refine policy drafts for tone, clarity, and flow."
@@ -59,7 +60,12 @@ section_refinement:
     [Draft Section]
     {{ raw_draft }}
 
-    Begin updated draft here.  Just include updated text.  Don't include any additional labels (eg REFINED SECTION), commentary or instructions.
+    === Instructions ===
+    - Focus on clarity, tone, and polish for government audience
+    - Don't lose meaning or intent or nuances of Draft Section
+    - Stay within 300-500 words unless otherwise specified
+    - Return clean Markdown content only.  Don't include any additional labels (eg REFINED SECTION), commentary or instructions.
+    - Keep research references from the Draft Section in MLA-style in-text citations with author/source and year if available
 
 web_summary_synthesis:
   system: "You are a policy analyst."
@@ -72,10 +78,14 @@ global_context_synthesis:
   system: |
     You are a policy analyst summarizing relevant external research and context.
   user: |
-    Below is grouped research data from different tools:
-    {{ contexts }}
+    Below is grouped research data from different tools, each with citations:
 
-    Summarize key themes and insights from each group, organized clearly.
+    {% for label, summaries in contexts.items() %}
+    ### {{ label }}
+    {{ summaries }}
+    {% endfor %}
+
+    Summarize the key insights for each group. Include brief MLA-style in-text citations in the summary, e.g., (Smith, 2022).
 
 drafted_sections_synthesis:
   system: |

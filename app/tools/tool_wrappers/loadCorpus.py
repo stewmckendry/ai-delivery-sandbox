@@ -43,6 +43,10 @@ class Tool:
             file_name = input_dict.get("file_name", "Unnamed Document")
             metadata = input_dict.get("metadata", {})
 
+            metadata.setdefault("title", file_name)
+            metadata.setdefault("source", "Internal Knowledge Base")
+            metadata.setdefault("date", datetime.utcnow().date().isoformat())
+
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
             document = Document(page_content=file_contents)
             split_docs = text_splitter.split_documents([document])

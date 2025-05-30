@@ -39,7 +39,7 @@ class GlobalContextChain:
             and_(
             PromptLog.project_id == project_id,
             PromptLog.session_id == session_id,
-            PromptLog.input_summary.like("global_context |%")
+            PromptLog.input_summary.contains("global_context")
             )
         ).all()
 
@@ -56,12 +56,28 @@ class GlobalContextChain:
 
 
     def summarize_global_context(self, grouped_context):
-        from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
-        from jinja2 import Template
+        # Extract context summaries with citation metadata
+        def format_context_group(group):
+            formatted = []
+            for item in group:
+                if isinstance(item, dict):
+                    citation = item.get("title") or "Untitled"
+                    source = item.get("source", "Unknown Source")
+                    date = item.get("date", "n.d.")
+                    url = item.get("url", "")
+                    summary = item.get("snippet") or item.get("text") or item
+                    formatted.append(f"- {summary}\n  (Source: \"{citation}\", {source}, {date}, {url})")
+                else:
+                    formatted.append(f"- {item}")
+            return "\n".join(formatted)
+
+        formatted_contexts = {
+            label: format_context_group(items) for label, items in grouped_context.items()
+        }
 
         prompt_templates = get_prompt("generate_section_prompts.yaml", "global_context_synthesis")
         system_prompt = Template(prompt_templates["system"]).render()
-        user_prompt = Template(prompt_templates["user"]).render(contexts=grouped_context)
+        user_prompt = Template(prompt_templates["user"]).render(contexts=formatted_contexts)
         return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
 
 

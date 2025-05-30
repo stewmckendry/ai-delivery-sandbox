@@ -23,11 +23,20 @@ def bing_web_search(query: str, count: int = 5) -> list:
 
     results = []
     for item in data.get("organic_results", []):
+        title = item.get("title")
+        source = item.get("source") or item.get("displayed_link")
+        url = item.get("link")
+        date = item.get("date") or item.get("published") or "n.d."
+
+        # MLA-style citation formatting
+        citation = f'"{title}." {source}, {date}, {url}.'
+
         results.append({
-            "title": item.get("title"),
+            "title": title,
             "snippet": item.get("snippet"),
-            "source": item.get("source") or item.get("displayed_link"),
-            "url": item.get("link"),
-            "date": item.get("date") or item.get("published")
+            "source": source,
+            "url": url,
+            "date": date,
+            "citation": citation
         })
     return results

@@ -102,22 +102,20 @@ tools:
           type: string
         metadata:
           type: object
-          additionalProperties: true # Allow any metadata structure
+          additionalProperties: true
           properties:
-            gate_id:
-              type: integer
-            artifact_id:
+            title:
               type: string
-            section_id:
+              description: Title of the document for citation
+            source:
               type: string
-            intent:
+              description: Source or publication origin of the document
+            date:
               type: string
-            session_id:
-              type: string
-            user_id:
-              type: string
+              format: date
+              description: Date of publication or indexing in ISO format
       required:
-        - file_contents  
+        - file_contents
   queryCorpus:
     module: app.tools.tool_wrappers.queryCorpus
     class: Tool
