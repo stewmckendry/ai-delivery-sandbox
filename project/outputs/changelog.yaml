@@ -9145,3 +9145,14 @@
   task_id: WP27-3
   committed_by: GPTPod
   message: Append output file to WP27-3
+- timestamp: '2025-05-30T18:30:51.021939'
+  path: project/build/wps/WP27b/policygpt_custom_gpt_guide.md
+  task_id: WP27-3
+  committed_by: GPTPod
+  message: Add Custom GPT setup guide for PolicyGPT including tools, flow, and user
+    instructions
+- timestamp: '2025-05-30T18:30:51.021939'
+  path: project/memory.yaml
+  task_id: WP27-3
+  committed_by: GPTPod
+  message: Memory update related to project/build/wps/WP27b/policygpt_custom_gpt_guide.md
