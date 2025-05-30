@@ -1,3 +1,41 @@
+feedback_structuring:
+  system: "You are a helpful assistant for structuring policy document feedback."
+  user: |
+    You will help structure user feedback for a government policy artifact.
+
+    Below is a batch of raw feedback entries. Some may reference a section explicitly, others may be general or ambiguous.
+    ---
+    {{ feedback_entries }}
+    ---
+
+    Please:
+    1. Normalize tone and phrasing.
+    2. If multiple requests are embedded, split them into separate items.
+    3. Assign each feedback item to the most likely section ID based on references or semantic match. If no clear match, best-guess from summaries.
+    4. Infer the required revision type from this set: rewrite, polish, append, clarify, targeted_edit, unspecified.
+
+    Sections:
+    {% for s in sections %}
+    - ID: {{s.section_id}}\nSummary: {{s.text}}
+    {% endfor %}
+
+    Respond in JSON format, e.g.:
+    {
+      "section_feedback_map": {
+        "sec-001": [
+          {"text": "Please clarify the policy timeline.", "type": "clarify"},
+          {"text": "Add a comparison to international models.", "type": "append"}
+        ],
+        "sec-002": [
+          {"text": "Tone is too informal—refine wording.", "type": "polish"}
+        ],
+        "general": [
+          {"text": "Make sure all metrics are evidence-based.", "type": "rewrite"}
+        ]
+      }
+    }
+
+
 feedback_mapping:
   system: "You help map feedback to document revisions."
   user: |
@@ -97,3 +135,23 @@ feedback_preprocess:
       "split_feedback": [...],
       "inferred_type": "rewrite | polish | append | clarify | targeted_edit | unspecified"
     }
+
+diff_summary:
+  system: "You are a policy analyst summarizing revisions to a document section."
+  user: |
+    Summarize the key differences between the original and revised versions of this section.
+
+    Original:
+    ---
+    {{ original }}
+
+    Revised:
+    ---
+    {{ revised }}
+
+    === Instructions ===
+    - Describe the key changes, additions, or removals.
+    - Mention any structural, tone, or content shifts.
+    - Be clear and concise (1 paragraph).
+    - Avoid repetition or quoting full passages.
+

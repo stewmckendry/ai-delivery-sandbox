@@ -7,12 +7,9 @@ from app.tools.utils.llm_helpers import chat_completion_request
 logger = logging.getLogger(__name__)
 
 class Tool:
-    def validate(self, input_dict):
-        if "feedback_text" not in input_dict:
-            raise ValueError("feedback_text is required")
 
     def run_tool(self, input_dict):
-        self.validate(input_dict)
+        logger.info("Running feedback preprocessor tool")
         feedback_text = input_dict["feedback_text"]
 
         prompt_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/revision_prompts.yaml"

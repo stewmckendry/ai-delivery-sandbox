@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class Tool:
     def run_tool(self, input_dict):
         logger.info("Running unified feedback structurer tool")
-        feedback_text = input_dict["feedback_text"]
+        feedback_entries = input_dict["feedback_text"]
         sections = input_dict["sections"]
 
         prompt_url = "https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/prompts/revision_prompts.yaml"
@@ -17,7 +17,7 @@ class Tool:
         prompts = yaml.safe_load(response.text)
 
         user_template = Template(prompts["feedback_structuring"]["user"])
-        user_prompt = user_template.render(feedback_text=feedback_text, sections=sections)
+        user_prompt = user_template.render(feedback_entries=feedback_entries, sections=sections)
         system_prompt = prompts["feedback_structuring"]["system"]
 
         response = chat_completion_request(system=system_prompt, user=user_prompt)

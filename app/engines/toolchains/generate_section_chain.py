@@ -11,6 +11,8 @@ from app.db.database import SessionLocal
 from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
 import requests
 import yaml
+from app.redis.redis_client import redis_client
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -115,6 +117,19 @@ class GenerateSectionChain:
         log_tool_usage("section_refiner", "refined draft", refined, session_id, user_id, inputs)
         trace.append({"tool": "section_refiner", "output": refined})
         logger.info("[Step 5] section_refiner complete")
+
+        # Cache in Redis for iteration workflows
+        try:
+            key = f"section_revision:{project_id}:{artifact_id}:{section_id}"
+            redis_payload = {
+                "text": refined["raw_draft"],
+                "diff_summary": None,  # none yet
+                "status": "completed"
+            }
+            redis_client.set(key, json.dumps(redis_payload))
+            logger.info(f"[Redis] Cached section to key {key}")
+        except Exception as e:
+            logger.error(f"[Redis] Failed to cache section revision: {e}")
 
         save_result = save_artifact_and_trace(
             section_id=section_id,
