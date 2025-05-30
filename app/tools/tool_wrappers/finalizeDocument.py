@@ -1,6 +1,8 @@
 from typing import Dict
 from pydantic import BaseModel, parse_obj_as
 from datetime import datetime
+import logging
+logger = logging.getLogger(__name__)
 
 class InputSchema(BaseModel):
     title: str
@@ -14,6 +16,7 @@ class OutputSchema(BaseModel):
 
 class Tool:
     def run_tool(self, input_dict: Dict) -> Dict:
+        logger.info("Running finalizeDocument tool")
         data = parse_obj_as(InputSchema, input_dict)
         header = f"# {data.title}\n\n**Version:** {data.version}  \\\n**Artifact ID:** {data.artifact_id}  \\\n**Gate ID:** {data.gate_id}  \\\n**Generated On:** {datetime.utcnow().isoformat()}\n\n---\n"
 

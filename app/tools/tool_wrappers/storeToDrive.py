@@ -35,6 +35,7 @@ class OutputSchema(BaseModel):
 
 class Tool:
     def run_tool(self, input_dict: Dict) -> Dict:
+        logger.info("Running storeToDrive tool")
         data = parse_obj_as(InputSchema, input_dict)
 
         logger.info("Authenticating with Google Drive using service account JSON at: %s", SERVICE_ACCOUNT_FILE)

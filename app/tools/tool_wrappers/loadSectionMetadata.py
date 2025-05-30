@@ -30,12 +30,11 @@ class OutputSchema(BaseModel):
 
 class Tool:
     def run_tool(self, input_dict):
+        logger.info("Running loadSectionMetadata tool")
         artifact_id = input_dict.get("artifact_id")
         gate_id = input_dict.get("gate_id")
         project_id = input_dict.get("project_id")
         session_id = input_dict.get("session_id")
-        logger.info(f"Validated input_data: {input_data}")
-        logger.info(f"Type of input_data: {type(input_data)}")
         session = get_session()
 
         logger.info(f"Fetching gate reference from {GATE_REF_URL}")

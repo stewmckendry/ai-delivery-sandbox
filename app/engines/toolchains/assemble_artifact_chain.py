@@ -15,7 +15,6 @@ class AssembleArtifactChain:
         self.merger = registry.get_tool("mergeSections")
         self.finalizer = registry.get_tool("finalizeDocument")
         self.committer = registry.get_tool("storeToDrive")
-        self.refiner = registry.get_tool("refine_document_chain")
 
     def run(self, inputs):
         trace = []
