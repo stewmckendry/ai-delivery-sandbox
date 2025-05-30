@@ -745,3 +745,28 @@ tools:
       required:
         - feedback_entries
         - sections
+
+  record_research:
+    description: Record free-form research notes (with optional metadata) and structure them for global context reuse.
+    module: app.tools.tool_wrappers.record_research
+    class: Tool
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        project_id: { type: string }
+        user_id: { type: string }
+        notes: { type: string, description: "Free-form research notes" }
+        metadatas:
+          type: array
+          items:
+            type: object
+            properties:
+              text: { type: string }
+              title: { type: string }
+              source: { type: string }
+              date: { type: string }
+              url: { type: string }
+              citation: { type: string }
+          description: "Optional pre-structured metadata if available"
+      required: ["session_id", "project_id", "notes"]

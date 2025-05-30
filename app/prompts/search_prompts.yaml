@@ -18,3 +18,35 @@ search_cleanup:
 
     Output:
     <cleaned, structured text>
+
+record_research_structuring:
+  system: "You are a helpful research assistant structuring research notes for traceable reuse."
+  user: |
+    Please parse the following research notes into structured metadata entries.
+    Each entry should include:
+    - text (the actual snippet)
+    - title
+    - source
+    - date
+    - url (if available)
+
+    === Notes ===
+    {{ raw_input }}
+
+    === Instructions ===
+    - Return a JSON object with a key "structured" and a list of entries.
+    - Do not summarize or alter the content. Only parse and label it.
+    - This will be used for citation and evidence trail.
+
+    === Example Output ===
+    {
+      "structured": [
+        {
+          "text": "Canada's Net-Zero Emissions Accountability Act was enacted in 2021.",
+          "title": "Net-Zero Act",
+          "source": "Government of Canada",
+          "date": "2021",
+          "url": "https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions.html"
+        }
+      ]
+    }

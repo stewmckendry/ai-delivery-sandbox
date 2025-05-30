@@ -661,6 +661,38 @@
         },
         "required": ["session_id", "artifact", "feedback_entries", "user_id", "project_id"]
       }
+    },
+    {
+      "tool_id": "record_research",
+      "description": "Record and structure free-form research notes for global context reuse.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "project_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "notes": {
+            "type": "string",
+            "description": "Free-form research notes, including content and source references"
+          },
+          "metadatas": {
+            "type": "array",
+            "description": "Optional pre-structured metadata if available",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": { "type": "string" },
+                "title": { "type": "string" },
+                "source": { "type": "string" },
+                "date": { "type": "string" },
+                "url": { "type": "string" },
+                "citation": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["session_id", "project_id", "notes"]
+      }
     }
   ]
 }
