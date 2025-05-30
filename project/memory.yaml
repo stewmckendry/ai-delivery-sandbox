@@ -5192,3 +5192,15 @@
   - GPT
   last_updated: '2025-05-30'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27/WP27_DesignNote_RedisInMemoryEdits.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27/WP27_DesignNote_RedisInMemoryEdits.md
+  file_type: md
+  description: Design document detailing the use of Redis as an in-memory store for
+    managing section drafts and edits during collaborative document generation workflows.
+  tags:
+  - design
+  - architecture
+  - Redis
+  - collaboration
+  last_updated: '2025-05-30'
+  pod_owner: DevPod
