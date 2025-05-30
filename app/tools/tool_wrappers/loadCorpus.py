@@ -14,6 +14,10 @@ from app.engines.memory_sync import log_tool_usage
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from chromadb import HttpClient
 import requests
+import requests
+from bs4 import BeautifulSoup
+from app.tools.utils.llm_helpers import get_prompt, chat_completion_request
+from jinja2 import Template
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -43,7 +47,14 @@ class Tool:
                 try:
                     response = requests.get(file_url)
                     response.raise_for_status()
-                    file_contents = response.text
+                    soup = BeautifulSoup(response.text, "html.parser")
+                    raw_text = soup.get_text(separator="\n", strip=True)
+                    prompt_templates = get_prompt("search_prompts.yaml", "search_cleanup")
+                    system_prompt = Template(prompt_templates["system"]).render()
+                    user_prompt = Template(prompt_templates["user"]).render(raw_text=raw_text, file_url=file_url)
+                    logger.info(f"[Tool] loadCorpus user prompt: {user_prompt[:100]}...")
+                    cleaned = chat_completion_request(system_prompt, user_prompt, temperature=0.4)
+                    file_contents = cleaned.strip()
                 except Exception as e:
                     logger.error(f"Failed to fetch file from URL: {file_url}", exc_info=e)
                     raise ValueError(f"Error fetching file from {file_url}: {e}")
