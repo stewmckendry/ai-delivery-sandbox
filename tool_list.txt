@@ -1,0 +1,168 @@
+KEEP:GPT-facing - 
+
+  uploadTextInput:
+    module: app.tools.tool_wrappers.uploadTextInput
+    description: Ingest freeform text input into the memory system
+
+  uploadFileInput:
+    module: app.tools.tool_wrappers.uploadFileInput
+    description: Extract and ingest file contents into the memory system
+
+  uploadLinkInput:
+    module: app.tools.tool_wrappers.uploadLinkInput
+    description: Scrape and ingest webpage content into the memory system
+
+  loadCorpus:
+    module: app.tools.tool_wrappers.loadCorpus
+    description: Embeds and indexes documents into KB
+
+  queryCorpus:
+    module: app.tools.tool_wrappers.queryCorpus
+    description: Queries a vector-embedded document corpus for alignment
+
+  inputPromptGenerator:
+    module: app.tools.tool_wrappers.inputPromptGenerator
+    description: Generate structured input prompts based on gate metadata
+
+  ingestInput:
+    module: app.engines.toolchains.IngestInputChain
+    description: Ingests content from user text, file, or URL and generates or updates the associated project profile.
+
+  generateSectionChain:
+    module: app.engines.toolchains.generate_section_chain
+    description: Generates a draft section by retrieving memory, synthesizing, and refining text.
+
+  webSearch:
+    module: app.tools.tool_wrappers.web_search
+    description: Performs external web or domain-specific search and returns formatted summaries
+
+  goc_alignment_search:
+    module: app.tools.tool_wrappers.goc_alignment_search
+    description: Performs government policy alignment search scoped to .gc.ca domains and returns structured results
+
+  assembleArtifactChain:
+    module: app.engines.toolchains.assemble_artifact_chain
+    description: Loads section metadata, formats and merges content, finalizes a document, and saves it to Drive.
+
+  revise_section_chain:
+    module: app.engines.toolchains.revise_section_chain
+    description: Revise one or more artifact sections based on user feedback, memory context, and structured feedback mapping.
+
+  generate_artifact_chain:
+    module: app.engines.toolchains.generate_artifact_chain
+    description: Generates all sections for an artifact using shared global context, then assembles into a complete document.
+
+  generate_global_context_chain:
+    module: app.engines.toolchains.generate_global_context_chain
+    description: Runs global research using corpus search, web search, and GoC alignment tools, logging results for downstream use.
+
+  fetch_artifact_chunk:
+    module: app.tools.tool_wrappers.fetchArtifactChunk
+    description: Fetch a specific chunk of an artifact from Redis storage for streaming to the user or GPT.
+
+  save_artifact_chunks:
+    module: app.tools.tool_wrappers.saveArtifactChunks
+    description: Chunk and save a drafted artifact to Redis using token thresholds for LLM-safe streaming.
+
+  section_review_fetcher:
+    module: app.tools.tool_wrappers.section_review_fetcher
+    description: Retrieve section revision text and diff summary from Redis for a specific section.
+
+  record_research:
+    module: app.tools.tool_wrappers.record_research
+    description: Record free-form research notes (with optional metadata) and structure them for global context reuse.
+
+REMOVE Internal Only:
+
+  createSessionSnapshot:
+    module: app.tools.tool_wrappers.createSessionSnapshot
+    description: Generate a YAML snapshot of all PromptLog entries for a session, used by planner for grounding and replay.
+
+  inputChecker:
+    module: app.tools.tool_wrappers.inputChecker
+    description: Validate user inputs against required metadata and completeness
+
+  memory_retrieve:
+    module: app.tools.tool_wrappers.memory_retrieve
+    description: Retrieves relevant PromptLog entries for a given artifact and section
+
+  loadSectionMetadata:
+    module: app.tools.tool_wrappers.loadSectionMetadata
+    description: Loads and sorts drafted artifact sections for a given gate and artifact
+
+  formatSection:
+    module: app.tools.tool_wrappers.formatSection
+    description: Formats a section using a Jinja Markdown template
+
+  mergeSections:
+    module: app.tools.tool_wrappers.mergeSections
+    description: Merges formatted sections into a complete markdown body
+
+  finalizeDocument:
+    module: app.tools.tool_wrappers.finalizeDocument
+    description: Adds title, metadata, and table of contents to a markdown document
+
+  commitArtifact:
+    module: app.tools.tool_wrappers.commitArtifact
+    description: Saves finalized document locally and logs output location
+
+  storeToDrive:
+    module: app.tools.tool_wrappers.storeToDrive
+    description: Uploads finalized document as PDF to Google Drive and logs the output link
+
+  fetchFromDrive:
+    module: app.tools.tool_wrappers.fetchFromDrive
+    description: Retrieves the uploaded PDF from Drive by gate ID, artifact ID, and version
+
+  confirmProjectProfile:
+    module: app.tools.tool_wrappers.confirmProjectProfile
+    description: Loads and returns a saved project profile by project ID for GPT or human confirmation
+
+  feedback_mapper:
+    module: app.tools.tool_wrappers.feedback_mapper
+    description: Maps feedback text to the most relevant document section IDs and determines the type of revision required.
+
+  section_rewriter:
+    module: app.tools.tool_wrappers.section_rewriter
+    description: Rewrites a section based on the revision type and feedback using prompt templates and LLM output.
+
+  manualEditSync:
+    module: app.tools.tool_wrappers.manualEditSync
+    description: Saves a section that was edited manually or pasted by a user, without transformation.
+
+  feedback_preprocessor:
+    module: app.tools.tool_wrappers.feedback_preprocessor
+    description: Cleans and normalizes feedback text, and optionally splits into smaller actionable feedback items.
+
+  revision_checker:
+    module: app.tools.tool_wrappers.revision_checker
+    description: Compares original and revised section content to detect excessive or unintended changes based on revision type.
+
+  refine_document_chain:
+    module: app.tools.tool_wrappers.refine_document_chain
+    description: Refines and polishes a full assembled document using LLM-based strategies, preserving quality and fidelity while respecting token limits.
+
+  generate_full_artifact_chain:
+    module: app.engines.toolchains.generate_full_artifact_chain
+    description: Generates an entire artifact by sequentially executing section-level generation and final document refinement.
+
+  query_prompt_generator:
+    module: app.tools.tool_wrappers.query_prompt_generator
+    description: Generates concise, rich search queries from project context and memory to guide retrieval from corpuses and external data.
+
+  section_synthesizer:
+    module: app.tools.tool_wrappers.section_synthesizer
+    description: Synthesizes a first draft of a policy section using memory, profile, web insights, and strategic alignments.
+
+  section_refiner:
+    module: app.tools.tool_wrappers.section_refiner
+    description: Refines a drafted policy section for tone, clarity, and professionalism using LLM-based polishing.
+
+  diff_summarizer:
+    module: app.tools.tool_wrappers.diff_summarizer
+    description: Generate a natural language summary of the difference between an original and revised text.
+
+  feedback_structurer:
+    module: app.tools.tool_wrappers.feedback_structurer
+    description: Structure and map multiple user feedback entries to appropriate sections and revision types.
+
