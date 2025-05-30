@@ -48,11 +48,28 @@ class AssembleArtifactChain:
         section_metadata = []
         for sec in loaded["ordered_sections"]:
             section_id = sec["section_id"]
-            review_item = fetch_review_section(project_id, artifact_id, session_id, section_id)
-            section_text = review_item.get("raw_draft") if review_item and "raw_draft" in review_item else sec["text"]
-            logger.info(f"Fetched section text for section {section_id}: {section_text} from Redis cache" if review_item else f"Using original section text for section {section_id}")
-            log_tool_usage("fetchReviewSection", "fetched section text from Redis cache", section_text, session_id, None, inputs)
-  
+
+            # Attempt to fetch from Redis first
+            redis_fallback = False
+            try:
+                cached = fetch_review_section(project_id, artifact_id, session_id, sec["section_id"])
+                if cached and cached.get("raw_draft"):
+                    section_text = cached["raw_draft"]
+                    logger.info(f"[Redis HIT] Using cached section for {sec['section_id']}")
+                    log_tool_usage("fetchReviewSection", "fetched section from Redis", cached, session_id, None, inputs)
+                else:
+                    section_text = sec["text"]
+                    redis_fallback = True
+                    log_tool_usage("fetchReviewSection", "section not found in Redis", None, session_id, None, inputs)
+            except Exception as e:
+                section_text = sec["text"]
+                redis_fallback = True
+                logger.warning(f"[Redis ERROR] Failed to fetch {sec['section_id']}: {e}")
+                log_tool_usage("fetchReviewSection", "error fetching section from Redis", None, session_id, e, inputs)
+
+            if redis_fallback:
+                logger.info(f"[Redis MISS] Falling back to DB for section {sec['section_id']}")
+
             formatted = self.formatter.run_tool({
                 "section_id": section_id,
                 "section_text": section_text,
