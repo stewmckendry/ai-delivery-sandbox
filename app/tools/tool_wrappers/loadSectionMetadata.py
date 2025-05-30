@@ -45,18 +45,16 @@ class Tool:
         artifact_name = ""
         section_ids = []
         section_titles = {}
-        logger.info(f"Parsing gates for artifact_id={artifact_id} and gate_id={gate_id}")
         for gate in gates:
-            logger.debug(f"Gate found: {gate.get('gate_id')}")
-            if str(gate.get("gate_id")) == gate_id:
+            if str(gate.get("gate_id")) == str(gate_id):
                 for artifact in gate.get("artifacts", []):
-                    logger.debug(f"Checking artifact_id={artifact.get('artifact_id')}")
-                    if artifact.get("artifact_id") == artifact_id:
+                    if str(artifact.get("artifact_id")) == str(artifact_id):
                         artifact_name = artifact.get("name")
                         for s in artifact.get("sections", []):
                             section_ids.append(s.get("section_id"))
                             section_titles[s.get("section_id")] = s.get("title")
                         break
+        logger.info(f"Found artifact_name={artifact_name} with sections {section_ids}")
 
         section_map = {}
         for sid in section_ids:
