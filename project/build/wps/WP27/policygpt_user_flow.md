@@ -43,16 +43,39 @@ This guide describes how users interact with the PolicyGPT assistant to go from 
 ---
 
 ### 🌍 4. Build Global Context (Optional Research)
-**User says:** “What’s already been done on this issue?”
 
-**GPT calls:** `global_context_chain` → runs:
-- `web_search`
-- `goc_alignment_search`
+**User says:** “What’s already been done on this issue?” or “Here’s something I found – can you record it?”
+
+#### A. DIY Research with GPT (Discovery Mode)
+
+**User and GPT discuss and explore manually.**
+
+- **GPT Says:** "Let me help you summarize that. Want me to save this as context for the draft?"
+- **GPT calls:** `record_research` with:
+  - `notes`: User-GPT discussion or pasted research
+  - `session_id`, `project_id`
+
+**Background:**
+- Notes are cleaned up using GPT.
+- Saved with structured metadata and citations.
+- Indexed in PromptLog as `"global_context | record_research"` for later reuse.
+
+#### B. Automated Research (Backend Tools)
+
+**GPT Says:** “I’ll search the web and internal sources.”
+
+- **GPT calls:** `global_context_chain` → runs:
+  - `web_search`
+  - `goc_alignment_search`
 
 **Background:**
 - Controlled prompt templates used.
-- Results saved and linked to inputs.
-- Indexed for reuse.
+- Logs saved to PromptLog with `"global_context | {tool_id}"`.
+- Results are summarized and cited.
+- Indexed for draft alignment.
+
+In both flows, content is fetched in `generate_section_chain` to inform GPT when drafting.
+
 
 ---
 

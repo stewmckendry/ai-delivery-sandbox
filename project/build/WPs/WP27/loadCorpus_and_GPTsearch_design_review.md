@@ -232,3 +232,70 @@ GPT sends a structured payload, typically an array of entries:
 - Leverages ChatGPT’s capabilities, reducing backend complexity.
 - Ensures structured metadata for citations.
 - Keeps logs discoverable by `generate_section_chain`.
+
+---
+
+# 🧠 record_research: Recording and Structuring User-Guided Research
+
+## Overview
+
+The `record_research` tool enables the PolicyGPT front-end to capture exploratory research performed by users or the GPT assistant. It processes this research with LLM assistance and persists it for reuse in downstream section drafting. This approach complements our structured search tools (`web_search`, `queryCorpus`, `goc_alignment_search`), offering users flexibility while maintaining traceability and consistency.
+
+## Dual-Path Research Strategy
+
+| Path                | Who Drives It                | Examples                                 | Persistence           | Tools                                   |
+|---------------------|-----------------------------|------------------------------------------|-----------------------|-----------------------------------------|
+| Structured Search   | Backend API tools           | Web search, corpus query, alignment check| Yes (via PromptLog)   | `web_search`, `queryCorpus`, `goc_alignment_search` |
+| Exploratory Research| User + ChatGPT (Custom GPT) | Manual browsing, human notes, GPT summary| Yes (via record_research) | `record_research`                      |
+
+## Tool Design
+
+- **Tool ID:** `record_research`
+- **Purpose:** Record free-form research notes and structure them into metadata-rich entries.
+
+### Inputs
+
+- `notes`: Raw research notes (**required**)
+- `session_id`, `project_id`, `user_id`: Context metadata
+- `metadatas` (optional): If already structured, skips LLM step
+
+### Processing
+
+If `metadatas` are missing, the tool uses an LLM prompt to:
+- Extract individual entries
+- Add metadata fields (title, source, date, etc.)
+- Retain raw text for traceability
+
+The output follows the `global_context` schema expected by downstream chains.
+
+### Output Format
+
+```json
+{
+    "answer": "...",
+    "documents": ["..."],
+    "citations": ["..."],
+    "metadatas": [
+        {
+            "text": "...",
+            "title": "...",
+            "source": "...",
+            "date": "...",
+            "url": "...",
+            "citation": "..."
+        }
+    ]
+}
+```
+
+## Example Use
+
+**Scenario:** User and GPT browse a government website and summarize 3 key policy findings.  
+**ChatGPT Action:** Sends all findings as a bullet list to `record_research`.  
+**Tool Result:** Cleaned, structured metadata entries are logged and reused later in `generate_section_chain`.
+
+## Best Practices
+
+- Ask GPT to clearly separate research findings using `###` or bullet points.
+- Avoid summarizing—prefer source quotes for evidence.
+- Encourage capturing URLs or source titles where possible.
