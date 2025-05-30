@@ -91,21 +91,43 @@ project/system_design/db_schema_notes_v3.md
    - Name, description, instructions
    - Tooling (API actions)
    - Guide users through the UX flow documented in `policygpt_user_flow.md`
+6. Add tool discovery support for GPT by either attaching tool_catalog.yaml to the GPT config or exposing it via a browsable API. Ensure the system prompt tells the GPT how to find and use the tool catalog for valid tool calls.
 
 ---
 
-## Helping GPT Discover Available Tools
+## 🧠 Helping GPT Discover Available Tools
 
-- All tools are registered at runtime and exposed via a generic API path: `/tools/{tool_id}`
-- GPT does not get a full catalog automatically — instead, you should preload it with:
-  - A system message containing the tool catalog entries (name, description, schema)
-  - Instructions for when and why to call each tool
+PolicyGPT uses a modular tool system accessible via `/tools/{tool_id}` endpoints. GPT does not inherently know which tools exist or their schemas—you must provide explicit guidance.
 
-### Tips:
-- Use the `project/reference/tool_catalog.yaml` for readable descriptions and input schemas
-- Refer to `project/reference/gpt_tools_manifest.json` for explicit field names and types (used in API calls)
-- Pre-populate GPT instructions with sample tool calls so it understands the shape of requests
-- If chaining tools (e.g., `generate_section_chain` → `saveArtifactChunks`), show example workflows
+### ✅ Best Practices for Tool Discovery
+
+#### Summarize Tools by Stage in the System Prompt
+
+In your custom GPT configuration, include a high-level summary such as:
+
+> **You can call tools grouped by purpose:**
+> - **Input Prep:** `inputPromptGenerator`, `loadCorpus`
+> - **Research:** `global_context_chain`, `record_research`
+> - **Drafting:** `generate_section_chain`, `generate_artifact_chain`
+> - **Reviewing:** `revise_section_chain`, `review_artifact_chain`
+> - **Finalizing:** `assemble_artifact_chain`
+
+#### Attach or Expose the Full Tool Catalog
+
+GPTs need access to the complete schema (input parameters, required fields) to avoid malformed tool calls. You can either:
+
+- Attach the `tool_catalog.yaml` file directly in the GPT configuration as a reference file, **or**
+- Expose it via a custom endpoint (e.g., `/tool_catalog_summary`) that GPT can query dynamically.
+
+#### Instruct GPT to Use the Catalog
+
+Guide GPT to consult the catalog for detailed inputs, for example:
+
+> “You can refer to the tool catalog file for the required parameters for each tool call.”
+
+#### Avoid Repeating Full Schemas in the Prompt
+
+Including large schemas in the system prompt consumes context and reduces flexibility. Prefer a reference-based approach instead.
 
 ---
 
