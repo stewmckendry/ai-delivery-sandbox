@@ -67,7 +67,7 @@ class AssembleArtifactChain:
             "title": title,
             "document_body": merged["document_body"],
             "artifact_id": artifact_id,
-            "gate_id": gate_id,
+            "gate_id": str(gate_id),
             "version": version
         })
         log_tool_usage("finalizeDocument", "finalized output", finalized, session_id, None, inputs)
