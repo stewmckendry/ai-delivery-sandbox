@@ -62,7 +62,7 @@ class AssembleArtifactChain:
         trace.append({"tool": "mergeSections", "output": merged})
         logger.info("[Step 3] mergeSections complete")
         logger.info(f"Merged document body for artifact {artifact_id}.  Body snippet: {merged['document_body'][:100]}...")
-
+    
         finalized = self.finalizer.run_tool({
             "title": title,
             "document_body": merged["document_body"],
@@ -77,8 +77,8 @@ class AssembleArtifactChain:
 
         committed = self.committer.run_tool({
             "final_markdown": finalized["final_markdown"],
-            "artifact_id": artifact_id,
-            "gate_id": gate_id,
+            "artifact_id": str(artifact_id),
+            "gate_id": str(gate_id),
             "version": version,
             "title": title,
             "project_id": project_id
