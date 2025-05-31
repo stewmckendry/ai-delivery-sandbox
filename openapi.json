@@ -1,0 +1,617 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GovDoc Copilot: PM Edition",
+    "version": "1.0.0",
+    "description": "Your AI copilot for preparing government project gate submissions. Guides PMs through drafting, reviewing, and finalizing project documentation."
+  },
+  "servers": [
+    {
+      "url": "https://robust-adventure-production.up.railway.app",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {}  
+  },
+  "paths": { 
+    "/get_triage_flow": {
+      "get": {
+        "operationId": "getTriageFlow",
+        "summary": "Get all triage questions",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Fetch Full Triage Flow",
+          "instructions": "Use this at the start of triage to load the full question map. Walk the user through questions one at a time using `prompt`, track the `id`, and apply the `mode` (e.g., probe, clarify).\n\nKey behavior:\n- Track each answer in an `answers` map like `{ id: answer }`\n- After final question, call `/log_incident_detail` with all answers\n- If a `skip_if` is present (e.g., `seen_provider=false`), GPT should:\n  1. Skip asking the question\n  2. Infer the answer (e.g., `diagnosed_concussion=false`)\n  3. Confirm with the user: “I’ll mark ‘diagnosed_concussion’ as false — is that okay?”\n\n🔍 If the intent is `symptoms`:\n- Use `symptom_links` to match input to known symptoms\n- Ask for severity (1–10)\n- Format as: `{ symptom_id: score }`",
+          "summary_keywords": ["triage", "map", "flow"]
+        },
+        "responses": {
+          "200": {
+            "description": "Returns all questions in triage map",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flow": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "example": "q1" },
+                          "prompt": { "type": "string", "example": "Who are you reporting this for?" },
+                          "type": { "type": "string", "example": "text" },
+                          "intent": { "type": "string", "example": "reporter_role" },
+                          "mode": { "type": "string", "example": "clarify", "description": "Use 'probe' to follow up, 'clarify' to confirm answer if responses lack detail or are unclear" },
+                          "example_user_answers": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["my son", "a player", "I'm their coach"]
+                          },
+                          "symptom_links": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["headache", "dizziness"]
+                          },
+                          "skip_if": {
+                            "type": "object",
+                            "description": "If the condition is met, GPT should skip this question and infer the answer.",
+                            "example": {
+                              "seen_provider": false
+                            }
+                          }
+                        },
+                        "required": ["id", "prompt"]
+                      }
+                    }
+                  },
+                  "required": ["flow"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/log_incident_detail": {
+      "post": {
+        "operationId": "logIncidentDetail",
+        "summary": "Log structured triage outcome",
+        "tags": ["Triage"],
+        "x-gpt-action": {
+          "name": "Log Incident Details",
+          "instructions": "Call this after completing triage. Format payload as:\n- `user_id`: string\n- `timestamp`: ISO date string\n- `answers`: a dictionary mapping question IDs to answers\n\nIf including `symptoms`, pass them as a **dictionary**: `{ \"headache\": 7, \"dizziness\": 2 }`.\nAvoid sending it as a list.\nScores should range from 1 (mild) to 10 (severe). If score is unclear, use 1 as default.",
+          "summary_keywords": ["log", "incident", "triage"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "example": "user_abc123"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2025-05-13T00:00:00Z"
+                  },
+                  "answers": {
+                    "type": "object",
+                    "description": "Key-value map of triage answers. Use string, boolean, or list of strings. For `symptoms`, provide a dictionary of { symptom_id: score }.",
+                    "properties": {
+                      "reporter_role": { "type": "string", "example": "my son" },
+                      "sport_type": { "type": "string", "example": "hockey" },
+                      "age_group": { "type": "string", "example": "U9" },
+                      "team_id": { "type": "string", "example": "Ted Reeves Tornados" },
+                      "injury_date": { "type": "string", "format": "date", "example": "2025-05-05" },
+                      "injury_context": { "type": "string", "example": "He hit his head on the boards" },
+                      "symptoms": {
+                        "type": "object",
+                        "description": "Dictionary of symptom IDs and their scores (1–10)",
+                        "example": { "headache": 7, "dizziness": 2 }
+                      },
+                      "lost_consciousness": { "type": "boolean", "example": false },
+                      "seen_provider": { "type": "boolean", "example": true },
+                      "diagnosed_concussion": { "type": "boolean", "example": false },
+                      "still_symptomatic": { "type": "boolean", "example": true },
+                      "cleared_to_play": { "type": "boolean", "example": false }
+                    },
+                    "example": {
+                      "reporter_role": "my son",
+                      "sport_type": "hockey",
+                      "age_group": "U9",
+                      "team_id": "Ted Reeves Tornados",
+                      "injury_date": "2025-05-05",
+                      "injury_context": "He got hit from behind and hit his head on the boards",
+                      "symptoms": { "headache": 7, "dizziness": 2 },
+                      "lost_consciousness": false,
+                      "seen_provider": true,
+                      "diagnosed_concussion": false,
+                      "still_symptomatic": true,
+                      "cleared_to_play": false
+                    }
+                  }
+                },
+                "required": ["user_id", "timestamp", "answers"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Incident log saved"
+          }
+        }
+      }
+    },
+    "/assess_concussion": {
+      "post": {
+        "operationId": "assessConcussion",
+        "summary": "Evaluate red flags and symptom severity",
+        "tags": ["Assessment"],
+        "x-gpt-action": {
+          "name": "Assess Concussion Risk",
+          "instructions": "Use this after symptoms have been logged to check for red flags or high-risk patterns. Submit only the `user_id`.\n\nIf:\n- `concussion_likely = true`, emphasize monitoring and urge clinical evaluation.\n- `red_flags` are present, gently but clearly recommend urgent medical attention.\n- Only `moderate_risk_symptoms` exist, advise rest and monitoring, and suggest seeing a provider if symptoms persist or worsen.\n\nExample phrases:\n- “Some symptoms raise concern. It’s best to check with a healthcare provider.”\n- “This pattern suggests a possible concussion. Please rest and monitor closely.”\n- “Red flags were detected — please seek clinical help immediately.”",
+          "summary_keywords": ["concussion", "assessment", "red flags"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "User ID to assess symptom log for",
+                    "example": "user_abc123"
+                  }
+                },
+                "required": ["user_id"]
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Assess recent symptoms for user",
+                  "value": {
+                    "user_id": "user_child_hockey"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns red flag and risk-level symptom findings, plus an assessment summary and recommendation text.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "concussion_likely": {
+                      "type": "boolean",
+                      "description": "True if red flags, high risk symptoms, or 3+ moderate symptoms were found"
+                    },
+                    "red_flags": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "Red flag symptoms — these require urgent attention"
+                    },
+                    "high_risk_symptoms": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "High-risk symptoms — clinical check is advised"
+                    },
+                    "moderate_risk_symptoms": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "Moderate symptoms — monitor and seek help if they persist"
+                    },
+                    "summary": {
+                      "type": "string",
+                      "description": "Human-readable assessment summary for the user"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/export_summary": {
+      "post": {
+        "operationId": "exportSummary",
+        "summary": "Export summary as PDF and FHIR bundle",
+        "tags": ["Export"],
+        "x-gpt-action": {
+          "name": "Export Summary",
+          "instructions": "Call this to generate a follow-up care summary for a user. You must pass the `user_id` used in prior triage or symptom logs.\n\nThis action will return:\n- `pdf_url`: A downloadable PDF file with triage, symptom, and stage information\n- `fhir_bundle`: A structured medical handoff in FHIR format\n\n🧠 How to communicate results:\n- Tell the user: 'Here’s a summary of what we’ve logged together.'\n- If they’re a parent or coach, say: 'You can share this PDF with your doctor, school, or coach.'\n- If they ask what FHIR is, explain: 'It’s a standard format for medical data. Some clinics may be able to import it directly.'\n- Reassure: 'This isn’t a diagnosis, but a summary of what’s been recorded and assessed so far.'",
+          "summary_keywords": ["export", "summary", "PDF", "FHIR"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "ID used in triage/symptom logs",
+                    "example": "user_abc123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns PDF URL and FHIR bundle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pdf_url": {
+                      "type": "string",
+                      "description": "Signed Azure Blob URL to download summary PDF",
+                      "example": "https://concussionexports.blob.core.windows.net/exports/summary_abc123.pdf?...SAS_TOKEN..."
+                    },
+                    "fhir_bundle": {
+                      "type": "object",
+                      "description": "FHIR-compliant JSON bundle of symptom, triage, and stage data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_stage_overview": {
+      "get": {
+        "operationId": "getStageOverview",
+        "summary": "List all recovery stages",
+        "tags": ["Stage"],
+        "x-gpt-action": {
+          "name": "Get Stage Overview",
+          "instructions": "Use this to show the user all recovery stages and help them understand the return-to-play process. Include the stage name, summary, allowed activities, and progression criteria. This is useful after a concussion assessment or if the user asks 'what’s next' or 'what are the steps?'.\n\nYou can also reference this to help the user decide which stage they attempted during check-ins.",
+          "summary_keywords": ["stage", "recovery", "overview", "activities"]
+        },
+        "responses": {
+          "200": {
+            "description": "List of all defined recovery stages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "stage_id": { "type": "string", "example": "stage_2" },
+                      "stage_number": { "type": "integer", "example": 2 },
+                      "name": { "type": "string", "example": "Light Aerobic Exercise" },
+                      "summary": {
+                        "type": "string",
+                        "example": "You may begin light movement like walking or stationary biking."
+                      },
+                      "activities": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": ["Walking", "Stationary cycling"]
+                      },
+                      "progression_criteria": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": [
+                          "At least 24 hours symptom-free at this level.",
+                          "No symptom worsening with light exertion."
+                        ]
+                      },
+                      "guidance_phrases": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "example": [
+                          "You’re in Stage 2. Light activity is a great first step as long as symptoms don’t worsen.",
+                          "Keep it light and stop if anything feels off."
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_checkin_flow": {
+      "get": {
+        "operationId": "getCheckinFlow",
+        "summary": "Load check-in question map",
+        "tags": ["Checkin"],
+        "x-gpt-action": {
+          "name": "Get Check-in Flow",
+          "instructions": "Use this to start a structured check-in after a user attempts stage activities. Walk through questions one at a time using prompt, track the id, and apply the mode (e.g., probe, clarify).\n\nKey behavior:\n- Track each answer in an answers map like { id: answer }\n- After final question, call /log_activity_checkin with user_id, timestamp, and full answers\n- If the options field includes stage IDs, call /get_stage_overview to describe them in plain language\n- If a note field is present, follow it to clarify next steps or tool use\n\n🔍 If the intent is collect_symptoms:\n- Use symptom_links to match to known symptoms\n- Ask for severity (1–10)\n- Format as { symptom_id: score }",
+          "summary_keywords": ["check-in", "questions", "activity", "symptoms"]
+        },
+        "responses": {
+          "200": {
+            "description": "List of structured check-in questions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "questions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "example": "stage_attempted" },
+                          "prompt": {
+                            "type": "string",
+                            "example": "Did you try any of these activities recently?"
+                          },
+                          "type": { "type": "string", "example": "select" },
+                          "intent": { "type": "string", "example": "identify_stage" },
+                          "mode": {
+                            "type": "string",
+                            "example": "clarify",
+                            "description": "Use 'probe' to follow up, 'clarify' to confirm unclear responses"
+                          },
+                          "response_parsing": {
+                            "type": "string",
+                            "example": "stage_id"
+                          },
+                          "note": {
+                            "type": "string",
+                            "example": "GPT should call get_stage_overview and map user responses to stage_id"
+                          },
+                          "options": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "If this is a pick-list question, these are the allowed values",
+                            "example": ["stage_1", "stage_2", "stage_3"]
+                          },
+                          "example_user_answers": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "example": ["Yes, I did light biking and walking"]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_user_history": {
+      "post": {
+        "operationId": "getUserHistory",
+        "summary": "Fetch prior user data for continuity",
+        "tags": ["User"],
+        "x-gpt-action": {
+          "name": "Get User History",
+          "instructions": "Use this when GPT has no memory of prior conversation and needs to 'pick up where it left off'.\n\nThis tool returns any known data previously logged by the user — such as injury date, symptom check-ins, or past activities. Use this to:\n\n- Avoid re-asking questions (e.g., 'when was your injury?')\n- Pre-fill answers for the check-in flow (e.g., latest symptoms, last stage attempted)\n- Re-engage returning users by offering contextual guidance (e.g., 'Last time you tried Stage 2 — want to continue?')\n\nOnly use this if no other memory is available — skip it in continuous flows.",
+          "summary_keywords": ["user", "history", "symptoms", "incident", "stage"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "The user ID to look up",
+                    "example": "user_001"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns known information previously logged by the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "incident_logged": { "type": "boolean", "example": true },
+                    "incident_info": {
+                      "type": "object",
+                      "properties": {
+                        "injury_date": { "type": "string", "example": "2025-05-01" },
+                        "reporter_role": { "type": "string", "example": "my son" },
+                        "sport_type": { "type": "string", "example": "soccer" },
+                        "diagnosed_concussion": { "type": "boolean", "example": false }
+                      }
+                    },
+                    "last_symptom_log_timestamp": {
+                      "type": "string",
+                      "example": "2025-05-12T10:00:00Z"
+                    },
+                    "last_symptom_log": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "symptom_id": { "type": "string", "example": "headache" },
+                          "score": { "type": "integer", "example": 3 }
+                        }
+                      }
+                    },
+                    "last_activity_checkin": {
+                      "type": "object",
+                      "properties": {
+                        "stage_attempted": { "type": "string", "example": "stage_2" },
+                        "timestamp": { "type": "string", "example": "2025-05-12T10:00:00Z" },
+                        "symptoms_worsened": { "type": "boolean", "example": false }
+                      }
+                    },
+                    "stages_attempted": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["stage_1", "stage_2"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_stage_guidance": {
+      "post": {
+        "operationId": "getStageGuidance",
+        "summary": "Infer current recovery stage",
+        "tags": ["Assessment"],
+        "x-gpt-action": {
+          "name": "Get Stage Guidance",
+          "instructions": "Use this after a user logs symptoms or activity. This tool determines which recovery stage the user is currently in.  You specify a 'user_id' and the tool works off previously logged data to generate stage guidance.\n\n🧠 GPT behavior:\n- If the user hasn't logged activity before, this will assume Stage 1\n- If the user has logged activity and symptoms worsened, they will regress a stage\n- If symptoms are mild but 24h hasn't passed, stay in current stage\n- If mild and 24h passed, progress to next stage\n\nAlways explain:\n- What stage they’re in\n- Why they’re in it (e.g., time since check-in, symptom severity)\n- What to do next (e.g., 'log activity again tomorrow')\n\n🧠 How to communicate results:\n- Provide a brief, clear explanation of the user's current recovery stage (e.g., 'You’re currently in Stage 2 – Light Activity').\n- Be empathetic and reassuring: 'Everyone heals at a different pace. Let’s make sure we’re tracking things properly.'\n- Offer return-to-play guidance: explain what is and isn’t safe right now, based on the stage.\n- Be prepared to answer user questions, like whether they can return to practice or competition.\n- Always remind them: 'I'm not a doctor, but I can help guide you through the structured recovery steps.'",
+          "summary_keywords": ["stage", "guidance", "recovery"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "User ID used in previous logs",
+                    "example": "user_abc123"
+                  }                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns inferred stage and advice",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "stage": { "type": "string", "example": "stage_2" },
+                    "stage_name": { "type": "string", "example": "Light Aerobic" },
+                    "stage_summary": {
+                      "type": "string",
+                      "example": "You may resume light activity like walking or biking, but avoid contact sports."
+                    },
+                    "next_step_advice": {
+                      "type": "string",
+                      "example": "You're doing well. Log activity again tomorrow if symptoms remain mild."
+                    },
+                    "allowed_activities": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["Walking", "Stationary cycling"]
+                    },
+                    "progression_criteria": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "example": ["24 hours symptom-free", "No symptom worsening"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/log_activity_checkin": {
+      "post": {
+        "operationId": "logActivityCheckin",
+        "summary": "Log activity check-in",
+        "tags": ["Activity"],
+        "x-gpt-action": {
+          "name": "Log Activity Check-in",
+          "instructions": "Call this after completing triage. Format payload as:\n- `user_id`: string\n- `timestamp`: ISO date string\n- `answers`: a dictionary mapping question IDs to answers\n\nIf including `symptoms`, pass them as a **dictionary**: `{ \"headache\": 7, \"dizziness\": 2 }`.\nAvoid sending it as a list.\nScores should range from 1 (mild) to 10 (severe). If score is unclear, use 1 as default.",
+          "summary_keywords": ["activity", "log", "check-in", "stage", "symptoms"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["user_id", "timestamp", "answers"],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "Unique user ID",
+                    "example": "user_abc123"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the check-in",
+                    "example": "2025-05-14T10:00:00Z"
+                  },
+                  "answers": {
+                    "type": "object",
+                    "description": "Key-value map of activity checkin answers. Use string, boolean, or list of strings. For `symptoms`, provide a dictionary of { symptom_id: score }.",
+                    "properties": {
+                      "stage_attempted": { "type": "string", "example": "stage_2" },
+                      "symptoms": {
+                        "type": "object",
+                        "description": "Dictionary of symptom IDs and their scores (1–10)",
+                        "example": { "headache": 7, "dizziness": 2 }
+                      },
+                      "symptoms_worsened": { "type": "boolean", "example": false },
+                      "notes": { "type": "string", "example": "Felt more tired after stretching" }
+                    },  
+                    "example": {
+                      "stage_attempted": "stage_2",
+                      "symptoms": { "headache": 2, "fatigue": 1 },
+                      "symptoms_worsened": false,
+                      "notes": "Felt fine after stretching"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity and symptoms logged successfully"
+          }
+        }
+      }
+    }
+  }
+}
