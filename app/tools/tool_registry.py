@@ -50,7 +50,9 @@ class ToolRegistry:
         return [
             {"tool_id": tool_id, **entry}
             for tool_id, entry in self.catalog.items()
+            if entry.get("GPT_facing") is True
         ]
+
 
     def _validate(self, input_dict, schema):
         try:
