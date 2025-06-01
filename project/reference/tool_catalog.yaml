@@ -772,3 +772,16 @@ tools:
               citation: { type: string }
           description: "Optional pre-structured metadata if available"
       required: ["session_id", "project_id", "notes"]
+
+  listReferenceDocuments:
+    module: app.tools.tool_wrappers.listCorpus
+    class: Tool
+    description: Lists all reference documents currently stored in the vector database
+    GPT_facing: true
+    schema:
+      type: object
+      properties:
+        session_id:
+          type: string
+        user_id:
+          type: string

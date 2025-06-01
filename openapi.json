@@ -192,6 +192,62 @@
         }
       }
     },
+    "/tools/listReferenceDocuments": {
+      "post": {
+        "operationId": "listReferenceDocuments",
+        "summary": "List indexed reference documents",
+        "tags": ["Reference"],
+        "x-gpt-action": {
+          "name": "List Reference Documents",
+          "instructions": "Use this to check what documents have already been uploaded to avoid duplication. It returns a list of document metadata from the reference corpus.",
+          "summary_keywords": ["list", "reference", "documents"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a list of reference documents in the vector database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "documents": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": { "type": "string" },
+                          "source": { "type": "string" },
+                          "date": { "type": "string" },
+                          "url": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tools/record_research": {
       "post": {
         "operationId": "recordResearchNotes",
