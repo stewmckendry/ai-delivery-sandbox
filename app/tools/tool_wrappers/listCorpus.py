@@ -30,7 +30,8 @@ class Tool:
                 title = meta.get("title", "Untitled")
                 source = meta.get("source", "Unknown")
                 date = meta.get("date", "n.d.")
-                doc_id = (title)
+                # Use a tuple of title and source as a unique identifier
+                doc_id = (title, source)
                 if doc_id not in seen:
                     seen.add(doc_id)
                     documents.append({
