@@ -82,7 +82,7 @@ class Tool:
 
             if USE_REMOTE_CHROMA:
                 logger.info("Using remote Chroma server for indexing")
-                client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
+                client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT), ssl=False)
                 collection = client.get_or_create_collection("policygpt")
                 for doc in split_docs:
                     doc_id = str(uuid.uuid4())
