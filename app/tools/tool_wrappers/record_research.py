@@ -57,4 +57,9 @@ class Tool:
 
         log_tool_usage("record_research", "global_context | record_research", output_summary, session_id, user_id, input_dict)
         logger.info(f"[Tool] record_research output summary: {output_summary['answer'][:100]}...")
-        return output_summary
+        return {
+            "message": "✅ Research note saved and indexed for reuse during drafting. You can now continue drafting sections, record additional notes, or upload more reference materials.",
+            "citations": citations,
+            "summary_excerpt": notes[:250]
+        }
+
