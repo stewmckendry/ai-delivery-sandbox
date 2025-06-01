@@ -248,6 +248,92 @@
         }
       }
     },
+    "/tools/queryReferenceDocuments": {
+      "post": {
+        "operationId": "queryReferenceDocuments",
+        "summary": "Query the reference document corpus for relevant matches and summary answer",
+        "tags": ["Reference Documents"],
+        "x-gpt-action": {
+          "name": "Query Reference Documents",
+          "instructions": "Use this to query previously uploaded or embedded reference documents for relevant information. Pass a `query` string. Optionally include session_id and user_id for logging.",
+          "summary_keywords": ["query", "reference", "summarize"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "User's question or topic of interest",
+                    "example": "What are the Government of Canada's priorities for AI regulation?"
+                  },
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "input_dict": {
+                    "type": "object"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer and citations from matching reference documents",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "description": "Summarized answer generated from the relevant documents"
+                    },
+                    "documents": {
+                      "type": "array",
+                      "description": "List of raw text content from matching documents",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "citations": {
+                      "type": "array",
+                      "description": "Formatted citations for each matching document",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "metadatas": {
+                      "type": "array",
+                      "description": "Metadata for each matching document",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "text": { "type": "string", "description": "Raw document text" },
+                          "title": { "type": "string", "description": "Title of the document" },
+                          "source": { "type": "string", "description": "Source or publication origin" },
+                          "date": { "type": "string", "description": "Date of publication or indexing" },
+                          "url": { "type": "string", "description": "URL to the source document if available" },
+                          "citation": { "type": "string", "description": "Formatted citation text" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tools/record_research": {
       "post": {
         "operationId": "recordResearchNotes",
