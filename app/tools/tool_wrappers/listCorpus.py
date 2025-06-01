@@ -23,8 +23,8 @@ class Tool:
             client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
             collection = client.get_or_create_collection("policygpt")
             results = collection.get(include=["metadatas"], limit=100)
-            logger.info(f"Retrieved {len(results.get('metadatas', []))} metadata entries from remote Chroma")
-
+            logger.info("Chroma get results: %s", results)
+            
             seen = set()
             documents = []
             for meta in results.get("metadatas", []):

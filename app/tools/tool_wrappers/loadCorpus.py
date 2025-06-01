@@ -81,6 +81,7 @@ class Tool:
                 doc.metadata.update(metadata)
 
             if USE_REMOTE_CHROMA:
+                logger.info("Using remote Chroma server for indexing")
                 client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
                 collection = client.get_or_create_collection("policygpt")
                 for doc in split_docs:
@@ -88,6 +89,7 @@ class Tool:
                     doc.metadata["doc_id"] = doc_id
                     collection.add(documents=[doc.page_content], metadatas=[doc.metadata], ids=[doc_id])
             else:
+                logger.info("Using local Chroma vector store for indexing")
                 vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
                 vectorstore.persist()
 
