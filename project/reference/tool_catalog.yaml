@@ -122,7 +122,7 @@ tools:
               description: Date of publication or indexing in ISO format
       required: ["metadata"]
 
-    queryReferenceDocuments:
+  queryReferenceDocuments:
     module: app.tools.tool_wrappers.queryCorpus
     class: Tool
     description: Queries uploaded reference documents to find relevant matches and summaries
