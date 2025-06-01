@@ -84,7 +84,9 @@ class Tool:
                 client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
                 collection = client.get_or_create_collection("policygpt")
                 for doc in split_docs:
-                    collection.add(documents=[doc.page_content], metadatas=[doc.metadata], ids=[str(uuid.uuid4())])
+                    doc_id = str(uuid.uuid4())
+                    doc.metadata["doc_id"] = doc_id
+                    collection.add(documents=[doc.page_content], metadatas=[doc.metadata], ids=[doc_id])
             else:
                 vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
                 vectorstore.persist()
