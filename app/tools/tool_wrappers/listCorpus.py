@@ -24,17 +24,13 @@ class Tool:
             collection = client.get_or_create_collection("policygpt")
             results = collection.get(include=["metadatas"], limit=100)
 
-            metadatas = results.get("metadatas", [])
-            if metadatas and isinstance(metadatas[0], list):
-                metadatas = metadatas[0]
-
             seen = set()
             documents = []
-            for meta in metadatas:
+            for meta in results.get("metadatas", []):
                 title = meta.get("title", "Untitled")
                 source = meta.get("source", "Unknown")
                 date = meta.get("date", "n.d.")
-                doc_id = (title, source, date)
+                doc_id = (title)
                 if doc_id not in seen:
                     seen.add(doc_id)
                     documents.append({
