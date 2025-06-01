@@ -153,7 +153,7 @@ tools:
       type: object
       properties:
         gate_id:
-          type: integer
+          type: string
       required:
         - gate_id
   inputChecker:
