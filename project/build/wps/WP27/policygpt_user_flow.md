@@ -1,6 +1,6 @@
-## PolicyGPT End-to-End User Journey
+## GovDoc Copilot: PM Edition – End-to-End User Journey
 
-This guide describes how users interact with the PolicyGPT assistant to go from a blank slate to a fully drafted and refined artifact. It outlines each step of the journey, the conversations the user might have with the GPT assistant, the tools/chains being invoked, and what’s happening in the background.
+This guide describes how users interact with the GovDoc Copilot assistant to go from a blank slate to a fully drafted and refined policy or investment artifact. It outlines each step of the journey, the conversations the user might have with the GPT assistant, the tools/chains being invoked, and what’s happening in the background.
 
 ---
 
@@ -9,7 +9,7 @@ This guide describes how users interact with the PolicyGPT assistant to go from 
 
 **GPT replies:** “Which policy gate are you preparing for? For example: Gate 1, 2, or 3?”
 
-**Tool called:** `inputPromptGenerator`
+**Tool called:** `getArtifactRequirements`
 - **Purpose:** Fetches the list of artifacts, sections, and metadata for the selected gate from `gate_reference_v2.yaml`.
 - **Inputs:** `{ gate_id }`
 - **Background:** GPT uses this map to serve as a navigator for the artifact generation and review.
@@ -31,14 +31,23 @@ This guide describes how users interact with the PolicyGPT assistant to go from 
 
 ---
 
-### 📚 3. Load Corpus (Landmark Documents)
+### 📚 3. Reference Key Policy Documents (Upload or Browse)
+
+#### A. Upload Reference Documents
 **User says:** “Here’s the 2025 mandate letter and strategy doc.”
 
-**GPT calls:** `loadCorpus`
-- **Inputs:** Can accept full text or URLs (TBD extension)
+**GPT calls:** `uploadReferenceDocument`
+- **Inputs:** Accepts full text (`file_contents`) or a link (`file_url`), with metadata (title, source, date).
 - **Background:**
-  - Texts are chunked and embedded.
-  - Stored in a vector DB with tags for later querying.
+  - Texts are chunked, embedded, and stored in the "PolicyGPT" vector DB.
+  - Metadata is indexed for citation and reuse.
+
+#### B. List What’s Already Uploaded
+**User says:** “What reference documents do we already have?”
+
+**GPT calls:** `listReferenceDocuments`
+- **Purpose:** Retrieves a list of indexed documents in the corpus for review or reuse.
+- **Background:** Prevents duplication and surfaces prior uploads to build on.
 
 ---
 
@@ -65,8 +74,8 @@ This guide describes how users interact with the PolicyGPT assistant to go from 
 **GPT Says:** “I’ll search the web and internal sources.”
 
 - **GPT calls:** `global_context_chain` → runs:
-  - `web_search`
-  - `goc_alignment_search`
+  - `webSearch`
+  - `queryCorpus`
 
 **Background:**
 - Controlled prompt templates used.
@@ -75,7 +84,6 @@ This guide describes how users interact with the PolicyGPT assistant to go from 
 - Indexed for draft alignment.
 
 In both flows, content is fetched in `generate_section_chain` to inform GPT when drafting.
-
 
 ---
 
