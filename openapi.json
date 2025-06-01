@@ -132,17 +132,17 @@
                 "properties": {
                   "file_contents": {
                     "type": "string",
-                    "description": "Full document text.  Don't truncate or summarize it - keep original text.",
+                    "description": "Raw document text. Required if file_url is not provided.",
                     "example": "Digital services must be accessible and user-centered..."
                   },
                   "file_name": {
                     "type": "string",
-                    "description": "Internal name for uploaded document",
+                    "description": "Name of the file (optional if file_url is provided)",
                     "example": "digital_standards_2024.txt"
                   },
                   "file_url": {
                     "type": "string",
-                    "description": "Optional URL to the file if not provided as raw content",
+                    "description": "URL to the file (optional if file_contents is provided)",
                     "example": "https://example.com/digital_standards_2024.txt"
                   },
                   "metadata": {
@@ -155,7 +155,7 @@
                     "required": ["title", "source", "date"]
                   }
                 },
-                "required": ["file_contents", "file_name", "metadata"]
+                "required": ["metadata"]
               }
             }
           }

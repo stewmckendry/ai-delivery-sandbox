@@ -99,13 +99,13 @@ tools:
       properties:
         file_contents:
           type: string
-          description: Raw content of the file to be uploaded
+          description: Raw content of the file to be uploaded (optional if file_url is provided)
         file_name:
           type: string
-          description: Name of the file being uploaded
+          description: Name of the file being uploaded (optional if file_url is provided)
         file_url:
           type: string
-          description: Optional URL to the file if not provided as raw content
+          description: Optional URL to the file (use instead of file_contents)
         metadata:
           type: object
           additionalProperties: true
@@ -120,8 +120,8 @@ tools:
               type: string
               format: date
               description: Date of publication or indexing in ISO format
-      required:
-        - file_contents
+      required: ["metadata"]
+
   queryCorpus:
     module: app.tools.tool_wrappers.queryCorpus
     class: Tool
