@@ -23,6 +23,7 @@ class Tool:
             client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
             collection = client.get_or_create_collection("policygpt")
             results = collection.get(include=["metadatas"], limit=100)
+            logger.info(f"Retrieved {len(results.get('metadatas', []))} metadata entries from remote Chroma")
 
             seen = set()
             documents = []
@@ -32,7 +33,9 @@ class Tool:
                 date = meta.get("date", "n.d.")
                 # Use a tuple of title and source as a unique identifier
                 doc_id = (title, source)
+                logger.debug(f"Processing document: {doc_id}")
                 if doc_id not in seen:
+                    logger.debug(f"Adding document: {doc_id}")
                     seen.add(doc_id)
                     documents.append({
                         "title": title,
