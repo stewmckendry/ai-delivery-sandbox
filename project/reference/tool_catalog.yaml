@@ -154,11 +154,8 @@ tools:
       properties:
         gate_id:
           type: integer
-        artifact_id:
-          type: string
       required:
         - gate_id
-        - artifact_id
   inputChecker:
     description: Validate user inputs against required metadata and completeness
     module: app.tools.tool_wrappers.inputChecker

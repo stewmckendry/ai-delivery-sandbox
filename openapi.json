@@ -74,10 +74,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "artifact_id": { "type": "string", "example": "investment_proposal" },
                   "gate_id": { "type": "integer", "example": 3 }
                 },
-                "required": ["artifact_id", "gate_id"]
+                "required": ["gate_id"]
               }
             }
           }

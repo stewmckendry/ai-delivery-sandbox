@@ -6,8 +6,8 @@ Configure a custom ChatGPT that acts as the PolicyGPT interface for generating a
 ---
 
 ## 📍 GPT Metadata
-- **Name**: PolicyGPT
-- **Description**: Your AI partner for generating and refining government policy documents. Guides you through the gate approval process.
+- **Name**: GovDoc Copilot: PM Edition
+- **Description**: Your AI assistant for crafting and refining gate approval documents. Built to support PMs through every step of the documentation journey.”
 
 ## 🧑‍💼 Target Users
 Program Managers and Policy Leads preparing documentation for digital government initiatives and gate reviews.
