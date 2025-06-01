@@ -42,4 +42,9 @@ class Tool:
 
     def run_tool(self, input_dict):
         gate_id = input_dict["gate_id"]
-        return get_artifact_requirements_by_gate(gate_id)
+        artifacts =  get_artifact_requirements_by_gate(gate_id)
+        return {
+            "instructions": f"You are now equipped to guide the user through artifact preparation. Show the user a list of available artifacts for Gate {gate_id}. After they pick one, use the associated metadata (sections, intents, evaluation criteria) to assist them in drafting and reviewing.  Next step: ask them for what inputs they have for the artifact and call ingestInputChain - whether its rough notes, previous reports, meeting recordings, websites, etc. Use the metadata to guide them on what they need to provide.",
+            "artifacts": artifacts
+        }
+
