@@ -378,7 +378,38 @@
         },
         "responses": {
           "200": {
-            "description": "Research successfully recorded"
+            "description": "Research successfully recorded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Confirmation message summarizing what happened",
+                      "example": "✅ Research note saved and indexed for reuse during drafting. You can now continue drafting sections, record additional notes, or upload more reference materials."
+                    },
+                    "citations": {
+                      "type": "array",
+                      "description": "List of formatted citations extracted or created from the notes",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "\"AI and Public Trust.\" Treasury Board Secretariat, 2024-03-01.",
+                        "\"Ethics of Automation.\" Government of Canada, 2023-11-15."
+                      ]
+                    },
+                    "summary_excerpt": {
+                      "type": "string",
+                      "description": "Excerpt of the recorded notes for preview",
+                      "example": "AI adoption in public services requires a balance between innovation and ethical safeguards..."
+                    }
+                  },
+                  "required": ["message"]
+                }
+              }
+            }
           }
         }
       }
