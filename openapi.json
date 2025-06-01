@@ -60,11 +60,11 @@
     "/tools/getArtifactRequirements": {
       "post": {
         "operationId": "getArtifactRequirements",
-        "summary": "Retrieve the requirements for a specific gate and artifact",
+        "summary": "Retrieve artifact options and requirements for a gate",
         "tags": ["Input Prep"],
         "x-gpt-action": {
           "name": "Get Artifact Requirements",
-          "instructions": "Use this when a user is starting a new artifact. Pass:\n- `project_id`: string\n- `artifact_id`: string\n- `gate_id`: integer\n\nThis returns a structured map of what sections and evaluation criteria need to be filled in, so GPT can guide the user with tailored prompts.",
+          "instructions": "Use this when a user is starting a new artifact. Ask which gate they are preparing for (0–5). Pass:\n- `gate_id`: integer (see values below)\n\nThis returns:\n- A user-facing instruction message\n- A list of available artifacts for that gate, including section structure and evaluation criteria.\n\nYou should:\n1. Present the list of artifacts to the user\n2. Ask them to pick one\n3. Use the section metadata to guide the drafting process",
           "summary_keywords": ["prompt", "generate", "section guidance"]
         },
         "requestBody": {
@@ -74,7 +74,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "gate_id": { "type": "integer", "example": 3 }
+                  "gate_id": {
+                    "type": "integer",
+                    "enum": [0, 1, 2, 3, 4, 5],
+                    "description": "Which gate the user is preparing for.\n- 0: Gate 0 – Verify Business Problem or Opportunity (Pre-Project)\n- 1: Gate 1 – Validate Business Justification and Select Short List of Options\n- 2: Gate 2 – Approve Preferred Option and Approach\n- 3: Gate 3 – Fund Project Deliverables (Project Approval)\n- 4: Gate 4 – Confirm Readiness for Service (Pre-Implementation)\n- 5: Gate 5 – Complete Project and Post-Implementation Review (Close-Out)",
+                    "example": 3
+                  }
                 },
                 "required": ["gate_id"]
               }
@@ -83,7 +88,27 @@
         },
         "responses": {
           "200": {
-            "description": "Returns a structured prompt map with section guidance."
+            "description": "Returns an instruction message and list of artifacts with section guidance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instructions": {
+                      "type": "string",
+                      "description": "Message for GPT on how to use the returned data"
+                    },
+                    "artifacts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "description": "Each item is a section intent with metadata"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
