@@ -132,7 +132,7 @@
                 "properties": {
                   "file_contents": {
                     "type": "string",
-                    "description": "Full document text",
+                    "description": "Full document text.  Don't truncate or summarize it - keep original text.",
                     "example": "Digital services must be accessible and user-centered..."
                   },
                   "file_name": {
@@ -162,11 +162,84 @@
         },
         "responses": {
           "200": {
-            "description": "Document embedded and indexed successfully"
+            "description": "Document uploaded and processed (synchronously or asynchronously).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Processing status — 'accepted' for async, 'success' for sync"
+                    },
+                    "job_id": {
+                      "type": "string",
+                      "description": "Only present if background processing was used"
+                    },
+                    "chunks": {
+                      "type": "integer",
+                      "description": "Number of chunks created from the uploaded document (sync only)"
+                    },
+                    "instructions": {
+                      "type": "string",
+                      "description": "Guidance to GPT on what to do next"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/record_research": {
+      "post": {
+        "operationId": "recordResearchNotes",
+        "summary": "Record structured research notes for reuse",
+        "tags": ["Research"],
+        "x-gpt-action": {
+          "name": "Record Research Notes",
+          "instructions": "Use this tool to store user-provided research notes for later reuse. You must include:\n- `session_id`: identifies the session context\n- `project_id`: project this research supports\n- `notes`: the research content (can be GPT-summarized from a discussion)\nYou may include structured metadata fields if available.",
+          "summary_keywords": ["research", "record", "global context"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_id": { "type": "string" },
+                  "project_id": { "type": "string" },
+                  "user_id": { "type": "string" },
+                  "notes": { "type": "string", "description": "Free-form research notes" },
+                  "metadatas": {
+                    "type": "array",
+                    "description": "Optional structured metadata",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": { "type": "string" },
+                        "title": { "type": "string" },
+                        "source": { "type": "string" },
+                        "date": { "type": "string" },
+                        "url": { "type": "string" },
+                        "citation": { "type": "string" }
+                      }
+                    }
+                  }
+                },
+                "required": ["session_id", "project_id", "notes"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Research successfully recorded"
           }
         }
       }
     }
-
   }
 }

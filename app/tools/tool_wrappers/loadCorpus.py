@@ -100,12 +100,20 @@ class Tool:
                 metadata=entry.get("metadata")
             )
             logger.info("🚀 loadCorpus tool completed successfully")
-
-        if background_tasks:
-            background_tasks.add_task(process)
-            logger.info("🚀 Job %s accepted for background processing", job_id)
-            return {"status": "accepted", "job_id": job_id}
-        else:
-            process()
-            logger.info("🚀 Job %s processed synchronously", job_id)
-            return {"status": "success", "chunks": len(split_docs)}
+            
+            if background_tasks:
+                background_tasks.add_task(process)
+                logger.info("🚀 Job %s accepted for background processing", job_id)
+                return {
+                    "status": "accepted",
+                    "job_id": job_id,
+                    "instructions": "Document accepted for background processing and will be indexed shortly. Next steps: you can upload more reference materials, record research notes using `record_research`, upload project-specific inputs using `ingestInputChain`, or begin drafting a section using `generate_section_chain`."
+                }
+            else:
+                process()
+                logger.info("🚀 Job %s processed synchronously", job_id)
+                return {
+                    "status": "success",
+                    "chunks": len(split_docs),
+                    "instructions": "Document uploaded and successfully indexed. Next steps: you can upload more reference materials, record research notes using `record_research`, upload project-specific inputs using `ingestInputChain`, or begin drafting a section using `generate_section_chain`."
+                }
