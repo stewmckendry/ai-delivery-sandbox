@@ -31,59 +31,42 @@ This guide describes how users interact with the GovDoc Copilot assistant to go 
 
 ---
 
-### 📚 3. Reference Key Policy Documents (Upload or Browse)
+### 📚 3. Align to Government Reference Documents
 
-#### A. Upload Reference Documents
-**User says:** “Here’s the 2025 mandate letter and strategy doc.”
+Official strategy documents, policies, mandate letters, guidelines, and landmark reports help ensure alignment with government priorities and language.
 
-**GPT calls:** `uploadReferenceDocument`
-- **Inputs:** Accepts full text (`file_contents`) or a link (`file_url`), with metadata (title, source, date).
-- **Background:**
-  - Texts are chunked, embedded, and stored in the "PolicyGPT" vector DB.
-  - Metadata is indexed for citation and reuse.
-
-#### B. List What’s Already Uploaded
+#### A. Browse Available References
 **User says:** “What reference documents do we already have?”
+- **GPT calls:** `listReferenceDocuments`
+- **Purpose:** Fetches unique document titles, sources, and dates currently indexed.
+- **Background:** Prevents duplication and encourages reuse of relevant sources.
 
-**GPT calls:** `listReferenceDocuments`
-- **Purpose:** Retrieves a list of indexed documents in the corpus for review or reuse.
-- **Background:** Prevents duplication and surfaces prior uploads to build on.
+#### B. Upload New Reference Documents
+**User says:** “Here’s the 2025 mandate letter and AI strategy.”
+- **GPT calls:** `uploadReferenceDocument`
+- **Inputs:** Full text (`file_contents`) or URL (`file_url`), plus metadata (title, source, date).
+- **Background:** Document is cleaned, chunked, embedded, and indexed in the PolicyGPT vector database.
+
+#### C. Align with Reference Documents 
+**User says:** “What does the government say about AI?” or “How does this align with the Digital Standards?” or "How can I align my proposal with the 2025 mandate letter?"
+- **GPT calls:** `alignWithReferenceDocuments`
+- **Purpose:** Retrieves relevant excerpts and metadata from indexed documents and generates a summary.
+- **Background:** Answers, excerpts, and citations are saved as context for drafting.
 
 ---
 
-### 🌍 4. Build Global Context (Optional Research)
+### 🌍 4. Conduct Additional Research (with GovDoc Copilot: PM Edition)
 
-**User says:** “What’s already been done on this issue?” or “Here’s something I found – can you record it?”
+The assistant helps users explore new issues, analyze context, and conduct open-ended research in the chat interface.
 
-#### A. DIY Research with GPT (Discovery Mode)
-
-**User and GPT discuss and explore manually.**
-
-- **GPT Says:** "Let me help you summarize that. Want me to save this as context for the draft?"
-- **GPT calls:** `record_research` with:
-  - `notes`: User-GPT discussion or pasted research
-  - `session_id`, `project_id`
-
-**Background:**
-- Notes are cleaned up using GPT.
-- Saved with structured metadata and citations.
-- Indexed in PromptLog as `"global_context | record_research"` for later reuse.
-
-#### B. Automated Research (Backend Tools)
-
-**GPT Says:** “I’ll search the web and internal sources.”
-
-- **GPT calls:** `global_context_chain` → runs:
-  - `webSearch`
-  - `queryCorpus`
-
-**Background:**
-- Controlled prompt templates used.
-- Logs saved to PromptLog with `"global_context | {tool_id}"`.
-- Results are summarized and cited.
-- Indexed for draft alignment.
-
-In both flows, content is fetched in `generate_section_chain` to inform GPT when drafting.
+#### A. Discussion and Research
+**User says:** “What’s already been done on this issue?” or “Can you find more examples?”
+- **GPT searches and synthesizes** using web access and reasoning skills.
+- **When useful insights are found:**
+  - **GPT says:** “Want me to save this for drafting later?”
+  - **GPT calls:** `record_research`
+  - **Inputs:** Notes from research or discussion, optionally with metadata.
+  - **Background:** Saved with structured tags and citations in PromptLog as `global_context | record_research`.
 
 ---
 

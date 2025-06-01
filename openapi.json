@@ -248,13 +248,13 @@
         }
       }
     },
-    "/tools/queryReferenceDocuments": {
+    "/tools/alignWithReferenceDocuments": {
       "post": {
-        "operationId": "queryReferenceDocuments",
+        "operationId": "alignWithReferenceDocuments",
         "summary": "Query the reference document corpus for relevant matches and summary answer",
         "tags": ["Reference Documents"],
         "x-gpt-action": {
-          "name": "Query Reference Documents",
+          "name": "Align with Reference Documents",
           "instructions": "Use this to query previously uploaded or embedded reference documents for relevant information. Pass a `query` string. Optionally include session_id and user_id for logging.",
           "summary_keywords": ["query", "reference", "summarize"]
         },
