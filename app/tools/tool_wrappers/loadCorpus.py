@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO)
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")
-USE_REMOTE_CHROMA = CHROMA_HOST is not None
+USE_REMOTE_CHROMA = True
 logger.info("USE_REMOTE_CHROMA: %s", USE_REMOTE_CHROMA)
 logger.info("CHROMA_HOST: %s", CHROMA_HOST)
 logger.info("CHROMA_PORT: %s", CHROMA_PORT)
