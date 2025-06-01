@@ -2,7 +2,7 @@ import logging
 import os
 import uuid
 import json
-import datetime
+from datetime import datetime
 from typing import List, Optional
 from fastapi import BackgroundTasks
 from langchain.text_splitter import RecursiveCharacterTextSplitter
