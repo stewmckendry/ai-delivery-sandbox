@@ -789,8 +789,6 @@ tools:
     GPT_facing: true
     schema:
       type: object
-      properties:
-        session_id:
-          type: string
-        user_id:
-          type: string
+      properties: {}
+      additionalProperties: false
+
