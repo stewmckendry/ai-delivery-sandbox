@@ -103,7 +103,7 @@ class Tool:
                     metadatas.append(doc.metadata)
                     ids.append(doc_id)
 
-                logger.debug("Attempting to create or fetch collection with name: %s", "policygpt-v2")
+                logger.info("Attempting to create or fetch collection with name: %s", "policygpt-v2")
                 
                 try:
                     collection = client.get_or_create_collection("policygpt-v2")
@@ -111,11 +111,11 @@ class Tool:
                     logger.error("Failed to get or create collection: %s", str(e), exc_info=True)
                     raise
 
-                logger.debug("Preparing to add documents to Chroma collection")
-                logger.debug("Documents: %s", texts)
-                logger.debug("Embeddings count: %d", len(embeddings))
-                logger.debug("Metadata sample: %s", metadatas[0] if metadatas else "No metadata")
-                logger.debug("IDs sample: %s", ids[:3])
+                logger.info("Preparing to add documents to Chroma collection")
+                logger.info("Documents: %s", texts)
+                logger.info("Embeddings count: %d", len(embeddings))
+                logger.info("Metadata sample: %s", metadatas[0] if metadatas else "No metadata")
+                logger.info("IDs sample: %s", ids[:3])
 
                 collection.add(
                     documents=texts,
