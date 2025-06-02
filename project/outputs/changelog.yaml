@@ -9218,3 +9218,8 @@
   task_id: WP27b
   committed_by: GPTPod
   message: Append output file to WP27b
+- timestamp: '2025-06-02T14:35:58.563563'
+  path: app/prompts/revision_prompts.yaml
+  task_id: WP27b
+  committed_by: GPTPod
+  message: Add prompt template for reviewInputSnapshot tool
