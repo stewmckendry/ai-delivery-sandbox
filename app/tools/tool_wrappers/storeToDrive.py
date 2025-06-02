@@ -70,6 +70,13 @@ class Tool:
             }
             service.permissions().create(fileId=file["id"], body=permission, sendNotificationEmail=False).execute()
 
+        # Grant "anyone with the link" viewer access
+        anyone_permission = {
+            'type': 'anyone',
+            'role': 'reader'
+        }
+        service.permissions().create(fileId=file["id"], body=anyone_permission).execute()
+
         logger.info("File uploaded successfully with webViewLink: %s", file["webViewLink"])
         return OutputSchema(drive_url=file["webViewLink"]).dict()
 
