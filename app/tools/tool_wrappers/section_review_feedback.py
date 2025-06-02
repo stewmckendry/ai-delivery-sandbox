@@ -21,13 +21,13 @@ class Tool:
         memory_tool = registry.get_tool("memory_retrieve")
 
         # Construct Redis key
-        redis_key = f"section_review:{project_id}:{artifact_id}:{section_id}"
+        redis_key = f"section_revision:{project_id}:{artifact_id}:{section_id}"
         raw_data = redis_client.get(redis_key)
         if not raw_data:
             return {"status": "error", "message": f"Section {section_id} not found in Redis"}
 
         parsed = json.loads(raw_data)
-        original = parsed.get("original")
+        original = parsed.get("text")
 
         memory = memory_tool.run_tool({"artifact": artifact_id, "project_id": project_id, "session_id": session_id})
 
@@ -43,9 +43,9 @@ class Tool:
         diff = diff_tool.run_tool({"original": original, "revised": revised["draft"]})
 
         updated = {
-            "original": original,
-            "revised": revised["draft"],
-            "diff_summary": diff["diff_summary"]
+            "text": revised["draft"],
+            "diff_summary": diff["diff_summary"],
+            "status": "updated"
         }
         redis_client.set(redis_key, json.dumps(updated))
 

@@ -124,7 +124,7 @@ class GenerateSectionChain:
             redis_payload = {
                 "text": refined["raw_draft"],
                 "diff_summary": None,  # none yet
-                "status": "completed"
+                "status": "drafted"
             }
             redis_client.set(key, json.dumps(redis_payload))
             logger.info(f"[Redis] Cached section to key {key}")
