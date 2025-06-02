@@ -97,10 +97,7 @@ class GenerateSectionChain:
             if not context_data:
                 global_context = {"summary": ""}
             else:
-                global_context = {
-                    "summary": self.global_context_engine.summarize_global_context(context_data),
-                    **context_data
-                }
+                global_context = None
             log_tool_usage("global_context", "fetched global context", context_data, session_id, user_id, inputs)
             log_tool_usage("global_context", "summarized global context", global_context["summary"], session_id, user_id, inputs)
             logger.info("[Step 3] global_context complete")

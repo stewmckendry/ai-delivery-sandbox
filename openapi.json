@@ -805,6 +805,69 @@
           }
         }
       }
+    },
+    "/tools/getLatestSection": {
+      "post": {
+        "summary": "Retrieve the latest revised section",
+        "description": "Fetches the most recent revision for a section from Redis, including the draft and diff summary.",
+        "operationId": "getLatestSection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_id": {
+                    "type": "string",
+                    "description": "Session ID used when revisions were made"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "Project ID the artifact belongs to"
+                  },
+                  "artifact_id": {
+                    "type": "string",
+                    "description": "Artifact ID the section is part of"
+                  },
+                  "section_id": {
+                    "type": "string",
+                    "description": "ID of the section to retrieve"
+                  }
+                },
+                "required": ["session_id", "project_id", "artifact_id", "section_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Section retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sections": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "section_id": { "type": "string" },
+                          "revised": { "type": "string" },
+                          "diff_summary": { "type": "string" }
+                        }
+                      }
+                    },
+                    "total": { "type": "integer" },
+                    "instructions": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
