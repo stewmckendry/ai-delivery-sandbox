@@ -2,6 +2,7 @@ import logging
 from app.redis.redis_client import redis_client
 from app.tools.tool_registry import ToolRegistry
 import json
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ class Tool:
         parsed = json.loads(raw_data)
         original = parsed.get("text")
 
-        memory = memory_tool.run_tool({"artifact": artifact_id, "project_id": project_id, "session_id": session_id})
+        memory = memory_tool.run_tool({"artifact_id": artifact_id, "project_id": project_id, "session_id": session_id})
 
         revised = rewriter.run_tool({
             "section_id": section_id,
@@ -45,7 +46,8 @@ class Tool:
         updated = {
             "text": revised["draft"],
             "diff_summary": diff["diff_summary"],
-            "status": "updated"
+            "status": "updated",
+            "timestamp": datetime.datetime.utcnow().isoformat()
         }
         redis_client.set(redis_key, json.dumps(updated))
 

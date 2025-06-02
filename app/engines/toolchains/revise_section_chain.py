@@ -8,6 +8,7 @@ from app.redis.redis_client import redis_client
 import json
 from jinja2 import Template
 from app.tools.utils.llm_helpers import get_prompt
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -142,7 +143,8 @@ class ReviseSectionChain:
                 revision_data = {
                     "text": rewritten["draft"],
                     "diff_summary": diff_summary["diff_summary"],
-                    "status": "revised"
+                    "status": "revised",
+                    "timestamp": datetime.datetime.utcnow().isoformat(),
                 }
                 redis_key = f"section_revision:{project_id}:{artifact_id}:{sec_id}"
                 redis_client.set(redis_key, json.dumps(revision_data), ex=3600)

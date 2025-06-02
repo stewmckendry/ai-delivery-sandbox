@@ -13,6 +13,7 @@ import requests
 import yaml
 from app.redis.redis_client import redis_client
 import json
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -124,7 +125,8 @@ class GenerateSectionChain:
             redis_payload = {
                 "text": refined["raw_draft"],
                 "diff_summary": None,  # none yet
-                "status": "drafted"
+                "status": "drafted",
+                "timestamp": datetime.datetime.utcnow().isoformat()
             }
             redis_client.set(key, json.dumps(redis_payload))
             logger.info(f"[Redis] Cached section to key {key}")
