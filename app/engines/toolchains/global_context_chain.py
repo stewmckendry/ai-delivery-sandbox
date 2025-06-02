@@ -15,7 +15,7 @@ class GlobalContextChain:
         registry = ToolRegistry()
         self.web_search_tool = registry.get_tool("webSearch")
         self.query_tool = registry.get_tool("query_prompt_generator")
-        self.corpus_tool = registry.get_tool("queryCorpus")
+        self.corpus_tool = registry.get_tool("alignWithReferenceDocuments")
         self.alignment_tool = registry.get_tool("goc_alignment_search")
         self.memory_tool = registry.get_tool("memory_retrieve")
     
