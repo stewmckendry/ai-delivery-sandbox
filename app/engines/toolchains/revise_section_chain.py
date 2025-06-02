@@ -31,8 +31,7 @@ class ReviseSectionChain:
 
     def run_tool(self, inputs):
         trace = []
-        artifact = inputs.get("artifact")
-        section = inputs.get("section")
+        artifact_id = inputs.get("artifact_id")
         raw_feedback = inputs.get("feedback_text")
         mode = inputs.get("mode")
         session_id = inputs.get("session_id")
@@ -49,7 +48,7 @@ class ReviseSectionChain:
         # Summarize current artifact sections
         db = get_session()
         all_records = db.query(ArtifactSection).filter_by(
-            artifact_id=artifact, project_id=project_id, session_id=session_id
+            artifact_id=artifact_id, project_id=project_id, session_id=session_id
         ).order_by(ArtifactSection.timestamp.desc()).all()
         latest_sections = {}
         for sec in all_records:
@@ -63,19 +62,27 @@ class ReviseSectionChain:
         ]
         logger.info("[Step 2.5] Summarized latest sections")
 
-        structure_input = {
-            "feedback_entries": raw_feedback,
-            "sections": summarized_sections,
-            **inputs
-        }
-        logger.info("[Step 3] Preparing to run feedback structurer with input")
+        feedback_entries = inputs.get("feedback_entries")
+        if feedback_entries:
+            logger.info("[Step 3] Using direct feedback_entries from inputs")
+            feedback_map = {}
+            for entry in feedback_entries:
+                sid = entry["section_id"]
+                feedback_map.setdefault(sid, []).append(entry)
+        else:
+            structure_input = {
+                "feedback_entries": raw_feedback,
+                "sections": summarized_sections,
+                **inputs
+            }
+            logger.info("[Step 3] Preparing to run feedback structurer with input")
 
-        structured = self.structurer.run_tool(structure_input)
-        trace.append({"tool": "feedback_structurer", "output": structured})
-        logger.info("[Step 4] feedback_structurer complete")
+            structured = self.structurer.run_tool(structure_input)
+            trace.append({"tool": "feedback_structurer", "output": structured})
+            logger.info("[Step 4] feedback_structurer complete")
 
-        # Validate output format
-        feedback_map = structured.get("section_feedback_map")
+            feedback_map = structured.get("section_feedback_map")
+
         if not isinstance(feedback_map, dict):
             logger.warning("Malformed or missing section_feedback_map. Skipping revisions.")
             return {
@@ -85,7 +92,7 @@ class ReviseSectionChain:
             }
 
         # Step 3: log original feedback
-        save_feedback(document_id=artifact, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
+        save_feedback(document_id=artifact_id, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
         logger.info("[Step 5] Original feedback saved")
 
         # Step 4: apply rewrites
@@ -109,7 +116,7 @@ class ReviseSectionChain:
 
                 save_result = save_artifact_and_trace(
                     section_id=sec_id,
-                    artifact_id=artifact,
+                    artifact_id=artifact_id,
                     gate_id=inputs.get("gate_id", "0"),
                     text=rewritten["draft"],
                     sources=rewritten.get("prompt_used"),
@@ -137,7 +144,7 @@ class ReviseSectionChain:
                     "diff_summary": diff_summary["diff_summary"],
                     "status": "revised"
                 }
-                redis_key = f"section_revision:{project_id}:{artifact}:{sec_id}"
+                redis_key = f"section_revision:{project_id}:{artifact_id}:{sec_id}"
                 redis_client.set(redis_key, json.dumps(revision_data), ex=3600)
                 logger.info(f"[Redis] Cached revision data for section {sec_id} under key {redis_key}") 
 

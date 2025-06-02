@@ -465,34 +465,6 @@ tools:
         - project_id
         - session_id
 
-  revise_section_chain:
-    description: Revise one or more artifact sections based on user feedback, memory context, and structured feedback mapping.
-    module: app.engines.toolchains.revise_section_chain
-    class: ReviseSectionChain
-    schema:
-      type: object
-      properties:
-        session_id: { type: string }
-        artifact: { type: string }
-        gate_id: { type: string }
-        user_id: { type: string }
-        project_id: { type: string }
-        feedback_entries:
-          type: array
-          description: Array of user feedback entries to revise sections
-          items:
-            type: object
-            properties:
-              text: { type: string }
-              section_id: { type: string }
-              type: { type: string }
-      required:
-        - session_id
-        - artifact
-        - feedback_entries
-        - user_id
-        - project_id
-
   feedback_mapper:
     description: Maps feedback text to the most relevant document section IDs and determines the type of revision required.
     module: app.tools.tool_wrappers.feedback_mapper
@@ -735,8 +707,36 @@ tools:
         - original
         - revised
 
-  section_review_fetcher:
-    description: Retrieve section revision text and diff summary from Redis for a specific section.
+  submitFeedback:
+    description: Revise one or more artifact sections based on user feedback, memory context, and structured feedback mapping.
+    module: app.engines.toolchains.revise_section_chain
+    class: ReviseSectionChain
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        artifact_id: { type: string }
+        gate_id: { type: string }
+        user_id: { type: string }
+        project_id: { type: string }
+        feedback_entries:
+          type: array
+          description: Array of user feedback entries to revise sections
+          items:
+            type: object
+            properties:
+              text: { type: string }
+              section_id: { type: string }
+              type: { type: string }
+      required:
+        - session_id
+        - artifact
+        - feedback_entries
+        - user_id
+        - project_id
+
+  getLatestSection:
+    description: Retrieve the latest revision for a section including updated draft and diff summary.
     module: app.tools.tool_wrappers.section_review_fetcher
     class: Tool
     schema:

@@ -17,7 +17,7 @@ class AssembleArtifactChain:
         self.finalizer = registry.get_tool("finalizeDocument")
         self.committer = registry.get_tool("storeToDrive")
 
-    def run(self, inputs):
+    def run_tool(self, inputs):
         trace = []
         session_id = inputs.get("session_id")
         artifact_id = inputs.get("artifact_id")

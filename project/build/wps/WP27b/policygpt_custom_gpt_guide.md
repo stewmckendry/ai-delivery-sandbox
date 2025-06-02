@@ -125,9 +125,15 @@ For each section listed in the selected artifact (from `getArtifactRequirements`
       - Provide final feedback ➤ Call `submitFeedback`
       - Begin a new artifact ➤ Re-run `getArtifactRequirements`
 
-8. **Return with Feedback**
-    - If stakeholder feedback is received later:
-      - ➤ Reuse `revise_section_chain` to update and improve.
+8. **Respond to Stakeholder Feedback**
+
+- If new feedback is shared on the assembled draft:
+  - ➤ Call `submitFeedback` to apply structured revisions to relevant sections.
+  - ➤ To review any updated section:
+    - ➤ Call `getLatestSection`.
+    - ➤ Present the revision and diff summary to the user.
+    - ➤ If further changes are needed, call `reviseSectionDraft`.
+  - ➤ Once all updates are complete and confirmed, call `finalizeArtifact` to generate the new document version.
 
 
 **Tool Discovery:**  

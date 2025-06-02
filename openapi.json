@@ -724,6 +724,87 @@
           }
         }
       }
+    },
+    "/tools/submitFeedback": {
+      "post": {
+        "summary": "Revise artifact sections based on feedback",
+        "description": "Uses user-provided feedback to revise sections of an artifact. Applies structured revisions, logs changes, and stores updated drafts.",
+        "operationId": "submitFeedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_id": {
+                    "type": "string",
+                    "description": "Session ID to maintain toolchain context"
+                  },
+                  "artifact_id": {
+                    "type": "string",
+                    "description": "ID of the artifact to revise"
+                  },
+                  "gate_id": {
+                    "type": "string",
+                    "description": "ID of the gate this artifact belongs to"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "ID of the user submitting the feedback"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "ID of the associated project"
+                  },
+                  "feedback_entries": {
+                    "type": "array",
+                    "description": "List of feedback entries, each targeting a section",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string",
+                          "description": "Feedback text to apply"
+                        },
+                        "section_id": {
+                          "type": "string",
+                          "description": "Target section ID"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of feedback (e.g., content, tone, clarity)"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": ["session_id", "artifact", "feedback_entries", "user_id", "project_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Revision process completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "instructions": { "type": "string" },
+                    "revised_sections": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
