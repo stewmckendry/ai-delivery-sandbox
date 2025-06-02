@@ -7,13 +7,9 @@ from jinja2 import Template
 logger = logging.getLogger(__name__)
 
 class Tool:
-    def validate(self, input_dict):
-        if "project_id" not in input_dict or "session_id" not in input_dict:
-            raise ValueError("Missing required fields: project_id and session_id")
 
     def run_tool(self, input_dict):
         logger.info("[Tool] reviewInputSnapshot started")
-        self.validate(input_dict)
 
         project_id = input_dict["project_id"]
         session_id = input_dict["session_id"]
