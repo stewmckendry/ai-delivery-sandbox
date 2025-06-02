@@ -92,10 +92,12 @@ class Tool:
                     ssl=True,
                     headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
                 )
-                
+                logger.info("Connected to remote Chroma server at %s:%s", CHROMA_HOST, CHROMA_PORT)
                 embedding_model = OpenAIEmbeddings()
                 texts = [doc.page_content for doc in split_docs]
+                logger.info("Embedding %d documents", len(texts))
                 embeddings = [embedding_model.embed_query(text) for text in texts]
+                logger.info("Embeddings generated for %d documents", len(embeddings))
                 metadatas = []
                 ids = []
 
@@ -105,6 +107,7 @@ class Tool:
                     doc.metadata["_type"] = "document"  # Required by Chroma remote mode
                     metadatas.append(doc.metadata)
                     ids.append(doc_id)
+                logger.info("Generated %d unique document IDs", len(ids))
 
                 logger.info("Attempting to create or fetch collection with name: %s", "policygpt-v2")
                 
