@@ -34,6 +34,8 @@ class Tool:
         response = chat_completion_request(system=system_prompt, user=user_prompt)
         draft = response.strip()
 
+        logger.info(f"Draft for section {section_id}:\n{draft[:100]}...")
+
         # Run revision checker on the result
         checker = RevisionChecker()
         check_result = checker.run_tool({

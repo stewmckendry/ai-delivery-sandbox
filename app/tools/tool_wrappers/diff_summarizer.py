@@ -8,8 +8,8 @@ class Tool:
     def run_tool(self, input_dict):
         logger.info("Running diff_summarizer tool")
 
-        original = input_dict.get("original_text", "")
-        revised = input_dict.get("new_text", "")
+        original = input_dict.get("original", "")
+        revised = input_dict.get("revised", "")
 
         if not original or not revised:
             raise ValueError("Missing original or revised text")

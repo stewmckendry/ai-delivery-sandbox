@@ -26,9 +26,10 @@ class Tool:
         raw_data = redis_client.get(redis_key)
         if not raw_data:
             return {"status": "error", "message": f"Section {section_id} not found in Redis"}
-
+        
         parsed = json.loads(raw_data)
         original = parsed.get("text")
+        logger.info(f"Original section text for {section_id}: {original[:100]}...")
 
         memory = memory_tool.run_tool({"artifact_id": artifact_id, "project_id": project_id, "session_id": session_id})
 
