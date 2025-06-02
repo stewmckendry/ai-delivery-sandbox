@@ -43,16 +43,17 @@ class GlobalContextChain:
             )
         ).all()
 
-        grouped_context = {"webSearch": [], "queryCorpus": [], "goc_alignment_search": []}
-        seen = {"webSearch": set(), "queryCorpus": set(), "goc_alignment_search": set()}
-        for log in results:
-            label = log.input_summary.split(" | ")[1]
-            output = log.output_summary
-            if output not in seen.setdefault(label, set()):
-                grouped_context.setdefault(label, []).append(output)
-            seen[label].add(output)
-
-        return grouped_context
+        if results:
+            grouped_context = {"webSearch": [], "queryCorpus": [], "goc_alignment_search": []}
+            seen = {"webSearch": set(), "queryCorpus": set(), "goc_alignment_search": set()}
+            for log in results:
+                label = log.input_summary.split(" | ")[1]
+                output = log.output_summary
+                if output not in seen.setdefault(label, set()):
+                    grouped_context.setdefault(label, []).append(output)
+                seen[label].add(output)
+            return grouped_context
+        return {}
 
 
     def summarize_global_context(self, grouped_context):
