@@ -32,8 +32,8 @@ class IngestInputChain:
         upload_result = upload_tool.run_tool(inputs, log_usage=False)
 
         raw_text = upload_result.get("text")
-        metadata = upload_result.get("metadata", {})
-        metadata_project_id = inputs.get("project_id")
+        metadata = inputs.get("metadata", {})
+        metadata_project_id = metadata.get("project_id")
         if not metadata_project_id:
             logger.error("Input metadata missing required project_id")
             raise ValueError("Input metadata must include project_id")

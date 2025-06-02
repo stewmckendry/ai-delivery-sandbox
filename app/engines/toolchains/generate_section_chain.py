@@ -60,7 +60,7 @@ class GenerateSectionChain:
         return chat_completion_request(system_prompt, user_prompt, temperature=0.3)
 
 
-    def run(self, inputs, global_context=None):
+    def run_tool(self, inputs, global_context=None):
         trace = []
         session_id = inputs.get("session_id")
         user_id = inputs.get("user_id")
