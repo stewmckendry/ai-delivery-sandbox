@@ -410,6 +410,59 @@
           }
         }
       }
+    },
+    "/tools/reviewInputSnapshot": {
+      "post": {
+        "operationId": "reviewInputSnapshot",
+        "summary": "Summarize session inputs into a structured review snapshot",
+        "tags": ["Input Review"],
+        "x-gpt-action": {
+          "name": "Review Session Inputs",
+          "instructions": "Use this tool to review what inputs (files, notes, links) have been uploaded during a session. Pass `session_id` and `project_id`.",
+          "summary_keywords": ["input summary", "session snapshot", "review uploaded inputs"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "project_id": {
+                    "type": "string"
+                  }
+                },
+                "required": ["session_id", "project_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Structured summary of session inputs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "input_snapshot": {
+                      "type": "string",
+                      "description": "LLM-rendered summary of inputs"
+                    },
+                    "instructions": {
+                      "type": "string",
+                      "description": "How to use the snapshot for drafting or review"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

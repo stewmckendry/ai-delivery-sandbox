@@ -792,3 +792,15 @@ tools:
       properties: {}
       additionalProperties: false
 
+  reviewInputSnapshot:
+    description: Generate a human-readable summary of all user inputs uploaded during the current session.
+    module: app.engines.toolchains.reviewInputSnapshot
+    class: Tool
+    schema:
+      type: object
+      properties:
+        session_id: { type: string }
+        project_id: { type: string }
+      required:
+        - session_id
+        - project_id
