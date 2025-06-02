@@ -16,7 +16,7 @@ class IngestInputChain:
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.registry = ToolRegistry()
 
-    def run(self, inputs: dict):
+    def run_tool(self, inputs: dict):
         method = inputs.get("input_method")
         logger.info(f"Running IngestInputChain with method: {method}")
         if method not in ["text", "file", "link"]:
