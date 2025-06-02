@@ -13,6 +13,7 @@ from app.utils.trace_utils import write_trace
 from app.engines.memory_sync import log_tool_usage
 from app.tools.tool_wrappers.structured_input_ingestor import structure_input
 from chromadb import HttpClient
+import chromadb
 import requests
 import requests
 from bs4 import BeautifulSoup
