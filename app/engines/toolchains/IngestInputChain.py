@@ -46,7 +46,7 @@ class IngestInputChain:
             existing = {}
 
         project_profile = ProjectProfileEngine().generate_and_save(text=raw_text, metadata=metadata, existing=existing)
-        project_id = project_profile.get("project_id", metadata_project_id)
+        project_id = metadata_project_id
         logger.info(f"Generated and saved project profile: {project_id}")
 
         prompt_templates = get_prompt("input_checker_prompts.yaml", "upload_summary")
