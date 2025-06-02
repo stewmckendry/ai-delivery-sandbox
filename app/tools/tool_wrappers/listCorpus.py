@@ -24,6 +24,7 @@ class Tool:
             client = HttpClient(
                 host=CHROMA_HOST, 
                 port=int(CHROMA_PORT),
+                ssl=True,
                 headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
             )
             collection = client.get_or_create_collection(
