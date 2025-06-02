@@ -99,31 +99,25 @@ Once all relevant inputs are uploaded and summarized:
 
 6. **Draft and Review Each Section**
 
-For each section listed in the selected artifact (as provided by `getArtifactRequirements`):
+For each section listed in the selected artifact (from `getArtifactRequirements`):
 
-- ➤ **Call** `generateSectionDraft` with these required fields:
-  - `artifact_id`
-  - `section_id`
-  - `project_id`
-  - `session_id`
-- ➤ **Present** the generated draft to the user for review.
-- ➤ **If edits or feedback are requested:**
-  - Call `section_review_feedback` to capture and apply updates to the draft in memory.
-- ➤ **Once the user approves the section:**
-  - Move on to drafting the next section.
-- ➤ **Repeat** this process until all sections in the artifact are drafted and approved.
+- ➤ Call `generateSectionDraft` with:
+  - `artifact_id`, `section_id`, `project_id`, `session_id`
+- ➤ Present the generated draft to the user.
+- ➤ If feedback is received:
+  - Call `section_review_feedback` with the original `section_id`, `artifact_id`, `project_id`, `session_id`, and the `feedback` text.
+  - Present the revised draft and summarized diff.
+  - Ask the user if further edits are needed or if it’s approved.
+  - If edits are still needed, call `section_review_feedback` again.
+- ➤ Once the section is approved, call `generateSectionDraft` with the next `section_id`.
+- ➤ Repeat this loop until all sections are drafted and approved.
 
-7. **Review & Revise**
-    - When feedback or changes are requested:
-      - ➤ Call `revise_section_chain`.
-      - ➤ Structure feedback, rewrite content, and save trace.
-
-8. **Finalize Artifact**
+7. **Finalize Artifact**
     - When the draft is complete:
       - ➤ Use `assemble_artifact_chain`.
       - ➤ Merge and format all sections, then store the result in Google Drive.
 
-9. **Return with Feedback**
+8. **Return with Feedback**
     - If stakeholder feedback is received later:
       - ➤ Reuse `revise_section_chain` to update and improve.
 

@@ -52,5 +52,11 @@ class Tool:
         return {
             "status": "updated",
             "section_id": section_id,
-            "diff_summary": updated["diff_summary"]
+            "diff_summary": updated["diff_summary"],
+            "instructions": (
+                "Here is the revised section based on your feedback, along with a summary of what changed. "
+                "You should now present the new draft and the diff to the user. Ask if they’d like to revise it again "
+                "(if yes, call `section_review_feedback` again), or if it’s ready to move to the next section. "
+                "Once approved, proceed to call `generateSectionDraft` with the next `section_id` in the artifact."
+            )
         }

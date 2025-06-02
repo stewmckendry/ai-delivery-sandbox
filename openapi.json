@@ -609,6 +609,58 @@
           }
         }
       }
+    },
+    "/tools/section_review_feedback": {
+      "post": {
+        "operationId": "section_review_feedback",
+        "summary": "Revise a section based on feedback",
+        "tags": ["Drafting"],
+        "x-gpt-action": {
+          "name": "Revise Section",
+          "instructions": "Use this when a user provides feedback on a drafted section and wants changes made. You must include:\n- `section_id`, `artifact_id`, `project_id`, and `session_id`\n- `feedback`: natural language description of what to change\n- Optional: `revision_type` like 'rewrite', 'add', 'remove'",
+          "summary_keywords": ["revise", "section", "feedback"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "section_id": { "type": "string" },
+                  "artifact_id": { "type": "string" },
+                  "project_id": { "type": "string" },
+                  "session_id": { "type": "string" },
+                  "feedback": { "type": "string" },
+                  "revision_type": {
+                    "type": "string",
+                    "enum": ["rewrite", "add", "remove"]
+                  }
+                },
+                "required": ["section_id", "artifact_id", "feedback", "project_id", "session_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the revised section and summary of changes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "section_id": { "type": "string" },
+                    "diff_summary": { "type": "string" },
+                    "instructions": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

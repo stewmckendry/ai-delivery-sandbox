@@ -811,3 +811,25 @@ tools:
       required:
         - session_id
         - project_id
+
+  section_review_feedback:
+    description: Applies feedback to a drafted section, rewrites it, and summarizes the changes.
+    module: app.tools.tool_wrappers.section_review_feedback
+    class: Tool
+    schema:
+      type: object
+      properties:
+        section_id:
+          type: string
+        artifact_id:
+          type: string
+        feedback:
+          type: string
+        revision_type:
+          type: string
+          enum: ["rewrite", "polish", "append", "clarify", "targeted_edit"]
+        project_id:
+          type: string
+        session_id:
+          type: string
+      required: [section_id, artifact_id, feedback, project_id, session_id]
