@@ -276,9 +276,12 @@
                   "user_id": {
                     "type": "string"
                   },
-                  "input_dict": {
-                    "type": "object"
+                  "filter_titles": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Optional list of document titles to constrain the semantic search"
                   }
+
                 },
                 "required": ["query"]
               }

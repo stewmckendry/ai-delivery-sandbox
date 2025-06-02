@@ -137,7 +137,7 @@ tools:
           type: string
         user_id:
           type: string
-        input_dict:
+        filter_titles:
           type: object
       required:
         - query

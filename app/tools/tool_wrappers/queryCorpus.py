@@ -24,6 +24,8 @@ class Tool:
 
     def run_tool(self, input_dict):
         query = input_dict["query"]
+        filter_titles = input_dict.get("filter_titles", [])
+        where_clause = {"title": {"$in": filter_titles}} if filter_titles else None
         logger.info(f"🔍 Querying corpus with: {query[:100]}")
 
         results_list = []
@@ -35,7 +37,11 @@ class Tool:
                 headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
             )
             collection = client.get_or_create_collection("policygpt")
-            results = collection.query(query_texts=[query], n_results=5)
+            results = collection.query(
+                query_texts=[query],
+                n_results=5,
+                where=where_clause
+            )
             docs = results.get("documents", [[]])[0]
             metas = results.get("metadatas", [[]])[0]
             

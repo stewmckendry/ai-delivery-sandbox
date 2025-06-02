@@ -99,7 +99,6 @@ class Tool:
                 for doc in split_docs:
                     doc_id = str(uuid.uuid4())
                     doc.metadata["doc_id"] = doc_id
-                    doc.metadata["_type"] = "document"
                     metadatas.append(doc.metadata)
                     ids.append(doc_id)
 
