@@ -55,7 +55,16 @@ class IngestInputChain:
 
         system_prompt = system_prompt_template.render()
         user_prompt = user_prompt_template.render(raw_text=raw_text)
-        summary = chat_completion_request(system_prompt, user_prompt, temperature=0.4)
+
+        try:
+            summary = chat_completion_request(system_prompt, user_prompt, temperature=0.4)
+        except Exception as e:
+            logger.warning(f"LLM summarization failed: {e}")
+            summary = (
+                "This input was uploaded successfully. However, it was too long to auto-summarize in this step. "
+                "You should summarize it yourself in chat, or proceed directly to the next step such as research logging, reference alignment, or section drafting."
+            )
+
 
         log_tool_usage(
             tool_name=tool_map[method],

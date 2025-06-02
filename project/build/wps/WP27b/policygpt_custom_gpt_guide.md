@@ -99,12 +99,19 @@ Once all relevant inputs are uploaded and summarized:
 
 6. **Draft and Review Each Section**
 
-- Draft every section listed in the artifact using the section names and `section_id`s returned by `getArtifactRequirements`.
-  - ➤ For each `section_id`, call `generate_section_chain` with the required metadata.
-  - ➤ Present the generated draft to the user for review and feedback.
-  - ➤ If the user requests changes, call `section_review_feedback` with the updated input to capture feedback and update the draft.
-  - ➤ If the draft is approved, proceed to the next section.
-  - ➤ Repeat this process until all sections are drafted and reviewed.
+For each section listed in the selected artifact (as provided by `getArtifactRequirements`):
+
+- ➤ **Call** `generateSectionDraft` with these required fields:
+  - `artifact_id`
+  - `section_id`
+  - `project_id`
+  - `session_id`
+- ➤ **Present** the generated draft to the user for review.
+- ➤ **If edits or feedback are requested:**
+  - Call `section_review_feedback` to capture and apply updates to the draft in memory.
+- ➤ **Once the user approves the section:**
+  - Move on to drafting the next section.
+- ➤ **Repeat** this process until all sections in the artifact are drafted and approved.
 
 7. **Review & Revise**
     - When feedback or changes are requested:
