@@ -3,7 +3,7 @@ import yaml
 from openai import OpenAI
 
 
-def chat_completion_request(system, user, temperature=0.7, model="gpt-4"):
+def chat_completion_request(system, user, temperature=0.7, model="gpt-3.5-turbo"):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     response = client.chat.completions.create(
         model=model,
