@@ -17,7 +17,7 @@ import chromadb
 import requests
 import requests
 from bs4 import BeautifulSoup
-from app.tools.utils.llm_helpers import get_prompt, chat_completion_request
+from app.tools.utils.llm_helpers import get_prompt, chat_completion_request, chunk_text
 from jinja2 import Template
 
 logger = logging.getLogger(__name__)
@@ -53,11 +53,21 @@ class Tool:
                     response.raise_for_status()
                     soup = BeautifulSoup(response.text, "html.parser")
                     raw_text = soup.get_text(separator="\n", strip=True)
+
                     prompt_templates = get_prompt("search_prompts.yaml", "search_cleanup")
                     system_prompt = Template(prompt_templates["system"]).render()
-                    user_prompt = Template(prompt_templates["user"]).render(raw_text=raw_text, file_url=file_url)
-                    logger.info(f"[Tool] loadCorpus user prompt: {user_prompt[:100]}...")
-                    cleaned = chat_completion_request(system_prompt, user_prompt, temperature=0.4)
+
+                    chunks = chunk_text(raw_text)
+                    cleaned_parts = []
+
+                    for i, chunk in enumerate(chunks):
+                        user_prompt_chunk = Template(prompt_templates["user"]).render(raw_text=chunk, file_url=file_url)
+                        logger.info(f"[Tool] Processing chunk {i+1}/{len(chunks)} with approx {len(chunk.split())} words")
+                        cleaned = chat_completion_request(system_prompt, user_prompt_chunk, temperature=0.4)
+                        cleaned_parts.append(cleaned.strip())
+
+                    file_contents = "\n\n".join(cleaned_parts)
+
                     file_contents = cleaned.strip()
                     log_tool_usage(
                         "loadCorpus",

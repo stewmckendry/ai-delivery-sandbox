@@ -31,3 +31,13 @@ def get_prompt(prompt_file, block):
         raise ValueError(f"Block '{block}' not found in prompt file {prompt_file}")
 
     return prompt_yaml[block]
+
+def chunk_text(text, max_tokens=3000, overlap=0):
+        words = text.split()
+        chunks = []
+        start = 0
+        while start < len(words):
+            end = start + max_tokens
+            chunks.append(" ".join(words[start:end]))
+            start = end - overlap  # overlap for context
+        return chunks
