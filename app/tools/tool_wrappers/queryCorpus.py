@@ -34,7 +34,8 @@ class Tool:
             client = HttpClient(
                 host=CHROMA_HOST, 
                 port=int(CHROMA_PORT),
-                headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
+                headers={"Authorization": f"Bearer {CHROMA_TOKEN}"},
+                ssl=True
             )
             collection = client.get_or_create_collection(
                 name="policygpt",
