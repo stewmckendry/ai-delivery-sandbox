@@ -25,6 +25,7 @@ logging.basicConfig(level=logging.INFO)
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")
+CHROMA_TOKEN = os.getenv("CHROMA_TOKEN", "your_chroma_token_here")
 USE_REMOTE_CHROMA = True
 logger.info("USE_REMOTE_CHROMA: %s", USE_REMOTE_CHROMA)
 logger.info("CHROMA_HOST: %s", CHROMA_HOST)
@@ -82,7 +83,12 @@ class Tool:
 
             if USE_REMOTE_CHROMA:
                 logger.info("Using remote Chroma server for indexing")
-                client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT), ssl=True)
+                client = HttpClient(
+                    host=CHROMA_HOST, 
+                    port=int(CHROMA_PORT), 
+                    ssl=True,
+                    headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
+                )
                 collection = client.get_or_create_collection("policygpt")
                 for doc in split_docs:
                     doc_id = str(uuid.uuid4())

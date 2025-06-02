@@ -14,6 +14,7 @@ logger.info("✅ queryCorpus Tool loaded")
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")
+CHROMA_TOKEN = os.getenv("CHROMA_TOKEN", "your_chroma_token_here")
 USE_REMOTE_CHROMA = CHROMA_HOST is not None
 logger.debug("USE_REMOTE_CHROMA: %s", USE_REMOTE_CHROMA)
 logger.debug("CHROMA_HOST: %s", CHROMA_HOST)
@@ -28,7 +29,11 @@ class Tool:
         results_list = []
         if USE_REMOTE_CHROMA:
             logger.debug("Connecting to Chroma host: %s", CHROMA_HOST)
-            client = HttpClient(host=CHROMA_HOST, port=int(CHROMA_PORT))
+            client = HttpClient(
+                host=CHROMA_HOST, 
+                port=int(CHROMA_PORT),
+                headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
+            )
             collection = client.get_or_create_collection("policygpt")
             results = collection.query(query_texts=[query], n_results=5)
             docs = results.get("documents", [[]])[0]
