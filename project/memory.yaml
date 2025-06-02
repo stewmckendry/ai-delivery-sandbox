@@ -5317,3 +5317,14 @@
   - PolicyGPT
   last_updated: '2025-06-02'
   pod_owner: DeliveryPod
+- path: app/engines/toolchains/reviewInputSnapshot.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/app/engines/toolchains/reviewInputSnapshot.py
+  file_type: py
+  description: Script to review and summarize input snapshots from tool logs using
+    LLM prompts for drafting and revisions.
+  tags:
+  - prompt
+  - flow
+  - tool
+  last_updated: '2025-06-02'
+  pod_owner: DevPod
