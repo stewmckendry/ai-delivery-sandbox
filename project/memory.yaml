@@ -871,3 +871,14 @@
   - json
   last_updated: '2025-05-29'
   pod_owner: DeliveryPod
+- path: .env.backend.example
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-golden-wave/.env.backend.example
+  file_type: example
+  description: Example configuration file for backend environment variables including
+    database and storage URLs
+  tags:
+  - config
+  - backend
+  - environment
+  last_updated: '2025-06-02'
+  pod_owner: DevPod
