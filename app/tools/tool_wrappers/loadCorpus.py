@@ -99,16 +99,18 @@ class Tool:
                 for doc in split_docs:
                     doc_id = str(uuid.uuid4())
                     doc.metadata["doc_id"] = doc_id
+                    doc.metadata["_type"] = "document"  # Required by Chroma remote mode
                     metadatas.append(doc.metadata)
                     ids.append(doc_id)
 
-                collection = client.get_or_create_collection("policygpt")
+                collection = client.get_or_create_collection("policygpt-v2")  # Use a clean collection name
                 collection.add(
                     documents=texts,
                     embeddings=embeddings,
                     metadatas=metadatas,
                     ids=ids
                 )
+
 
             else:
                 logger.info("Using local Chroma vector store for indexing")
