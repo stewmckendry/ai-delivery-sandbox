@@ -12,23 +12,14 @@ import logging
 logger = logging.getLogger(__name__)
 
 class Tool:
-    def validate(self, input_dict):
-        if "file_path" not in input_dict and "file_content" not in input_dict:
-            raise ValueError("Must provide either 'file_path' or 'file_contents'.")
 
     def run_tool(self, input_dict, log_usage=True):
         logger.info("Running uploadFileInput tool")
-        self.validate(input_dict)
         metadata = input_dict.get("metadata") or {}
         project_id = metadata.get("project_id")
-
-        if "file_path" in input_dict:
-            file_path = input_dict["file_path"]
-            raw = retry_with_backoff(extract_text, file_path=file_path)
-            source = file_path
-        else:
-            raw = input_dict["file_content"]
-            source = "uploaded_file"
+        file_path = input_dict["file_path"]
+        raw = input_dict["file_content"]
+        source = "uploaded_file"
 
         if raw is None:
             raise ValueError("Failed to extract or read text from file.")
@@ -46,8 +37,6 @@ class Tool:
                 metadata=entry.get("metadata")
             )
 
-        if input_dict.get("save_profile", False):
-            ProjectProfileEngine().generate_and_save(raw, metadatax)
         logger.info("uploadFileInput tool completed successfully")
         return {
             "status": "success",
