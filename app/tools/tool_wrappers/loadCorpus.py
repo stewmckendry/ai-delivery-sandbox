@@ -106,9 +106,13 @@ class Tool:
                 logger.info("Attempting to create or fetch collection with name: %s", "policygpt-v2")
                 
                 try:
-                    collection = client.get_or_create_collection("policygpt-v2")
+                    logger.info("Attempting to create or fetch collection with name: policygpt-v2")
+                    collection = client.get_or_create_collection(
+                        name="policygpt",
+                        metadata={"_type": "collection"}  # 👈 Required for creation
+                    )
                 except Exception as e:
-                    logger.error("Failed to get or create collection: %s", str(e), exc_info=True)
+                    logger.info("Failed to get or create collection: %s", str(e), exc_info=True)
                     raise
 
                 logger.info("Preparing to add documents to Chroma collection")
