@@ -9228,3 +9228,9 @@
   task_id: WP27b
   committed_by: GPTPod
   message: Append output file to WP27b
+- timestamp: '2025-06-02T15:10:25.115004'
+  path: app/tools/tool_wrappers/inputPromptGenerator.py
+  task_id: WP27b
+  committed_by: GPTPod
+  message: Narrow getArtifactRequirements metadata to core fields (name, purpose,
+    section structure)
