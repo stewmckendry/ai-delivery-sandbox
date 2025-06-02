@@ -103,7 +103,20 @@ class Tool:
                     metadatas.append(doc.metadata)
                     ids.append(doc_id)
 
-                collection = client.get_or_create_collection("policygpt-v2")  # Use a clean collection name
+                logger.debug("Attempting to create or fetch collection with name: %s", "policygpt-v2")
+                
+                try:
+                    collection = client.get_or_create_collection("policygpt-v2")
+                except Exception as e:
+                    logger.error("Failed to get or create collection: %s", str(e), exc_info=True)
+                    raise
+
+                logger.debug("Preparing to add documents to Chroma collection")
+                logger.debug("Documents: %s", texts)
+                logger.debug("Embeddings count: %d", len(embeddings))
+                logger.debug("Metadata sample: %s", metadatas[0] if metadatas else "No metadata")
+                logger.debug("IDs sample: %s", ids[:3])
+
                 collection.add(
                     documents=texts,
                     embeddings=embeddings,
