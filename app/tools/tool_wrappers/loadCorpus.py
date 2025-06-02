@@ -22,6 +22,8 @@ from jinja2 import Template
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
+logger.info(f"ChromaDB client version: {chromadb.__version__}")
+
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")

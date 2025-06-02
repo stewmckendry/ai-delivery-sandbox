@@ -26,7 +26,10 @@ class Tool:
                 port=int(CHROMA_PORT),
                 headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
             )
-            collection = client.get_or_create_collection("policygpt")
+            collection = client.get_or_create_collection(
+                name="policygpt",
+                metadata={"_type": "collection"}
+            )
             results = collection.get(include=["metadatas"], limit=100)
             logger.info("Chroma get results: %s", results)
             

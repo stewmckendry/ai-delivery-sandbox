@@ -28,7 +28,8 @@ COPY . /app
 
 # Install Python dependencies
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt && \
+    pip install chromadb==1.0.12 --force-reinstall
 
 # Add entrypoint script
 COPY entrypoint.sh /entrypoint.sh
