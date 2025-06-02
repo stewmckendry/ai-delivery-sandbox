@@ -15,7 +15,7 @@ CHROMA_DIR = os.getenv("CHROMA_DIR", "./local_vector_store")
 CHROMA_HOST = os.getenv("CHROMA_SERVER_HOST")
 CHROMA_PORT = os.getenv("CHROMA_SERVER_HTTP_PORT", "8000")
 CHROMA_TOKEN = os.getenv("CHROMA_TOKEN", "your_chroma_token_here")
-USE_REMOTE_CHROMA = CHROMA_HOST is not None
+USE_REMOTE_CHROMA = True
 logger.debug("USE_REMOTE_CHROMA: %s", USE_REMOTE_CHROMA)
 logger.debug("CHROMA_HOST: %s", CHROMA_HOST)
 logger.debug("CHROMA_PORT: %s", CHROMA_PORT)
@@ -41,8 +41,10 @@ class Tool:
                 name="policygpt",
                 metadata={"_type": "collection"}
             )
+            embedding_model = OpenAIEmbeddings()
+            query_embedding = embedding_model.embed_query(query)
             results = collection.query(
-                query_texts=[query],
+                query_embeddings=[query_embedding],
                 n_results=5,
                 where=where_clause
             )
