@@ -812,7 +812,7 @@ tools:
         - session_id
         - project_id
 
-  section_review_feedback:
+  reviseSectionDraft:
     description: Applies feedback to a drafted section, rewrites it, and summarizes the changes.
     module: app.tools.tool_wrappers.section_review_feedback
     class: Tool
