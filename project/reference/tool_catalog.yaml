@@ -153,7 +153,7 @@ tools:
           type: string
           description: Optional session ID to filter which prompt logs to include
       required: []
-      
+
   getArtifactRequirements:
     description: Retrieve the requirements for a specific gate and artifact, including metadata and section details.
     module: app.tools.tool_wrappers.inputPromptGenerator
@@ -341,7 +341,8 @@ tools:
           type: string
       required:
         - project_id
-  ingestInput:
+
+  uploadProjectInputs:
     description: Ingests content from user text, file, or URL and generates or updates the associated project profile.
     module: app.engines.toolchains.IngestInputChain
     class: IngestInputChain
