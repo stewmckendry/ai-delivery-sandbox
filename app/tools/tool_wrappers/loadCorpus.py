@@ -71,7 +71,7 @@ class Tool:
                     file_contents = cleaned.strip()
                     log_tool_usage(
                         "loadCorpus",
-                        f"Fetched and cleaned content from {file_url}.  User prompt: {user_prompt[:100]}...",
+                        f"Fetched and cleaned content from {file_url}",
                         json.dumps({"status": "success", "length": len(file_contents)}, indent=2),
                         session_id=input_dict.get("session_id"),
                         user_id=input_dict.get("user_id"),
