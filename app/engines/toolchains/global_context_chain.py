@@ -37,23 +37,35 @@ class GlobalContextChain:
         db = SessionLocal()
         results = db.query(PromptLog).filter(
             and_(
-            PromptLog.project_id == project_id,
-            PromptLog.session_id == session_id,
-            PromptLog.input_summary.contains("global_context")
+                PromptLog.project_id == project_id,
+                PromptLog.session_id == session_id,
+                PromptLog.tool.in_(["queryCorpus", "record_research"])
             )
         ).all()
 
-        if results:
-            grouped_context = {"webSearch": [], "queryCorpus": [], "goc_alignment_search": []}
-            seen = {"webSearch": set(), "queryCorpus": set(), "goc_alignment_search": set()}
-            for log in results:
+        if not results:
+            return {}
+
+        grouped_context = {}
+        seen_outputs = {}
+
+        for log in results:
+            try:
                 label = log.input_summary.split(" | ")[1]
-                output = log.output_summary
-                if output not in seen.setdefault(label, set()):
-                    grouped_context.setdefault(label, []).append(output)
-                seen[label].add(output)
-            return grouped_context
-        return {}
+            except IndexError:
+                logger.warning(f"[global_context] Malformed input_summary: {log.input_summary}")
+                continue
+
+            if label not in grouped_context:
+                grouped_context[label] = []
+                seen_outputs[label] = set()
+
+            output = log.output_summary
+            if output and output not in seen_outputs[label]:
+                grouped_context[label].append(output)
+                seen_outputs[label].add(output)
+
+        return grouped_context
 
 
     def summarize_global_context(self, grouped_context):
