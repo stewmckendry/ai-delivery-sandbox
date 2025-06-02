@@ -392,6 +392,7 @@ tools:
         - required: [file_path]
         - required: [file_content]
         - required: [url]
+        
   generateSectionChain:
     description: Generates a draft section by retrieving memory, synthesizing, and refining text.
     module: app.engines.toolchains.generate_section_chain
