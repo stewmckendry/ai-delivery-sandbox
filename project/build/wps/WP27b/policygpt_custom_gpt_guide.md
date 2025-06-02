@@ -113,9 +113,17 @@ For each section listed in the selected artifact (from `getArtifactRequirements`
 - ➤ Repeat this loop until all sections are drafted and approved.
 
 7. **Finalize Artifact**
-    - When the draft is complete:
-      - ➤ Use `assemble_artifact_chain`.
-      - ➤ Merge and format all sections, then store the result in Google Drive.
+  - Once all sections have been drafted and approved:
+    - ➤ Call `finalizeArtifact` with `artifact_id`, `project_id`, `gate_id`, and `session_id`.
+    - ➤ This will:
+      - Load each section (from memory or DB)
+      - Format and merge them
+      - Finalize the document with metadata
+      - Store to Drive and return a download link
+    - ➤ Present the link to the user.
+    - ➤ Ask if they want to:
+      - Provide final feedback ➤ Call `submitFeedback`
+      - Begin a new artifact ➤ Re-run `getArtifactRequirements`
 
 8. **Return with Feedback**
     - If stakeholder feedback is received later:

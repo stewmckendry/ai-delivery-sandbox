@@ -128,4 +128,14 @@ class AssembleArtifactChain:
         )
         logger.info("[Step 6] Saved to Artifact and ReasoningTrace")
 
-        return {"final_output": committed, "trace": trace}
+        return {
+            "drive_url": committed.get("drive_url"),
+            "message": (
+                f"The artifact has been finalized and uploaded to Drive.\n\n"
+                f"📄 [Download Link]({committed.get('drive_url')})\n\n"
+                "Would you like to:\n"
+                "1. Share feedback on the full draft? ➤ Call `submitFeedback`\n"
+                "2. Start a new artifact? ➤ Re-run `getArtifactRequirements`"
+            )
+        }
+

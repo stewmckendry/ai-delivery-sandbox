@@ -661,6 +661,69 @@
           }
         }
       }
+    },
+    "/tools/finalizeArtifact": {
+      "post": {
+        "summary": "Assemble and finalize an artifact document",
+        "description": "Loads section metadata, formats and merges content, finalizes a document, and saves it to Google Drive.",
+        "operationId": "finalizeArtifact",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string",
+                    "description": "ID of the artifact to assemble"
+                  },
+                  "gate_id": {
+                    "type": "string",
+                    "description": "ID of the gate this artifact belongs to"
+                  },
+                  "version": {
+                    "type": "string",
+                    "description": "Version label of the document being assembled",
+                    "default": "v0.1"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "ID of the associated project"
+                  },
+                  "session_id": {
+                    "type": "string",
+                    "description": "ID of the session to maintain context across tools"
+                  }
+                },
+                "required": ["artifact_id", "gate_id", "project_id", "session_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Document successfully assembled and saved to Drive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "drive_url": {
+                      "type": "string",
+                      "description": "URL to the uploaded final document"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Instructions for next steps"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
