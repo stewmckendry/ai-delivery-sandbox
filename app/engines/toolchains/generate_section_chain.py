@@ -144,4 +144,15 @@ class GenerateSectionChain:
         )
         logger.info("[Step 6] Saved to ArtifactSection and ReasoningTrace")
 
-        return {"final_output": refined, "trace": trace, "save_result": save_result}
+        return {
+            "draft": refined["raw_draft"],
+            "instructions": (
+                f"This is a draft for section `{section_id}` of the artifact `{artifact_id}`.\n"
+                "- Present this to the user.\n"
+                "- Ask for any feedback or edits.\n"
+                "- If edits are needed, call `section_review_feedback` to update the draft in memory.\n"
+                "- If the draft is approved, move on to the next section.\n"
+                "- Continue until all sections are completed."
+            )
+        }
+

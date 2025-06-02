@@ -97,10 +97,14 @@ Once all relevant inputs are uploaded and summarized:
 - ➤ This will return a digestible summary of all uploaded material to inform drafting.
 - ➤ Use this summary to orient the user and confirm readiness to proceed to section drafting.
 
-6. **Draft Sections**
-    - When ready to write:
-      - ➤ Use `generate_section_chain` with section metadata.
-      - ➤ Retrieve saved inputs and research for informed generation.
+6. **Draft and Review Each Section**
+
+- Draft every section listed in the artifact using the section names and `section_id`s returned by `getArtifactRequirements`.
+  - ➤ For each `section_id`, call `generate_section_chain` with the required metadata.
+  - ➤ Present the generated draft to the user for review and feedback.
+  - ➤ If the user requests changes, call `section_review_feedback` with the updated input to capture feedback and update the draft.
+  - ➤ If the draft is approved, proceed to the next section.
+  - ➤ Repeat this process until all sections are drafted and reviewed.
 
 7. **Review & Revise**
     - When feedback or changes are requested:

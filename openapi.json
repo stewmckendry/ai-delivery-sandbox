@@ -544,6 +544,67 @@
           }
         }
       }
+    },
+    "/tools/generateSectionDraft": {
+      "post": {
+        "operationId": "generateSectionDraft",
+        "summary": "Generate a draft for a specific artifact section",
+        "tags": ["Drafting"],
+        "x-gpt-action": {
+          "name": "Generate Section Draft",
+          "instructions": "Use this to draft a section from the artifact using previously uploaded inputs, memory, and context. Run this for each section.",
+          "summary_keywords": ["draft", "section", "generate"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string",
+                    "description": "ID of the artifact the section belongs to"
+                  },
+                  "section_id": {
+                    "type": "string",
+                    "description": "ID of the section to generate"
+                  },
+                  "gate_id": {
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "project_id": {
+                    "type": "string"
+                  }
+                },
+                "required": ["artifact_id", "section_id", "session_id", "project_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the draft text and next-step instructions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "draft": { "type": "string" },
+                    "instructions": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

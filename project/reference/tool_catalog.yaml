@@ -393,22 +393,24 @@ tools:
         - required: [file_content]
         - required: [url]
         
-  generateSectionChain:
+  generateSectionDraft:
     description: Generates a draft section by retrieving memory, synthesizing, and refining text.
     module: app.engines.toolchains.generate_section_chain
     class: GenerateSectionChain
     schema:
       type: object
       properties:
-        artifact: { type: string }
-        section: { type: string }
+        artifact_id: { type: string }
+        section_id: { type: string }
         gate_id: { type: string }
         session_id: { type: string }
         user_id: { type: string }
         project_id: { type: string }
       required:
-        - artifact
-        - section
+        - artifact_id
+        - section_id
+        - session_id
+        - project_id
   webSearch:
     module: app.tools.tool_wrappers.web_search
     class: Tool
