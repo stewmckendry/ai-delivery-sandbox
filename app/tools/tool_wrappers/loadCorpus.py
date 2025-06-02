@@ -89,11 +89,28 @@ class Tool:
                     ssl=True,
                     headers={"Authorization": f"Bearer {CHROMA_TOKEN}"}
                 )
-                collection = client.get_or_create_collection("policygpt")
+                
+                embedding_model = OpenAIEmbeddings()
+                texts = [doc.page_content for doc in split_docs]
+                embeddings = [embedding_model.embed_query(text) for text in texts]
+                metadatas = []
+                ids = []
+
                 for doc in split_docs:
                     doc_id = str(uuid.uuid4())
                     doc.metadata["doc_id"] = doc_id
-                    collection.add(documents=[doc.page_content], metadatas=[doc.metadata], ids=[doc_id])
+                    doc.metadata["_type"] = "document"
+                    metadatas.append(doc.metadata)
+                    ids.append(doc_id)
+
+                collection = client.get_or_create_collection("policygpt")
+                collection.add(
+                    documents=texts,
+                    embeddings=embeddings,
+                    metadatas=metadatas,
+                    ids=ids
+                )
+
             else:
                 logger.info("Using local Chroma vector store for indexing")
                 vectorstore = Chroma.from_documents(split_docs, OpenAIEmbeddings(), persist_directory=CHROMA_DIR)
