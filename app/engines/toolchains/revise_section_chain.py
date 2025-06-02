@@ -29,7 +29,7 @@ class ReviseSectionChain:
         prompt = f"Summarize the following artifact section in one paragraph:\n\n{text}"
         return chat_completion_request(prompt)
 
-    def run(self, inputs):
+    def run_tool(self, inputs):
         trace = []
         artifact = inputs.get("artifact")
         section = inputs.get("section")
@@ -47,6 +47,7 @@ class ReviseSectionChain:
         logger.info("[Step 1] memory_retrieve complete")
 
         # Summarize current artifact sections
+        db = get_session()
         all_records = db.query(ArtifactSection).filter_by(
             artifact_id=artifact, project_id=project_id, session_id=session_id
         ).order_by(ArtifactSection.timestamp.desc()).all()
@@ -132,16 +133,23 @@ class ReviseSectionChain:
 
                 # Compose Redis payload and store to cache revised section + diff summary + metadata
                 revision_data = {
-                    "section_id": sec_id,
-                    "original": current_text,
-                    "revised": rewritten["draft"],
-                    "diff_summary": diff_summary,
-                    "feedback": entry["text"],
-                    "revision_type": entry["type"]
+                    "text": rewritten["draft"],
+                    "diff_summary": diff_summary["diff_summary"],
+                    "status": "revised"
                 }
-                redis_key = f"revise:{project_id}:{artifact}:{sec_id}"
+                redis_key = f"section_revision:{project_id}:{artifact}:{sec_id}"
                 redis_client.set(redis_key, json.dumps(revision_data), ex=3600)
                 logger.info(f"[Redis] Cached revision data for section {sec_id} under key {redis_key}") 
 
         logger.info("[Step 9] All sections processed and saved")
-        return {"trace": trace, "status": "complete", "save_result": save_result, "additional_suggestions": suggestions}
+        
+        return {
+            "status": "complete",
+            "instructions": (
+                "The feedback was processed and changes were applied to relevant sections.\n"
+                "You can now review each revised section using `section_review_fetcher`.\n"
+                "If additional edits are needed, call `reviseSectionDraft` with specific feedback.\n"
+                "Once all updates are confirmed, call `finalizeArtifact` to assemble the revised document."
+            ),
+            "revised_sections": list(feedback_map.keys())
+        }
