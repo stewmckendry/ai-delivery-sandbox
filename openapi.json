@@ -435,19 +435,24 @@
                 "properties": {
                   "input_method": {
                     "type": "string",
-                    "enum": ["text", "file", "link"]
+                    "enum": ["text", "file", "link"],
+                    "description": "Which type of input is being uploaded: 'text', 'file', or 'link'."
                   },
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The full body of plain text to ingest (used only if input_method is 'text')."
                   },
                   "file_path": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Relative path where the uploaded file will be stored (required if input_method is 'file')."
                   },
                   "file_content": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The raw contents of the uploaded file (required if input_method is 'file')."
                   },
                   "url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A valid URL to scrape and ingest content from (used only if input_method is 'link')."
                   },
                   "metadata": {
                     "type": "object",
@@ -466,8 +471,7 @@
                 "required": ["input_method", "metadata"],
                 "oneOf": [
                   { "required": ["text"] },
-                  { "required": ["file_path"] },
-                  { "required": ["file_content"] },
+                  { "required": ["file_path", "file_content"] },
                   { "required": ["url"] }
                 ]
               }
