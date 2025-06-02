@@ -6,6 +6,8 @@ from datetime import datetime
 from app.engines.project_profile_engine import ProjectProfileEngine
 from app.tools.tool_registry import ToolRegistry
 from app.engines.memory_sync import log_tool_usage
+from app.tools.utils.llm_helpers import chat_completion_request, get_prompt
+from jinja2 import Template
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +49,14 @@ class IngestInputChain:
         project_id = project_profile.get("project_id", metadata_project_id)
         logger.info(f"Generated and saved project profile: {project_id}")
 
+        prompt_templates = get_prompt("input_checker_prompts.yaml", "upload_summary")
+        system_prompt_template = Template(prompt_templates["system"])
+        user_prompt_template = Template(prompt_templates["user"])
+
+        system_prompt = system_prompt_template.render()
+        user_prompt = user_prompt_template.render(raw_text=raw_text)
+        summary = chat_completion_request(system_prompt, user_prompt, temperature=0.4)
+
         log_tool_usage(
             tool_name=tool_map[method],
             input_summary=f"{inputs.get(method) or inputs.get('file_path')} | {tool_map[method]}",
@@ -56,11 +66,16 @@ class IngestInputChain:
             metadata=metadata
         )
         logger.info("IngestInputChain completed successfully")
+
         return {
-            "status": "profile_saved",
-            "project_id": project_id,
-            "project_profile": project_profile,
-            "text": raw_text,
-            "metadata": metadata
+            "summary": summary,
+            "instructions": (
+                "This input has been uploaded and summarized. Next steps could include:\n"
+                "- Uploading additional project inputs (notes, documents, URLs)\n"
+                "- Calling `record_research` to log relevant research insights\n"
+                "- Using `alignWithReferenceDocuments` to match this input with external reference material\n"
+                "- When you're ready to begin drafting, call `reviewInputSnapshot` to view a full summary of all session inputs so far."
+            )
         }
+
 

@@ -64,11 +64,11 @@
         "tags": ["Input Prep"],
         "x-gpt-action": {
           "name": "Get Artifact Requirements",
-          "instructions": "Use this when a user is starting a new artifact. Ask which gate they are preparing for (0–5). Pass:\n- `gate_id`: integer (see values below)\n\nThis returns:\n- A user-facing instruction message\n- A list of available artifacts for that gate, including section structure and evaluation criteria.\n\nYou should:\n1. Present the list of artifacts to the user\n2. Ask them to pick one\n3. Use the section metadata to guide the drafting process",
-          "summary_keywords": ["prompt", "generate", "section guidance"]
+          "instructions": "Use this to start a new artifact workflow. Optionally pass `gate_id` and `project_id`. If `gate_id` is omitted, a full artifact map will be returned. Use this to help users choose a gate. `session_id` will be returned for use in all follow-on tools.",
+          "summary_keywords": ["artifact", "requirements", "workflow"]
         },
         "requestBody": {
-          "required": true,
+          "required": false,
           "content": {
             "application/json": {
               "schema": {
@@ -76,34 +76,39 @@
                 "properties": {
                   "gate_id": {
                     "type": "integer",
-                    "enum": [0, 1, 2, 3, 4, 5],
-                    "description": "Which gate the user is preparing for.\n- 0: Gate 0 – Verify Business Problem or Opportunity (Pre-Project)\n- 1: Gate 1 – Validate Business Justification and Select Short List of Options\n- 2: Gate 2 – Approve Preferred Option and Approach\n- 3: Gate 3 – Fund Project Deliverables (Project Approval)\n- 4: Gate 4 – Confirm Readiness for Service (Pre-Implementation)\n- 5: Gate 5 – Complete Project and Post-Implementation Review (Close-Out)",
-                    "example": 3
+                    "description": "Optional: Which gate the user is preparing for."
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "Optional: User-defined label for the current project."
                   }
-                },
-                "required": ["gate_id"]
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Returns an instruction message and list of artifacts with section guidance",
+            "description": "Returns session_id and either gate-specific or full artifact requirements",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "instructions": {
+                    "session_id": {
                       "type": "string",
-                      "description": "Message for GPT on how to use the returned data"
+                      "description": "Newly generated session ID for this drafting session"
+                    },
+                    "instructions": {
+                      "type": "string"
                     },
                     "artifacts": {
                       "type": "array",
-                      "items": {
-                        "type": "object",
-                        "description": "Each item is a section intent with metadata"
-                      }
+                      "description": "Artifact list for specified gate (if gate_id was passed)"
+                    },
+                    "artifacts_by_gate": {
+                      "type": "array",
+                      "description": "Full list of gates and their artifacts (if gate_id omitted)"
                     }
                   }
                 }
@@ -404,6 +409,82 @@
                     }
                   },
                   "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/uploadProjectInputs": {
+      "post": {
+        "operationId": "uploadProjectInputs",
+        "summary": "Upload and summarize a project input for drafting",
+        "tags": ["Input Prep"],
+        "x-gpt-action": {
+          "name": "Upload Project Input",
+          "instructions": "Call this when the user provides notes, links, or documents. Returns a short summary and instructions for what to do next.",
+          "summary_keywords": ["input", "upload", "summary", "project"]
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_method": {
+                    "type": "string",
+                    "enum": ["text", "file", "link"]
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "file_path": {
+                    "type": "string"
+                  },
+                  "file_content": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "properties": {
+                      "gate_id": { "type": "integer" },
+                      "artifact_id": { "type": "string" },
+                      "section_id": { "type": "string" },
+                      "intent": { "type": "string" },
+                      "session_id": { "type": "string" },
+                      "user_id": { "type": "string" },
+                      "project_id": { "type": "string" }
+                    },
+                    "required": ["artifact_id", "project_id"]
+                  }
+                },
+                "required": ["input_method", "metadata"],
+                "oneOf": [
+                  { "required": ["text"] },
+                  { "required": ["file_path"] },
+                  { "required": ["file_content"] },
+                  { "required": ["url"] }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns summary of input and GPT instructions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "summary": { "type": "string" },
+                    "instructions": { "type": "string" }
+                  }
                 }
               }
             }

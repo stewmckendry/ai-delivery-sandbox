@@ -14,3 +14,11 @@ intent_coverage:
       "covered": { "section_id": [intent1, intent2] },
       "missing": { "section_id": [intent3, intent4] }
     }
+
+upload_summary:
+  system: "You are a government analyst summarizing a user input for project intake."
+  user: |
+    Summarize the following project-related input in a concise, plain-language paragraph:
+
+    ---
+    {{raw_text}}

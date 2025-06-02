@@ -153,6 +153,7 @@ tools:
           type: string
           description: Optional session ID to filter which prompt logs to include
       required: []
+      
   getArtifactRequirements:
     description: Retrieve the requirements for a specific gate and artifact, including metadata and section details.
     module: app.tools.tool_wrappers.inputPromptGenerator
@@ -162,9 +163,11 @@ tools:
       type: object
       properties:
         gate_id:
+          type: integer
+        project_id:
           type: string
-      required:
-        - gate_id
+      required: []
+
   inputChecker:
     description: Validate user inputs against required metadata and completeness
     module: app.tools.tool_wrappers.inputChecker
