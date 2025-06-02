@@ -5304,3 +5304,16 @@
   - report
   last_updated: '2025-06-02'
   pod_owner: DeliveryPod
+- path: project/build/wps/WP27b/wp27_part3_exit_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/build/wps/WP27b/wp27_part3_exit_report.md
+  file_type: md
+  description: Exit report for WP27 Iteration 5 detailing the implementation and testing
+    of core tools in PolicyGPT, focusing on reference documents, research, and ChromaDB
+    integration.
+  tags:
+  - report
+  - testing
+  - integration
+  - PolicyGPT
+  last_updated: '2025-06-02'
+  pod_owner: DeliveryPod
