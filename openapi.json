@@ -610,9 +610,9 @@
         }
       }
     },
-    "/tools/section_review_feedback": {
+    "/tools/reviseSectionDraft": {
       "post": {
-        "operationId": "section_review_feedback",
+        "operationId": "reviseSectionDraft",
         "summary": "Revise a section based on feedback",
         "tags": ["Drafting"],
         "x-gpt-action": {
