@@ -9301,3 +9301,14 @@
   task_id: comms
   committed_by: ProductPod
   message: Append output file to comms
+- timestamp: '2025-06-03T12:41:42.567356'
+  path: project/comms/ai_talent_workshop_followup_minutes.md
+  task_id: comms
+  committed_by: ProductPod
+  message: Add meeting minutes for AI talent project follow-up workshop as input to
+    charter
+- timestamp: '2025-06-03T12:41:42.567356'
+  path: project/memory.yaml
+  task_id: comms
+  committed_by: ProductPod
+  message: Memory update related to project/comms/ai_talent_workshop_followup_minutes.md
