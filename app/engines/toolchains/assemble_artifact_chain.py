@@ -57,6 +57,22 @@ class AssembleArtifactChain:
                     section_text = cached["text"]
                     logger.info(f"[Redis HIT] Using cached section for {sec['section_id']}")
                     log_tool_usage("fetchReviewSection", "fetched section from Redis", cached, session_id, None, inputs)
+                    trace.append({"tool": "fetchReviewSection", "output": cached})
+
+                    # Save finalized section to ArtifactSection using standard helper
+                    save_result = save_artifact_and_trace(
+                        section_id=section_id,
+                        artifact_id=artifact_id,
+                        gate_id=gate_id,
+                        text=section_text,
+                        sources="finalizeArtifact via Redis or fallback",
+                        tool_outputs=trace,
+                        user_id=None,  # No user interaction at this step
+                        project_id=project_id,
+                        session_id=session_id
+                    )
+                    logger.info(f"[DB] Saved finalized section {section_id} to ArtifactSection")
+
                 else:
                     section_text = sec["text"]
                     redis_fallback = True
