@@ -5379,3 +5379,16 @@
   - talent
   last_updated: '2025-06-03'
   pod_owner: DeliveryPod
+- path: project/comms/ai_talent_workshop_followup_minutes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/comms/ai_talent_workshop_followup_minutes.md
+  file_type: md
+  description: Meeting minutes from a follow-up session on AI talent expansion, focusing
+    on refining strategic alignment and inputs for investment proposals and project
+    charters.
+  tags:
+  - meeting
+  - strategy
+  - project
+  - documentation
+  last_updated: '2025-06-03'
+  pod_owner: DeliveryPod
