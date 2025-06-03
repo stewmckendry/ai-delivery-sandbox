@@ -5404,3 +5404,15 @@
   - delivery
   last_updated: '2025-06-03'
   pod_owner: DeliveryPod
+- path: project/comms/ai_talent_workshop_4_business_case_minutes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/comms/ai_talent_workshop_4_business_case_minutes.md
+  file_type: md
+  description: Meeting minutes from the AI Talent Workshop focused on business case
+    planning for enhancing AI talent capacity in the federal government.
+  tags:
+  - workshop
+  - strategy
+  - planning
+  - ai_talent
+  last_updated: '2025-06-03'
+  pod_owner: DeliveryPod
