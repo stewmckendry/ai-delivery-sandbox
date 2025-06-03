@@ -5340,3 +5340,16 @@
   - project management
   last_updated: '2025-06-03'
   pod_owner: DeliveryPod
+- path: project/comms/e2e_demo_test_case.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/comms/e2e_demo_test_case.md
+  file_type: md
+  description: This file contains a detailed end-to-end test case for demonstrating
+    the use of the GovDoc Co-Pilot in generating a Business Case artifact within the
+    Canadian government's Project Management Framework.
+  tags:
+  - e2e
+  - demo
+  - test
+  - flow
+  last_updated: '2025-06-03'
+  pod_owner: QAPod
