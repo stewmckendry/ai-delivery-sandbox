@@ -27,8 +27,9 @@ class ReviseSectionChain:
     def summarize_text(self, text):
         if not text or len(text.split()) < 100:
             return text
-        prompt = f"Summarize the following artifact section in one paragraph:\n\n{text}"
-        return chat_completion_request(prompt)
+        system_prompt = "You are an expert summarizer. Your task is to condense the provided text into a concise summary that captures the main points and key details."
+        user_prompt = f"Summarize the following artifact section in one paragraph:\n\n{text}"
+        return chat_completion_request(system_prompt, user_prompt)
 
     def run_tool(self, inputs):
         trace = []
