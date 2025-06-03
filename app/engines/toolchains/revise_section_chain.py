@@ -56,16 +56,19 @@ class ReviseSectionChain:
             if sec.section_id not in latest_sections:
                 latest_sections[sec.section_id] = sec
         logger.info("[Step 2] Retrieved latest sections from ArtifactSection")
+        logger.info(f"[Step 2] Found {len(latest_sections)} unique sections for artifact {artifact_id}")
 
         summarized_sections = [
             {"section_id": sid, "text": self.summarize_text(sec.text)}
             for sid, sec in latest_sections.items()
         ]
         logger.info("[Step 2.5] Summarized latest sections")
+        logger.info(f"[Step 2.5] Number of Summarized sections: {len(summarized_sections)}")  # Log count
 
         feedback_entries = inputs.get("feedback_entries")
         if feedback_entries:
             logger.info("[Step 3] Using direct feedback_entries from inputs")
+            logger.info(f"[Step 3] Found {len(feedback_entries)} feedback entries")
             feedback_map = {}
             for entry in feedback_entries:
                 sid = entry["section_id"]
