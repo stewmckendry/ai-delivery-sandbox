@@ -187,11 +187,20 @@ We wired the system to use the right tool for each step:
 
 * **OpenAPI Schemas:** so the front-end chat can talk to tools like `generateSectionDraft`
 
-* **Memory Layers:** These layers help the Copilot remember, retrieve, and persist information across sessions. **Redis** handles fast, short-term memory for drafts. **SQL DB** ensures an audit trail of actions and decisions. **Google Drive** stores final outputs for collaboration, handoff, and archival.
-
 The toolchain isn’t hard-coded for government. It’s modular and easily configured for any domain—from policy to procurement to HR.
 
-### 4. Human + GPT + Tools: Division of Responsibility
+### 4. Memory Layers
+
+To ensure the Copilot can remember, retrieve, and persist information across sessions, we use a multi-layered memory system:
+
+- **Redis:** Provides fast, short-term memory for tracking draft progress and recent interactions.
+- **SQL Database:** Maintains a complete history and audit trail of actions, drafts, and user feedback.
+- **Google Drive:** Stores finalized documents for easy collaboration, sharing, and handoff.
+- **Chroma Vector Database:** Holds key reference materials (such as policies, strategies, and guidelines) and enables semantic search. This means the Copilot can find relevant content based on meaning, not just keywords—helping answer questions even when phrasing differs.
+
+By combining these layers, the Copilot stays grounded in your context, remembers what’s been produced, and surfaces what matters most at every step.
+
+### 5. Human + GPT + Tools: Division of Responsibility
 
 This is where the real magic happens—a three-way collaboration between the user, the GPT-based assistant, and structured tools behind the scenes. Here’s how the roles break down:
 
