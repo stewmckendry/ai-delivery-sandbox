@@ -214,7 +214,14 @@ This is where the real magic happens—a three-way collaboration between the use
 > * References past research, directives, and your uploaded inputs
 > * Guides the entire approval and finalization process
 
-This elevates GovDoc Copilot from a “smart writing helper” to a **collaborative policy tool**—helping you navigate process, not just produce text.
+This workflow leverages a proven AI technique called Chain of Thought with ReAct-style reasoning. For each document section:
+
+1. **Draft:** The Copilot generates an initial draft.
+2. **Self-Check:** It runs an internal QA to identify issues with tone, flow, or structure.
+3. **User Review:** You review the Copilot’s observations and proposed changes.
+4. **Revise:** The Copilot updates the draft based on your feedback.
+
+By maintaining context and tracking decisions throughout this loop, the Copilot evolves from a simple responder into a true collaborator—helping ensure clarity, coherence, and compliance at every step.
 
 ---
 
