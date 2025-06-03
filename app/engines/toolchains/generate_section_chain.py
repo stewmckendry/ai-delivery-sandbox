@@ -47,6 +47,26 @@ class GenerateSectionChain:
 
         return chat_completion_request(system_prompt, user_prompt)
 
+    def summarize_prior_artifacts(self, project_id, exclude_artifact_id):
+        db = SessionLocal()
+        sections = db.query(ArtifactSection).filter(
+            ArtifactSection.project_id == project_id,
+            ArtifactSection.artifact_id != exclude_artifact_id
+        ).all()
+        if not sections:
+            return ""
+
+        # Consolidate sections by artifact_id and section_id; truncate text if too long; can make this more sophisticated later
+        text_blob = "\n\n".join([f"{s.artifact_id}.{s.section_id}: {s.text}" for s in sections])
+        if len(text_blob) > 10000:
+            text_blob = text_blob[:10000] + "\n\n...(truncated)"  
+        
+        prompt_templates = get_prompt("generate_section_prompts.yaml", "prior_artifacts_synthesis")
+        system_prompt = Template(prompt_templates["system"]).render()
+        user_prompt = Template(prompt_templates["user"]).render(text_blob=text_blob)
+
+        return chat_completion_request(system_prompt, user_prompt)
+
 
     def summarize_memory(self, memory_entries):
         content_blocks = [entry.get("output_summary", "") for entry in memory_entries if entry.get("output_summary")]
@@ -81,6 +101,9 @@ class GenerateSectionChain:
         context_summary = self.summarize_drafted_sections(artifact_id, session_id, project_id)
         log_tool_usage("context_summary", "summarized prior sections", context_summary, session_id, user_id, inputs)
 
+        prior_artifacts_summary = self.summarize_prior_artifacts(project_id, artifact_id)
+        log_tool_usage("prior_artifacts_summary", "summarized prior artifacts", prior_artifacts_summary, session_id, user_id, inputs)
+
         memory_input = {**inputs}
         memory_input["project_profile"] = project_profile
 
@@ -106,7 +129,8 @@ class GenerateSectionChain:
         structured_inputs = {
             "memory_summary": memory_summary,
             "global_context_summary": global_context["summary"],
-            "context_summary": context_summary
+            "context_summary": context_summary,
+            "prior_artifacts_summary": prior_artifacts_summary
         }
 
         draft = self.synth_tool.run_tool({**inputs, **structured_inputs})

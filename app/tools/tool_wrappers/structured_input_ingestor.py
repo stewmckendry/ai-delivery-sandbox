@@ -10,10 +10,11 @@ def structure_input(raw_text, source, tool_name, metadata=None):
         'output_summary': raw_text[:1000],
         'full_input_path': None,
         'full_output_path': None,
-        'session_id': None,
-        'user_id': None,
-        'timestamp': datetime.datetime.utcnow(),
-        'metadata': metadata or {}
+        'session_id': metadata.get("session_id"),
+        'user_id': metadata.get("user_id"),
+        'project_id': metadata.get("project_id"),  # NEW: capture project
+        'metadata': metadata or {},
+        'timestamp': datetime.datetime.utcnow()
     }
 
 def to_yaml(entry_dict):

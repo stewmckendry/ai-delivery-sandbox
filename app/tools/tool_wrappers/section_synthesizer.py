@@ -37,6 +37,7 @@ class Tool:
         memory_summary = input_dict.get("memory_summary", [])
         global_context_summary = input_dict.get("global_context_summary", [])
         context_summary = input_dict.get("context_summary", "")
+        prior_artifacts_summary = input_dict.get("prior_artifacts_summary", "")
 
         artifact = input_dict.get("artifact_id")
         section = input_dict.get("section_id")
@@ -69,7 +70,8 @@ class Tool:
             context_summary=context_summary,
             memory_str=memory_summary,
             global_context_str=global_context_summary,
-            section_intents=section_intents
+            section_intents=section_intents,
+            prior_artifacts_summary=prior_artifacts_summary
         )
         
         system_prompt = prompt_templates["system"]

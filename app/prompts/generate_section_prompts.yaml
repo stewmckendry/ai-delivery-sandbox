@@ -25,6 +25,10 @@ section_synthesis:
     Section: {{ section }}
 
     === Section Requirements ===
+    (What the section should cover, including any specific intents or requirements)
+    {% if section_requirements %}
+    {{ section_requirements }}
+    {% else %}
     {% if section_intents %}
     Required Intents:
     {% for intent in section_intents %}
@@ -37,17 +41,25 @@ section_synthesis:
     === Project Context ===
     {{ profile_context }}
 
-    === Historical Documentation Summary ===
+    === Project Documentation Summary ===
+    (Prior user-uploaded materials and documents)
     {{ memory_str }}
 
     === Research Context ===
+    (External and internal research findings)
     {{ global_context_str }}
 
     === Prior Sections Summary ===
+    (What’s already written in this artifact so far)
     {{ context_summary }}
+
+    === Prior Artifacts Summary ===
+    (Insights from earlier artifacts for this project)
+    {{ prior_artifacts_summary }}
 
     === Instructions ===
     - Address all required intents
+    - Use inputs in the order presented above, prioritizing Section Requirements, Project Context and Project Documentation Summary
     - Avoid repeating context unnecessarily
     - Integrate facts across the various inputs
     - Use MLA-style in-text citations consistently (e.g., "Title." Source, Year)
@@ -101,6 +113,16 @@ drafted_sections_synthesis:
     {{ text_blob }}
 
     Summarize key insights or themes that should carry forward into the next section.
+
+prior_artifacts_synthesis:
+  system: |
+    You are a policy analyst extracting key themes and learnings from past deliverables.
+  user: |
+    Below are sections from previously completed artifacts for the same project:
+    {{ text_blob }}
+
+    Identify recurring themes, decisions, or constraints that should inform future work.
+
 
 memory_summary_synthesis:
   system: |

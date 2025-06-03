@@ -18,9 +18,9 @@ class Tool:
         logger.info(f"Retrieving entries for artifact={artifact_id}, project_id={project_id}")
         query = session.query(PromptLog).filter(
             PromptLog.tool.in_(tool_names),
-            PromptLog.full_input_path.contains(f'"artifact_id": "{artifact_id}"'),
             PromptLog.project_id == project_id
         )
+
         if session_id:
             query = query.filter(PromptLog.session_id == session_id)
 
