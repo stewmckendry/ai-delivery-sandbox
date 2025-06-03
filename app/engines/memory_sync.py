@@ -11,6 +11,8 @@ from app.db.models.DocumentFeedback import DocumentFeedback
 from app.engines.project_profile_engine import ProjectProfileEngine
 from sqlalchemy.orm import Session
 from uuid import uuid4
+import logging
+logger = logging.getLogger(__name__)
 
 
 def save_artifact_and_trace(section_id, artifact_id, gate_id, text, sources, tool_outputs, user_id, project_id=None, session_id=None):
@@ -86,9 +88,8 @@ def log_tool_usage(tool_name, input_summary, output_summary, session_id, user_id
     full_input = json.dumps(metadata, indent=2, default=convert) if metadata else None
     full_output = json.dumps(output_summary, indent=2, default=convert) if isinstance(output_summary, (dict, list)) else str(output_summary)
 
-    project_id = None
-    if metadata:
-        project_id = metadata.get("project_id") or metadata.get("project_profile", {}).get("project_id")
+    project_id = metadata.get("project_id")
+    logger.info(f"Logging tool usage for {tool_name} with project_id: {project_id}")
 
     prompt_log = PromptLog(
         tool=tool_name,
