@@ -18,9 +18,12 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 SCOPES = ["https://www.googleapis.com/auth/drive.file"]
-SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH")
 FOLDER_ID = "1XFwEEEArV_sXcN8TXxd4VUnSOdKuQdnr"  # Explicitly use shared PolicyGPT folder
 SHARE_WITH = ["stewart.mckendry@gmail.com"]
+SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH")
+CLIENT_EMAIL = os.getenv("GOOGLE_DRIVE_CLIENT_EMAIL")
+PRIVATE_KEY = os.getenv("GOOGLE_DRIVE_PRIVATE_KEY")
+
 
 class InputSchema(BaseModel):
     final_markdown: str
@@ -39,12 +42,25 @@ class Tool:
         data = parse_obj_as(InputSchema, input_dict)
 
         logger.info("Authenticating with Google Drive using service account JSON at: %s", SERVICE_ACCOUNT_FILE)
-        if not SERVICE_ACCOUNT_FILE:
-            raise EnvironmentError("Missing GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON_PATH in environment.")
+        if SERVICE_ACCOUNT_FILE and os.path.exists(SERVICE_ACCOUNT_FILE):
+            logger.info("Authenticating using service account file: %s", SERVICE_ACCOUNT_FILE)
+            creds = service_account.Credentials.from_service_account_file(
+                SERVICE_ACCOUNT_FILE, scopes=SCOPES
+            )
+        elif CLIENT_EMAIL and PRIVATE_KEY:
+            logger.info("Authenticating using env vars for client_email and private_key")
+            creds = service_account.Credentials.from_service_account_info(
+                {
+                    "type": "service_account",
+                    "client_email": CLIENT_EMAIL,
+                    "private_key": PRIVATE_KEY.replace("\\n", "\n"),
+                    "token_uri": "https://oauth2.googleapis.com/token"
+                },
+                scopes=SCOPES
+            )
+        else:
+            raise EnvironmentError("Missing Google Drive credentials. Provide JSON path or env vars.")
 
-        creds = service_account.Credentials.from_service_account_file(
-            SERVICE_ACCOUNT_FILE, scopes=SCOPES
-        )
         service = build("drive", "v3", credentials=creds)
 
         folder_id = self._get_or_create_subfolders(service, FOLDER_ID, data)
