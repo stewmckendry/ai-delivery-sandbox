@@ -272,6 +272,9 @@
                   "session_id": {
                     "type": "string"
                   },
+                  "project_id": {
+                    "type": "string"
+                  },
                   "user_id": {
                     "type": "string"
                   },
@@ -282,7 +285,7 @@
                   }
 
                 },
-                "required": ["query"]
+                "required": ["query", "session_id", "project_id"]
               }
             }
           }

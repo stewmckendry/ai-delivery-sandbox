@@ -135,12 +135,16 @@ tools:
           description: The user question or topic to match against reference documents
         session_id:
           type: string
+        project_id:
+          type: string
         user_id:
           type: string
         filter_titles:
           type: object
       required:
         - query
+        - session_id
+        - project_id
 
   createSessionSnapshot:
     description: Generate a YAML snapshot of all PromptLog entries for a session, used by planner for grounding and replay.
