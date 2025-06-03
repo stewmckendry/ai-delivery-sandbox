@@ -35,9 +35,10 @@ class Tool:
     def run_tool(self, input_dict):
         logger.info("[Tool] section_synthesizer started")
         memory_summary = input_dict.get("memory_summary", [])
-        global_context_summary = input_dict.get("global_context_summary", [])
         context_summary = input_dict.get("context_summary", "")
         prior_artifacts_summary = input_dict.get("prior_artifacts_summary", "")
+        reference_doc_context = input_dict.get("reference_doc_context", "")
+        web_search_context = input_dict.get("web_search_context", "")
 
         artifact = input_dict.get("artifact_id")
         section = input_dict.get("section_id")
@@ -69,7 +70,8 @@ class Tool:
             profile_context=profile_context,
             context_summary=context_summary,
             memory_str=memory_summary,
-            global_context_str=global_context_summary,
+            reference_doc_context=reference_doc_context,
+            web_search_context=web_search_context,
             section_intents=section_intents,
             prior_artifacts_summary=prior_artifacts_summary
         )

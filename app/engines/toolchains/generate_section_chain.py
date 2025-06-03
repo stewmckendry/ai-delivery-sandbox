@@ -14,6 +14,7 @@ import yaml
 from app.redis.redis_client import redis_client
 import json
 import datetime
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -119,18 +120,41 @@ class GenerateSectionChain:
         if global_context is None:
             context_data = self.global_context_engine.fetch_logged_global_context(project_id, session_id)
             log_tool_usage("global_context", "fetched global context", context_data, session_id, user_id, inputs)
-            if not context_data:
-                global_context = {"summary": ""}
-            else:
-                global_context = {
-                    "summary": self.global_context_engine.summarize_global_context(context_data)
-                }
-                log_tool_usage("global_context", "summarized global context", global_context["summary"], session_id, user_id, inputs)
+
+            reference_doc_context = context_data.get("Reference Document Alignment", [])
+            web_search_context = context_data.get("Web Search", [])
+
+            summarized_reference_docs = self.global_context_engine.summarize_global_context(
+                {"Reference Document Alignment": reference_doc_context}
+            ) if reference_doc_context else ""
+
+            summarized_web_results = self.global_context_engine.summarize_web_results(
+                web_search_context
+            ) if web_search_context else ""
+
+            if not reference_doc_context:
+                logger.info("[global_context] No Reference Document Alignment entries to summarize")
+
+            if not web_search_context:
+                logger.info("[global_context] No Web Search entries to summarize")
+
+
+            global_context = {
+                "reference_doc_context": summarized_reference_docs,
+                "web_search_context": summarized_web_results
+            }
+
+            log_tool_usage("reference_doc_context", "summarized reference documents", summarized_reference_docs, session_id, user_id, inputs)
+            log_tool_usage("web_search_context", "summarized web results", summarized_web_results, session_id, user_id, inputs)
+
             logger.info("[Step 3] global_context complete")
+            logger.info(f"[Step 3] Reference Document Context: {summarized_reference_docs[:100]}")
+            logger.info(f"[Step 3] Web Search Context: {summarized_web_results[:100]}")
 
         structured_inputs = {
             "memory_summary": memory_summary,
-            "global_context_summary": global_context["summary"],
+            "reference_doc_context": global_context["reference_doc_context"],
+            "web_search_context": global_context["web_search_context"],
             "context_summary": context_summary,
             "prior_artifacts_summary": prior_artifacts_summary
         }
@@ -154,6 +178,8 @@ class GenerateSectionChain:
                 "status": "drafted",
                 "timestamp": datetime.datetime.utcnow().isoformat()
             }
+            citations = re.findall(r'\[.*?,\s?\d{4}\]', refined["raw_draft"])
+            redis_payload["citations"] = list(set(citations))
             redis_client.set(key, json.dumps(redis_payload))
             logger.info(f"[Redis] Cached section to key {key}")
         except Exception as e:

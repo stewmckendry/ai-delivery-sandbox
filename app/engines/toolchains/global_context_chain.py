@@ -21,15 +21,22 @@ class GlobalContextChain:
     
     def summarize_web_results(self, search_results):
         if not search_results:
+            logger.info("[global_context] No web search results provided")
             return ""
 
         snippets = "\n".join([
             f"{entry['title']}: {entry['snippet']}"
             for entry in search_results if 'title' in entry and 'snippet' in entry
         ])
+
+        if not snippets.strip():
+            logger.info("[global_context] No usable title/snippet pairs found in web search results")
+            return ""
+
         prompt_templates = get_prompt("generate_section_prompts.yaml", "web_summary_synthesis")
         system_prompt = Template(prompt_templates["system"]).render()
         user_prompt = Template(prompt_templates["user"]).render(snippets=snippets)
+
         return chat_completion_request(system_prompt, user_prompt)
 
 
@@ -46,30 +53,24 @@ class GlobalContextChain:
         if not results:
             return {}
 
-        grouped_context = {}
-        seen_outputs = {}
+        grouped_context = {"Reference Document Alignment": [], "Web Search": []}
+        seen_outputs = {"Reference Document Alignment": set(), "Web Search": set()}
 
         for log in results:
-            try:
-                label = log.input_summary.split(" | ")[1]
-            except IndexError:
-                logger.warning(f"[global_context] Malformed input_summary: {log.input_summary}")
-                continue
-
-            if label not in grouped_context:
-                grouped_context[label] = []
-                seen_outputs[label] = set()
-
+            label = "Reference Document Alignment" if log.tool == "queryCorpus" else "Web Search"
             output = log.output_summary
+
             if output and output not in seen_outputs[label]:
                 grouped_context[label].append(output)
                 seen_outputs[label].add(output)
 
         return grouped_context
 
-
     def summarize_global_context(self, grouped_context):
-        # Extract context summaries with citation metadata
+        # Exit early if there's no context to summarize
+        if not grouped_context or all(not items for items in grouped_context.values()):
+            return ""
+
         def format_context_group(group):
             formatted = []
             for item in group:
@@ -85,8 +86,11 @@ class GlobalContextChain:
             return "\n".join(formatted)
 
         formatted_contexts = {
-            label: format_context_group(items) for label, items in grouped_context.items()
+            label: format_context_group(items) for label, items in grouped_context.items() if items
         }
+
+        if not formatted_contexts:
+            return ""
 
         prompt_templates = get_prompt("generate_section_prompts.yaml", "global_context_synthesis")
         system_prompt = Template(prompt_templates["system"]).render()

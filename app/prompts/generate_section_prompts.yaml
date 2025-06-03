@@ -45,9 +45,13 @@ section_synthesis:
     (Prior user-uploaded materials and documents)
     {{ memory_str }}
 
-    === Research Context ===
-    (External and internal research findings)
-    {{ global_context_str }}
+    === Reference Document Alignments ===
+    (Strategic and policy documents)
+    {{ reference_doc_context }}
+
+    === Web Research Context ===
+    (External web sources)
+    {{ web_search_context }}
 
     === Prior Sections Summary ===
     (What’s already written in this artifact so far)
@@ -60,8 +64,8 @@ section_synthesis:
     === Instructions ===
     - Address all required intents using the input sections in order of priority: Section Requirements → Project Context → Documentation Summary.
     - Integrate factual content from all inputs; avoid repetition or redundancy.
-    - Use MLA-style in-text citations **only** for external research sources.
-    - Do **not** cite this artifact or refer to internal document titles (e.g., "Investment Proposal Concept").
+    - Use MLA-style in-text citations for **reference documents and web sources**
+    - Do **not** cite this artifact or refer to internal document titles (e.g., "Investment Proposal Concept")
     - Use a clear, reader-friendly structure:
       - Favor short paragraphs (max 4–6 lines)
       - Use bullets, lists, or phase breakdowns where appropriate
