@@ -5392,3 +5392,15 @@
   - documentation
   last_updated: '2025-06-03'
   pod_owner: DeliveryPod
+- path: project/comms/ai_talent_workshop3_charter_brainstorm_minutes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/comms/ai_talent_workshop3_charter_brainstorm_minutes.md
+  file_type: md
+  description: Minutes from a brainstorming session focused on planning the charter
+    for an AI Talent project, including deliverables, timelines, and governance structures.
+  tags:
+  - planning
+  - charter
+  - AI
+  - delivery
+  last_updated: '2025-06-03'
+  pod_owner: DeliveryPod
