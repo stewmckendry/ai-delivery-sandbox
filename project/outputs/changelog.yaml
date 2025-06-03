@@ -9332,3 +9332,13 @@
   task_id: comms
   committed_by: GPTPod
   message: Append output file to comms
+- timestamp: '2025-06-03T17:03:16.329528'
+  path: project/comms/ai_talent_workshop_4_business_case_minutes.md
+  task_id: comms
+  committed_by: ProductPod
+  message: 'Add meeting minutes for Workshop 4: AI Talent Business Case Planning'
+- timestamp: '2025-06-03T17:03:16.329528'
+  path: project/memory.yaml
+  task_id: comms
+  committed_by: ProductPod
+  message: Memory update related to project/comms/ai_talent_workshop_4_business_case_minutes.md
