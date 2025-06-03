@@ -5328,3 +5328,15 @@
   - tool
   last_updated: '2025-06-02'
   pod_owner: DevPod
+- path: project/comms/govdoc_copilot_pm_blog_and_demo_prep.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-falcon/project/comms/govdoc_copilot_pm_blog_and_demo_prep.md
+  file_type: md
+  description: Preparation content for a blog and demo video on the application of
+    AI in government project management, highlighting the GovDoc Co-Pilot system.
+  tags:
+  - blog
+  - demo
+  - AI
+  - project management
+  last_updated: '2025-06-03'
+  pod_owner: DeliveryPod
