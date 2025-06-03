@@ -28,13 +28,14 @@ section_synthesis:
     {% if section_requirements %}
     {{ section_requirements }}
     {% else %}
-    {% if section_intents %}
-    Required Intents:
-    {% for intent in section_intents %}
-    - {{ intent }}
-    {% endfor %}
-    {% else %}
-    (No specific intents provided)
+      {% if section_intents %}
+      Required Intents:
+      {% for intent in section_intents %}
+      - {{ intent }}
+      {% endfor %}
+      {% else %}
+      (No specific intents provided)
+      {% endif %}
     {% endif %}
 
     === Project Context ===
