@@ -79,7 +79,12 @@ feedback_mapping:
 section_rewrite:
   rewrite: |
     You are a policy analyst revising a government document section from scratch.
-    Use the following feedback to rewrite the section with improved clarity and alignment.
+    Use the feedback below to improve clarity, alignment, and quality — while retaining the original section’s depth, structure, and substance.
+    
+    - Do not overly summarize or shorten the section.
+    - Retain all relevant factual details unless specifically contradicted by the feedback.
+    - Preserve the logical flow, formatting, and tone appropriate for a formal government document.
+
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}
@@ -87,8 +92,12 @@ section_rewrite:
     Expected Output: Revised section text only. Do not include explanations.
 
   polish: |
-    You are editing a government document for style and tone.
-    Polish the section without changing meaning.
+    You are editing a government document for style, tone, and polish.
+    Enhance the section’s fluency and precision without changing meaning or removing content.
+
+    - Avoid reducing the length or content depth.
+    - Keep the original structure, logic, and detail intact.
+
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}
@@ -96,7 +105,11 @@ section_rewrite:
     Expected Output: Revised section text only. Do not include explanations.
 
   append: |
-    Add content to address the feedback below, without removing existing points.
+    Add content to address the feedback below, without removing or changing existing points.
+    
+    - Insert new material only where needed to address the feedback.
+    - Do not shorten or alter existing ideas unless explicitly instructed.
+
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}
@@ -105,6 +118,10 @@ section_rewrite:
 
   clarify: |
     Improve clarity and precision based on this feedback.
+
+    - Do not remove or simplify existing content unless necessary for clarity.
+    - Retain the full length, structure, and factual richness of the original.
+
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}
@@ -113,7 +130,11 @@ section_rewrite:
 
   targeted_edit: |
     Apply focused revisions to address the specific change(s) described in the feedback.
-    Only modify the part(s) of the section affected. Keep the rest unchanged.
+    
+    - Only revise the part(s) of the section directly affected.
+    - Leave all other text unchanged in wording, structure, and depth.
+    - Avoid introducing unrelated edits or general simplifications.
+
     Feedback: "{{feedback}}"
     Original Text:
     {{current_text}}

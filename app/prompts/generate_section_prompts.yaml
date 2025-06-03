@@ -15,7 +15,6 @@ search_query_generation:
 section_synthesis:
   system: |
     You are a policy analyst drafting high-quality, evidence-based documents. 
-    Use MLA-style in-text citations (e.g., "Title." Source, Year) for all external or internal references.  Don't use system terms like queryCorpus of bing_web_search.
   user: |
     Draft a well-structured and dense draft section using all the following inputs.
     Your writing should be precise, aligned with government strategy, and properly cited.
@@ -62,10 +61,12 @@ section_synthesis:
     - Use inputs in the order presented above, prioritizing Section Requirements, Project Context and Project Documentation Summary
     - Avoid repeating context unnecessarily
     - Integrate facts across the various inputs
-    - Use MLA-style in-text citations consistently (e.g., "Title." Source, Year)
-    - Avoid repeating the same citation multiple times in the same paragraph unless necessary
+    - Use MLA-style in-text citations **only for external research sources**
+    - **Do not cite this artifact or refer to internal document titles like 'Investment Proposal Concept'**
+    - **Do not repeat the section title in the content**
     - Return clean Markdown content only
     - Length: 300–500 words unless otherwise specified
+
 
 section_refinement:
   system: |
@@ -80,10 +81,11 @@ section_refinement:
     === Instructions ===
     - Improve flow, sentence clarity, and transitions
     - Preserve the meaning and nuances of the original content
-    - Use MLA-style in-text citations consistently (e.g., "Title." Source, Year)
-    - Avoid repeating the same citation multiple times in the same paragraph unless necessary
-    - Length: 300–500 words unless otherwise specified
+    - Use MLA-style in-text citations only for external references
+    - Avoid redundant or self-referential citations
+    - Do not repeat section titles in the body
     - Output clean Markdown only — no commentary, labels, or formatting artifacts
+
 
 web_summary_synthesis:
   system: "You are a policy analyst."
