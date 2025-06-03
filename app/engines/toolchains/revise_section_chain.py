@@ -93,8 +93,8 @@ class ReviseSectionChain:
             }
 
         # Step 3: log original feedback
-        save_feedback(document_id=artifact_id, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
-        logger.info("[Step 5] Original feedback saved")
+        #save_feedback(document_id=artifact_id, feedback_text=raw_feedback, submitted_by=user_id, feedback_type="revision", project_id=project_id)
+        #logger.info("[Step 5] Original feedback saved")
 
         # Step 4: apply rewrites
         suggestions = []
