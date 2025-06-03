@@ -84,6 +84,7 @@ section_rewrite:
     - Do not overly summarize or shorten the section.
     - Retain all relevant factual details unless specifically contradicted by the feedback.
     - Preserve the logical flow, formatting, and tone appropriate for a formal government document.
+    - Maintain coherence with prior sections and ensure logical flow into subsequent sections.
 
     Feedback: "{{feedback}}"
     Original Text:
@@ -109,6 +110,7 @@ section_rewrite:
     
     - Insert new material only where needed to address the feedback.
     - Do not shorten or alter existing ideas unless explicitly instructed.
+    - Seamlessly integrate additions. Do not tack on paragraphs that read like afterthoughts.
 
     Feedback: "{{feedback}}"
     Original Text:
@@ -134,6 +136,7 @@ section_rewrite:
     - Only revise the part(s) of the section directly affected.
     - Leave all other text unchanged in wording, structure, and depth.
     - Avoid introducing unrelated edits or general simplifications.
+    - Use consistent tone, formatting, and voice as the rest of the section.
 
     Feedback: "{{feedback}}"
     Original Text:

@@ -827,7 +827,7 @@ tools:
         - project_id
 
   reviseSectionDraft:
-    description: Applies feedback to a drafted section, rewrites it, and summarizes the changes.
+    description: Applies feedback to a drafted section, rewrites it, or accepts verbatim edits.
     module: app.tools.tool_wrappers.section_review_feedback
     class: Tool
     schema:
@@ -837,13 +837,17 @@ tools:
           type: string
         artifact_id:
           type: string
+        project_id:
+          type: string
+        session_id:
+          type: string
         feedback:
           type: string
         revision_type:
           type: string
           enum: ["rewrite", "polish", "append", "clarify", "targeted_edit"]
-        project_id:
+        verbatim_text:
           type: string
-        session_id:
+        diff_summary:
           type: string
-      required: [section_id, artifact_id, feedback, project_id, session_id]
+      required: [section_id, artifact_id, project_id, session_id]

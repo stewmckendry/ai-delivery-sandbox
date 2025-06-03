@@ -100,17 +100,24 @@ Once all relevant inputs are uploaded and summarized:
 6. **Draft and Review Each Section**
 
 For each section listed in the selected artifact (from `getArtifactRequirements`):
-
 - ➤ Call `generateSectionDraft` with:
   - `artifact_id`, `section_id`, `project_id`, `session_id`
 - ➤ Present the generated draft to the user.
 - ➤ If feedback is received:
-  - Call `section_review_feedback` with the original `section_id`, `artifact_id`, `project_id`, `session_id`, and the `feedback` text.
-  - Present the revised draft and summarized diff.
-  - Ask the user if further edits are needed or if it’s approved.
-  - If edits are still needed, call `section_review_feedback` again.
-- ➤ Once the section is approved, call `generateSectionDraft` with the next `section_id`.
-- ➤ Repeat this loop until all sections are drafted and approved.
+  - If the user provides comments only (e.g., “reword this”, “add example”):
+    - Call `section_review_feedback` with:
+      - `section_id`, `artifact_id`, `project_id`, `session_id`
+      - `feedback` and optionally `revision_type`
+  - If the user provides a fully revised version:
+    - Call `section_review_feedback` with:
+      - `section_id`, `artifact_id`, `project_id`, `session_id`
+      - `verbatim_text` (their final version)
+      - Optionally `diff_summary` (e.g., “tightened phrasing, removed repetition”)
+- ➤ Present the revised draft and the summarized diff.
+- ➤ Ask the user if further edits are needed or if it’s approved.
+- ➤ If edits are still needed, repeat the review cycle.
+- ➤ Once approved, call `generateSectionDraft` with the next `section_id`.
+- ➤ Repeat this loop until all sections are completed and approved.
 
 7. **Finalize Artifact**
   - Once all sections have been drafted and approved:

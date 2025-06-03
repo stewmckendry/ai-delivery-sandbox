@@ -616,12 +616,12 @@
     "/tools/reviseSectionDraft": {
       "post": {
         "operationId": "reviseSectionDraft",
-        "summary": "Revise a section based on feedback",
+        "summary": "Revise a section based on feedback or submit a direct verbatim edit",
         "tags": ["Drafting"],
         "x-gpt-action": {
           "name": "Revise Section",
-          "instructions": "Use this when a user provides feedback on a drafted section and wants changes made. You must include:\n- `section_id`, `artifact_id`, `project_id`, and `session_id`\n- `feedback`: natural language description of what to change\n- Optional: `revision_type` like 'rewrite', 'add', 'remove'",
-          "summary_keywords": ["revise", "section", "feedback"]
+          "instructions": "Use this when a user provides feedback on a drafted section and wants changes made.\n\n➤ If feedback is provided (e.g., 'tighten flow', 'add rationale'):\n- Provide `feedback` and optionally `revision_type` (e.g., 'rewrite', 'polish').\n\n➤ If the user provides a final edited version directly:\n- Provide `verbatim_text` with their new section content.\n- Optionally include `diff_summary` describing what was changed.\n\nThis allows the user to bypass automated revision and directly persist their approved edits.\n\nAlways include: `section_id`, `artifact_id`, `project_id`, `session_id`.",
+          "summary_keywords": ["revise", "section", "feedback", "verbatim", "edit"]
         },
         "requestBody": {
           "required": true,
@@ -637,10 +637,18 @@
                   "feedback": { "type": "string" },
                   "revision_type": {
                     "type": "string",
-                    "enum": ["rewrite", "add", "remove"]
+                    "enum": ["rewrite", "polish", "append", "clarify", "targeted_edit"]
+                  },
+                  "verbatim_text": {
+                    "type": "string",
+                    "description": "Direct replacement text for the section. Use this to bypass automatic revision and persist user-provided edits."
+                  },
+                  "diff_summary": {
+                    "type": "string",
+                    "description": "Optional. Summary of what changed in the verbatim edit. Used for revision history display."
                   }
                 },
-                "required": ["section_id", "artifact_id", "feedback", "project_id", "session_id"]
+                "required": ["section_id", "artifact_id", "project_id", "session_id"]
               }
             }
           }

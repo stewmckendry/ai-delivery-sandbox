@@ -58,15 +58,19 @@ section_synthesis:
     {{ prior_artifacts_summary }}
 
     === Instructions ===
-    - Address all required intents
-    - Use inputs in the order presented above, prioritizing Section Requirements, Project Context and Project Documentation Summary
-    - Avoid repeating context unnecessarily
-    - Integrate facts across the various inputs
-    - Use MLA-style in-text citations **only for external research sources**
-    - **Do not cite this artifact or refer to internal document titles like 'Investment Proposal Concept'**
-    - **Do not repeat the section title in the content**
-    - Return clean Markdown content only
-    - Length: 300–500 words unless otherwise specified
+    - Address all required intents using the input sections in order of priority: Section Requirements → Project Context → Documentation Summary.
+    - Integrate factual content from all inputs; avoid repetition or redundancy.
+    - Use MLA-style in-text citations **only** for external research sources.
+    - Do **not** cite this artifact or refer to internal document titles (e.g., "Investment Proposal Concept").
+    - Use a clear, reader-friendly structure:
+      - Favor short paragraphs (max 4–6 lines)
+      - Use bullets, lists, or phase breakdowns where appropriate
+    - Write for a senior government audience:
+      - Emphasize clarity, evidence, and strategic alignment
+      - Avoid generalities, rhetorical claims, or vague assertions
+    - Maintain a professional, analytical tone aligned with public sector writing norms.
+    - Output clean Markdown content only — no labels, formatting artifacts, or section titles.
+    - Target length: 300–500 words (unless otherwise specified).
 
 
 section_refinement:
@@ -80,12 +84,15 @@ section_refinement:
     {{ raw_draft }}
 
     === Instructions ===
-    - Improve flow, sentence clarity, and transitions
-    - Preserve the meaning and nuances of the original content
-    - Use MLA-style in-text citations only for external references
-    - Avoid redundant or self-referential citations
-    - Do not repeat section titles in the body
-    - Output clean Markdown only — no commentary, labels, or formatting artifacts
+    - Improve flow, sentence clarity, and logical transitions.
+    - Preserve the original content’s meaning, structure, and nuance.
+    - Maintain a professional, analytical tone suitable for briefing senior executives.
+      - Favor active voice and plain language where appropriate.
+    - Use MLA-style in-text citations **only** for external references.
+      - Avoid redundant or self-referential citations.
+    - Do not repeat the section title in the body.
+    - Output clean Markdown only — no labels, commentary, or formatting artifacts.
+
 
 
 web_summary_synthesis:
