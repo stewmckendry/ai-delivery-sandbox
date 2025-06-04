@@ -1,6 +1,8 @@
 import json
 from typing import Dict, List
 from app.redis.redis_client import redis_client
+import logging
+logger = logging.getLogger(__name__)
 
 
 def _key(session_id: str, project_id: str, artifact_id: str) -> str:
@@ -14,6 +16,7 @@ def store_section(session_id: str, project_id: str, artifact_id: str, section_id
 
 def fetch_review_section(session_id: str, project_id: str, artifact_id: str, section_id: str) -> Dict:
     key = f"section_revision:{project_id}:{artifact_id}:{section_id}"
+    logger.info(f"Fetching from Redis key: {key}")
     data = redis_client.get(key)
     return json.loads(data) if data else None
 
