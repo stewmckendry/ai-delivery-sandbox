@@ -1,6 +1,6 @@
 # Coaching the Machine #5: GovDoc Copilot – Your AI Assistant for Government Project Docs
 
-Welcome to the fifth installment of *Coaching the Machine*, where we continue our experiment in blending human intent with machine execution. This post marks the second deep-dive into a real-world use case—a working proof of concept—and it’s one I’ve built in collaboration with Jesse Moon, a thoughtful technologist with deep roots in the Canadian public sector. Jesse brings over a decade of experience leading strategy and consulting projects across government departments..
+Welcome to the fifth installment of *Coaching the Machine*, where we continue our experiment in blending human intent with machine execution. This post marks the second deep-dive into a real-world use case—a working proof of concept—and it’s one I’ve built in collaboration with Jesse Moon, a thoughtful technologist with deep roots in the Canadian public sector. Jesse brings over a decade of experience leading strategy and consulting projects across government departments.
 
 This time, we tackled one of the most document-heavy, effort-intensive, and high-stakes environments in the public sector: government project management.
 
@@ -28,8 +28,6 @@ We’ve all seen the flash of promise followed by the fizzle of failure. On thei
 
 Worse, the instinct to “just dump everything in” can backfire. A flood of long summaries confuses more than it clarifies. Context matters—but only if it’s clean, structured, and scoped.
 
-*Want to dig deeper? Read more about the risks and real-world consequences of LLM misuse in ********************************************************************************************************************************************************************************[The Guardian’s legal AI mishap](https://www.theguardian.com/us-news/2025/may/31/utah-lawyer-chatgpt-ai-court-brief)********************************************************************************************************************************************************************************, ********************************************************************************************************************************************************************************[The Verge's take on AI hallucinations](https://www.theverge.com/policy/677373/lawyers-chatgpt-hallucinations-ai)********************************************************************************************************************************************************************************, and ********************************************************************************************************************************************************************************[Stanford HAI’s research on legal LLMs](https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries)********************************************************************************************************************************************************************************.*
-
 ---
 
 ## The Pattern: LLM + Context + Structure + Integration
@@ -47,8 +45,6 @@ Here’s the approach we’ve been refining:
 4. **Integration** – how the AI connects to the systems we use every day, so it’s embedded in how work actually gets done. In our PM case, that could mean connecting to document repositories like SharePoint, collaboration tools like Slack, and task management systems like Jira.
 
 Individually, each helps. Together, they unlock exponential value. This is where custom GPTs shine—tuned for specific workflows, speaking the language of the domain, embedded in real processes.
-
-*Curious how this pattern plays out? Check out ********************************************************************************************************************************************************************************[Medium’s intro to Model Context Protocol](https://medium.com/@jai.mail67/solving-llm-integration-challenges-with-model-context-protocol-mcp-and-spring-ai-883a5275b3cb)********************************************************************************************************************************************************************************, ********************************************************************************************************************************************************************************[Wikipedia’s overview of Retrieval-Augmented Generation](https://en.wikipedia.org/wiki/Retrieval-augmented_generation)********************************************************************************************************************************************************************************, or ********************************************************************************************************************************************************************************[Swimm's guide to prompt engineering and context windows](https://swimm.io/learn/large-language-models/llm-context-windows-basics-examples-and-prompting-best-practices)********************************************************************************************************************************************************************************.*
 
 ---
 
@@ -86,18 +82,11 @@ To address this, we developed a custom GPT designed specifically for the Governm
 * Populate them with accurate, context-specific content based on a few inputs
 * Ensure alignment with gating requirements, Government of Canada Mandate Letters, Treasury Board policies, and departmental guidance
 
-For example, the AI can produce a fully structured Business Case that includes:
-
-* A detailed executive summary using the Situation-Complication-Solution format
-* Options analysis with risk-benefit comparison tables
-* ROI metrics based on reasonable assumptions
-* Alignment with GC strategic priorities and funding streams
-
 This is not a simple template filler. The AI captures tone, structure, and contextual alignment — and produces first drafts that are nearly complete, ready for review, refinement, and submission.
 
 ---
 
-### ✨ A User Journey: From Concept to Completed Document
+### ✨ A Real Example: Drafting a Gate 0 Investment Proposal
 
 We designed GovDoc Copilot around a simple premise: what if a program manager could draft a government business case the way they actually work — and have an AI assistant guide them, step by step?
 
@@ -214,15 +203,6 @@ This is where the real magic happens—a three-way collaboration between the use
 > * References past research, directives, and your uploaded inputs
 > * Guides the entire approval and finalization process
 
-This workflow leverages a proven AI technique called Chain of Thought with ReAct-style reasoning. For each document section:
-
-1. **Draft:** The Copilot generates an initial draft.
-2. **Self-Check:** It runs an internal QA to identify issues with tone, flow, or structure.
-3. **User Review:** You review the Copilot’s observations and proposed changes.
-4. **Revise:** The Copilot updates the draft based on your feedback.
-
-By maintaining context and tracking decisions throughout this loop, the Copilot evolves from a simple responder into a true collaborator—helping ensure clarity, coherence, and compliance at every step.
-
 ---
 
 ## Built by Pods: AI Agents as Co-Developers
@@ -244,7 +224,9 @@ This time, we got better at:
 * Running structured tests (local → cloud → GPT front-end)
 * Iterating faster while keeping everything in Git for traceability
 
-> **What’s next?** Scaling this model to support **multiple people collaborating with multiple Pods**. Instead of teams of 80+, you can imagine 10–15 humans working alongside AI copilots—scoping, building, and shipping together. It’s not just individual productivity—it’s team-scale delivery transformation.
+> **What’s next?** 
+- Scaling this model to support **multiple people collaborating with multiple Pods**. Instead of teams of 80+, you can imagine 10–15 humans working alongside AI copilots—scoping, building, and shipping together. It’s not just individual productivity—it’s team-scale delivery transformation.
+- Exploring **OpenAI’s new Codex platform**, which could take our Git-integrated GPTs even further—moving from Python-based file fetch and commit APIs to native, code-savvy agents that can reason, edit, test, and manage repositories directly, unlocking a new level of autonomous delivery.
 
 ---
 
@@ -274,8 +256,14 @@ So while we call it GovDoc Copilot: PM Edition today… we may need a new name s
 
 We’d love your feedback.
 
-📅 Try GovDoc Copilot: PM Edition here: \[Live demo link – insert here when ready]
-🎥 Watch a demo video of GovDoc Copilot: PM Edition in action: \[YouTube link – insert here]
+🎥 Watch a demo video of GovDoc Copilot: PM Edition in action: [https://youtu.be/HUp-SDNfL38](https://youtu.be/HUp-SDNfL38)
+
+📄 Example Investment Proposal (Gate 0): [View on Google Drive](https://drive.google.com/file/d/1P14uBmAlWMHiGShhVsnhsskhPp4moIpQ/view?usp=share_link)
+
+📅 Try GovDoc Copilot: PM Edition here: [https://chatgpt.com/g/g-683b9cca031481919a72ddcabea26345-govdoc-copilot-pm-edition](https://chatgpt.com/g/g-683b9cca031481919a72ddcabea26345-govdoc-copilot-pm-edition)
+
+Or check out this shared session: [See the Copilot in action](https://chat.openai.com/share/683fd28c-ea70-8006-a3fb-8bd05a72d04a)
 
 📩 Reach us: Stewart ([stewart.mckendry@gmail.com](mailto:stewart.mckendry@gmail.com)) + Jesse ([jdmoon@gmail.com](mailto:jdmoon@gmail.com))
+
 🔍 Want to co-create the next use case? Let’s talk!

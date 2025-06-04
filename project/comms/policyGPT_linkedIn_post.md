@@ -18,8 +18,9 @@ ChatGPT (Custom GPTs) · FastAPI · OpenAPI tools + toolchains · Chroma Vector 
 
 🎥 Watch the full demo video
 🔗 https://youtu.be/HUp-SDNfL38
-
 🎙️ We walk through a real Gate 0 use case—from workshop notes to final document, showing what’s happening under the hood.
+
+📄 See the output: [Example Gate 0 Investment Proposal (Google Drive)](https://drive.google.com/file/d/1P14uBmAlWMHiGShhVsnhsskhPp4moIpQ/view?usp=share_link)
 
 🧪 Try GovDoc Copilot yourself
 🔗 https://chatgpt.com/g/g-683b9cca031481919a72ddcabea26345-govdoc-copilot-pm-edition
