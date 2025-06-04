@@ -52,7 +52,7 @@ class AssembleArtifactChain:
             # Attempt to fetch from Redis first
             redis_fallback = False
             try:
-                cached = fetch_review_section(project_id, artifact_id, session_id, sec["section_id"])
+                cached = fetch_review_section(project_id, artifact_id, sec["section_id"])
                 if cached and cached.get("text"):
                     section_text = cached["text"]
                     logger.info(f"[Redis HIT] Using cached section for {sec['section_id']}")
