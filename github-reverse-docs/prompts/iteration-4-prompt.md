@@ -23,10 +23,12 @@ Refer to [`policygpt_user_flow.md`](https://github.com/stewmckendry/ai-delivery-
 ---
 
 ### 📎 Runtime Usage Signal
-The following log file captures an end-to-end run of the application, with tool calls and metadata:
-- [`log_tool_usage.json`](attached)
+The following files are attached to support the research:
+- `log_tool_usage.json`: end-to-end usage trace with tool calls and metadata
+- `tool_catalog.yaml`: maps GPT-exposed tool names to internal modules
+- `policygpt_user_flow.md`: defines the intended user flow and expected tool usage
 
-Use this to:
+Use these to:
 - Identify the most-used toolchains and tools
 - Prioritize relevant chains and filter legacy
 
@@ -53,12 +55,22 @@ Please prioritize the following capabilities:
 ---
 
 ### 🧠 Output Expectations
-1. **Definition of Ready User Stories** — for each capability implemented
+1. **Definition of Ready User Stories** —
+   - One per feature or capability, following: *As a [user], I want to [action], so that [goal].*
+   - Include acceptance criteria if inferable from tests or behavior.
+
 2. **Design Artifacts** —
-   - Technical Design: module and function map, orchestration notes
-   - Interface Design: toolchain flows, OpenAPI insights
-   - Data Design: data stores used, schema or structure inferred
-3. **Gaps/Opportunities** — Identify features suggested by flow but not implemented
+   - **Technical Design**: module and function map, class hierarchy, orchestration notes
+   - **Interface Design**: sequence of tool invocations, API routes, parameters and payload formats
+   - **Data Design**: data models, Redis/vector stores used, schemas or structures where available
+
+3. **Test Outlines** —
+   - Derived from test cases or traceable behavior (e.g., `test_*.py`)
+   - Should reflect system-level integration expectations
+
+4. **Modernization Opportunities** —
+   - Gaps in implementation vs. intent
+   - Potential upgrades to architecture, tooling, or user interaction flow
 
 ---
 
@@ -72,9 +84,9 @@ Please prioritize the following capabilities:
 
 ### 📄 Output Format
 Please provide a well-structured Markdown report with:
-- One section per capability
-- Clearly labeled user stories, design elements, and identified gaps
-- Code paths and filenames cited inline
+- One section per capability (as defined in Focus Areas)
+- Each section should include: relevant user stories, design elements, test outline, and gaps/opportunities
+- Code paths and filenames cited inline (e.g., `app/engines/toolchains/...`)
 
 ---
 
