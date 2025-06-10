@@ -132,3 +132,16 @@
   - prompts
   last_updated: '2025-06-10'
   pod_owner: DeliveryPod
+- path: github-reverse-docs/prompts/chatgpt-pre-research-qa-iteration-3.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/prompts/chatgpt-pre-research-qa-iteration-3.md
+  file_type: md
+  description: Document detailing the prioritization of feature flows for Business
+    Case drafting in the ai-delivery-sandbox repository, including guidance on artifact
+    samples and visual aids.
+  tags:
+  - prompt
+  - flow
+  - research
+  - documentation
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
