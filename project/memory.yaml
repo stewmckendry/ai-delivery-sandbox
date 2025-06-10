@@ -230,3 +230,15 @@
   - improvement
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/research/iteration-5/pre-research-qa.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/research/iteration-5/pre-research-qa.md
+  file_type: md
+  description: Document containing pre-research questions and answers for prioritizing
+    files and diagrams in the AI delivery sandbox repository.
+  tags:
+  - research
+  - prioritization
+  - diagrams
+  - documentation
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
