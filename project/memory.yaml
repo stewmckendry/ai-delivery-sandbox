@@ -33,3 +33,15 @@
   - document
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/prompts/initial-extraction.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/prompts/initial-extraction.md
+  file_type: md
+  description: Guide for extracting and documenting software artifacts from a legacy
+    repository to support system migration or reimplementation.
+  tags:
+  - reverse-engineering
+  - documentation
+  - migration
+  - analysis
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
