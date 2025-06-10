@@ -56,3 +56,16 @@
   - analysis
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/deep-research/raw/research_chain_of_thought.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/deep-research/raw/research_chain_of_thought.md
+  file_type: md
+  description: Document outlining the research strategy for extracting functionality
+    from a legacy repository, including chain and tool traversal, data handling, and
+    test validation.
+  tags:
+  - research
+  - migration
+  - strategy
+  - chain
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
