@@ -120,3 +120,15 @@
   - recommendations
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/prompts/iteration-3-refined.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/prompts/iteration-3-refined.md
+  file_type: md
+  description: Document outlining the strategy and refinement process for reverse-engineering
+    an AI delivery repository, focusing on system understanding and artifact extraction.
+  tags:
+  - reverse-engineering
+  - strategy
+  - documentation
+  - prompts
+  last_updated: '2025-06-10'
+  pod_owner: DeliveryPod
