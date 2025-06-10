@@ -20,7 +20,7 @@ GovDoc Copilot enables end-to-end document generation through structured convers
 - Generate and refine each section
 - Finalize and store documents
 
-Refer to [`policygpt_user_flow.md`](https://github.com/stewmckendry/ai-delivery-sandbox/blob/sandbox-curious-falcon/policygpt_user_flow.md) for a detailed journey.
+Refer to [`policygpt_user_flow.md`](https://github.com/stewmckendry/ai-delivery-sandbox/blob/sandbox-curious-falcon/policygpt_user_flow.md) for a detailed journey. Treat markdown files as context only; `.py` and `.yaml` files are authoritative.
 
 ---
 
@@ -33,12 +33,13 @@ The following files are attached to support the research:
 Use these to:
 - Determine which tools and chains are actually used
 - Filter out deprecated, stubbed, or unused paths
+- Confirm file paths using `module` attribute (e.g., `reviseSectionDraft: module: app.tools.tool_wrappers.section_review_feedback` → `app/tools/tool_wrappers/section_review_feedback.py`)
 
 ---
 
 ### 📂 Source of Truth
 Trust the following sources when determining implementation logic:
-- `tool_catalog.yaml`: links tools/toolchains to source modules
+- `tool_catalog.yaml`: **authoritative inventory** of tools and toolchains, with file path mappings
 - `openapi.json`: defines callable API endpoints
 - Core orchestrators: `planner_orchestrator.py`, `tool_registry.py`
 - Prompt templates: stored in `app/prompts/`
@@ -87,6 +88,13 @@ Please address challenges surfaced in Iteration 4:
 - Surface input/output flow logic per toolchain
 - Include semantic patterns in prompt templates
 - Flag areas where test coverage is absent or unclear
+
+**Additional Notes:**
+- All referenced files are accessible in the GitHub repo.
+- Prefer `.py` and `.yaml` files over `.md` as implementation sources.
+- When resolving toolchains, use the `tool_catalog.yaml` + orchestrators to identify tool call sequence.
+- YAML prompt templates under `app/prompts` are valid unless stated otherwise.
+- Use class/function + file path pairing (vs. string match) when searching.
 
 ---
 
