@@ -82,3 +82,15 @@
   - iteration
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/prompts/iteration-2-refined.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/prompts/iteration-2-refined.md
+  file_type: md
+  description: Guidelines for refining repository analysis to extract system artifacts,
+    focusing on active code paths and modernization opportunities.
+  tags:
+  - reverse-engineering
+  - strategy
+  - system-analysis
+  - modernization
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
