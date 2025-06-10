@@ -4,6 +4,13 @@
 
 ---
 
+## 🧭 Background Context (From CoachingTheMachine Blog)
+> GovDoc Copilot is a GPT-powered assistant designed for the Government of Canada's Project Management Framework (PMF). It helps draft complex project documents like Business Cases, Charters, and Transition Plans — step-by-step — while ensuring alignment with GoC gating requirements, Treasury Board policies, and mandate letters.
+>
+> In a typical session, the user selects a document type (e.g. Gate 0 Investment Proposal), uploads internal notes, and asks the Copilot to perform research, extract policy alignments, and draft content in structured sections. The AI integrates references, remembers context, adapts tone, and produces near-final artifacts with built-in QA and iterative feedback support.
+
+---
+
 ## 🔄 Iteration 2 Refinements
 
 ### ⚠️ Repo Characteristics
