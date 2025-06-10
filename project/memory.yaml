@@ -182,3 +182,14 @@
   - research
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/research-prep/iteration-4-pre-research-qna.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/research-prep/iteration-4-pre-research-qna.md
+  file_type: md
+  description: Documentation of pre-research questions and responses for Iteration
+    4, focusing on ChatGPT's interaction and expectations.
+  tags:
+  - research
+  - documentation
+  - ChatGPT
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
