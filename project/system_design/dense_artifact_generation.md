@@ -1,1 +1,0 @@
-See canvas document titled "Drafting Ux And Architecture" for full content.
