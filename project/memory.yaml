@@ -21,3 +21,15 @@
   - config
   last_updated: '2025-06-10'
   pod_owner: DeliveryPod
+- path: knowledgebase-synthesis/README.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/knowledgebase-synthesis/README.md
+  file_type: md
+  description: Guide for synthesizing business documents using GPT connectors to extract
+    content from internal knowledge sources.
+  tags:
+  - synthesis
+  - GPT
+  - flow
+  - document
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
