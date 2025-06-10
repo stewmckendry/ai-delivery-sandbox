@@ -158,3 +158,15 @@
   - artifact
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/results/github-deep-research-poc-summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/results/github-deep-research-poc-summary.md
+  file_type: md
+  description: Summary of a proof of concept using ChatGPT and GitHub data to reverse
+    engineer legacy systems, including findings, recommendations, and use cases.
+  tags:
+  - reverse engineering
+  - documentation
+  - prompt engineering
+  - legacy systems
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
