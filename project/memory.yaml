@@ -218,3 +218,15 @@
   - flow
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/assessment/iteration-4-chain-of-thought-review.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/assessment/iteration-4-chain-of-thought-review.md
+  file_type: md
+  description: Review of ChatGPT's reasoning process during reverse-engineering of
+    GovDoc Copilot, highlighting strengths, challenges, and prompt improvement recommendations.
+  tags:
+  - review
+  - reasoning
+  - prompt
+  - improvement
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
