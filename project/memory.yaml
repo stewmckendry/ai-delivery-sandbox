@@ -170,3 +170,15 @@
   - legacy systems
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/prompts/iteration-4-prompt.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/prompts/iteration-4-prompt.md
+  file_type: md
+  description: Instructions for reverse-engineering the GovDoc Copilot implementation,
+    focusing on mapping user flows to the underlying logic and tools.
+  tags:
+  - prompt
+  - reverse-engineering
+  - user flow
+  - research
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
