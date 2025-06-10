@@ -94,3 +94,16 @@
   - modernization
   last_updated: '2025-06-10'
   pod_owner: ResearchPod
+- path: github-reverse-docs/prompts/chatgpt-pre-research-qa-iteration-2.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-velvet-whale/github-reverse-docs/prompts/chatgpt-pre-research-qa-iteration-2.md
+  file_type: md
+  description: Document detailing the second iteration of pre-research Q&A for ChatGPT,
+    focusing on prioritization of specific folders and files, and guidelines for diagnostics
+    and artifact extraction.
+  tags:
+  - prompt
+  - research
+  - diagnostics
+  - artifact extraction
+  last_updated: '2025-06-10'
+  pod_owner: ResearchPod
