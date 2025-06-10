@@ -24,10 +24,11 @@ Please:
 3. **Prioritize active code paths** (recently modified, integrated, or referenced by chain/tool logic).
 4. **Use markdowns and outdated scripts for context only** — avoid inferring functionality from them.
 
-### 🔍 Focus Areas to Include
-- **Embedding + vector DB functionality** (e.g., reference document search, alignment)
-- **Web research and citation tracking logic**
-- **Prompt construction + memory handoff patterns**
+### 🔍 Functional Areas to Include (not exhaustive)
+In addition to identifying core flows, please ensure the following capabilities are assessed **if present** in the repo:
+- **Embedding + vector DB search** (e.g., reference document ingestion and alignment)
+- **Web research and citation tracking** (external source integration, citation logging)
+- **Prompt construction + memory handoffs** (tool chaining, profile/context persistence)
 
 ---
 
