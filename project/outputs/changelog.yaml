@@ -48,3 +48,9 @@
   task_id: project-plan
   committed_by: GPTPod
   message: Append output file to project-plan
+- timestamp: '2025-06-11T21:46:06.728705'
+  path: project/docs/system_design.md
+  task_id: system-design
+  committed_by: GPTPod
+  message: Update system design to reflect ChatGPT MCP integration, secure credential
+    flow, YAML prompts, SQLAlchemy, and Redis
