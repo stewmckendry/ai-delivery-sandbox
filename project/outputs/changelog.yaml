@@ -86,3 +86,9 @@
   task_id: system-deps
   committed_by: GPTPod
   message: Append output file to system-deps
+- timestamp: '2025-06-11T21:55:33.466714'
+  path: project/docs/system_design.md
+  task_id: system-design
+  committed_by: GPTPod
+  message: "Update system design to visualize ChatGPT MCP \u2192 FastAPI \u2192 RAG\
+    \ \u2192 LLM loop"
