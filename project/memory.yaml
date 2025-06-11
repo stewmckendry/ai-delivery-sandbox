@@ -11,3 +11,17 @@
   - GenAI
   last_updated: '2025-06-11'
   pod_owner: DeliveryPod
+- path: project/task.yaml
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/task.yaml
+  file_type: yaml
+  description: This file contains task definitions for various operations such as
+    updating metadata, activating, cloning, and creating tasks, as well as indexing
+    and adding files to memory. It includes details like descriptions, phases, categories,
+    pod ownership, statuses, and associated prompts.
+  tags:
+  - task_management
+  - metadata
+  - delivery
+  - infra
+  last_updated: '2025-06-11'
+  pod_owner: DeliveryPod
