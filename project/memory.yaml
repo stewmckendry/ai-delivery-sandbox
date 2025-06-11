@@ -25,3 +25,16 @@
   - infra
   last_updated: '2025-06-11'
   pod_owner: DeliveryPod
+- path: project/docs/system_design.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/system_design.md
+  file_type: md
+  description: Detailed system design document for a patient-centered health data
+    co-pilot, outlining architecture, technology stack, interfaces, data flow, and
+    dependencies.
+  tags:
+  - system design
+  - architecture
+  - technology stack
+  - data flow
+  last_updated: '2025-06-11'
+  pod_owner: DevPod
