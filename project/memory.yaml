@@ -1,0 +1,13 @@
+- path: project/docs/mvp_scope.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/mvp_scope.md
+  file_type: md
+  description: Document outlining the MVP scope for a patient-centered health data
+    co-pilot app, detailing integration with health portals, data processing, and
+    a GenAI chat interface for user queries.
+  tags:
+  - MVP
+  - health data
+  - integration
+  - GenAI
+  last_updated: '2025-06-11'
+  pod_owner: DeliveryPod
