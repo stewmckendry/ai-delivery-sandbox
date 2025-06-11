@@ -51,3 +51,14 @@
   - MVP
   last_updated: '2025-06-11'
   pod_owner: DeliveryPod
+- path: requirements.txt
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/requirements.txt
+  file_type: txt
+  description: List of Python dependencies required for the application, including
+    web frameworks, database tools, and AI integration libraries.
+  tags:
+  - dependencies
+  - config
+  - web
+  last_updated: '2025-06-11'
+  pod_owner: DevPod
