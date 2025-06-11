@@ -628,3 +628,15 @@
   - data
   last_updated: '2025-05-29'
   pod_owner: QAPod
+- path: project/docs/concept_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/concept_summary.md
+  file_type: md
+  description: Overview of a project focused on developing an AI-driven app to aggregate
+    and interpret patient health data from multiple portals.
+  tags:
+  - healthcare
+  - AI
+  - data integration
+  - NLP
+  last_updated: '2025-06-11'
+  pod_owner: ResearchPod
