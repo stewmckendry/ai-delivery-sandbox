@@ -3,19 +3,14 @@
 ## 🧱 Architecture Overview
 
 ```
-[User Device / Browser]
-        ↓
-[Frontend (React + Tailwind)]
-        ↓
-[Backend (FastAPI + Playwright)]
-        ↓
-[Portal Adapters (Scrapers)]
-        ↓
-[Document Parser (PDF/HTML → JSON)]
-        ↓
-[GenAI Engine (LLM + RAG)]
-        ↓
-[Chat Interface + Report Generator]
+[User] → [ChatGPT (MCP Plugin)]
+      → [FastAPI Backend (Railway-hosted)]
+          → [Auth UI (for portal credentials)]
+          → [Portal Adapters (Scrapers)]
+          → [Raw Document Store (local/blob)]
+          → [Data Processor (LLM-assisted)]
+          → [Structured DB (SQLAlchemy + SQLite/Postgres)]
+          → [Prompt Orchestration (YAML)]
 ```
 
 ---
@@ -24,69 +19,59 @@
 
 | Layer        | Tech                            |
 |--------------|----------------------------------|
-| Frontend     | React, Tailwind CSS, shadcn/ui  |
-| Backend      | Python (FastAPI)                |
+| UI Layer     | ChatGPT + MCP Plugin            |
+| Auth UI      | React (minimal)                 |
+| Backend      | FastAPI (hosted on Railway)     |
 | Scraping     | Playwright (headless, secure)   |
 | Parsing      | PyMuPDF, BeautifulSoup          |
-| Data Layer   | In-memory JSON (PoC), SQLite    |
-| AI/LLM       | OpenAI or Claude via API        |
-| Auth Handling| Manual + Secure vault/local env |
+| Storage      | SQLAlchemy + SQLite → Postgres  |
+| Temp Store   | Redis (for session state)       |
+| Prompting    | YAML-configured templates       |
+| GenAI        | OpenAI or Claude (via API)      |
+
+---
+
+## 🔐 Credential Input Flow
+- ChatGPT initiates backend request
+- FastAPI issues a one-time HTTPS link to a `/auth` form
+- User enters portal credentials securely
+- Credentials stored encrypted (Vault/local secure storage)
 
 ---
 
 ## 🧩 Interfaces
 
-### 1. User Auth Interface
-- Input for portal URL and credentials
-- Stored locally or in secure vault (never on server)
+### Portal Adapter
+- Headless login (Playwright)
+- HTML/PDF scraper
+- Outputs raw docs + HTML snapshots
 
-### 2. Portal Adapter (per portal)
-- Login logic using Playwright
-- Content scraping logic
-- Output: Raw HTML, PDFs, Tables
+### Data Processor
+- Uses LLM + NLP to clean and structure data
+- Normalizes into JSON model stored in DB
 
-### 3. Document Processor
-- Extract data from PDFs, HTML
-- Normalize to structured JSON:
-
-```json
-{
-  "event_type": "Lab Result",
-  "date": "2023-06-01",
-  "provider": "Toronto General Hospital",
-  "details": {
-    "test": "Cholesterol",
-    "result": "5.8 mmol/L",
-    "reference": "<source URL>"
-  }
-}
-```
-
-### 4. GenAI Chat Interface
-- Ingest structured data and documents
-- RAG prompt format: context + question
-- Example: "Summarize my last 3 blood tests"
+### Prompt Orchestrator
+- Loads `.yaml` templates per use case
+- Injects structured data into RAG prompts
+- Handles summarization, comparison, glossary gen
 
 ---
 
-## 🔄 Data Flow (End-to-End)
-1. User logs in and enters portal credentials
-2. Scraper authenticates via Playwright and downloads documents
-3. Processor extracts and normalizes data into structured JSON
-4. JSON data fed into GenAI prompt for summarization/chat
-5. User sees answer in UI, with links to sources
-6. Optionally generate report for export
+## 🗃 Data Models
+- **Event** (date, type, provider, source, metadata)
+- **LabResult** (test name, value, reference, units)
+- **VisitSummary** (doctor, notes, diagnoses)
+
+Stored using **SQLAlchemy** and **SQLite (PoC)**
 
 ---
 
-## 📦 System Dependencies
-- Playwright (browser automation)
-- PyMuPDF, BeautifulSoup (parsing)
-- FastAPI (backend API and tasks)
-- React + Tailwind (UI)
-- OpenAI / Claude (LLM APIs)
-- dotenv / vault (local secrets handling)
+## 📦 Dependencies
+- FastAPI, Playwright, SQLAlchemy, PyMuPDF, BeautifulSoup
+- Redis (optional)
+- OpenAI / Claude SDKs
+- Railway deployment config
 
 ---
 
-This system design supports the MVP with modularity, security, and extensibility in mind.
+This design emphasizes secure user control, modular adapters, LLM-powered reasoning, and extensibility into future integrations.
