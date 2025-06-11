@@ -3,14 +3,21 @@
 ## 🧱 Architecture Overview
 
 ```
-[User] → [ChatGPT (MCP Plugin)]
-      → [FastAPI Backend (Railway-hosted)]
-          → [Auth UI (for portal credentials)]
-          → [Portal Adapters (Scrapers)]
-          → [Raw Document Store (local/blob)]
-          → [Data Processor (LLM-assisted)]
-          → [Structured DB (SQLAlchemy + SQLite/Postgres)]
-          → [Prompt Orchestration (YAML)]
+[User] 
+  ↓
+[ChatGPT (via MCP Plugin)] ←─────────────┐
+  ↓                                      │
+[FastAPI Backend (Railway-hosted)]       │
+  ↓                                      │
+[Prompt Orchestrator (YAML)]             │
+  ↓                                      │
+[Structured Data Store (SQLAlchemy)]─────┘
+  ↓
+[Raw Document Store (PDF/HTML)]
+  ↓
+[Portal Adapters (Playwright Scrapers)]
+  ↓
+[Minimal Web UI for Auth Input]
 ```
 
 ---
@@ -31,47 +38,26 @@
 
 ---
 
+## 🔁 Interaction Flow (MCP to RAG)
+
+1. User talks to ChatGPT (MCP plugin enabled)
+2. ChatGPT sends question via connector to FastAPI
+3. FastAPI retrieves relevant structured data
+4. Prompt orchestrator loads appropriate YAML prompt
+5. Prompt is sent to LLM for grounded response
+6. Response is returned to user in ChatGPT
+
+---
+
 ## 🔐 Credential Input Flow
-- ChatGPT initiates backend request
-- FastAPI issues a one-time HTTPS link to a `/auth` form
-- User enters portal credentials securely
-- Credentials stored encrypted (Vault/local secure storage)
+- ChatGPT triggers credential collection
+- FastAPI generates a secure one-time link
+- User visits link and enters credentials (secure form)
+- Credentials stored encrypted and scoped to session
 
 ---
 
-## 🧩 Interfaces
+## 📦 Core Dependencies
+FastAPI, Playwright, SQLAlchemy, PyMuPDF, Redis, OpenAI/Claude SDK, PyYAML, Railway, dotenv, BeautifulSoup
 
-### Portal Adapter
-- Headless login (Playwright)
-- HTML/PDF scraper
-- Outputs raw docs + HTML snapshots
-
-### Data Processor
-- Uses LLM + NLP to clean and structure data
-- Normalizes into JSON model stored in DB
-
-### Prompt Orchestrator
-- Loads `.yaml` templates per use case
-- Injects structured data into RAG prompts
-- Handles summarization, comparison, glossary gen
-
----
-
-## 🗃 Data Models
-- **Event** (date, type, provider, source, metadata)
-- **LabResult** (test name, value, reference, units)
-- **VisitSummary** (doctor, notes, diagnoses)
-
-Stored using **SQLAlchemy** and **SQLite (PoC)**
-
----
-
-## 📦 Dependencies
-- FastAPI, Playwright, SQLAlchemy, PyMuPDF, BeautifulSoup
-- Redis (optional)
-- OpenAI / Claude SDKs
-- Railway deployment config
-
----
-
-This design emphasizes secure user control, modular adapters, LLM-powered reasoning, and extensibility into future integrations.
+This system design now fully includes ChatGPT → MCP → FastAPI → RAG → LLM loop.
