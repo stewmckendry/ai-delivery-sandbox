@@ -18,3 +18,13 @@
   task_id: mvp-definition
   committed_by: GPTPod
   message: Memory update related to project/task.yaml
+- timestamp: '2025-06-11T20:38:25.557092'
+  path: project/docs/system_design.md
+  task_id: system-design
+  committed_by: GPTPod
+  message: Add system design document for patient co-pilot MVP
+- timestamp: '2025-06-11T20:38:25.557092'
+  path: project/memory.yaml
+  task_id: system-design
+  committed_by: GPTPod
+  message: Memory update related to project/docs/system_design.md
