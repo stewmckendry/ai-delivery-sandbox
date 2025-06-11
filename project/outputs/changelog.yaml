@@ -1,0 +1,10 @@
+- timestamp: '2025-06-11T20:33:48.422425'
+  path: project/docs/mvp_scope.md
+  task_id: mvp-definition
+  committed_by: GPTPod
+  message: Add revised MVP scope reflecting real portal usage and secure auth design
+- timestamp: '2025-06-11T20:33:48.422425'
+  path: project/memory.yaml
+  task_id: mvp-definition
+  committed_by: GPTPod
+  message: Memory update related to project/docs/mvp_scope.md
