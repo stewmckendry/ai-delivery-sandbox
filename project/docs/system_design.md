@@ -4,12 +4,12 @@
 
 ```mermaid
 flowchart TD
-  User -->|Interacts| ChatGPT_MCP[ChatGPT (via MCP Plugin)]
-  ChatGPT_MCP -->|Sends query| FastAPI[FastAPI Backend (Railway-hosted)]
-  FastAPI -->|Orchestrates| PromptOrch[Prompt Orchestrator (YAML)]
-  PromptOrch -->|Fetches| StructStore[Structured Data Store (SQLAlchemy)]
-  StructStore -->|References| RawStore[Raw Document Store (PDF/HTML)]
-  RawStore -->|Feeds| PortalAdapters[Portal Adapters (Playwright Scrapers)]
+  User -->|Interacts| ChatGPT_MCP[ChatGPT - via MCP Plugin]
+  ChatGPT_MCP -->|Sends query| FastAPI[FastAPI Backend - Railway-hosted]
+  FastAPI -->|Orchestrates| PromptOrch[Prompt Orchestrator - YAML]
+  PromptOrch -->|Fetches| StructStore[Structured Data Store - SQLAlchemy]
+  StructStore -->|References| RawStore[Raw Document Store - PDF/HTML]
+  RawStore -->|Feeds| PortalAdapters[Portal Adapters - Playwright Scrapers]
   PortalAdapters -->|Collects| AuthUI[Minimal Web UI for Auth Input]
 ```
 
