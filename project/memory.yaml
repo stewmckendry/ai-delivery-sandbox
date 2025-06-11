@@ -109,3 +109,15 @@
   - template
   last_updated: '2025-06-11'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_1_playwright_login_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_1_playwright_login_report.md
+  file_type: md
+  description: Report on the Playwright login automation task, detailing script functionality,
+    testing, and feedback for future improvements.
+  tags:
+  - automation
+  - playwright
+  - script
+  - report
+  last_updated: '2025-06-11'
+  pod_owner: QAPod
