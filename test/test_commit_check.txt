@@ -1,1 +1,0 @@
-This is a test commit to verify the commit tool is operational.
