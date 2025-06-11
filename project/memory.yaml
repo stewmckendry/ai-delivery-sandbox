@@ -97,3 +97,15 @@
   - data
   last_updated: '2025-06-11'
   pod_owner: DevPod
+- path: task_guides/task_3_prompt_loader.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_3_prompt_loader.md
+  file_type: md
+  description: Guide to creating a utility for loading and rendering YAML prompt templates
+    with variables.
+  tags:
+  - prompt
+  - YAML
+  - utility
+  - template
+  last_updated: '2025-06-11'
+  pod_owner: DeliveryPod
