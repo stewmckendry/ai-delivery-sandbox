@@ -38,3 +38,16 @@
   - data flow
   last_updated: '2025-06-11'
   pod_owner: DevPod
+- path: project/docs/project_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/project_plan.md
+  file_type: md
+  description: Document outlining the development tasks and phases for delivering
+    the MVP of a Patient-Centered Health Data Co-Pilot, including setup, integration,
+    data processing, and user experience enhancements.
+  tags:
+  - project
+  - plan
+  - development
+  - MVP
+  last_updated: '2025-06-11'
+  pod_owner: DeliveryPod
