@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+playwright
+PyMuPDF
+beautifulsoup4
+sqlalchemy
+pydantic
+python-dotenv
+openai
+redis
+httpx
+pyyaml
+python-multipart
+aiofiles
