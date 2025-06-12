@@ -882,3 +882,15 @@
   - test
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: task_guides/reports/task_31_test_portal_adapter_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_31_test_portal_adapter_report.md
+  file_type: md
+  description: Simulated test portal adapter for local pipeline QA, generating test
+    data for ETL testing without external dependencies.
+  tags:
+  - qa
+  - adapter
+  - ETL
+  - test
+  last_updated: '2025-06-12'
+  pod_owner: QAPod
