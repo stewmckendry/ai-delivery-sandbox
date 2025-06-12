@@ -252,3 +252,15 @@
   - utility
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_7_portal_a_scraper_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_7_portal_a_scraper_report.md
+  file_type: md
+  description: Report on the development and functionality of a Playwright-based scraper
+    for a mock health portal, including file paths and metadata summary.
+  tags:
+  - scraper
+  - Playwright
+  - report
+  - adapter
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
