@@ -466,3 +466,15 @@
   - orchestrator
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_16_e2e_test_runner_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_16_e2e_test_runner_report.md
+  file_type: md
+  description: Report on the implementation and execution of an end-to-end test runner
+    script for generating lab PDFs, running ETL pipelines, and querying endpoints.
+  tags:
+  - e2e
+  - test
+  - etl
+  - script
+  last_updated: '2025-06-12'
+  pod_owner: QAPod
