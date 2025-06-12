@@ -954,3 +954,13 @@
   task_id: task-24-review
   committed_by: GPTPod
   message: Append output file to task-24-review
+- timestamp: '2025-06-12T18:28:32.023214'
+  path: task_guides/reports/task_25_llm_content_extraction_and_tagging_report.md
+  task_id: task-25-review
+  committed_by: GPTPod
+  message: 'Add Task 25 review: HTML extraction and LLM-based tagging'
+- timestamp: '2025-06-12T18:28:32.023214'
+  path: project/memory.yaml
+  task_id: task-25-review
+  committed_by: GPTPod
+  message: Memory update related to task_guides/reports/task_25_llm_content_extraction_and_tagging_report.md
