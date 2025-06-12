@@ -1,7 +1,8 @@
 import os
+import logging
 
 
-def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
+def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     os.environ["DATABASE_URL"] = "sqlite:///:memory:"
 
     html_file = tmp_path / "dash.html"
@@ -85,6 +86,7 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
 
     from app.orchestrator import run_etl_for_portal
 
+    caplog.set_level(logging.INFO)
     run_etl_for_portal("portal_a")
 
     assert deleted["called"] is True
@@ -95,14 +97,14 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
     assert inserted["labs"] == labs
     assert inserted["visits"] == visits
 
-    captured = capsys.readouterr()
-    assert "Starting pipeline for portal_a" in captured.out
-    assert "Retrieving credentials for portal_a" in captured.out
-    assert "Credentials found for portal_a" in captured.out
-    assert "Deleted credentials for portal_a" in captured.out
-    assert "Pipeline for portal_a complete" in captured.out
+    logs = caplog.text
+    assert "Starting pipeline for portal_a" in logs
+    assert "Retrieving credentials for portal_a" in logs
+    assert "Credentials found for portal_a" in logs
+    assert "Deleted credentials for portal_a" in logs
+    assert "Pipeline for portal_a complete" in logs
 
-def test_orchestrator_handles_challenge(monkeypatch, tmp_path, capsys):
+def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
     os.environ["DATABASE_URL"] = "sqlite:///:memory:"
 
     html_file = tmp_path / "dash.html"
@@ -176,8 +178,9 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, capsys):
 
     from app.orchestrator import run_etl_for_portal
 
+    caplog.set_level(logging.INFO)
     run_etl_for_portal("portal_a")
 
-    captured = capsys.readouterr()
-    assert "Waiting for challenge cid" in captured.out
-    assert "Resuming challenge cid" in captured.out
+    logs = caplog.text
+    assert "Waiting for challenge cid" in logs
+    assert "Resuming challenge cid" in logs

@@ -5,6 +5,7 @@ import importlib
 from pathlib import Path
 from urllib.parse import urlparse
 from datetime import datetime
+import logging
 
 import httpx
 
@@ -18,6 +19,13 @@ from app.processors.structuring import insert_lab_results, insert_visit_summarie
 from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
 from app.storage.audit import log_event
+
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 
 def _load_scraper(portal_name: str):
@@ -59,9 +67,9 @@ def _run_scraper(
     # Support paused login sessions returned by scrapers
     while isinstance(result, dict) and result.get("challenge_id"):
         cid = result["challenge_id"]
-        print(f"[etl] Waiting for challenge {cid}")
+        logger.info("[etl] Waiting for challenge %s", cid)
         code = asyncio.run(challenges._await_response(cid))
-        print(f"[etl] Resuming challenge {cid}")
+        logger.info("[etl] Resuming challenge %s", cid)
         resume = result.get("resume")
         if resume:
             if asyncio.iscoroutinefunction(resume):
@@ -96,19 +104,19 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
         "consent_granted",
         {"portal": portal_name, "timestamp": datetime.utcnow().isoformat()},
     )
-    print(f"[etl] Starting pipeline for {portal_name}")
+    logger.info("[etl] Starting pipeline for %s", portal_name)
     scraper = _load_scraper(portal_name)
 
-    print(f"[creds] Retrieving credentials for {portal_name}")
+    logger.info("[creds] Retrieving credentials for %s", portal_name)
     creds = get_credentials(portal_name)
     if creds:
-        print(f"[creds] Credentials found for {portal_name}")
+        logger.info("[creds] Credentials found for %s", portal_name)
     else:
-        print(f"[creds] Credentials missing or expired for {portal_name}")
+        logger.info("[creds] Credentials missing or expired for %s", portal_name)
 
     log_event(user, "login", {"portal": portal_name})
 
-    print(f"[etl] Running scraper {scraper.__name__}")
+    logger.info("[etl] Running scraper %s", scraper.__name__)
     result = _run_scraper(
         scraper,
         portal_name,
@@ -116,10 +124,10 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
         creds.get("password") if creds else None,
     )
     delete_credentials(portal_name)
-    print(f"[creds] Deleted credentials for {portal_name}")
+    logger.info("[creds] Deleted credentials for %s", portal_name)
 
     file_paths = _extract_file_paths(result)
-    print(f"[etl] {len(file_paths)} files scraped")
+    logger.info("[etl] %d files scraped", len(file_paths))
     log_event(user, "scrape", {"portal": portal_name, "file_count": len(file_paths)})
 
     init_db()
@@ -134,11 +142,11 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
             content = path.read_bytes()
             save_file(content, path.name, portal_name, {"source": path_str})
             if path.suffix.lower() == ".pdf":
-                print(f"[etl] Parsing labs from {path_str}")
+                logger.info("[etl] Parsing labs from %s", path_str)
                 labs = extract_lab_results_with_date(path_str)
                 labs_all.extend(labs)
             else:
-                print(f"[etl] Parsing visits from {path_str}")
+                logger.info("[etl] Parsing visits from %s", path_str)
                 html = content.decode("utf-8", errors="ignore")
                 visits = extract_visit_summaries(html)
                 visits_all.extend(visits)
@@ -153,10 +161,10 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
             },
         )
         if labs_all:
-            print(f"[etl] Inserting {len(labs_all)} lab results")
+            logger.info("[etl] Inserting %d lab results", len(labs_all))
             insert_lab_results(session, labs_all)
         if visits_all:
-            print(f"[etl] Inserting {len(visits_all)} visit summaries")
+            logger.info("[etl] Inserting %d visit summaries", len(visits_all))
             insert_visit_summaries(session, visits_all)
         if labs_all or visits_all:
             log_event(
@@ -230,7 +238,7 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
                     }
                 )
 
-            print(json.dumps(final_records, indent=2))
+            logger.info(json.dumps(final_records, indent=2))
     finally:
         session.close()
-        print(f"[etl] Pipeline for {portal_name} complete")
+        logger.info("[etl] Pipeline for %s complete", portal_name)
