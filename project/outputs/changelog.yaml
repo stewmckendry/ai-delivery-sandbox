@@ -1135,3 +1135,13 @@
   task_id: phase-10
   committed_by: GPTPod
   message: Append output file to phase-10
+- timestamp: '2025-06-12T20:49:29.349698'
+  path: task_guides/reports/task_31_test_portal_adapter_report.md
+  task_id: task-31-review
+  committed_by: GPTPod
+  message: 'Add Task 31 review: simulated test_portal adapter for local pipeline QA'
+- timestamp: '2025-06-12T20:49:29.349698'
+  path: project/memory.yaml
+  task_id: task-31-review
+  committed_by: GPTPod
+  message: Memory update related to task_guides/reports/task_31_test_portal_adapter_report.md
