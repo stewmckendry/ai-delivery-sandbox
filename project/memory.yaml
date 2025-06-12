@@ -288,3 +288,15 @@
   - metadata
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/task_10_lab_pdf_parser.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_10_lab_pdf_parser.md
+  file_type: md
+  description: Guide for implementing a PDF parser to extract structured lab results
+    from health record PDFs.
+  tags:
+  - parser
+  - pdf
+  - extraction
+  - task
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
