@@ -324,3 +324,15 @@
   - testing
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/reports/task_10_lab_pdf_parser_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_10_lab_pdf_parser_report.md
+  file_type: md
+  description: Report on the implementation and testing of a PDF parser for extracting
+    lab results, including code files, sample output, and feedback.
+  tags:
+  - parser
+  - pdf
+  - testing
+  - report
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
