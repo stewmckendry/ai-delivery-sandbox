@@ -515,3 +515,15 @@
   - Redis
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/task_20_secure_credential_etl.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_20_secure_credential_etl.md
+  file_type: md
+  description: Guide to update the ETL orchestrator for secure credential handling,
+    including fetching, using, and deleting credentials.
+  tags:
+  - ETL
+  - security
+  - credentials
+  - orchestration
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
