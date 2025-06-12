@@ -1,13 +1,34 @@
 import os
+
+
 def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
     os.environ["DATABASE_URL"] = "sqlite:///:memory:"
-    os.environ["PORTAL_A_USERNAME"] = "user"
-    os.environ["PORTAL_A_PASSWORD"] = "pass"
 
     html_file = tmp_path / "dash.html"
-    html_file.write_text("<div class='visit'><span class='date'>2023-01-01</span><span class='provider'>Clinic</span><span class='doctor'>Dr. X</span><p class='notes'>Hi</p></div>")
+    html_file.write_text(
+        "<div class='visit'><span class='date'>2023-01-01</span><span class='provider'>Clinic</span><span class='doctor'>Dr. X</span><p class='notes'>Hi</p></div>"
+    )
     pdf_file = tmp_path / "lab.pdf"
     pdf_file.write_bytes(b"%PDF-1.4")
+
+    # Mock credential retrieval
+    from cryptography.fernet import Fernet
+
+    key = Fernet.generate_key()
+    monkeypatch.setenv("FERNET_KEY", key.decode())
+    import app.storage.credentials as cred_module
+
+    monkeypatch.setattr(
+        cred_module,
+        "get_credentials",
+        lambda portal: {"username": "user", "password": "pass"},
+    )
+    deleted = {"called": False}
+
+    def fake_delete(portal):
+        deleted["called"] = True
+
+    monkeypatch.setattr(cred_module, "delete_credentials", fake_delete)
 
     # Mock scraper
     def fake_scraper(username, password):
@@ -16,14 +37,18 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
         return {"files": [str(html_file), str(pdf_file)]}
 
     import app.adapters.portal_a as portal_module
+
     monkeypatch.setattr(portal_module, "scrape_portal_a", fake_scraper)
 
     # Mock parsers
-    visits = [{"date": "2023-01-01", "provider": "Clinic", "doctor": "Dr. X", "notes": "Hi"}]
+    visits = [
+        {"date": "2023-01-01", "provider": "Clinic", "doctor": "Dr. X", "notes": "Hi"}
+    ]
     labs = [{"test_name": "A", "value": "1", "units": "mg", "date": "2023-01-02"}]
 
     import app.processors.visit_html_parser as vh_parser
     import app.processors.lab_pdf_parser as lab_parser
+
     monkeypatch.setattr(vh_parser, "extract_visit_summaries", lambda html: visits)
     monkeypatch.setattr(lab_parser, "extract_lab_results_with_date", lambda path: labs)
 
@@ -40,11 +65,17 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
     monkeypatch.setattr(struct_module, "insert_visit_summaries", fake_insert_visits)
 
     from app.orchestrator import run_etl_for_portal
+
     run_etl_for_portal("portal_a")
+
+    assert deleted["called"] is True
 
     assert inserted["labs"] == labs
     assert inserted["visits"] == visits
 
     captured = capsys.readouterr()
     assert "Starting pipeline for portal_a" in captured.out
+    assert "Retrieving credentials for portal_a" in captured.out
+    assert "Credentials found for portal_a" in captured.out
+    assert "Deleted credentials for portal_a" in captured.out
     assert "Pipeline for portal_a complete" in captured.out
