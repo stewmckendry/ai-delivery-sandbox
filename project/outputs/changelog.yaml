@@ -893,3 +893,13 @@
   task_id: phase-9
   committed_by: GPTPod
   message: Append output file to phase-9
+- timestamp: '2025-06-12T18:10:11.958227'
+  path: task_guides/task_26_chunk_summarize_dedupe.md
+  task_id: phase-9
+  committed_by: GPTPod
+  message: 'Add Task 26: Chunking, summarization, and deduplication of extracted content'
+- timestamp: '2025-06-12T18:10:11.958227'
+  path: project/memory.yaml
+  task_id: phase-9
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_26_chunk_summarize_dedupe.md
