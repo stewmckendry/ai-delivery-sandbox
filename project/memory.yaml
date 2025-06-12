@@ -834,3 +834,15 @@
   - report
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_30_add_consent_and_audit_to_etl_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_30_add_consent_and_audit_to_etl_report.md
+  file_type: md
+  description: Guide for adding consent and audit logging to the ETL process, including
+    logging user consent and major pipeline events.
+  tags:
+  - etl
+  - logging
+  - audit
+  - consent
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
