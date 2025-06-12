@@ -264,3 +264,15 @@
   - adapter
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_8_portal_b_scraper_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_8_portal_b_scraper_report.md
+  file_type: md
+  description: Report on the implementation and review of a Portal B scraper using
+    Playwright, including usage instructions and feedback.
+  tags:
+  - scraper
+  - implementation
+  - Playwright
+  - report
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
