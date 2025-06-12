@@ -600,3 +600,15 @@
   - architecture
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: project/docs/secure_login_delegation_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/secure_login_delegation_flow.md
+  file_type: md
+  description: Document outlining the secure login and delegation flow for AI agent
+    portal access, focusing on user consent, credential handling, and session orchestration.
+  tags:
+  - flow
+  - security
+  - orchestration
+  - compliance
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
