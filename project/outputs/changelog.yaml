@@ -1060,3 +1060,13 @@
   task_id: phase-10
   committed_by: GPTPod
   message: Append output file to phase-10
+- timestamp: '2025-06-12T20:19:21.802595'
+  path: task_guides/reports/task_29_etl_invoke_crawler_extractor_cleaner_report.md
+  task_id: task-29-review
+  committed_by: GPTPod
+  message: 'Add Task 29 review: ETL now invokes crawler, extractor, and cleaner'
+- timestamp: '2025-06-12T20:19:21.802595'
+  path: project/memory.yaml
+  task_id: task-29-review
+  committed_by: GPTPod
+  message: Memory update related to task_guides/reports/task_29_etl_invoke_crawler_extractor_cleaner_report.md
