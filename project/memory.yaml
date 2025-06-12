@@ -624,3 +624,15 @@
   - chat
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/reports/task_21_consent_and_audit_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_21_consent_and_audit_report.md
+  file_type: md
+  description: Report on the implementation of a consent UX and audit logging framework,
+    including endpoint details, logging features, and testing instructions.
+  tags:
+  - audit
+  - logging
+  - consent
+  - endpoint
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
