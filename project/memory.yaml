@@ -784,3 +784,16 @@
   - test
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: task_guides/reports/task_28_etl_test_script_and_integration_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_28_etl_test_script_and_integration_report.md
+  file_type: md
+  description: Report detailing the implementation and usage of a CLI tool for testing
+    and validating ETL processes with integration support, including logging and artifact
+    collection.
+  tags:
+  - etl
+  - integration
+  - validation
+  - cli
+  last_updated: '2025-06-12'
+  pod_owner: QAPod
