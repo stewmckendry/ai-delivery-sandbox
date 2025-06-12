@@ -1,21 +1,33 @@
 import openai
 from typing import List, Dict
 
-from .loader import load_prompt
 
-
-def summarize_lab_results(results: List[Dict]) -> str:
-    """Return a summary of lab results using an OpenAI model.
+def summarize_blocks(blocks: List[Dict[str, str]]) -> str:
+    """Return a natural-language summary of text blocks using OpenAI.
 
     Parameters
     ----------
-    results: List[Dict]
-        Each dict represents a lab result with keys like ``test_name``,
-        ``value``, ``units``, and ``date``.
+    blocks: List[Dict[str, str]]
+        Sequence of dictionaries each containing a ``"text"`` field.
+
+    Returns
+    -------
+    str
+        Concise summary of the provided text.
     """
-    prompt = load_prompt("summarize_lab_results", {"lab_data": results})
+
+    system_prompt = (
+        "Summarize the following content in a way that highlights key details "
+        "clearly. Assume the text may include medical records, summaries, or "
+        "observations. Output a concise, readable summary."
+    )
+
+    combined_text = "\n".join(block.get("text", "") for block in blocks)
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": combined_text},
+        ],
     )
     return response["choices"][0]["message"]["content"].strip()

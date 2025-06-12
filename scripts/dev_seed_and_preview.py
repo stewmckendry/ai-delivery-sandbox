@@ -16,7 +16,7 @@ if str(ROOT_DIR) not in os.sys.path:
 from app.processors.lab_pdf_parser import extract_lab_results_with_date
 from app.processors.visit_html_parser import extract_visit_summaries
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
-from app.prompts.summarizer import summarize_lab_results
+from app.prompts.summarizer import summarize_blocks
 from app.api.rag import ask_question, QueryRequest
 
 
@@ -148,8 +148,8 @@ def main() -> None:
             }
             for l in db_labs
         ]
-        print("\n=== summarize_lab_results() ===")
-        summary = summarize_lab_results(lab_data)
+        print("\n=== summarize_blocks() ===")
+        summary = summarize_blocks([{"text": str(item)} for item in lab_data])
         print(summary)
 
     if args.ask:

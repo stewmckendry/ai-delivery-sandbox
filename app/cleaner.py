@@ -42,7 +42,7 @@ def clean_blocks(
     *,
     max_chunk_tokens: int = 200,
     summary_token_threshold: int = 1000,
-    summarize: Callable[[List[Dict]], str] = summarizer.summarize_lab_results,
+    summarize: Callable[[List[Dict]], str] = summarizer.summarize_blocks,
 ) -> List[str]:
     """Chunk, deduplicate, and optionally summarize text blocks.
 
@@ -57,7 +57,7 @@ def clean_blocks(
         ``summarize``.
     summarize:
         Function accepting a list of dicts and returning a summary string. By
-        default ``summarizer.summarize_lab_results``.
+        default ``summarizer.summarize_blocks``.
     """
 
     segments: List[str] = []
