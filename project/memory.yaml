@@ -612,3 +612,15 @@
   - compliance
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: scripts/prototype_challenge_flow.py
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/scripts/prototype_challenge_flow.py
+  file_type: py
+  description: Script to simulate the orchestration loop for detecting and handling
+    login challenges using Playwright and Redis, with user input via chat.
+  tags:
+  - orchestration
+  - login
+  - challenge
+  - chat
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
