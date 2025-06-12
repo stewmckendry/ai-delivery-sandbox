@@ -575,3 +575,16 @@
   - compliance
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/task_22_mfa_and_challenge_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_22_mfa_and_challenge_flow.md
+  file_type: md
+  description: Guide for implementing a human-in-the-loop process to handle MFA and
+    challenge flows in portal logins, including detecting prompts, pausing sessions,
+    and resuming after user input.
+  tags:
+  - flow
+  - security
+  - human-in-the-loop
+  - login
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
