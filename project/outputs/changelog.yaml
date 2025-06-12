@@ -742,3 +742,13 @@
   task_id: task-20-review
   committed_by: GPTPod
   message: Append output file to task-20-review
+- timestamp: '2025-06-12T17:24:23.961080'
+  path: task_guides/task_21_consent_and_audit.md
+  task_id: phase-8
+  committed_by: GPTPod
+  message: 'Add Task 21: Consent UX and audit logging for portal access'
+- timestamp: '2025-06-12T17:24:23.961080'
+  path: project/memory.yaml
+  task_id: phase-8
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_21_consent_and_audit.md
