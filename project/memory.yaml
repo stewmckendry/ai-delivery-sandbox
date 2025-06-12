@@ -697,3 +697,15 @@
   - deduplication
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: project/docs/generalized_scraping_pipeline.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/generalized_scraping_pipeline.md
+  file_type: md
+  description: Design document for an AI-powered scraping pipeline tailored for healthcare
+    portals, detailing the pipeline stages, AI integration points, and module functionalities.
+  tags:
+  - scraping
+  - pipeline
+  - AI
+  - healthcare
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
