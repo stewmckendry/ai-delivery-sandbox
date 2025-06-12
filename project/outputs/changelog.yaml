@@ -1000,3 +1000,13 @@
   task_id: phase-10
   committed_by: GPTPod
   message: Append output file to phase-10
+- timestamp: '2025-06-12T19:46:33.868266'
+  path: task_guides/task_28_etl_test_script_and_integration.md
+  task_id: phase-10
+  committed_by: GPTPod
+  message: 'Add Task 28: ETL test runner script + orchestrator integration validation'
+- timestamp: '2025-06-12T19:46:33.868266'
+  path: project/memory.yaml
+  task_id: phase-10
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_28_etl_test_script_and_integration.md
