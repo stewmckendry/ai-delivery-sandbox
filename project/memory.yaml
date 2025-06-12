@@ -133,3 +133,15 @@
   - testing
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_3_prompt_loader_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_3_prompt_loader_report.md
+  file_type: md
+  description: Report on the implementation and testing of a YAML prompt loader for
+    substituting variables in templates.
+  tags:
+  - prompt
+  - loader
+  - yaml
+  - template
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
