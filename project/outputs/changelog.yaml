@@ -985,3 +985,13 @@
   task_id: task-26-review
   committed_by: GPTPod
   message: Append output file to task-26-review
+- timestamp: '2025-06-12T19:10:58.228672'
+  path: task_guides/task_27_pipeline_test_harness_and_flow.md
+  task_id: phase-10
+  committed_by: GPTPod
+  message: 'Add Task 27: full pipeline test harness + team collaboration flow'
+- timestamp: '2025-06-12T19:10:58.228672'
+  path: project/memory.yaml
+  task_id: phase-10
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_27_pipeline_test_harness_and_flow.md
