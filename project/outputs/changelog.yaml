@@ -878,3 +878,13 @@
   task_id: phase-9
   committed_by: GPTPod
   message: Append output file to phase-9
+- timestamp: '2025-06-12T18:09:51.482252'
+  path: task_guides/task_25_llm_content_extraction_and_tagging.md
+  task_id: phase-9
+  committed_by: GPTPod
+  message: 'Add Task 25: LLM-powered HTML extraction and classification'
+- timestamp: '2025-06-12T18:09:51.482252'
+  path: project/memory.yaml
+  task_id: phase-9
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_25_llm_content_extraction_and_tagging.md
