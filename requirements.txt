@@ -12,6 +12,8 @@ httpx
 pyyaml
 python-multipart
 aiofiles
+# Optional: encryption
+cryptography
 # Optional: testing + template utilities
 pytest
 jinja2
