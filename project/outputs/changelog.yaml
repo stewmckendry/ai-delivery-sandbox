@@ -1030,3 +1030,13 @@
   task_id: task-28-review
   committed_by: GPTPod
   message: Append output file to task-28-review
+- timestamp: '2025-06-12T20:09:03.959845'
+  path: task_guides/task_29_etl_invoke_crawler_extractor_cleaner.md
+  task_id: phase-10
+  committed_by: GPTPod
+  message: 'Add Task 29: wire crawler, extractor, cleaner into run_etl_for_portal()'
+- timestamp: '2025-06-12T20:09:03.959845'
+  path: project/memory.yaml
+  task_id: phase-10
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_29_etl_invoke_crawler_extractor_cleaner.md
