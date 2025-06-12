@@ -649,3 +649,15 @@
   - integration
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_23_delegation_token_proxy_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_23_delegation_token_proxy_report.md
+  file_type: md
+  description: Report on the implementation and testing of a secure access delegation
+    mechanism using signed tokens and identity-aware proxy.
+  tags:
+  - security
+  - token
+  - integration
+  - architecture
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
