@@ -194,3 +194,15 @@
   - report
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/reports/task_5_sqlalchemy_models_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_5_sqlalchemy_models_report.md
+  file_type: md
+  description: Report on the creation and testing of SQLAlchemy models for health
+    data, including schema initialization and unit tests.
+  tags:
+  - sqlalchemy
+  - models
+  - testing
+  - database
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
