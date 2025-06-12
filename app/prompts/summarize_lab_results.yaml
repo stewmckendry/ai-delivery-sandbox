@@ -1,0 +1,4 @@
+name: summarize_lab_results
+template: |
+  Summarize the following lab results:
+  {{ lab_data }}
