@@ -551,3 +551,15 @@
   - testing
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/reports/task_20_credential_etl_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_20_credential_etl_report.md
+  file_type: md
+  description: Report on secure credential management in the ETL process, detailing
+    the integration of credential handling in the orchestrator with logging and testing.
+  tags:
+  - etl
+  - security
+  - logging
+  - testing
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
