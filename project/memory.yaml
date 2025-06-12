@@ -478,3 +478,16 @@
   - script
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: task_guides/reports/task_17_seed_preview_tool_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_17_seed_preview_tool_report.md
+  file_type: md
+  description: Report on the implementation and usage of a development seed and preview
+    tool, including CLI options, database seeding, and mock outputs for lab summaries
+    and Q&A.
+  tags:
+  - dev
+  - tool
+  - CLI
+  - database
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
