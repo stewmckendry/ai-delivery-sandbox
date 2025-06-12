@@ -681,3 +681,13 @@
   task_id: phase-7
   committed_by: GPTPod
   message: Append output file to phase-7
+- timestamp: '2025-06-12T13:40:31.370717'
+  path: task_guides/task_20_secure_credential_etl.md
+  task_id: phase-7
+  committed_by: GPTPod
+  message: 'Add Task 20: ETL integration with secure credential fetch and expiry'
+- timestamp: '2025-06-12T13:40:31.370717'
+  path: project/memory.yaml
+  task_id: phase-7
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_20_secure_credential_etl.md
