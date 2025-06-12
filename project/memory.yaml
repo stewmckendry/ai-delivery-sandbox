@@ -661,3 +661,16 @@
   - architecture
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/task_24_ai_traversal_and_link_filtering.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_24_ai_traversal_and_link_filtering.md
+  file_type: md
+  description: Guide for implementing AI-enhanced traversal and link filtering in
+    a web scraper, focusing on intelligent link prioritization using LLM or heuristic
+    scoring.
+  tags:
+  - crawler
+  - AI
+  - traversal
+  - filtering
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
