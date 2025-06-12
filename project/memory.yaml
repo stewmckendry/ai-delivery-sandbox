@@ -821,3 +821,16 @@
   - logging
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_29_etl_invoke_crawler_extractor_cleaner_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_29_etl_invoke_crawler_extractor_cleaner_report.md
+  file_type: md
+  description: Report on the integration and testing of an AI-powered ETL pipeline,
+    detailing the invocation of crawler, extractor, and cleaner components for processing
+    and summarizing data.
+  tags:
+  - etl
+  - pipeline
+  - integration
+  - report
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
