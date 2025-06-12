@@ -1015,3 +1015,13 @@
   task_id: phase-10
   committed_by: GPTPod
   message: Append output file to phase-10
+- timestamp: '2025-06-12T20:03:38.819980'
+  path: task_guides/reports/task_28_etl_test_script_and_integration_report.md
+  task_id: task-28-review
+  committed_by: GPTPod
+  message: 'Add Task 28 review: run_portal_test.py and full ETL integration test framework'
+- timestamp: '2025-06-12T20:03:38.819980'
+  path: project/memory.yaml
+  task_id: task-28-review
+  committed_by: GPTPod
+  message: Memory update related to task_guides/reports/task_28_etl_test_script_and_integration_report.md
