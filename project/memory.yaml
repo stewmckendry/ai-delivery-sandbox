@@ -406,3 +406,15 @@
   - health
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: AGENTS.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/AGENTS.md
+  file_type: md
+  description: Guide for agents working on the AI Health Records Copilot, detailing
+    repo structure, naming conventions, and coordination practices.
+  tags:
+  - metadata
+  - naming
+  - practices
+  - coordination
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
