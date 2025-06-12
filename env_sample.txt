@@ -1,0 +1,35 @@
+# Sample environment variables for the AI Health Records Copilot
+# Copy to `.env` and update the values for your environment
+
+# Secrets and authentication
+DELEGATION_SECRET=change-me
+FERNET_KEY=your-fernet-key
+OPENAI_API_KEY=your-openai-api-key
+
+# Database
+DATABASE_URL=sqlite:///./health_data.db
+
+# Redis configuration
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+# Audit log location
+AUDIT_LOG=data/audit_log.json
+
+# Credentials for mock portal testing
+MOCK_USERNAME=exampleuser
+MOCK_PASSWORD=examplepass
+
+# Credentials for portal adapters (examples)
+PORTAL_A_USERNAME=
+PORTAL_A_PASSWORD=
+PORTAL_A_URL=
+PORTAL_B_USERNAME=
+PORTAL_B_PASSWORD=
+PORTAL_B_URL=
+
+# Misc runtime options
+USE_FAKE_REDIS=1
+MAX_DEPTH=3
+PORT=8000
