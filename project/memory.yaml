@@ -539,3 +539,15 @@
   - integration
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_19_credential_storage_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_19_credential_storage_report.md
+  file_type: md
+  description: Report detailing the implementation and testing of secure credential
+    storage using encryption and Redis, including file references and feedback.
+  tags:
+  - security
+  - storage
+  - encryption
+  - testing
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
