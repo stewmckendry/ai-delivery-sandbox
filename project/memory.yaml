@@ -797,3 +797,15 @@
   - cli
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: task_guides/task_29_etl_invoke_crawler_extractor_cleaner.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_29_etl_invoke_crawler_extractor_cleaner.md
+  file_type: md
+  description: Guide to updating the ETL process by integrating AI-powered modules
+    for crawling, extracting, and cleaning data.
+  tags:
+  - ETL
+  - integration
+  - AI
+  - modules
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
