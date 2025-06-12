@@ -9,6 +9,7 @@ from app.processors.lab_pdf_parser import extract_lab_results_with_date
 from app.processors.visit_html_parser import extract_visit_summaries
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
 from app.storage.credentials import get_credentials, delete_credentials
+from app.adapters.common import challenges
 
 
 def _load_scraper(portal_name: str):
@@ -43,8 +44,26 @@ def _run_scraper(
         args.append(url)
 
     if asyncio.iscoroutinefunction(scraper):
-        return asyncio.run(scraper(*args))
-    return scraper(*args)
+        result = asyncio.run(scraper(*args))
+    else:
+        result = scraper(*args)
+
+    # Support paused login sessions returned by scrapers
+    while isinstance(result, dict) and result.get("challenge_id"):
+        cid = result["challenge_id"]
+        print(f"[etl] Waiting for challenge {cid}")
+        code = asyncio.run(challenges._await_response(cid))
+        print(f"[etl] Resuming challenge {cid}")
+        resume = result.get("resume")
+        if resume:
+            if asyncio.iscoroutinefunction(resume):
+                result = asyncio.run(resume(code))
+            else:
+                result = resume(code)
+        else:
+            break
+
+    return result
 
 
 def _extract_file_paths(result):

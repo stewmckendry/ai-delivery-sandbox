@@ -79,3 +79,75 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
     assert "Credentials found for portal_a" in captured.out
     assert "Deleted credentials for portal_a" in captured.out
     assert "Pipeline for portal_a complete" in captured.out
+
+def test_orchestrator_handles_challenge(monkeypatch, tmp_path, capsys):
+    os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+
+    html_file = tmp_path / "dash.html"
+    html_file.write_text(
+        "<div class='visit'><span class='date'>2023-01-01</span>"
+        "<span class='provider'>Clinic</span><span class='doctor'>Dr. Y" \
+        "</span><p class='notes'>Hi</p></div>"
+    )
+
+    pdf_file = tmp_path / "lab.pdf"
+    pdf_file.write_bytes(b"%PDF-1.4")
+
+    from cryptography.fernet import Fernet
+
+    key = Fernet.generate_key()
+    monkeypatch.setenv("FERNET_KEY", key.decode())
+    import app.storage.credentials as cred_module
+
+    monkeypatch.setattr(
+        cred_module,
+        "get_credentials",
+        lambda portal: {"username": "user", "password": "pass"},
+    )
+    monkeypatch.setattr(cred_module, "delete_credentials", lambda p: None)
+
+    # fake challenge flow
+    from app.adapters.common import challenges as ch_module
+
+    async def fake_await(cid):
+        return "code"
+
+    monkeypatch.setattr(ch_module, "_await_response", fake_await)
+
+    def fake_scraper(username, password):
+        assert username == "user"
+        assert password == "pass"
+
+        def resume(code):
+            assert code == "code"
+            return {"files": [str(html_file), str(pdf_file)]}
+
+        return {"challenge_id": "cid", "resume": resume}
+
+    import app.adapters.portal_a as portal_module
+
+    monkeypatch.setattr(portal_module, "scrape_portal_a", fake_scraper)
+
+    visits = [
+        {"date": "2023-01-01", "provider": "Clinic", "doctor": "Dr. Y", "notes": "Hi"}
+    ]
+    labs = [{"test_name": "A", "value": "1", "units": "mg", "date": "2023-01-02"}]
+
+    import app.processors.visit_html_parser as vh_parser
+    import app.processors.lab_pdf_parser as lab_parser
+
+    monkeypatch.setattr(vh_parser, "extract_visit_summaries", lambda html: visits)
+    monkeypatch.setattr(lab_parser, "extract_lab_results_with_date", lambda p: labs)
+
+    import app.processors.structuring as struct_module
+
+    monkeypatch.setattr(struct_module, "insert_lab_results", lambda s, r: None)
+    monkeypatch.setattr(struct_module, "insert_visit_summaries", lambda s, r: None)
+
+    from app.orchestrator import run_etl_for_portal
+
+    run_etl_for_portal("portal_a")
+
+    captured = capsys.readouterr()
+    assert "Waiting for challenge cid" in captured.out
+    assert "Resuming challenge cid" in captured.out
