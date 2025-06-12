@@ -771,3 +771,16 @@
   - harness
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: task_guides/task_28_etl_test_script_and_integration.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_28_etl_test_script_and_integration.md
+  file_type: md
+  description: Guide for implementing and testing a script to validate the full ETL
+    pipeline integration for a portal, including CLI tool instructions and logging
+    requirements.
+  tags:
+  - etl
+  - integration
+  - script
+  - test
+  last_updated: '2025-06-12'
+  pod_owner: QAPod
