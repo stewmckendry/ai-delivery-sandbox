@@ -746,3 +746,16 @@
   - parser
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_26_chunk_summarize_dedupe_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_26_chunk_summarize_dedupe_report.md
+  file_type: md
+  description: Document detailing the implementation and testing of text chunking,
+    summarization, and deduplication processes, including updates to relevant scripts
+    and tests.
+  tags:
+  - summarization
+  - deduplication
+  - prompt
+  - testing
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
