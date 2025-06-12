@@ -727,3 +727,13 @@
   task_id: task-19-review
   committed_by: GPTPod
   message: Append output file to task-19-review
+- timestamp: '2025-06-12T13:59:23.664473'
+  path: task_guides/reports/task_20_credential_etl_report.md
+  task_id: task-20-review
+  committed_by: GPTPod
+  message: 'Add Task 20 review: secure orchestrator credential fetch and expiry'
+- timestamp: '2025-06-12T13:59:23.664473'
+  path: project/memory.yaml
+  task_id: task-20-review
+  committed_by: GPTPod
+  message: Memory update related to task_guides/reports/task_20_credential_etl_report.md
