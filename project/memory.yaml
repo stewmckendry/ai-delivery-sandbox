@@ -527,3 +527,15 @@
   - orchestration
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/reports/task_18_credential_ui_stub_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_18_credential_ui_stub_report.md
+  file_type: md
+  description: Documentation and example of a credential input UI stub for a health
+    portal login, including form fields and backend integration guidance.
+  tags:
+  - ui
+  - stub
+  - credential
+  - integration
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
