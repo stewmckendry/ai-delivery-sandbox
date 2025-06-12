@@ -394,3 +394,15 @@
   - testing
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/reports/task_14_rag_api_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_14_rag_api_report.md
+  file_type: md
+  description: Implementation and testing of a RAG API endpoint for health assistant
+    Q&A, including context generation and OpenAI integration.
+  tags:
+  - api
+  - testing
+  - OpenAI
+  - health
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
