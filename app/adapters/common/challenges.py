@@ -3,9 +3,17 @@ from __future__ import annotations
 import asyncio
 import uuid
 from pathlib import Path
+import logging
 
 from app.storage import redis as redis_store
 from app.storage import audit
+
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 # Time to keep challenge info in Redis (seconds)
 TTL_SECONDS = 600
@@ -42,7 +50,7 @@ async def prompt_user(page, description: str = "") -> str:
         )
 
     audit.log_event("system", "challenge_prompt", {"id": challenge_id})
-    print(f"[pause] Challenge {challenge_id} saved {screenshot_path}")
+    logger.info("[pause] Challenge %s saved %s", challenge_id, screenshot_path)
     return await _await_response(challenge_id)
 
 
