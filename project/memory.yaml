@@ -157,3 +157,16 @@
   - api
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/task_5_sqlalchemy_models.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_5_sqlalchemy_models.md
+  file_type: md
+  description: Guide for defining SQLAlchemy models for health data storage in a SQLite
+    database, including instructions for model creation, database configuration, and
+    testing.
+  tags:
+  - model
+  - database
+  - sqlalchemy
+  - health
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
