@@ -734,3 +734,15 @@
   - testing
   last_updated: '2025-06-12'
   pod_owner: ResearchPod
+- path: task_guides/reports/task_25_llm_content_extraction_and_tagging_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_25_llm_content_extraction_and_tagging_report.md
+  file_type: md
+  description: Report on the implementation and testing of an HTML parser for extracting
+    and tagging patient-relevant content using LLMs.
+  tags:
+  - content_extraction
+  - tagging
+  - LLM
+  - parser
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
