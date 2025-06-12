@@ -336,3 +336,15 @@
   - report
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_11_visit_html_parser_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_11_visit_html_parser_report.md
+  file_type: md
+  description: Report on the implementation and testing of an HTML parser for extracting
+    visit summaries from HTML content.
+  tags:
+  - parser
+  - html
+  - implementation
+  - testing
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
