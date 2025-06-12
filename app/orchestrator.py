@@ -4,6 +4,7 @@ import asyncio
 import importlib
 from pathlib import Path
 from urllib.parse import urlparse
+from datetime import datetime
 
 import httpx
 
@@ -16,6 +17,7 @@ from app.processors.visit_html_parser import extract_visit_summaries
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
 from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
+from app.storage.audit import log_event
 
 
 def _load_scraper(portal_name: str):
@@ -86,8 +88,14 @@ def _extract_file_paths(result):
     return paths
 
 
-def run_etl_for_portal(portal_name: str) -> None:
+def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
     """Run scraping, parsing and DB insertion for ``portal_name``."""
+    user = user_id or os.getenv("ETL_USER", "system")
+    log_event(
+        user,
+        "consent_granted",
+        {"portal": portal_name, "timestamp": datetime.utcnow().isoformat()},
+    )
     print(f"[etl] Starting pipeline for {portal_name}")
     scraper = _load_scraper(portal_name)
 
@@ -97,6 +105,8 @@ def run_etl_for_portal(portal_name: str) -> None:
         print(f"[creds] Credentials found for {portal_name}")
     else:
         print(f"[creds] Credentials missing or expired for {portal_name}")
+
+    log_event(user, "login", {"portal": portal_name})
 
     print(f"[etl] Running scraper {scraper.__name__}")
     result = _run_scraper(
@@ -110,6 +120,7 @@ def run_etl_for_portal(portal_name: str) -> None:
 
     file_paths = _extract_file_paths(result)
     print(f"[etl] {len(file_paths)} files scraped")
+    log_event(user, "scrape", {"portal": portal_name, "file_count": len(file_paths)})
 
     init_db()
     session = SessionLocal()
@@ -131,12 +142,32 @@ def run_etl_for_portal(portal_name: str) -> None:
                 html = content.decode("utf-8", errors="ignore")
                 visits = extract_visit_summaries(html)
                 visits_all.extend(visits)
+        log_event(
+            user,
+            "parse",
+            {
+                "portal": portal_name,
+                "files": len(file_paths),
+                "labs": len(labs_all),
+                "visits": len(visits_all),
+            },
+        )
         if labs_all:
             print(f"[etl] Inserting {len(labs_all)} lab results")
             insert_lab_results(session, labs_all)
         if visits_all:
             print(f"[etl] Inserting {len(visits_all)} visit summaries")
             insert_visit_summaries(session, visits_all)
+        if labs_all or visits_all:
+            log_event(
+                user,
+                "insert",
+                {
+                    "portal": portal_name,
+                    "labs": len(labs_all),
+                    "visits": len(visits_all),
+                },
+            )
 
         # ------------------------------------------------------------------
         # AI-powered extraction pipeline
