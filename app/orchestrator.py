@@ -1,7 +1,13 @@
 import os
+import json
 import asyncio
 import importlib
 from pathlib import Path
+from urllib.parse import urlparse
+
+import httpx
+
+from app import crawler, extractor, cleaner
 
 from app.storage.files import save_file
 from app.storage.db import init_db, SessionLocal
@@ -131,6 +137,69 @@ def run_etl_for_portal(portal_name: str) -> None:
         if visits_all:
             print(f"[etl] Inserting {len(visits_all)} visit summaries")
             insert_visit_summaries(session, visits_all)
+
+        # ------------------------------------------------------------------
+        # AI-powered extraction pipeline
+        # ------------------------------------------------------------------
+        html_pages = []
+        for path_str in file_paths:
+            path = Path(path_str)
+            if path.suffix.lower() != ".pdf" and path.exists():
+                html_pages.append({"url": path_str, "html": path.read_text(encoding="utf-8", errors="ignore")})
+
+        if html_pages:
+            try:
+                limit = int(os.getenv("MAX_DEPTH", "3"))
+            except ValueError:
+                limit = 3
+
+            base_url = os.getenv(f"{portal_name.upper()}_URL", html_pages[0]["url"])
+
+            def fetch_html(url: str) -> str:
+                parsed = urlparse(url)
+                if parsed.scheme in {"", "file"}:
+                    p = Path(parsed.path)
+                    if p.exists():
+                        return p.read_text(encoding="utf-8", errors="ignore")
+                    return ""
+                try:
+                    resp = httpx.get(url, timeout=10)
+                    resp.raise_for_status()
+                    return resp.text
+                except Exception:
+                    return ""
+
+            crawled, _ = crawler.crawl_portal(html_pages[0]["html"], base_url, fetch_html, limit=limit)
+            for page in crawled:
+                if page["url"] not in {p["url"] for p in html_pages}:
+                    html_pages.append(page)
+
+            extracted = []
+            for page in html_pages:
+                records = extractor.extract_relevant_content(page["html"], page["url"])
+                for rec in records:
+                    rec["portal"] = portal_name
+                extracted.extend(records)
+
+            cleaned = cleaner.clean_blocks(extracted)
+
+            mapping = {}
+            for rec in extracted:
+                mapping.setdefault(rec.get("text", ""), rec)
+
+            final_records = []
+            for text in cleaned:
+                meta = mapping.get(text, {})
+                final_records.append(
+                    {
+                        "portal": portal_name,
+                        "source_url": meta.get("source_url", ""),
+                        "type": meta.get("type", ""),
+                        "text": text,
+                    }
+                )
+
+            print(json.dumps(final_records, indent=2))
     finally:
         session.close()
         print(f"[etl] Pipeline for {portal_name} complete")
