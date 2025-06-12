@@ -590,3 +590,13 @@
   task_id: phase-6
   committed_by: GPTPod
   message: Append output file to phase-6
+- timestamp: '2025-06-12T02:18:41.485456'
+  path: task_guides/task_17_seed_preview_tool.md
+  task_id: phase-6
+  committed_by: GPTPod
+  message: 'Add Task 17: Dev tool for seeding and previewing summaries and Q&A'
+- timestamp: '2025-06-12T02:18:41.485456'
+  path: project/memory.yaml
+  task_id: phase-6
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_17_seed_preview_tool.md
