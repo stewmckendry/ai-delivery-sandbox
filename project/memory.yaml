@@ -759,3 +759,15 @@
   - testing
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: task_guides/task_27_pipeline_test_harness_and_flow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_27_pipeline_test_harness_and_flow.md
+  file_type: md
+  description: Guide for testing the full AI scraping pipeline across various healthcare
+    portals, detailing test strategies, harness behavior, and workflow.
+  tags:
+  - pipeline
+  - test
+  - flow
+  - harness
+  last_updated: '2025-06-12'
+  pod_owner: QAPod
