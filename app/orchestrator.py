@@ -8,6 +8,7 @@ from app.storage.db import init_db, SessionLocal
 from app.processors.lab_pdf_parser import extract_lab_results_with_date
 from app.processors.visit_html_parser import extract_visit_summaries
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
+from app.storage.credentials import get_credentials, delete_credentials
 
 
 def _load_scraper(portal_name: str):
@@ -19,10 +20,20 @@ def _load_scraper(portal_name: str):
     return scraper
 
 
-def _run_scraper(scraper, portal_name: str):
-    username = os.getenv(f"{portal_name.upper()}_USERNAME")
-    password = os.getenv(f"{portal_name.upper()}_PASSWORD")
+def _run_scraper(
+    scraper,
+    portal_name: str,
+    username: str | None = None,
+    password: str | None = None,
+):
+    """Execute scraper with credentials or environment fallbacks."""
+    env_user = os.getenv(f"{portal_name.upper()}_USERNAME")
+    env_pass = os.getenv(f"{portal_name.upper()}_PASSWORD")
     url = os.getenv(f"{portal_name.upper()}_URL")
+
+    username = username or env_user
+    password = password or env_pass
+
     args = []
     if username:
         args.append(username)
@@ -30,6 +41,7 @@ def _run_scraper(scraper, portal_name: str):
         args.append(password)
     if url:
         args.append(url)
+
     if asyncio.iscoroutinefunction(scraper):
         return asyncio.run(scraper(*args))
     return scraper(*args)
@@ -53,8 +65,24 @@ def run_etl_for_portal(portal_name: str) -> None:
     """Run scraping, parsing and DB insertion for ``portal_name``."""
     print(f"[etl] Starting pipeline for {portal_name}")
     scraper = _load_scraper(portal_name)
+
+    print(f"[creds] Retrieving credentials for {portal_name}")
+    creds = get_credentials(portal_name)
+    if creds:
+        print(f"[creds] Credentials found for {portal_name}")
+    else:
+        print(f"[creds] Credentials missing or expired for {portal_name}")
+
     print(f"[etl] Running scraper {scraper.__name__}")
-    result = _run_scraper(scraper, portal_name)
+    result = _run_scraper(
+        scraper,
+        portal_name,
+        creds.get("username") if creds else None,
+        creds.get("password") if creds else None,
+    )
+    delete_credentials(portal_name)
+    print(f"[creds] Deleted credentials for {portal_name}")
+
     file_paths = _extract_file_paths(result)
     print(f"[etl] {len(file_paths)} files scraped")
 
