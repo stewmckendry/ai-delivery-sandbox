@@ -121,3 +121,15 @@
   - report
   last_updated: '2025-06-11'
   pod_owner: QAPod
+- path: task_guides/reports/task_2_pdf_parser_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_2_pdf_parser_report.md
+  file_type: md
+  description: Report on the development and testing status of a PDF parsing function
+    using PyMuPDF, including file creation and testing instructions.
+  tags:
+  - report
+  - pdf
+  - parsing
+  - testing
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
