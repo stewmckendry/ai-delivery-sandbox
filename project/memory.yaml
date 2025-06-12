@@ -870,3 +870,15 @@
   - test
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: project/docs/test_run_checklist.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/test_run_checklist.md
+  file_type: md
+  description: Checklist for running and evaluating a full ETL pipeline test for various
+    portal types, including setup, execution, output review, and bug tracking.
+  tags:
+  - ETL
+  - checklist
+  - validation
+  - test
+  last_updated: '2025-06-12'
+  pod_owner: QAPod
