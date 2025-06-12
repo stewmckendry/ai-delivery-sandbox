@@ -788,3 +788,13 @@
   task_id: phase-8
   committed_by: GPTPod
   message: Append output file to phase-8
+- timestamp: '2025-06-12T17:27:50.195194'
+  path: project/docs/secure_login_delegation_flow.md
+  task_id: design-docs
+  committed_by: GPTPod
+  message: Move secure login + delegation flow design doc to project/docs/
+- timestamp: '2025-06-12T17:27:50.195194'
+  path: project/memory.yaml
+  task_id: design-docs
+  committed_by: GPTPod
+  message: Memory update related to project/docs/secure_login_delegation_flow.md
