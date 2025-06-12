@@ -9,6 +9,7 @@ from typing import Dict, List
 
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
+import sys
 
 
 async def scrape_test_portal(*_args, **_kwargs) -> Dict[str, List[str]]:
@@ -52,8 +53,15 @@ async def scrape_test_portal(*_args, **_kwargs) -> Dict[str, List[str]]:
     """
     dash_path.write_text(dash_html, encoding="utf-8")
 
-    # Reuse helper to create small sample files
-    from scripts.e2e_test_runner import create_sample_pdf, create_sample_html
+    # Reuse helper to create small sample files. Import dynamically so the
+    # adapter works even when the repository root isn't on ``sys.path``.
+    try:
+        from scripts.e2e_test_runner import create_sample_pdf, create_sample_html
+    except ModuleNotFoundError:  # pragma: no cover - fallback for packaged runs
+        root = Path(__file__).resolve().parents[1]
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        from scripts.e2e_test_runner import create_sample_pdf, create_sample_html
 
     create_sample_pdf(pdf_path)
     create_sample_html(visit_path)
