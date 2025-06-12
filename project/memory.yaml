@@ -442,3 +442,15 @@
   - pipeline
   last_updated: '2025-06-12'
   pod_owner: QAPod
+- path: task_guides/task_17_seed_preview_tool.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_17_seed_preview_tool.md
+  file_type: md
+  description: Tool for seeding mock data and previewing summaries or Q&A in a local
+    development environment.
+  tags:
+  - dev
+  - script
+  - preview
+  - seed
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
