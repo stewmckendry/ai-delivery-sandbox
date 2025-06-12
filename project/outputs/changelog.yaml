@@ -1105,3 +1105,13 @@
   task_id: setup-docs
   committed_by: GPTPod
   message: Append output file to setup-docs
+- timestamp: '2025-06-12T20:30:27.330367'
+  path: task_guides/task_31_test_portal_adapter.md
+  task_id: phase-10
+  committed_by: GPTPod
+  message: 'Add Task 31: implement test_portal adapter for local and CI testing'
+- timestamp: '2025-06-12T20:30:27.330367'
+  path: project/memory.yaml
+  task_id: phase-10
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_31_test_portal_adapter.md
