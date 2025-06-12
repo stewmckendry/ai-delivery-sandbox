@@ -491,3 +491,15 @@
   - database
   last_updated: '2025-06-12'
   pod_owner: DevPod
+- path: task_guides/task_18_credential_ui_stub.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_18_credential_ui_stub.md
+  file_type: md
+  description: Guide to simulate a basic UI flow for credential input in ChatGPT,
+    including form creation and backend simulation.
+  tags:
+  - ui
+  - flow
+  - stub
+  - simulation
+  last_updated: '2025-06-12'
+  pod_owner: DevPod
