@@ -846,3 +846,15 @@
   - consent
   last_updated: '2025-06-12'
   pod_owner: DeliveryPod
+- path: README.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/README.md
+  file_type: md
+  description: Documentation for setting up and using the AI Health Records Copilot,
+    including features, setup instructions, and testing procedures.
+  tags:
+  - setup
+  - documentation
+  - health
+  - AI
+  last_updated: '2025-06-12'
+  pod_owner: DeliveryPod
