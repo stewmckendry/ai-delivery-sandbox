@@ -64,11 +64,33 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, capsys):
     monkeypatch.setattr(struct_module, "insert_lab_results", fake_insert_labs)
     monkeypatch.setattr(struct_module, "insert_visit_summaries", fake_insert_visits)
 
+    # Mock AI modules
+    import app.crawler as crawler_module
+    import app.extractor as extractor_module
+    import app.cleaner as cleaner_module
+
+    called = {"crawl": False, "extract": 0}
+
+    def fake_crawl(html, base_url, fetch, limit=3):
+        called["crawl"] = True
+        return ([{"url": str(html_file), "html": html_file.read_text()}], {str(html_file)})
+
+    def fake_extract(html, src, max_chunk_chars=4000):
+        called["extract"] += 1
+        return [{"type": "visit_note", "text": "hello", "source_url": src}]
+
+    monkeypatch.setattr(crawler_module, "crawl_portal", fake_crawl)
+    monkeypatch.setattr(extractor_module, "extract_relevant_content", fake_extract)
+    monkeypatch.setattr(cleaner_module, "clean_blocks", lambda blocks, **k: [b["text"] for b in blocks])
+
     from app.orchestrator import run_etl_for_portal
 
     run_etl_for_portal("portal_a")
 
     assert deleted["called"] is True
+
+    assert called["crawl"] is True
+    assert called["extract"] > 0
 
     assert inserted["labs"] == labs
     assert inserted["visits"] == visits
@@ -143,6 +165,14 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, capsys):
 
     monkeypatch.setattr(struct_module, "insert_lab_results", lambda s, r: None)
     monkeypatch.setattr(struct_module, "insert_visit_summaries", lambda s, r: None)
+
+    import app.crawler as crawler_module
+    import app.extractor as extractor_module
+    import app.cleaner as cleaner_module
+
+    monkeypatch.setattr(crawler_module, "crawl_portal", lambda *a, **k: ([{"url": str(html_file), "html": html_file.read_text()}], {str(html_file)}))
+    monkeypatch.setattr(extractor_module, "extract_relevant_content", lambda html, src, **k: [{"type": "visit_note", "text": "hello", "source_url": src}])
+    monkeypatch.setattr(cleaner_module, "clean_blocks", lambda blocks, **k: [b["text"] for b in blocks])
 
     from app.orchestrator import run_etl_for_portal
 
