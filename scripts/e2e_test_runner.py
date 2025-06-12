@@ -125,7 +125,7 @@ def main() -> None:
 
         openai.ChatCompletion.create = fake_create
 
-        from app.prompts.summarizer import summarize_lab_results
+        from app.prompts.summarizer import summarize_blocks
 
         lab_data = [
             {
@@ -137,8 +137,8 @@ def main() -> None:
             for l in labs
         ]
 
-        print("\n=== STEP 3: summarize_lab_results() ===")
-        summary = summarize_lab_results(lab_data)
+        print("\n=== STEP 3: summarize_blocks() ===")
+        summary = summarize_blocks([{"text": str(item)} for item in lab_data])
         print(summary)
 
         # ------------------------------------------------------------------
