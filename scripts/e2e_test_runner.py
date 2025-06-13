@@ -21,6 +21,8 @@ from pathlib import Path
 from typing import Dict, List
 import asyncio
 
+from app.utils.sample_files import create_sample_pdf, create_sample_html
+
 # Ensure repo root is on sys.path so `app` package resolves
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -28,37 +30,6 @@ if str(ROOT_DIR) not in sys.path:
 
 import openai
 import httpx
-
-
-# ---------------------------------------------------------------------------
-# Utilities to create sample input files
-# ---------------------------------------------------------------------------
-
-def create_sample_pdf(path: Path) -> None:
-    import fitz  # PyMuPDF
-
-    doc = fitz.open()
-    page = doc.new_page()
-    page.insert_text((72, 72), "Cholesterol 5.8 mmol/L 2023-05-01")
-    page.insert_text((72, 90), "Hemoglobin 13.5 g/dL 2023-05-02")
-    doc.save(path)
-    doc.close()
-
-
-def create_sample_html(path: Path) -> None:
-    html = """
-    <html><body>
-      <div class='visit'>
-        <span class='date'>2023-06-01</span>
-        <span class='provider'>General Hospital</span>
-        <span class='doctor'>Dr. Jones</span>
-        <p class='notes'>Routine check</p>
-      </div>
-    </body></html>
-    """
-    path.write_text(html, encoding="utf-8")
-
-
 # ---------------------------------------------------------------------------
 # Main pipeline logic
 # ---------------------------------------------------------------------------
