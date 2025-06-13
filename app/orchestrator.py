@@ -16,6 +16,7 @@ from app.storage.db import init_db, SessionLocal
 from app.processors.lab_pdf_parser import extract_lab_results_with_date
 from app.processors.visit_html_parser import extract_visit_summaries
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
+from app.storage.structured import insert_structured_records
 from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
 from app.storage.audit import log_event
@@ -237,6 +238,10 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
                         "text": text,
                     }
                 )
+
+            if final_records:
+                logger.info("[etl] Inserting %d structured records", len(final_records))
+                insert_structured_records(session, final_records)
 
             logger.info(json.dumps(final_records, indent=2))
     finally:

@@ -28,7 +28,6 @@ if "app" not in inspect.signature(httpx.Client.__init__).parameters:
             portal_factory=self._portal_factory,
             raise_server_exceptions=raise_server_exceptions,
             root_path=root_path,
-            client=("testserver", 80),
             app_state=self.app_state,
         )
         if headers is None:

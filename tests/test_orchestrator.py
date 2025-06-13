@@ -55,6 +55,7 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
 
     inserted = {"labs": None, "visits": None}
     import app.processors.structuring as struct_module
+    import app.storage.structured as structured_module
 
     def fake_insert_labs(session, results):
         inserted["labs"] = results
@@ -62,8 +63,10 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     def fake_insert_visits(session, results):
         inserted["visits"] = results
 
+    structured = {"records": None}
     monkeypatch.setattr(struct_module, "insert_lab_results", fake_insert_labs)
     monkeypatch.setattr(struct_module, "insert_visit_summaries", fake_insert_visits)
+    monkeypatch.setattr(structured_module, "insert_structured_records", lambda s, r: structured.update({"records": r}))
 
     # Mock AI modules
     import app.crawler as crawler_module
@@ -96,6 +99,7 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
 
     assert inserted["labs"] == labs
     assert inserted["visits"] == visits
+    assert structured["records"] and len(structured["records"]) > 0
 
     logs = caplog.text
     assert "Starting pipeline for portal_a" in logs
@@ -164,9 +168,11 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
     monkeypatch.setattr(lab_parser, "extract_lab_results_with_date", lambda p: labs)
 
     import app.processors.structuring as struct_module
+    import app.storage.structured as structured_module
 
     monkeypatch.setattr(struct_module, "insert_lab_results", lambda s, r: None)
     monkeypatch.setattr(struct_module, "insert_visit_summaries", lambda s, r: None)
+    monkeypatch.setattr(structured_module, "insert_structured_records", lambda s, r: None)
 
     import app.crawler as crawler_module
     import app.extractor as extractor_module

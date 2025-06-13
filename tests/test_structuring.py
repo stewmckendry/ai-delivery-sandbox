@@ -2,6 +2,7 @@ import os
 import importlib
 
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
+from app.storage.structured import insert_structured_records
 
 
 def test_insert_functions():
@@ -38,4 +39,26 @@ def test_insert_functions():
     assert visits[0].provider == "General Hospital"
     assert visits[1].notes == "All good."
 
+    session.close()
+
+
+def test_insert_structured_records():
+    os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+    import app.storage.db as db_module
+    import app.storage.models as models_module
+
+    db_module = importlib.reload(db_module)
+    models_module = importlib.reload(models_module)
+    db_module.init_db()
+    session = db_module.SessionLocal()
+
+    records = [
+        {"portal": "portal_a", "type": "visit", "text": "hello", "source_url": "url1"},
+        {"portal": "portal_a", "type": "lab", "text": "bye", "source_url": "url2"},
+    ]
+    insert_structured_records(session, records)
+
+    saved = session.query(models_module.StructuredRecord).all()
+    assert len(saved) == 2
+    assert saved[0].text == "hello"
     session.close()
