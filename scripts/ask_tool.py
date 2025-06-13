@@ -28,11 +28,19 @@ def _init_session(db_path: str):
     """Initialize DB session for ``db_path`` and return (session, models)."""
     db_url = os.getenv("DATABASE_URL")
     if not db_url:
-        db_url = f"sqlite:///{db_path}"
+        db_file = Path(db_path).resolve()
+        db_url = f"sqlite:///{db_file}"
         os.environ["DATABASE_URL"] = db_url
         logger.info("Using DATABASE_URL from argument: %s", db_url)
     else:
         logger.info("Using DATABASE_URL from environment: %s", db_url)
+        if db_url.startswith("sqlite:///"):
+            db_file = Path(db_url.replace("sqlite:///", "")).resolve()
+            db_url = f"sqlite:///{db_file}"
+            os.environ["DATABASE_URL"] = db_url
+    logger.info("Resolved DB file path: %s", db_url.replace("sqlite:///", ""))
+    db_file = Path(db_url.replace("sqlite:///", ""))
+    logger.info("DB file exists: %s", db_file.exists())
     import app.storage.db as db_module
     import app.storage.models as models_module
 
