@@ -1,20 +1,17 @@
-import openai
-
 from app.extractor import extract_relevant_content
+from app.utils import llm
 
 
 def test_extract_relevant_content(monkeypatch):
     calls = []
 
-    def fake_create(*args, **kwargs):
-        calls.append(kwargs["messages"][0]["content"])
-        return {
-            "choices": [
-                {"message": {"content": '[{"type": "lab_result", "text": "Sodium 140 mmol/L"}]'}}
-            ]
-        }
+    def fake_create(messages, **_kwargs):
+        calls.append(messages[0]["content"])
+        return '[{"type": "lab_result", "text": "Sodium 140 mmol/L"}]'
 
-    monkeypatch.setattr(openai.ChatCompletion, "create", fake_create)
+    monkeypatch.setattr(llm, "chat_completion", fake_create)
+    import app.extractor as extractor_module
+    monkeypatch.setattr(extractor_module, "chat_completion", fake_create)
 
     html = "<html><body><p>Sodium 140 mmol/L</p><p>Another value</p></body></html>"
     results = extract_relevant_content(html, "https://portal.test/page", max_chunk_chars=20)

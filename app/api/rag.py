@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 from pydantic import BaseModel
-import openai
+
+from app.utils import chat_completion
 
 
 
@@ -48,9 +49,8 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
 
     prompt = f"{context}\n\nQuestion: {payload.query}"
 
-    response = openai.ChatCompletion.create(
+    answer = chat_completion(
+        [{"role": "user", "content": prompt}],
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
     )
-    answer = response["choices"][0]["message"]["content"].strip()
     return {"answer": answer}
