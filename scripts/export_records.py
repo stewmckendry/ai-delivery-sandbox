@@ -9,6 +9,7 @@ import os
 import sys
 from pathlib import Path
 from typing import List, Tuple
+import logging
 
 import markdown2
 from reportlab.lib.pagesizes import letter
@@ -19,12 +20,25 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(handler)
+logger.setLevel(logging.INFO)
+
 
 
 
 def _init_session(db_path: str):
     """Initialize DB session for ``db_path`` and return (session, models)."""
-    os.environ["DATABASE_URL"] = f"sqlite:///{db_path}"
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        db_url = f"sqlite:///{db_path}"
+        os.environ["DATABASE_URL"] = db_url
+        logger.info("Using DATABASE_URL from argument: %s", db_url)
+    else:
+        logger.info("Using DATABASE_URL from environment: %s", db_url)
     import app.storage.db as db_module
     import app.storage.models as models_module
 
@@ -53,6 +67,12 @@ def _fetch_records(session, models_module) -> Tuple[List, List, List]:
         )
     except Exception:  # pragma: no cover - older DBs may lack table
         structured = []
+    logger.info(
+        "Fetched %d labs, %d visits, %d structured records",
+        len(labs),
+        len(visits),
+        len(structured),
+    )
     return labs, visits, structured
 
 
@@ -151,7 +171,7 @@ def main() -> None:
         else:  # pdf
             _markdown_to_pdf(md, out_path)
 
-    print(f"Exported records to {out_path}")
+    logger.info("Exported records to %s", out_path)
 
 
 if __name__ == "__main__":  # pragma: no cover - CLI entry
