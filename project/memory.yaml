@@ -1038,3 +1038,15 @@
   - summary
   last_updated: '2025-06-13'
   pod_owner: QAPod
+- path: task_guides/reports/test_run_2_export_success.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/test_run_2_export_success.md
+  file_type: md
+  description: Documentation of the export phase for test run 2, detailing command
+    usage, output files, export statistics, and feedback for improvements.
+  tags:
+  - export
+  - report
+  - script
+  - feedback
+  last_updated: '2025-06-13'
+  pod_owner: QAPod
