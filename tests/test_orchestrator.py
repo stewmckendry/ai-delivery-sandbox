@@ -1,5 +1,6 @@
 import os
 import logging
+from pathlib import Path
 
 
 def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
@@ -87,6 +88,9 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     monkeypatch.setattr(extractor_module, "extract_relevant_content", fake_extract)
     monkeypatch.setattr(cleaner_module, "clean_blocks", lambda blocks, **k: [b["text"] for b in blocks])
 
+    import app.prompts.summarizer as summarizer_module
+    monkeypatch.setattr(summarizer_module, "summarize_database_records", lambda s: "Run summary")
+
     from app.orchestrator import run_etl_for_portal
 
     caplog.set_level(logging.INFO)
@@ -100,6 +104,10 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     assert inserted["labs"] == labs
     assert inserted["visits"] == visits
     assert structured["records"] and len(structured["records"]) > 0
+
+    summary_file = Path("logs/portal_runs/portal_a_summary.md")
+    assert summary_file.exists()
+    assert "Run summary" in summary_file.read_text()
 
     logs = caplog.text
     assert "Starting pipeline for portal_a" in logs
@@ -182,6 +190,9 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
     monkeypatch.setattr(extractor_module, "extract_relevant_content", lambda html, src, **k: [{"type": "visit_note", "text": "hello", "source_url": src}])
     monkeypatch.setattr(cleaner_module, "clean_blocks", lambda blocks, **k: [b["text"] for b in blocks])
 
+    import app.prompts.summarizer as summarizer_module
+    monkeypatch.setattr(summarizer_module, "summarize_database_records", lambda s: "Run summary")
+
     from app.orchestrator import run_etl_for_portal
 
     caplog.set_level(logging.INFO)
@@ -190,3 +201,6 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
     logs = caplog.text
     assert "Waiting for challenge cid" in logs
     assert "Resuming challenge cid" in logs
+    summary_file = Path("logs/portal_runs/portal_a_summary.md")
+    assert summary_file.exists()
+    assert "Run summary" in summary_file.read_text()

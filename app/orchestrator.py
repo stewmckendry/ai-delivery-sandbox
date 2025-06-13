@@ -20,6 +20,7 @@ from app.storage.structured import insert_structured_records
 from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
 from app.storage.audit import log_event
+from app.prompts.summarizer import summarize_database_records
 
 logger = logging.getLogger(__name__)
 if not logger.handlers:
@@ -242,6 +243,17 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
             if final_records:
                 logger.info("[etl] Inserting %d structured records", len(final_records))
                 insert_structured_records(session, final_records)
+
+            # Summarize all structured data for quick preview
+            try:
+                summary = summarize_database_records(session)
+                log_dir = Path("logs") / "portal_runs"
+                log_dir.mkdir(parents=True, exist_ok=True)
+                summary_path = log_dir / f"{portal_name}_summary.md"
+                summary_path.write_text(summary, encoding="utf-8")
+                logger.info(summary)
+            except Exception as exc:  # noqa: BLE001
+                logger.error("[etl] Failed to generate summary: %s", exc)
 
             logger.info(json.dumps(final_records, indent=2))
     finally:
