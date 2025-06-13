@@ -3,12 +3,16 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 import logging
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./health_data.db")
-logger.info(f"Using database URL: {DATABASE_URL}")
+env_database_url = os.getenv("DATABASE_URL")
+if env_database_url:
+    logger.info(f"Using DATABASE_URL from environment")
+    DATABASE_URL = env_database_url
+else:
+    logger.info("DATABASE_URL not found in environment, using default: sqlite:///./health_data.db")
+    DATABASE_URL = "sqlite:///./health_data.db"
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}

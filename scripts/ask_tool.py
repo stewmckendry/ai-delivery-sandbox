@@ -23,6 +23,8 @@ logger.setLevel(logging.INFO)
 
 from app.utils import llm
 
+from dotenv import load_dotenv
+load_dotenv()
 
 def _init_session(db_path: str):
     """Initialize DB session for ``db_path`` and return (session, models)."""
@@ -30,9 +32,9 @@ def _init_session(db_path: str):
     if not db_url:
         db_url = f"sqlite:///{db_path}"
         os.environ["DATABASE_URL"] = db_url
-        logger.info("Using DATABASE_URL from argument: %s", db_url)
+        logger.info("Using DATABASE_URL from argument")
     else:
-        logger.info("Using DATABASE_URL from environment: %s", db_url)
+        logger.info("Using DATABASE_URL from environment")
     import app.storage.db as db_module
     import app.storage.models as models_module
 

@@ -15,6 +15,9 @@ import markdown2
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Ensure repo root is on path
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -36,9 +39,9 @@ def _init_session(db_path: str):
     if not db_url:
         db_url = f"sqlite:///{db_path}"
         os.environ["DATABASE_URL"] = db_url
-        logger.info("Using DATABASE_URL from argument: %s", db_url)
+        logger.info("Using DATABASE_URL from argument")
     else:
-        logger.info("Using DATABASE_URL from environment: %s", db_url)
+        logger.info("Using DATABASE_URL from environment")
     import app.storage.db as db_module
     import app.storage.models as models_module
 
