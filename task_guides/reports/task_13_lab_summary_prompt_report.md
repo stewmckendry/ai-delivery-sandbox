@@ -3,7 +3,7 @@
 ## ✅ Summary
 Implemented `summarize_lab_results()` using:
 - `load_prompt()` to render `summarize_lab_results.yaml`
-- `openai.ChatCompletion.create()` to call LLM with user prompt
+- `app.utils.llm.chat_completion()` to call LLM with user prompt
 - Returns the text of the response
 
 ## 📂 Files Created

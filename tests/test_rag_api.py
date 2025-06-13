@@ -3,8 +3,8 @@ import importlib
 from datetime import date
 import tempfile
 
-import openai
 from fastapi.testclient import TestClient
+from app.utils import llm
 
 
 def setup_app(labs, visits, monkeypatch):
@@ -26,16 +26,17 @@ def setup_app(labs, visits, monkeypatch):
     session.commit()
     session.close()
 
-    def fake_create(*args, **kwargs):
-        content = kwargs["messages"][0]["content"]
+    def fake_create(messages, **_kwargs):
+        content = messages[0]["content"]
         # Ensure context is included
         for lab in labs:
             assert lab["test_name"] in content
         for visit in visits:
             assert visit["provider"] in content
-        return {"choices": [{"message": {"content": "Mock answer"}}]}
-
-    monkeypatch.setattr(openai.ChatCompletion, "create", fake_create)
+        return "Mock answer"
+    monkeypatch.setattr(llm, "chat_completion", fake_create)
+    import app.api.rag as rag_module
+    monkeypatch.setattr(rag_module, "chat_completion", fake_create)
 
     import app.main as main_module
     main_module = importlib.reload(main_module)

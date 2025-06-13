@@ -6,7 +6,7 @@ import tempfile
 from pathlib import Path
 from typing import List, Dict
 
-import openai
+from app.utils import llm
 
 # Ensure repo root on path for `app` imports when executed directly
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -27,13 +27,13 @@ def _maybe_mock_openai() -> None:
     if os.getenv("OPENAI_API_KEY"):
         return
 
-    def fake_create(*args, **kwargs):
-        content = kwargs["messages"][0]["content"]
+    def fake_create(messages, **_kwargs):
+        content = messages[0]["content"]
         if "Question:" in content:
-            return {"choices": [{"message": {"content": "Mock answer"}}]}
-        return {"choices": [{"message": {"content": "Mock summary"}}]}
+            return "Mock answer"
+        return "Mock summary"
 
-    openai.ChatCompletion.create = fake_create
+    llm.chat_completion = fake_create
 
 
 def load_lab_data(path: Path) -> List[Dict]:

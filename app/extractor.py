@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from typing import List, Dict
 
-import openai
+from app.utils import chat_completion
 from bs4 import BeautifulSoup
 
 
@@ -51,11 +51,10 @@ def extract_relevant_content(
 
     for chunk in chunks:
         prompt = PROMPT_TEMPLATE.format(chunk=chunk)
-        response = openai.ChatCompletion.create(
+        content = chat_completion(
+            [{"role": "user", "content": prompt}],
             model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}],
         )
-        content = response["choices"][0]["message"]["content"]
         try:
             entries = json.loads(content)
         except json.JSONDecodeError:

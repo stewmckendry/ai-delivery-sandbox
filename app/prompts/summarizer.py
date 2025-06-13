@@ -1,5 +1,6 @@
-import openai
 from typing import List, Dict
+
+from app.utils import chat_completion
 
 
 def summarize_blocks(blocks: List[Dict[str, str]]) -> str:
@@ -23,11 +24,10 @@ def summarize_blocks(blocks: List[Dict[str, str]]) -> str:
     )
 
     combined_text = "\n".join(block.get("text", "") for block in blocks)
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
+    return chat_completion(
+        [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": combined_text},
         ],
+        model="gpt-3.5-turbo",
     )
-    return response["choices"][0]["message"]["content"].strip()

@@ -10,7 +10,7 @@ Generate a readable health summary from structured lab results using OpenAI and 
 - Load the `summarize_lab_results.yaml` template from `app/prompts/`
 - Accept list of `LabResult` dicts as input
 - Render the template into a string using field substitution
-- Use `openai.ChatCompletion.create` to submit the prompt
+- Use `app.utils.llm.chat_completion` to submit the prompt
 - Return the natural-language summary text
 
 ## 🧪 Test

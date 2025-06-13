@@ -28,8 +28,8 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-import openai
 import httpx
+from app.utils import llm
 # ---------------------------------------------------------------------------
 # Main pipeline logic
 # ---------------------------------------------------------------------------
@@ -88,13 +88,13 @@ def main() -> None:
         # ------------------------------------------------------------------
         # Step 3: Summarize lab results
         # ------------------------------------------------------------------
-        def fake_create(*args, **kwargs):
-            prompt = kwargs["messages"][0]["content"]
+        def fake_create(messages, **_kwargs):
+            prompt = messages[0]["content"]
             if "Question:" in prompt:
-                return {"choices": [{"message": {"content": "Mock answer"}}]}
-            return {"choices": [{"message": {"content": "Mock summary"}}]}
+                return "Mock answer"
+            return "Mock summary"
 
-        openai.ChatCompletion.create = fake_create
+        llm.chat_completion = fake_create
 
         from app.prompts.summarizer import summarize_blocks
 
