@@ -990,3 +990,15 @@
   - openai
   last_updated: '2025-06-13'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_34_summarize_structured_records_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_34_summarize_structured_records_report.md
+  file_type: md
+  description: Guide for implementing and testing the summarization of structured
+    records, including database queries and markdown output generation.
+  tags:
+  - summarization
+  - ETL
+  - testing
+  - prompt
+  last_updated: '2025-06-13'
+  pod_owner: DeliveryPod
