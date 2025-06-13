@@ -1225,3 +1225,8 @@
   task_id: phase-11
   committed_by: GPTPod
   message: Append output file to phase-11
+- timestamp: '2025-06-13T11:10:20.867766'
+  path: task_guides/task_32_store_ai_extracted_output.md
+  task_id: phase-10
+  committed_by: GPTPod
+  message: Clarify task 32 with file paths and model format for structured DB insert
