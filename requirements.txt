@@ -18,3 +18,5 @@ cryptography
 pytest
 jinja2
 fakeredis
+markdown2
+reportlab
