@@ -919,3 +919,15 @@
   - AI
   last_updated: '2025-06-13'
   pod_owner: DeliveryPod
+- path: task_guides/task_33_test_portal_b_complex_mock.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_33_test_portal_b_complex_mock.md
+  file_type: md
+  description: Guide to create a complex adapter for a healthcare portal simulation
+    with multi-page and mixed content types.
+  tags:
+  - adapter
+  - simulation
+  - healthcare
+  - test
+  last_updated: '2025-06-13'
+  pod_owner: DevPod
