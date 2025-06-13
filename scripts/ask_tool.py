@@ -111,12 +111,6 @@ def ask(db: str, query: str) -> tuple[str, dict]:
         "visits": len(visits),
         "structured_records": len(structured),
     }
-    logger.info(
-        "Context size: %d labs, %d visits, %d structured records",
-        meta["labs"],
-        meta["visits"],
-        meta["structured_records"],
-    )
     return answer, meta
 
 
