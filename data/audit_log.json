@@ -1,0 +1,49 @@
+[
+  {
+    "timestamp": "2025-06-13T01:44:01.872818",
+    "user": "system",
+    "action": "consent_granted",
+    "context": {
+      "portal": "test_portal",
+      "timestamp": "2025-06-13T01:44:01.872728"
+    }
+  },
+  {
+    "timestamp": "2025-06-13T01:44:01.925927",
+    "user": "system",
+    "action": "login",
+    "context": {
+      "portal": "test_portal"
+    }
+  },
+  {
+    "timestamp": "2025-06-13T01:44:02.647188",
+    "user": "system",
+    "action": "scrape",
+    "context": {
+      "portal": "test_portal",
+      "file_count": 3
+    }
+  },
+  {
+    "timestamp": "2025-06-13T01:44:03.181370",
+    "user": "system",
+    "action": "parse",
+    "context": {
+      "portal": "test_portal",
+      "files": 3,
+      "labs": 2,
+      "visits": 1
+    }
+  },
+  {
+    "timestamp": "2025-06-13T01:44:03.356146",
+    "user": "system",
+    "action": "insert",
+    "context": {
+      "portal": "test_portal",
+      "labs": 2,
+      "visits": 1
+    }
+  }
+]

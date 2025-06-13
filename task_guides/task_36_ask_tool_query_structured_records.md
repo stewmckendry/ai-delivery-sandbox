@@ -15,7 +15,7 @@ python scripts/ask_tool.py --query "What were my last lab results?"
 - Load structured records from DB:
   - `LabResult`, `VisitSummary`, `StructuredRecord`
 - Format as context (JSON or bullet list)
-- Send context + query to OpenAI via `openai.ChatCompletion.create()`
+- Send context + query to OpenAI llm.py
 - Print the answer to stdout
 
 ## 🧪 Test

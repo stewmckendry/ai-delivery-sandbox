@@ -1,0 +1,26 @@
+[
+  {
+    "filename": "test_portal_20250613014403.html",
+    "portal": "test_portal",
+    "timestamp": "20250613014403",
+    "metadata": {
+      "source": "/tmp/test_dash_ff9d8739.html"
+    }
+  },
+  {
+    "filename": "test_portal_20250613014403.html",
+    "portal": "test_portal",
+    "timestamp": "20250613014403",
+    "metadata": {
+      "source": "/tmp/test_visit_ff9d8739.html"
+    }
+  },
+  {
+    "filename": "test_portal_20250613014403.pdf",
+    "portal": "test_portal",
+    "timestamp": "20250613014403",
+    "metadata": {
+      "source": "/tmp/test_labs_ff9d8739.pdf"
+    }
+  }
+]
