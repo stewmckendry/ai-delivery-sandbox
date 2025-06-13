@@ -1210,3 +1210,13 @@
   task_id: phase-11
   committed_by: GPTPod
   message: Append output file to phase-11
+- timestamp: '2025-06-13T02:01:48.985956'
+  path: task_guides/task_35_export_structured_data.md
+  task_id: phase-11
+  committed_by: GPTPod
+  message: 'Add Task 35: enable JSON, Markdown, or PDF export of structured records'
+- timestamp: '2025-06-13T02:01:48.985956'
+  path: project/memory.yaml
+  task_id: phase-11
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_35_export_structured_data.md
