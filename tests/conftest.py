@@ -31,6 +31,7 @@ if "app" not in inspect.signature(httpx.Client.__init__).parameters:
             asgi_app = _WrapASGI2(app)  # type: ignore[arg-type]
         self.app = asgi_app
         self.app_state = {}
+
         params = inspect.signature(_TestClientTransport.__init__).parameters
         kwargs = {
             "portal_factory": self._portal_factory,
@@ -41,6 +42,7 @@ if "app" not in inspect.signature(httpx.Client.__init__).parameters:
         if "client" in params:
             kwargs["client"] = ("testserver", 80)
         transport = _TestClientTransport(self.app, **kwargs)
+
         if headers is None:
             headers = {}
         headers.setdefault("user-agent", "testclient")
