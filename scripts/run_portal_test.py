@@ -15,6 +15,8 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 import shutil
+from dotenv import load_dotenv
+load_dotenv()
 
 # Ensure ``app`` package imports resolve when run directly
 ROOT_DIR = Path(__file__).resolve().parents[1]

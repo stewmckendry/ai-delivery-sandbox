@@ -6,6 +6,8 @@ from pathlib import Path
 from urllib.parse import urlparse
 from datetime import datetime
 import logging
+from dotenv import load_dotenv
+load_dotenv()
 
 import httpx
 

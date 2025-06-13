@@ -45,5 +45,52 @@
       "labs": 2,
       "visits": 1
     }
+  },
+  {
+    "timestamp": "2025-06-13T17:18:39.543191",
+    "user": "system",
+    "action": "consent_granted",
+    "context": {
+      "portal": "test_portal_b",
+      "timestamp": "2025-06-13T17:18:39.543140"
+    }
+  },
+  {
+    "timestamp": "2025-06-13T17:18:39.585462",
+    "user": "system",
+    "action": "login",
+    "context": {
+      "portal": "test_portal_b"
+    }
+  },
+  {
+    "timestamp": "2025-06-13T17:18:40.452506",
+    "user": "system",
+    "action": "scrape",
+    "context": {
+      "portal": "test_portal_b",
+      "file_count": 6
+    }
+  },
+  {
+    "timestamp": "2025-06-13T17:18:40.718746",
+    "user": "system",
+    "action": "parse",
+    "context": {
+      "portal": "test_portal_b",
+      "files": 6,
+      "labs": 2,
+      "visits": 1
+    }
+  },
+  {
+    "timestamp": "2025-06-13T17:18:40.882372",
+    "user": "system",
+    "action": "insert",
+    "context": {
+      "portal": "test_portal_b",
+      "labs": 2,
+      "visits": 1
+    }
   }
 ]
