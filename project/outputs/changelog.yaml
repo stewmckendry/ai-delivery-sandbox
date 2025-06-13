@@ -1286,3 +1286,14 @@
   task_id: task-33-review
   committed_by: GPTPod
   message: Append output file to task-33-review
+- timestamp: '2025-06-13T11:36:51.931184'
+  path: task_guides/task_36_ask_tool_query_structured_records.md
+  task_id: phase-11
+  committed_by: GPTPod
+  message: 'Add Task 36: ASK tool to query structured records and return LLM-based
+    answers'
+- timestamp: '2025-06-13T11:36:51.931184'
+  path: project/memory.yaml
+  task_id: phase-11
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_36_ask_tool_query_structured_records.md
