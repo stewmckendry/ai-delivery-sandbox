@@ -1195,3 +1195,13 @@
   task_id: phase-11
   committed_by: GPTPod
   message: Append output file to phase-11
+- timestamp: '2025-06-13T02:01:24.265709'
+  path: task_guides/task_34_summarize_structured_records.md
+  task_id: phase-11
+  committed_by: GPTPod
+  message: 'Add Task 34: summarization of structured DB records for user-facing preview'
+- timestamp: '2025-06-13T02:01:24.265709'
+  path: project/memory.yaml
+  task_id: phase-11
+  committed_by: GPTPod
+  message: Memory update related to task_guides/task_34_summarize_structured_records.md
