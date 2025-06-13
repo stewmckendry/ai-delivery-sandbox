@@ -954,3 +954,15 @@
   - format
   last_updated: '2025-06-13'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_32_store_ai_extracted_output_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_32_store_ai_extracted_output_report.md
+  file_type: md
+  description: Documentation for storing AI-extracted records from an ETL pipeline
+    into a structured SQLite table, including schema details and test confirmations.
+  tags:
+  - ETL
+  - storage
+  - database
+  - testing
+  last_updated: '2025-06-13'
+  pod_owner: DeliveryPod
