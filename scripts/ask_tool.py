@@ -20,6 +20,7 @@ if not logger.handlers:
     handler.setFormatter(logging.Formatter("%(message)s"))
     logger.addHandler(handler)
 logger.setLevel(logging.INFO)
+logger.propagate = False
 
 from app.utils import llm
 
@@ -28,6 +29,7 @@ load_dotenv()
 
 def _init_session(db_path: str):
     """Initialize DB session for ``db_path`` and return (session, models)."""
+    """
     db_url = os.getenv("DATABASE_URL")
     if not db_url:
         db_url = f"sqlite:///{db_path}"
@@ -35,6 +37,7 @@ def _init_session(db_path: str):
         logger.info("Using DATABASE_URL from argument")
     else:
         logger.info("Using DATABASE_URL from environment")
+    """
     import app.storage.db as db_module
     import app.storage.models as models_module
 

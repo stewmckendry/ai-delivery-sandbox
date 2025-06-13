@@ -5,6 +5,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+logger.propagate = False
 
 env_database_url = os.getenv("DATABASE_URL")
 if env_database_url:
