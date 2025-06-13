@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, Date
+from datetime import datetime
+
+from sqlalchemy import Column, Integer, String, Float, Date, Text, DateTime
 
 from .db import Base, engine
 
@@ -25,6 +27,19 @@ class VisitSummary(Base):
     doctor = Column(String, nullable=False)
     notes = Column(String, nullable=False)
     date = Column(Date, nullable=False)
+
+
+class StructuredRecord(Base):
+    """Model for cleaned AI-extracted record."""
+
+    __tablename__ = "structured_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+    portal = Column(String)
+    type = Column(String)
+    text = Column(Text)
+    source_url = Column(String)
+    date_created = Column(DateTime, default=datetime.utcnow)
 
 
 # Ensure tables are created when imported
