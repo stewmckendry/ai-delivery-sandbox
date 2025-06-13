@@ -5,14 +5,22 @@ Generate a concise, user-friendly summary of all structured records stored in th
 
 ## 📂 Target Files
 - `app/prompts/summarizer.py` (extend)
-- `scripts/dev_seed_and_preview.py` (use)
+- `app/orchestrator.py` (optional wiring)
 
 ## 📋 Instructions
 - Query structured records from DB (lab, visit, structured table)
 - Use `summarize_blocks()` to generate an overview:
   - “The patient had 2 visits and 3 lab results. The most recent..."
 - Output should be markdown-style summary
-- Optional: support `--summarize` CLI flag in preview script
+
+### Optional (recommended)
+- Call this at the end of `run_etl_for_portal()`
+- Log summary to console or write to file:
+```python
+summary = summarize_blocks([{"text": r["text"]} for r in final_records])
+with open(f"logs/portal_runs/{portal}_summary.md", "w") as f:
+    f.write(summary)
+```
 
 ## 🧪 Test
 - Add mocked records
@@ -22,3 +30,5 @@ Generate a concise, user-friendly summary of all structured records stored in th
 - Summary prompt template (if new)
 - Summary generation function
 - Example output from `test_portal` run
+
+This enables quick understanding of ETL outcomes for devs or end users.
