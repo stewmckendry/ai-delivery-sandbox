@@ -1026,3 +1026,15 @@
   - testing
   last_updated: '2025-06-13'
   pod_owner: DevPod
+- path: task_guides/reports/test_run_2_test_portal_b.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/test_run_2_test_portal_b.md
+  file_type: md
+  description: Report detailing the execution and results of a test run on the test_portal_b,
+    including command used, summary of steps, and artifacts generated.
+  tags:
+  - test
+  - report
+  - ETL
+  - summary
+  last_updated: '2025-06-13'
+  pod_owner: QAPod
