@@ -966,3 +966,15 @@
   - testing
   last_updated: '2025-06-13'
   pod_owner: DeliveryPod
+- path: task_guides/reports/task_33_test_portal_b_complex_mock_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/reports/task_33_test_portal_b_complex_mock_report.md
+  file_type: md
+  description: Report on the implementation and testing of a complex mock adapter
+    for a test portal, including multi-page navigation and mixed content file handling.
+  tags:
+  - testing
+  - adapter
+  - ETL
+  - Playwright
+  last_updated: '2025-06-13'
+  pod_owner: QAPod
