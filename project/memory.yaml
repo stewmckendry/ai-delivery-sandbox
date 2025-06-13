@@ -942,3 +942,15 @@
   - script
   last_updated: '2025-06-13'
   pod_owner: DeliveryPod
+- path: task_guides/task_35_export_structured_data.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/task_35_export_structured_data.md
+  file_type: md
+  description: Guide for exporting structured lab and visit data into JSON, Markdown,
+    or PDF formats using a Python script.
+  tags:
+  - export
+  - script
+  - data
+  - format
+  last_updated: '2025-06-13'
+  pod_owner: DeliveryPod
