@@ -47,7 +47,7 @@ def _setup_db(tmp_path: Path, monkeypatch) -> Path:
     return db_path
 
 
-def test_ask_tool_cli(tmp_path, monkeypatch, capsys):
+def test_ask_tool_cli(tmp_path, monkeypatch, capsys, caplog):
     db = _setup_db(tmp_path, monkeypatch)
 
     def fake_create(messages, **_kwargs):
@@ -66,9 +66,11 @@ def test_ask_tool_cli(tmp_path, monkeypatch, capsys):
         "argv",
         ["ask_tool.py", "--db", str(db), "--query", "How am I doing?"],
     )
-    ask_tool.main()
-    out = capsys.readouterr().out
-    assert "Mock answer" in out
+    with caplog.at_level("INFO"):
+        ask_tool.main()
+    result = capsys.readouterr()
+    logged = result.out + result.err + "\n".join(record.message for record in caplog.records)
+    assert "Mock answer" in logged
 
     # reload DB modules to avoid affecting other tests
     monkeypatch.setenv("DATABASE_URL", "sqlite:///:memory:")

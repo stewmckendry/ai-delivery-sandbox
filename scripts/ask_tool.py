@@ -7,18 +7,32 @@ import importlib
 import os
 import sys
 from pathlib import Path
+import logging
 
 # Ensure repo root on path so `app` imports resolve when executed directly
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(handler)
+logger.setLevel(logging.INFO)
+
 from app.utils import llm
 
 
 def _init_session(db_path: str):
     """Initialize DB session for ``db_path`` and return (session, models)."""
-    os.environ["DATABASE_URL"] = f"sqlite:///{db_path}"
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        db_url = f"sqlite:///{db_path}"
+        os.environ["DATABASE_URL"] = db_url
+        logger.info("Using DATABASE_URL from argument: %s", db_url)
+    else:
+        logger.info("Using DATABASE_URL from environment: %s", db_url)
     import app.storage.db as db_module
     import app.storage.models as models_module
 
@@ -51,6 +65,12 @@ def _fetch_recent_records(session, models_module):
         )
     except Exception:  # pragma: no cover - table may be missing
         structured = []
+    logger.info(
+        "Fetched %d labs, %d visits, %d structured records",
+        len(labs),
+        len(visits),
+        len(structured),
+    )
     return labs, visits, structured
 
 
@@ -75,17 +95,26 @@ def ask(db: str, query: str) -> tuple[str, dict]:
     labs, visits, structured = _fetch_recent_records(session, models_module)
     session.close()
 
+    logger.info("Running query: %s", query)
+
     context = _records_to_context(labs, visits, structured)
     prompt = f"{context}\n\nQuestion: {query}"
     answer = llm.chat_completion(
         [{"role": "user", "content": prompt}],
         model="gpt-3.5-turbo",
     )
+    logger.info("LLM answered")
     meta = {
         "labs": len(labs),
         "visits": len(visits),
         "structured_records": len(structured),
     }
+    logger.info(
+        "Context size: %d labs, %d visits, %d structured records",
+        meta["labs"],
+        meta["visits"],
+        meta["structured_records"],
+    )
     return answer, meta
 
 
@@ -96,9 +125,12 @@ def main() -> None:
     args = parser.parse_args()
 
     answer, meta = ask(args.db, args.query)
-    print(answer)
-    print(
-        f"Context size: {meta['labs']} labs, {meta['visits']} visits, {meta['structured_records']} structured"
+    logger.info(answer)
+    logger.info(
+        "Context size: %d labs, %d visits, %d structured records",
+        meta["labs"],
+        meta["visits"],
+        meta["structured_records"],
     )
 
 
