@@ -42,5 +42,18 @@ class StructuredRecord(Base):
     date_created = Column(DateTime, default=datetime.utcnow)
 
 
+class UploadRecord(Base):
+    """Metadata for user-uploaded files."""
+
+    __tablename__ = "uploads"
+
+    id = Column(Integer, primary_key=True)
+    session_key = Column(String, index=True)
+    portal = Column(String)
+    filename = Column(String)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    processed_at = Column(DateTime)
+
+
 # Ensure tables are created when imported
 Base.metadata.create_all(bind=engine)
