@@ -70,5 +70,13 @@
     "metadata": {
       "source": "/tmp/test_b_lab_37a0ce2b.pdf"
     }
+  },
+  {
+    "filename": "blob_20250616204648.html",
+    "portal": "blob",
+    "timestamp": "20250616204648",
+    "metadata": {
+      "source": "test_user/strava_activities.html"
+    }
   }
 ]

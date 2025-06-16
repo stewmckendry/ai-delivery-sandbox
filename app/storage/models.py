@@ -51,7 +51,7 @@ class UploadRecord(Base):
     __tablename__ = "uploads"
 
     id = Column(Integer, primary_key=True)
-    session_key = Column(String, index=True)
+    session_key = Column(String(255), index=True)
     portal = Column(String)
     filename = Column(String)
     timestamp = Column(DateTime, default=datetime.utcnow)

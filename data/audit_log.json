@@ -102,5 +102,37 @@
       "filename": "strava_activities.html",
       "timestamp": "2025-06-16T20:01:24.830260"
     }
+  },
+  {
+    "timestamp": "2025-06-16T20:46:47.948216",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-16T20:46:47.947947"
+    }
+  },
+  {
+    "timestamp": "2025-06-16T20:46:48.113904",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
+  },
+  {
+    "timestamp": "2025-06-16T20:51:12.127231",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-16T20:51:12.126930"
+    }
+  },
+  {
+    "timestamp": "2025-06-16T20:51:12.227663",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
   }
 ]
