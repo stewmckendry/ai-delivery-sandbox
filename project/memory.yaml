@@ -1207,3 +1207,38 @@
   - orchestrator
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_204_consent_and_confirm_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_204_consent_and_confirm_report.md
+  file_type: md
+  description: Report on the implementation of a consent and confirmation step before
+    ETL processing, including audit logging and testing outcomes.
+  tags:
+  - ETL
+  - consent
+  - audit
+  - testing
+  last_updated: '2025-06-16'
+  pod_owner: DevPod
+- path: task_guides/phase2_tasks/task_204_consent_and_confirm_cr.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/task_204_consent_and_confirm_cr.md
+  file_type: md
+  description: Guide to migrating the consent step to a ChatGPT Copilot chat flow
+    for a more seamless user experience.
+  tags:
+  - consent
+  - flow
+  - chat
+  - implementation
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_205_status_route_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_205_status_route_report.md
+  file_type: md
+  description: Report on the implementation and testing of the `/status` API route
+    for auditing uploads and viewing structured record summaries.
+  tags:
+  - api
+  - implementation
+  - testing
+  last_updated: '2025-06-16'
+  pod_owner: DevPod
