@@ -1195,3 +1195,15 @@
   - azure
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_203_etl_from_blob_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_203_etl_from_blob_report.md
+  file_type: md
+  description: Report on the implementation and testing of ETL processes for files
+    uploaded to Azure Blob, including CLI support and type detection for medical records.
+  tags:
+  - ETL
+  - Azure
+  - CLI
+  - orchestrator
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
