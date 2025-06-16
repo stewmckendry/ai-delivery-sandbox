@@ -1,49 +1,48 @@
-# 📊 Architecture: Phase 2 – Operator-Assisted Health Data Collection
+# 📐 Architecture: Phase 2 – Operator-Assisted Health Data Collection
 
-## 🌟 Goal
+## 🎯 Goal
 Empower users to retrieve health data from any portal with human-in-the-loop assistance via OpenAI Operator, guided entirely by ChatGPT Copilot. Users start, navigate, and return through the Copilot chat interface, while Operator handles portal interaction.
 
-## 🗺 System Overview
+## 🧱 System Overview
 
 ### 👤 Unified User Workflow
 1. **User starts in ChatGPT Copilot** and indicates they want to gather data.
-2. **Copilot provides a button/link** (or instructions) to open OpenAI Operator with a pre-filled prompt.
+2. **Copilot provides a button/link** to open OpenAI Operator with a pre-filled prompt.
 3. **Operator launches**, opens health portal in browser.
 4. **At login screen, user takes over manually** to authenticate.
 5. **User gives Operator a search directive** (e.g., "download lab results").
 6. **Operator locates the data**, confirms with user, and downloads file(s).
-7. **Files are stored in a secure Azure Blob folder**.
-8. **Operator prompts user to return to Copilot** when done.
-9. **User returns to Copilot**, says "done", and Copilot kicks off ETL.
-10. **User can now ask questions or export their data** via `/ask` and `/export`.
+7. **Operator prompts user to return to Copilot** when done.
+8. **Copilot gives the user a secure upload link** to a web form.
+9. **User uploads files via form**, stored securely in Azure Blob.
+10. **Copilot prompts user to confirm**, then runs ETL pipeline.
+11. **User can ask questions or export their data** via `/ask`, `/export`, `/status`.
 
-### ↖️ Data Flow
+### 🔀 Data Flow
 ```
 ChatGPT Copilot → Operator ⤴
-  ↳ Open Portal (User logs in)
-  ↳ Download Health Files
-  ↳ Store in Azure Blob
-  ↳ Return to Copilot → ETL → Azure SQL
-                                ↓
-                           /ask | /export
+  ↳ Portal interaction → Local download
+User uploads via Web UI → Azure Blob
+Copilot → ETL → Azure SQL
+                     ↓
+             /ask | /export | /status
 ```
 
 ## 🔐 Security & Consent
-- **User-in-control at all steps**: no scraping, no stored credentials.
-- **Consent checkpoints**: before download, before ETL.
-- **Azure Blob**: stores files with time-limited, encrypted access.
+- **Upload UI uses SAS tokens**, scoped per session
+- **Files are stored raw** (PDF, HTML), not read by GPT
+- **User consent prompt before ETL**
+- **Blobs auto-expire** after 24–72 hours
 
-## 📆 Storage Choices
-- **Azure Blob**: Temporary file storage with per-user containers.
-- **Azure SQL**: Destination for structured health data.
-- Optional: Vault-style interface for managing files.
+## 📦 Storage Choices
+- **Azure Blob**: Secure upload and temporary holding area
+- **Azure SQL**: Structured DB for all records
 
-## ↺ Handoff UX
-- **Copilot → Operator**: Copilot provides prompt/link to launch Operator.
-- **Operator → Copilot**: Operator reminds user to return to Copilot when finished.
+## 🔁 Handoff UX
+- Copilot gives prompts to launch and return from Operator
+- Uploads and analysis stay anchored in the Copilot chat
 
 ## 🧠 Benefits
-- Seamless experience: users stay anchored in ChatGPT Copilot.
-- Reduces burden of scraping logic and maintenance.
-- Fully adaptable across portals and health systems.
-- Prioritizes privacy, clarity, and flexibility for non-technical users.
+- Secure, user-friendly, and scalable
+- Avoids brittle scraping logic
+- Keeps all health data handling within trust boundaries
