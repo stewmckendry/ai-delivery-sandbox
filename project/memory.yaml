@@ -1183,3 +1183,15 @@
   - testing
   last_updated: '2025-06-16'
   pod_owner: DevPod
+- path: task_guides/phase2_tasks/task_206_blob_retention.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/task_206_blob_retention.md
+  file_type: md
+  description: Guide for implementing Azure Blob storage retention and cleanup to
+    manage storage growth and costs.
+  tags:
+  - storage
+  - cleanup
+  - script
+  - azure
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
