@@ -1254,3 +1254,15 @@
   - testing
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_206_blob_retention_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_206_blob_retention_report.md
+  file_type: md
+  description: Report on implementing and testing Azure Blob retention controls with
+    a CLI-based cleanup script for expired blobs.
+  tags:
+  - report
+  - implementation
+  - testing
+  - storage
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
