@@ -1171,3 +1171,15 @@
   - consent
   last_updated: '2025-06-16'
   pod_owner: DevPod
+- path: task_guides/phase2_tasks/task_205_status_route.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/task_205_status_route.md
+  file_type: md
+  description: Guide for implementing and testing a new status route to provide visibility
+    into health data storage and uploads.
+  tags:
+  - api
+  - route
+  - implementation
+  - testing
+  last_updated: '2025-06-16'
+  pod_owner: DevPod
