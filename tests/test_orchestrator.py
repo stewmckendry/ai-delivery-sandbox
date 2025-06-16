@@ -18,6 +18,9 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
 
     key = Fernet.generate_key()
     monkeypatch.setenv("FERNET_KEY", key.decode())
+    import importlib
+    import app.orchestrator as orch_module
+    importlib.reload(orch_module)
     import app.storage.credentials as cred_module
 
     monkeypatch.setattr(
@@ -90,7 +93,9 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
 
     import app.prompts.summarizer as summarizer_module
     monkeypatch.setattr(summarizer_module, "summarize_database_records", lambda s: "Run summary")
-
+    import importlib
+    import app.orchestrator as orch_module
+    importlib.reload(orch_module)
     from app.orchestrator import run_etl_for_portal
 
     caplog.set_level(logging.INFO)
@@ -133,6 +138,9 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
 
     key = Fernet.generate_key()
     monkeypatch.setenv("FERNET_KEY", key.decode())
+    import importlib
+    import app.orchestrator as orch_module
+    importlib.reload(orch_module)
     import app.storage.credentials as cred_module
 
     monkeypatch.setattr(
@@ -192,7 +200,9 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
 
     import app.prompts.summarizer as summarizer_module
     monkeypatch.setattr(summarizer_module, "summarize_database_records", lambda s: "Run summary")
-
+    import importlib
+    import app.orchestrator as orch_module
+    importlib.reload(orch_module)
     from app.orchestrator import run_etl_for_portal
 
     caplog.set_level(logging.INFO)
