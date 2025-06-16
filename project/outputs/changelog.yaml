@@ -1792,3 +1792,13 @@
   task_id: phase2_operator_design
   committed_by: GPTPod
   message: Append output file to phase2_operator_design
+- timestamp: '2025-06-16T19:19:14.593513'
+  path: task_guides/phase2_tasks/reports/task_210_script_upload_to_blob_report.md
+  task_id: phase2_operator_design
+  committed_by: GPTPod
+  message: 'Add Task 210 report: CLI upload to Azure Blob complete and validated'
+- timestamp: '2025-06-16T19:19:14.593513'
+  path: project/memory.yaml
+  task_id: phase2_operator_design
+  committed_by: GPTPod
+  message: Memory update related to task_guides/phase2_tasks/reports/task_210_script_upload_to_blob_report.md
