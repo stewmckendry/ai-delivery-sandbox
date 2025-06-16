@@ -33,6 +33,7 @@ Each task should include:
 - Test file with mocked or isolated data
 - Sample output or log line
 - Summary of implementation
+- Design decisions and trade-offs
 
 ## 📦 Requirements
 
