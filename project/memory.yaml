@@ -1134,3 +1134,16 @@
   - storage
   last_updated: '2025-06-16'
   pod_owner: DevPod
+- path: task_guides/phase2_tasks/reports/task_201_upload_ui_to_blob_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_201_upload_ui_to_blob_report.md
+  file_type: md
+  description: Report on implementing a secure upload interface for sending files
+    to Azure Blob Storage, including new API routes, Azure integration, and frontend
+    changes.
+  tags:
+  - upload
+  - azure
+  - api
+  - frontend
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
