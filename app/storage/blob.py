@@ -59,3 +59,29 @@ def record_upload(session_key: str, portal: str, filename: str) -> None:
         "file_upload",
         {"portal": portal, "filename": filename, "timestamp": datetime.utcnow().isoformat()},
     )
+
+
+def list_blobs(prefix: str) -> list[str]:
+    """Return blob names starting with ``prefix``."""
+    if not _container:
+        raise RuntimeError("Azure blob storage not configured")
+    return [b.name for b in _container.list_blobs(name_starts_with=prefix)]
+
+
+def download_blob(name: str) -> bytes:
+    """Return contents of blob ``name``."""
+    if not _container:
+        raise RuntimeError("Azure blob storage not configured")
+    client = _container.get_blob_client(name)
+    stream = client.download_blob()
+    return stream.readall()
+
+
+def delete_blob(name: str) -> None:
+    """Delete blob ``name`` if it exists."""
+    if not _container:
+        return
+    try:
+        _container.delete_blob(name)
+    except Exception:
+        pass

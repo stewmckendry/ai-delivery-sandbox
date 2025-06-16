@@ -23,6 +23,7 @@ from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
 from app.storage.audit import log_event
 from app.prompts.summarizer import summarize_database_records
+from app.storage import blob
 
 logger = logging.getLogger(__name__)
 if not logger.handlers:
@@ -261,3 +262,99 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
     finally:
         session.close()
         logger.info("[etl] Pipeline for %s complete", portal_name)
+
+
+def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
+    """Process files uploaded to Azure Blob under ``prefix``."""
+
+    user = user_id or os.getenv("ETL_USER", "system")
+    logger.info("[etl] Starting blob pipeline for %s", prefix)
+    log_event(user, "blob_fetch", {"prefix": prefix})
+
+    blob_names = blob.list_blobs(prefix)
+    logger.info("[etl] %d blobs found", len(blob_names))
+
+    init_db()
+    session = SessionLocal()
+    labs_all = []
+    visits_all = []
+    html_pages = []
+    extracted = []
+
+    try:
+        for name in blob_names:
+            if not name.startswith(prefix):
+                continue
+            filename = os.path.basename(name)
+            if ".." in filename or filename.startswith(('/', '\\')):
+                continue
+            data = blob.download_blob(name)
+            path = save_file(data, filename, "blob", {"source": name})
+            suffix = Path(filename).suffix.lower()
+            if suffix == ".pdf":
+                logger.info("[etl] Parsing labs from %s", name)
+                labs = extract_lab_results_with_date(path)
+                labs_all.extend(labs)
+                blob.delete_blob(name)
+            elif suffix in {".html", ".htm"}:
+                html = data.decode("utf-8", errors="ignore")
+                logger.info("[etl] Parsing visits from %s", name)
+                visits = extract_visit_summaries(html)
+                visits_all.extend(visits)
+                html_pages.append({"url": name, "html": html})
+                blob.delete_blob(name)
+            elif suffix == ".txt":
+                text = data.decode("utf-8", errors="ignore")
+                html_pages.append({"url": name, "html": text})
+                blob.delete_blob(name)
+
+        if labs_all:
+            logger.info("[etl] Inserting %d lab results", len(labs_all))
+            insert_lab_results(session, labs_all)
+        if visits_all:
+            logger.info("[etl] Inserting %d visit summaries", len(visits_all))
+            insert_visit_summaries(session, visits_all)
+
+        final_records = []
+        if html_pages:
+            for page in html_pages:
+                records = extractor.extract_relevant_content(page["html"], page["url"])
+                for rec in records:
+                    rec["portal"] = "blob"
+                extracted.extend(records)
+
+            cleaned = cleaner.clean_blocks(extracted)
+            mapping = {}
+            for rec in extracted:
+                mapping.setdefault(rec.get("text", ""), rec)
+
+            for text in cleaned:
+                meta = mapping.get(text, {})
+                final_records.append(
+                    {
+                        "portal": "blob",
+                        "source_url": meta.get("source_url", ""),
+                        "type": meta.get("type", ""),
+                        "text": text,
+                    }
+                )
+
+        if final_records:
+            logger.info("[etl] Inserting %d structured records", len(final_records))
+            insert_structured_records(session, final_records)
+
+        if labs_all or visits_all or final_records:
+            try:
+                summary = summarize_database_records(session)
+                log_dir = Path("logs") / "blob_runs"
+                log_dir.mkdir(parents=True, exist_ok=True)
+                safe = prefix.replace("/", "_")
+                summary_path = log_dir / f"{safe}_summary.md"
+                summary_path.write_text(summary, encoding="utf-8")
+                logger.info(summary)
+            except Exception as exc:  # noqa: BLE001
+                logger.error("[etl] Failed to generate summary: %s", exc)
+    finally:
+        session.close()
+        logger.info("[etl] Blob pipeline for %s complete", prefix)
+
