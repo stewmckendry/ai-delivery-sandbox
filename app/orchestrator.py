@@ -6,6 +6,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from datetime import datetime
 import logging
+import fitz  # PyMuPDF
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -264,6 +265,15 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
         logger.info("[etl] Pipeline for %s complete", portal_name)
 
 
+def _pdf_to_text(path: str | Path) -> str:
+    """Return plain text from a PDF file."""
+    text = ""
+    with fitz.open(path) as doc:  # type: ignore[attr-defined]
+        for page in doc:
+            text += page.get_text("text")
+    return text
+
+
 def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
     """Process files uploaded to Azure Blob under ``prefix``."""
 
@@ -276,53 +286,42 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
 
     init_db()
     session = SessionLocal()
-    labs_all = []
-    visits_all = []
-    html_pages = []
-    extracted = []
+
+    pages: list[dict[str, str]] = []
 
     try:
         for name in blob_names:
             if not name.startswith(prefix):
                 continue
             filename = os.path.basename(name)
-            if ".." in filename or filename.startswith(('/', '\\')):
+            if ".." in filename or filename.startswith(("/", "\\")):
                 continue
             data = blob.download_blob(name)
             path = save_file(data, filename, "blob", {"source": name})
             suffix = Path(filename).suffix.lower()
             if suffix == ".pdf":
-                logger.info("[etl] Parsing labs from %s", name)
-                labs = extract_lab_results_with_date(path)
-                labs_all.extend(labs)
-                blob.delete_blob(name)
-            elif suffix in {".html", ".htm"}:
-                html = data.decode("utf-8", errors="ignore")
-                logger.info("[etl] Parsing visits from %s", name)
-                visits = extract_visit_summaries(html)
-                visits_all.extend(visits)
-                html_pages.append({"url": name, "html": html})
-                blob.delete_blob(name)
-            elif suffix == ".txt":
+                logger.info("[etl] Extracting text from %s", name)
+                text = _pdf_to_text(path)
+            else:
                 text = data.decode("utf-8", errors="ignore")
-                html_pages.append({"url": name, "html": text})
-                blob.delete_blob(name)
+            pages.append({"url": name, "text": text, "filename": filename})
+            blob.delete_blob(name)
 
-        if labs_all:
-            logger.info("[etl] Inserting %d lab results", len(labs_all))
-            insert_lab_results(session, labs_all)
-        if visits_all:
-            logger.info("[etl] Inserting %d visit summaries", len(visits_all))
-            insert_visit_summaries(session, visits_all)
+        extracted = []
+        for page in pages:
+            records = extractor.extract_relevant_content(page["text"], page["url"])
+            for rec in records:
+                rec["portal"] = "blob"
+                if not rec.get("type"):
+                    fname = page["filename"].lower()
+                    if "lab" in fname:
+                        rec["type"] = "lab_file"
+                    elif "visit" in fname:
+                        rec["type"] = "visit_file"
+            extracted.extend(records)
 
         final_records = []
-        if html_pages:
-            for page in html_pages:
-                records = extractor.extract_relevant_content(page["html"], page["url"])
-                for rec in records:
-                    rec["portal"] = "blob"
-                extracted.extend(records)
-
+        if extracted:
             cleaned = cleaner.clean_blocks(extracted)
             mapping = {}
             for rec in extracted:
@@ -343,7 +342,7 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
             logger.info("[etl] Inserting %d structured records", len(final_records))
             insert_structured_records(session, final_records)
 
-        if labs_all or visits_all or final_records:
+        if final_records:
             try:
                 summary = summarize_database_records(session)
                 log_dir = Path("logs") / "blob_runs"
