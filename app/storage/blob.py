@@ -12,6 +12,10 @@ from azure.storage.blob._shared.base_client import parse_connection_str
 
 from . import audit
 
+# Load environment variables from .env if present
+from dotenv import load_dotenv
+load_dotenv()
+
 CONN_STR = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
 CONTAINER = os.getenv("BLOB_CONTAINER", "uploads")
 

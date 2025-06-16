@@ -10,6 +10,7 @@ Incorporate outcomes from hands-on testing with OpenAI Operator across real port
 ### 🔹 Task 208.1: Enhance HTML Extraction
 - Ensure `extract_relevant_content()` and ETL can handle saved HTML snapshots with nested tables, embedded styles, or missing metadata
 - Test with full-page Strava/TeamSnap HTML
+- Use LLM to extract structured data from HTML
 
 ### 🔹 Task 208.2: Allow PDF Input via Upload
 - Update blob ingestion to support `.pdf` from print-to-PDF captures
