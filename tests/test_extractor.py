@@ -20,3 +20,22 @@ def test_extract_relevant_content(monkeypatch):
     assert all(r["type"] == "lab_result" for r in results)
     assert results[0]["source_url"] == "https://portal.test/page"
     assert len(calls) > 1  # ensures chunking occurred
+
+
+def test_extract_nested_tables(monkeypatch):
+    html = """
+    <html><body>
+      <table><tr><td><table><tr><td style='color:red'>Value 1</td></tr></table></td></tr></table>
+    </body></html>
+    """
+
+    def fake_create(messages, **_kwargs):
+        assert "Value 1" in messages[0]["content"]
+        return '[{"type": "visit_note", "text": "Value 1"}]'
+
+    monkeypatch.setattr(llm, "chat_completion", fake_create)
+    import app.extractor as extractor_module
+    monkeypatch.setattr(extractor_module, "chat_completion", fake_create)
+
+    results = extract_relevant_content(html, "file.html")
+    assert results[0]["text"] == "Value 1"

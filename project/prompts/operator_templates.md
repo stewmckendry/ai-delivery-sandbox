@@ -36,3 +36,7 @@ These reusable prompts help you collect specific data from your health portal us
 3. Save the file as `portal_DATE_all.pdf`.
 4. Return to Copilot when complete.
 ```
+
+## ❓ CSV Export
+Operator cannot generate CSV files directly. Save the page as HTML or print to PDF,
+then convert it locally or copy the table content manually.

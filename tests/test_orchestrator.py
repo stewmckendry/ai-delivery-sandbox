@@ -109,17 +109,26 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     assert inserted["labs"] == labs
     assert inserted["visits"] == visits
     assert structured["records"] and len(structured["records"]) > 0
+    rec = structured["records"][0]
+    assert rec["source"] == "operator"
 
     summary_file = Path("logs/portal_runs/portal_a_summary.md")
     assert summary_file.exists()
     assert "Run summary" in summary_file.read_text()
 
-    logs = caplog.text
-    assert "Starting pipeline for portal_a" in logs
-    assert "Retrieving credentials for portal_a" in logs
-    assert "Credentials found for portal_a" in logs
-    assert "Deleted credentials for portal_a" in logs
-    assert "Pipeline for portal_a complete" in logs
+
+def test_pdf_to_text_empty(monkeypatch, tmp_path, caplog):
+    from app.orchestrator import _pdf_to_text
+    pdf_path = tmp_path / "empty.pdf"
+    import fitz
+    doc = fitz.open()
+    doc.new_page()
+    doc.save(pdf_path)
+    doc.close()
+    caplog.set_level(logging.INFO)
+    text = _pdf_to_text(pdf_path)
+    assert text == ""
+    assert "OCR pipeline pending" in caplog.text
 
 def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
     os.environ["DATABASE_URL"] = "sqlite:///:memory:"

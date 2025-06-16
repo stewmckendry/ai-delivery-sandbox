@@ -84,5 +84,11 @@ def status(session_key: str = Query(...)) -> JSONResponse:
         "latest_processing": latest_processing,
     }
     if not uploads and not any([labs, visits, structured]):
-        resp["message"] = "No records found. Visit /upload or /process to add data."
+        resp[
+            "message"
+        ] = (
+            "No records found. Visit /upload or /process to add data. "
+            "If Operator is blocked by reCAPTCHA or Cloudflare, save the page "
+            "as HTML or PDF and upload it manually."
+        )
     return JSONResponse(resp)

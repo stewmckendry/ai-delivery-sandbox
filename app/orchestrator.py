@@ -190,7 +190,12 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
         for path_str in file_paths:
             path = Path(path_str)
             if path.suffix.lower() != ".pdf" and path.exists():
-                html_pages.append({"url": path_str, "html": path.read_text(encoding="utf-8", errors="ignore")})
+                html_pages.append({
+                    "url": path_str,
+                    "html": path.read_text(encoding="utf-8", errors="ignore"),
+                    "capture_method": "html",
+                    "source": "operator",
+                })
 
         if html_pages:
             try:
@@ -224,6 +229,8 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
                 records = extractor.extract_relevant_content(page["html"], page["url"])
                 for rec in records:
                     rec["portal"] = portal_name
+                    rec["capture_method"] = page.get("capture_method", "html")
+                    rec["source"] = page.get("source", "operator")
                 extracted.extend(records)
 
             cleaned = cleaner.clean_blocks(extracted)
@@ -241,6 +248,9 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
                         "source_url": meta.get("source_url", ""),
                         "type": meta.get("type", ""),
                         "text": text,
+                        "source": meta.get("source", "operator"),
+                        "capture_method": meta.get("capture_method", "html"),
+                        "user_notes": meta.get("user_notes", ""),
                     }
                 )
 
@@ -271,6 +281,8 @@ def _pdf_to_text(path: str | Path) -> str:
     with fitz.open(path) as doc:  # type: ignore[attr-defined]
         for page in doc:
             text += page.get_text("text")
+    if not text.strip():
+        logger.info("[etl] No embedded text found, OCR pipeline pending")
     return text
 
 
@@ -304,7 +316,14 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
                 text = _pdf_to_text(path)
             else:
                 text = data.decode("utf-8", errors="ignore")
-            pages.append({"url": name, "text": text, "filename": filename})
+            method = "pdf" if suffix == ".pdf" else ("html" if suffix in {".html", ".htm"} else "screenshot")
+            pages.append({
+                "url": name,
+                "text": text,
+                "filename": filename,
+                "capture_method": method,
+                "source": "operator",
+            })
             blob.delete_blob(name)
 
         extracted = []
@@ -335,6 +354,9 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
                         "source_url": meta.get("source_url", ""),
                         "type": meta.get("type", ""),
                         "text": text,
+                        "source": meta.get("source", "operator"),
+                        "capture_method": meta.get("capture_method", ""),
+                        "user_notes": meta.get("user_notes", ""),
                     }
                 )
 

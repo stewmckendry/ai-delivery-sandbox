@@ -7,6 +7,14 @@ from .models import StructuredRecord
 
 def insert_structured_records(session: Session, records: list[dict]) -> None:
     """Insert cleaned AI-extracted records."""
-    objs = [StructuredRecord(**r) for r in records]
+    objs = []
+    for rec in records:
+        data = {
+            "source": "operator",
+            "capture_method": "",
+            "user_notes": "",
+        }
+        data.update(rec)
+        objs.append(StructuredRecord(**data))
     session.add_all(objs)
     session.commit()

@@ -39,6 +39,9 @@ class StructuredRecord(Base):
     type = Column(String)
     text = Column(Text)
     source_url = Column(String)
+    source = Column(String, default="operator")
+    capture_method = Column(String, default="")
+    user_notes = Column(String, default="")
     date_created = Column(DateTime, default=datetime.utcnow)
 
 
