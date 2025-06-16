@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 
 from fastapi import APIRouter, Form, Query
+from fastapi.responses import JSONResponse
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from app.storage import blob, audit
@@ -25,12 +26,22 @@ def _dry_run() -> bool:
     return os.getenv("DRY_RUN", "0").lower() in {"1", "true", "yes"}
 
 
+@router.get("/status")
+def upload_status(session_key: str = Query(...)) -> JSONResponse:
+    """Return prompt asking to start analysis for uploaded files."""
+    files = blob.list_blobs(session_key)
+    if not files:
+        return JSONResponse({"prompt": ""})
+    msg = f"You've uploaded {len(files)} files. Would you like to analyze them now?"
+    return JSONResponse({"prompt": msg})
+
 @router.get("/process", response_class=HTMLResponse)
 def confirm_process(session_key: str = Query(...)) -> HTMLResponse:
     """Return confirmation prompt before running ETL."""
     files = blob.list_blobs(session_key)
     html = HTML_TEMPLATE.format(count=len(files), session_key=session_key)
     return HTMLResponse(content=html)
+
 
 
 @router.post("/process")

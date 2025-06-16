@@ -30,12 +30,20 @@ def setup_app(monkeypatch, tmp_path):
     return client, log_file, called
 
 
+def test_process_flow(monkeypatch, tmp_path):
+    client, log_file, called = setup_app(monkeypatch, tmp_path)
+
+    resp = client.get("/status", params={"session_key": "sess"})
+    assert resp.status_code == 200
+    assert "You\'ve uploaded 2 files" in resp.json()["prompt"]
+    
 def test_process_route(monkeypatch, tmp_path):
     client, log_file, called = setup_app(monkeypatch, tmp_path)
 
     resp = client.get("/process", params={"session_key": "sess"})
     assert resp.status_code == 200
     assert "You uploaded 2 files" in resp.text
+
 
     resp = client.post("/process", data={"session_key": "sess"})
     assert resp.status_code == 200
