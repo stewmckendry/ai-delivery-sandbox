@@ -1279,3 +1279,15 @@
   - export
   last_updated: '2025-06-16'
   pod_owner: QAPod
+- path: task_guides/phase2_tasks/task_208_operator_impact_fixes.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/task_208_operator_impact_fixes.md
+  file_type: md
+  description: Guide for implementing and testing fixes to improve the OpenAI Operator's
+    impact on user experience, ETL compatibility, and export reliability.
+  tags:
+  - operator
+  - testing
+  - UX
+  - ETL
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
