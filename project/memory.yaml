@@ -1316,3 +1316,16 @@
   - metadata
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/task_209_end_to_end_test_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/task_209_end_to_end_test_plan.md
+  file_type: md
+  description: Comprehensive test plan to validate the end-to-end process from data
+    collection by an operator to the generation of structured health records, ensuring
+    functionality across upload, processing, querying, and exporting stages.
+  tags:
+  - end-to-end
+  - test
+  - flow
+  - validation
+  last_updated: '2025-06-16'
+  pod_owner: QAPod
