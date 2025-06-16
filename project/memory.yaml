@@ -1291,3 +1291,16 @@
   - ETL
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: project/docs/operator_testing_lifelabs.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/operator_testing_lifelabs.md
+  file_type: md
+  description: Document detailing the successful testing of the OpenAI Operator with
+    the LifeLabs portal, highlighting login processes, data access, file capture methods,
+    and insights for future improvements.
+  tags:
+  - testing
+  - operator
+  - data access
+  - file capture
+  last_updated: '2025-06-16'
+  pod_owner: QAPod
