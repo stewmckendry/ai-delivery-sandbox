@@ -1365,3 +1365,16 @@
   - SQL
   last_updated: '2025-06-16'
   pod_owner: DevPod
+- path: task_guides/phase2_tasks/reports/task_209_end_to_end_test_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_209_end_to_end_test_report.md
+  file_type: md
+  description: Report detailing the end-to-end testing of Task 209, covering the process
+    from file upload via Operator to data retrieval and structuring through various
+    tools and endpoints.
+  tags:
+  - test
+  - flow
+  - ETL
+  - report
+  last_updated: '2025-06-16'
+  pod_owner: QAPod
