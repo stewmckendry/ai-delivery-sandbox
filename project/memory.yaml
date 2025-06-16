@@ -1266,3 +1266,16 @@
   - storage
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: project/docs/operator_testing_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/operator_testing_summary.md
+  file_type: md
+  description: Summary of testing results for the OpenAI Operator, detailing user
+    flows, site compatibility, export capabilities, security measures, limitations,
+    and impact assessment.
+  tags:
+  - testing
+  - flow
+  - security
+  - export
+  last_updated: '2025-06-16'
+  pod_owner: QAPod
