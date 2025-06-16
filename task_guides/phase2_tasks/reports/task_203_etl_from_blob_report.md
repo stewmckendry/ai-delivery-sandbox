@@ -5,25 +5,27 @@ Introduced support for ingesting files uploaded to Azure Blob via the Copilot-Op
 
 ## 🔧 Implementation
 - Added `run_etl_from_blobs(prefix)` to `app/orchestrator.py`
-- Each file is saved, type-detected (by extension), and routed to the appropriate parser:
-  - `.pdf` → `extract_lab_results_with_date`
-  - `.html/.htm` → `extract_visit_summaries`
-  - `.txt` → raw text passed to structuring
-- Unified extractor → cleaner → structurer used for all HTML/text files
-- CLI tool: `scripts/run_etl_from_blob.py`
+- Each blob is downloaded, saved, and routed based on suffix:
+  - `.pdf` → parsed as labs
+  - `.html/.htm` → parsed as visit summaries
+  - `.txt` → treated as raw text for structuring
+- All `.html` and `.txt` go through:
+  - `extractor.extract_relevant_content`
+  - `cleaner.clean_blocks`
+  - `insert_structured_records`
+- CLI wrapper: `scripts/run_etl_from_blob.py`
+- Summary is logged to `logs/blob_runs/<session>_summary.md`
 
 ## 🧪 Testing
 - ✅ `pytest -q` passed
-- ✅ `pytest tests/test_blob_etl.py -q` confirms:
-  - Visits parsed
-  - Labs parsed
-  - Structured records created
-  - Summary written to `logs/blob_runs/`
+- ✅ `pytest tests/test_blob_etl.py -q`
+  - Covers visit, lab, and structured record paths
+  - Validates summary generation and blob deletion
 
 ## 📌 Notes
-- Requires `AZURE_STORAGE_CONNECTION_STRING` to be set
-- Automatically deletes blobs post-ingestion
-- Suggest follow-up task to **generalize type detection** (based on content not extension)
+- Blob type detection still uses file extension
+- HTML/TXT are routed through general extractor pipeline
+- Blobs are deleted after processing to conserve space
 
 ## ✅ Files Changed
 - `app/orchestrator.py`
@@ -31,4 +33,4 @@ Introduced support for ingesting files uploaded to Azure Blob via the Copilot-Op
 - `tests/test_blob_etl.py`
 
 ## 🏁 Outcome
-Blob upload ingestion pipeline is fully functional and integrated with summarizer. Can be triggered via CLI or later via API.
+Flexible and extensible ETL pipeline for user-uploaded files is now operational. Next improvement: detect record type via content or metadata instead of relying on filename alone.
