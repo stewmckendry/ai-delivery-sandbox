@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Upload Health Files</title>
+<style>
+#dropzone {
+  border: 2px dashed #aaa;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+<h2>Upload Files</h2>
+<div id="dropzone">Drag & drop files here or <input id="fileInput" type="file" multiple></div>
+<div id="status"></div>
+<script>
+const statusEl = document.getElementById('status');
+const drop = document.getElementById('dropzone');
+const input = document.getElementById('fileInput');
+
+function getParam(name) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
+
+function uploadFile(file) {
+  const session = getParam('session');
+  const portal = getParam('portal') || '';
+  if (!session) {
+    statusEl.innerText = 'Missing session id';
+    return;
+  }
+  fetch(`/upload/sas?session_key=${encodeURIComponent(session)}&filename=${encodeURIComponent(file.name)}`)
+    .then(res => res.json())
+    .then(data => fetch(data.url, { method: 'PUT', body: file }))
+    .then(resp => {
+      if (resp.ok) {
+        statusEl.innerText = `Uploaded ${file.name}`;
+        fetch('/upload/log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_key: session, portal: portal, filename: file.name })
+        });
+      } else {
+        statusEl.innerText = `Failed upload ${file.name}`;
+      }
+    })
+    .catch(err => {
+      statusEl.innerText = 'Error: ' + err;
+    });
+}
+
+drop.addEventListener('dragover', e => { e.preventDefault(); });
+drop.addEventListener('drop', e => {
+  e.preventDefault();
+  Array.from(e.dataTransfer.files).forEach(uploadFile);
+});
+input.addEventListener('change', e => {
+  Array.from(e.target.files).forEach(uploadFile);
+});
+</script>
+</body>
+</html>
