@@ -1341,3 +1341,15 @@
   - testing
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_210_script_upload_to_blob_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_210_script_upload_to_blob_report.md
+  file_type: md
+  description: Report on the implementation and testing of a CLI script for uploading
+    files to Azure Blob using a SAS URL.
+  tags:
+  - script
+  - upload
+  - testing
+  - automation
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
