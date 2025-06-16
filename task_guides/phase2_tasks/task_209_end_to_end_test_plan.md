@@ -18,12 +18,14 @@ Verify the complete user flow from Operator-assisted data collection to usable s
 ### 2. Upload to Azure Blob
 **Pre:** Ensure `.env` has correct `AZURE_STORAGE_CONNECTION_STRING`
 
-- ✅ Open `http://localhost:8000/upload?session=test_user`
-- ✅ Upload the saved `.html` or `.pdf` file(s)
-- ✅ Confirm UI shows "Uploaded"
+Run:
+```bash
+python scripts/upload_to_blob.py --session-key test_user --file path/to/file.html --portal strava
+```
 
-**Post:** Confirm log entry is created
-- Check `audit.json` for action `file_upload`
+**Post:** Confirm upload shows in:
+- CLI output ("Uploaded")
+- `/status` or `audit.json`
 
 ### 3. Trigger ETL
 **Option A:** From browser prompt
