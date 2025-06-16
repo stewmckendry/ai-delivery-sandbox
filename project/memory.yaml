@@ -1075,3 +1075,15 @@
   - delivery
   last_updated: '2025-06-13'
   pod_owner: DeliveryPod
+- path: project/docs/phase2_operator_architecture.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/phase2_operator_architecture.md
+  file_type: md
+  description: Document detailing the architecture for phase 2 of an operator-assisted
+    health data collection system using ChatGPT Copilot and OpenAI Operator.
+  tags:
+  - architecture
+  - workflow
+  - data
+  - security
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
