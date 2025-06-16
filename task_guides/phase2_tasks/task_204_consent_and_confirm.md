@@ -3,6 +3,9 @@
 ## 🎯 Goal
 Add a clear user-facing prompt to confirm before processing uploaded files. This ensures consent is explicit and logged before any health data analysis occurs.
 
+## 📂 Context
+This is part of Phase 2 - refer to phase2_operator_architecture.md for overall architecture.  We are replacing the portal scraping with OpenAI Operator to streamline data retrieval.
+
 ## 📂 Target Files
 - `app/api/etl.py` (new)
 - `app/storage/audit.py`

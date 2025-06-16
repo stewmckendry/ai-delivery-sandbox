@@ -3,6 +3,9 @@
 ## 🎯 Goal
 Provide users with visibility into what health data is stored, when it was uploaded, and from which portals.
 
+## 📂 Context
+This is part of Phase 2 - refer to phase2_operator_architecture.md for overall architecture.  We are replacing the portal scraping with OpenAI Operator to streamline data retrieval.
+
 ## 📂 Target Files
 - `app/api/status.py` (new)
 - `app/storage/db.py`

@@ -3,7 +3,7 @@
 ## 🎯 Goal
 Allow users to securely upload files (downloaded from health portals via Operator) to Azure Blob Storage using a user-friendly web interface.
 
-## 📂 Content
+## 📂 Context
 This is part of Phase 2 - refer to phase2_operator_architecture.md for overall architecture.
 
 ## 📂 Target Files

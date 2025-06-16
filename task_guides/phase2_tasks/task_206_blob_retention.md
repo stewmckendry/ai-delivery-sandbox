@@ -3,6 +3,9 @@
 ## 🎯 Goal
 Prevent unbounded storage growth and ensure uploaded files are purged after processing or a defined TTL (time to live).
 
+## 📂 Context
+This is part of Phase 2 - refer to phase2_operator_architecture.md for overall architecture.  We are replacing the portal scraping with OpenAI Operator to streamline data retrieval.
+
 ## 📂 Target Files
 - `app/storage/blob.py`
 - `scripts/cleanup_blobs.py` (new)
