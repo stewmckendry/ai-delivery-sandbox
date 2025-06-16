@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from azure.storage.blob import (
     BlobServiceClient,
@@ -66,6 +66,25 @@ def list_blobs(prefix: str) -> list[str]:
     if not _container:
         raise RuntimeError("Azure blob storage not configured")
     return [b.name for b in _container.list_blobs(name_starts_with=prefix)]
+
+
+def list_blob_info(prefix: str) -> list[dict[str, object]]:
+    """Return metadata for blobs with ``prefix``.
+
+    Each result includes ``name``, ``last_modified`` and ``age_hours``.
+    """
+    if not _container:
+        raise RuntimeError("Azure blob storage not configured")
+
+    info: list[dict[str, object]] = []
+    now = datetime.utcnow().replace(tzinfo=timezone.utc)
+    for b in _container.list_blobs(name_starts_with=prefix):
+        last = getattr(b, "last_modified", now)
+        if last.tzinfo is None:
+            last = last.replace(tzinfo=timezone.utc)
+        age = (now - last).total_seconds() / 3600
+        info.append({"name": b.name, "last_modified": last, "age_hours": age})
+    return info
 
 
 def download_blob(name: str) -> bytes:
