@@ -1492,3 +1492,13 @@
   task_id: phase2_operator_design
   committed_by: GPTPod
   message: Append output file to phase2_operator_design
+- timestamp: '2025-06-16T14:05:14.427595'
+  path: task_guides/phase2_tasks/task_203_etl_from_blob.md
+  task_id: phase2_operator_design
+  committed_by: GPTPod
+  message: 'Add Task 203: extend ETL to ingest uploaded files from Azure Blob'
+- timestamp: '2025-06-16T14:05:14.427595'
+  path: project/memory.yaml
+  task_id: phase2_operator_design
+  committed_by: GPTPod
+  message: Memory update related to task_guides/phase2_tasks/task_203_etl_from_blob.md
