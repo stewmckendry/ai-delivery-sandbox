@@ -35,7 +35,11 @@ def main() -> None:
     url = blob.generate_upload_url(args.session_key, file_path.name)
 
     with file_path.open("rb") as fh:
-        resp = httpx.put(url, data=fh.read())
+        resp = httpx.put(
+            url,
+            data=fh.read(),
+            headers={"x-ms-blob-type": "BlockBlob"}
+        )
     resp.raise_for_status()
 
     blob.record_upload(args.session_key, args.portal, file_path.name)

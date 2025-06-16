@@ -92,5 +92,15 @@
       "labs": 2,
       "visits": 1
     }
+  },
+  {
+    "timestamp": "2025-06-16T20:01:24.831405",
+    "user": "test_user",
+    "action": "file_upload",
+    "context": {
+      "portal": "strava",
+      "filename": "strava_activities.html",
+      "timestamp": "2025-06-16T20:01:24.830260"
+    }
   }
 ]
