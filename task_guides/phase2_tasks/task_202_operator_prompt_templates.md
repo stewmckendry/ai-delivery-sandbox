@@ -3,6 +3,9 @@
 ## 🎯 Goal
 Guide users to gather the right health data from portals via OpenAI Operator using prompt templates.
 
+## 📂 Context
+This is part of Phase 2 - refer to phase2_operator_architecture.md for overall architecture.  We are replacing the portal scraping with OpenAI Operator to streamline data retrieval.
+
 ## 📂 Target Files
 - `project/prompts/operator_templates.md` (new)
 - `project/docs/operator_guidance.md` (new)

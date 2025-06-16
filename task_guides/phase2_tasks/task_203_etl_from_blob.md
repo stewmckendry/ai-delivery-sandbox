@@ -3,6 +3,9 @@
 ## 🎯 Goal
 Extend the current ETL pipeline to ingest and process user-uploaded files from Azure Blob.
 
+## 📂 Context
+This is part of Phase 2 - refer to phase2_operator_architecture.md for overall architecture.  We are replacing the portal scraping with OpenAI Operator to streamline data retrieval.
+
 ## 📂 Target Files
 - `app/orchestrator.py`
 - `app/storage/blob.py`
