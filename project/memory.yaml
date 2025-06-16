@@ -1329,3 +1329,15 @@
   - validation
   last_updated: '2025-06-16'
   pod_owner: QAPod
+- path: task_guides/phase2_tasks/task_210_script_upload_to_blob.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/task_210_script_upload_to_blob.md
+  file_type: md
+  description: Script to automate file uploads to Azure Blob for end-to-end testing
+    and batch processing.
+  tags:
+  - automation
+  - script
+  - upload
+  - testing
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
