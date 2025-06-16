@@ -1807,3 +1807,9 @@
   task_id: phase2_operator_design
   committed_by: GPTPod
   message: Append output file to phase2_operator_design
+- timestamp: '2025-06-16T19:19:46.282587'
+  path: task_guides/phase2_tasks/task_209_end_to_end_test_plan.md
+  task_id: phase2_operator_design
+  committed_by: GPTPod
+  message: 'Update Task 209: use upload_to_blob.py for CLI-based upload during end-to-end
+    testing'
