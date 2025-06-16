@@ -86,6 +86,7 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     types = {r["type"] for r in inserted["records"]}
     assert "lab_file" in types
     assert "visit_file" in types
+    assert all(r["source"] == "operator" for r in inserted["records"])
 
     summary_file = Path("logs/blob_runs/user_session_summary.md")
     assert summary_file.exists()

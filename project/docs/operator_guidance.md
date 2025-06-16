@@ -10,6 +10,10 @@ These notes explain how to use OpenAI Operator with the provided prompt template
 5. Save files using the convention `portal_DATE_type.pdf` (for example `mychart_2024-05-01_visit.pdf`).
 6. After downloading, close the Operator tab or return to the Copilot chat to upload your file.
 
+### Troubleshooting
+- If you hit reCAPTCHA or Cloudflare blocks, save the page as HTML or print to PDF and upload it from `/upload`.
+- Some portals disable direct downloads; use your browser's Save Page As or Print dialog instead.
+
 ## 🔄 Returning to Copilot
 - Operator will remind you to return once the file is saved.
 - Upload the file via the secure link provided in chat.

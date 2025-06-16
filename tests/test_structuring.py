@@ -61,4 +61,6 @@ def test_insert_structured_records():
     saved = session.query(models_module.StructuredRecord).all()
     assert len(saved) == 2
     assert saved[0].text == "hello"
+    assert saved[0].source == "operator"
+    assert hasattr(saved[0], "capture_method")
     session.close()

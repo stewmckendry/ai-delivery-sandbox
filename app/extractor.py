@@ -18,7 +18,10 @@ PROMPT_TEMPLATE = (
 def _clean_html(html: str) -> str:
     """Return visible text from ``html`` using BeautifulSoup."""
     soup = BeautifulSoup(html, "html.parser")
-    return soup.get_text(" ", strip=True)
+    for tag in soup(["script", "style", "noscript"]):
+        tag.decompose()
+    text = soup.get_text(" ", strip=True)
+    return " ".join(text.split())
 
 
 def _chunk_text(text: str, max_chars: int) -> List[str]:
