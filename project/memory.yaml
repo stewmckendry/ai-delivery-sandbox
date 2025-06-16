@@ -1147,3 +1147,15 @@
   - frontend
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_202_operator_prompt_templates_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_202_operator_prompt_templates_report.md
+  file_type: md
+  description: Report on the creation and implementation of reusable prompt templates
+    for standardizing health data collection using OpenAI Operator.
+  tags:
+  - prompt
+  - templates
+  - health data
+  - ETL
+  last_updated: '2025-06-16'
+  pod_owner: DeliveryPod
