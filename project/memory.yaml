@@ -1460,3 +1460,28 @@
   - FastAPI
   last_updated: '2025-06-17'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/reports/task_301_deployment_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_301_deployment_report.md
+  file_type: md
+  description: Report detailing the successful deployment of a FastAPI backend and
+    web client to Railway, including artifacts created, issues encountered and their
+    fixes, and verification of deployment.
+  tags:
+  - deployment
+  - railway
+  - backend
+  - cloud
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_303_railway_e2e_test.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_303_railway_e2e_test.md
+  file_type: md
+  description: Guide for conducting end-to-end testing of a FastAPI application hosted
+    on Railway, including steps for file upload, ETL triggering, and data querying.
+  tags:
+  - testing
+  - FastAPI
+  - Railway
+  - end-to-end
+  last_updated: '2025-06-17'
+  pod_owner: QAPod
