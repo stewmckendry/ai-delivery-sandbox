@@ -21,7 +21,11 @@ def setup_app(monkeypatch, tmp_path):
     monkeypatch.setattr(blob_module, "list_blobs", lambda prefix: [f"{prefix}/a.pdf", f"{prefix}/b.html"])
 
     called = {}
-    monkeypatch.setattr(importlib.import_module("app.orchestrator"), "run_etl_from_blobs", lambda prefix: called.setdefault("prefix", prefix))
+    def fake_run(prefix):
+        called.setdefault("prefix", prefix)
+        return "sum"
+
+    monkeypatch.setattr(importlib.import_module("app.orchestrator"), "run_etl_from_blobs", fake_run)
 
     etl_module = importlib.reload(importlib.import_module("app.api.etl"))
     app = FastAPI()
@@ -47,7 +51,9 @@ def test_process_route(monkeypatch, tmp_path):
 
     resp = client.post("/process", data={"session_key": "sess"})
     assert resp.status_code == 200
-    assert resp.json()["status"] == "processing complete"
+    body = resp.json()
+    assert body["status"] == "processing complete"
+    assert body["summary"] == "sum"
     assert called["prefix"] == "sess"
 
     logs = json.loads(log_file.read_text())

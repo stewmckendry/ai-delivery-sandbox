@@ -64,7 +64,7 @@ def main() -> None:
     }
 
     try:
-        run_etl_for_portal(args.portal)
+        etl_summary = run_etl_for_portal(args.portal)
         summary["success"] = True
     except Exception as exc:  # noqa: BLE001
         summary["success"] = False
@@ -76,30 +76,10 @@ def main() -> None:
     summary["end_time"] = end.isoformat()
     summary["duration_seconds"] = (end - start).total_seconds()
 
-    log_dir = ROOT_DIR / "logs" / "portal_runs"
-    log_dir.mkdir(parents=True, exist_ok=True)
-    ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    log_path = log_dir / f"{args.portal}_{ts}.json"
-
-    # Copy any challenge screenshots to the log directory
-    screenshots = list(Path("/tmp").glob("challenge_*.png"))
-    copied = []
-    for sc in screenshots:
-        if sc.stat().st_mtime < start.timestamp():
-            continue
-        dest = log_dir / sc.name
-        try:
-            shutil.copy(sc, dest)
-            copied.append(dest.name)
-        except Exception:
-            continue
-    if copied:
-        summary["screenshots"] = copied
-
-    with log_path.open("w", encoding="utf-8") as fh:
-        json.dump(summary, fh, indent=2)
-
-    print(f"Run complete. Log saved to {log_path}")
+    print("Run complete. Summary:\n")
+    print(json.dumps(summary, indent=2))
+    if summary.get("success"):
+        print(etl_summary)
 
 
 if __name__ == "__main__":

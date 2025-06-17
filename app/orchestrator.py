@@ -105,8 +105,11 @@ def _extract_file_paths(result):
     return paths
 
 
-def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
-    """Run scraping, parsing and DB insertion for ``portal_name``."""
+def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> str:
+    """Run scraping, parsing and DB insertion for ``portal_name``.
+
+    Returns a markdown summary of all extracted records.
+    """
     user = user_id or os.getenv("ETL_USER", "system")
     log_event(
         user,
@@ -265,13 +268,9 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
                 )
                 insert_structured_records(session, final_records, session_key=user)
 
-            # Summarize all structured data for quick preview
+            summary = ""
             try:
                 summary = summarize_database_records(session)
-                log_dir = Path("logs") / "portal_runs"
-                log_dir.mkdir(parents=True, exist_ok=True)
-                summary_path = log_dir / f"{portal_name}_summary.md"
-                summary_path.write_text(summary, encoding="utf-8")
                 logger.info(summary)
             except Exception as exc:  # noqa: BLE001
                 logger.error("[etl] Failed to generate summary: %s", exc)
@@ -280,6 +279,7 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
     finally:
         session.close()
         logger.info("[etl] ETL complete for session %s", user)
+    return summary
 
 
 def _pdf_to_text(path: str | Path) -> str:
@@ -293,8 +293,8 @@ def _pdf_to_text(path: str | Path) -> str:
     return text
 
 
-def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
-    """Process files uploaded to Azure Blob under ``prefix``."""
+def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
+    """Process files uploaded to Azure Blob under ``prefix`` and return summary."""
 
     user = user_id or os.getenv("ETL_USER", "system")
     logger.info("[etl] Starting blob pipeline for %s", prefix)
@@ -375,18 +375,14 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
             )
             insert_structured_records(session, final_records, session_key=prefix)
 
+        summary = ""
         if final_records:
             try:
                 summary = summarize_database_records(session)
-                log_dir = Path("logs") / "blob_runs"
-                log_dir.mkdir(parents=True, exist_ok=True)
-                safe = prefix.replace("/", "_")
-                summary_path = log_dir / f"{safe}_summary.md"
-                summary_path.write_text(summary, encoding="utf-8")
                 logger.info(summary)
             except Exception as exc:  # noqa: BLE001
                 logger.error("[etl] Failed to generate summary: %s", exc)
     finally:
         session.close()
         logger.info("[etl] ETL complete for session %s", prefix)
-
+    return summary

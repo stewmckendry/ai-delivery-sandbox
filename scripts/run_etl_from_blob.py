@@ -24,13 +24,15 @@ def main() -> None:
 
     start = datetime.utcnow()
     try:
-        run_etl_from_blobs(args.prefix)
+        summary = run_etl_from_blobs(args.prefix)
         success = True
     except Exception as exc:  # noqa: BLE001
         print(f"ERROR: {exc}")
         success = False
     end = datetime.utcnow()
     print(f"Finished in {(end - start).total_seconds():.1f}s - success={success}")
+    if success:
+        print(summary)
 
 
 if __name__ == "__main__":
