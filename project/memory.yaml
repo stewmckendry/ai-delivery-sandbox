@@ -14,7 +14,8 @@
 - path: docs/openapi.json
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/docs/openapi.json
   file_type: json
-  description: OpenAPI specification for the MyHealth Copilot backend including upload, process, ask, export, and summary endpoints.
+  description: OpenAPI specification for the MyHealth Copilot backend including upload,
+    process, ask, export, and summary endpoints.
   tags:
   - api
   - openapi
@@ -1452,7 +1453,8 @@
 - path: docs/custom_gpt_setup.md
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/docs/custom_gpt_setup.md
   file_type: md
-  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a Custom GPT linked to the FastAPI backend.
+  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a
+    Custom GPT linked to the FastAPI backend.
   tags:
   - setup
   - gpt
@@ -1485,3 +1487,16 @@
   - end-to-end
   last_updated: '2025-06-17'
   pod_owner: QAPod
+- path: task_guides/phase3_tasks/reports/task_302_custom_gpt_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_302_custom_gpt_report.md
+  file_type: md
+  description: Report on the completion of the Custom GPT setup with API integration
+    for MyHealth Copilot, detailing artifacts created, challenges faced, and verification
+    outcomes.
+  tags:
+  - setup
+  - API
+  - integration
+  - report
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
