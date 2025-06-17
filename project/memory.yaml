@@ -1414,3 +1414,15 @@
   - summary
   last_updated: '2025-06-17'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_301_railway_deployment_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_301_railway_deployment_plan.md
+  file_type: md
+  description: Instruction guide for deploying a FastAPI backend and web client on
+    Railway, including setup commands, environment variables, and testing procedures.
+  tags:
+  - deployment
+  - guide
+  - FastAPI
+  - Railway
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
