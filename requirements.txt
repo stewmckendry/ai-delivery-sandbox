@@ -21,3 +21,5 @@ fakeredis
 markdown2
 reportlab
 azure-storage-blob==12.19.0
+pyodbc
+
