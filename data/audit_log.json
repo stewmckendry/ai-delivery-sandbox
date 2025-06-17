@@ -228,5 +228,99 @@
     "context": {
       "prefix": "test_user"
     }
+  },
+  {
+    "timestamp": "2025-06-17T01:25:41.872337",
+    "user": "test_user",
+    "action": "file_upload",
+    "context": {
+      "portal": "strava",
+      "filename": "strava_activities.html",
+      "timestamp": "2025-06-17T01:25:41.870870"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:26:05.593683",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-17T01:26:05.593567"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:26:05.725963",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:27:18.007241",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-17T01:27:18.006986"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:27:18.106099",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:27:27.892393",
+    "user": "test_user",
+    "action": "file_upload",
+    "context": {
+      "portal": "strava",
+      "filename": "strava_activities.html",
+      "timestamp": "2025-06-17T01:27:27.891937"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:27:31.676222",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-17T01:27:31.676064"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:27:31.676998",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:40:49.696853",
+    "user": "test_user",
+    "action": "file_upload",
+    "context": {
+      "portal": "strava",
+      "filename": "strava_activities.html",
+      "timestamp": "2025-06-17T01:40:49.695726"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:40:52.408992",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-17T01:40:52.408876"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T01:40:52.518738",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
   }
 ]

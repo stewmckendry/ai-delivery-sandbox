@@ -6,9 +6,13 @@
 - 2023-06-01 General Hospital Dr. Jones: Routine check
 
 ## Structured Records
-- [visit_note] Activities for Stewart McKendry on Mon, 6/16/2025 - Morning Ride - 1:00:52 - 26.31 km (test_user/strava_activities.html)
-- [visit_note] Activities for Stewart McKendry on Sun, 6/15/2025 - Morning Run - 1:57:44 - 24.81 km (test_user/strava_activities.html)
-- [visit_note] Activities for Stewart McKendry on Sat, 6/14/2025 - Morning Run - 1:20:01 - 16.09 km (test_user/strava_activities.html)
+- [visit_note] Date: Mon, 6/16/2025 Distance: 26.31 Time: 1:00:52 Elevation: 0 (test_user/strava_activities.html)
+- [visit_note] Date: Sun, 6/15/2025 Distance: 24.81 Time: 1:57:44 Elevation: 110 (test_user/strava_activities.html)
+- [visit_note] Date: Sat, 6/14/2025 Distance: 16.09 Time: 1:20:01 Elevation: 67 (test_user/strava_activities.html)
+- [visit_note] Date: Fri, 6/13/2025 Distance: 29.09 Time: 1:04:18 Elevation: 0 (test_user/strava_activities.html)
+- [visit_note] Total Output: 1,456.8 kJ Privacy Controls Everyone Followers Only You Details Date: Thu, 6/12/2025 Distance: 15.05 Time: 1:11:23 Elevation: 0 (test_user/strava_activities.html)
+- [visit_note] Date: Wed, 6/11/2025 Distance: 14.32 Time: 1:13:08 Elevation: 0 (test_user/strava_activities.html)
+- [visit_note] Date: Tue, 6/10/2025 Distance: 11.17 Time: 55:30 Elevation: 0 (test_user/strava_activities.html)
 - [visit_note] Date: Mon, 6/9/2025 Distance: 24.60 Time: 1:56:42 Elevation: 109 (test_user/strava_activities.html)
 - [visit_note] Date: Sat, 6/7/2025 Distance: 15.91 Time: 1:20:06 Elevation: 79 (test_user/strava_activities.html)
 - [visit_note] Date: Fri, 6/6/2025 Distance: 28.11 Time: 1:02:00 Elevation: 0 (test_user/strava_activities.html)
