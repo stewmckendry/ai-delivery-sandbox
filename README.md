@@ -56,5 +56,10 @@ data/audit_log.json
 
 ---
 
+## 🚀 Deployment
+See [`project/docs/railway_deployment_guide.md`](project/docs/railway_deployment_guide.md) for instructions to deploy the FastAPI backend and web client on Railway.
+
+---
+
 ## ✅ Status
 Core functionality implemented. Ready for structured tests and real portal adapters.
