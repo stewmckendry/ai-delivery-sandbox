@@ -56,11 +56,12 @@ def test_insert_structured_records():
         {"portal": "portal_a", "type": "visit", "text": "hello", "source_url": "url1"},
         {"portal": "portal_a", "type": "lab", "text": "bye", "source_url": "url2"},
     ]
-    insert_structured_records(session, records)
+    insert_structured_records(session, records, session_key="sess")
 
     saved = session.query(models_module.StructuredRecord).all()
     assert len(saved) == 2
     assert saved[0].text == "hello"
     assert saved[0].source == "operator"
+    assert saved[0].session_key == "sess"
     assert hasattr(saved[0], "capture_method")
     session.close()

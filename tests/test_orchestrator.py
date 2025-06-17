@@ -70,7 +70,11 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     structured = {"records": None}
     monkeypatch.setattr(struct_module, "insert_lab_results", fake_insert_labs)
     monkeypatch.setattr(struct_module, "insert_visit_summaries", fake_insert_visits)
-    monkeypatch.setattr(structured_module, "insert_structured_records", lambda s, r: structured.update({"records": r}))
+    monkeypatch.setattr(
+        structured_module,
+        "insert_structured_records",
+        lambda s, r, session_key=None: structured.update({"records": r, "session": session_key})
+    )
 
     # Mock AI modules
     import app.crawler as crawler_module
@@ -197,7 +201,7 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
 
     monkeypatch.setattr(struct_module, "insert_lab_results", lambda s, r: None)
     monkeypatch.setattr(struct_module, "insert_visit_summaries", lambda s, r: None)
-    monkeypatch.setattr(structured_module, "insert_structured_records", lambda s, r: None)
+    monkeypatch.setattr(structured_module, "insert_structured_records", lambda s, r, session_key=None: None)
 
     import app.crawler as crawler_module
     import app.extractor as extractor_module

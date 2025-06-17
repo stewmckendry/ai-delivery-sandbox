@@ -62,7 +62,7 @@ def test_ask_endpoint(monkeypatch):
     ]
 
     client, path = setup_app(labs, visits, monkeypatch)
-    resp = client.post("/ask", json={"query": "How am I doing?"})
+    resp = client.post("/ask", json={"query": "How am I doing?", "session_key": "sess"})
     assert resp.status_code == 200
     assert resp.json() == {"answer": "Mock answer"}
     os.unlink(path)

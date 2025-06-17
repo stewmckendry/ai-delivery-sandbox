@@ -40,6 +40,7 @@ def _setup_db(tmp_path: Path, monkeypatch) -> Path:
             type="note",
             text="Some note",
             source_url="url",
+            session_key="sess",
         )
     )
     session.commit()
@@ -64,7 +65,7 @@ def test_ask_tool_cli(tmp_path, monkeypatch, capsys, caplog):
     monkeypatch.setattr(
         sys,
         "argv",
-        ["ask_tool.py", "--db", str(db), "--query", "How am I doing?"],
+        ["ask_tool.py", "--db", str(db), "--session", "sess", "--query", "How am I doing?"],
     )
     with caplog.at_level("INFO"):
         ask_tool.main()

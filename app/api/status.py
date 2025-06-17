@@ -45,7 +45,11 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
     try:
         labs = session.query(models.LabResult).count()
         visits = session.query(models.VisitSummary).count()
-        structured = session.query(models.StructuredRecord).count()
+        structured = (
+            session.query(models.StructuredRecord)
+            .filter(models.StructuredRecord.session_key == session_key)
+            .count()
+        )
         latest_times = []
         lab_last = (
             session.query(models.LabResult)
@@ -63,6 +67,7 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
             latest_times.append(visit_last.date.isoformat())
         struct_last = (
             session.query(models.StructuredRecord)
+            .filter(models.StructuredRecord.session_key == session_key)
             .order_by(models.StructuredRecord.date_created.desc())
             .first()
         )

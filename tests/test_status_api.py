@@ -48,7 +48,7 @@ def setup_app(monkeypatch, tmp_path):
     )
     session.add(
         models_module.StructuredRecord(
-            portal="portal1", type="note", text="note", source_url="src"
+            portal="portal1", type="note", text="note", source_url="src", session_key="sess"
         )
     )
     session.commit()

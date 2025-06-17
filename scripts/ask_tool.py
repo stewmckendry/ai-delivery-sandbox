@@ -47,7 +47,7 @@ def _init_session(db_path: str):
     return db_module.SessionLocal(), models_module
 
 
-def _fetch_recent_records(session, models_module):
+def _fetch_recent_records(session, models_module, session_key: str | None = None):
     """Return recent lab, visit and structured records."""
     labs = (
         session.query(models_module.LabResult)
@@ -62,9 +62,11 @@ def _fetch_recent_records(session, models_module):
         .all()
     )
     try:
+        query = session.query(models_module.StructuredRecord)
+        if session_key is not None:
+            query = query.filter(models_module.StructuredRecord.session_key == session_key)
         structured = (
-            session.query(models_module.StructuredRecord)
-            .order_by(models_module.StructuredRecord.id.desc())
+            query.order_by(models_module.StructuredRecord.id.desc())
             .limit(5)
             .all()
         )
@@ -94,10 +96,10 @@ def _records_to_context(labs, visits, structured) -> str:
     return "\n".join(lines)
 
 
-def ask(db: str, query: str) -> tuple[str, dict]:
+def ask(db: str, query: str, session_key: str | None = None) -> tuple[str, dict]:
     """Return answer and record counts for ``query`` using ``db``."""
     session, models_module = _init_session(db)
-    labs, visits, structured = _fetch_recent_records(session, models_module)
+    labs, visits, structured = _fetch_recent_records(session, models_module, session_key)
     session.close()
 
     logger.info("Running query: %s", query)
@@ -121,9 +123,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Ask questions about stored records")
     parser.add_argument("--query", required=True, help="User question")
     parser.add_argument("--db", default="health_data.db", help="SQLite DB path")
+    parser.add_argument("--session", default=None, help="Session key to filter records")
     args = parser.parse_args()
 
-    answer, meta = ask(args.db, args.query)
+    answer, meta = ask(args.db, args.query, session_key=args.session)
     logger.info(answer)
     logger.info(
         "Context size: %d labs, %d visits, %d structured records",
