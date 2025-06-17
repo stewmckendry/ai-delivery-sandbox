@@ -1390,3 +1390,15 @@
   - LLM
   last_updated: '2025-06-16'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_211_structured_session_filter_and_log_cleanup_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_211_structured_session_filter_and_log_cleanup_report.md
+  file_type: md
+  description: Report on implementing session-based filtering and log cleanup for
+    structured records, enhancing multi-user data handling and simplifying ETL logs.
+  tags:
+  - ETL
+  - session
+  - logs
+  - SQL
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
