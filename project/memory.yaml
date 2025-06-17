@@ -1441,7 +1441,7 @@
 - path: docs/custom_gpt_setup.md
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/docs/custom_gpt_setup.md
   file_type: md
-  description: Step-by-step guide for Stewart to set up the Health Records Copilot as a Custom GPT linked to the FastAPI backend.
+  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a Custom GPT linked to the FastAPI backend.
   tags:
   - setup
   - gpt
