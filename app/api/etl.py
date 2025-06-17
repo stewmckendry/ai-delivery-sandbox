@@ -4,7 +4,6 @@ from datetime import datetime
 import os
 
 from fastapi import APIRouter, Form, Query
-from fastapi.responses import JSONResponse
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from app.storage import blob, audit
@@ -50,8 +49,9 @@ def process_files(session_key: str = Form(...)) -> JSONResponse:
     audit.log_event(session_key, "consent_given", {"timestamp": datetime.utcnow().isoformat()})
     if not _dry_run():
         from app.orchestrator import run_etl_from_blobs
-        run_etl_from_blobs(session_key)
+        summary = run_etl_from_blobs(session_key)
         status = "processing complete"
     else:
         status = "dry-run"
-    return JSONResponse({"status": status})
+        summary = ""
+    return JSONResponse({"status": status, "summary": summary})

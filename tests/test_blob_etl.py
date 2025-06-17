@@ -84,7 +84,7 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     from app.orchestrator import run_etl_from_blobs
 
     caplog.set_level(logging.INFO)
-    run_etl_from_blobs(prefix)
+    summary = run_etl_from_blobs(prefix)
 
     assert inserted["records"] and len(inserted["records"]) == 3
     assert inserted["session"] == prefix
@@ -94,7 +94,7 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     assert all(r["source"] == "operator" for r in inserted["records"])
 
     summary_file = Path("logs/blob_runs/user_session_summary.md")
-    assert summary_file.exists()
-    assert "Blob summary" in summary_file.read_text()
+    assert not summary_file.exists()
+    assert summary == "Blob summary"
 
     importlib.reload(orch_module)

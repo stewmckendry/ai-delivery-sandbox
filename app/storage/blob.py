@@ -11,6 +11,7 @@ from azure.storage.blob import (
 from azure.storage.blob._shared.base_client import parse_connection_str
 
 from . import audit
+import json
 
 # Load environment variables from .env if present
 from dotenv import load_dotenv
@@ -57,12 +58,26 @@ def generate_upload_url(session_key: str, filename: str, ttl_minutes: int = 15) 
 
 
 def record_upload(session_key: str, portal: str, filename: str) -> None:
-    """Log upload metadata to audit log."""
-    audit.log_event(
-        session_key,
-        "file_upload",
-        {"portal": portal, "filename": filename, "timestamp": datetime.utcnow().isoformat()},
-    )
+    """Log upload metadata to ``audit/<session_key>.json`` in blob storage."""
+    entry = {
+        "session_key": session_key,
+        "filename": filename,
+        "portal": portal,
+        "timestamp": datetime.utcnow().isoformat(),
+    }
+
+    if _container:
+        blob_name = f"audit/{session_key}.json"
+        client = _container.get_blob_client(blob_name)
+        try:
+            existing = json.loads(client.download_blob().readall().decode("utf-8"))
+        except Exception:  # noqa: BLE001
+            existing = []
+        existing.append(entry)
+        client.upload_blob(json.dumps(existing), overwrite=True)
+    else:
+        # Fallback to local audit log when blob storage not configured
+        audit.log_event(session_key, "file_upload", entry)
 
 
 def list_blobs(prefix: str) -> list[str]:

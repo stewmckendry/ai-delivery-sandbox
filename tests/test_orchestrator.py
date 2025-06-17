@@ -103,7 +103,7 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     from app.orchestrator import run_etl_for_portal
 
     caplog.set_level(logging.INFO)
-    run_etl_for_portal("portal_a")
+    summary = run_etl_for_portal("portal_a")
 
     assert deleted["called"] is True
 
@@ -117,8 +117,8 @@ def test_run_etl_for_portal(monkeypatch, tmp_path, caplog):
     assert rec["source"] == "operator"
 
     summary_file = Path("logs/portal_runs/portal_a_summary.md")
-    assert summary_file.exists()
-    assert "Run summary" in summary_file.read_text()
+    assert not summary_file.exists()
+    assert summary == "Run summary"
 
 
 def test_pdf_to_text_empty(monkeypatch, tmp_path, caplog):
@@ -219,11 +219,11 @@ def test_orchestrator_handles_challenge(monkeypatch, tmp_path, caplog):
     from app.orchestrator import run_etl_for_portal
 
     caplog.set_level(logging.INFO)
-    run_etl_for_portal("portal_a")
+    summary = run_etl_for_portal("portal_a")
 
     logs = caplog.text
     assert "Waiting for challenge cid" in logs
     assert "Resuming challenge cid" in logs
     summary_file = Path("logs/portal_runs/portal_a_summary.md")
-    assert summary_file.exists()
-    assert "Run summary" in summary_file.read_text()
+    assert not summary_file.exists()
+    assert summary == "Run summary"
