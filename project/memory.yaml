@@ -1500,3 +1500,15 @@
   - report
   last_updated: '2025-06-17'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_304_gpt_e2e_test.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_304_gpt_e2e_test.md
+  file_type: md
+  description: Guide for conducting end-to-end testing of the MyHealth Copilot GPT
+    assistant, focusing on interaction flows and API integration.
+  tags:
+  - testing
+  - flow
+  - GPT
+  - API
+  last_updated: '2025-06-17'
+  pod_owner: QAPod
