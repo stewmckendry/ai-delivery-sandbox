@@ -1958,6 +1958,11 @@
   task_id: phase3_cloud_and_gpt_setup
   committed_by: GPTPod
   message: Track docs/openapi.json in project memory
+- timestamp: '2025-06-17T18:38:17Z'
+  path: docs/openapi.json
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Fix schema details and remove internal upload endpoints
 - timestamp: '2025-06-17T18:17:11.475116'
   path: task_guides/phase3_tasks/reports/task_301_deployment_report.md
   task_id: phase3_cloud_and_gpt_setup

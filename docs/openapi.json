@@ -19,6 +19,115 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       }
+    },
+    "schemas": {
+      "ProcessStatus": {
+        "type": "object",
+        "properties": {
+          "status": {"type": "string"}
+        },
+        "required": ["status"]
+      },
+      "Answer": {
+        "type": "object",
+        "properties": {
+          "answer": {"type": "string"}
+        },
+        "required": ["answer"]
+      },
+      "ExportData": {
+        "type": "object",
+        "properties": {
+          "lab_results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "test_name": {"type": "string"},
+                "value": {"type": "number"},
+                "units": {"type": "string"},
+                "date": {"type": "string", "format": "date"}
+              },
+              "required": ["test_name", "value", "units", "date"]
+            }
+          },
+          "visit_summaries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "provider": {"type": "string"},
+                "doctor": {"type": "string"},
+                "notes": {"type": "string"},
+                "date": {"type": "string", "format": "date"}
+              },
+              "required": ["provider", "doctor", "notes", "date"]
+            }
+          },
+          "structured_records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "portal": {"type": "string"},
+                "type": {"type": "string"},
+                "text": {"type": "string"},
+                "source_url": {"type": "string"},
+                "date_created": {"type": "string", "format": "date-time"}
+              },
+              "required": ["portal", "type", "text", "date_created"]
+            }
+          }
+        }
+      },
+      "Summary": {
+        "type": "object",
+        "properties": {
+          "uploads": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {"type": "string"},
+                "portal": {"type": "string"},
+                "timestamp": {"type": "string"}
+              }
+            }
+          },
+          "record_counts": {
+            "type": "object",
+            "properties": {
+              "labs": {"type": "integer"},
+              "visits": {"type": "integer"},
+              "structured": {"type": "integer"}
+            }
+          },
+          "latest_upload": {"type": ["string", "null"]},
+          "latest_processing": {"type": ["string", "null"]},
+          "latest_record_dates": {
+            "type": "object",
+            "properties": {
+              "labs": {"type": ["string", "null"]},
+              "visits": {"type": ["string", "null"]},
+              "structured": {"type": ["string", "null"]}
+            }
+          },
+          "structured_records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "portal": {"type": "string"},
+                "type": {"type": "string"},
+                "source_url": {"type": "string"},
+                "timestamp": {"type": "string"},
+                "duplicate": {"type": "boolean"}
+              }
+            }
+          },
+          "message": {"type": "string"}
+        }
+      }
     }
   },
   "paths": {
@@ -28,73 +137,7 @@
         "summary": "Return HTML form for uploading files",
         "tags": ["Upload"],
         "responses": {
-          "200": {
-            "description": "HTML form page",
-            "content": {"text/html": {}}
-          }
-        }
-      }
-    },
-    "/upload/sas": {
-      "get": {
-        "operationId": "generateUploadUrl",
-        "summary": "Generate SAS URL for uploading a file",
-        "tags": ["Upload"],
-        "parameters": [
-          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}},
-          {"name": "filename", "in": "query", "required": true, "schema": {"type": "string"}}
-        ],
-        "responses": {
-          "200": {
-            "description": "Upload URL",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "url": {"type": "string"}
-                  },
-                  "required": ["url"]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/upload/log": {
-      "post": {
-        "operationId": "logUpload",
-        "summary": "Record metadata about an uploaded file",
-        "tags": ["Upload"],
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "session_key": {"type": "string"},
-                  "portal": {"type": "string"},
-                  "filename": {"type": "string"}
-                },
-                "required": ["session_key"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Confirmation of log entry",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {"type": "string"}
-                  }
-                }
-              }
-            }
+          "200": {"description": "HTML form page", "content": {"text/html": {}}}
           }
         }
       }
@@ -118,10 +161,7 @@
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {"session_key": {"type": "string"}},
-                "required": ["session_key"]
+              "schema": {"type": "object", "properties": {"session_key": {"type": "string"}}, "required": ["session_key"]}
               }
             }
           }
@@ -129,14 +169,7 @@
         "responses": {
           "200": {
             "description": "Status after processing",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {"status": {"type": "string"}}
-                }
-              }
-            }
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ProcessStatus"}}}
           }
         }
       }
@@ -149,28 +182,12 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {"type": "string"},
-                  "session_key": {"type": "string"}
-                },
-                "required": ["query", "session_key"]
-              }
+              "schema": {"type": "object", "properties": {"query": {"type": "string"}, "session_key": {"type": "string"}}, "required": ["query", "session_key"]}
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Answer text",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {"answer": {"type": "string"}}
-                }
-              }
-            }
+          "200": {"description": "Answer text", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Answer"}}}}
           }
         }
       }
@@ -188,12 +205,7 @@
           "200": {
             "description": "Exported records",
             "content": {
-              "application/json": {
-                "schema": {"type": "object"}
-              },
-              "text/markdown": {"schema": {"type": "string"}},
-              "application/pdf": {"schema": {"type": "string", "format": "binary"}}
-            }
+              "application/json": {"schema": {"$ref": "#/components/schemas/ExportData"}},
           }
         }
       }
@@ -207,14 +219,7 @@
           {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
         ],
         "responses": {
-          "200": {
-            "description": "Summary information",
-            "content": {
-              "application/json": {
-                "schema": {"type": "object"}
-              }
-            }
-          }
+          "200": {"description": "Summary information", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Summary"}}}}
         }
       }
     }
