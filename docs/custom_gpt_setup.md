@@ -7,7 +7,7 @@ This walkthrough explains how to create and configure a private GPT assistant th
 ## 1. Create the GPT
 1. Go to <https://platform.openai.com/gpts> and select **Create New GPT**.
 2. Enter the basic configuration:
-   - **Title**: `Health Records Copilot`
+   - **Title**: `MyHealth Copilot`
    - **Description**: `A private GPT assistant that helps users understand and summarize their health data from multiple portals.`
    - **Conversation Starters**:
      - "Help me upload my health documents"
