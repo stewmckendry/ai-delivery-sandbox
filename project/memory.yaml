@@ -1402,3 +1402,15 @@
   - SQL
   last_updated: '2025-06-17'
   pod_owner: DeliveryPod
+- path: task_guides/phase2_tasks/reports/task_212_summary_dedup_and_metadata_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase2_tasks/reports/task_212_summary_dedup_and_metadata_report.md
+  file_type: md
+  description: Report on enhancements to the summary deduplication and metadata enrichment
+    process, including session-awareness and improved traceability.
+  tags:
+  - deduplication
+  - metadata
+  - session
+  - summary
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
