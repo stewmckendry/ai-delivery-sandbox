@@ -1,0 +1,222 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MyHealth Copilot API",
+    "version": "1.0.0",
+    "description": "Endpoints used by the MyHealth Copilot GPT to process and answer questions about health records"
+  },
+  "servers": [
+    {
+      "url": "https://ai-delivery-sandbox-production-d1a7.up.railway.app",
+      "description": "Production server"
+    }
+  ],
+  "security": [{"bearerAuth": []}],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/upload": {
+      "get": {
+        "operationId": "serveUploadForm",
+        "summary": "Return HTML form for uploading files",
+        "tags": ["Upload"],
+        "responses": {
+          "200": {
+            "description": "HTML form page",
+            "content": {"text/html": {}}
+          }
+        }
+      }
+    },
+    "/upload/sas": {
+      "get": {
+        "operationId": "generateUploadUrl",
+        "summary": "Generate SAS URL for uploading a file",
+        "tags": ["Upload"],
+        "parameters": [
+          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}},
+          {"name": "filename", "in": "query", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Upload URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {"type": "string"}
+                  },
+                  "required": ["url"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload/log": {
+      "post": {
+        "operationId": "logUpload",
+        "summary": "Record metadata about an uploaded file",
+        "tags": ["Upload"],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_key": {"type": "string"},
+                  "portal": {"type": "string"},
+                  "filename": {"type": "string"}
+                },
+                "required": ["session_key"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmation of log entry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/process": {
+      "get": {
+        "operationId": "confirmProcess",
+        "summary": "Return confirmation form before running ETL",
+        "tags": ["Process"],
+        "parameters": [
+          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {"description": "HTML confirmation page", "content": {"text/html": {}}}
+        }
+      },
+      "post": {
+        "operationId": "processFiles",
+        "summary": "Run ETL on uploaded files",
+        "tags": ["Process"],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {"session_key": {"type": "string"}},
+                "required": ["session_key"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Status after processing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"status": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ask": {
+      "post": {
+        "operationId": "askQuestion",
+        "summary": "Answer a health-related question",
+        "tags": ["Query"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {"type": "string"},
+                  "session_key": {"type": "string"}
+                },
+                "required": ["query", "session_key"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"answer": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/export": {
+      "get": {
+        "operationId": "exportRecords",
+        "summary": "Export structured records",
+        "tags": ["Export"],
+        "parameters": [
+          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}},
+          {"name": "format", "in": "query", "required": false, "schema": {"type": "string", "enum": ["json", "markdown", "pdf"], "default": "json"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Exported records",
+            "content": {
+              "application/json": {
+                "schema": {"type": "object"}
+              },
+              "text/markdown": {"schema": {"type": "string"}},
+              "application/pdf": {"schema": {"type": "string", "format": "binary"}}
+            }
+          }
+        }
+      }
+    },
+    "/summary": {
+      "get": {
+        "operationId": "getSummary",
+        "summary": "Summarize uploaded and processed records",
+        "tags": ["Summary"],
+        "parameters": [
+          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Summary information",
+            "content": {
+              "application/json": {
+                "schema": {"type": "object"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
