@@ -348,5 +348,21 @@
     "context": {
       "prefix": "test_user"
     }
+  },
+  {
+    "timestamp": "2025-06-17T20:48:23.355308",
+    "user": "test_user",
+    "action": "consent_given",
+    "context": {
+      "timestamp": "2025-06-17T20:48:23.354793"
+    }
+  },
+  {
+    "timestamp": "2025-06-17T20:48:23.511496",
+    "user": "system",
+    "action": "blob_fetch",
+    "context": {
+      "prefix": "test_user"
+    }
   }
 ]
