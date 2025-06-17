@@ -44,11 +44,20 @@ curl -X POST https://ai-delivery-sandbox-production-d1a7.up.railway.app/ask \
 ```
 - ✅ Response includes extracted record content
 
-### 5. Export (optional)
+### 5. Export Data via API
+Markdown:
 ```bash
-python scripts/export_records.py --db health_data.db --format markdown --output out.md
+curl "https://ai-delivery-sandbox-production-d1a7.up.railway.app/export?session_key=test_user&format=markdown"
 ```
-- ✅ Output reflects uploaded file content
+JSON:
+```bash
+curl "https://ai-delivery-sandbox-production-d1a7.up.railway.app/export?session_key=test_user&format=json"
+```
+PDF:
+```bash
+curl -o records.pdf "https://ai-delivery-sandbox-production-d1a7.up.railway.app/export?session_key=test_user&format=pdf"
+```
+- ✅ Outputs match uploaded file and extracted data
 
 ### 6. Check Status
 ```bash
@@ -59,11 +68,6 @@ curl https://ai-delivery-sandbox-production-d1a7.up.railway.app/summary?session_
 ---
 
 ## ✅ Done When
-- `/upload`, `/process`, `/ask`, and `/summary` work on Railway
-- Structured content matches uploaded file
-- Output from `/ask` and `/summary` reflects successful ETL
-
-Please include:
-- What file was used
-- Outputs from `/ask` and `/summary`
-- Any issues found (upload failure, missing fields, etc.)
+- `/upload`, `/process`, `/ask`, `/export`, and `/summary` all work via Railway
+- Responses reflect uploaded file content
+- Agent provides sample output and issues if any
