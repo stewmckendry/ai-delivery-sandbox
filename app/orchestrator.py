@@ -171,10 +171,10 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
         )
         if labs_all:
             logger.info("[etl] Inserting %d lab results", len(labs_all))
-            insert_lab_results(session, labs_all)
+            insert_lab_results(session, labs_all, session_key=user)
         if visits_all:
             logger.info("[etl] Inserting %d visit summaries", len(visits_all))
-            insert_visit_summaries(session, visits_all)
+            insert_visit_summaries(session, visits_all, session_key=user)
         if labs_all or visits_all:
             log_event(
                 user,

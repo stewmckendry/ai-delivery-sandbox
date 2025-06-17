@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, Float, Date, Text, DateTime
+from sqlalchemy import Column, Integer, String, Float, Date, Text, DateTime, Boolean
 
 from .db import Base, engine
 
@@ -15,6 +15,7 @@ class LabResult(Base):
     value = Column(Float, nullable=False)
     units = Column(String, nullable=False)
     date = Column(Date, nullable=False)
+    session_key = Column(String, index=True, default="")
 
 
 class VisitSummary(Base):
@@ -27,6 +28,7 @@ class VisitSummary(Base):
     doctor = Column(String, nullable=False)
     notes = Column(String, nullable=False)
     date = Column(Date, nullable=False)
+    session_key = Column(String, index=True, default="")
 
 
 class StructuredRecord(Base):
@@ -40,6 +42,7 @@ class StructuredRecord(Base):
     text = Column(Text)
     source_url = Column(String)
     session_key = Column(String, index=True)
+    is_duplicate = Column(Boolean, default=False)
     source = Column(String, default="operator")
     capture_method = Column(String, default="")
     user_notes = Column(String, default="")

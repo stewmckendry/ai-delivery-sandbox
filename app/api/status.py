@@ -43,8 +43,16 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
     init_db()
     session = SessionLocal()
     try:
-        labs = session.query(models.LabResult).count()
-        visits = session.query(models.VisitSummary).count()
+        labs = (
+            session.query(models.LabResult)
+            .filter(models.LabResult.session_key == session_key)
+            .count()
+        )
+        visits = (
+            session.query(models.VisitSummary)
+            .filter(models.VisitSummary.session_key == session_key)
+            .count()
+        )
         structured = (
             session.query(models.StructuredRecord)
             .filter(models.StructuredRecord.session_key == session_key)
@@ -53,26 +61,33 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
         latest_times = []
         lab_last = (
             session.query(models.LabResult)
+            .filter(models.LabResult.session_key == session_key)
             .order_by(models.LabResult.date.desc())
             .first()
         )
-        if lab_last:
-            latest_times.append(lab_last.date.isoformat())
+        lab_date = lab_last.date.isoformat() if lab_last else None
+        if lab_date:
+            latest_times.append(lab_date)
         visit_last = (
             session.query(models.VisitSummary)
+            .filter(models.VisitSummary.session_key == session_key)
             .order_by(models.VisitSummary.date.desc())
             .first()
         )
-        if visit_last:
-            latest_times.append(visit_last.date.isoformat())
+        visit_date = visit_last.date.isoformat() if visit_last else None
+        if visit_date:
+            latest_times.append(visit_date)
         struct_last = (
             session.query(models.StructuredRecord)
             .filter(models.StructuredRecord.session_key == session_key)
             .order_by(models.StructuredRecord.date_created.desc())
             .first()
         )
-        if struct_last:
-            latest_times.append(struct_last.date_created.isoformat())
+        struct_date = (
+            struct_last.date_created.isoformat() if struct_last else None
+        )
+        if struct_date:
+            latest_times.append(struct_date)
     finally:
         session.close()
 
@@ -87,7 +102,28 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
         },
         "latest_upload": latest_upload,
         "latest_processing": latest_processing,
+        "latest_record_dates": {
+            "labs": lab_date,
+            "visits": visit_date,
+            "structured": struct_date,
+        },
     }
+    structured_rows = (
+        session.query(models.StructuredRecord)
+        .filter(models.StructuredRecord.session_key == session_key)
+        .order_by(models.StructuredRecord.date_created)
+        .all()
+    )
+    resp["structured_records"] = [
+        {
+            "portal": r.portal,
+            "type": r.type,
+            "source_url": r.source_url,
+            "timestamp": r.date_created.isoformat(),
+            "duplicate": bool(getattr(r, "is_duplicate", False)),
+        }
+        for r in structured_rows
+    ]
     if not uploads and not any([labs, visits, structured]):
         resp[
             "message"

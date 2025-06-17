@@ -10,6 +10,12 @@ def insert_structured_records(
 ) -> None:
     """Insert cleaned AI-extracted records."""
     objs = []
+    existing = {
+        (r.text, r.source_url)
+        for r in session.query(StructuredRecord)
+        .filter(StructuredRecord.session_key == session_key)
+        .all()
+    }
     for rec in records:
         data = {
             "source": "operator",
@@ -18,6 +24,12 @@ def insert_structured_records(
             "session_key": session_key,
         }
         data.update(rec)
+        key = (data.get("text"), data.get("source_url", ""))
+        if key in existing:
+            data["is_duplicate"] = True
+        else:
+            existing.add(key)
         objs.append(StructuredRecord(**data))
-    session.add_all(objs)
-    session.commit()
+    if objs:
+        session.add_all(objs)
+        session.commit()

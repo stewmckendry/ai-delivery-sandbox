@@ -38,12 +38,38 @@ def setup_app(monkeypatch, tmp_path):
     session = db_module.SessionLocal()
     session.add(
         models_module.LabResult(
-            test_name="Chol", value=5.0, units="mmol", date=date.today()
+            test_name="Chol",
+            value=5.0,
+            units="mmol",
+            date=date.today(),
+            session_key="sess",
         )
     )
     session.add(
         models_module.VisitSummary(
-            provider="Clinic", doctor="Dr. X", notes="hi", date=date.today()
+            provider="Clinic",
+            doctor="Dr. X",
+            notes="hi",
+            date=date.today(),
+            session_key="sess",
+        )
+    )
+    session.add(
+        models_module.VisitSummary(
+            provider="Clinic",
+            doctor="Dr. Y",
+            notes="other",
+            date=date.today(),
+            session_key="other",
+        )
+    )
+    session.add(
+        models_module.LabResult(
+            test_name="Chol",
+            value=5.0,
+            units="mmol",
+            date=date.today(),
+            session_key="other",
         )
     )
     session.add(
@@ -63,10 +89,11 @@ def setup_app(monkeypatch, tmp_path):
 
 def test_status_endpoint(monkeypatch, tmp_path):
     client = setup_app(monkeypatch, tmp_path)
-    resp = client.get("/status", params={"session_key": "sess"})
+    resp = client.get("/summary", params={"session_key": "sess"})
     assert resp.status_code == 200
     data = resp.json()
     assert len(data["uploads"]) == 2
     assert data["record_counts"]["labs"] == 1
     assert data["record_counts"]["visits"] == 1
     assert data["record_counts"]["structured"] == 1
+    assert all(r["duplicate"] is False for r in data["structured_records"])
