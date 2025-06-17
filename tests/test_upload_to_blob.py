@@ -28,7 +28,7 @@ def test_upload_to_blob(monkeypatch, tmp_path, capsys):
         def raise_for_status(self):
             pass
 
-    def fake_put(url, data):
+    def fake_put(url, data=None, **_):
         put_called["url"] = url
         put_called["data"] = data
         return Resp()

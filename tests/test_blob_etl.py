@@ -65,7 +65,11 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     import app.cleaner as cleaner_module
     import app.prompts.summarizer as summarizer_module
 
-    monkeypatch.setattr(structured_module, "insert_structured_records", lambda s, r: inserted.update({"records": r}))
+    monkeypatch.setattr(
+        structured_module,
+        "insert_structured_records",
+        lambda s, r, session_key=None: inserted.update({"records": r, "session": session_key})
+    )
 
     monkeypatch.setattr(
         extractor_module,
@@ -83,6 +87,7 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     run_etl_from_blobs(prefix)
 
     assert inserted["records"] and len(inserted["records"]) == 3
+    assert inserted["session"] == prefix
     types = {r["type"] for r in inserted["records"]}
     assert "lab_file" in types
     assert "visit_file" in types

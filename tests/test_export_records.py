@@ -54,8 +54,10 @@ def _setup_db(tmp_path: Path, monkeypatch) -> Path:
                 "type": "note",
                 "text": "Some note",
                 "source_url": "url",
+                "session_key": "sess",
             }
         ],
+        session_key="sess",
     )
     session.close()
     return db_path
@@ -71,6 +73,8 @@ def test_export_records_all_formats(tmp_path, monkeypatch):
             "export_records.py",
             "--db",
             str(db),
+            "--session",
+            "sess",
             "--output",
             str(out_json),
         ],
@@ -87,6 +91,8 @@ def test_export_records_all_formats(tmp_path, monkeypatch):
             "export_records.py",
             "--db",
             str(db),
+            "--session",
+            "sess",
             "--format",
             "markdown",
             "--output",
@@ -105,6 +111,8 @@ def test_export_records_all_formats(tmp_path, monkeypatch):
             "export_records.py",
             "--db",
             str(db),
+            "--session",
+            "sess",
             "--format",
             "pdf",
             "--output",

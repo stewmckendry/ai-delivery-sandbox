@@ -12,6 +12,7 @@ router = APIRouter()
 
 class QueryRequest(BaseModel):
     query: str
+    session_key: str
 
 
 @router.post("/ask")
@@ -34,6 +35,13 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
             .limit(5)
             .all()
         )
+        structured = (
+            session.query(models.StructuredRecord)
+            .filter(models.StructuredRecord.session_key == payload.session_key)
+            .order_by(models.StructuredRecord.id.desc())
+            .limit(5)
+            .all()
+        )
     finally:
         session.close()
 
@@ -43,9 +51,15 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
     visit_lines = [
         f"- {v.date} - {v.provider} - {v.doctor}: {v.notes}" for v in visits
     ]
+    structured_lines = [
+        f"- [{r.type}] {r.text} ({r.source_url})" if r.source_url else f"- [{r.type}] {r.text}"
+        for r in structured
+    ]
 
     context = "Recent Lab Results:\n" + "\n".join(lab_lines)
     context += "\n\nRecent Visits:\n" + "\n".join(visit_lines)
+    if structured_lines:
+        context += "\n\nRecent Records:\n" + "\n".join(structured_lines)
 
     prompt = f"{context}\n\nQuestion: {payload.query}"
 

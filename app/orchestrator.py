@@ -32,6 +32,9 @@ if not logger.handlers:
     handler.setFormatter(logging.Formatter("%(message)s"))
     logger.addHandler(handler)
 logger.setLevel(logging.INFO)
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("azure").setLevel(logging.WARNING)
+logging.getLogger("openai").setLevel(logging.WARNING)
 
 
 def _load_scraper(portal_name: str):
@@ -255,8 +258,12 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
                 )
 
             if final_records:
-                logger.info("[etl] Inserting %d structured records", len(final_records))
-                insert_structured_records(session, final_records)
+                logger.info(
+                    "[etl] Inserting %d structured records for session %s",
+                    len(final_records),
+                    user,
+                )
+                insert_structured_records(session, final_records, session_key=user)
 
             # Summarize all structured data for quick preview
             try:
@@ -272,7 +279,7 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> None:
             logger.info(json.dumps(final_records, indent=2))
     finally:
         session.close()
-        logger.info("[etl] Pipeline for %s complete", portal_name)
+        logger.info("[etl] ETL complete for session %s", user)
 
 
 def _pdf_to_text(path: str | Path) -> str:
@@ -361,8 +368,12 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
                 )
 
         if final_records:
-            logger.info("[etl] Inserting %d structured records", len(final_records))
-            insert_structured_records(session, final_records)
+            logger.info(
+                "[etl] Inserting %d structured records for session %s",
+                len(final_records),
+                prefix,
+            )
+            insert_structured_records(session, final_records, session_key=prefix)
 
         if final_records:
             try:
@@ -377,5 +388,5 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> None:
                 logger.error("[etl] Failed to generate summary: %s", exc)
     finally:
         session.close()
-        logger.info("[etl] Blob pipeline for %s complete", prefix)
+        logger.info("[etl] ETL complete for session %s", prefix)
 

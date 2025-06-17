@@ -39,6 +39,7 @@ class StructuredRecord(Base):
     type = Column(String)
     text = Column(Text)
     source_url = Column(String)
+    session_key = Column(String, index=True)
     source = Column(String, default="operator")
     capture_method = Column(String, default="")
     user_notes = Column(String, default="")

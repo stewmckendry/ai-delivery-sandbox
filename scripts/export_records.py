@@ -51,7 +51,7 @@ def _init_session(db_path: str):
     return db_module.SessionLocal(), models_module
 
 
-def _fetch_records(session, models_module) -> Tuple[List, List, List]:
+def _fetch_records(session, models_module, session_key: str | None = None) -> Tuple[List, List, List]:
     labs = (
         session.query(models_module.LabResult)
         .order_by(models_module.LabResult.date)
@@ -63,11 +63,10 @@ def _fetch_records(session, models_module) -> Tuple[List, List, List]:
         .all()
     )
     try:
-        structured = (
-            session.query(models_module.StructuredRecord)
-            .order_by(models_module.StructuredRecord.id)
-            .all()
-        )
+        query = session.query(models_module.StructuredRecord)
+        if session_key is not None:
+            query = query.filter(models_module.StructuredRecord.session_key == session_key)
+        structured = query.order_by(models_module.StructuredRecord.id).all()
     except Exception:  # pragma: no cover - older DBs may lack table
         structured = []
     logger.info(
@@ -127,10 +126,11 @@ def main() -> None:
         help="Output format",
     )
     parser.add_argument("--output", required=True, help="Output file path")
+    parser.add_argument("--session", default=None, help="Session key to filter records")
     args = parser.parse_args()
 
     session, models_module = _init_session(args.db)
-    labs, visits, structured = _fetch_records(session, models_module)
+    labs, visits, structured = _fetch_records(session, models_module, args.session)
     session.close()
 
     out_path = Path(args.output)
