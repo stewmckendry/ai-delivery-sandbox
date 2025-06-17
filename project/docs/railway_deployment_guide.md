@@ -68,4 +68,3 @@ Open `http://localhost:8000/docs` for API docs and `http://localhost:8000/upload
 6. Check logs to confirm blob uploads and ETL flow.
 
 Deployment is complete when the hosted URL serves the endpoints without errors.
-
