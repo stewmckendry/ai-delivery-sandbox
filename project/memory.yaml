@@ -11,6 +11,17 @@
   - GenAI
   last_updated: '2025-06-11'
   pod_owner: DeliveryPod
+- path: docs/openapi.json
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/docs/openapi.json
+  file_type: json
+  description: OpenAPI specification for the MyHealth Copilot backend including upload, process, ask, export, and summary endpoints.
+  tags:
+  - api
+  - openapi
+  - gpt
+  - reference
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
 - path: project/task.yaml
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/task.yaml
   file_type: yaml
@@ -1441,8 +1452,7 @@
 - path: docs/custom_gpt_setup.md
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/docs/custom_gpt_setup.md
   file_type: md
-  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a
-    Custom GPT linked to the FastAPI backend.
+  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a Custom GPT linked to the FastAPI backend.
   tags:
   - setup
   - gpt
