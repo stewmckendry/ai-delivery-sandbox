@@ -20,7 +20,11 @@ Add the following in Railway's **Variables** tab:
 ```env
 OPENAI_API_KEY=sk-...
 AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=...
+<<<<<<< 50qpub-codex/create-railway-deployment-guide-for-fastapi
 DATABASE_URL=sqlite:///health_data.db
+=======
+AZURE_SQL_URL=sqlite:///health_data.db
+>>>>>>> sandbox-curious-fox
 SECRET_KEY=supersecret
 ```
 
@@ -33,8 +37,11 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY . .
 
+<<<<<<< 50qpub-codex/create-railway-deployment-guide-for-fastapi
 RUN apt-get update && apt-get install -y build-essential unixodbc-dev \
     && rm -rf /var/lib/apt/lists/*
+=======
+>>>>>>> sandbox-curious-fox
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
@@ -64,4 +71,7 @@ Open `http://localhost:8000/docs` for API docs and `http://localhost:8000/upload
 6. Check logs to confirm blob uploads and ETL flow.
 
 Deployment is complete when the hosted URL serves the endpoints without errors.
+<<<<<<< 50qpub-codex/create-railway-deployment-guide-for-fastapi
 
+=======
+>>>>>>> sandbox-curious-fox
