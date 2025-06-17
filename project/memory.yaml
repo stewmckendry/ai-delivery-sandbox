@@ -1441,11 +1441,25 @@
 - path: docs/custom_gpt_setup.md
   raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/docs/custom_gpt_setup.md
   file_type: md
-  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a Custom GPT linked to the FastAPI backend.
+  description: Step-by-step guide for Stewart to set up the MyHealth Copilot as a
+    Custom GPT linked to the FastAPI backend.
   tags:
   - setup
   - gpt
   - integration
   - FastAPI
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/reports/task_301_deployment_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_301_deployment_report.md
+  file_type: md
+  description: Report detailing the successful deployment of a FastAPI backend and
+    web client to Railway, including artifacts created, issues encountered and their
+    fixes, and verification of deployment.
+  tags:
+  - deployment
+  - railway
+  - backend
+  - cloud
   last_updated: '2025-06-17'
   pod_owner: DeliveryPod
