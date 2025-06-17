@@ -628,3 +628,15 @@
   - data
   last_updated: '2025-05-29'
   pod_owner: QAPod
+- path: task_guides/phase3_tasks/task_301_railway_deployment_plan.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-cosmic-eagle/task_guides/phase3_tasks/task_301_railway_deployment_plan.md
+  file_type: md
+  description: Document detailing the steps to deploy a FastAPI backend and web client
+    on Railway, including environment setup and testing.
+  tags:
+  - deployment
+  - FastAPI
+  - Railway
+  - config
+  last_updated: '2025-06-17'
+  pod_owner: DeliveryPod
