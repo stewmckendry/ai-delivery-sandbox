@@ -50,6 +50,7 @@ def test_ask_endpoint(monkeypatch):
             "value": 5.8,
             "units": "mmol/L",
             "date": date.fromisoformat("2023-05-01"),
+            "session_key": "sess",
         }
     ]
     visits = [
@@ -58,6 +59,7 @@ def test_ask_endpoint(monkeypatch):
             "provider": "General Hospital",
             "doctor": "Dr. Jones",
             "notes": "Routine check",
+            "session_key": "sess",
         }
     ]
 

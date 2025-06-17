@@ -17,7 +17,9 @@ def _parse_date(value: str | date) -> date:
     return date.fromisoformat(value)
 
 
-def insert_lab_results(session: Session, results: List[Dict]):
+def insert_lab_results(
+    session: Session, results: List[Dict], session_key: str | None = None
+) -> None:
     """Convert ``results`` to ``LabResult`` objects and save them."""
     objects = []
     for entry in results:
@@ -29,13 +31,16 @@ def insert_lab_results(session: Session, results: List[Dict]):
             value=float(entry["value"]),
             units=entry["units"],
             date=_parse_date(entry["date"]),
+            session_key=session_key or "",
         )
         objects.append(lab)
     session.add_all(objects)
     session.commit()
 
 
-def insert_visit_summaries(session: Session, summaries: List[Dict]):
+def insert_visit_summaries(
+    session: Session, summaries: List[Dict], session_key: str | None = None
+) -> None:
     """Convert ``summaries`` to ``VisitSummary`` objects and save them."""
     objects = []
     for entry in summaries:
@@ -46,6 +51,7 @@ def insert_visit_summaries(session: Session, summaries: List[Dict]):
             doctor=entry["doctor"],
             notes=entry["notes"],
             date=_parse_date(entry["date"]),
+            session_key=session_key or "",
         )
         objects.append(visit)
     session.add_all(objects)

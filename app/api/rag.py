@@ -25,12 +25,14 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
     try:
         labs = (
             session.query(models.LabResult)
+            .filter(models.LabResult.session_key == payload.session_key)
             .order_by(models.LabResult.date.desc())
             .limit(5)
             .all()
         )
         visits = (
             session.query(models.VisitSummary)
+            .filter(models.VisitSummary.session_key == payload.session_key)
             .order_by(models.VisitSummary.date.desc())
             .limit(5)
             .all()
