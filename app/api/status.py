@@ -23,8 +23,8 @@ def _load_audit(session_key: str) -> list[dict]:
     return [e for e in data if e.get("user") == session_key]
 
 
-@router.get("/status")
-def status(session_key: str = Query(...)) -> JSONResponse:
+@router.get("/summary")
+def summary(session_key: str = Query(...)) -> JSONResponse:
     """Return summary of uploaded and processed records for ``session_key``."""
     entries = _load_audit(session_key)
     uploads = [
