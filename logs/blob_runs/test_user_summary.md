@@ -1,5 +1,5 @@
 ### Portal Run Summary
 
-The patient had 1 visits and 2 lab results.
+The patient had 0 visits and 0 lab results.
 
-Patient visited General Hospital on 2023-06-01 for a routine check-up with Dr. Jones. Previous records show cholesterol at 5.8 mmol/L on 2023-05-01 and hemoglobin at 13.5 g/dL on 2023-05-02. Exercise log from 6/1/2025 to 6/16/2025 shows consistent physical activity. Total output is 1,456.8 kJ.
+Recent exercise activities include a morning ride on 6/16 covering 26.31 miles in 1:00:52 at an elevation of 0. This follows a morning run on 6/15 for 24.81 miles in 1:57:44, elevation 110, and a run on 6/14 for 16.09 miles in 1:20:01 at an elevation of 67. Also noted are previous activities such as a run on 6/9 for 24.60 miles in 1:56:42, elevation 109, and a run on 6/7 for 15.91 miles in 1:20:06 at an elevation of 79.
