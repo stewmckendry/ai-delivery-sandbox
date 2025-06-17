@@ -1,57 +1,65 @@
-# 🛠️ Task 305: Refactor ETL Outputs for Cloud Deployment
+# 🛠️ Task 305: Refactor ETL Outputs for Privacy-Safe Cloud Deployment
 
 ## 🎯 Goal
-Ensure that all ETL output files (summaries, audit logs, diagnostics) are written to persistent cloud storage instead of ephemeral local filesystem, which does not persist on Railway.
+Ensure ETL outputs avoid persistent storage of any sensitive health data. Refactor current file writes to comply with privacy-first design in the Railway cloud environment.
 
 ---
 
-## 🔍 Affected Outputs
-Currently written to `logs/` or project root:
+## 🔍 Outputs to Address
+### Remove Persistent Writes for:
 - `logs/blob_runs/<session>_summary.md`
 - `logs/portal_runs/<portal>_summary.md`
-- `audit.json` (local JSON file)
-- Any direct `Path(...).write_text()` calls in `orchestrator.py` or `etl`
+- Direct `.write_text()` of ETL summaries or parsed content
+
+### Allow Minimal Metadata:
+- Audit log of filename, portal, timestamp only
+- Already uploaded files (PDF/HTML) can remain in Azure Blob with short expiration (24–72 hrs)
 
 ---
 
-## ✅ Refactor Targets
-1. **Summaries**
-   - 🔁 Replace `Path(...)/summary.md` with blob upload:
-     ```python
-     blob.upload_text("summaries/<session>.md", summary)
-     ```
-   - Optionally return the summary in the `/process` response
+## ✅ Refactor Instructions
 
-2. **Audit Log**
-   - 🔁 Replace local JSON writes with one of:
-     - Write per-session logs to blob: `audit/<session>.json`
-     - Or store log events in Azure SQL with timestamp & session
+### 1. **ETL Summaries**
+- ❌ Do not write summaries to disk or blob
+- ✅ Return summary as part of the `/process` API response (inline only)
+- ✅ Redact sensitive content if needed (configurable)
 
-3. **Other Logs or Files**
-   - ✅ Confirm no other persistent file writes are made in `main.py`, `status.py`, or `rag.py`
-   - ❌ Do not write `.md`, `.txt`, `.json` to the container’s `/app` folder
+### 2. **Audit Logging**
+- ✅ Keep metadata like:
+  ```json
+  {
+    "session_key": "abc123",
+    "filename": "lab_2024-01-01.pdf",
+    "portal": "lifelabs",
+    "timestamp": "2025-06-17T10:00:00Z"
+  }
+  ```
+- ✅ Store in Azure SQL or blob as `audit/<session>.json`
+- ❌ Do not include text or record content
+
+### 3. **Uploaded Files**
+- ✅ Stored in Azure Blob with SAS
+- ✅ Ensure `upload.py` confirms files expire in < 72 hours
+- ✅ OK to process and discard in memory
 
 ---
 
-## 🧪 Testing
-- Deploy to Railway and upload file via `/upload`
-- Trigger `/process`, check Azure Blob for:
-  - `summaries/<session>.md`
-  - `audit/<session>.json` (or verify SQL log entries)
-- Query `/summary` and `/ask` to validate data still usable
-
----
-
-## 📦 Suggested Blob Structure
+## 📦 Updated Blob Structure
 ```
-/summaries/<session>.md
 /audit/<session>.json
 /uploads/<session>/<filename>.pdf
+```
+
+No longer write:
+```
+/logs/
+/summaries/
 ```
 
 ---
 
 ## ✅ Done When
-- No local `.write_text()` persists beyond session
-- Blob or SQL used for all ETL outputs
-- End-to-end flow works identically via Railway and GPT
+- No PHI is stored outside runtime memory or expiring blob
+- ETL summaries are inline only
+- Audit log contains only minimal metadata
+- End-to-end testing confirms `/process` works without persistent writes
