@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from sqlalchemy.orm import Session
 
-from .models import StructuredRecord
+from .models import StructuredRecord, FHIRResource
 
 
 def insert_structured_records(
@@ -30,6 +30,14 @@ def insert_structured_records(
         else:
             existing.add(key)
         objs.append(StructuredRecord(**data))
+    if objs:
+        session.add_all(objs)
+        session.commit()
+
+
+def insert_fhir_resources(session: Session, resources: list[dict]) -> None:
+    """Save FHIR resources to the database."""
+    objs = [FHIRResource(**res) for res in resources]
     if objs:
         session.add_all(objs)
         session.commit()
