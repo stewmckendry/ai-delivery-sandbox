@@ -56,6 +56,12 @@ data/audit_log.json
 
 ---
 
+## 🗑️ Data Retention
+- Challenge screenshots saved under `/tmp` are deleted after a response is received.
+- Files written to `data/raw/` can be removed once processed by setting `RAW_CLEANUP=1`.
+
+---
+
 ## 🚀 Deployment
 See [`project/docs/railway_deployment_guide.md`](project/docs/railway_deployment_guide.md) for instructions to deploy the FastAPI backend and web client on Railway.
 
