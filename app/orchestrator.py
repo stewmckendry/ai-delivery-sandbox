@@ -8,6 +8,7 @@ from datetime import datetime
 import logging
 import fitz  # PyMuPDF
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import httpx
@@ -44,30 +45,53 @@ DELETE_RAW = os.getenv("RAW_CLEANUP", "0").lower() in {"1", "true", "yes"}
 
 # heuristic keyword mapping for clinical types (fallback)
 CLINICAL_MAPPINGS = [
-    (re.compile(r"\bmetformin\b", re.I), ("MedicationStatement", "860975", "RxNorm", "Metformin")),
-    (re.compile(r"\bdiabetes\b", re.I), ("Condition", "44054006", "SNOMED", "Diabetes mellitus")),
+    (
+        re.compile(r"\bmetformin\b", re.I),
+        ("MedicationStatement", "860975", "RxNorm", "Metformin"),
+    ),
+    (
+        re.compile(r"\bdiabetes\b", re.I),
+        ("Condition", "44054006", "SNOMED", "Diabetes mellitus"),
+    ),
     (re.compile(r"\basthma\b", re.I), ("Condition", "195967001", "SNOMED", "Asthma")),
     (re.compile(r"allerg", re.I), ("AllergyIntolerance", None, None, None)),
     (re.compile(r"immunization|vaccine", re.I), ("Immunization", None, None, None)),
-    (re.compile(r"surg|procedure|operation|imaging|scan", re.I), ("Procedure", None, None, None)),
-    (re.compile(r"blood pressure|\bbp\b", re.I), ("VitalSigns", "85354-9", "LOINC", "Blood pressure")),
+    (
+        re.compile(r"surg|procedure|operation|imaging|scan", re.I),
+        ("Procedure", None, None, None),
+    ),
+    (
+        re.compile(r"blood pressure|\bbp\b", re.I),
+        ("VitalSigns", "85354-9", "LOINC", "Blood pressure"),
+    ),
     (re.compile(r"height", re.I), ("VitalSigns", "8302-2", "LOINC", "Body height")),
     (re.compile(r"weight", re.I), ("VitalSigns", "29463-7", "LOINC", "Body weight")),
-    (re.compile(r"diagnostic report|radiology|x-ray|ct|mri", re.I), ("DiagnosticReport", None, None, None)),
+    (
+        re.compile(r"diagnostic report|radiology|x-ray|ct|mri", re.I),
+        ("DiagnosticReport", None, None, None),
+    ),
 ]
 
 
-def _classify_clinical_type(text: str) -> tuple[str | None, str | None, str | None, str | None]:
+def _classify_clinical_type(
+    text: str,
+) -> tuple[str | None, str | None, str | None, str | None]:
     """Return clinical type and optional code mappings for ``text`` using an LLM with regex fallback."""
 
     prompt = (
         "What FHIR resource type best fits this clinical text? "
-        "Return JSON with keys clinical_type, code, code_system, display.\nText: "
-        + text
+        "Respond ONLY with a JSON object containing the keys "
+        "'clinical_type', 'code', 'code_system', 'display'.\nText: " + text
     )
     try:
         resp = chat_completion([{"role": "user", "content": prompt}])
-        info = json.loads(resp)
+        cleaned = resp.strip()
+        if cleaned.startswith("```"):
+            cleaned = re.sub(r"^```(?:json)?", "", cleaned)
+            cleaned = cleaned.rstrip("`").strip()
+        if cleaned.lower().startswith("json:"):
+            cleaned = cleaned[5:].strip()
+        info = json.loads(cleaned)
         if isinstance(info, dict) and info.get("clinical_type"):
             return (
                 info.get("clinical_type"),
@@ -76,7 +100,7 @@ def _classify_clinical_type(text: str) -> tuple[str | None, str | None, str | No
                 info.get("display"),
             )
     except Exception as exc:  # noqa: BLE001
-        logger.error("[etl] LLM clinical classification failed: %s", exc)
+        logger.warning("[etl] LLM clinical classification failed: %s", exc)
 
     for pattern, result in CLINICAL_MAPPINGS:
         if pattern.search(text):
@@ -245,12 +269,14 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> str:
         for path_str in file_paths:
             path = Path(path_str)
             if path.suffix.lower() != ".pdf" and path.exists():
-                html_pages.append({
-                    "url": path_str,
-                    "html": path.read_text(encoding="utf-8", errors="ignore"),
-                    "capture_method": "html",
-                    "source": "operator",
-                })
+                html_pages.append(
+                    {
+                        "url": path_str,
+                        "html": path.read_text(encoding="utf-8", errors="ignore"),
+                        "capture_method": "html",
+                        "source": "operator",
+                    }
+                )
 
         if html_pages:
             try:
@@ -274,7 +300,9 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> str:
                 except Exception:
                     return ""
 
-            crawled, _ = crawler.crawl_portal(html_pages[0]["html"], base_url, fetch_html, limit=limit)
+            crawled, _ = crawler.crawl_portal(
+                html_pages[0]["html"], base_url, fetch_html, limit=limit
+            )
             for page in crawled:
                 if page["url"] not in {p["url"] for p in html_pages}:
                     html_pages.append(page)
@@ -399,7 +427,9 @@ def _annotate_visits_with_llm(visits: list[dict]) -> list[dict]:
     return visits
 
 
-def _detect_labs_and_visits_with_llm(records: list[dict]) -> tuple[list[dict], list[dict]]:
+def _detect_labs_and_visits_with_llm(
+    records: list[dict],
+) -> tuple[list[dict], list[dict]]:
     """Classify ``records`` text as labs or visits and extract structured data."""
     if not records:
         return [], []
@@ -461,14 +491,20 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
                 text = _pdf_to_text(path)
             else:
                 text = data.decode("utf-8", errors="ignore")
-            method = "pdf" if suffix == ".pdf" else ("html" if suffix in {".html", ".htm"} else "screenshot")
-            pages.append({
-                "url": name,
-                "text": text,
-                "filename": filename,
-                "capture_method": method,
-                "source": "operator",
-            })
+            method = (
+                "pdf"
+                if suffix == ".pdf"
+                else ("html" if suffix in {".html", ".htm"} else "screenshot")
+            )
+            pages.append(
+                {
+                    "url": name,
+                    "text": text,
+                    "filename": filename,
+                    "capture_method": method,
+                    "source": "operator",
+                }
+            )
             blob.delete_blob(name)
             if DELETE_RAW:
                 delete_file(path)
