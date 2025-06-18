@@ -22,7 +22,8 @@ Hi, I want to understand my recent medical results.
 - ✅ GPT should respond with guidance to upload a file and provide a secure upload link (via `/upload/sas`)
 
 ### 2. Upload Flow
-- Use the GPT-uploaded link or `/upload?session=test_user&portal=strava`
+- Obtain a session key from `/session`.
+- Use the GPT-uploaded link or `/upload?session=<key>&portal=strava`
 - Upload `.html` or `.pdf` file
 - GPT should offer to process it next
 

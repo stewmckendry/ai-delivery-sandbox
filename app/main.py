@@ -7,6 +7,7 @@ from .api.upload import router as upload_router
 from .api.etl import router as etl_router
 from .api.status import router as status_router
 from .api.export import router as export_router
+from .api.session import router as session_router
 
 app = FastAPI()
 router = APIRouter()
@@ -15,6 +16,7 @@ router.include_router(upload_router)
 router.include_router(etl_router)
 router.include_router(status_router)
 router.include_router(export_router)
+router.include_router(session_router)
 app.include_router(router)
 
 
