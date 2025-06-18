@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from datetime import datetime
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
 from app.storage import audit
+from app.auth.token import require_token
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_token)])
 
 
 class ConsentPayload(BaseModel):

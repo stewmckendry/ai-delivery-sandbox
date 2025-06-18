@@ -9,6 +9,8 @@ import json
 import os
 from typing import Dict, Optional
 
+from fastapi import Header, HTTPException, status
+
 SECRET = os.getenv("DELEGATION_SECRET", "change-me")
 ALGO = hashlib.sha256
 DEFAULT_MINUTES = 10
@@ -49,3 +51,22 @@ def verify_token(token: str) -> Optional[Dict[str, str]]:
         return claims
     except Exception:
         return None
+
+
+def require_token(
+    authorization: str = Header(..., alias="Authorization")
+) -> Dict[str, str]:
+    """FastAPI dependency to validate ``Authorization`` bearer token."""
+    if not authorization.startswith("Bearer "):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid Authorization header",
+        )
+    token = authorization.split(" ", 1)[1]
+    claims = verify_token(token)
+    if not claims:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token",
+        )
+    return claims

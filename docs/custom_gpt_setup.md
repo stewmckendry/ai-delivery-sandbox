@@ -56,6 +56,7 @@ https://ai-delivery-sandbox-production-d1a7.up.railway.app/openapi.json
    - `GET /summary`
    - `POST /process`
    - `POST /upload`
+   - Ensure the `Authorization: Bearer <token>` header is sent with each call.
 4. Save the action and enable it.
 
 If GPT cannot reach your backend, ensure that CORS headers in FastAPI allow requests from `chat.openai.com`.

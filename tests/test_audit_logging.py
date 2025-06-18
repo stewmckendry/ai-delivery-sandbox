@@ -24,6 +24,9 @@ def test_consent_endpoint(monkeypatch, tmp_path):
     log_file = tmp_path / "audit.json"
     monkeypatch.setenv("AUDIT_LOG", str(log_file))
     audit = importlib.reload(importlib.import_module("app.storage.audit"))
+    monkeypatch.setenv("DELEGATION_SECRET", "test")
+    from app.auth.token import create_token
+    token = create_token("user", "agent", "portal")
     consent = importlib.reload(importlib.import_module("app.api.consent"))
 
     from fastapi import FastAPI
@@ -38,7 +41,7 @@ def test_consent_endpoint(monkeypatch, tmp_path):
         "action": "scrape",
         "timestamp": "2023-01-01T00:00:00",
     }
-    resp = client.post("/consent", json=payload)
+    resp = client.post("/consent", json=payload, headers={"Authorization": f"Bearer {token}"})
     assert resp.status_code == 200
     assert resp.json() == {"status": "consent recorded"}
 

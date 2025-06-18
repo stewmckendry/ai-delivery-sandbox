@@ -17,6 +17,10 @@ def setup_app(monkeypatch, tmp_path):
     monkeypatch.setenv("FERNET_KEY", Fernet.generate_key().decode())
     importlib.reload(importlib.import_module("app.storage.audit"))
 
+    monkeypatch.setenv("DELEGATION_SECRET", "test")
+    from app.auth.token import create_token
+    token = create_token("user", "agent", "portal")
+
     blob_module = importlib.import_module("app.storage.blob")
     monkeypatch.setattr(blob_module, "list_blobs", lambda prefix: [f"{prefix}/a.pdf", f"{prefix}/b.html"])
 
@@ -31,25 +35,33 @@ def setup_app(monkeypatch, tmp_path):
     app = FastAPI()
     app.include_router(etl_module.router)
     client = TestClient(app)
-    return client, log_file, called
+    return client, log_file, called, token
 
 
 def test_process_flow(monkeypatch, tmp_path):
-    client, log_file, called = setup_app(monkeypatch, tmp_path)
+    client, log_file, called, token = setup_app(monkeypatch, tmp_path)
 
-    resp = client.get("/status", params={"session_key": "sess"})
+    resp = client.get(
+        "/status", params={"session_key": "sess"}, headers={"Authorization": f"Bearer {token}"}
+    )
     assert resp.status_code == 200
     assert "You\'ve uploaded 2 files" in resp.json()["prompt"]
     
 def test_process_route(monkeypatch, tmp_path):
-    client, log_file, called = setup_app(monkeypatch, tmp_path)
+    client, log_file, called, token = setup_app(monkeypatch, tmp_path)
 
-    resp = client.get("/process", params={"session_key": "sess"})
+    resp = client.get(
+        "/process", params={"session_key": "sess"}, headers={"Authorization": f"Bearer {token}"}
+    )
     assert resp.status_code == 200
     assert "You uploaded 2 files" in resp.text
 
 
-    resp = client.post("/process", data={"session_key": "sess"})
+    resp = client.post(
+        "/process",
+        data={"session_key": "sess"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
     assert resp.status_code == 200
     body = resp.json()
     assert body["status"] == "processing complete"

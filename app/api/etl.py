@@ -3,12 +3,13 @@ from __future__ import annotations
 from datetime import datetime
 import os
 
-from fastapi import APIRouter, Form, Query
+from fastapi import APIRouter, Form, Query, Depends
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from app.storage import blob, audit
+from app.auth.token import require_token
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_token)])
 
 HTML_TEMPLATE = (
     "<html><body>"
