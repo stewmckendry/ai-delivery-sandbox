@@ -49,8 +49,11 @@ def summarize_database_records(session: Session) -> str:
         blocks.append({"text": f"Visit on {v.date} with {v.doctor} at {v.provider}. {v.notes}"})
     for l in labs:
         blocks.append({"text": f"{l.test_name} {l.value} {l.units} on {l.date}"})
+    type_counts: Dict[str, int] = {}
     for r in structured:
         blocks.append({"text": r.text})
+        if r.clinical_type:
+            type_counts[r.clinical_type] = type_counts.get(r.clinical_type, 0) + 1
 
     summary_body = summarize_blocks(blocks) if blocks else "No records found." 
 
@@ -58,5 +61,8 @@ def summarize_database_records(session: Session) -> str:
         f"### Portal Run Summary\n\n"
         f"The patient had {len(visits)} visits and {len(labs)} lab results."
     )
+    if type_counts:
+        parts = ", ".join(f"{k}: {v}" for k, v in sorted(type_counts.items()))
+        header += f" Additional records by type: {parts}."
 
     return f"{header}\n\n{summary_body}"

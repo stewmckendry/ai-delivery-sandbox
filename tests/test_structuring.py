@@ -74,6 +74,7 @@ def test_insert_structured_records():
     assert saved[0].source == "operator"
     assert saved[0].session_key == "sess"
     assert hasattr(saved[0], "capture_method")
+    assert hasattr(saved[0], "clinical_type")
     session.close()
 
 

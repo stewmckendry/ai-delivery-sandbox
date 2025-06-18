@@ -25,6 +25,7 @@ from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
 from app.storage.audit import log_event
 from app.prompts.summarizer import summarize_database_records
+import re
 from app.storage import blob
 
 logger = logging.getLogger(__name__)
@@ -39,6 +40,48 @@ logging.getLogger("openai").setLevel(logging.WARNING)
 
 # Delete files in data/raw after processing if set
 DELETE_RAW = os.getenv("RAW_CLEANUP", "0").lower() in {"1", "true", "yes"}
+
+
+# heuristic keyword mapping for clinical types (fallback)
+CLINICAL_MAPPINGS = [
+    (re.compile(r"\bmetformin\b", re.I), ("MedicationStatement", "860975", "RxNorm", "Metformin")),
+    (re.compile(r"\bdiabetes\b", re.I), ("Condition", "44054006", "SNOMED", "Diabetes mellitus")),
+    (re.compile(r"\basthma\b", re.I), ("Condition", "195967001", "SNOMED", "Asthma")),
+    (re.compile(r"allerg", re.I), ("AllergyIntolerance", None, None, None)),
+    (re.compile(r"immunization|vaccine", re.I), ("Immunization", None, None, None)),
+    (re.compile(r"surg|procedure|operation|imaging|scan", re.I), ("Procedure", None, None, None)),
+    (re.compile(r"blood pressure|\bbp\b", re.I), ("VitalSigns", "85354-9", "LOINC", "Blood pressure")),
+    (re.compile(r"height", re.I), ("VitalSigns", "8302-2", "LOINC", "Body height")),
+    (re.compile(r"weight", re.I), ("VitalSigns", "29463-7", "LOINC", "Body weight")),
+    (re.compile(r"diagnostic report|radiology|x-ray|ct|mri", re.I), ("DiagnosticReport", None, None, None)),
+]
+
+
+def _classify_clinical_type(text: str) -> tuple[str | None, str | None, str | None, str | None]:
+    """Return clinical type and optional code mappings for ``text`` using an LLM with regex fallback."""
+
+    prompt = (
+        "What FHIR resource type best fits this clinical text? "
+        "Return JSON with keys clinical_type, code, code_system, display.\nText: "
+        + text
+    )
+    try:
+        resp = chat_completion([{"role": "user", "content": prompt}])
+        info = json.loads(resp)
+        if isinstance(info, dict) and info.get("clinical_type"):
+            return (
+                info.get("clinical_type"),
+                info.get("code"),
+                info.get("code_system"),
+                info.get("display"),
+            )
+    except Exception as exc:  # noqa: BLE001
+        logger.error("[etl] LLM clinical classification failed: %s", exc)
+
+    for pattern, result in CLINICAL_MAPPINGS:
+        if pattern.search(text):
+            return result
+    return None, None, None, None
 
 
 def _load_scraper(portal_name: str):
@@ -254,11 +297,16 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> str:
             final_records = []
             for text in cleaned:
                 meta = mapping.get(text, {})
+                ctype, code, system, display = _classify_clinical_type(text)
                 final_records.append(
                     {
                         "portal": portal_name,
                         "source_url": meta.get("source_url", ""),
                         "type": meta.get("type", ""),
+                        "clinical_type": ctype,
+                        "code": code,
+                        "code_system": system,
+                        "display": display,
                         "text": text,
                         "source": meta.get("source", "operator"),
                         "capture_method": meta.get("capture_method", "html"),
@@ -441,11 +489,16 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
 
             for text in cleaned:
                 meta = mapping.get(text, {})
+                ctype, code, system, display = _classify_clinical_type(text)
                 final_records.append(
                     {
                         "portal": "blob",
                         "source_url": meta.get("source_url", ""),
                         "type": meta.get("type", ""),
+                        "clinical_type": ctype,
+                        "code": code,
+                        "code_system": system,
+                        "display": display,
                         "text": text,
                         "source": meta.get("source", "operator"),
                         "capture_method": meta.get("capture_method", ""),
