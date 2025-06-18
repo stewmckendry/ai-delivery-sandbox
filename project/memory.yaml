@@ -1611,3 +1611,16 @@
   - documentation
   last_updated: '2025-06-18'
   pod_owner: QAPod
+- path: task_guides/phase3_tasks/reports/task_308_privacy_security_review_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_308_privacy_security_review_report.md
+  file_type: md
+  description: Report detailing the privacy and security improvements implemented
+    in the AI Health Copilot stack, including secure session management, temporary
+    file cleanup, and authentication foundations.
+  tags:
+  - security
+  - privacy
+  - flow
+  - report
+  last_updated: '2025-06-18'
+  pod_owner: DeliveryPod
