@@ -27,7 +27,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 def _sign(data: str) -> str:
-    print("Using delegation secret: %s", SECRET)
     return hmac.new(SECRET.encode(), data.encode(), ALGO).hexdigest()
 
 
