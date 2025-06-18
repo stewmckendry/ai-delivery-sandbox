@@ -64,8 +64,9 @@ def test_process_route(monkeypatch, tmp_path):
     )
     assert resp.status_code == 200
     body = resp.json()
-    assert body["status"] == "processing complete"
-    assert body["summary"] == "sum"
+    assert body["status"] == "processing"
+    assert body["session_key"] == "sess"
+    assert "check /summary" in body["message"]
     assert called["prefix"] == "sess"
 
     logs = json.loads(log_file.read_text())

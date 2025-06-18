@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 import os
 
-from fastapi import APIRouter, Form, Query, Depends
+from fastapi import APIRouter, Form, Query, Depends, BackgroundTasks
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from app.storage import blob, audit
@@ -45,14 +45,25 @@ def confirm_process(session_key: str = Query(...)) -> HTMLResponse:
 
 
 @router.post("/process")
-def process_files(session_key: str = Form(...)) -> JSONResponse:
+def process_files(bg: BackgroundTasks, session_key: str = Form(...)) -> JSONResponse:
     """Run ETL pipeline after user confirmation."""
-    audit.log_event(session_key, "consent_given", {"timestamp": datetime.utcnow().isoformat()})
+    audit.log_event(
+        session_key,
+        "consent_given",
+        {"timestamp": datetime.utcnow().isoformat()},
+    )
     if not _dry_run():
         from app.orchestrator import run_etl_from_blobs
-        summary = run_etl_from_blobs(session_key)
-        status = "processing complete"
+
+        bg.add_task(run_etl_from_blobs, session_key)
+        status = "processing"
+        message = (
+            "Your files are being processed. Please check /summary later."
+        )
     else:
         status = "dry-run"
-        summary = ""
-    return JSONResponse({"status": status, "summary": summary})
+        message = "DRY_RUN is enabled; ETL skipped."
+
+    return JSONResponse(
+        {"status": status, "message": message, "session_key": session_key}
+    )
