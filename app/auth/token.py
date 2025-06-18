@@ -11,6 +11,9 @@ from typing import Dict, Optional
 
 from fastapi import Header, HTTPException, status
 
+from dotenv import load_dotenv
+load_dotenv()
+
 SECRET = os.getenv("DELEGATION_SECRET", "change-me")
 ALGO = hashlib.sha256
 DEFAULT_MINUTES = 10
