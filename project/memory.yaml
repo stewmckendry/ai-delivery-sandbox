@@ -1573,3 +1573,16 @@
   - testing
   last_updated: '2025-06-18'
   pod_owner: DeliveryPod
+- path: project/docs/operator_gpt_test_summary.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/operator_gpt_test_summary.md
+  file_type: md
+  description: Summary of a test using MyHealth Copilot to securely collect, process,
+    and analyze personal health data with AI, demonstrating real-world application
+    and user empowerment.
+  tags:
+  - health
+  - AI
+  - data processing
+  - test
+  last_updated: '2025-06-18'
+  pod_owner: QAPod
