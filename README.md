@@ -32,6 +32,15 @@ To generate a Fernet key:
 ```bash
 python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 ```
+---
+
+Generate a short-lived API token:
+```bash
+python scripts/create_token.py --user <id> --agent gpt --portal <portal> --minutes 60
+```
+The token is signed using the `DELEGATION_SECRET` in your `.env` file and expires
+after the number of minutes you provide. When it expires, generate a new token
+and update the GPT configuration.
 
 ---
 

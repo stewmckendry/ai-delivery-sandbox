@@ -52,14 +52,21 @@ Tone: Supportive, clear and privacy‑conscious.
 https://ai-delivery-sandbox-production-d1a7.up.railway.app/openapi.json
 ```
 
-3. Approve the following endpoints:
+3. Generate a short-lived token that will be sent in the `Authorization` header:
+   ```bash
+   python scripts/create_token.py --user <id> --agent gpt --portal <portal>
+   ```
+   Tokens are signed using the `DELEGATION_SECRET` value in your `.env` file.
+   They expire after the `--minutes` provided (default `10`). Regenerate and
+   update the GPT action whenever a token expires.
+4. Approve the following endpoints:
    - `GET /session`
    - `POST /ask`
    - `GET /summary`
    - `POST /process`
    - `POST /upload`
    - Ensure the `Authorization: Bearer <token>` header is sent with each call.
-4. Save the action and enable it.
+5. Save the action and enable it.
 
 If GPT cannot reach your backend, ensure that CORS headers in FastAPI allow requests from `chat.openai.com`.
 
