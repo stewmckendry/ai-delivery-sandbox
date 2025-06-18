@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from app.storage import audit
 from app.storage.db import SessionLocal, init_db
 from app.storage import models
+from sqlalchemy import func
 from app.auth.token import require_token
 
 router = APIRouter(dependencies=[Depends(require_token)])
@@ -94,12 +95,21 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
 
     latest_processing = max(latest_times) if latest_times else None
 
+    type_counts = (
+        session.query(models.StructuredRecord.clinical_type, func.count())
+        .filter(models.StructuredRecord.session_key == session_key)
+        .group_by(models.StructuredRecord.clinical_type)
+        .all()
+    )
+    clinical_breakdown = {t or "unknown": c for t, c in type_counts}
+
     resp = {
         "uploads": uploads,
         "record_counts": {
             "labs": labs,
             "visits": visits,
             "structured": structured,
+            "by_clinical_type": clinical_breakdown,
         },
         "latest_upload": latest_upload,
         "latest_processing": latest_processing,
@@ -119,6 +129,10 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
         {
             "portal": r.portal,
             "type": r.type,
+            "clinical_type": r.clinical_type,
+            "code": r.code,
+            "code_system": r.code_system,
+            "display": r.display,
             "source_url": r.source_url,
             "timestamp": r.date_created.isoformat(),
             "duplicate": bool(getattr(r, "is_duplicate", False)),

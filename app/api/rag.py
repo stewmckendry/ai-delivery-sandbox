@@ -55,7 +55,11 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
         f"- {v.date} - {v.provider} - {v.doctor}: {v.notes}" for v in visits
     ]
     structured_lines = [
-        f"- [{r.type}] {r.text} ({r.source_url})" if r.source_url else f"- [{r.type}] {r.text}"
+        (
+            f"- [{r.clinical_type or r.type}] {r.text} ({r.source_url})"
+            if r.source_url
+            else f"- [{r.clinical_type or r.type}] {r.text}"
+        )
         for r in structured
     ]
 

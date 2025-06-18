@@ -92,7 +92,7 @@ def _records_to_context(labs, visits, structured) -> str:
         )
     for r in structured:
         src = f" ({r.source_url})" if r.source_url else ""
-        lines.append(f"- [{r.type}] {r.text}{src}")
+        lines.append(f"- [{r.clinical_type or r.type}] {r.text}{src}")
     return "\n".join(lines)
 
 

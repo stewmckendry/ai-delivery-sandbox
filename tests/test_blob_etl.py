@@ -90,16 +90,30 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
 
     monkeypatch.setattr(struct_module, "insert_fhir_resources", _record_fhir)
 
-    monkeypatch.setattr(
-        extractor_module,
-        "extract_relevant_content",
-        lambda text, src, **k: [{"type": "", "text": f"{src}-text", "source_url": src}],
-    )
+    def fake_extract(text, src, **_k):
+        if src.endswith("visit.html"):
+            return [{"type": "", "text": "Metformin 500 mg daily", "source_url": src}]
+        if src.endswith("lab.pdf"):
+            return [{"type": "", "text": "Patient has diabetes", "source_url": src}]
+        return [{"type": "", "text": "Allergic to penicillin", "source_url": src}]
+
+    monkeypatch.setattr(extractor_module, "extract_relevant_content", fake_extract)
     monkeypatch.setattr(cleaner_module, "clean_blocks", lambda blocks, **k: [b["text"] for b in blocks])
     monkeypatch.setattr(summarizer_module, "summarize_database_records", lambda s: "Blob summary")
 
     orch_module = importlib.import_module("app.orchestrator")
     importlib.reload(orch_module)
+    def fake_chat(messages, **_kwargs):
+        text = messages[0]["content"]
+        if "Metformin" in text:
+            return '{"clinical_type": "MedicationStatement", "code": "860975", "code_system": "RxNorm", "display": "Metformin"}'
+        if "diabetes" in text:
+            return '{"clinical_type": "Condition", "code": "44054006", "code_system": "SNOMED", "display": "Diabetes mellitus"}'
+        if "penicillin" in text:
+            return '{"clinical_type": "AllergyIntolerance"}'
+        return '{}'
+
+    monkeypatch.setattr(orch_module, "chat_completion", fake_chat)
     monkeypatch.setattr(orch_module, "_detect_labs_and_visits_with_llm", lambda recs: ([{"test_name": "Cholesterol", "value": "5.8", "units": "mmol/L", "date": "2023-05-01"}], [{"date": "2023-06-01", "provider": "Clinic", "doctor": "Dr. X", "notes": "Hi"}]))
     monkeypatch.setattr(orch_module, "_annotate_labs_with_llm", lambda labs: [{"test_name": "Cholesterol", "value": "5.8", "units": "mmol/L", "date": "2023-05-01", "loinc_code": "2093-3", "fhir": {"resourceType": "Observation"}}])
     monkeypatch.setattr(orch_module, "_annotate_visits_with_llm", lambda visits: [{"date": "2023-06-01", "provider": "Clinic", "doctor": "Dr. X", "notes": "Hi", "snomed_code": "308335008", "fhir": {"resourceType": "Encounter"}}])
@@ -111,6 +125,10 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     assert inserted["records"] and len(inserted["records"]) == 3
     assert inserted["session"] == prefix
     assert all(r["source"] == "operator" for r in inserted["records"])
+    types = {r.get("clinical_type") for r in inserted["records"]}
+    assert "MedicationStatement" in types
+    assert "Condition" in types
+    assert "AllergyIntolerance" in types
 
     assert inserted["labs"] and inserted["labs"][0]["loinc_code"] == "2093-3"
     assert inserted["visits"] and inserted["visits"][0]["snomed_code"] == "308335008"
