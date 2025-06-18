@@ -1731,3 +1731,15 @@
   - config
   last_updated: '2025-06-18'
   pod_owner: DevPod
+- path: project/docs/myhealth_assistant_tests.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/project/docs/myhealth_assistant_tests.md
+  file_type: md
+  description: Log of test sessions for MyHealth Assistant, detailing GPT's interpretation
+    of lab results, educational responses, and follow-up advice.
+  tags:
+  - test
+  - log
+  - prompt
+  - flow
+  last_updated: '2025-06-18'
+  pod_owner: QAPod
