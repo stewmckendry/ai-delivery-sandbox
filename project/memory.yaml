@@ -1648,3 +1648,15 @@
   - storage
   last_updated: '2025-06-18'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/reports/task_310_export_to_blob_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_310_export_to_blob_report.md
+  file_type: md
+  description: Report on updates to export functionality, enabling Azure Blob storage
+    with signed URLs for secure downloads.
+  tags:
+  - export
+  - azure
+  - blob
+  - testing
+  last_updated: '2025-06-18'
+  pod_owner: DeliveryPod
