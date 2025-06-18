@@ -16,6 +16,7 @@ class LabResult(Base):
     units = Column(String, nullable=False)
     date = Column(Date, nullable=False)
     session_key = Column(String, index=True, default="")
+    loinc_code = Column(String, nullable=True)
 
 
 class VisitSummary(Base):
@@ -29,6 +30,7 @@ class VisitSummary(Base):
     notes = Column(String, nullable=False)
     date = Column(Date, nullable=False)
     session_key = Column(String, index=True, default="")
+    snomed_code = Column(String, nullable=True)
 
 
 class StructuredRecord(Base):
@@ -60,6 +62,18 @@ class UploadRecord(Base):
     filename = Column(String)
     timestamp = Column(DateTime, default=datetime.utcnow)
     processed_at = Column(DateTime)
+
+
+class FHIRResource(Base):
+    """FHIR resource linked to lab results or visit summaries."""
+
+    __tablename__ = "fhir_resources"
+
+    id = Column(Integer, primary_key=True)
+    resource_type = Column(String, nullable=False)
+    resource_json = Column(Text, nullable=False)
+    record_type = Column(String, nullable=False)
+    record_id = Column(Integer, nullable=False)
 
 
 # Ensure tables are created when imported
