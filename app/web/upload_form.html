@@ -9,6 +9,26 @@
   padding: 30px;
   text-align: center;
   margin-bottom: 20px;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+#actions {
+  margin-bottom: 20px;
+}
+
+#uploadButton, #chooseButton {
+  padding: 8px 16px;
+  margin-right: 10px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background: #efefef;
+  cursor: pointer;
+}
+
+#uploadButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>
 </head>
@@ -16,12 +36,16 @@
 <h2>Upload Files</h2>
 <p id="tips">If Operator is blocked by reCAPTCHA or Cloudflare, save the page as
 HTML or print to PDF and upload the file here.</p>
-<div id="dropzone">Drag & drop files here or <input id="fileInput" type="file" multiple></div>
+<div id="dropzone">Drag & drop files here or <button id="chooseButton" type="button">Choose files</button><input id="fileInput" type="file" multiple style="display:none"></div>
+<div id="actions"><button id="uploadButton" type="button" disabled>Upload</button></div>
 <div id="status"></div>
 <script>
 const statusEl = document.getElementById('status');
 const drop = document.getElementById('dropzone');
 const input = document.getElementById('fileInput');
+const chooseBtn = document.getElementById('chooseButton');
+const uploadBtn = document.getElementById('uploadButton');
+let pendingFiles = [];
 
 function getParam(name) {
   const url = new URL(window.location.href);
@@ -29,10 +53,13 @@ function getParam(name) {
 }
 
 function uploadFile(file) {
+  const line = document.createElement('div');
+  line.textContent = `Uploading ${file.name}...`;
+  statusEl.appendChild(line);
   const session = getParam('session');
   const portal = getParam('portal') || '';
   if (!session) {
-    statusEl.innerText = 'Missing session id';
+    line.textContent = 'Missing session id';
     return;
   }
   fetch(`/upload/sas?session_key=${encodeURIComponent(session)}&filename=${encodeURIComponent(file.name)}`)
@@ -40,28 +67,43 @@ function uploadFile(file) {
     .then(data => fetch(data.url, { method: 'PUT', body: file }))
     .then(resp => {
       if (resp.ok) {
-        statusEl.innerText = `Uploaded ${file.name}`;
+        line.textContent = `Uploaded ${file.name}`;
         fetch('/upload/log', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_key: session, portal: portal, filename: file.name })
         });
       } else {
-        statusEl.innerText = `Failed upload ${file.name}`;
+        line.textContent = `Failed upload ${file.name}`;
       }
     })
     .catch(err => {
-      statusEl.innerText = 'Error: ' + err;
+      line.textContent = 'Error: ' + err;
     });
+}
+
+function addFiles(files) {
+  pendingFiles.push(...files);
+  uploadBtn.disabled = pendingFiles.length === 0;
 }
 
 drop.addEventListener('dragover', e => { e.preventDefault(); });
 drop.addEventListener('drop', e => {
   e.preventDefault();
-  Array.from(e.dataTransfer.files).forEach(uploadFile);
+  if (e.dataTransfer && e.dataTransfer.files) {
+    addFiles(Array.from(e.dataTransfer.files));
+  }
 });
 input.addEventListener('change', e => {
-  Array.from(e.target.files).forEach(uploadFile);
+  addFiles(Array.from(e.target.files));
+});
+
+chooseBtn.addEventListener('click', () => input.click());
+
+uploadBtn.addEventListener('click', () => {
+  pendingFiles.forEach(uploadFile);
+  pendingFiles = [];
+  uploadBtn.disabled = true;
 });
 </script>
 </body>

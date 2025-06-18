@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Query
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 
 from app.storage import blob
 
@@ -11,10 +11,11 @@ router = APIRouter()
 HTML_PATH = Path(__file__).resolve().parents[1] / "web" / "upload_form.html"
 
 
-@router.get("/upload")
-def upload_form() -> FileResponse:
+@router.get("/upload", response_class=HTMLResponse)
+def upload_form() -> HTMLResponse:
     """Serve the file upload HTML page."""
-    return FileResponse(str(HTML_PATH))
+    html = HTML_PATH.read_text(encoding="utf-8")
+    return HTMLResponse(html)
 
 
 @router.get("/upload/sas")
