@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from pathlib import Path
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Depends
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 
 from app.storage import blob
+from app.auth.token import require_token
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_token)])
 
 HTML_PATH = Path(__file__).resolve().parents[1] / "web" / "upload_form.html"
 

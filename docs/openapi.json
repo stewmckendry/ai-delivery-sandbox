@@ -136,6 +136,7 @@
         "operationId": "serveUploadForm",
         "summary": "Return HTML form for uploading files",
         "tags": ["Upload"],
+        "security": [{"bearerAuth": []}],
         "responses": {
           "200": {"description": "HTML form page", "content": {"text/html": {}}}
           }
@@ -146,6 +147,7 @@
         "operationId": "confirmProcess",
         "summary": "Return confirmation form before running ETL",
         "tags": ["Process"],
+        "security": [{"bearerAuth": []}],
         "parameters": [
           {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
         ],
@@ -157,6 +159,7 @@
         "operationId": "processFiles",
         "summary": "Run ETL on uploaded files",
         "tags": ["Process"],
+        "security": [{"bearerAuth": []}],
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
@@ -177,6 +180,7 @@
         "operationId": "askQuestion",
         "summary": "Answer a health-related question",
         "tags": ["Query"],
+        "security": [{"bearerAuth": []}],
         "requestBody": {
           "content": {
             "application/json": {
@@ -194,6 +198,7 @@
         "operationId": "exportRecords",
         "summary": "Export structured records",
         "tags": ["Export"],
+        "security": [{"bearerAuth": []}],
         "parameters": [
           {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}},
           {"name": "format", "in": "query", "required": false, "schema": {"type": "string", "enum": ["json", "markdown", "pdf"], "default": "json"}}
@@ -213,6 +218,7 @@
         "operationId": "getSummary",
         "summary": "Summarize uploaded and processed records",
         "tags": ["Summary"],
+        "security": [{"bearerAuth": []}],
         "parameters": [
           {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
         ],

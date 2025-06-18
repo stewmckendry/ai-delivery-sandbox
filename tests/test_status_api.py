@@ -27,6 +27,10 @@ def setup_app(monkeypatch, tmp_path):
         {"portal": "portal1", "filename": "b.html", "timestamp": "2025-01-02T00:00:00"},
     )
 
+    monkeypatch.setenv("DELEGATION_SECRET", "test")
+    from app.auth.token import create_token
+    token = create_token("user", "agent", "portal")
+
     db_path = tmp_path / "db.sqlite"
     monkeypatch.setenv("DATABASE_URL", f"sqlite:///{db_path}")
     import app.storage.db as db_module
@@ -84,12 +88,16 @@ def setup_app(monkeypatch, tmp_path):
     app = FastAPI()
     app.include_router(status_module.router)
     client = TestClient(app)
-    return client
+    return client, token
 
 
 def test_status_endpoint(monkeypatch, tmp_path):
-    client = setup_app(monkeypatch, tmp_path)
-    resp = client.get("/summary", params={"session_key": "sess"})
+    client, token = setup_app(monkeypatch, tmp_path)
+    resp = client.get(
+        "/summary",
+        params={"session_key": "sess"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
     assert resp.status_code == 200
     data = resp.json()
     assert len(data["uploads"]) == 2

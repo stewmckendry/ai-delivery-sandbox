@@ -26,6 +26,10 @@ def setup_app(labs, visits, monkeypatch):
     session.commit()
     session.close()
 
+    monkeypatch.setenv("DELEGATION_SECRET", "test")
+    from app.auth.token import create_token
+    token = create_token("user", "agent", "portal")
+
     def fake_create(messages, **_kwargs):
         content = messages[0]["content"]
         # Ensure context is included
@@ -40,7 +44,7 @@ def setup_app(labs, visits, monkeypatch):
 
     import app.main as main_module
     main_module = importlib.reload(main_module)
-    return TestClient(main_module.app), tmp.name
+    return TestClient(main_module.app), tmp.name, token
 
 
 def test_ask_endpoint(monkeypatch):
@@ -63,8 +67,12 @@ def test_ask_endpoint(monkeypatch):
         }
     ]
 
-    client, path = setup_app(labs, visits, monkeypatch)
-    resp = client.post("/ask", json={"query": "How am I doing?", "session_key": "sess"})
+    client, path, token = setup_app(labs, visits, monkeypatch)
+    resp = client.post(
+        "/ask",
+        json={"query": "How am I doing?", "session_key": "sess"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
     assert resp.status_code == 200
     assert resp.json() == {"answer": "Mock answer"}
     os.unlink(path)

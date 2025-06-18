@@ -1,13 +1,14 @@
 from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
 from app.utils import chat_completion
+from app.auth.token import require_token
 
 
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_token)])
 
 
 class QueryRequest(BaseModel):

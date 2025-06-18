@@ -3,14 +3,15 @@ from __future__ import annotations
 import json
 from datetime import datetime
 from pathlib import Path
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Depends
 from fastapi.responses import JSONResponse
 
 from app.storage import audit
 from app.storage.db import SessionLocal, init_db
 from app.storage import models
+from app.auth.token import require_token
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_token)])
 
 
 def _load_audit(session_key: str) -> list[dict]:
