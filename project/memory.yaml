@@ -1672,3 +1672,15 @@
   - classification
   last_updated: '2025-06-18'
   pod_owner: ResearchPod
+- path: task_guides/phase3_tasks/reports/task_307_clinical_standards_review_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_307_clinical_standards_review_report.md
+  file_type: md
+  description: Report on the review and enhancement of structured record models and
+    ETL flow to align with clinical standards and FHIR mappings.
+  tags:
+  - ETL
+  - FHIR
+  - clinical
+  - model
+  last_updated: '2025-06-18'
+  pod_owner: DeliveryPod
