@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from datetime import date
 from typing import List, Dict
+import json
 
 from sqlalchemy.orm import Session
 
 from app.storage.models import LabResult, VisitSummary
+from app.storage.structured import insert_fhir_resources
 
 
 def _parse_date(value: str | date) -> date:
@@ -22,6 +24,7 @@ def insert_lab_results(
 ) -> None:
     """Convert ``results`` to ``LabResult`` objects and save them."""
     objects = []
+    resources = []
     for entry in results:
         if not entry.get("date"):
             # Skip entries without a valid date since column is non-nullable
@@ -32,10 +35,25 @@ def insert_lab_results(
             units=entry["units"],
             date=_parse_date(entry["date"]),
             session_key=session_key or "",
+            loinc_code=entry.get("loinc_code"),
         )
         objects.append(lab)
     session.add_all(objects)
     session.commit()
+
+    for obj, entry in zip(objects, results):
+        fhir = entry.get("fhir")
+        if fhir:
+            resources.append(
+                {
+                    "resource_type": "Observation",
+                    "resource_json": json.dumps(fhir),
+                    "record_type": "lab",
+                    "record_id": obj.id,
+                }
+            )
+    if resources:
+        insert_fhir_resources(session, resources)
 
 
 def insert_visit_summaries(
@@ -43,6 +61,7 @@ def insert_visit_summaries(
 ) -> None:
     """Convert ``summaries`` to ``VisitSummary`` objects and save them."""
     objects = []
+    resources = []
     for entry in summaries:
         if not entry.get("date"):
             continue
@@ -52,7 +71,23 @@ def insert_visit_summaries(
             notes=entry["notes"],
             date=_parse_date(entry["date"]),
             session_key=session_key or "",
+            snomed_code=entry.get("snomed_code"),
         )
         objects.append(visit)
     session.add_all(objects)
     session.commit()
+
+    for obj, entry in zip(objects, summaries):
+        fhir = entry.get("fhir")
+        if fhir:
+            resources.append(
+                {
+                    "resource_type": "Encounter",
+                    "resource_json": json.dumps(fhir),
+                    "record_type": "visit",
+                    "record_id": obj.id,
+                }
+            )
+    if resources:
+        insert_fhir_resources(session, resources)
+

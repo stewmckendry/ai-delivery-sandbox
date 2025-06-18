@@ -58,18 +58,37 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     )
     monkeypatch.setattr(blob_module, "delete_blob", lambda name: None)
 
-    inserted = {"records": None}
+    inserted = {"records": None, "labs": None, "visits": None, "fhir": None}
 
     import app.storage.structured as structured_module
     import app.extractor as extractor_module
     import app.cleaner as cleaner_module
     import app.prompts.summarizer as summarizer_module
+    import app.processors.structuring as struct_module
 
     monkeypatch.setattr(
         structured_module,
         "insert_structured_records",
         lambda s, r, session_key=None: inserted.update({"records": r, "session": session_key})
     )
+    original_insert_lab = struct_module.insert_lab_results
+    def wrap_lab(s, r, session_key=None):
+        inserted.update({"labs": r})
+        return original_insert_lab(s, r, session_key=session_key)
+    monkeypatch.setattr(struct_module, "insert_lab_results", wrap_lab)
+
+    original_insert_visit = struct_module.insert_visit_summaries
+    def wrap_visit(s, r, session_key=None):
+        inserted.update({"visits": r})
+        return original_insert_visit(s, r, session_key=session_key)
+    monkeypatch.setattr(struct_module, "insert_visit_summaries", wrap_visit)
+
+    def _record_fhir(s, r):
+        if inserted.get("fhir") is None:
+            inserted["fhir"] = []
+        inserted["fhir"].extend(r)
+
+    monkeypatch.setattr(struct_module, "insert_fhir_resources", _record_fhir)
 
     monkeypatch.setattr(
         extractor_module,
@@ -81,6 +100,9 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
 
     orch_module = importlib.import_module("app.orchestrator")
     importlib.reload(orch_module)
+    monkeypatch.setattr(orch_module, "_detect_labs_and_visits_with_llm", lambda recs: ([{"test_name": "Cholesterol", "value": "5.8", "units": "mmol/L", "date": "2023-05-01"}], [{"date": "2023-06-01", "provider": "Clinic", "doctor": "Dr. X", "notes": "Hi"}]))
+    monkeypatch.setattr(orch_module, "_annotate_labs_with_llm", lambda labs: [{"test_name": "Cholesterol", "value": "5.8", "units": "mmol/L", "date": "2023-05-01", "loinc_code": "2093-3", "fhir": {"resourceType": "Observation"}}])
+    monkeypatch.setattr(orch_module, "_annotate_visits_with_llm", lambda visits: [{"date": "2023-06-01", "provider": "Clinic", "doctor": "Dr. X", "notes": "Hi", "snomed_code": "308335008", "fhir": {"resourceType": "Encounter"}}])
     from app.orchestrator import run_etl_from_blobs
 
     caplog.set_level(logging.INFO)
@@ -88,13 +110,15 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
 
     assert inserted["records"] and len(inserted["records"]) == 3
     assert inserted["session"] == prefix
-    types = {r["type"] for r in inserted["records"]}
-    assert "lab_file" in types
-    assert "visit_file" in types
     assert all(r["source"] == "operator" for r in inserted["records"])
+
+    assert inserted["labs"] and inserted["labs"][0]["loinc_code"] == "2093-3"
+    assert inserted["visits"] and inserted["visits"][0]["snomed_code"] == "308335008"
+    assert inserted["fhir"] and len(inserted["fhir"]) == 2
 
     summary_file = Path("logs/blob_runs/user_session_summary.md")
     assert not summary_file.exists()
     assert summary == "Blob summary"
 
     importlib.reload(orch_module)
+
