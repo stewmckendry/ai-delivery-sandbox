@@ -1561,3 +1561,15 @@
   - javascript
   last_updated: '2025-06-18'
   pod_owner: DevPod
+- path: task_guides/phase3_tasks/reports/task_306_upload_form_fix_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_306_upload_form_fix_report.md
+  file_type: md
+  description: Report detailing the fixes and testing of the upload form to improve
+    Azure uploads and user feedback.
+  tags:
+  - report
+  - upload
+  - fix
+  - testing
+  last_updated: '2025-06-18'
+  pod_owner: DeliveryPod
