@@ -2,14 +2,15 @@ from __future__ import annotations
 
 from tempfile import NamedTemporaryFile
 from pathlib import Path
+from datetime import datetime
 
 import json
 
 from fastapi import APIRouter, Query, Depends
-from fastapi.responses import JSONResponse, PlainTextResponse, FileResponse
+from fastapi.responses import JSONResponse
 
 from app.storage.db import SessionLocal, init_db
-from app.storage import models
+from app.storage import models, blob
 from app.auth.token import require_token
 
 router = APIRouter(dependencies=[Depends(require_token)])
@@ -106,6 +107,9 @@ def export_records(
     finally:
         session.close()
 
+    blob_data: bytes | str
+    ext: str
+
     if format == "json":
         data = {
             "lab_results": [
@@ -137,10 +141,9 @@ def export_records(
                 for r in structured
             ],
         }
-
-        return JSONResponse(data)
-
-    if format == "fhir":
+        blob_data = json.dumps(data, indent=2)
+        ext = "json"
+    elif format == "fhir":
         bundle = {
             "resourceType": "Bundle",
             "type": "collection",
@@ -148,13 +151,21 @@ def export_records(
                 {"resource": json.loads(row.resource_json)} for row in fhir_rows
             ],
         }
-        return JSONResponse(bundle)
+        blob_data = json.dumps(bundle, indent=2)
+        ext = "json"
+    elif format == "markdown":
+        blob_data = _records_to_markdown(labs, visits, structured)
+        ext = "md"
+    else:
+        md = _records_to_markdown(labs, visits, structured)
+        tmp = NamedTemporaryFile(delete=False, suffix=".pdf")
+        path = Path(tmp.name)
+        _markdown_to_pdf(md, path)
+        blob_data = path.read_bytes()
+        path.unlink(missing_ok=True)
+        ext = "pdf"
 
-    md = _records_to_markdown(labs, visits, structured)
-    if format == "markdown":
-        return PlainTextResponse(md, media_type="text/markdown")
-
-    tmp = NamedTemporaryFile(delete=False, suffix=".pdf")
-    path = Path(tmp.name)
-    _markdown_to_pdf(md, path)
-    return FileResponse(path, media_type="application/pdf", filename="records.pdf")
+    ts = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    blob_name = f"exports/{session_key}_{ts}.{ext}"
+    url = blob.upload_file_and_get_url(blob_data, blob_name)
+    return JSONResponse({"status": "ok", "download_url": url})

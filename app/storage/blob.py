@@ -123,3 +123,33 @@ def delete_blob(name: str) -> None:
         _container.delete_blob(name)
     except Exception:
         pass
+
+
+def upload_file_and_get_url(
+    data: bytes | str,
+    blob_name: str,
+    ttl_minutes: int = 30,
+    content_type: str | None = None,
+) -> str:
+    """Upload ``data`` to ``blob_name`` and return a time-limited SAS URL."""
+    if not _container or not _account_key:
+        raise RuntimeError("Azure blob storage not configured")
+
+    if isinstance(data, str):
+        payload = data.encode("utf-8")
+    else:
+        payload = data
+
+    client = _container.get_blob_client(blob_name)
+    client.upload_blob(payload, overwrite=True, content_type=content_type)
+
+    sas = generate_blob_sas(
+        account_name=_account_name,
+        container_name=CONTAINER,
+        blob_name=blob_name,
+        account_key=_account_key,
+        permission=BlobSasPermissions(read=True),
+        expiry=datetime.utcnow() + timedelta(minutes=ttl_minutes),
+    )
+
+    return f"{client.url}?{sas}"
