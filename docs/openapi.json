@@ -408,7 +408,8 @@
               "enum": [
                 "json",
                 "markdown",
-                "pdf"
+                "pdf",
+                "fhir"
               ],
               "default": "json"
             }

@@ -32,8 +32,10 @@ def _setup_db(tmp_path: Path, monkeypatch) -> Path:
                 "value": 5.8,
                 "units": "mmol/L",
                 "date": "2023-05-01",
+                "fhir": {"resourceType": "Observation", "id": "obs1"},
             }
         ],
+        session_key="sess",
     )
     insert_visit_summaries(
         session,
@@ -43,8 +45,10 @@ def _setup_db(tmp_path: Path, monkeypatch) -> Path:
                 "doctor": "Dr. Jones",
                 "notes": "Routine",
                 "date": "2023-06-01",
+                "fhir": {"resourceType": "Encounter", "id": "enc1"},
             }
         ],
+        session_key="sess",
     )
     insert_structured_records(
         session,
@@ -121,6 +125,37 @@ def test_export_records_all_formats(tmp_path, monkeypatch):
     )
     export_records.main()
     assert out_pdf.exists() and out_pdf.stat().st_size > 0
+
+    # reload DB modules to avoid affecting other tests
+    monkeypatch.setenv("DATABASE_URL", "sqlite:///:memory:")
+    import app.storage.db as db_module
+    import app.storage.models as models_module
+    importlib.reload(db_module)
+    importlib.reload(models_module)
+
+
+def test_export_records_fhir(tmp_path, monkeypatch):
+    db = _setup_db(tmp_path, monkeypatch)
+    out_fhir = tmp_path / "bundle.json"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "export_records.py",
+            "--db",
+            str(db),
+            "--session",
+            "sess",
+            "--format",
+            "fhir",
+            "--output",
+            str(out_fhir),
+        ],
+    )
+    export_records.main()
+    bundle = json.loads(out_fhir.read_text())
+    assert bundle["resourceType"] == "Bundle"
+    assert len(bundle["entry"]) == 2
 
     # reload DB modules to avoid affecting other tests
     monkeypatch.setenv("DATABASE_URL", "sqlite:///:memory:")
