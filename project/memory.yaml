@@ -1696,3 +1696,15 @@
   - config
   last_updated: '2025-06-18'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_312_fix_classify_clinical_type.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_312_fix_classify_clinical_type.md
+  file_type: md
+  description: Guide to improve the robustness of the `_classify_clinical_type` function
+    in handling malformed JSON outputs from LLMs.
+  tags:
+  - task
+  - LLM
+  - parsing
+  - ETL
+  last_updated: '2025-06-18'
+  pod_owner: DevPod
