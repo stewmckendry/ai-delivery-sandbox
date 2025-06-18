@@ -20,13 +20,27 @@ TTL_SECONDS = 600
 
 
 async def _await_response(challenge_id: str) -> str:
-    """Poll Redis until a user response for ``challenge_id`` is available."""
+    """Poll Redis until a user response for ``challenge_id`` is available.
+
+    Once a response is received, the temporary screenshot is removed from
+    ``/tmp`` and the Redis key is cleaned up.
+    """
     audit.log_event("system", "challenge_wait", {"id": challenge_id})
     while True:
         await asyncio.sleep(1)
         resp = redis_store.get_key(f"challenge:{challenge_id}:response")
         if resp:
             redis_store.delete_key(f"challenge:{challenge_id}:response")
+            screenshot = redis_store.get_key(
+                f"challenge:{challenge_id}:screenshot"
+            )
+            if screenshot:
+                try:
+                    Path(screenshot).unlink(missing_ok=True)
+                except Exception as exc:  # noqa: BLE001
+                    logger.error(
+                        "[pause] Failed to delete screenshot %s: %s", screenshot, exc
+                    )
             audit.log_event("system", "challenge_resume", {"id": challenge_id})
             return resp
 

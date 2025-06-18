@@ -64,3 +64,21 @@ def save_file(content: Union[str, bytes], filename: str, portal_name: str, metad
         json.dump(index, f, indent=2)
 
     return target_path
+
+
+def delete_file(path: Union[str, Path]) -> bool:
+    """Remove a file from ``RAW_DIR`` and update the index."""
+    target = Path(path)
+    try:
+        target.unlink(missing_ok=True)
+    except Exception:
+        return False
+
+    if INDEX_FILE.exists():
+        with INDEX_FILE.open("r", encoding="utf-8") as f:
+            index = json.load(f)
+        index = [rec for rec in index if rec.get("filename") != target.name]
+        with INDEX_FILE.open("w", encoding="utf-8") as f:
+            json.dump(index, f, indent=2)
+
+    return True

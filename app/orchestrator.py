@@ -14,7 +14,7 @@ import httpx
 
 from app import crawler, extractor, cleaner
 
-from app.storage.files import save_file
+from app.storage.files import save_file, delete_file
 from app.storage.db import init_db, SessionLocal
 from app.processors.lab_pdf_parser import extract_lab_results_with_date
 from app.processors.visit_html_parser import extract_visit_summaries
@@ -35,6 +35,9 @@ logger.setLevel(logging.INFO)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("azure").setLevel(logging.WARNING)
 logging.getLogger("openai").setLevel(logging.WARNING)
+
+# Delete files in data/raw after processing if set
+DELETE_RAW = os.getenv("RAW_CLEANUP", "0").lower() in {"1", "true", "yes"}
 
 
 def _load_scraper(portal_name: str):
@@ -152,7 +155,7 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> str:
             if not path.exists():
                 continue
             content = path.read_bytes()
-            save_file(content, path.name, portal_name, {"source": path_str})
+            saved = save_file(content, path.name, portal_name, {"source": path_str})
             if path.suffix.lower() == ".pdf":
                 logger.info("[etl] Parsing labs from %s", path_str)
                 labs = extract_lab_results_with_date(path_str)
@@ -162,6 +165,8 @@ def run_etl_for_portal(portal_name: str, user_id: str | None = None) -> str:
                 html = content.decode("utf-8", errors="ignore")
                 visits = extract_visit_summaries(html)
                 visits_all.extend(visits)
+            if DELETE_RAW:
+                delete_file(saved)
         log_event(
             user,
             "parse",
@@ -332,6 +337,8 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
                 "source": "operator",
             })
             blob.delete_blob(name)
+            if DELETE_RAW:
+                delete_file(path)
 
         extracted = []
         for page in pages:

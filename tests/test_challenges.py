@@ -80,3 +80,21 @@ def test_detect_and_handle(monkeypatch):
     assert page.filled["input[name='otp']"] == "1111"
     assert "challenge_prompt" in events
     assert fake.get_key("challenge:cid:screenshot")
+
+
+def test_screenshot_cleanup(monkeypatch, tmp_path):
+    fake = FakeRedis()
+    monkeypatch.setattr(challenges, "redis_store", fake)
+    monkeypatch.setattr(challenges.audit, "log_event", lambda *a, **k: None)
+    screenshot = tmp_path / "challenge_cid.png"
+    screenshot.write_text("img")
+    fake.set_key("challenge:cid:response", "code")
+    fake.set_key("challenge:cid:screenshot", str(screenshot))
+
+    async def no_sleep(_):
+        return None
+
+    monkeypatch.setattr(asyncio, "sleep", no_sleep)
+    result = asyncio.run(challenges._await_response("cid"))
+    assert result == "code"
+    assert not screenshot.exists()
