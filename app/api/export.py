@@ -3,6 +3,8 @@ from __future__ import annotations
 from tempfile import NamedTemporaryFile
 from pathlib import Path
 
+import json
+
 from fastapi import APIRouter, Query, Depends
 from fastapi.responses import JSONResponse, PlainTextResponse, FileResponse
 
@@ -54,11 +56,12 @@ def _markdown_to_pdf(md: str, out_path: Path) -> None:
 @router.get("/export")
 def export_records(
     session_key: str = Query(...),
-    format: str = Query("json", enum=["json", "markdown", "pdf"]),
+    format: str = Query("json", enum=["json", "markdown", "pdf", "fhir"]),
 ):
     """Export structured records for ``session_key`` in the given ``format``."""
     init_db()
     session = SessionLocal()
+    fhir_rows: list[models.FHIRResource] = []
     try:
         labs = (
             session.query(models.LabResult)
@@ -78,6 +81,28 @@ def export_records(
             .order_by(models.StructuredRecord.id)
             .all()
         )
+        fhir_rows: list[models.FHIRResource] = []
+        if format == "fhir":
+            lab_ids = [l.id for l in labs]
+            visit_ids = [v.id for v in visits]
+            if lab_ids:
+                fhir_rows.extend(
+                    session.query(models.FHIRResource)
+                    .filter(
+                        models.FHIRResource.record_type == "lab",
+                        models.FHIRResource.record_id.in_(lab_ids),
+                    )
+                    .all()
+                )
+            if visit_ids:
+                fhir_rows.extend(
+                    session.query(models.FHIRResource)
+                    .filter(
+                        models.FHIRResource.record_type == "visit",
+                        models.FHIRResource.record_id.in_(visit_ids),
+                    )
+                    .all()
+                )
     finally:
         session.close()
 
@@ -112,7 +137,18 @@ def export_records(
                 for r in structured
             ],
         }
+
         return JSONResponse(data)
+
+    if format == "fhir":
+        bundle = {
+            "resourceType": "Bundle",
+            "type": "collection",
+            "entry": [
+                {"resource": json.loads(row.resource_json)} for row in fhir_rows
+            ],
+        }
+        return JSONResponse(bundle)
 
     md = _records_to_markdown(labs, visits, structured)
     if format == "markdown":

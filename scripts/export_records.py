@@ -52,16 +52,13 @@ def _init_session(db_path: str):
 
 
 def _fetch_records(session, models_module, session_key: str | None = None) -> Tuple[List, List, List]:
-    labs = (
-        session.query(models_module.LabResult)
-        .order_by(models_module.LabResult.date)
-        .all()
-    )
-    visits = (
-        session.query(models_module.VisitSummary)
-        .order_by(models_module.VisitSummary.date)
-        .all()
-    )
+    labs_q = session.query(models_module.LabResult).order_by(models_module.LabResult.date)
+    visits_q = session.query(models_module.VisitSummary).order_by(models_module.VisitSummary.date)
+    if session_key is not None:
+        labs_q = labs_q.filter(models_module.LabResult.session_key == session_key)
+        visits_q = visits_q.filter(models_module.VisitSummary.session_key == session_key)
+    labs = labs_q.all()
+    visits = visits_q.all()
     try:
         query = session.query(models_module.StructuredRecord)
         if session_key is not None:
@@ -76,6 +73,32 @@ def _fetch_records(session, models_module, session_key: str | None = None) -> Tu
         len(structured),
     )
     return labs, visits, structured
+
+
+def _fetch_fhir_resources(session, models_module, labs, visits):
+    rows: list = []
+    lab_ids = [l.id for l in labs]
+    visit_ids = [v.id for v in visits]
+    if lab_ids:
+        rows.extend(
+            session.query(models_module.FHIRResource)
+            .filter(
+                models_module.FHIRResource.record_type == "lab",
+                models_module.FHIRResource.record_id.in_(lab_ids),
+            )
+            .all()
+        )
+    if visit_ids:
+        rows.extend(
+            session.query(models_module.FHIRResource)
+            .filter(
+                models_module.FHIRResource.record_type == "visit",
+                models_module.FHIRResource.record_id.in_(visit_ids),
+            )
+            .all()
+        )
+    logger.info("Fetched %d FHIR resources", len(rows))
+    return rows
 
 
 def _records_to_markdown(labs, visits, structured) -> str:
@@ -121,7 +144,7 @@ def main() -> None:
     parser.add_argument("--db", default="health_data.db", help="SQLite DB path")
     parser.add_argument(
         "--format",
-        choices=["json", "markdown", "pdf"],
+        choices=["json", "markdown", "pdf", "fhir"],
         default="json",
         help="Output format",
     )
@@ -131,6 +154,9 @@ def main() -> None:
 
     session, models_module = _init_session(args.db)
     labs, visits, structured = _fetch_records(session, models_module, args.session)
+    fhir_rows = []
+    if args.format == "fhir":
+        fhir_rows = _fetch_fhir_resources(session, models_module, labs, visits)
     session.close()
 
     out_path = Path(args.output)
@@ -167,6 +193,15 @@ def main() -> None:
             ],
         }
         out_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    elif args.format == "fhir":
+        bundle = {
+            "resourceType": "Bundle",
+            "type": "collection",
+            "entry": [
+                {"resource": json.loads(r.resource_json)} for r in fhir_rows
+            ],
+        }
+        out_path.write_text(json.dumps(bundle, indent=2), encoding="utf-8")
     else:
         md = _records_to_markdown(labs, visits, structured)
         if args.format == "markdown":

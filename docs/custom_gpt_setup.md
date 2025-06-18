@@ -38,7 +38,8 @@ POST /ask
 { "session_key": "<SESSION_ID>", "query": "<user question>" }
 5. Export
 – To generate downloadable records, call:
-GET /export?session_key=<SESSION_ID>&format=pdf|markdown|json
+GET /export?session_key=<SESSION_ID>&format=pdf|markdown|json|fhir
+The `fhir` format returns a Bundle of FHIR Observation and Encounter resources in JSON.
 6. Summary
 – To provide a structured overview, call:
 GET /summary?session_key=<SESSION_ID>
