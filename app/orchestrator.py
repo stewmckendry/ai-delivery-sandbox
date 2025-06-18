@@ -19,6 +19,7 @@ from app.storage.db import init_db, SessionLocal
 from app.processors.lab_pdf_parser import extract_lab_results_with_date
 from app.processors.visit_html_parser import extract_visit_summaries
 from app.processors.structuring import insert_lab_results, insert_visit_summaries
+from app.utils import chat_completion
 from app.storage.structured import insert_structured_records
 from app.storage.credentials import get_credentials, delete_credentials
 from app.adapters.common import challenges
@@ -298,6 +299,90 @@ def _pdf_to_text(path: str | Path) -> str:
     return text
 
 
+def _annotate_labs_with_llm(labs: list[dict]) -> list[dict]:
+    """Use an LLM to assign LOINC codes and FHIR Observations."""
+    if not labs:
+        return labs
+    prompt = (
+        "For each lab result entry in the following JSON, provide a 'loinc_code'"
+        " and a minimal FHIR Observation object. Return a JSON array in the same"
+        " order as the input.\nEntries:\n" + json.dumps(labs)
+    )
+    try:
+        content = chat_completion([{"role": "user", "content": prompt}])
+        info = json.loads(content)
+    except Exception as exc:  # noqa: BLE001
+        logger.error("[etl] LLM lab annotation failed: %s", exc)
+        return labs
+    if isinstance(info, dict):
+        info = [info]
+    for entry, upd in zip(labs, info):
+        if isinstance(upd, dict):
+            if upd.get("loinc_code"):
+                entry["loinc_code"] = upd["loinc_code"]
+            if upd.get("fhir"):
+                entry["fhir"] = upd["fhir"]
+    return labs
+
+
+def _annotate_visits_with_llm(visits: list[dict]) -> list[dict]:
+    """Use an LLM to assign SNOMED codes and FHIR Encounters."""
+    if not visits:
+        return visits
+    prompt = (
+        "For each visit entry in the following JSON, provide a 'snomed_code' and"
+        " a minimal FHIR Encounter object. Return a JSON array in the same order"
+        " as the input.\nEntries:\n" + json.dumps(visits)
+    )
+    try:
+        content = chat_completion([{"role": "user", "content": prompt}])
+        info = json.loads(content)
+    except Exception as exc:  # noqa: BLE001
+        logger.error("[etl] LLM visit annotation failed: %s", exc)
+        return visits
+    if isinstance(info, dict):
+        info = [info]
+    for entry, upd in zip(visits, info):
+        if isinstance(upd, dict):
+            if upd.get("snomed_code"):
+                entry["snomed_code"] = upd["snomed_code"]
+            if upd.get("fhir"):
+                entry["fhir"] = upd["fhir"]
+    return visits
+
+
+def _detect_labs_and_visits_with_llm(records: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Classify ``records`` text as labs or visits and extract structured data."""
+    if not records:
+        return [], []
+    texts = [r.get("text", "") for r in records]
+    prompt = (
+        "For each entry in the following JSON array, classify it as a lab or visit and "
+        "return structured data. Use the format:\n"
+        "{type: 'lab', test_name: '', value: '', units: '', date: ''} or\n"
+        "{type: 'visit', provider: '', doctor: '', notes: '', date: ''} or {type: 'other'}.\n"
+        "Entries:\n" + json.dumps(texts)
+    )
+    try:
+        content = chat_completion([{"role": "user", "content": prompt}])
+        info = json.loads(content)
+    except Exception as exc:  # noqa: BLE001
+        logger.error("[etl] LLM record classification failed: %s", exc)
+        return [], []
+    if isinstance(info, dict):
+        info = [info]
+    labs: list[dict] = []
+    visits: list[dict] = []
+    for item in info:
+        if not isinstance(item, dict):
+            continue
+        if item.get("type") == "lab":
+            labs.append(item)
+        elif item.get("type") == "visit":
+            visits.append(item)
+    return labs, visits
+
+
 def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
     """Process files uploaded to Azure Blob under ``prefix`` and return summary."""
 
@@ -345,12 +430,6 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
             records = extractor.extract_relevant_content(page["text"], page["url"])
             for rec in records:
                 rec["portal"] = "blob"
-                if not rec.get("type"):
-                    fname = page["filename"].lower()
-                    if "lab" in fname:
-                        rec["type"] = "lab_file"
-                    elif "visit" in fname:
-                        rec["type"] = "visit_file"
             extracted.extend(records)
 
         final_records = []
@@ -381,6 +460,16 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
                 prefix,
             )
             insert_structured_records(session, final_records, session_key=prefix)
+
+        # detect labs and visits from structured records
+        labs, visits = _detect_labs_and_visits_with_llm(final_records)
+        if labs:
+            labs = _annotate_labs_with_llm(labs)
+            insert_lab_results(session, labs, session_key=prefix)
+
+        if visits:
+            visits = _annotate_visits_with_llm(visits)
+            insert_visit_summaries(session, visits, session_key=prefix)
 
         summary = ""
         if final_records:
