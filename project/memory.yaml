@@ -1636,3 +1636,15 @@
   - FHIR
   last_updated: '2025-06-18'
   pod_owner: DevPod
+- path: task_guides/phase3_tasks/task_310_export_to_blob.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_310_export_to_blob.md
+  file_type: md
+  description: Guide to update the export endpoint to return a time-limited Azure
+    Blob URL instead of a direct file response.
+  tags:
+  - api
+  - export
+  - azure
+  - storage
+  last_updated: '2025-06-18'
+  pod_owner: DeliveryPod
