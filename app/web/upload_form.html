@@ -52,6 +52,10 @@ function getParam(name) {
   return url.searchParams.get(name);
 }
 
+function getToken() {
+  return getParam('token');
+}
+
 function uploadFile(file) {
   const line = file._line || document.createElement('li');
   line.textContent = `Uploading ${file.name}...`;
@@ -61,21 +65,26 @@ function uploadFile(file) {
   }
   const session = getParam('session');
   const portal = getParam('portal') || '';
+  const token = getToken();
   if (!session) {
     line.textContent = 'Missing session id';
     return;
   }
-  fetch(`/upload/sas?session_key=${encodeURIComponent(session)}&filename=${encodeURIComponent(file.name)}`)
+  const sasEndpoint = token ? '/upload/sas' : '/upload/proxy_sas';
+  const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+  fetch(`${sasEndpoint}?session_key=${encodeURIComponent(session)}&filename=${encodeURIComponent(file.name)}`, { headers })
     .then(res => res.json())
     .then(data => fetch(data.url, { method: 'PUT', body: file, headers: { 'x-ms-blob-type': 'BlockBlob' } }))
     .then(resp => {
       if (resp.ok) {
         line.textContent = `Uploaded ${file.name} \u2714`;
-        fetch('/upload/log', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_key: session, portal: portal, filename: file.name })
-        });
+        if (token) {
+          fetch('/upload/log', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({ session_key: session, portal: portal, filename: file.name })
+          });
+        }
       } else {
         line.textContent = `Upload failed ${file.name}: ${resp.status}`;
       }
