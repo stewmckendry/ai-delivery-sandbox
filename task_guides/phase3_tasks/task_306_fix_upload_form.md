@@ -43,5 +43,6 @@ fetch(data.url, {
 
 ---
 
-Let Stewart know when fixed so he can re-test via:  
-`https://ai-delivery-sandbox-production-d1a7.up.railway.app/upload?session=test_user&portal=lifelabs`
+Let Stewart know when fixed so he can re-test via:
+1. Fetch a new key from `/session`.
+2. `https://ai-delivery-sandbox-production-d1a7.up.railway.app/upload?session=<key>&portal=lifelabs`

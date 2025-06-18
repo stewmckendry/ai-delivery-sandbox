@@ -11,7 +11,11 @@
       "description": "Production server"
     }
   ],
-  "security": [{"bearerAuth": []}],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "components": {
     "securitySchemes": {
       "bearerAuth": {
@@ -24,16 +28,24 @@
       "ProcessStatus": {
         "type": "object",
         "properties": {
-          "status": {"type": "string"}
+          "status": {
+            "type": "string"
+          }
         },
-        "required": ["status"]
+        "required": [
+          "status"
+        ]
       },
       "Answer": {
         "type": "object",
         "properties": {
-          "answer": {"type": "string"}
+          "answer": {
+            "type": "string"
+          }
         },
-        "required": ["answer"]
+        "required": [
+          "answer"
+        ]
       },
       "ExportData": {
         "type": "object",
@@ -43,12 +55,26 @@
             "items": {
               "type": "object",
               "properties": {
-                "test_name": {"type": "string"},
-                "value": {"type": "number"},
-                "units": {"type": "string"},
-                "date": {"type": "string", "format": "date"}
+                "test_name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                },
+                "units": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
               },
-              "required": ["test_name", "value", "units", "date"]
+              "required": [
+                "test_name",
+                "value",
+                "units",
+                "date"
+              ]
             }
           },
           "visit_summaries": {
@@ -56,12 +82,26 @@
             "items": {
               "type": "object",
               "properties": {
-                "provider": {"type": "string"},
-                "doctor": {"type": "string"},
-                "notes": {"type": "string"},
-                "date": {"type": "string", "format": "date"}
+                "provider": {
+                  "type": "string"
+                },
+                "doctor": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
               },
-              "required": ["provider", "doctor", "notes", "date"]
+              "required": [
+                "provider",
+                "doctor",
+                "notes",
+                "date"
+              ]
             }
           },
           "structured_records": {
@@ -69,13 +109,29 @@
             "items": {
               "type": "object",
               "properties": {
-                "portal": {"type": "string"},
-                "type": {"type": "string"},
-                "text": {"type": "string"},
-                "source_url": {"type": "string"},
-                "date_created": {"type": "string", "format": "date-time"}
+                "portal": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string"
+                },
+                "date_created": {
+                  "type": "string",
+                  "format": "date-time"
+                }
               },
-              "required": ["portal", "type", "text", "date_created"]
+              "required": [
+                "portal",
+                "type",
+                "text",
+                "date_created"
+              ]
             }
           }
         }
@@ -88,28 +144,65 @@
             "items": {
               "type": "object",
               "properties": {
-                "filename": {"type": "string"},
-                "portal": {"type": "string"},
-                "timestamp": {"type": "string"}
+                "filename": {
+                  "type": "string"
+                },
+                "portal": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string"
+                }
               }
             }
           },
           "record_counts": {
             "type": "object",
             "properties": {
-              "labs": {"type": "integer"},
-              "visits": {"type": "integer"},
-              "structured": {"type": "integer"}
+              "labs": {
+                "type": "integer"
+              },
+              "visits": {
+                "type": "integer"
+              },
+              "structured": {
+                "type": "integer"
+              }
             }
           },
-          "latest_upload": {"type": ["string", "null"]},
-          "latest_processing": {"type": ["string", "null"]},
+          "latest_upload": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "latest_processing": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "latest_record_dates": {
             "type": "object",
             "properties": {
-              "labs": {"type": ["string", "null"]},
-              "visits": {"type": ["string", "null"]},
-              "structured": {"type": ["string", "null"]}
+              "labs": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "visits": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "structured": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           },
           "structured_records": {
@@ -117,15 +210,27 @@
             "items": {
               "type": "object",
               "properties": {
-                "portal": {"type": "string"},
-                "type": {"type": "string"},
-                "source_url": {"type": "string"},
-                "timestamp": {"type": "string"},
-                "duplicate": {"type": "boolean"}
+                "portal": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string"
+                },
+                "duplicate": {
+                  "type": "boolean"
+                }
               }
             }
           },
-          "message": {"type": "string"}
+          "message": {
+            "type": "string"
+          }
         }
       }
     }
@@ -135,42 +240,93 @@
       "get": {
         "operationId": "serveUploadForm",
         "summary": "Return HTML form for uploading files",
-        "tags": ["Upload"],
-        "security": [{"bearerAuth": []}],
+        "tags": [
+          "Upload"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
-          "200": {"description": "HTML form page", "content": {"text/html": {}}}
+          "200": {
+            "description": "HTML form page",
+            "content": {
+              "text/html": {}
+            }
           }
         }
-      },
+      }
+    },
     "/process": {
       "get": {
         "operationId": "confirmProcess",
         "summary": "Return confirmation form before running ETL",
-        "tags": ["Process"],
-        "security": [{"bearerAuth": []}],
+        "tags": [
+          "Process"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
-          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
-          "200": {"description": "HTML confirmation page", "content": {"text/html": {}}}
+          "200": {
+            "description": "HTML confirmation page",
+            "content": {
+              "text/html": {}
+            }
+          }
         }
       },
       "post": {
         "operationId": "processFiles",
         "summary": "Run ETL on uploaded files",
-        "tags": ["Process"],
-        "security": [{"bearerAuth": []}],
+        "tags": [
+          "Process"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
-              "schema": {"type": "object", "properties": {"session_key": {"type": "string"}}, "required": ["session_key"]}
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_key"
+                ]
               }
             }
-          },
+          }
+        },
         "responses": {
           "200": {
             "description": "Status after processing",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ProcessStatus"}}}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessStatus"
+                }
+              }
+            }
           }
         }
       }
@@ -179,35 +335,94 @@
       "post": {
         "operationId": "askQuestion",
         "summary": "Answer a health-related question",
-        "tags": ["Query"],
-        "security": [{"bearerAuth": []}],
+        "tags": [
+          "Query"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {"type": "object", "properties": {"query": {"type": "string"}, "session_key": {"type": "string"}}, "required": ["query", "session_key"]}
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  },
+                  "session_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "query",
+                  "session_key"
+                ]
+              }
             }
           }
         },
         "responses": {
-          "200": {"description": "Answer text", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Answer"}}}}
+          "200": {
+            "description": "Answer text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
           }
         }
-      },
+      }
+    },
     "/export": {
       "get": {
         "operationId": "exportRecords",
         "summary": "Export structured records",
-        "tags": ["Export"],
-        "security": [{"bearerAuth": []}],
+        "tags": [
+          "Export"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
-          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}},
-          {"name": "format", "in": "query", "required": false, "schema": {"type": "string", "enum": ["json", "markdown", "pdf"], "default": "json"}}
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "markdown",
+                "pdf"
+              ],
+              "default": "json"
+            }
+          }
         ],
         "responses": {
           "200": {
             "description": "Exported records",
             "content": {
-              "application/json": {"schema": {"$ref": "#/components/schemas/ExportData"}}
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportData"
+                }
+              }
             }
           }
         }
@@ -217,13 +432,69 @@
       "get": {
         "operationId": "getSummary",
         "summary": "Summarize uploaded and processed records",
-        "tags": ["Summary"],
-        "security": [{"bearerAuth": []}],
+        "tags": [
+          "Summary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
-          {"name": "session_key", "in": "query", "required": true, "schema": {"type": "string"}}
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
-          "200": {"description": "Summary information", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Summary"}}}}
+          "200": {
+            "description": "Summary information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Summary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/session": {
+      "get": {
+        "operationId": "newSession",
+        "summary": "Generate a new session key",
+        "tags": [
+          "Session"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New session key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "session_key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "session_key"
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
