@@ -1,25 +1,33 @@
 """Utility functions for short-lived delegation tokens."""
 from __future__ import annotations
 
+import pathlib
+from dotenv import load_dotenv
+import os
+
+# Set dotenv_path to the project root (/PHR-PoC/.env)
+project_root = pathlib.Path(__file__).resolve().parents[2]
+dotenv_path = project_root / '.env'
+load_dotenv(dotenv_path)
+
 from datetime import datetime, timedelta
 import base64
 import hashlib
 import hmac
 import json
-import os
 from typing import Dict, Optional
-
 from fastapi import Header, HTTPException, status
-
-from dotenv import load_dotenv
-load_dotenv()
+import sys
 
 SECRET = os.getenv("DELEGATION_SECRET", "change-me")
 ALGO = hashlib.sha256
 DEFAULT_MINUTES = 10
 
+import logging
+logger = logging.getLogger(__name__)
 
 def _sign(data: str) -> str:
+    print("Using delegation secret: %s", SECRET)
     return hmac.new(SECRET.encode(), data.encode(), ALGO).hexdigest()
 
 
