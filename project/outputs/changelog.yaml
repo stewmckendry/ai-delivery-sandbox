@@ -2278,3 +2278,14 @@
   task_id: phase3_cloud_and_gpt_setup
   committed_by: GPTPod
   message: Append output file to phase3_cloud_and_gpt_setup
+- timestamp: '2025-06-18T19:59:02.239457'
+  path: task_guides/phase3_tasks/task_311_fix_upload_auth.md
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Add task 311 to remove token auth from /upload route so it can be opened
+    from browser or GPT link
+- timestamp: '2025-06-18T19:59:02.239457'
+  path: project/memory.yaml
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Memory update related to task_guides/phase3_tasks/task_311_fix_upload_auth.md
