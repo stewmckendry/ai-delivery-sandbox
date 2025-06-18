@@ -9,7 +9,7 @@ These notes explain how to use OpenAI Operator with the provided prompt template
 4. Prefer **PDF** downloads. Use HTML only if a PDF option is unavailable.
 5. Save files using the convention `portal_DATE_type.pdf` (for example `mychart_2024-05-01_visit.pdf`).
 6. After downloading, close the Operator tab or return to the Copilot chat to upload your file.
-7. You can check `/summary?session_key=YOUR_ID` to confirm what was uploaded. Duplicate files will be flagged automatically.
+7. First call `/session` to receive a session key. Use this key with `/upload`, `/process`, and `/summary` to manage your data.
 
 ### Troubleshooting
 - If you hit reCAPTCHA or Cloudflare blocks, save the page as HTML or print to PDF and upload it from `/upload`.
