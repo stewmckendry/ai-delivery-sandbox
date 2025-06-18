@@ -38,7 +38,7 @@
 HTML or print to PDF and upload the file here.</p>
 <div id="dropzone">Drag & drop files here or <button id="chooseButton" type="button">Choose files</button><input id="fileInput" type="file" multiple style="display:none"></div>
 <div id="actions"><button id="uploadButton" type="button" disabled>Upload</button></div>
-<div id="status"></div>
+<ul id="status"></ul>
 <script>
 const statusEl = document.getElementById('status');
 const drop = document.getElementById('dropzone');
@@ -53,9 +53,12 @@ function getParam(name) {
 }
 
 function uploadFile(file) {
-  const line = document.createElement('div');
+  const line = file._line || document.createElement('li');
   line.textContent = `Uploading ${file.name}...`;
-  statusEl.appendChild(line);
+  if (!file._line) {
+    statusEl.appendChild(line);
+    file._line = line;
+  }
   const session = getParam('session');
   const portal = getParam('portal') || '';
   if (!session) {
@@ -64,17 +67,17 @@ function uploadFile(file) {
   }
   fetch(`/upload/sas?session_key=${encodeURIComponent(session)}&filename=${encodeURIComponent(file.name)}`)
     .then(res => res.json())
-    .then(data => fetch(data.url, { method: 'PUT', body: file }))
+    .then(data => fetch(data.url, { method: 'PUT', body: file, headers: { 'x-ms-blob-type': 'BlockBlob' } }))
     .then(resp => {
       if (resp.ok) {
-        line.textContent = `Uploaded ${file.name}`;
+        line.textContent = `Uploaded ${file.name} \u2714`;
         fetch('/upload/log', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_key: session, portal: portal, filename: file.name })
         });
       } else {
-        line.textContent = `Failed upload ${file.name}`;
+        line.textContent = `Upload failed ${file.name}: ${resp.status}`;
       }
     })
     .catch(err => {
@@ -83,7 +86,13 @@ function uploadFile(file) {
 }
 
 function addFiles(files) {
-  pendingFiles.push(...files);
+  files.forEach(file => {
+    pendingFiles.push(file);
+    const line = document.createElement('li');
+    line.textContent = `${file.name} ready`;
+    file._line = line;
+    statusEl.appendChild(line);
+  });
   uploadBtn.disabled = pendingFiles.length === 0;
 }
 
