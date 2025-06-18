@@ -52,13 +52,11 @@ def _fetch_recent_records(session, models_module, session_key: str | None = None
     labs = (
         session.query(models_module.LabResult)
         .order_by(models_module.LabResult.date.desc())
-        .limit(5)
         .all()
     )
     visits = (
         session.query(models_module.VisitSummary)
         .order_by(models_module.VisitSummary.date.desc())
-        .limit(5)
         .all()
     )
     try:
@@ -66,8 +64,8 @@ def _fetch_recent_records(session, models_module, session_key: str | None = None
         if session_key is not None:
             query = query.filter(models_module.StructuredRecord.session_key == session_key)
         structured = (
-            query.order_by(models_module.StructuredRecord.id.desc())
-            .limit(5)
+            query.filter(models_module.StructuredRecord.is_duplicate == False)
+            .order_by(models_module.StructuredRecord.id.desc())
             .all()
         )
     except Exception:  # pragma: no cover - table may be missing
@@ -81,18 +79,46 @@ def _fetch_recent_records(session, models_module, session_key: str | None = None
     return labs, visits, structured
 
 
-def _records_to_context(labs, visits, structured) -> str:
-    """Format DB records as bullet list context."""
-    lines = []
+def _records_to_context(labs, visits, structured, *, token_limit: int = 3000) -> str:
+    """Format DB records as bullet list context, bounded by ``token_limit``."""
+    from app.utils.tokens import count_tokens
+
+    remaining = token_limit
+    lines: list[str] = []
+
+    def try_add(text: str) -> bool:
+        nonlocal remaining
+        tok = count_tokens(text + "\n")
+        if tok > remaining:
+            return False
+        lines.append(text)
+        remaining -= tok
+        return True
+
+    try_add("Recent Lab Results:")
     for lab in labs:
-        lines.append(f"- {lab.test_name}: {lab.value} {lab.units} ({lab.date})")
+        if not try_add(f"- {lab.test_name}: {lab.value} {lab.units} ({lab.date})"):
+            break
+
+    try_add("")
+    try_add("Recent Visits:")
     for v in visits:
-        lines.append(
-            f"- Visit {v.date} with {v.doctor} at {v.provider}: {v.notes}"
-        )
-    for r in structured:
-        src = f" ({r.source_url})" if r.source_url else ""
-        lines.append(f"- [{r.clinical_type or r.type}] {r.text}{src}")
+        if not try_add(f"- Visit {v.date} with {v.doctor} at {v.provider}: {v.notes}"):
+            break
+
+    seen_text: set[str] = set()
+    if structured:
+        try_add("")
+        try_add("Recent Records:")
+        for r in structured:
+            if r.text in seen_text:
+                continue
+            seen_text.add(r.text)
+            src = f" ({r.source_url})" if r.source_url else ""
+            line = f"- [{r.clinical_type or r.type}] {r.text}{src}"
+            if not try_add(line):
+                break
+
     return "\n".join(lines)
 
 
