@@ -2214,3 +2214,14 @@
   task_id: phase3_cloud_and_gpt_setup
   committed_by: GPTPod
   message: Append output file to phase3_cloud_and_gpt_setup
+- timestamp: '2025-06-18T17:46:30.033901'
+  path: task_guides/phase3_tasks/task_310_export_to_blob.md
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Add task 310 to migrate /export output to time-limited blob and return
+    signed URL instead of raw file
+- timestamp: '2025-06-18T17:46:30.033901'
+  path: project/memory.yaml
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Memory update related to task_guides/phase3_tasks/task_310_export_to_blob.md
