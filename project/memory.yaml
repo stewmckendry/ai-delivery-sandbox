@@ -1660,3 +1660,15 @@
   - testing
   last_updated: '2025-06-18'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/reports/task_309_clinical_classifier_report.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/reports/task_309_clinical_classifier_report.md
+  file_type: md
+  description: Report on enhancing the ETL process for clinical type classification
+    using LLM, including testing outcomes and updated files.
+  tags:
+  - report
+  - ETL
+  - LLM
+  - classification
+  last_updated: '2025-06-18'
+  pod_owner: ResearchPod
