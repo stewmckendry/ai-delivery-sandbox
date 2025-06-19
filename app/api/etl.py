@@ -2,11 +2,13 @@ from __future__ import annotations
 
 from datetime import datetime
 import os
+import logging
 
 from fastapi import APIRouter, Form, Query, Depends, BackgroundTasks
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from app.storage import blob, audit
+logger = logging.getLogger(__name__)
 from app.auth.token import require_token
 
 router = APIRouter(dependencies=[Depends(require_token)])
@@ -39,6 +41,7 @@ def upload_status(session_key: str = Query(...)) -> JSONResponse:
 def confirm_process(session_key: str = Query(...)) -> HTMLResponse:
     """Return confirmation prompt before running ETL."""
     files = blob.list_blobs(session_key)
+    logger.info("[/process] confirm for session %s with %d files", session_key, len(files))
     html = HTML_TEMPLATE.format(count=len(files), session_key=session_key)
     return HTMLResponse(content=html)
 
@@ -47,6 +50,7 @@ def confirm_process(session_key: str = Query(...)) -> HTMLResponse:
 @router.post("/process")
 def process_files(bg: BackgroundTasks, session_key: str = Form(...)) -> JSONResponse:
     """Run ETL pipeline after user confirmation."""
+    logger.info("[/process] starting for session %s", session_key)
     audit.log_event(
         session_key,
         "consent_given",
@@ -56,6 +60,7 @@ def process_files(bg: BackgroundTasks, session_key: str = Form(...)) -> JSONResp
         from app.orchestrator import run_etl_from_blobs
 
         bg.add_task(run_etl_from_blobs, session_key)
+        logger.info("[/process] ETL task queued for %s", session_key)
         status = "processing"
         message = (
             "Your files are being processed. Please check /summary later."
@@ -63,6 +68,7 @@ def process_files(bg: BackgroundTasks, session_key: str = Form(...)) -> JSONResp
     else:
         status = "dry-run"
         message = "DRY_RUN is enabled; ETL skipped."
+        logger.info("[/process] dry run for session %s", session_key)
 
     return JSONResponse(
         {"status": status, "message": message, "session_key": session_key}

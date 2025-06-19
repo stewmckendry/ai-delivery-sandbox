@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import logging
 from typing import Iterable, List
 
 import chromadb
@@ -11,6 +12,8 @@ from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 from dotenv import load_dotenv
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 _COLLECTION = "health_records"
 
@@ -35,6 +38,7 @@ def _chunk(text: str, size: int = 500) -> List[str]:
 
 def index_structured_records(records: Iterable, session_key: str) -> None:
     """Index structured record objects for a session."""
+    records = list(records)
     client = _get_client()
     collection = client.get_or_create_collection(_COLLECTION, embedding_function=_embed)
 
@@ -58,3 +62,11 @@ def index_structured_records(records: Iterable, session_key: str) -> None:
 
     if docs:
         collection.add(documents=docs, ids=ids, metadatas=metas)
+        logger.info(
+            "[rag.indexer] added %d records (%d chunks) for session %s",
+            len(records),
+            len(docs),
+            session_key,
+        )
+    else:
+        logger.error("[rag.indexer] no records to index for session %s", session_key)
