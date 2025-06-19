@@ -7,6 +7,7 @@ A clear disclaimer is needed to:
 - Manage expectations about what the AI can and cannot do
 - Clarify that this is not a medical device or decision-support tool
 - Reinforce that outputs are for informational use only
+- Flag that this is an early-stage proof of concept (PoC) and may be incomplete or buggy
 
 ## 📄 Goal
 Create a plain-language disclaimer that can be displayed:
@@ -19,6 +20,7 @@ Create a plain-language disclaimer that can be displayed:
   - Purpose of the tool
   - What it does not do (e.g., diagnose, replace clinicians)
   - A reminder that results should be reviewed with a healthcare provider
+  - **Caveat emptor**: this is a PoC and rough around the edges — suggest using test data or proceed at your own risk
 
 ## 🧪 Done When
 - A clear, friendly, professional disclaimer is saved in the repo
