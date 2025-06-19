@@ -1780,3 +1780,14 @@
   - assistant
   last_updated: '2025-06-19'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_318_add_disclaimer.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_318_add_disclaimer.md
+  file_type: md
+  description: Guide for creating a limitation disclaimer for the AI Health Records
+    Assistant to manage user expectations and clarify its non-medical use.
+  tags:
+  - documentation
+  - disclaimer
+  - delivery
+  last_updated: '2025-06-19'
+  pod_owner: DeliveryPod
