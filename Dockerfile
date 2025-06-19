@@ -26,8 +26,15 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . /app
 
-# Install Python dependencies
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt && \
+    pip install chromadb==1.0.12 --force-reinstall && \
+    pip cache purge
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Add entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Expose port and run
+EXPOSE 8000
+ENTRYPOINT ["/entrypoint.sh"]
