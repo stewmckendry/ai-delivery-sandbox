@@ -32,6 +32,7 @@ def load_demo() -> JSONResponse:
         data, dest_name, content_type="application/pdf"
     )
     blob.record_upload(session_key, "demo", filename)
+
     from app.orchestrator import run_etl_from_blobs
 
     run_etl_from_blobs(session_key)
