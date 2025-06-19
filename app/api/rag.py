@@ -17,6 +17,10 @@ class QueryRequest(BaseModel):
     session_key: str
 
 
+class VectorQueryRequest(QueryRequest):
+    top_k: int = 5
+
+
 @router.post("/ask")
 def ask_question(payload: QueryRequest) -> dict[str, str]:
     """Answer a health question using recent labs and visit notes as context."""
@@ -87,6 +91,25 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
     context = "\n".join(lines)
     prompt = f"{context}\n\nQuestion: {payload.query}"
 
+    answer = chat_completion(
+        [{"role": "user", "content": prompt}],
+        model="gpt-3.5-turbo",
+    )
+    return {"answer": answer}
+
+
+@router.post("/ask_vector")
+def ask_question_vector(payload: VectorQueryRequest) -> dict[str, str]:
+    """Answer a question using Chroma vector search if available."""
+    try:
+        from app.rag.searcher import search_records
+
+        records = search_records(payload.query, payload.session_key, n_results=payload.top_k)
+    except Exception:
+        return ask_question(QueryRequest(query=payload.query, session_key=payload.session_key))
+
+    context = "\n".join(f"- {r['text']}" for r in records)
+    prompt = f"{context}\n\nQuestion: {payload.query}" if context else payload.query
     answer = chat_completion(
         [{"role": "user", "content": prompt}],
         model="gpt-3.5-turbo",

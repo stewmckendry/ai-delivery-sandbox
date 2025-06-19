@@ -1,0 +1,37 @@
+import importlib
+
+from fastapi.testclient import TestClient
+
+
+def setup_app(monkeypatch):
+    monkeypatch.setenv("DELEGATION_SECRET", "test")
+    from app.auth.token import create_token
+    token = create_token("user", "agent", "portal")
+
+    def fake_search(query, session_key, n_results=5):
+        return [{"text": "Record 1"}, {"text": "Record 2"}]
+
+    def fake_chat(messages, **_kwargs):
+        content = messages[0]["content"]
+        assert "Record 1" in content
+        return "Vector answer"
+
+    import app.rag.searcher as search_module
+    monkeypatch.setattr(search_module, "search_records", fake_search)
+    import app.api.rag as rag_module
+    monkeypatch.setattr(rag_module, "chat_completion", fake_chat)
+
+    import app.main as main_module
+    main_module = importlib.reload(main_module)
+    return TestClient(main_module.app), token
+
+
+def test_ask_vector(monkeypatch):
+    client, token = setup_app(monkeypatch)
+    resp = client.post(
+        "/ask_vector",
+        json={"query": "test", "session_key": "sess"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"answer": "Vector answer"}
