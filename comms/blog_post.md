@@ -1,247 +1,116 @@
-MyHealth Copilot: Reclaiming Your Health Data with AI
-By Stewart McKendry, Will Falk, and Jocelyne Verity
+MyHealth AI Assistant: Helping You Compile and Make Sense of Your Health Information
+This blog explores how intelligent AI assistance can empower patients and rethink interoperability across the healthcare ecosystem
+
+By Stewart McKendry, Jocelyne Verity, and Will Falk
 
 Welcome to the seventh post in Coaching the Machine, where we explore how humans and AI can build together.
 
-This one’s a collaboration with two exceptional minds in healthcare: Will Falk and Jocelyne Verity. Both are seasoned healthcare executives, policy leaders, and champions for system transformation in Canada. This post wouldn’t exist without their curiosity, feedback, and encouragement.
+This post is a collaboration with two exceptional people in healthcare: Jocelyne Verity and Will Falk. Both are seasoned healthcare executives, policy leaders, and champions for system transformation in Canada. This post wouldn’t exist without their curiosity, feedback, and encouragement.
 
-✨ What If You Had a Personal Health Concierge?
-"I needed my MRI report... but it was locked in one hospital portal. My bloodwork was somewhere else. I had no idea what any of it meant."
+Many of us (the authors included) have worked on electronic health record strategies, standards, and infrastructure for years. We’ve contributed to regional initiatives, national blueprints, provider adoption, and digital health innovation.
 
-Sound familiar? For most Canadians, this is a typical experience.
+However, this post isn’t about critiquing that work. It’s about reimagining what interoperability can look like today. With tools like MyHealth AI Assistant, the integration point isn’t only a shared backend—it’s the patient. Supported by an intelligent assistant, patients can compile, interpret, and carry their records throughout their care journey. This shift deserves serious consideration, creative exploration, and open policy discussion.
 
-Health data exists. Access technically exists. But it’s fragmented, scattered across portals, buried in PDFs, and loaded with jargon.
+What If You Had a Personal Health Concierge?
+"I’m a caregiver for my dad with dementia. I’m usually organized, but I can’t keep up. Every appointment means a new portal and another login. Even when I have the information, I’m not always sure what it means or how to use it to support his care. I feel like I’m chasing pieces of a puzzle I can’t put together."
 
-This is where our latest project, MyHealth Copilot, comes in.
+That’s the reality for many Canadians, especially family or informal caregivers.
 
-It’s a secure digital assistant that helps you:
+Family caregivers often juggle:
 
-Log in and retrieve your health information
+Coordinating with multiple providers, each with different records and responsibilities
 
-Understand it in plain language
+Managing lab results, imaging reports, and medication updates
 
-Use it to support your care journey
+Navigating complex PDFs filled with jargon from disconnected systems
 
-Instead of waiting for every system to connect through centralized platforms, the Copilot flips the model:
+Health data is becoming more accessible to patients through various online portals—whether it’s MyChart for hospital records, test results from LifeLabs or Dynacare, prescriptions via Shoppers or Rexall, or provincial portals like Alberta’s MyHealth Records, BC’s Health Gateway, Saskatchewan’s MySaskHealthRecord, and Ontario’s ConnectMyHealth.
 
-The patient becomes the integration point.
+These tools are secure and well-intentioned, but they remain siloed. Patients are left to navigate these systems on their own, often struggling to make sense of the information they find.
 
-Importantly, MyHealth Copilot is not a replacement for the many dedicated efforts in digital health across Canada. From national standards through Canada Health Infoway, to provincial platforms like Alberta’s Connect Care or Ontario’s Health Gateway, and even local EMRs and lab portals—progress is real. This tool is meant to complement those systems: a patient-facing bridge that works with what exists today, not against it.
+That’s where MyHealth AI Assistant comes in. It’s a secure digital assistant designed to help users retrieve their health information from various providers and portals, understand it in clear, plain language, and use it to support care planning and decision-making. Instead of waiting for every system to connect through a central platform, the Assistant flips the model. The patient becomes the point of integration.
 
-🚀 From Talk to Action: Meet OpenAI Operator
-In Blog 6, we explored OpenAI’s Data Connectors and tested them on a real GitHub repo. That’s one path to integration: get API access to source systems, then let AI agents read and reason through structured data.
+This isn’t the first attempt to give patients control over their health data—Microsoft’s HealthVault tried something similar in the 2010s but struggled without widespread integration. The difference now is AI. Today’s AI assistants don’t just store data; they reason, take action, and adapt in real-time to handle the messiness of real-world information.
 
-But here’s the catch: most healthcare providers don’t expose APIs to the public. And for good reasons:
+Meet MyHealth AI Assistant
+MyHealth AI Assistant brings two key capabilities to users: using Operator (from OpenAI) to help patients compile their health records from multiple providers and portals, and utilizing a custom-built ChatGPT for tasks like asking questions, summarizing records, and preparing for appointments.
 
-Privacy and security risks
+OpenAI Operator: Operator is a real-time browser tool that navigates various health portals with the user’s explicit consent, retrieving and compiling health information. It’s not scraping data or automating tasks behind the scenes; instead, it assists the user in compiling their records in a transparent, human-in-the-loop process.
 
-Regulatory constraints (PHIPA, HIPAA)
+Custom ChatGPT: Alongside Operator, the custom ChatGPT takes over when the patient wants to interact with their records. It answers questions, helps understand complex medical terms, and can prepare summaries for appointments. It’s the language superpower that provides support when navigating through confusing health information.
 
-Complexity of legacy systems
+Think of the assistant as AI working within the scope of the patient, or a tech-savvy family caregiver. And in some cases, it could be permitted by the treating physician as part of shared care planning.
 
-Instead, patients are given access through portals—online dashboards like:
+How It Works
+Here’s how the MyHealth Assistant works, as demonstrated in a real-world test:
 
-MyChart (used by Ontario hospitals like Unity Health, UHN)
+The user initiates a request
+The experience begins with a prompt like: “Help me collect my recent health records.” For this demonstration, one of the authors consented to use their own data from three live systems: a personal health and fitness app, a national laboratory provider, and a hospital portal powered by MyChart.
 
-LifeLabs and Dynacare for lab results
+Operator launches to assist with record collection
+The Assistant launches OpenAI Operator to begin gathering records. The user manually logs into each health portal, with Operator pausing at each step to ensure full user control. At no point are credentials stored or visible to the Assistant.
 
-Shoppers Drug Mart or Rexall for prescriptions
+The user navigates and approves record selection
+Once inside the portals, Operator assists in locating relevant records. The user approves each record to retrieve. Every action is transparent, interruptible, and under the user’s direct supervision.
 
-Provincial vaccine systems (e.g., Ontario Health Gateway)
+Health records are uploaded securely
+After the user confirms, records are uploaded using a session-specific, signed link. Files are processed securely, with no data retained outside the user’s session.
 
-These portals are secure—but siloed. And patients are often left navigating them alone.
+Records are parsed and structured
+In the backend, health records are extracted, cleaned, and organized into clinically relevant types like patient and provider information, encounters, labs, diagnostics, imaging, and conditions. Where possible, standard medical codes like SNOMED CT are used to preserve meaning and enable downstream sharing.
 
-This is where Operator shines.
+Records are indexed for semantic search
+All structured records are embedded into a Chroma vector store, enabling semantic retrieval by topic or question. This creates a personalized, searchable health record, compiled entirely under the user’s control.
 
-Operator is part of the shift toward agentic AI — AIs that don’t just talk, but do.
+The user asks questions or explores their health information
+With data structured and indexed, the Assistant can now answer natural language questions:
 
-Sam Altman calls it a move toward the "super assistant," handling routine browser tasks so humans can focus on higher-level work.
+User: “Do I show signs of being low on iron?”
+AI Assistant: “Yes. Your ferritin level is 27 µg/L, which is below the normal range. This suggests iron deficiency. Would you like help preparing a summary or questions for your doctor?”
 
-Operator is an AI agent that uses a real browser—just like a human would. It clicks, types, scrolls, downloads—just like you. But it only acts with your permission. And it pauses at sensitive steps like login.
+User: “I hurt my finger recently and remember breaking it before. Can you find anything?”
+AI Assistant: “Yes. A December 2019 imaging report shows a healing fracture in your right fourth finger’s middle phalanx.”
 
-It’s not scraping. It’s not bypassing rules. It’s working transparently, with you.
+The Assistant supports understanding and sharing
+Beyond Q&A, the Assistant can summarize long reports, explain medical terms in plain language, and generate visit-ready summaries complete with citations from the original record. The user ends the session with greater clarity, confidence, and control over their health and better equipped to support the care of others.
 
-Other Operator use cases include:
+Who This Helps
+Patients: Want better access, clarity, and control over their health data. The Assistant helps them compile records from multiple sources, explains medical terms, and supports decision-making. More importantly, it builds confidence and health literacy.
 
-Booking flights and hotels
+Clinicians: Can treat the summaries as context to cross-reference, not replace. Over time, this could reduce administrative friction, flag potential follow-ups, and lead to more productive conversations during visits.
 
-Reordering Uber Eats or Instacart groceries
+Administrators & Policymakers: Working under pressure with growing patient needs and budget constraints. Tools like the Assistant help patients help themselves, reducing support requests, and improving continuity of care.
 
-Filling out tax or insurance forms
+People, Privacy & Compliance: Strengths and Gaps
+People
+The user remains in control throughout the process, deciding how their health data is accessed, interpreted, and used with the help of the AI assistant. However, digital literacy varies across populations, with some patients needing assistance. Healthcare providers are also impacted by these tools and require systems that integrate smoothly into their workflows.
 
-In our case? It logged into hospital and lab portals, found visit notes and test results, and downloaded them as PDFs and HTML—with the user consenting, watching, guiding, and approving each step.
+Strengths: The system ensures clear consent and transparency, with users guiding the AI assistant’s actions. This human-in-the-loop design fosters trust and allows users to maintain control over their health data.
 
-📂 How It Works
-Here’s what it looked like in our real-world test:
+What’s needed: Ongoing consultation and design efforts to ensure the system works for diverse demographics. Testing across a range of needs and improving usability for both patients and providers will help ensure accessibility and build trust in the system.
 
-A user chatted with the Copilot and said, “Help me collect my recent health records.”
+Privacy & Security
+Credentials are never stored, and health records are processed only within a user-scoped session using encrypted links and access-controlled storage. The system emphasizes transparency and control, with users initiating each step, giving explicit consent, and ensuring no health data is shared outside their session.
 
-The Copilot launched Operator with a clear task: locate lab results, visit summaries, and recent activity data.
+Strengths: The system supports a privacy-first approach with session-scoped processing, short-lived storage, encrypted uploads, and secure token-based API access. Users maintain control throughout the workflow, from Operator to GPT.
 
-The user manually logged into three different portals—a fitness app, a lab provider, and a hospital record system.
+What’s needed: To meet clinical and institutional expectations, the system would benefit from fine-grained record deletion and tools explaining data use. A third-party security review and alignment with regulatory standards like PHIPA or HIPAA would strengthen trust and adoption.
 
-Operator guided the session step by step:
+Legal & Compliance
+As AI becomes more integrated into healthcare, legal frameworks such as Ontario’s Personal Health Information Protection Act (PHIPA) must evolve to address how personal health information (PHI) is accessed, interpreted, and used in AI-assisted workflows.
 
-It paused at each login screen, letting the user take over.
+Strengths: The system is consent-driven, with users initiating and approving all access to their health data. Manual workflows ensure data is only handled under user control, minimizing risks of unintended automation or third-party exposure.
 
-It resumed after login to navigate menus and pages.
+What’s needed: Enforceable pilot programs are needed to test responsible AI use within healthcare settings under clear safeguards. Terms of service should clarify acceptable AI use, and collaboration with regulators like Ontario’s Information and Privacy Commissioner (IPC) is essential to define compliance standards.
 
-It displayed everything it was doing (like clicking, scrolling, downloading).
+How We Built It
+As with our past projects, we built this prototype with help from AI itself. We used ProductPods (custom ChatGPTs wired with GitHub that help build and ship apps) for planning, design and managing the work.
 
-The user could interrupt or override at any time.
+The difference this time was using OpenAI Codex Agents, which handled 135 development tasks in 4 days—delivering new features, enhancements, bug fixes, design docs, deployment plans, scripts, and more! The velocity and precision/quality were impressive, not to mention being able to see the reasoning trace of what steps the agents took and why, watching them run commands in CLI on screen.
 
-Once files were downloaded (as PDFs and HTML), the Copilot prompted the user to upload them securely via a time-limited link.
+What Comes Next
+The MyHealth AI Assistant is live! If you'd like to try it and share feedback, please send a message to the authors. Caveat emptor—this is an early proof of concept (PoC) and rough around the edges. Operator is still in preview and requires a Pro license, but the rest of the Assistant is available with a Plus subscription.
 
-On upload, the backend extracted and structured the data—labs, visit notes, and summaries—just for that session.
+Natural next steps include exploring policy and regulatory engagement, piloting use cases, and expanding applications in the public sector. These efforts will help shape the future of the system and ensure broader adoption and alignment with industry standards.
 
-The user could then ask questions like:
-
-“What do these lab results mean?”
-
-“Why did I visit the ER in February?”
-
-“Has my activity improved since last fall?”
-
-The Copilot responded with grounded answers and generated a downloadable summary PDF for personal or clinical use.
-
-All of this happened with real data, real systems, and full user control—proving that AI-assisted health data navigation is no longer theoretical. It’s already happening.
-
-🌍 Who This Helps
-Patients want more access, clarity, and control.
-
-This tool helps them gather their records from multiple portals.
-
-It explains medical jargon in plain language, and in their preferred language or style, to match health literacy needs.
-
-It helps guide them through next steps, especially for low-risk or routine items that don’t require clinical intervention.
-
-It empowers them to take more ownership over their care journey—and boosts health literacy in the process.
-
-Most importantly, it helps them feel prepared and informed for appointments.
-
-Clinicians may ask: Can I trust this info? Is it up to date?
-
-That’s valid. The Copilot doesn’t create or modify records—it simply helps the patient retrieve what exists and ask better questions.
-
-Clinicians can view summaries as patient-provided context—not a replacement, but a starting point.
-
-Over time, tools like this could reduce miscommunication, flag inconsistencies, and even surface missing follow-ups.
-
-Administrators & Policymakers are navigating workforce shortages, budget pressures, and rising expectations.
-
-This model offers a new way to extend capacity: let AI handle rote tasks like login, navigation, summarization.
-
-It can reduce support tickets ("I can’t find my test results") and empower patients to help themselves.
-
-Continuity improves when patients carry a complete, portable history across providers.
-
-And perhaps most importantly—it enables improvement without waiting for a full system overhaul.
-
-🔐 People, Privacy & Compliance: Strengths and Gaps
-We designed this system to be safe-by-default, but no solution is perfect—and trust depends on transparency.
-
-Here’s our current stance across the three pillars of responsible adoption:
-
-🧑 People
-The user remains in control at every step: login, review, upload.
-
-Copilot explains what’s happening, and Operator prompts for confirmation before any action.
-
-But there’s still a digital divide: not everyone has the skills or confidence to guide an AI browser or interpret health summaries.
-
-Where we’re strong: Human-in-the-loop design that’s clear and consent-driven.
-Still needed: Digital literacy support, caregiver delegation features, and broader testing across age, ability, and access.
-
-🔐 Privacy & Security
-No credentials are stored; Operator pauses at login and uses screenshots.
-
-Files are uploaded to secure storage with short expiration windows.
-
-Nothing is used for model training or shared beyond the user.
-
-Where we’re strong: Encryption, session-level storage, opt-in processing.
-Still needed: Clearer consent dialogs, explicit deletion controls, and third-party security audits.
-
-⚖️ Legal & Compliance
-The model avoids backend API access and processes only user-directed uploads.
-
-Our architecture aligns with PHIPA principles (Canada) and HIPAA intentions (U.S.), but we have not signed a formal HIPAA BAA with OpenAI.
-
-Terms of Service vary: some portals tolerate assisted access if the user stays in control; others prohibit all automation.
-
-Where we’re strong: Transparent data flows, manual approvals, sandboxed files.
-Still needed: Formal privacy reviews, clearer terms navigation, and work with providers to pilot compliant models.
-
-We see this as a step forward—not a solved problem. Our goal is to enable safe innovation and create space for deeper dialogue around what ethical AI in health should look like.
-
-⚠️ Operator Is Still in Preview
-While Operator worked effectively in our tests, it remains in technical preview and has some known limitations:
-
-❌ Some sites block or challenge Operator with Cloudflare or CAPTCHA protections
-
-❌ It’s not yet fully integrated with ChatGPT—you must return manually to continue the flow
-
-⚠️ Occasional bugs, such as failing to re-engage after user input in certain sessions
-
-Despite these, Operator is already valuable for:
-
-Accessing portals that lack open APIs or modern exports
-
-Giving users direct, secure control over their own data collection
-
-Despite these limitations, Operator continues to evolve. Looking ahead, we’re excited for what may be coming:
-
-✅ More automation (e.g., “check for new results weekly”)
-
-✅ Tighter chat integration (seamless Operator ↔️ GPT loops)
-
-✅ Smarter exports (batch tools, annotations, PDF generation)
-
-⚙️ How We Built It
-Like all our projects, this was co-built with AI.
-
-Our team used:
-
-A set of ChatGPT pods (like "ProductPod") for planning, testing, and comms
-
-And for the first time, Codex Agents as our development arm
-
-Codex agents had direct access to GitHub, used the CLI, and made fast, high-quality commits with precision. In just two days, they completed:
-
-✨ 102 dev tickets (!!)
-
-New features
-
-Bug fixes
-
-Backend + frontend enhancements
-
-Watching the logs felt like seeing the future of software delivery.
-
-⚠️ Bold, but Necessary
-We know this is a bold post. It may raise eyebrows.
-
-Some will ask: Did you just automate login to real health portals with an AI browser?
-
-Yes—but only with consent, transparency, and human oversight.
-
-This PoC is a test of what’s technically possible and what’s ethically defensible. We didn’t bypass security. We didn’t store credentials. We didn’t break Terms of Use.
-
-We used a tool designed to simulate human interaction, acting only under human control, for a task humans are already allowed to do: downloading their own health data.
-
-It’s time to have this conversation out loud.
-
-🌏 What Comes Next
-We’re now exploring:
-
-Policy and regulatory compliance (PHIPA, PIPEDA)
-
-Pilot partnerships with health orgs
-
-Other use cases in government & broader public sector
-
-But most of all, we’re looking for people who want to test, shape, and evolve this model.
-
-The patient is the only one at every point of care. Let's give them tools to succeed.
-
-Thanks again to Will and Jocelyne for pushing this one forward. This is just the beginning.
+The patient is the only person at every point of care. Let’s give them tools to succeed.

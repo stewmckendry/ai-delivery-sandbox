@@ -329,7 +329,7 @@
         }
       }
     },
-    "/ask": {
+    "/ask_vector": {
       "post": {
         "operationId": "askQuestion",
         "summary": "Answer a health-related question",
