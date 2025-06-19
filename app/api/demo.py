@@ -12,29 +12,31 @@ from app.auth.token import require_token
 
 router = APIRouter(dependencies=[Depends(require_token)])
 
-DEMO_DIR = Path(__file__).resolve().parents[2] / "project" / "demo_data"
-
-
 @router.post("/load_demo")
 def load_demo() -> JSONResponse:
-    """Load a sample health record and run the ETL pipeline."""
-    pdfs = list(DEMO_DIR.glob("*.pdf"))
-    if not pdfs:
+    """Load a sample health record from blob storage and run ETL."""
+    try:
+        demo_blobs = blob.list_demo_blob_files("demo/")
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail="Demo storage not available") from exc
+    if not demo_blobs:
         raise HTTPException(status_code=500, detail="No demo data available")
 
-    file_path = random.choice(pdfs)
-    data = file_path.read_bytes()
+    blob_name = random.choice(demo_blobs)
+    filename = Path(blob_name).name
+    data = blob.download_blob(blob_name)
 
     session_key = generate_session_key()
-    blob_name = f"{session_key}/{file_path.name}"
+    dest_name = f"{session_key}/{filename}"
     url = blob.upload_file_and_get_url(
-        data, blob_name, content_type="application/pdf"
+        data, dest_name, content_type="application/pdf"
     )
-    blob.record_upload(session_key, "demo", file_path.name)
+    blob.record_upload(session_key, "demo", filename)
+
     from app.orchestrator import run_etl_from_blobs
 
     run_etl_from_blobs(session_key)
 
     return JSONResponse(
-        {"session_key": session_key, "source": file_path.name, "source_url": url}
+        {"session_key": session_key, "source": filename, "source_url": url}
     )

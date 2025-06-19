@@ -21,7 +21,12 @@ def setup_app(monkeypatch):
     demo_module = importlib.reload(importlib.import_module("app.api.demo"))
 
     sample = next((ROOT / "project" / "demo_data").glob("*.pdf"))
-    monkeypatch.setattr(random, "choice", lambda seq: sample)
+    monkeypatch.setattr(
+        demo_module.blob,
+        "list_demo_blob_files",
+        lambda prefix="demo/": [f"demo/{sample.name}"]
+    )
+    monkeypatch.setattr(demo_module.blob, "download_blob", lambda name: sample.read_bytes())
     monkeypatch.setattr(
         demo_module.blob,
         "upload_file_and_get_url",
