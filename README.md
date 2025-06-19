@@ -62,6 +62,7 @@ data/audit_log.json
 - `scripts/` – test runners, dev helpers
 - `task_guides/` – Codex tasks + reviews
 - `project/docs/` – design docs
+- See [`project/docs/user_access_guidance.md`](project/docs/user_access_guidance.md) for who can use Operator and how to test the assistant.
 
 ---
 

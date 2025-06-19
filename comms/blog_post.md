@@ -110,6 +110,7 @@ The difference this time was using OpenAI Codex Agents, which handled 135 develo
 
 What Comes Next
 The MyHealth AI Assistant is live! If you'd like to try it and share feedback, please send a message to the authors. Caveat emptor—this is an early proof of concept (PoC) and rough around the edges. Operator is still in preview and requires a Pro license, but the rest of the Assistant is available with a Plus subscription.
+See the [User Access Guidance](../project/docs/user_access_guidance.md) for how to experiment safely with or without Operator.
 
 Natural next steps include exploring policy and regulatory engagement, piloting use cases, and expanding applications in the public sector. These efforts will help shape the future of the system and ensure broader adoption and alignment with industry standards.
 
