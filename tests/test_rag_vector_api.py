@@ -1,10 +1,17 @@
 import importlib
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from fastapi.testclient import TestClient
 
 
 def setup_app(monkeypatch):
     monkeypatch.setenv("DELEGATION_SECRET", "test")
+    monkeypatch.setenv("CHROMA_OPENAI_API_KEY", "sk-test")
     from app.auth.token import create_token
     token = create_token("user", "agent", "portal")
 

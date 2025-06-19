@@ -42,6 +42,8 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
 
     prefix = "user/session"
 
+    monkeypatch.setenv("CHROMA_OPENAI_API_KEY", "sk-test")
+
     monkeypatch.setattr(
         blob_module,
         "list_blobs",
@@ -59,8 +61,10 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     monkeypatch.setattr(blob_module, "delete_blob", lambda name: None)
 
     inserted = {"records": None, "labs": None, "visits": None, "fhir": None}
+    indexed = {"records": None, "session": None}
 
     import app.storage.structured as structured_module
+    import app.rag.indexer as indexer_module
     import app.extractor as extractor_module
     import app.cleaner as cleaner_module
     import app.prompts.summarizer as summarizer_module
@@ -69,8 +73,9 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     monkeypatch.setattr(
         structured_module,
         "insert_structured_records",
-        lambda s, r, session_key=None: inserted.update({"records": r, "session": session_key})
+        lambda s, r, session_key=None: (inserted.update({"records": r, "session": session_key}) or [{"id": 1}])
     )
+    monkeypatch.setattr(indexer_module, "index_structured_records", lambda r, session_key: indexed.update({"records": r, "session": session_key}))
     original_insert_lab = struct_module.insert_lab_results
     def wrap_lab(s, r, session_key=None):
         inserted.update({"labs": r})
@@ -133,6 +138,9 @@ def test_run_etl_from_blobs(monkeypatch, tmp_path, caplog):
     assert inserted["labs"] and inserted["labs"][0]["loinc_code"] == "2093-3"
     assert inserted["visits"] and inserted["visits"][0]["snomed_code"] == "308335008"
     assert inserted["fhir"] and len(inserted["fhir"]) == 2
+
+    assert indexed["records"] is not None
+    assert indexed["session"] == prefix
 
     summary_file = Path("logs/blob_runs/user_session_summary.md")
     assert not summary_file.exists()

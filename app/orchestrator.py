@@ -548,7 +548,12 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
                 len(final_records),
                 prefix,
             )
-            insert_structured_records(session, final_records, session_key=prefix)
+            saved_records = insert_structured_records(session, final_records, session_key=prefix)
+            try:
+                from app.rag.indexer import index_structured_records
+                index_structured_records(saved_records, prefix)
+            except Exception as exc:  # noqa: BLE001
+                logger.error("[etl] Vector index failed: %s", exc)
 
         # detect labs and visits from structured records
         labs, visits = _detect_labs_and_visits_with_llm(final_records)
