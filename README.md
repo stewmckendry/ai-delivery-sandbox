@@ -73,6 +73,7 @@ data/audit_log.json
 
 ## 🚀 Deployment
 See [`project/docs/railway_deployment_guide.md`](project/docs/railway_deployment_guide.md) for instructions to deploy the FastAPI backend and web client on Railway.
+For running the Chroma vector database separately, see [`project/docs/chroma_deployment_guide.md`](project/docs/chroma_deployment_guide.md).
 
 ---
 

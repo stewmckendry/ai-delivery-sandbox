@@ -7,7 +7,7 @@ from .models import StructuredRecord, FHIRResource
 
 def insert_structured_records(
     session: Session, records: list[dict], session_key: str | None = None
-) -> None:
+) -> list[StructuredRecord]:
     """Insert cleaned AI-extracted records."""
     objs = []
     existing = {
@@ -33,6 +33,7 @@ def insert_structured_records(
     if objs:
         session.add_all(objs)
         session.commit()
+    return objs
 
 
 def insert_fhir_resources(session: Session, resources: list[dict]) -> None:
