@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
@@ -9,6 +10,7 @@ from app.auth.token import require_token
 
 
 
+logger = logging.getLogger(__name__)
 router = APIRouter(dependencies=[Depends(require_token)])
 
 
@@ -101,17 +103,24 @@ def ask_question(payload: QueryRequest) -> dict[str, str]:
 @router.post("/ask_vector")
 def ask_question_vector(payload: VectorQueryRequest) -> dict[str, str]:
     """Answer a question using Chroma vector search if available."""
+    logger.info("[/ask_vector] session=%s query=%s", payload.session_key, payload.query)
     try:
         from app.rag.searcher import search_records
 
         records = search_records(payload.query, payload.session_key, n_results=payload.top_k)
-    except Exception:
+        logger.info("[/ask_vector] search returned %d records", len(records))
+    except Exception as exc:  # noqa: BLE001
+        logger.error("[/ask_vector] Vector search failed: %s", exc)
         return ask_question(QueryRequest(query=payload.query, session_key=payload.session_key))
 
+    types = {r.get("clinical_type") or r.get("type") for r in records if isinstance(r, dict)}
     context = "\n".join(f"- {r['text']}" for r in records)
+    logger.info("[/ask_vector] record types: %s", ",".join(sorted(t for t in types if t)))
     prompt = f"{context}\n\nQuestion: {payload.query}" if context else payload.query
+    logger.info("[/ask_vector] prompt preview: %s", prompt[:200].replace("\n", " "))
     answer = chat_completion(
         [{"role": "user", "content": prompt}],
         model="gpt-3.5-turbo",
     )
+    logger.info("[/ask_vector] answer preview: %s", str(answer)[:200])
     return {"answer": answer}

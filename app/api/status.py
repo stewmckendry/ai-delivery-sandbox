@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from datetime import datetime
 from pathlib import Path
+import logging
 from fastapi import APIRouter, Query, Depends
 from fastapi.responses import JSONResponse
 
@@ -12,6 +13,7 @@ from app.storage import models
 from sqlalchemy import func
 from app.auth.token import require_token
 
+logger = logging.getLogger(__name__)
 router = APIRouter(dependencies=[Depends(require_token)])
 
 
@@ -28,6 +30,7 @@ def _load_audit(session_key: str) -> list[dict]:
 @router.get("/summary")
 def summary(session_key: str = Query(...)) -> JSONResponse:
     """Return summary of uploaded and processed records for ``session_key``."""
+    logger.info("[/summary] session=%s", session_key)
     entries = _load_audit(session_key)
     uploads = [
         {
@@ -59,6 +62,13 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
             session.query(models.StructuredRecord)
             .filter(models.StructuredRecord.session_key == session_key)
             .count()
+        )
+        logger.info(
+            "[/summary] uploads=%d labs=%d visits=%d structured=%d",
+            len(uploads),
+            labs,
+            visits,
+            structured,
         )
         latest_times = []
         lab_last = (
@@ -140,6 +150,7 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
         for r in structured_rows
     ]
     if not uploads and not any([labs, visits, structured]):
+        logger.error("[/summary] no records found for session %s", session_key)
         resp[
             "message"
         ] = (
@@ -147,4 +158,11 @@ def summary(session_key: str = Query(...)) -> JSONResponse:
             "If Operator is blocked by reCAPTCHA or Cloudflare, save the page "
             "as HTML or PDF and upload it manually."
         )
+    else:
+        if labs == 0:
+            logger.error("[/summary] no lab results for session %s", session_key)
+        if visits == 0:
+            logger.error("[/summary] no visit summaries for session %s", session_key)
+        if structured == 0:
+            logger.error("[/summary] no structured records for session %s", session_key)
     return JSONResponse(resp)
