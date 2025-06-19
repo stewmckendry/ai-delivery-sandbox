@@ -1803,3 +1803,15 @@
   - flow
   last_updated: '2025-06-19'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_320_access_and_usage_guidance.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_320_access_and_usage_guidance.md
+  file_type: md
+  description: Guidance document for new users on accessing and using the AI Health
+    Records Assistant, including usage boundaries and best practices.
+  tags:
+  - guidance
+  - usage
+  - onboarding
+  - documentation
+  last_updated: '2025-06-19'
+  pod_owner: DeliveryPod
