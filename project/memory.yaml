@@ -1791,3 +1791,15 @@
   - delivery
   last_updated: '2025-06-19'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_319_add_mock_data_and_demo_mode.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_319_add_mock_data_and_demo_mode.md
+  file_type: md
+  description: Guide to implement mock data and demo mode for GPT testing in the AI
+    Health Records Assistant, enabling frictionless testing with sample data.
+  tags:
+  - demo
+  - mock_data
+  - testing
+  - flow
+  last_updated: '2025-06-19'
+  pod_owner: DeliveryPod
