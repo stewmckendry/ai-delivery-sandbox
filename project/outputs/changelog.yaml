@@ -2492,3 +2492,14 @@
   task_id: phase3_cloud_and_gpt_setup
   committed_by: GPTPod
   message: Append output file to phase3_cloud_and_gpt_setup
+- timestamp: '2025-06-19T19:02:47.657716'
+  path: task_guides/phase3_tasks/task_321_onboarding_package.md
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: "Add Task 321 to assemble an onboarding package from Tasks 317\u2013320\
+    \ for new users and GPT flows"
+- timestamp: '2025-06-19T19:02:47.657716'
+  path: project/memory.yaml
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Memory update related to task_guides/phase3_tasks/task_321_onboarding_package.md
