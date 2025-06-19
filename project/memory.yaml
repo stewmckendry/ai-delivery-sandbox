@@ -1827,3 +1827,15 @@
   - flow
   last_updated: '2025-06-19'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_322_test_demo_workflow.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_322_test_demo_workflow.md
+  file_type: md
+  description: Guide to test the end-to-end demo workflow using `/load_demo` and related
+    tools in the AI delivery sandbox.
+  tags:
+  - demo
+  - workflow
+  - testing
+  - CLI
+  last_updated: '2025-06-19'
+  pod_owner: DeliveryPod
