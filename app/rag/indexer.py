@@ -9,6 +9,8 @@ from chromadb.api.types import Documents, Embeddings, IDs, Metadatas
 from chromadb.config import Settings
 from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
+from dotenv import load_dotenv
+load_dotenv()
 
 _COLLECTION = "health_records"
 
@@ -24,7 +26,7 @@ def _get_client() -> ClientAPI:
     return chromadb.Client(Settings(allow_reset=True))
 
 
-_embed = OpenAIEmbeddingFunction()
+_embed = OpenAIEmbeddingFunction(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 def _chunk(text: str, size: int = 500) -> List[str]:
