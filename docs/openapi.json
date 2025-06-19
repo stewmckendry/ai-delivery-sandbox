@@ -376,6 +376,57 @@
         }
       }
     },
+    "/ask_vector": {
+      "post": {
+        "operationId": "askQuestionVector",
+        "summary": "Answer a health-related question using vector search",
+        "tags": [
+          "Query"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  },
+                  "session_key": {
+                    "type": "string"
+                  },
+                  "top_k": {
+                    "type": "integer",
+                    "default": 5
+                  }
+                },
+                "required": [
+                  "query",
+                  "session_key"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/export": {
       "get": {
         "operationId": "exportRecords",

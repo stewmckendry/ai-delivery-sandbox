@@ -3,6 +3,7 @@ import logging
 
 
 def test_classify_clinical_type_strips_wrappers(monkeypatch, caplog):
+    monkeypatch.setenv("FERNET_KEY", "test-key")
     import app.orchestrator as orch_module
 
     importlib.reload(orch_module)
@@ -18,6 +19,7 @@ def test_classify_clinical_type_strips_wrappers(monkeypatch, caplog):
 
 
 def test_classify_clinical_type_invalid_json_falls_back(monkeypatch, caplog):
+    monkeypatch.setenv("FERNET_KEY", "test-key")
     import app.orchestrator as orch_module
 
     importlib.reload(orch_module)
