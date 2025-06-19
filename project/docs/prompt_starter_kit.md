@@ -40,3 +40,26 @@ Use these sample prompts to explore your records once you have uploaded them thr
 - "Generate a PDF summary for my next appointment."
 - "Prepare a file I can share with my doctor."
 - "List questions I should ask at my visit."
+
+## Demo Record Questions
+When using the `/load_demo` endpoint, try these prompts for each sample case:
+
+### Family Doctor Visit
+- "What medication was prescribed at the demo visit?"
+- "Summarize why the patient saw the doctor on 2023-02-20."
+
+### Hospital ER Note
+- "What treatment was provided in the ER?"
+- "Were any discharge instructions given?"
+
+### Lab Results
+- "List the demo lab values."
+- "Is the cholesterol result normal?"
+
+### Pharmacy List
+- "Which medications are listed in the sample file?"
+- "Why might someone take Metformin?"
+
+### Physio Summary
+- "How many physio sessions were recorded?"
+- "What improvements were noted in the summary?"
