@@ -1,32 +1,33 @@
 
 ---
 
-## ✅ Test 2: Iron Deficiency Reasoning (Vector RAG)
+## ✅ Test 3: End-to-End Route Validation
 
-**Prompt:**
-> Do I show any signs of iron deficiency?
+This test confirms that the MyHealth Assistant supports the full workflow for a user:
 
-**Session:** `9854e3456af24056aeba0eae90635a5d`
-**Route:** `/ask_vector`
+### 🔁 Routes Tested
 
-### 🔍 GPT Findings (Initial)
-- ❌ Incorrectly stated ferritin was not included in labs
-- ✅ Noted low MCHC (319 g/L) as a mild indicator
-- ✅ Suggested relevant follow-up labs (ferritin, TIBC, iron)
+| Route         | Function                          | Status |
+|---------------|-----------------------------------|--------|
+| `/session`    | Create secure session ID          | ✅ Working, returns UUID
+| `/upload`     | Upload form for document entry    | ✅ Accessible from GPT link
+| `/upload/sas` | Generate signed blob upload URL  | ✅ Token-protected, functional
+| `/upload/log` | Save audit metadata to Azure     | ✅ Writes JSON audit file
+| `/process`    | Run ETL pipeline in background    | ✅ Runs, extracts 80+ records
+| `/summary`    | Summarize record counts and recency | ✅ Returns accurate counts
+| `/ask`        | Text-based recall and response    | ✅ Uses structured records (token-limited)
+| `/ask_vector` | Semantic RAG using ChromaDB       | ✅ Working, confirms vector matches
+| `/export`     | Generate and return download URL  | ✅ Exports PDF via signed link
 
-### 🧠 Second Pass (Refined Prompt)
-- ✅ Correctly interpreted ferritin = 27 ug/L
-  - Below diagnostic threshold (<30 ug/L)
-  - Aligned with embedded clinical comment in PDF
-- ✅ Linked low MCHC and ferritin to probable iron deficiency
-- ✅ Explained why MCV/MCH were normal
+---
 
-### 💡 Educational Summary
-- GPT outlined the role of ferritin in diagnosis
-- Emphasized need for physician follow-up despite non-critical values
-- Described dietary and supplement approaches with caution
+### 🧪 Validated Features
+- ✅ Record upload and parsing (PDF)
+- ✅ LLM classification and abnormality tagging
+- ✅ Inline and vector search options
+- ✅ Blob and SQL-based persistence
+- ✅ All routes support session scoping and token auth
 
-### ✅ Highlights
-- **Vector RAG indexed the right chunk after Chroma fix**
-- **Explanation adjusted based on feedback prompt**
-- Shows strength of contextual requery and clinical grounding
+---
+
+This confirms readiness for live GPT sessions using real health records and full AI retrieval.
