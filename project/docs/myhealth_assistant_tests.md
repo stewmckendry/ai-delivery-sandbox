@@ -1,41 +1,32 @@
-# 🧪 MyHealth Assistant Test Log
 
 ---
 
-## ✅ Test 1: Lab Results Interpretation + Follow-Up
+## ✅ Test 2: Iron Deficiency Reasoning (Vector RAG)
 
 **Prompt:**
-> Can you explain if any of my lab results are outside the normal range or need follow-up?
+> Do I show any signs of iron deficiency?
 
 **Session:** `9854e3456af24056aeba0eae90635a5d`
+**Route:** `/ask_vector`
 
-**Follow-ups:**
-- “Yes I'm not very familiar with what these terms mean”
-- “What could I do to improve these things?”
+### 🔍 GPT Findings (Initial)
+- ❌ Incorrectly stated ferritin was not included in labs
+- ✅ Noted low MCHC (319 g/L) as a mild indicator
+- ✅ Suggested relevant follow-up labs (ferritin, TIBC, iron)
 
-### 🔎 GPT Findings
-- **Eosinophils:** 0.720 (high)
-  - Explained allergy/infection implications
-- **MCHC:** 319 (slightly low)
-  - Explained link to iron and red blood cell health
-- **Basophils:** Normal, correctly not flagged
+### 🧠 Second Pass (Refined Prompt)
+- ✅ Correctly interpreted ferritin = 27 ug/L
+  - Below diagnostic threshold (<30 ug/L)
+  - Aligned with embedded clinical comment in PDF
+- ✅ Linked low MCHC and ferritin to probable iron deficiency
+- ✅ Explained why MCV/MCH were normal
 
-### 🧠 Educational Response
-- Defined terms (e.g., MCHC, eosinophils)
-- Explained physiology and role
-- Connected to real-world symptoms (asthma, iron deficiency)
-
-### 💡 Follow-Up Advice
-- For eosinophils: avoid allergens, manage asthma
-- For MCHC: eat iron-rich foods, consider vitamin C, avoid tea/coffee at meals
-- Referred to doctor when appropriate
+### 💡 Educational Summary
+- GPT outlined the role of ferritin in diagnosis
+- Emphasized need for physician follow-up despite non-critical values
+- Described dietary and supplement approaches with caution
 
 ### ✅ Highlights
-- **Empathetic tone**
-- **Safe clinical framing**
-- **Accurate medical explanations**
-- GPT demonstrated real patient empowerment: understanding and action
-
----
-
-More test logs to follow as sessions expand.
+- **Vector RAG indexed the right chunk after Chroma fix**
+- **Explanation adjusted based on feedback prompt**
+- Shows strength of contextual requery and clinical grounding
