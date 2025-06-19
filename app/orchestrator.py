@@ -470,6 +470,8 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
 
     blob_names = blob.list_blobs(prefix)
     logger.info("[etl] %d blobs found", len(blob_names))
+    if not blob_names:
+        logger.error("[etl] No blobs found for session %s", prefix)
 
     init_db()
     session = SessionLocal()
@@ -509,12 +511,14 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
             if DELETE_RAW:
                 delete_file(path)
 
+        logger.info("[etl] Loaded %d pages", len(pages))
         extracted = []
         for page in pages:
             records = extractor.extract_relevant_content(page["text"], page["url"])
             for rec in records:
                 rec["portal"] = "blob"
             extracted.extend(records)
+        logger.info("[etl] Extracted %d records", len(extracted))
 
         final_records = []
         if extracted:
@@ -541,6 +545,8 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
                         "user_notes": meta.get("user_notes", ""),
                     }
                 )
+        if final_records:
+            logger.info("[etl] Classified %d records", len(final_records))
 
         if final_records:
             logger.info(
@@ -551,7 +557,15 @@ def run_etl_from_blobs(prefix: str, user_id: str | None = None) -> str:
             saved_records = insert_structured_records(session, final_records, session_key=prefix)
             try:
                 from app.rag.indexer import index_structured_records
+                logger.info(
+                    "[rag.indexer] Indexing %d structured records to Chroma for session %s",
+                    len(saved_records),
+                    prefix,
+                )
                 index_structured_records(saved_records, prefix)
+                logger.info(
+                    "[rag.indexer] Chroma indexing complete for session %s", prefix
+                )
             except Exception as exc:  # noqa: BLE001
                 logger.error("[etl] Vector index failed: %s", exc)
 
