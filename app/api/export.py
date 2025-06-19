@@ -6,6 +6,7 @@ from datetime import datetime
 
 import json
 
+import logging
 from fastapi import APIRouter, Query, Depends
 from fastapi.responses import JSONResponse
 
@@ -13,6 +14,7 @@ from app.storage.db import SessionLocal, init_db
 from app.storage import models, blob
 from app.auth.token import require_token
 
+logger = logging.getLogger(__name__)
 router = APIRouter(dependencies=[Depends(require_token)])
 
 
@@ -60,6 +62,7 @@ def export_records(
     format: str = Query("json", enum=["json", "markdown", "pdf", "fhir"]),
 ):
     """Export structured records for ``session_key`` in the given ``format``."""
+    logger.info("[/export] session=%s format=%s", session_key, format)
     init_db()
     session = SessionLocal()
     fhir_rows: list[models.FHIRResource] = []
@@ -106,6 +109,12 @@ def export_records(
                 )
     finally:
         session.close()
+    logger.info(
+        "[/export] found labs=%d visits=%d structured=%d",
+        len(labs),
+        len(visits),
+        len(structured),
+    )
 
     blob_data: bytes | str
     ext: str
@@ -168,4 +177,8 @@ def export_records(
     ts = datetime.utcnow().strftime("%Y%m%d%H%M%S")
     blob_name = f"exports/{session_key}_{ts}.{ext}"
     url = blob.upload_file_and_get_url(blob_data, blob_name)
+    total_recs = len(labs) + len(visits) + len(structured)
+    if total_recs == 0:
+        logger.error("[/export] no records exported for session %s", session_key)
+    logger.info("[/export] exported %d records to %s", total_recs, blob_name)
     return JSONResponse({"status": "ok", "download_url": url})
