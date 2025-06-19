@@ -106,6 +106,11 @@ def list_blob_info(prefix: str) -> list[dict[str, object]]:
     return info
 
 
+def list_demo_blob_files(prefix: str = "demo/") -> list[str]:
+    """Return demo blob filenames using ``prefix``."""
+    return list_blobs(prefix)
+
+
 def download_blob(name: str) -> bytes:
     """Return contents of blob ``name``."""
     if not _container:
