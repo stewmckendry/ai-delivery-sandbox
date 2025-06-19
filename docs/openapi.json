@@ -236,12 +236,10 @@
       "type": "object",
       "properties": {
         "session_key": {"type": "string"},
-        "source": {"type": "string"},
-        "source_url": {"type": "string", "format": "uri"}
+        "source": {"type": "string"}
       },
       "required": ["session_key", "source", "source_url"]
     }
-  }
   },
   "paths": {
     "/upload": {
