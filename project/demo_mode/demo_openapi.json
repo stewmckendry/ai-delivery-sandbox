@@ -248,162 +248,162 @@
           "source_url"
         ]
       }
-    },
-    "paths": {
-      "/ask_vector": {
-        "post": {
-          "operationId": "askQuestion",
-          "summary": "Answer a health-related question",
-          "tags": [
-            "Query"
-          ],
-          "security": [
-            {
-              "bearerAuth": []
+    }
+  },
+  "paths": {
+    "/ask_vector": {
+      "post": {
+        "operationId": "askQuestion",
+        "summary": "Answer a health-related question",
+        "tags": [
+          "Query"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  },
+                  "session_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "query",
+                  "session_key"
+                ]
+              }
             }
-          ],
-          "requestBody": {
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer text",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string"
-                    },
-                    "session_key": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "query",
-                    "session_key"
-                  ]
+                  "$ref": "#/components/schemas/Answer"
                 }
               }
+            }
+          }
+        }
+      }
+    },
+    "/export": {
+      "get": {
+        "operationId": "exportRecords",
+        "summary": "Export structured records",
+        "tags": [
+          "Export", "Prepare", "Report", "Download"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           },
-          "responses": {
-            "200": {
-              "description": "Answer text",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Answer"
-                  }
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "markdown",
+                "pdf",
+                "fhir"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exported records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportData"
                 }
               }
             }
           }
         }
-      },
-      "/export": {
-        "get": {
-          "operationId": "exportRecords",
-          "summary": "Export structured records",
-          "tags": [
-            "Export"
-          ],
-          "security": [
-            {
-              "bearerAuth": []
+      }
+    },
+    "/summary": {
+      "get": {
+        "operationId": "getSummary",
+        "summary": "Summarize uploaded and processed records",
+        "tags": [
+          "Summary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
-          ],
-          "parameters": [
-            {
-              "name": "session_key",
-              "in": "query",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "format",
-              "in": "query",
-              "required": false,
-              "schema": {
-                "type": "string",
-                "enum": [
-                  "json",
-                  "markdown",
-                  "pdf",
-                  "fhir"
-                ],
-                "default": "json"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Exported records",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ExportData"
-                  }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Summary information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Summary"
                 }
               }
             }
           }
         }
-      },
-      "/summary": {
-        "get": {
-          "operationId": "getSummary",
-          "summary": "Summarize uploaded and processed records",
-          "tags": [
-            "Summary"
-          ],
-          "security": [
-            {
-              "bearerAuth": []
-            }
-          ],
-          "parameters": [
-            {
-              "name": "session_key",
-              "in": "query",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Summary information",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Summary"
-                  }
-                }
-              }
-            }
+      }
+    },
+    "/load_demo": {
+      "post": {
+        "operationId": "loadDemoData",
+        "summary": "Load a sample health record for testing",
+        "tags": [
+          "Demo"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }
-      },
-      "/load_demo": {
-        "post": {
-          "operationId": "loadDemoData",
-          "summary": "Load a sample health record for testing",
-          "tags": [
-            "Demo"
-          ],
-          "security": [
-            {
-              "bearerAuth": []
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Demo data session information",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/DemoLoadResponse"
-                  }
+        ],
+        "responses": {
+          "200": {
+            "description": "Demo data session information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoLoadResponse"
                 }
               }
             }

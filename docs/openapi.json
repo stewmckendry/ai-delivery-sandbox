@@ -230,15 +230,15 @@
             "type": "string"
           }
         }
-      }
-    },
-    "DemoLoadResponse": {
-      "type": "object",
-      "properties": {
-        "session_key": {"type": "string"},
-        "source": {"type": "string"}
       },
-      "required": ["session_key", "source", "source_url"]
+      "DemoLoadResponse": {
+        "type": "object",
+        "properties": {
+          "session_key": {"type": "string"},
+          "source": {"type": "string"}
+        },
+        "required": ["session_key", "source", "source_url"]
+      }
     }
   },
   "paths": {
