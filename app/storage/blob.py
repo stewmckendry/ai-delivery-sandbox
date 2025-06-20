@@ -130,6 +130,20 @@ def delete_blob(name: str) -> None:
         pass
 
 
+def delete_blobs(names: list[str]) -> None:
+    """Delete multiple blobs ignoring errors."""
+    if not _container:
+        return
+    try:
+        _container.delete_blobs(*names)
+    except Exception:  # noqa: BLE001
+        for name in names:
+            try:
+                _container.delete_blob(name)
+            except Exception:
+                pass
+
+
 def upload_file_and_get_url(
     data: bytes | str,
     blob_name: str,
