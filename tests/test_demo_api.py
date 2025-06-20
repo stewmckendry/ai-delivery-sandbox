@@ -32,6 +32,11 @@ def setup_app(monkeypatch):
         "upload_file_and_get_url",
         lambda data, name, **k: f"https://blob/{name}",
     )
+    monkeypatch.setattr(
+        demo_module.blob,
+        "get_blob_url",
+        lambda name, **k: f"https://blob/{name}",
+    )
     called = {}
     import app.orchestrator as orch_module
     monkeypatch.setattr(
@@ -54,5 +59,5 @@ def test_load_demo(monkeypatch):
     body = resp.json()
     assert body["session_key"] == "sess"
     assert body["source"] == filename
-    assert body["source_url"].startswith("https://blob/sess/")
+    assert body["source_url"] == f"https://blob/demo/{filename}"
     assert called["prefix"] == "sess"
