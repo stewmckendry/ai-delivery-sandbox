@@ -1,0 +1,19 @@
+[
+  {
+    "id": 430,
+    "portal": "blob",
+    "type": "visit_note",
+    "clinical_type": "Procedure",
+    "code": "6142004",
+    "code_system": "http://snomed.info/sct",
+    "display": "Treatment for sprained ankle",
+    "text": "Patient treated for sprained ankle. Discharged with crutches.",
+    "source_url": "a16bd949d4864ad3a7416e581f3df232/er_note.pdf",
+    "session_key": "a16bd949d4864ad3a7416e581f3df232",
+    "is_duplicate": "0",
+    "source": "operator",
+    "capture_method": "",
+    "user_notes": "",
+    "date_created": "2025-06-19T20:52:10.923"
+  }
+]
