@@ -2556,3 +2556,14 @@
   task_id: phase3_cloud_and_gpt_setup
   committed_by: GPTPod
   message: Append output file to phase3_cloud_and_gpt_setup
+- timestamp: '2025-06-20T15:19:12.722924'
+  path: task_guides/phase3_tasks/task_326_export_pdf_formatting.md
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Add Task 326 to improve formatting and readability of exported PDF from
+    /export
+- timestamp: '2025-06-20T15:19:12.722924'
+  path: project/memory.yaml
+  task_id: phase3_cloud_and_gpt_setup
+  committed_by: GPTPod
+  message: Memory update related to task_guides/phase3_tasks/task_326_export_pdf_formatting.md
