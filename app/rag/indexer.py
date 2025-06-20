@@ -53,8 +53,13 @@ def index_structured_records(records: Iterable, session_key: str) -> None:
             docs.append(chunk)
             meta = {
                 "session_key": session_key,
-                "type": getattr(rec, "clinical_type", None) or getattr(rec, "type", None) or "",
+                "type": getattr(rec, "clinical_type", None)
+                or getattr(rec, "type", None)
+                or "",
                 "code": getattr(rec, "code", None) or "",
+                "display": getattr(rec, "display", None) or "",
+                "source_url": getattr(rec, "source_url", None) or "",
+                "portal": getattr(rec, "portal", None) or "",
                 "date": str(getattr(rec, "date", "")),
             }
             metas.append({k: v for k, v in meta.items() if v is not None})
