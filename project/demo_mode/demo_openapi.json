@@ -231,179 +231,179 @@
             "type": "string"
           }
         }
+      },
+      "DemoLoadResponse": {
+        "type": "object",
+        "properties": {
+          "session_key": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_key",
+          "source",
+          "source_url"
+        ]
       }
     },
-    "DemoLoadResponse": {
-      "type": "object",
-      "properties": {
-        "session_key": {
-          "type": "string"
-        },
-        "source": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "session_key",
-        "source",
-        "source_url"
-      ]
-    }
-  },
-  "paths": {
-    "/ask_vector": {
-      "post": {
-        "operationId": "askQuestion",
-        "summary": "Answer a health-related question",
-        "tags": [
-          "Query"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string"
-                  },
-                  "session_key": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "query",
-                  "session_key"
-                ]
-              }
+    "paths": {
+      "/ask_vector": {
+        "post": {
+          "operationId": "askQuestion",
+          "summary": "Answer a health-related question",
+          "tags": [
+            "Query"
+          ],
+          "security": [
+            {
+              "bearerAuth": []
             }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Answer text",
+          ],
+          "requestBody": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Answer"
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string"
+                    },
+                    "session_key": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "query",
+                    "session_key"
+                  ]
                 }
               }
-            }
-          }
-        }
-      }
-    },
-    "/export": {
-      "get": {
-        "operationId": "exportRecords",
-        "summary": "Export structured records",
-        "tags": [
-          "Export"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "session_key",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           },
-          {
-            "name": "format",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "json",
-                "markdown",
-                "pdf",
-                "fhir"
-              ],
-              "default": "json"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Exported records",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExportData"
+          "responses": {
+            "200": {
+              "description": "Answer text",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Answer"
+                  }
                 }
               }
             }
           }
         }
-      }
-    },
-    "/summary": {
-      "get": {
-        "operationId": "getSummary",
-        "summary": "Summarize uploaded and processed records",
-        "tags": [
-          "Summary"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "session_key",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
+      },
+      "/export": {
+        "get": {
+          "operationId": "exportRecords",
+          "summary": "Export structured records",
+          "tags": [
+            "Export"
+          ],
+          "security": [
+            {
+              "bearerAuth": []
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Summary information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Summary"
+          ],
+          "parameters": [
+            {
+              "name": "session_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "format",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "markdown",
+                  "pdf",
+                  "fhir"
+                ],
+                "default": "json"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Exported records",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ExportData"
+                  }
                 }
               }
             }
           }
         }
-      }
-    },
-    "/load_demo": {
-      "post": {
-        "operationId": "loadDemoData",
-        "summary": "Load a sample health record for testing",
-        "tags": [
-          "Demo"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
+      },
+      "/summary": {
+        "get": {
+          "operationId": "getSummary",
+          "summary": "Summarize uploaded and processed records",
+          "tags": [
+            "Summary"
+          ],
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "session_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Summary information",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Summary"
+                  }
+                }
+              }
+            }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Demo data session information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DemoLoadResponse"
+        }
+      },
+      "/load_demo": {
+        "post": {
+          "operationId": "loadDemoData",
+          "summary": "Load a sample health record for testing",
+          "tags": [
+            "Demo"
+          ],
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Demo data session information",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/DemoLoadResponse"
+                  }
                 }
               }
             }
