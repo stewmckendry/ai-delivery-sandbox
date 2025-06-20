@@ -25,7 +25,7 @@ curl "https://ai-delivery-sandbox-production-d1a7.up.railway.app/summary?session
 See [`prompt_starter_kit.md`](../docs/prompt_starter_kit.md) for example questions like *"What medication was prescribed in the demo visit?"*.
 
 ## Safe Usage
-- Read the [Disclaimer](../docs/disclaimer.md) before relying on any outputs.
+- Read the [Disclaimer](../docs/user_access_guidance.md#disclaimer) before relying on any outputs.
 - Review [User Access Guidance](../docs/user_access_guidance.md) for who can use Operator and when.
 - Advanced users can follow the [Operator Guidance](../docs/operator_guidance.md) to download their own records.
 

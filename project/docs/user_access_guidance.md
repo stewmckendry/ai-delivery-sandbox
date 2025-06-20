@@ -21,6 +21,13 @@ how to test features without sharing personal information.
 - Ask questions about these demo sessions using `/ask_vector` or `/summary`.
 - Export structured content and review logs even without Operator.
 
+## Demo Version
+The demo version lets you explore the assistant without uploading any personal health data.
+Use the `/load_demo` endpoint or the sample PDFs in `project/demo_data` to create a
+session populated with mock records. You can ask questions, practice generating
+summaries, and experiment with PDF exports or log review. The goal is to show what the
+assistant can do before linking your own portals or sensitive files.
+
 ## Best Practices for Real Portals
 - Only use portals you personally have access to.
 - Review your portal's terms of use before automating downloads.
@@ -28,6 +35,18 @@ how to test features without sharing personal information.
 - Remember the assistant is a **proof of concept** and may contain bugs.
 
 ## Disclaimer
-See [disclaimer.md](disclaimer.md) for important limitations. The
-assistant is not a medical device or clinical decision tool.
-Use it at your own risk and verify all outputs.
+MyHealth Assistant is an early-stage proof of concept that helps you gather,
+organize, and explore your own health records. It is designed for informational
+and educational purposes only.
+
+- **Not a medical device.** The Assistant does not diagnose conditions, provide
+  medical advice, or replace consultation with a qualified clinician.
+- **No clinical decision support.** Summaries and answers come from analyzing
+  your uploaded documents; they should be reviewed with a healthcare professional
+  before you rely on them.
+- **Use with care.** The tool is still under active development and may contain
+  bugs or incomplete features. We recommend using test data or proceeding at
+  your own risk.
+
+Always double-check results and consult your healthcare provider for questions
+about your treatment or diagnosis.
