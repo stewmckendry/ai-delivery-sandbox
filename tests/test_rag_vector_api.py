@@ -16,11 +16,16 @@ def setup_app(monkeypatch):
     token = create_token("user", "agent", "portal")
 
     def fake_search(query, session_key, n_results=5):
-        return [{"text": "Record 1"}, {"text": "Record 2"}]
+        return [
+            {"text": "Patient treated for sprained ankle", "type": "Procedure", "code": "6142004"},
+            {"text": "Discharged with crutches"},
+        ]
 
     def fake_chat(messages, **_kwargs):
         content = messages[0]["content"]
-        assert "Record 1" in content
+        assert "Record 1:" in content
+        assert "Type: Procedure" in content
+        assert "Code: 6142004" in content
         return "Vector answer"
 
     import app.rag.searcher as search_module

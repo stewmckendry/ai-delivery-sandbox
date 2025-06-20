@@ -5,13 +5,15 @@ from pathlib import Path
 
 
 def create_sample_pdf(path: Path) -> None:
-    """Create a simple PDF with two lab result lines."""
+    """Create a simple PDF with a few example records."""
     import fitz  # PyMuPDF
 
     doc = fitz.open()
     page = doc.new_page()
     page.insert_text((72, 72), "Cholesterol 5.8 mmol/L 2023-05-01")
     page.insert_text((72, 90), "Hemoglobin 13.5 g/dL 2023-05-02")
+    page.insert_text((72, 108), "Patient treated for sprained ankle in ER on March 10")
+    page.insert_text((72, 126), "Procedure 6142004 performed; discharged with crutches")
     doc.save(path)
     doc.close()
 

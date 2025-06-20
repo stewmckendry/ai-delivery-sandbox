@@ -36,6 +36,4 @@ def load_demo() -> JSONResponse:
 
     run_etl_from_blobs(session_key)
 
-    return JSONResponse(
-        {"session_key": session_key, "source": filename}
-    )
+    return JSONResponse({"session_key": session_key, "source": filename, "source_url": url})
