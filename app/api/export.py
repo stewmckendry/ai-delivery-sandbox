@@ -19,16 +19,21 @@ router = APIRouter(dependencies=[Depends(require_token)])
 
 
 def _records_to_markdown(labs, visits, structured) -> str:
-    lines = []
+    """Convert DB records to a human-readable Markdown summary."""
+    lines: list[str] = []
     if labs:
         lines.append("## Lab Results")
         for lab in labs:
-            lines.append(f"- {lab.date.isoformat()} {lab.test_name} {lab.value} {lab.units}")
+            lines.append(
+                f"- {lab.date.isoformat()}: {lab.test_name} {lab.value} {lab.units}"
+            )
         lines.append("")
     if visits:
-        lines.append("## Visit Summaries")
+        lines.append("## Visit Notes")
         for visit in visits:
-            lines.append(f"- {visit.date.isoformat()} {visit.provider} {visit.doctor}: {visit.notes}")
+            lines.append(
+                f"- {visit.date.isoformat()}: {visit.provider} {visit.doctor} \u2014 {visit.notes}"
+            )
         lines.append("")
     if structured:
         lines.append("## Structured Records")
@@ -41,19 +46,37 @@ def _records_to_markdown(labs, visits, structured) -> str:
 
 
 def _markdown_to_pdf(md: str, out_path: Path) -> None:
+    """Render ``md`` to a simple, human-friendly PDF."""
     from reportlab.lib.pagesizes import letter
-    from reportlab.pdfgen import canvas
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import inch
 
-    pdf = canvas.Canvas(str(out_path), pagesize=letter)
-    text = pdf.beginText(40, 750)
+    styles = getSampleStyleSheet()
+    styles.add(
+        ParagraphStyle(
+            name="Body",
+            fontName="Helvetica",
+            fontSize=11,
+            leading=14,
+        )
+    )
+    styles["Heading2"].fontName = "Helvetica-Bold"
+    styles["Heading2"].fontSize = 14
+
+    doc = SimpleDocTemplate(str(out_path), pagesize=letter, topMargin=0.75 * inch)
+    elements = []
     for line in md.splitlines():
-        text.textLine(line)
-        if text.getY() <= 40:
-            pdf.drawText(text)
-            pdf.showPage()
-            text = pdf.beginText(40, 750)
-    pdf.drawText(text)
-    pdf.save()
+        if line.startswith("## "):
+            elements.append(Paragraph(line[3:], styles["Heading2"]))
+            elements.append(Spacer(1, 0.2 * inch))
+        elif line.startswith("- "):
+            elements.append(Paragraph(line[2:], styles["Body"]))
+        elif not line.strip():
+            elements.append(Spacer(1, 0.2 * inch))
+        else:
+            elements.append(Paragraph(line, styles["Body"]))
+    doc.build(elements)
 
 
 @router.get("/export")
@@ -175,7 +198,10 @@ def export_records(
         ext = "pdf"
 
     ts = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-    blob_name = f"exports/{session_key}_{ts}.{ext}"
+    if ext == "pdf":
+        blob_name = f"exports/health_summary_{session_key[:5]}_{ts}.pdf"
+    else:
+        blob_name = f"exports/{session_key}_{ts}.{ext}"
     url = blob.upload_file_and_get_url(blob_data, blob_name)
     total_recs = len(labs) + len(visits) + len(structured)
     if total_recs == 0:

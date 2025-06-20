@@ -78,4 +78,5 @@ def test_export_pdf_upload(monkeypatch, tmp_path):
     assert resp.status_code == 200
     data = resp.json()
     assert data["download_url"] == f"https://blob/{called['name']}"
+    assert called["name"].startswith("exports/health_summary_sess_")
     assert called["name"].endswith(".pdf")
