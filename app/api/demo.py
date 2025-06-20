@@ -28,12 +28,13 @@ def load_demo() -> JSONResponse:
 
     session_key = generate_session_key()
     dest_name = f"{session_key}/{filename}"
-    url = blob.upload_file_and_get_url(
+    blob.upload_file_and_get_url(
         data, dest_name, content_type="application/pdf"
     )
     blob.record_upload(session_key, "demo", filename)
+    source_url = blob.get_blob_url(blob_name)
     from app.orchestrator import run_etl_from_blobs
 
     run_etl_from_blobs(session_key)
 
-    return JSONResponse({"session_key": session_key, "source": filename, "source_url": url})
+    return JSONResponse({"session_key": session_key, "source": filename, "source_url": source_url})

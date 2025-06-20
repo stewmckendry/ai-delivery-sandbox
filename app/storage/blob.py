@@ -120,6 +120,23 @@ def download_blob(name: str) -> bytes:
     return stream.readall()
 
 
+def get_blob_url(blob_name: str, ttl_minutes: int = 30) -> str:
+    """Return a time-limited SAS URL for existing blob ``blob_name``."""
+    if not _container or not _account_key:
+        raise RuntimeError("Azure blob storage not configured")
+
+    client = _container.get_blob_client(blob_name)
+    sas = generate_blob_sas(
+        account_name=_account_name,
+        container_name=CONTAINER,
+        blob_name=blob_name,
+        account_key=_account_key,
+        permission=BlobSasPermissions(read=True),
+        expiry=datetime.utcnow() + timedelta(minutes=ttl_minutes),
+    )
+    return f"{client.url}?{sas}"
+
+
 def delete_blob(name: str) -> None:
     """Delete blob ``name`` if it exists."""
     if not _container:
