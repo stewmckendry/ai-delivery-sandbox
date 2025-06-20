@@ -1851,3 +1851,15 @@
   - metadata
   last_updated: '2025-06-19'
   pod_owner: DeliveryPod
+- path: task_guides/phase3_tasks/task_325_create_demo_gpt_config.md
+  raw_url: https://raw.githubusercontent.com/stewmckendry/ai-delivery-sandbox/sandbox-curious-fox/task_guides/phase3_tasks/task_325_create_demo_gpt_config.md
+  file_type: md
+  description: Instructions for creating a demo-only GPT configuration for safe public-facing
+    outreach and demos, including modifications to config and OpenAPI schema files.
+  tags:
+  - config
+  - demo
+  - gpt
+  - delivery
+  last_updated: '2025-06-20'
+  pod_owner: DeliveryPod
