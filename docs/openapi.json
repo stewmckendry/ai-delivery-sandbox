@@ -389,7 +389,7 @@
         "operationId": "exportRecords",
         "summary": "Export structured records",
         "tags": [
-          "Export"
+          "Export", "Prepare", "Report", "Download"
         ],
         "security": [
           {
