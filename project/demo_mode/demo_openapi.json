@@ -1,0 +1,415 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MyHealth Copilot API",
+    "version": "1.0.0",
+    "description": "Endpoints used by the MyHealth Copilot GPT to process and answer questions about health records"
+  },
+  "servers": [
+    {
+      "url": "https://ai-delivery-sandbox-production-d1a7.up.railway.app",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "ProcessStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "Answer": {
+        "type": "object",
+        "properties": {
+          "answer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "answer"
+        ]
+      },
+      "ExportData": {
+        "type": "object",
+        "properties": {
+          "lab_results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "test_name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                },
+                "units": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "test_name",
+                "value",
+                "units",
+                "date"
+              ]
+            }
+          },
+          "visit_summaries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "provider": {
+                  "type": "string"
+                },
+                "doctor": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "provider",
+                "doctor",
+                "notes",
+                "date"
+              ]
+            }
+          },
+          "structured_records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "portal": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string"
+                },
+                "date_created": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "portal",
+                "type",
+                "text",
+                "date_created"
+              ]
+            }
+          }
+        }
+      },
+      "Summary": {
+        "type": "object",
+        "properties": {
+          "uploads": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string"
+                },
+                "portal": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "record_counts": {
+            "type": "object",
+            "properties": {
+              "labs": {
+                "type": "integer"
+              },
+              "visits": {
+                "type": "integer"
+              },
+              "structured": {
+                "type": "integer"
+              }
+            }
+          },
+          "latest_upload": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "latest_processing": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "latest_record_dates": {
+            "type": "object",
+            "properties": {
+              "labs": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "visits": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "structured": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "structured_records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "portal": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string"
+                },
+                "duplicate": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DemoLoadResponse": {
+      "type": "object",
+      "properties": {
+        "session_key": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "session_key",
+        "source",
+        "source_url"
+      ]
+    }
+  },
+  "paths": {
+    "/ask_vector": {
+      "post": {
+        "operationId": "askQuestion",
+        "summary": "Answer a health-related question",
+        "tags": [
+          "Query"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  },
+                  "session_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "query",
+                  "session_key"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/export": {
+      "get": {
+        "operationId": "exportRecords",
+        "summary": "Export structured records",
+        "tags": [
+          "Export"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "markdown",
+                "pdf",
+                "fhir"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exported records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/summary": {
+      "get": {
+        "operationId": "getSummary",
+        "summary": "Summarize uploaded and processed records",
+        "tags": [
+          "Summary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Summary information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Summary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/load_demo": {
+      "post": {
+        "operationId": "loadDemoData",
+        "summary": "Load a sample health record for testing",
+        "tags": [
+          "Demo"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Demo data session information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoLoadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
